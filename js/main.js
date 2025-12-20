@@ -1,21 +1,26 @@
 (function () {
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // Footer year
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
 
-  const menuBtn = document.querySelector(".menu-btn");
-  const mobileNav = document.querySelector(".mobile-nav");
+  // Mobile menu
+  const burger = document.getElementById("burger");
+  const mobile = document.getElementById("mobileMenu");
 
-  if (menuBtn && mobileNav) {
-    menuBtn.addEventListener("click", () => {
-      const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", String(!expanded));
-      mobileNav.hidden = expanded;
+  if (burger && mobile) {
+    burger.addEventListener("click", () => {
+      const expanded = burger.getAttribute("aria-expanded") === "true";
+      burger.setAttribute("aria-expanded", String(!expanded));
+      mobile.style.display = expanded ? "none" : "block";
+      mobile.setAttribute("aria-hidden", expanded ? "true" : "false");
     });
 
-    mobileNav.querySelectorAll("a").forEach((a) => {
+    // Close menu after click
+    mobile.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", () => {
-        menuBtn.setAttribute("aria-expanded", "false");
-        mobileNav.hidden = true;
+        burger.setAttribute("aria-expanded", "false");
+        mobile.style.display = "none";
+        mobile.setAttribute("aria-hidden", "true");
       });
     });
   }
