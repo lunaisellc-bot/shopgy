@@ -1,56 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopgy – Etsy Mağazan için Entegre Profesyonel Web Sitesi</title>
-
+  <title>Shopgy — Etsy Mağazan için Entegre Profesyonel Web Sitesi</title>
+  <meta name="description" content="Etsy mağazan için profesyonel vitrin web sitesi. Satın Al butonları Etsy ödeme sayfasına gider. Ödeme altyapısıyla uğraşma." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body>
-
-  <!-- ÜST MENÜ -->
-  <header class="topbar">
+<body id="top">
+  <!-- Üst şerit: güven mesajı -->
+  <div class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="#top">
-        <span class="brand-dot"></span>
+      <span class="dot"></span>
+      <p>Bu sitede ödeme alınmaz. Tüm alışverişler Etsy üzerinden güvenle yapılır.</p>
+    </div>
+  </div>
+
+  <!-- Sabit menü -->
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Shopgy Ana Sayfa">
+        <span class="brand-mark"></span>
         <span class="brand-name">Shopgy</span>
       </a>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Site menüsü">
         <a href="#demos">Demolar</a>
         <a href="#how">Nasıl Çalışır?</a>
-        <a href="#packages">Paketler</a>
+        <a href="#pricing">Paketler</a>
         <a href="#contact">İletişim</a>
       </nav>
 
-      <a class="cta" href="#packages">Etsy’de Satın Al</a>
+      <a class="btn btn-primary header-cta" href="#pricing">Etsy’den Satın Al</a>
+
+      <button class="menu-btn" type="button" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobil menü -->
+    <div class="mobile-nav" hidden>
+      <a href="#demos">Demolar</a>
+      <a href="#how">Nasıl Çalışır?</a>
+      <a href="#pricing">Paketler</a>
+      <a href="#contact">İletişim</a>
+      <a class="btn btn-primary" href="#pricing">Etsy’den Satın Al</a>
     </div>
   </header>
 
-  <!-- HERO / SLAYT ALANI -->
-  <main id="top">
+  <main>
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-
       <div class="container hero-grid">
         <div class="hero-left">
           <h1>
             Etsy Mağazan için<br />
-            <span class="accent">Entegre</span> Profesyonel Web Sitesi
+            <span class="accent">Entegre</span> Profesyonel<br />
+            Web Sitesi
           </h1>
 
           <p class="lead">
             Ürünlerini web sitende kurumsal bir vitrin gibi göster.
             <strong>Satın Al</strong> butonları doğrudan <strong>Etsy ödeme sayfasına</strong> gitsin.
-            Ödeme altyapısı ve prosedürlerle uğraşma.
+            Ödeme altyapısı, prosedürler ve resmî süreçlerle uğraşma.
           </p>
 
-          <div class="trust-pill">
-            <strong>Ödeme web sitende değil.</strong>
-            Tüm satışlar Etsy üzerinden, güvenle gerçekleşir.
+          <div class="badge">
+            <strong>Ödeme web sitesinde değil.</strong>
+            <span>Tüm satışlar Etsy üzerinden, güvenle gerçekleşir.</span>
           </div>
 
           <div class="hero-actions">
@@ -58,234 +76,219 @@
             <a class="btn btn-ghost" href="#how">Nasıl Çalışır?</a>
           </div>
 
-          <div class="micro">
-            Not: Bu sistem “web sitesi + Etsy entegrasyonu” paketidir.
+          <p class="note">
+            Not: Bu sistem “web sitesi + Etsy mağaza bağlantısı” paketidir.
             Yani sadece tasarım değil, mağaza bağlantısı da kurulur.
-          </div>
+          </p>
         </div>
 
         <div class="hero-right">
-          <div class="hero-card">
-            <div class="hero-card-top">
-              <div class="dots">
-                <span></span><span></span><span></span>
-              </div>
-              <div class="mini-title">Ödeme Etsy’de, kontrol sende</div>
+          <div class="mock-window" role="img" aria-label="Etsy’ye yönlenen satın alma akışı örneği">
+            <div class="mock-top">
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-dot"></span>
+              <span class="mock-title">Ödeme Etsy’de, kontrol sende</span>
             </div>
 
-            <div class="hero-card-body">
-              <div class="mock-screen">
-                <div class="mock-title">Etsy’ye yönlenen satın al akışı</div>
-                <div class="mock-sub">Web sitende ödeme yok. Etsy güvenli ödeme.</div>
+            <div class="mock-body">
+              <div class="mock-card">
+                <h3>Etsy’ye yönlenen satın al akışı</h3>
+                <p>Web sitende ödeme yok. Etsy güvenli ödeme.</p>
 
-                <div class="mock-row">
-                  <div class="mock-img"></div>
-                  <div class="mock-info">
-                    <div class="mock-line w80"></div>
-                    <div class="mock-line w60"></div>
-                    <div class="mock-line w40"></div>
+                <div class="mock-item">
+                  <div class="mock-thumb"></div>
+                  <div class="mock-lines">
+                    <span></span><span></span><span></span>
                   </div>
                 </div>
 
-                <a class="mock-btn" href="#packages">Paketi Gör</a>
+                <a class="btn btn-dark" href="#pricing">Paketi Gör</a>
               </div>
             </div>
           </div>
 
-          <div class="hero-note">
-            Binlerce satıcı ödeme almak için prosedürlerle boğuşuyor.
-            Senin web siten, Etsy’nin ödeme gücünü kullanır.
+          <div class="callout">
+            <span class="callout-bar"></span>
+            <p>
+              Binlerce satıcı ödeme almak için prosedürlerle boğuşuyor.
+              Senin web siten, Etsy’nin ödeme gücünü kullanır.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- DEMOLAR -->
-    <section id="demos" class="section">
+    <section class="section" id="demos">
       <div class="container">
         <div class="section-head">
           <h2>Demo Web Sitelerimiz</h2>
-          <p>Hazır demolarımıza göz at. Birine tıklayınca demoya gidersin.</p>
+          <p>Hazır demolara göz at. Birine tıklayınca demoya gidersin.</p>
         </div>
 
-        <div class="demo-strip">
-          <a class="demo-card" href="#" aria-label="Demo 1">
-            <div class="demo-thumb"></div>
-            <div class="demo-title">Minimal El Yapımı</div>
-            <div class="demo-sub">Kurumsal vitrin + Etsy yönlendirme</div>
-            <span class="demo-btn">Demoyu Gör</span>
-          </a>
+        <div class="cards grid-4">
+          <article class="card demo-card">
+            <div class="thumb"></div>
+            <h3>Minimal El Yapımı</h3>
+            <p>Kurumsal vitrin + Etsy’ye yönlendirme</p>
+            <a class="btn btn-soft" href="#" target="_blank" rel="noopener">Demoyu Gör</a>
+          </article>
 
-          <a class="demo-card" href="#" aria-label="Demo 2">
-            <div class="demo-thumb"></div>
-            <div class="demo-title">Rustik Butik</div>
-            <div class="demo-sub">Ürün listeleme + kategori düzeni</div>
-            <span class="demo-btn">Demoyu Gör</span>
-          </a>
+          <article class="card demo-card">
+            <div class="thumb"></div>
+            <h3>Rustik Butik</h3>
+            <p>Ürün listeleme + kategori düzeni</p>
+            <a class="btn btn-soft" href="#" target="_blank" rel="noopener">Demoyu Gör</a>
+          </article>
 
-          <a class="demo-card" href="#" aria-label="Demo 3">
-            <div class="demo-thumb"></div>
-            <div class="demo-title">Modern Takı</div>
-            <div class="demo-sub">Şık vitrin + hızlı yönlendirme</div>
-            <span class="demo-btn">Demoyu Gör</span>
-          </a>
+          <article class="card demo-card">
+            <div class="thumb"></div>
+            <h3>Modern Takı</h3>
+            <p>Şık vitrin + hızlı yönlendirme</p>
+            <a class="btn btn-soft" href="#" target="_blank" rel="noopener">Demoyu Gör</a>
+          </article>
 
-          <a class="demo-card" href="#" aria-label="Demo 4">
-            <div class="demo-thumb"></div>
-            <div class="demo-title">Boho Ev Dekoru</div>
-            <div class="demo-sub">Hızlı vitrin + Etsy güvenli ödeme</div>
-            <span class="demo-btn">Paketleri Gör</span>
-          </a>
+          <article class="card demo-card">
+            <div class="thumb"></div>
+            <h3>Boho Ev Dekoru</h3>
+            <p>Hızlı vitrin + Etsy güvenli ödeme</p>
+            <a class="btn btn-soft" href="#pricing">Paketleri Gör</a>
+          </article>
         </div>
 
-        <div class="section-footnote">
-          “Demolar” şimdilik örnek kartlar. Demo siteleri birazdan gerçek linklerle bağlayacağız.
-        </div>
+        <p class="muted small">
+          “Demolar” şimdilik örnek kartlar. Birazdan gerçek demo bağlantılarıyla bağlayacağız.
+        </p>
       </div>
     </section>
 
     <!-- NASIL ÇALIŞIR -->
-    <section id="how" class="section alt">
+    <section class="section alt" id="how">
       <div class="container">
         <div class="section-head">
           <h2>Nasıl Çalışır?</h2>
           <p>Ödeme alma derdi yok. Etsy’nin gücünü kullanırsın.</p>
         </div>
 
-        <div class="grid-3">
-          <div class="step">
+        <div class="cards grid-3">
+          <article class="card step">
             <div class="step-no">1</div>
-            <div class="step-title">Etsy’den Paket Satın Alın</div>
-            <div class="step-text">
-              Sipariş Etsy üzerinden alınır. Süreç şeffaf ve kayıtlıdır.
-            </div>
-          </div>
+            <h3>Etsy’den Paket Satın Alın</h3>
+            <p>Sipariş Etsy üzerinden alınır. Süreç şeffaf ve kayıtlıdır.</p>
+          </article>
 
-          <div class="step">
+          <article class="card step">
             <div class="step-no">2</div>
-            <div class="step-title">Web Sitenizi Kuruyoruz</div>
-            <div class="step-text">
-              Tasarım, sayfa yapısı ve içerik düzeni hazırlanır.
-            </div>
-          </div>
+            <h3>Web Sitenizi Kuruyoruz</h3>
+            <p>Tasarım, sayfa yapısı ve içerik düzeni hazırlanır.</p>
+          </article>
 
-          <div class="step">
+          <article class="card step">
             <div class="step-no">3</div>
-            <div class="step-title">Etsy Mağazanızı Bağlıyoruz</div>
-            <div class="step-text">
-              Ürünler web sitende görünür; “Satın Al” butonları Etsy’ye yönlenir.
-            </div>
-          </div>
+            <h3>Etsy Mağazanızı Bağlıyoruz</h3>
+            <p>Ürünler web sitede görünür; “Satın Al” butonları Etsy’ye yönlenir.</p>
+          </article>
         </div>
 
-        <div class="callout">
-          <strong>Önemli:</strong> Bu web sitesinde ödeme alınmaz.
-          Tüm alışverişler Etsy üzerinden güvenle yapılır.
+        <div class="notice">
+          <strong>Önemli:</strong> Bu web sitesinde ödeme alınmaz. Tüm alışverişler Etsy üzerinden güvenle yapılır.
         </div>
       </div>
     </section>
 
     <!-- PAKETLER -->
-    <section id="packages" class="section">
+    <section class="section" id="pricing">
       <div class="container">
         <div class="section-head">
           <h2>Paketlerimiz</h2>
           <p>İhtiyacına göre seç. Hepsinde Etsy’ye yönlendirme sistemi vardır.</p>
         </div>
 
-        <div class="pricing">
-          <div class="price-card">
+        <div class="cards grid-3 pricing">
+          <article class="card price">
             <div class="price-top">
-              <div class="price-name">Starter</div>
-              <div class="price-tag">199 USD</div>
+              <h3>Starter</h3>
+              <div class="tag">199 USD</div>
             </div>
-            <ul class="price-list">
+            <ul>
               <li>Tek sayfa vitrin (ana sayfa)</li>
               <li>Temel tasarım + kurumsal görünüm</li>
               <li>Etsy ürün linkleri ile yönlendirme</li>
               <li>Mobil uyumlu</li>
             </ul>
-            <a class="btn btn-primary full" href="#">Etsy’de Satın Al</a>
-          </div>
+            <a class="btn btn-primary" href="#">Etsy’de Satın Al</a>
+          </article>
 
-          <div class="price-card featured">
-            <div class="badge">En Popüler</div>
+          <article class="card price featured">
             <div class="price-top">
-              <div class="price-name">Pro</div>
-              <div class="price-tag">399 USD</div>
+              <h3>Pro</h3>
+              <div class="tag">399 USD</div>
             </div>
-            <ul class="price-list">
+            <ul>
               <li>Çok bölümlü site (daha detaylı vitrin)</li>
               <li>Demo tarzı ürün vitrin alanı</li>
               <li>Etsy ürünleri otomatik gösterim (entegrasyon)</li>
-              <li>Basit içerik yönetimi mantığı</li>
+              <li>Basit içerik düzeni mantığı</li>
             </ul>
-            <a class="btn btn-primary full" href="#">Etsy’de Satın Al</a>
-          </div>
+            <a class="btn btn-primary" href="#">Etsy’de Satın Al</a>
+          </article>
 
-          <div class="price-card">
+          <article class="card price">
             <div class="price-top">
-              <div class="price-name">Premium</div>
-              <div class="price-tag">799 USD</div>
+              <h3>Premium</h3>
+              <div class="tag">799 USD</div>
             </div>
-            <ul class="price-list">
+            <ul>
               <li>Gelişmiş vitrin + çoklu sayfa</li>
               <li>Etsy entegrasyonu + kategori düzeni</li>
-              <li>Hız/performans optimizasyonu</li>
-              <li>Kurulum + teslim dosyaları + dokümantasyon</li>
+              <li>Hız ve performans düzenlemeleri</li>
+              <li>Kurulum + teslim dosyaları + rehber</li>
             </ul>
-            <a class="btn btn-primary full" href="#">Etsy’de Satın Al</a>
-          </div>
+            <a class="btn btn-primary" href="#">Etsy’de Satın Al</a>
+          </article>
         </div>
 
-        <div class="section-footnote">
-          Paket farklarını daha da netleştireceğiz (sayfa sayısı, demo sayısı, hız, destek vb.).
-        </div>
+        <p class="muted small">
+          Paket farklarını birazdan daha da netleştireceğiz (sayfa sayısı, demo sayısı, destek vb.).
+        </p>
       </div>
     </section>
 
     <!-- İLETİŞİM -->
-    <section id="contact" class="section alt">
+    <section class="section alt" id="contact">
       <div class="container">
         <div class="section-head">
           <h2>İletişim</h2>
           <p>Siparişten sonra gerekli bilgileri Etsy mesajından topluyoruz.</p>
         </div>
 
-        <div class="contact-box">
-          <div>
-            <div class="contact-title">Satın aldıktan sonra</div>
-            <div class="contact-text">
+        <div class="contact-card">
+          <div class="contact-left">
+            <h3>Satın aldıktan sonra</h3>
+            <p>
               Etsy üzerinden mesajlaşacağız: mağaza linkin, isteklerin, demo seçimin vb.
-            </div>
+              Gerekli yönlendirmeleri adım adım yaparız.
+            </p>
           </div>
-
-          <div class="contact-actions">
-            <a class="btn btn-primary" href="#packages">Paketleri Gör</a>
+          <div class="contact-right">
+            <a class="btn btn-primary" href="#pricing">Paketleri Gör</a>
             <a class="btn btn-ghost" href="#how">Süreci Oku</a>
           </div>
         </div>
+
+        <footer class="footer">
+          <p>© <span id="year"></span> Shopgy — Etsy satıcıları için profesyonel vitrin</p>
+          <div class="footer-links">
+            <a href="#top">Yukarı</a>
+            <a href="#how">Nasıl Çalışır?</a>
+            <a href="#contact">İletişim</a>
+          </div>
+        </footer>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <div class="footer-brand">Shopgy</div>
-        <div class="footer-note">
-          Bu sitede ödeme alınmaz. Tüm alışverişler Etsy üzerinden güvenle yapılır.
-        </div>
-      </div>
-
-      <div class="footer-right">
-        <a href="#top">Yukarı</a>
-        <a href="#how">Nasıl Çalışır?</a>
-        <a href="#contact">İletişim</a>
-      </div>
-    </div>
-  </footer>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
