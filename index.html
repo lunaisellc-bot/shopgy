@@ -11,6 +11,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Grafiklerin düzgün görünmesi için minimum stil (CSS'inle çakışmaz) -->
+  <style>
+    .data-proof .chart-card canvas { width: 100%; height: 180px; display: block; }
+    .data-proof .chart-note { margin: 12px 0 0; line-height: 1.55; }
+    .data-proof .chart-source { margin-top: 8px; font-size: 12px; opacity: .75; }
+    .why-cards { margin-top: 18px; }
+    .why-card h3 { margin-bottom: 8px; }
+    .pricing-hint { margin: 18px 0 22px; }
+    .pricing-hint__grid { display: grid; gap: 10px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .pricing-hint__item { padding: 12px 14px; border-radius: 14px; background: rgba(0,0,0,.035); }
+    @media (max-width: 900px){
+      .pricing-hint__grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
@@ -68,13 +83,17 @@
   </header>
 
   <main class="main">
-    <!-- Hero -->
+    <!-- =========================
+         ADIM 1 — HERO (GÜÇLENDİRİLMİŞ)
+         ========================= -->
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__left">
           <h1 class="hero__title">
             Etsy Mağazan için<br />
-            <span class="accent accent--glow">Entegre</span> Profesyonel Web Sitesi
+            <span class="accent accent--glow">Profesyonel</span> Web Sitesi
+            <br />
+            <span class="muted">— ödeme Etsy’de</span>
           </h1>
 
           <p class="hero__lead">
@@ -84,8 +103,8 @@
           </p>
 
           <p class="type" data-type='[
-            "Ödeme Etsy’de. Senin siten sadece satışa yönlendirir.",
-            "Aylık ücret yok. Shopify yok. Karmaşa yok.",
+            "Checkout’u değiştirmiyoruz: ödeme Etsy’de kalır.",
+            "Aylık ücret yok. Abonelik yok. Karmaşa yok.",
             "Kurumsal vitrin + Etsy gücü = daha çok güven."
           ]'>
             <span class="type__cursor" aria-hidden="true"></span>
@@ -117,7 +136,7 @@
 
           <div class="hero__actions">
             <a class="btn btn--primary" href="#pricing">Paketleri Gör</a>
-            <a class="btn btn--ghost" href="#deliverables">Teslimatları Oku</a>
+            <a class="btn btn--ghost" href="#proof">Verilerle Kanıt</a>
           </div>
 
           <div class="hero__mini-actions">
@@ -181,6 +200,92 @@
             Binlerce satıcı ödeme almak için prosedürlerle boğuşuyor.
             Senin web siten, Etsy’nin ödeme gücünü kullanır.
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         ADIM 2 — NEDEN SHOPGY + VERİYLE KANIT (YENİ)
+         ========================= -->
+    <section class="section section--tint" id="proof">
+      <div class="container">
+        <div class="section__head">
+          <h2>Neden Shopgy?</h2>
+          <p>Bu model “süs” değil; dönüşüm, güven ve maliyet gerçekleri üzerine kurulu.</p>
+        </div>
+
+        <div class="grid grid--3 why-cards">
+          <article class="card why-card">
+            <h3>Checkout riski yok</h3>
+            <p>Yeni bir ödeme sistemi kurmuyoruz. Müşteri alıştığı yerde (Etsy) öder.</p>
+            <ul class="bullets">
+              <li>Güven bariyeri eklenmez</li>
+              <li>Ödeme adımı sade kalır</li>
+              <li>Satın al akışı nettir</li>
+            </ul>
+          </article>
+
+          <article class="card why-card">
+            <h3>Aylık maliyet yok</h3>
+            <p>Abonelik yok. Tek sefer kurulumla profesyonel bir web vitrinin olur.</p>
+            <ul class="bullets">
+              <li>Uzun vadede maliyet şişmez</li>
+              <li>“Her ay ödeme” stresi yok</li>
+              <li>Kontrol sende kalır</li>
+            </ul>
+          </article>
+
+          <article class="card why-card">
+            <h3>Kurumsal vitrin algısı</h3>
+            <p>Markan daha ciddi görünür. Ziyaretçi, “bu iş gerçek” der.</p>
+            <ul class="bullets">
+              <li>Profesyonel sunum</li>
+              <li>Mobil uyum</li>
+              <li>Satışa yönlendiren tasarım</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Data Proof Charts -->
+        <div class="section__head mt-16">
+          <h2>Veriler Ne Diyor?</h2>
+          <p>Bilimsel yaklaşım: karar anında güveni artıran, sade ve net kanıtlar.</p>
+        </div>
+
+        <div class="grid grid--3 data-proof">
+          <article class="card chart-card">
+            <h3>Sepet Terk Oranı</h3>
+            <canvas id="chartCheckout" aria-label="Sepet terk oranı grafiği"></canvas>
+            <p class="chart-note">
+              Online alışverişlerin önemli bir kısmı ödeme aşamasında terk edilir.
+              <strong>Bu yüzden checkout’u değiştirmiyoruz: ödeme Etsy’de kalır.</strong>
+            </p>
+            <div class="chart-source">Kaynak: Baymard (checkout araştırmaları)</div>
+          </article>
+
+          <article class="card chart-card">
+            <h3>Etsy Ekosistemi</h3>
+            <canvas id="chartEtsy" aria-label="Etsy ekosistemi grafiği"></canvas>
+            <p class="chart-note">
+              Etsy, büyük bir alıcı-satıcı ekosistemidir.
+              <strong>Müşteri zaten Etsy’ye alışık; güveni koruyoruz.</strong>
+            </p>
+            <div class="chart-source">Kaynak: Etsy yatırımcı sunumları / istatistikleri</div>
+          </article>
+
+          <article class="card chart-card">
+            <h3>Uzun Vadeli Maliyet</h3>
+            <canvas id="chartCost" aria-label="Uzun vadeli maliyet grafiği"></canvas>
+            <p class="chart-note">
+              Abonelik tabanlı çözümlerde maliyet zamanla artar.
+              <strong>Shopgy: tek sefer kurulum + uzun vadeli kontrol.</strong>
+            </p>
+            <div class="chart-source">Not: Grafik “model farkı” gösterimi amaçlıdır.</div>
+          </article>
+        </div>
+
+        <div class="callout mt-16">
+          <strong>Özet:</strong> Müşteri web sitende ürünü görür; “Satın Al”a basar; ödeme Etsy’de güvenle biter.
         </div>
       </div>
     </section>
@@ -261,12 +366,31 @@
       </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- =========================
+         ADIM 3 — PAKET PSİKOLOJİSİ (GÜÇLENDİRİLDİ)
+         ========================= -->
     <section class="section" id="pricing">
       <div class="container">
         <div class="section__head">
           <h2>Paketlerimiz</h2>
           <p>İhtiyacına göre seç. Hepsinde Etsy’ye yönlendirme sistemi vardır.</p>
+        </div>
+
+        <div class="pricing-hint">
+          <div class="pricing-hint__grid">
+            <div class="pricing-hint__item">
+              <strong>Starter</strong><br />
+              Hızlı vitrin isteyenler (tek sayfa, manuel bağlantı)
+            </div>
+            <div class="pricing-hint__item">
+              <strong>Pro</strong><br />
+              En çok tercih: otomatik ürün gösterimi + kurumsal vitrin
+            </div>
+            <div class="pricing-hint__item">
+              <strong>Premium</strong><br />
+              Markasını büyütenler: çoklu sayfa + kategori düzeni
+            </div>
+          </div>
         </div>
 
         <div class="grid grid--3 pricing">
@@ -283,6 +407,7 @@
             </div>
 
             <ul class="list">
+              <li><strong>Kimler için:</strong> Yeni başlayan / küçük mağaza</li>
               <li>Ana sayfa (tek sayfa yapı)</li>
               <li>Kurumsal tasarım düzeni</li>
               <li>“Satın Al” butonları Etsy ürün linklerine gider</li>
@@ -311,6 +436,7 @@
             </div>
 
             <ul class="list">
+              <li><strong>Kimler için:</strong> Düzenli satış yapan / vitrinini büyüten</li>
               <li>Bölümlü ana sayfa + vitrin alanları</li>
               <li>Ürünleri otomatik gösterim (Etsy entegrasyonu)</li>
               <li>Ürün kartlarında “Satın Al” Etsy’ye yönlenir</li>
@@ -339,6 +465,7 @@
             </div>
 
             <ul class="list">
+              <li><strong>Kimler için:</strong> Marka odaklı / uzun vadeli yapı isteyen</li>
               <li>Çoklu sayfa yapı (ana sayfa + sayfalar)</li>
               <li>Etsy entegrasyonu + kategori düzeni</li>
               <li>Gelişmiş hız/performans düzeni</li>
@@ -557,5 +684,83 @@
   </main>
 
   <script src="js/main.js"></script>
+
+  <!-- Grafik çizimi: tek dosyada kalsın diye inline -->
+  <script>
+    (function () {
+      function drawBarChart(canvasId, values, labels) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+
+        // Canvas boyutu (CSS ile genişler, çizim için sabit)
+        const W = 320;
+        const H = 180;
+        canvas.width = W;
+        canvas.height = H;
+
+        // Temizle
+        ctx.clearRect(0, 0, W, H);
+
+        // Grid
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(0,0,0,.08)";
+        for (let i = 0; i <= 4; i++) {
+          const y = 18 + i * 34;
+          ctx.beginPath();
+          ctx.moveTo(14, y);
+          ctx.lineTo(W - 14, y);
+          ctx.stroke();
+        }
+
+        const max = Math.max(...values);
+        const barW = 56;
+        const gap = 34;
+        const baseY = H - 24;
+
+        // Renkler (her canvas için tek ton)
+        const colorMap = {
+          chartCheckout: "rgba(231, 76, 60, .9)",
+          chartEtsy: "rgba(46, 204, 113, .9)",
+          chartCost: "rgba(52, 152, 219, .9)"
+        };
+        const barColor = colorMap[canvasId] || "rgba(0,0,0,.75)";
+
+        // Başlangıç x
+        const totalWidth = values.length * barW + (values.length - 1) * gap;
+        let x = (W - totalWidth) / 2;
+
+        // Çiz
+        values.forEach((v, i) => {
+          const h = (v / max) * 110;
+          const y = baseY - h;
+
+          // bar
+          ctx.fillStyle = barColor;
+          ctx.fillRect(x, y, barW, h);
+
+          // değer
+          ctx.fillStyle = "rgba(0,0,0,.8)";
+          ctx.font = "600 12px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+          ctx.textAlign = "center";
+          ctx.fillText(v + "%", x + barW / 2, y - 6);
+
+          // label
+          ctx.fillStyle = "rgba(0,0,0,.65)";
+          ctx.font = "500 12px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+          ctx.fillText(labels[i], x + barW / 2, H - 6);
+
+          x += barW + gap;
+        });
+      }
+
+      // Grafikler (bilerek “temsili” ve basit anlatımlı)
+      drawBarChart("chartCheckout", [70, 30], ["Terk", "Tamamlanan"]);
+      drawBarChart("chartEtsy", [80, 20], ["Etsy", "Yeni"]);
+      drawBarChart("chartCost", [100, 35], ["Abonelik", "Shopgy"]);
+    })();
+  </script>
 </body>
 </html>
