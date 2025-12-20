@@ -63,14 +63,14 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <main class="main">
+    <!-- Hero -->
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__left">
           <h1 class="hero__title">
             Etsy Mağazan için<br />
-            <span class="accent">Entegre</span> Profesyonel Web Sitesi
+            <span class="accent accent--glow">Entegre</span> Profesyonel Web Sitesi
           </h1>
 
           <p class="hero__lead">
@@ -87,6 +87,21 @@
             <span class="type__cursor" aria-hidden="true"></span>
           </p>
 
+          <div class="trust-bar">
+            <div class="trust-bar__item">
+              <span class="trust-ic" aria-hidden="true"></span>
+              <span>Ödeme Etsy’de</span>
+            </div>
+            <div class="trust-bar__item">
+              <span class="trust-ic" aria-hidden="true"></span>
+              <span>Aylık ücret yok</span>
+            </div>
+            <div class="trust-bar__item">
+              <span class="trust-ic" aria-hidden="true"></span>
+              <span>Mobil uyumlu</span>
+            </div>
+          </div>
+
           <div class="hero__pill">
             <strong>Ödeme web sitende değil.</strong>
             <span>Tüm satışlar Etsy üzerinden, güvenle gerçekleşir.</span>
@@ -98,9 +113,7 @@
           </div>
 
           <div class="hero__mini-actions">
-            <button class="btn btn--soft" type="button" id="openVideoBtn">
-              Tanıtım Videosu (yakında)
-            </button>
+            <button class="btn btn--soft" type="button" id="openVideoBtn">Tanıtım Videosu (yakında)</button>
             <a class="btn btn--soft" href="#pricing">Paketleri Gör</a>
           </div>
 
@@ -133,6 +146,29 @@
             </div>
           </div>
 
+          <!-- Showcase Slider (görselsiz de premium dursun diye gradient slide) -->
+          <div class="showcase" aria-label="Vitrin slayt alanı">
+            <div class="showcase__head">
+              <strong>Vitrin Örnekleri</strong>
+              <span class="muted">Gerçek görselleri birazdan ekleyeceğiz</span>
+            </div>
+
+            <div class="showcase__viewport" id="showcaseViewport">
+              <div class="showcase__track" id="showcaseTrack">
+                <div class="showcase__slide s1" role="group" aria-label="Slayt 1"></div>
+                <div class="showcase__slide s2" role="group" aria-label="Slayt 2"></div>
+                <div class="showcase__slide s3" role="group" aria-label="Slayt 3"></div>
+                <div class="showcase__slide s4" role="group" aria-label="Slayt 4"></div>
+              </div>
+            </div>
+
+            <div class="showcase__controls">
+              <button class="showcase__btn" type="button" id="showcasePrev" aria-label="Önceki slayt">‹</button>
+              <div class="showcase__dots" id="showcaseDots" aria-label="Slayt seçimi"></div>
+              <button class="showcase__btn" type="button" id="showcaseNext" aria-label="Sonraki slayt">›</button>
+            </div>
+          </div>
+
           <div class="side-note">
             Binlerce satıcı ödeme almak için prosedürlerle boğuşuyor.
             Senin web siten, Etsy’nin ödeme gücünü kullanır.
@@ -151,28 +187,28 @@
 
         <div class="grid grid--4">
           <article class="card demo-card">
-            <div class="demo-card__img" aria-hidden="true"></div>
+            <div class="demo-card__img demo-card__img--move" aria-hidden="true"></div>
             <h3>Minimal El Yapımı</h3>
             <p>Kurumsal vitrin + Etsy’ye yönlendirme</p>
             <a class="btn btn--soft" href="#" target="_blank" rel="noopener">Demoyu Gör</a>
           </article>
 
           <article class="card demo-card">
-            <div class="demo-card__img" aria-hidden="true"></div>
+            <div class="demo-card__img demo-card__img--move" aria-hidden="true"></div>
             <h3>Rustik Butik</h3>
             <p>Ürün listeleme + kategori düzeni</p>
             <a class="btn btn--soft" href="#" target="_blank" rel="noopener">Demoyu Gör</a>
           </article>
 
           <article class="card demo-card">
-            <div class="demo-card__img" aria-hidden="true"></div>
+            <div class="demo-card__img demo-card__img--move" aria-hidden="true"></div>
             <h3>Modern Takı</h3>
             <p>Şık vitrin + hızlı yönlendirme</p>
             <a class="btn btn--soft" href="#" target="_blank" rel="noopener">Demoyu Gör</a>
           </article>
 
           <article class="card demo-card">
-            <div class="demo-card__img" aria-hidden="true"></div>
+            <div class="demo-card__img demo-card__img--move" aria-hidden="true"></div>
             <h3>Boho Ev Dekoru</h3>
             <p>Hızlı vitrin + Etsy güvenli ödeme</p>
             <a class="btn btn--soft" href="#pricing">Paketleri Gör</a>
@@ -346,7 +382,7 @@
       </div>
     </footer>
 
-    <!-- Video Modal (safe placeholder) -->
+    <!-- Video Modal (placeholder) -->
     <div class="modal" id="videoModal" aria-hidden="true" role="dialog" aria-label="Tanıtım videosu">
       <div class="modal__backdrop" id="closeVideo"></div>
       <div class="modal__content">
@@ -355,6 +391,7 @@
           <source src="assets/video/walkthrough.mp4" type="video/mp4">
           Tarayıcınız video etiketini desteklemiyor.
         </video>
+        <div class="modal__hint">Video dosyası henüz eklenmedi. Eklendiğinde otomatik çalışacak.</div>
       </div>
     </div>
 
