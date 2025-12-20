@@ -119,7 +119,7 @@
   restart();
 })();
 
-/* ----------------- Video Modal (placeholder) ----------------- */
+/* ----------------- Video Modal ----------------- */
 (function () {
   const modal = document.getElementById("videoModal");
   const closeBg = document.getElementById("closeVideo");
