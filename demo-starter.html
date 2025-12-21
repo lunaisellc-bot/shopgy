@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mono Planner - Ekonomik Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        dark: '#222',
+                        graybg: '#f4f4f4'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-dark antialiased">
+
+    <nav class="max-w-5xl mx-auto px-4 py-6 flex justify-between items-center border-b border-gray-100">
+        <a href="#" class="text-xl font-bold tracking-tight">MONO.</a>
+        <a href="#" class="text-sm font-semibold hover:underline">Etsy Mağazası ↗</a>
+    </nav>
+
+    <header class="max-w-5xl mx-auto px-4 py-20 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Planla. Üret. Başar.</h1>
+        <p class="text-gray-500 max-w-lg mx-auto mb-8">
+            Minimalist dijital planlayıcılar ve organizasyon araçları. 
+            Karmaşadan uzak, sadece odağınız için.
+        </p>
+        <a href="#urunler" class="bg-dark text-white px-6 py-3 rounded text-sm font-semibold hover:bg-gray-800 transition">
+            Ürünleri İncele
+        </a>
+    </header>
+
+    <section id="urunler" class="max-w-5xl mx-auto px-4 pb-20">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+            
+            <div class="group">
+                <div class="bg-graybg aspect-square mb-4 rounded-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=600&q=80" class="w-full h-full object-cover group-hover:opacity-90 transition" alt="Planner">
+                </div>
+                <h3 class="font-semibold text-sm">2025 Dijital Planner</h3>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-gray-500 text-sm">₺150.00</span>
+                    <button class="text-xs border border-dark px-3 py-1 rounded hover:bg-dark hover:text-white transition">Satın Al</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="bg-graybg aspect-square mb-4 rounded-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&q=80" class="w-full h-full object-cover group-hover:opacity-90 transition" alt="Sticker">
+                </div>
+                <h3 class="font-semibold text-sm">Motivasyon Sticker Seti</h3>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-gray-500 text-sm">₺45.00</span>
+                    <button class="text-xs border border-dark px-3 py-1 rounded hover:bg-dark hover:text-white transition">Satın Al</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="bg-graybg aspect-square mb-4 rounded-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600&q=80" class="w-full h-full object-cover group-hover:opacity-90 transition" alt="Not Defteri">
+                </div>
+                <h3 class="font-semibold text-sm">Minimalist Not Defteri</h3>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-gray-500 text-sm">₺80.00</span>
+                    <button class="text-xs border border-dark px-3 py-1 rounded hover:bg-dark hover:text-white transition">Satın Al</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="bg-graybg aspect-square mb-4 rounded-lg overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1628258334105-2a0b3d6efcd1?w=600&q=80" class="w-full h-full object-cover group-hover:opacity-90 transition" alt="Takvim">
+                </div>
+                <h3 class="font-semibold text-sm">Masa Takvimi</h3>
+                <div class="flex justify-between items-center mt-2">
+                    <span class="text-gray-500 text-sm">₺120.00</span>
+                    <button class="text-xs border border-dark px-3 py-1 rounded hover:bg-dark hover:text-white transition">Satın Al</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-100 py-10 text-center">
+        <p class="text-xs text-gray-400">&copy; 2024 Mono Planner. Etsy altyapısı ile çalışır.</p>
+    </footer>
+
+    <div class="fixed bottom-4 right-4 bg-gray-200 text-dark px-3 py-1 text-xs font-bold rounded z-50">
+        EKONOMİK DEMO
+    </div>
+
+</body>
+</html>
