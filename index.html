@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Mevcut CSS dosyan -->
+  <!-- Mevcut CSS dosyan (varsa) -->
   <link rel="stylesheet" href="styles.css" />
 
   <style>
@@ -30,6 +30,13 @@
       --radius-xl: 22px;
       --radius-lg: 18px;
       --radius-md: 14px;
+    }
+
+    /* Grafikler: canvas alanı tam dolsun */
+    canvas{
+      display:block;
+      width:100% !important;
+      height:100% !important;
     }
 
     .topbar{
@@ -305,7 +312,7 @@
       user-select:none;
     }
 
-    /* Grafik kartlarında hafif “focus” efekti için class (script aşağıda) */
+    /* Grafik kartlarında hafif “focus” efekti için class (script.js içinde tetiklenir) */
     .chartCard{
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
@@ -327,7 +334,7 @@
     </div>
   </div>
 
-  <!-- NAV (Mevcut yapın varsa aynı sınıfları kullanabilirsin) -->
+  <!-- NAV -->
   <header class="container" style="padding: 18px 0;">
     <nav style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
       <div style="display:flex; align-items:center; gap:10px;">
@@ -550,7 +557,6 @@
         <b>Not:</b> Bu hizmet “web sitesi + Etsy entegrasyonu” mantığıyla çalışır. Yani sadece tasarım değil; ürün akışı ve yönlendirme sistemi de kurulur.
       </div>
 
-      <!-- Paket kartların (mevcut sınıfların varsa aynı bırakabilirsin) -->
       <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top: 18px;">
         <!-- STARTER -->
         <article class="card">
@@ -677,7 +683,7 @@
 
     <hr class="divider" />
 
-    <!-- TESLİMATLAR / TAM OLARAK NE TESLİM EDİYORUZ -->
+    <!-- TESLİMATLAR -->
     <section class="section" id="teslimatlar">
       <div class="section__head">
         <div>
@@ -854,7 +860,7 @@
           <div class="card__body">
             <h3 style="margin:0 0 8px;">Ödeme adımında güven</h3>
             <div style="height: 170px; border:1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;">
-              <canvas id="chartCheckout" width="320" height="170" aria-label="Güven grafiği"></canvas>
+              <canvas id="chartCheckout" aria-label="Güven grafiği"></canvas>
             </div>
             <p class="micro" style="margin:10px 0 0;">
               Ödeme akışını değiştirmeyiz: müşteri Etsy’ye alışık; güveni koruruz.
@@ -867,7 +873,7 @@
           <div class="card__body">
             <h3 style="margin:0 0 8px;">Tek panel yönetim</h3>
             <div style="height: 170px; border:1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;">
-              <canvas id="chartEtsy" width="320" height="170" aria-label="Tek panel grafiği"></canvas>
+              <canvas id="chartEtsy" aria-label="Tek panel grafiği"></canvas>
             </div>
             <p class="micro" style="margin:10px 0 0;">
               Ürün ekleme/fiyat güncelleme gibi işler Etsy’de yapılır; web sitesi otomatik güncellenir.
@@ -880,7 +886,7 @@
           <div class="card__body">
             <h3 style="margin:0 0 8px;">Uzun vadeli maliyet</h3>
             <div style="height: 170px; border:1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;">
-              <canvas id="chartCost" width="320" height="170" aria-label="Maliyet grafiği"></canvas>
+              <canvas id="chartCost" aria-label="Maliyet grafiği"></canvas>
             </div>
             <p class="micro" style="margin:10px 0 0;">
               Abonelik baskısı yok: tek sefer kurulum + kontrol sende.
@@ -995,26 +1001,11 @@
 
   </main>
 
-  <!-- Mevcut JS dosyan -->
+  <!-- 1) Chart.js (grafikler için zorunlu) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- 2) Senin ana JS dosyan (charts + slider + modal vs.) -->
   <script src="script.js"></script>
 
-  <!-- Mini UX: Grafik kartları scroll ile “aktif” olur (hafif animasyon hissi) -->
-  <script>
-    (function(){
-      const cards = Array.from(document.querySelectorAll('.chartCard'));
-      if(!cards.length) return;
-
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            cards.forEach(c=>c.classList.remove('is-active'));
-            e.target.classList.add('is-active');
-          }
-        });
-      }, { threshold: 0.55 });
-
-      cards.forEach(c=>io.observe(c));
-    })();
-  </script>
 </body>
 </html>
