@@ -1,120 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETSY PRESTIGE | Elite Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --gold: #d4af37;
-            --text: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopgy — Etsy Mağazan için Entegre Profesyonel Web Sitesi</title>
+  <meta name="description" content="Etsy satıcıları için premium vitrin web sitesi. Ürünler otomatik görünür; ödeme Etsy’de kalır. Checkout bozulmaz." />
 
-        body { 
-            margin: 0; 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        /* Navigasyon */
-        nav {
-            padding: 40px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            letter-spacing: 3px;
-        }
-
-        .logo { font-size: 1.2rem; font-weight: 700; }
-        .logo span { font-weight: 200; color: var(--gold); }
-
-        /* Ana Bölüm Layout */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            height: 80vh;
-            align-items: center;
-            padding: 0 8%;
-        }
-
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-            height: 60vh;
-            background: url('https://images.unsplash.com/photo-1600585154340-be6191bfde10?auto=format&fit=crop&w=1200') no-repeat center;
-            background-size: cover;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            filter: grayscale(100%);
-            transition: 1s;
-        }
-
-        .hero-image:hover { filter: grayscale(0%); }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-            padding-left: 5%;
-        }
-
-        .category { 
-            color: var(--gold); 
-            text-transform: uppercase; 
-            font-size: 0.7rem; 
-            letter-spacing: 5px; 
-            margin-bottom: 20px; 
-        }
-
-        h1 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 5rem; 
-            line-height: 1; 
-            margin: 0 0 20px 0; 
-        }
-
-        h1 em { font-weight: 300; font-style: italic; }
-
-        p { 
-            max-width: 400px; 
-            line-height: 1.8; 
-            opacity: 0.6; 
-            font-size: 0.9rem; 
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 30px;
-            color: var(--gold);
-            text-decoration: none;
-            border-bottom: 1px solid var(--gold);
-            padding-bottom: 5px;
-            transition: 0.3s;
-        }
-
-        .btn:hover { letter-spacing: 2px; }
-    </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span class="dot" aria-hidden="true"></span>
+        <span><b>Bu web sitesinde ödeme alınmaz.</b> Tüm satışlar Etsy üzerinden güvenle tamamlanır.</span>
+      </div>
+      <a class="topbar__link" href="#paketler">Paketler</a>
+    </div>
+  </div>
 
-    <nav>
-        <div class="logo">ETSY<span>ELITE</span></div>
-        <div style="font-size: 0.7rem; opacity: 0.5;">MENU</div>
-    </nav>
+  <header class="header" role="banner">
+    <div class="container header__inner">
+      <a class="brand" href="#" aria-label="Shopgy">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Shopgy</span>
+      </a>
 
-    <section class="hero">
-        <div class="hero-image"></div>
-        
-        <div class="hero-text">
-            <div class="category">Koleksiyon 2025</div>
-            <h1>Modern <br> <em>Estetik</em></h1>
-            <p>Etsy dükkanınızla gerçek zamanlı veri senkronizasyonu. Hız, lüks ve kusursuz kod mimarisi.</p>
-            <a href="#" class="btn">KEŞFET →</a>
+      <nav class="nav" aria-label="Site menüsü">
+        <a href="#neden">Neden?</a>
+        <a href="#nasil">Nasıl?</a>
+        <a href="#paketler">Paketler</a>
+        <a href="#sss">SSS</a>
+      </nav>
+
+      <div class="header__cta">
+        <button class="btn btn--ghost" type="button">1 Dakika İzle</button>
+        <a class="btn btn--primary" href="#paketler">Paketleri Gör</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero__grid">
+        <div>
+          <h1 class="hero__title">
+            Etsy mağazan için web sitesi.<br/>
+            <span class="accent">Ürünler otomatik gelsin, ödeme Etsy’de kalsın.</span>
+          </h1>
+
+          <p class="hero__lead">
+            Ürünleri yalnızca Etsy’den yönet. Web siten otomatik vitrin olsun.
+            “Satın Al” butonları Etsy’ye götürür; checkout bozulmaz.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#paketler">Paketleri Gör</a>
+            <button class="btn btn--ghost" type="button">1 Dakika İzle</button>
+          </div>
+
+          <div class="seed" aria-label="4 güçlü madde">
+            <article class="seedCard">
+              <h3>Kurumsal görünüm</h3>
+              <p>Premium tasarım dili. Güven veren ilk izlenim.</p>
+            </article>
+            <article class="seedCard">
+              <h3>Etsy uyumlu akış</h3>
+              <p>Satın alma Etsy’de biter. Checkout riski yok.</p>
+            </article>
+            <article class="seedCard">
+              <h3>Tek panel yönetim</h3>
+              <p>Ürün güncellemesi Etsy’de; vitrin otomatik.</p>
+            </article>
+            <article class="seedCard">
+              <h3>Hız odaklı</h3>
+              <p>Hafif, hızlı, mobil uyumlu. “Lüks ama seri.”</p>
+            </article>
+          </div>
+
+          <div class="pill">
+            <b>Net:</b> Web sitesi vitrin. Ödeme Etsy’de. Sistem bozulmaz.
+          </div>
         </div>
+
+        <aside class="mock" aria-label="Demo kart">
+          <div class="mock__top">
+            <div class="mock__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="mock__label">Ödeme Etsy’de • kontrol sende</div>
+          </div>
+          <div class="mock__card">
+            <h3>Ultra-lüks iskelet</h3>
+            <p>Bu sağ kart alanı birazdan slider + demo vitrin görselleri ile dolacak. Şimdilik “premium hissi”ni kilitliyoruz.</p>
+            <div class="pill" style="margin-top:14px;">
+              Sonraki adım: slider + vitrin stilleri (4 ekran) + paket kartları.
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
 
+    <!-- ŞİMDİLİK BOŞ ANKORLAR: kırılma olmasın -->
+    <section id="neden"></section>
+    <section id="nasil"></section>
+    <section id="paketler"></section>
+    <section id="sss"></section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
