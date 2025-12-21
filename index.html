@@ -3,44 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETSY PRESTIGE | Elite Web Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>ETSY PRESTIGE | Elite Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --gold: #d4af37;
+            --text: #ffffff;
+        }
+
+        body { 
+            margin: 0; 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigasyon */
+        nav {
+            padding: 40px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            letter-spacing: 3px;
+        }
+
+        .logo { font-size: 1.2rem; font-weight: 700; }
+        .logo span { font-weight: 200; color: var(--gold); }
+
+        /* Ana Bölüm Layout */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            height: 80vh;
+            align-items: center;
+            padding: 0 8%;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            height: 60vh;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6191bfde10?auto=format&fit=crop&w=1200') no-repeat center;
+            background-size: cover;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            filter: grayscale(100%);
+            transition: 1s;
+        }
+
+        .hero-image:hover { filter: grayscale(0%); }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding-left: 5%;
+        }
+
+        .category { 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            font-size: 0.7rem; 
+            letter-spacing: 5px; 
+            margin-bottom: 20px; 
+        }
+
+        h1 { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 5rem; 
+            line-height: 1; 
+            margin: 0 0 20px 0; 
+        }
+
+        h1 em { font-weight: 300; font-style: italic; }
+
+        p { 
+            max-width: 400px; 
+            line-height: 1.8; 
+            opacity: 0.6; 
+            font-size: 0.9rem; 
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--gold);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 5px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { letter-spacing: 2px; }
+    </style>
 </head>
 <body>
 
-    <div id="loader">
-        <div class="loader-content">
-            <span class="reveal-text">PRESTIGE</span>
-            <div class="loader-line"></div>
+    <nav>
+        <div class="logo">ETSY<span>ELITE</span></div>
+        <div style="font-size: 0.7rem; opacity: 0.5;">MENU</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-image"></div>
+        
+        <div class="hero-text">
+            <div class="category">Koleksiyon 2025</div>
+            <h1>Modern <br> <em>Estetik</em></h1>
+            <p>Etsy dükkanınızla gerçek zamanlı veri senkronizasyonu. Hız, lüks ve kusursuz kod mimarisi.</p>
+            <a href="#" class="btn">KEŞFET →</a>
         </div>
-    </div>
+    </section>
 
-    <div id="cursor"></div>
-
-    <main id="main-content">
-        <nav class="glass-nav">
-            <div class="logo">ETSY<span>ELITE</span></div>
-            <div class="menu-trigger"><span>MENU</span></div>
-        </nav>
-
-        <section class="hero-split">
-            <div class="hero-image-wrap">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6191bfde10?auto=format&fit=crop&w=1200" alt="Lüks Tasarım" class="hero-img">
-            </div>
-            
-            <div class="hero-text-wrap">
-                <h2 class="category">Koleksiyon 2025</h2>
-                <h1 class="main-title">Modern <br> <em>Estetik</em></h1>
-                <p class="description">Etsy dükkanınızla gerçek zamanlı veri senkronizasyonu. Hız, lüks ve kusursuz kod mimarisi.</p>
-                <div class="cta-wrap">
-                    <a href="#" class="explore-btn">KEŞFET <span class="arrow">→</span></a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
