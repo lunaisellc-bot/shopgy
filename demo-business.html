@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naturel Home - Profesyonel Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: {
+                        brand: '#2C5F2D', // Orman Yeşili
+                        secondary: '#97BC62',
+                        light: '#F8F9FA'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .btn-brand {
+            background-color: #2C5F2D;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-brand:hover {
+            background-color: #1a3c1b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 95, 45, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <div class="bg-brand text-white text-center py-2 text-xs font-medium tracking-wide">
+        📦 TÜM DÜNYAYA ÜCRETSİZ KARGO | ETSY GÜVENCESİYLE
+    </div>
+
+    <nav class="border-b border-gray-100 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold text-brand tracking-tighter">NATUREL.</div>
+            
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-500">
+                <a href="#" class="hover:text-brand transition">YENİLER</a>
+                <a href="#" class="hover:text-brand transition">EV DEKOR</a>
+                <a href="#" class="hover:text-brand transition">MUTFAK</a>
+                <a href="#" class="hover:text-brand transition">BLOG</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="text-sm font-bold text-brand border-2 border-brand px-5 py-2 rounded-full hover:bg-brand hover:text-white transition">
+                    Mağazayı Gör
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-[500px] flex items-center">
+        <div class="absolute inset-0 hero-bg">
+            <div class="absolute inset-0 bg-black/20"></div> </div>
+        <div class="relative max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-xl bg-white/90 backdrop-blur-sm p-10 rounded-2xl shadow-xl">
+                <span class="text-brand font-bold text-xs uppercase tracking-wider mb-2 block">Yeni Koleksiyon</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    Eviniz İçin <br>Doğal Dokunuşlar.
+                </h1>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Sürdürülebilir malzemelerle üretilen el yapımı dekorasyon ürünleri. 
+                    Evinizin havasını değiştirin.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="btn-brand px-8 py-3 rounded-lg font-bold text-sm">Alışverişe Başla</a>
+                    <a href="#" class="px-8 py-3 border border-gray-300 rounded-lg font-bold text-sm hover:bg-gray-50 transition">Kategoriler</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-12 bg-light border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div>
+                <div class="text-3xl mb-2">🌿</div>
+                <h3 class="font-bold mb-1">El Yapımı</h3>
+                <p class="text-sm text-gray-500">%100 doğal malzemeler</p>
+            </div>
+            <div>
+                <div class="text-3xl mb-2">✨</div>
+                <h3 class="font-bold mb-1">Eşsiz Tasarım</h3>
+                <p class="text-sm text-gray-500">Her parça tek ve özel</p>
+            </div>
+            <div>
+                <div class="text-3xl mb-2">🛡️</div>
+                <h3 class="font-bold mb-1">Güvenli Ödeme</h3>
+                <p class="text-sm text-gray-500">Etsy koruması altında</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">Popüler Ürünler</h2>
+                <p class="text-gray-500 mt-2">Bu ayın en çok satan parçaları</p>
+            </div>
+            <a href="#" class="text-brand font-bold hover:underline">Tümünü Gör →</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="group">
+                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
+                    <img src="https://images.unsplash.com/photo-1594051528657-6967000d66c5?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Vazo">
+                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
+                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
+                            Etsy'de İncele
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg text-gray-900">Seramik Vazo</h3>
+                <p class="text-gray-500">$45.00</p>
+            </div>
+
+            <div class="group">
+                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
+                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Masa">
+                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
+                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
+                            Etsy'de İncele
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg text-gray-900">Ahşap Sehpa</h3>
+                <p class="text-gray-500">$120.00</p>
+            </div>
+
+            <div class="group">
+                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Lamba">
+                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
+                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
+                            Etsy'de İncele
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg text-gray-900">Minimalist Lamba</h3>
+                <p class="text-gray-500">$85.00</p>
+            </div>
+            
+            <div class="group">
+                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
+                    <img src="https://images.unsplash.com/photo-1544457070-4cd773b4d71e?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Yastık">
+                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
+                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
+                            Etsy'de İncele
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg text-gray-900">Keten Yastık</h3>
+                <p class="text-gray-500">$35.00</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 text-xs font-bold rounded shadow-lg z-50">
+        PROFESYONEL DEMO
+    </div>
+
+</body>
+</html>
