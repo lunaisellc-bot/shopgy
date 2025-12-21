@@ -1,173 +1,302 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etsy Hub - Mağazanızı Markaya Dönüştürün</title>
+    <title>VitrinX | Global Etsy Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { 
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'] 
+                    },
                     colors: {
-                        neon: '#4ade80',
-                        darkbg: '#050505',
-                        cardbg: 'rgba(255, 255, 255, 0.03)'
+                        neon: '#00ff9d',
+                        purple: '#bd00ff',
+                        dark: '#030014'
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'scroll': 'scroll 30s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #050505; color: white; }
-        .glow-point {
-            position: absolute; width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(74,222,128,0.2) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(60px); z-index: -1;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: #4ade80;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px -10px rgba(74, 222, 128, 0.2);
-        }
-        /* Öne çıkan paket efekti */
-        .popular-badge {
-            position: absolute; top: 0; right: 0;
-            background: #4ade80; color: black;
-            font-size: 0.75rem; font-weight: bold;
-            padding: 4px 12px;
-            border-bottom-left-radius: 12px;
-            border-top-right-radius: 12px;
+        body { background-color: #030014; color: white; overflow-x: hidden; }
+        .slider-track { display: flex; width: calc(250px * 10); animation: scroll 40s linear infinite; }
+        .slide { width: 250px; padding: 15px; }
+        .slide:hover { transform: scale(1.05); transition: 0.3s; z-index: 10; }
+        .price-tag {
+            background: linear-gradient(90deg, #00ff9d 0%, #00b8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="antialiased relative overflow-x-hidden">
+<body class="antialiased">
 
-    <div class="glow-point top-0 left-1/2 -translate-x-1/2"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+    </div>
 
-    <nav class="max-w-7xl mx-auto p-6 flex justify-between items-center relative z-10">
-        <div class="text-2xl font-bold flex items-center gap-2">
-            <span class="w-3 h-3 bg-neon rounded-full shadow-[0_0_10px_#4ade80]"></span> ETSY HUB
+    <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 font-heading text-2xl font-bold tracking-tighter">
+                <span class="text-neon text-3xl">X</span> VitrinX
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#hizmet" class="hover:text-white transition" id="nav-service">Service</a>
+                <a href="#demos" class="hover:text-white transition" id="nav-demos">Showcases</a>
+                <a href="#paketler" class="hover:text-white transition" id="nav-pricing">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()" class="text-xs font-bold border border-white/20 px-3 py-1 rounded hover:bg-white/10 transition">
+                    <i class="fa-solid fa-globe"></i> <span id="current-lang">EN</span>
+                </button>
+                <a href="#paketler" class="bg-white/10 border border-white/20 px-6 py-2 rounded-full text-sm font-bold hover:bg-neon hover:text-black hover:border-neon transition duration-300" id="nav-cta">
+                    Start Global
+                </a>
+            </div>
         </div>
-        <div class="hidden md:flex gap-8 text-sm text-gray-400">
-            <a href="#nasil-calisir" class="hover:text-white transition">Nasıl Çalışır?</a>
-            <a href="#paketler" class="hover:text-white transition">Paketler</a>
-            <a href="#sss" class="hover:text-white transition">SSS</a>
-        </div>
-        <a href="#iletisim" class="px-5 py-2 border border-white/20 rounded-full text-sm hover:bg-white/10 transition">
-            İletişime Geç
-        </a>
     </nav>
 
-    <header class="text-center pt-20 pb-32 px-4 relative z-10">
-        <span class="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-neon uppercase tracking-widest mb-6 inline-block">
-            Etsy Satıcıları İçin Özel Çözüm
-        </span>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-            Mağazanızın Kendi <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-emerald-600">Web Sitesi Olsun.</span>
+    <header class="relative z-10 pt-40 pb-20 px-4 text-center max-w-5xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/30 bg-neon/5 text-neon text-xs font-bold mb-8 uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
+            <span id="hero-badge">For Global Etsy Sellers</span>
+        </div>
+        
+        <h1 class="font-heading text-5xl md:text-8xl font-bold leading-tight mb-6">
+            <span id="hero-title-1">Your Domain.</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple" id="hero-title-2">Flawless Showcase.</span>
         </h1>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
-            Aylık ödeme yok. Komisyon yok. Ürünleriniz Etsy'den otomatik çekilir, 
-            ödemeler Etsy üzerinden güvenle alınır.
+        
+        <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-10 font-light leading-relaxed" id="hero-desc">
+            We professionally connect your Etsy shop to <strong>your own domain name</strong>. 
+            No monthly fees. No commissions. Just a one-time setup.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#paketler" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:bg-emerald-400 transition shadow-[0_0_20px_rgba(74,222,128,0.4)]">
-                Paketleri İncele
+
+        <div class="flex flex-col sm:flex-row gap-5 justify-center">
+            <a href="#paketler" class="px-8 py-4 bg-gradient-to-r from-neon to-emerald-500 text-black font-bold rounded-xl shadow-[0_0_20px_rgba(0,255,157,0.4)] hover:scale-105 transition transform">
+                <i class="fa-solid fa-rocket mr-2"></i> <span id="btn-pricing">See Pricing</span>
             </a>
-            <a href="demo-ultra.html" target="_blank" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition">
-                Örnek Siteleri Gör
+            <a href="#demos" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition backdrop-blur-md">
+                <i class="fa-solid fa-desktop mr-2"></i> <span id="btn-demos">Live Demos</span>
             </a>
         </div>
     </header>
 
-    <section id="nasil-calisir" class="max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 rounded-2xl">
-                <div class="text-4xl mb-4">🔄</div>
-                <h3 class="text-xl font-bold mb-2">Otomatik Entegrasyon</h3>
-                <p class="text-gray-400 text-sm">Etsy mağazanızdaki ürünleri tek tıkla sitenize çekeriz. Stok ve fiyatlar her zaman güncel kalır.</p>
+    <div class="relative w-full overflow-hidden bg-white/5 border-y border-white/5 py-10 z-10" id="demos">
+        <div class="max-w-7xl mx-auto mb-6 px-6 text-center">
+            <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest" id="slider-title">CUSTOMERS WILL SEE THESE DESIGNS</h3>
+        </div>
+        <div class="flex w-full overflow-hidden">
+            <div class="slider-track">
+                <div class="slide">
+                    <a href="demo-ultra.html" target="_blank" class="block group relative">
+                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition">
+                            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
+                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                                <span class="text-xs font-bold text-purple-300">ULTRA LUXURY</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="demo-business.html" target="_blank" class="block group relative">
+                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
+                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                                <span class="text-xs font-bold text-neon">PROFESSIONAL</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="demo-starter.html" target="_blank" class="block group relative">
+                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-blue-400 transition">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
+                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                                <span class="text-xs font-bold text-blue-300">STARTER</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="demo-ultra.html" target="_blank" class="block group relative">
+                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition">
+                            <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
+                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                                <span class="text-xs font-bold text-purple-300">PRESTIGE</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 <div class="slide">
+                    <a href="demo-business.html" target="_blank" class="block group relative">
+                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition">
+                            <img src="https://images.unsplash.com/photo-1540932296235-d84c01570d58?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
+                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                                <span class="text-xs font-bold text-neon">CORPORATE</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="glass-card p-8 rounded-2xl">
-                <div class="text-4xl mb-4">💸</div>
-                <h3 class="text-xl font-bold mb-2">Aylık Ücret Yok</h3>
-                <p class="text-gray-400 text-sm">Shopify veya Wix gibi her ay ödeme yapmazsınız. Tek seferlik kurulum ücreti ödersiniz, site sizin olur.</p>
+        </div>
+    </div>
+
+    <section id="hizmet" class="max-w-5xl mx-auto py-20 px-4 relative z-10">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" id="service-title">The Rules Are Simple.</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+            <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-blue-400">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-3" id="feat-1-title">1. You Own The Domain</h3>
+                <p class="text-gray-400 text-sm" id="feat-1-desc">
+                    You buy your domain (e.g., yourbrand.com) from Godaddy or Google. You keep 100% control and ownership.
+                </p>
             </div>
-            <div class="glass-card p-8 rounded-2xl">
-                <div class="text-4xl mb-4">🔒</div>
-                <h3 class="text-xl font-bold mb-2">Etsy Güvencesi</h3>
-                <p class="text-gray-400 text-sm">Müşteriler "Satın Al" dediğinde Etsy'ye yönlenir. Stripe, vergi veya şirket açma derdiniz olmaz.</p>
+
+            <div class="bg-white/5 p-8 rounded-2xl border border-neon/30 relative">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-neon text-black text-xs font-bold px-3 py-1 rounded-full" id="feat-badge">OUR JOB</div>
+                <div class="w-16 h-16 bg-neon/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-neon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-3" id="feat-2-title">2. We Build The Site</h3>
+                <p class="text-gray-400 text-sm" id="feat-2-desc">
+                    We install the design, connect it to your domain, and sync your Etsy products automatically.
+                </p>
+            </div>
+
+            <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-purple-400">
+                    <i class="fa-solid fa-check-double"></i>
+                </div>
+                <h3 class="font-bold text-xl mb-3" id="feat-3-title">3. Sales Stay on Etsy</h3>
+                <p class="text-gray-400 text-sm" id="feat-3-desc">
+                    The "Buy Now" button redirects customers to Etsy. You don't need Stripe or a new company setup.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="paketler" class="max-w-7xl mx-auto px-4 py-20">
+    <section id="paketler" class="max-w-7xl mx-auto px-4 py-20 relative z-10">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4">Size Uygun Paketi Seçin</h2>
-            <p class="text-gray-400">Tüm paketlerde hosting ve alan adı kurulumu dahildir.</p>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" id="pricing-title">One-Time Setup</h2>
+            <p class="text-gray-400" id="pricing-sub">No monthly fees. Lifetime usage.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8">
             
-            <div class="glass-card p-8 rounded-2xl border-white/10 flex flex-col relative">
-                <h3 class="text-xl font-medium text-gray-300 mb-2">Ekonomik Başlangıç</h3>
-                <div class="text-4xl font-bold mb-6 text-white">Standart</div>
-                <ul class="space-y-4 mb-8 text-gray-400 text-sm flex-1">
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Sade ve Şık Tasarım</li>
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Ana Sayfa + Ürünler</li>
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Manuel Ürün Yükleme</li>
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Mobil Uyumlu</li>
+            <div class="bg-dark/50 border border-white/10 p-8 rounded-3xl hover:border-white/30 transition duration-300 flex flex-col">
+                <div class="text-gray-400 font-bold tracking-widest text-xs mb-2">STARTER</div>
+                <div class="flex items-baseline gap-1 mb-2">
+                    <span class="text-4xl font-heading font-bold text-white">$149</span>
+                </div>
+                <div class="text-xs text-gray-500 mb-6 line-through decoration-red-500">$299 Normal</div>
+                <div class="h-px w-full bg-white/10 mb-6"></div>
+                <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-clean">Clean & Fast Design</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-manual">Manual Product Entry</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-host">Hosting Included</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-domain">Domain Connection</span></li>
                 </ul>
-                <a href="demo-starter.html" target="_blank" class="block w-full text-center py-3 rounded-lg border border-white/20 hover:bg-white/10 transition text-white">
-                    Canlı Demoyu Gör
-                </a>
+                <a href="demo-starter.html" target="_blank" class="block w-full text-center py-4 rounded-xl border border-white/20 hover:bg-white hover:text-black transition font-bold btn-demo">View Demo</a>
             </div>
 
-            <div class="glass-card p-8 rounded-2xl border-neon/50 bg-white/5 flex flex-col relative transform md:-translate-y-4 shadow-[0_0_30px_rgba(74,222,128,0.1)]">
-                <div class="popular-badge">EN ÇOK TERCİH EDİLEN</div>
-                <h3 class="text-xl font-medium text-neon mb-2">Profesyonel</h3>
-                <div class="text-4xl font-bold mb-6 text-white">Business</div>
-                <ul class="space-y-4 mb-8 text-gray-300 text-sm flex-1">
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Markaya Özel Renkler</li>
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Hakkımızda & Blog Sayfası</li>
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> <strong>Yarı-Otomatik</strong> Ürün Çekme</li>
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Instagram Akışı</li>
-                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> WhatsApp Butonu</li>
+            <div class="bg-gradient-to-b from-white/10 to-black/50 border border-neon/50 p-8 rounded-3xl relative transform md:-translate-y-6 shadow-[0_0_40px_rgba(0,255,157,0.1)] flex flex-col">
+                <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl badge-bestseller">BEST SELLER</div>
+                <div class="text-neon font-bold tracking-widest text-xs mb-2">BUSINESS</div>
+                <div class="flex items-baseline gap-1 mb-2">
+                    <span class="text-5xl font-heading font-bold text-white price-tag">$299</span>
+                </div>
+                <div class="text-xs text-gray-400 mb-6 line-through decoration-red-500">$499 Normal</div>
+                <div class="h-px w-full bg-white/10 mb-6"></div>
+                <ul class="space-y-4 mb-8 text-sm text-white flex-1">
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-semi"><strong>Semi-Auto</strong> Sync</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-blog">Blog & About Pages</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-color">Custom Brand Colors</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-insta">Instagram Feed</span></li>
                 </ul>
-                <a href="demo-business.html" target="_blank" class="block w-full text-center py-3 rounded-lg bg-neon text-black font-bold hover:bg-emerald-400 transition">
-                    Canlı Demoyu Gör
-                </a>
+                <a href="demo-business.html" target="_blank" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold shadow-lg shadow-neon/20 btn-demo">View Demo</a>
             </div>
 
-            <div class="glass-card p-8 rounded-2xl border-purple-500/30 flex flex-col relative">
-                <h3 class="text-xl font-medium text-purple-400 mb-2">Ultra Profesyonel</h3>
-                <div class="text-4xl font-bold mb-6 text-white">Elite</div>
-                <ul class="space-y-4 mb-8 text-gray-400 text-sm flex-1">
-                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> <strong>Dark Mode / Neon Tasarım</strong></li>
-                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> <strong>Tam Otomatik</strong> (Gece Güncellenir)</li>
-                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Çoklu Dil Desteği (TR/EN)</li>
-                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Özel SEO Çalışması</li>
-                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Video Arka Planlar</li>
+            <div class="bg-dark/50 border border-purple/30 p-8 rounded-3xl hover:border-purple transition duration-300 flex flex-col">
+                <div class="text-purple-400 font-bold tracking-widest text-xs mb-2">ULTRA ELITE</div>
+                <div class="flex items-baseline gap-1 mb-2">
+                    <span class="text-4xl font-heading font-bold text-white">$599</span>
+                </div>
+                <div class="text-xs text-gray-500 mb-6 line-through decoration-red-500">$899 Normal</div>
+                <div class="h-px w-full bg-white/10 mb-6"></div>
+                <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><strong>Fully Auto</strong> (Nightly Sync)</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-dark">Dark Mode / Neon UI</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-multi">Multi-Language Support</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-video">Video Backgrounds</span></li>
                 </ul>
-                <a href="demo-ultra.html" target="_blank" class="block w-full text-center py-3 rounded-lg border border-purple-500/50 hover:bg-purple-500/20 text-purple-200 transition">
-                    Canlı Demoyu Gör
-                </a>
+                <a href="demo-ultra.html" target="_blank" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold btn-demo">View Demo</a>
             </div>
 
         </div>
     </section>
 
-    <footer class="text-center py-10 text-gray-600 text-sm border-t border-white/5">
-        <p>&copy; 2024 Etsy Hub. Tüm hakları saklıdır.</p>
+    <footer class="border-t border-white/10 bg-black py-12 text-center relative z-10">
+        <h2 class="text-2xl font-heading font-bold mb-4">VitrinX</h2>
+        <p class="text-gray-500 text-sm max-w-md mx-auto mb-6" id="footer-text">
+            We are not a hosting company. We are a design and software studio transforming your Etsy shop into a global brand.
+        </p>
+        <a href="mailto:info@vitrinx.com" class="text-neon hover:underline text-lg">info@vitrinx.com</a>
+        <p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology.</p>
     </footer>
 
-</body>
-</html>
+    <script>
+        const translations = {
+            tr: {
+                'nav-service': 'Hizmet',
+                'nav-demos': 'Örnekler',
+                'nav-pricing': 'Fiyatlar',
+                'nav-cta': 'Başvuru Yap',
+                'hero-badge': 'Global Etsy Satıcıları İçin',
+                'hero-title-1': 'Sizin Domaininiz.',
+                'hero-title-2': 'Kusursuz Vitrin.',
+                'hero-desc': 'Etsy mağazanızı, <strong>size ait olan alan adına (domain)</strong> profesyonelce bağlıyoruz. Aylık ücret yok. Komisyon yok. Sadece tek seferlik kurulum.',
+                'btn-pricing': 'Fiyatları Gör',
+                'btn-demos': 'Canlı Demolar',
+                'slider-title': 'MÜŞTERİLERİNİZ BU TASARIMLARI GÖRECEK',
+                'service-title': 'Kurallar Çok Basit.',
+                'feat-1-title': '1. Domain Sizden',
+                'feat-1-desc': '`markaniz.com` gibi alan adınızı Godaddy veya Google\'dan siz satın alırsınız. Tapusu ve kontrolü %100 sizde olur.',
+                'feat-badge': 'BİZİM İŞİMİZ',
+                'feat-2-title': '2. Kurulum Bizden',
+                'feat-2-desc': 'Seçtiğiniz paketteki siteyi hazırlar, alan adınıza bağlar ve Etsy ürünlerinizi içeri aktarırız.',
+                'feat-3-title': '3. Satışlar Etsy\'de',
+                'feat-3-desc': 'Sitedeki "Satın Al" butonu müşteriyi Etsy\'ye yönlendirir. Stripe, vergi veya şirket açma derdiniz olmaz.',
+                'pricing-title': 'Tek Seferlik Kurulum',
+                'pricing-sub': 'Aylık ödeme yok. Ömür boyu kullanım.',
+                'badge-bestseller': 'ÇOK SATAN',
+                // Pricing Items Classes
+                't-clean': 'Sade & Hızlı 
