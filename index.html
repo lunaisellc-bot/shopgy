@@ -8,1004 +8,594 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Mevcut CSS dosyan (varsa) -->
   <link rel="stylesheet" href="styles.css" />
-
-  <style>
-    /* Bu blok: sadece index.html içi küçük düzeltmeler / premium dokunuşlar (iskeleti bozmaz). */
-
-    :root{
-      --bg: #fbf7f1;
-      --surface: rgba(255,255,255,.72);
-      --surface2: rgba(255,255,255,.58);
-      --ink: #121417;
-      --muted: rgba(18,20,23,.72);
-      --muted2: rgba(18,20,23,.56);
-      --line: rgba(18,20,23,.10);
-      --brand: #b4682a;
-      --brand2: #8f4f1f;
-      --shadow: 0 14px 40px rgba(10,12,18,.10);
-      --radius-xl: 22px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-    }
-
-    /* Grafikler: canvas alanı tam dolsun */
-    canvas{
-      display:block;
-      width:100% !important;
-      height:100% !important;
-    }
-
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(251,247,241,.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar__note{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:.6rem;
-      padding:.55rem 1rem;
-      font-size:.92rem;
-      color: var(--muted);
-    }
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background: var(--brand);
-      box-shadow: 0 0 0 4px rgba(180,104,42,.14);
-      flex:0 0 auto;
-    }
-
-    .hero__grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 22px;
-      align-items: start;
-    }
-    @media (max-width: 980px){
-      .hero__grid{ grid-template-columns: 1fr; }
-    }
-
-    .pillrow{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      padding: .55rem .85rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: .92rem;
-    }
-    .pill b{ color: var(--ink); font-weight: 700; }
-
-    .hero__card{
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .hero__card__head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.52);
-    }
-    .window-dots{
-      display:flex; gap:7px;
-    }
-    .window-dots span{
-      width:10px;height:10px;border-radius:999px;
-      background: rgba(18,20,23,.20);
-    }
-    .hero__card__meta{
-      font-size:.9rem;
-      color: var(--muted2);
-      font-weight: 600;
-    }
-    .hero__card__body{
-      padding: 16px;
-    }
-
-    .micro{
-      font-size:.92rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .callout{
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,.58);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: .95rem;
-    }
-    .callout b{ color: var(--ink); }
-    .btnrow{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:.6rem;
-      padding: .9rem 1.1rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.62);
-      color: var(--ink);
-      font-weight: 700;
-      text-decoration:none;
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.78); border-color: rgba(18,20,23,.16); }
-    .btn--primary{
-      background: linear-gradient(180deg, var(--brand) 0%, var(--brand2) 100%);
-      border-color: rgba(0,0,0,.10);
-      color: #fff;
-      box-shadow: 0 14px 32px rgba(180,104,42,.24);
-    }
-    .btn--primary:hover{ transform: translateY(-1px); }
-
-    .section__head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 16px;
-    }
-    .section__head__meta{
-      color: var(--muted);
-      max-width: 68ch;
-    }
-
-    .demo__grid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 18px;
-    }
-    @media (max-width: 1100px){ .demo__grid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px){ .demo__grid{ grid-template-columns: 1fr; } }
-
-    .card{
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .card__media{
-      height: 148px;
-      border-bottom: 1px solid var(--line);
-      background:
-        radial-gradient(1200px 240px at 20% 30%, rgba(180,104,42,.12), transparent 60%),
-        radial-gradient(900px 200px at 80% 20%, rgba(18,20,23,.08), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.25));
-      position:relative;
-    }
-    .badge{
-      position:absolute;
-      left: 14px;
-      top: 14px;
-      padding:.45rem .7rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size:.85rem;
-      font-weight: 700;
-    }
-    .card__body{
-      padding: 14px 16px 16px;
-    }
-    .card__title{
-      font-size: 1.05rem;
-      font-weight: 800;
-      margin: 0 0 6px;
-      color: var(--ink);
-    }
-    .card__desc{
-      margin: 0 0 12px;
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: .95rem;
-    }
-    .card__actions{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-    }
-    .linkbtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:.75rem .95rem;
-      border-radius: 999px;
-      background: rgba(180,104,42,.10);
-      border: 1px solid rgba(180,104,42,.18);
-      color: var(--ink);
-      font-weight: 800;
-      text-decoration:none;
-      white-space: nowrap;
-    }
-
-    .note{
-      margin-top: 10px;
-      color: var(--muted2);
-      font-size: .92rem;
-    }
-
-    .kpi{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 16px;
-    }
-    @media (max-width: 900px){ .kpi{ grid-template-columns: 1fr; } }
-    .kpi__item{
-      background: var(--surface2);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 14px 14px;
-    }
-    .kpi__item b{ color: var(--ink); }
-    .kpi__item p{ margin:.3rem 0 0; color: var(--muted); line-height:1.55; }
-
-    .section{
-      padding: 52px 0;
-    }
-
-    .divider{
-      height: 1px;
-      background: var(--line);
-      margin: 0;
-    }
-
-    .pricing__hint{
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.62);
-      color: var(--muted);
-      font-size: .95rem;
-    }
-    .pricing__hint b{ color: var(--ink); }
-
-    .supportline{
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: var(--radius-lg);
-      background: rgba(180,104,42,.08);
-      border: 1px solid rgba(180,104,42,.16);
-      color: var(--muted);
-      font-size: .95rem;
-    }
-    .supportline b{ color: var(--ink); }
-
-    .faq__q{
-      cursor:pointer;
-      user-select:none;
-    }
-
-    /* Grafik kartlarında hafif “focus” efekti için class (script.js içinde tetiklenir) */
-    .chartCard{
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .chartCard.is-active{
-      transform: translateY(-2px);
-      box-shadow: 0 18px 46px rgba(10,12,18,.12);
-      border-color: rgba(18,20,23,.16);
-    }
-  </style>
 </head>
 
-<body style="background: var(--bg); color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
-
-  <!-- ÜST NOT: Tek yerde, net. -->
+<body>
+  <!-- Topbar (tek cümle, tek mesaj) -->
   <div class="topbar">
-    <div class="topbar__note">
-      <span class="dot"></span>
-      <span><b>Bu web sitesinde ödeme alınmaz.</b> Tüm satışlar Etsy üzerinden güvenle tamamlanır.</span>
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span class="dot" aria-hidden="true"></span>
+        <span><b>Bu web sitesinde ödeme alınmaz.</b> Tüm satışlar Etsy üzerinden güvenle tamamlanır.</span>
+      </div>
+      <a class="topbar__link" href="#politika">Politikayı Oku</a>
     </div>
   </div>
 
-  <!-- NAV -->
-  <header class="container" style="padding: 18px 0;">
-    <nav style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <span class="dot" style="width:10px;height:10px;"></span>
-        <strong style="font-size: 1.05rem;">Shopgy</strong>
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="container header__inner">
+      <a class="brand" href="#hero" aria-label="Shopgy">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Shopgy</span>
+      </a>
+
+      <nav class="nav" aria-label="Site menüsü">
+        <a href="#vitrin">Vitrin</a>
+        <a href="#nasil">Nasıl Çalışır?</a>
+        <a href="#neden">Neden Shopgy?</a>
+        <a href="#veri">Veriler</a>
+        <a href="#paketler">Paketler</a>
+        <a href="#teslimatlar">Teslimatlar</a>
+        <a href="#sss">SSS</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+
+      <div class="header__cta">
+        <button class="btn btn--ghost" id="openVideoBtn" type="button">1 Dakika İzle</button>
+        <a class="btn btn--primary" href="#paketler">Etsy’den Satın Al</a>
       </div>
 
-      <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; color: var(--muted); font-weight:700;">
-        <a href="#vitrin" style="text-decoration:none; color:inherit;">Vitrin</a>
-        <a href="#nasil" style="text-decoration:none; color:inherit;">Nasıl Çalışır?</a>
-        <a href="#paketler" style="text-decoration:none; color:inherit;">Paketler</a>
-        <a href="#teslimatlar" style="text-decoration:none; color:inherit;">Teslimatlar</a>
-        <a href="#politika" style="text-decoration:none; color:inherit;">Politika</a>
-        <a href="#sss" style="text-decoration:none; color:inherit;">SSS</a>
-        <a href="#iletisim" style="text-decoration:none; color:inherit;">İletişim</a>
-      </div>
+      <!-- Burger -->
+      <button class="burger" id="burger" type="button" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-      <a class="btn btn--primary" href="#paketler" style="text-decoration:none;">Etsy’den Satın Al</a>
-    </nav>
+    <!-- Mobile menu -->
+    <div class="mobile" id="mobileMenu" aria-hidden="true">
+      <div class="container mobile__inner">
+        <a href="#vitrin">Vitrin</a>
+        <a href="#nasil">Nasıl Çalışır?</a>
+        <a href="#neden">Neden Shopgy?</a>
+        <a href="#veri">Veriler</a>
+        <a href="#paketler">Paketler</a>
+        <a href="#teslimatlar">Teslimatlar</a>
+        <a href="#sss">SSS</a>
+        <a href="#iletisim">İletişim</a>
+        <button class="btn btn--ghost mobile__cta" id="openVideoBtnMobile" type="button">1 Dakika İzle</button>
+        <a class="btn btn--primary mobile__cta" href="#paketler">Etsy’den Satın Al</a>
+      </div>
+    </div>
   </header>
 
-  <main class="container">
-
+  <main class="main" role="main">
     <!-- HERO -->
-    <section class="section" id="hero" style="padding-top: 30px;">
-      <div class="hero__grid">
-
-        <div>
-          <h1 style="margin:0 0 12px; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.03; letter-spacing: -0.03em;">
-            Etsy mağazan için web sitesi — <span style="color: var(--brand);">ürünler otomatik gelsin</span>, ödeme Etsy’de kalsın.
+    <section class="hero section" id="hero">
+      <div class="container hero__grid">
+        <div class="hero__left reveal">
+          <h1 class="hero__title">
+            Etsy mağazan için web sitesi —
+            <span class="accent accent--glow">ürünler otomatik gelsin</span>,
+            ödeme Etsy’de kalsın.
           </h1>
 
-          <p class="micro" style="max-width: 70ch; margin: 0 0 12px;">
-            Ürünleri <b>sadece Etsy’den</b> yönetirsin: başlık, açıklama, fiyat, stok. Etsy’de yayınladığın anda <b>web sitende de otomatik yayınlanır</b>.
-            Web sitesi vitrin olur; satın alma Etsy’nin alışıldık ve güvenli akışında tamamlanır.
+          <p class="hero__lead">
+            Ürünleri <b>sadece Etsy’den</b> yönetirsin: başlık, açıklama, fiyat, stok.
+            Etsy’de yayınladığın anda <b>web sitende de otomatik görünür</b>. Web sitesi vitrin olur; satın alma Etsy’nin güvenli akışında biter.
           </p>
 
-          <div class="pillrow" aria-label="Öne çıkanlar">
-            <span class="pill"><b>Otomatik ürün gösterimi</b></span>
-            <span class="pill"><b>Ödeme Etsy’de</b> (checkout değişmez)</span>
-            <span class="pill"><b>Aylık ücret yok</b></span>
-            <span class="pill"><b>Şifre paylaşımı yok</b></span>
+          <p class="type type__cursor" data-type='[
+            "Otomatik ürün gösterimi.",
+            "Ödeme Etsy’de (checkout değişmez).",
+            "Aylık ücret yok.",
+            "Şifre paylaşımı yok."
+          ]'></p>
+
+          <div class="trust-bar" aria-label="Öne çıkanlar">
+            <div class="trust-bar__item"><span class="trust-ic" aria-hidden="true"></span>Kurumsal görünüm</div>
+            <div class="trust-bar__item"><span class="trust-ic" aria-hidden="true"></span>Etsy uyumlu akış</div>
+            <div class="trust-bar__item"><span class="trust-ic" aria-hidden="true"></span>Tek panel yönetim</div>
+            <div class="trust-bar__item"><span class="trust-ic" aria-hidden="true"></span>Hız odaklı</div>
           </div>
 
-          <div class="btnrow" style="margin-top: 18px;">
+          <div class="hero__actions">
             <a class="btn btn--primary" href="#paketler">Paketleri Gör</a>
-            <a class="btn" href="#veri">Entegrasyon Neden Mantıklı?</a>
-            <a class="btn" href="#politika">Süreci Oku</a>
+            <a class="btn btn--ghost" href="#veri">Neden Mantıklı?</a>
+            <a class="btn btn--soft" href="#politika">Süreci Oku</a>
           </div>
 
-          <div class="callout" style="max-width: 78ch;">
-            <b>Entegrasyon mantığı (1 cümle):</b> Etsy’ye ürün eklediğinde, web siten otomatik güncellenir — ekstra ürün girişi/kod/manuel liste yok.
-          </div>
-        </div>
-
-        <aside class="hero__card" aria-label="Ödeme akışı kartı">
-          <div class="hero__card__head">
-            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-            <div class="hero__card__meta">Ödeme Etsy’de, kontrol sende</div>
+          <div class="hero__pill">
+            <strong>Entegrasyon mantığı:</strong>
+            <span>Etsy’ye ürün eklediğinde web siten otomatik güncellenir — ekstra manuel liste yok.</span>
           </div>
 
-          <div class="hero__card__body">
-            <h3 style="margin:0 0 8px; font-size:1.12rem;">Otomatik vitrin + Etsy ödeme akışı</h3>
-            <p class="micro" style="margin:0 0 12px;">
-              Web sitende ödeme yok. “Satın Al” butonları Etsy ürün sayfasına gider; müşteri alıştığı yerde öder.
-              Sen de ürünleri tek panelden (Etsy) yönetirsin.
-            </p>
-
-            <div style="display:grid; gap:10px; margin-top: 10px;">
-              <div style="padding:12px 12px; border-radius: var(--radius-lg); border:1px solid var(--line); background: rgba(255,255,255,.55);">
-                <b>1) Etsy’de yayınla</b>
-                <div style="color: var(--muted); margin-top: 4px;">Başlık/açıklama/fiyat — tek yerden</div>
-              </div>
-              <div style="padding:12px 12px; border-radius: var(--radius-lg); border:1px solid var(--line); background: rgba(255,255,255,.55);">
-                <b>2) Web sitende otomatik görünsün</b>
-                <div style="color: var(--muted); margin-top: 4px;">Ürün kartları otomatik çekilir</div>
-              </div>
-              <div style="padding:12px 12px; border-radius: var(--radius-lg); border:1px solid var(--line); background: rgba(255,255,255,.55);">
-                <b>3) Satın alma Etsy’de bitsin</b>
-                <div style="color: var(--muted); margin-top: 4px;">Güven/alışkanlık bozulmaz</div>
-              </div>
-            </div>
-
-            <div class="btnrow" style="margin-top: 14px;">
-              <a class="btn btn--primary" href="#paketler" style="flex:1; text-align:center;">Paketi Seç</a>
-            </div>
-          </div>
-        </aside>
-
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- VİTRİN ÖRNEKLERİ -->
-    <section class="section" id="vitrin">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Vitrin Örnekleri</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Bunlar “tasarım gösterisi” değil; <b>birebir kurulum mantığıdır</b>. Her vitrin farklı stile sahip olabilir (minimal, koyu tema, ürün odaklı, slider’lı vb.).
+          <p class="hero__note">
+            Not: Bu sayfa satış odaklı “demo vitrin”dir. Tasarım dili müşteri sektörüne göre premium şekilde uyarlanır.
           </p>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="#paketler">Paketleri Gör</a>
-          <a class="btn" href="#nasil">Nasıl Çalışır?</a>
+
+        <div class="hero__right reveal">
+          <!-- Premium mock card -->
+          <aside class="mock" aria-label="Ödeme akışı demo kartı">
+            <div class="mock__top">
+              <div class="mock__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="mock__label">Ödeme Etsy’de, kontrol sende</div>
+            </div>
+            <div class="mock__card">
+              <h3>Otomatik vitrin + Etsy ödeme akışı</h3>
+              <p>Web sitende ödeme yok. “Satın Al” butonları Etsy ürün sayfasına gider; müşteri alıştığı yerde öder.</p>
+
+              <div class="mock__product" aria-hidden="true">
+                <div class="mock__thumb"></div>
+                <div class="mock__lines">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+
+              <button class="btn btn--primary mock__btn" type="button" id="openVideoBtnCard">Demo Akışı İzle</button>
+
+              <!-- Showcase (slider) -->
+              <div class="showcase" aria-label="Vitrin örnekleri slider">
+                <div class="showcase__head">
+                  <strong>Vitrin stilleri</strong>
+                  <span class="muted">4 stil • premium</span>
+                </div>
+
+                <div class="showcase__viewport">
+                  <div class="showcase__track" id="showcaseTrack">
+                    <div class="showcase__slide s1" role="group" aria-label="Slayt 1"></div>
+                    <div class="showcase__slide s2" role="group" aria-label="Slayt 2"></div>
+                    <div class="showcase__slide s3" role="group" aria-label="Slayt 3"></div>
+                    <div class="showcase__slide s4" role="group" aria-label="Slayt 4"></div>
+                  </div>
+                </div>
+
+                <div class="showcase__controls">
+                  <button class="showcase__btn" id="showcasePrev" type="button" aria-label="Önceki">‹</button>
+                  <div class="showcase__dots" id="showcaseDots" aria-label="Slayt noktaları"></div>
+                  <button class="showcase__btn" id="showcaseNext" type="button" aria-label="Sonraki">›</button>
+                </div>
+
+                <div class="side-note">
+                  Checkout’u bozmayız. Müşteri web sitende görür, Etsy’de öder.
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
-
-      <div class="demo__grid" style="margin-top: 18px;">
-        <article class="card">
-          <div class="card__media">
-            <span class="badge">Starter Tip</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Minimal El Yapımı</h3>
-            <p class="card__desc">Tek sayfa vitrin + Etsy’ye yönlendirme. Hızlı kurulum.</p>
-            <div class="card__actions">
-              <a class="linkbtn" href="#" aria-label="Vitrini incele">Vitrini İncele</a>
-              <span class="note" style="margin:0;">Hızlı vitrin</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card__media">
-            <span class="badge">Pro Tip</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Rustik Butik</h3>
-            <p class="card__desc">Bölümlü ana sayfa + otomatik ürün gösterimi.</p>
-            <div class="card__actions">
-              <a class="linkbtn" href="#" aria-label="Vitrini incele">Vitrini İncele</a>
-              <span class="note" style="margin:0;">Otomatik ürün</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card__media">
-            <span class="badge">Pro Tip</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Modern Takı</h3>
-            <p class="card__desc">Şık vitrin + net CTA. Etsy checkout’u korunur.</p>
-            <div class="card__actions">
-              <a class="linkbtn" href="#" aria-label="Vitrini incele">Vitrini İncele</a>
-              <span class="note" style="margin:0;">Satış odaklı</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card__media">
-            <span class="badge">Premium Tip</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Boho Ev Dekoru</h3>
-            <p class="card__desc">Çoklu sayfa + kategori düzeni. Uzun vadeli yapı.</p>
-            <div class="card__actions">
-              <a class="linkbtn" href="#paketler" aria-label="Paketleri gör">Paketleri Gör</a>
-              <span class="note" style="margin:0;">Marka büyütme</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <p class="note" style="margin-top: 14px;">
-        Not: Vitrin örneklerini gerçek linklerle bağlayacağız. Şimdilik amaç, kurulum mantığını ve çeşitliliği göstermektir.
-      </p>
     </section>
 
-    <hr class="divider" />
+    <!-- Vitrin -->
+    <section class="section section--tint" id="vitrin">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Vitrin Örnekleri</h2>
+            <p>Bunlar “süs” değil; birebir kurulum mantığı. Her sektör için premium bir dil kuruyoruz.</p>
+          </div>
+          <div class="section__head__actions">
+            <a class="btn btn--ghost" href="#paketler">Paketler</a>
+            <a class="btn btn--soft" href="#nasil">Nasıl Çalışır?</a>
+          </div>
+        </div>
 
-    <!-- NASIL ÇALIŞIR -->
+        <div class="grid grid--4">
+          <article class="card demo-card reveal">
+            <div class="demo-card__img demo-card__img--move" aria-hidden="true"></div>
+            <h3>Minimal El Yapımı</h3>
+            <p>Tek sayfa vitrin + Etsy’ye yönlendirme. Hızlı kurulum.</p>
+            <a class="btn btn--soft w-100" href="#paketler">Paketleri Gör</a>
+          </article>
+
+          <article class="card demo-card reveal">
+            <div class="demo-card__img" aria-hidden="true"></div>
+            <h3>Rustik Butik</h3>
+            <p>Bölümlü ana sayfa + otomatik ürün gösterimi.</p>
+            <a class="btn btn--soft w-100" href="#paketler">Paketleri Gör</a>
+          </article>
+
+          <article class="card demo-card reveal">
+            <div class="demo-card__img demo-card__img--move" aria-hidden="true"></div>
+            <h3>Modern Takı</h3>
+            <p>Şık vitrin + net CTA. Etsy checkout’u korunur.</p>
+            <a class="btn btn--soft w-100" href="#paketler">Paketleri Gör</a>
+          </article>
+
+          <article class="card demo-card reveal">
+            <div class="demo-card__img" aria-hidden="true"></div>
+            <h3>Boho Ev Dekoru</h3>
+            <p>Kategori düzeni + marka büyütme için yapı.</p>
+            <a class="btn btn--primary w-100" href="#paketler">Paketi Seç</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nasıl -->
     <section class="section" id="nasil">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Nasıl Çalışır?</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Entegrasyonun özü: <b>ürün yönetimi Etsy’de</b> kalır; web sitesi otomatik vitrin olur.
-          </p>
-        </div>
-      </div>
-
-      <div class="kpi" style="margin-top: 18px;">
-        <div class="kpi__item">
-          <b>1) Etsy’den paketi satın alırsın</b>
-          <p>Süreç Etsy üzerinden başlar; iletişim kayıtlı ve şeffaftır.</p>
-        </div>
-        <div class="kpi__item">
-          <b>2) Bilgileri netleştiririz</b>
-          <p>Mağaza linki, logo/marka adı, renkler ve istekler Etsy mesajı üzerinden.</p>
-        </div>
-        <div class="kpi__item">
-          <b>3) Kurulum + Etsy bağlantısı</b>
-          <p>Web site hazırlanır; ürünler otomatik görünür, “Satın Al” Etsy ürün sayfasına gider.</p>
-        </div>
-      </div>
-
-      <div class="callout" style="margin-top: 16px;">
-        <b>Tek cümle özet:</b> Ürünü Etsy’de yayınla → web sitende otomatik görünsün → ödeme Etsy’de güvenle tamamlansın.
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- PAKETLER -->
-    <section class="section" id="paketler">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Paketlerimiz</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            İhtiyacına göre seç. Hepsinde temel mantık aynı: <b>web sitesi vitrin</b>, satın alma <b>Etsy</b>.
-          </p>
-        </div>
-      </div>
-
-      <div class="pricing__hint">
-        <b>Not:</b> Bu hizmet “web sitesi + Etsy entegrasyonu” mantığıyla çalışır. Yani sadece tasarım değil; ürün akışı ve yönlendirme sistemi de kurulur.
-      </div>
-
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top: 18px;">
-        <!-- STARTER -->
-        <article class="card">
-          <div class="card__body">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-              <h3 style="margin:0; font-size:1.15rem;">Starter</h3>
-              <span class="pill" style="margin:0;"><b>199 USD</b></span>
-            </div>
-
-            <p class="micro" style="margin:10px 0 0;"><b>Kazanım:</b> Etsy’ye dokunmadan hızlı vitrin.</p>
-
-            <div class="pillrow" style="margin-top: 12px;">
-              <span class="pill">Tek sayfa vitrin</span>
-              <span class="pill">Manuel bağlantı</span>
-              <span class="pill">Hızlı teslim</span>
-            </div>
-
-            <ul style="margin:14px 0 0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-              <li><b>Kimler için:</b> Yeni başlayan / küçük mağaza</li>
-              <li>Ana sayfa (tek sayfa yapı)</li>
-              <li>Kurumsal tasarım düzeni</li>
-              <li>“Satın Al” butonları Etsy ürün linklerine gider</li>
-              <li>Mobil uyum</li>
-              <li><b>Revizyon:</b> 1 tur (metin / yerleşim)</li>
-              <li><b>Teslim:</b> 3–5 iş günü</li>
-            </ul>
-
-            <div class="callout" style="margin-top: 12px;">
-              Starter, ödeme altyapısına girmeden hızlı vitrin isteyenler için.
-            </div>
-
-            <a class="btn btn--primary" href="#" style="width:100%; margin-top: 12px; justify-content:center; text-decoration:none;">
-              Etsy’de Starter Satın Al
-            </a>
-          </div>
-        </article>
-
-        <!-- PRO -->
-        <article class="card" style="outline: 2px solid rgba(180,104,42,.22);">
-          <div class="card__body">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-              <h3 style="margin:0; font-size:1.15rem;">Pro</h3>
-              <span class="pill" style="margin:0;"><b>399 USD</b></span>
-            </div>
-
-            <div class="pillrow" style="margin-top: 10px;">
-              <span class="pill"><b>En çok tercih</b></span>
-              <span class="pill">Bölümlü site</span>
-              <span class="pill">Entegrasyon</span>
-            </div>
-
-            <p class="micro" style="margin:10px 0 0;"><b>Kazanım:</b> Otomatik ürünlü, satışa hazır web sitesi.</p>
-
-            <ul style="margin:14px 0 0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-              <li><b>Kimler için:</b> Düzenli satış yapan / vitrini büyüten</li>
-              <li>Bölümlü ana sayfa + vitrin alanları</li>
-              <li>Ürünleri otomatik gösterim (Etsy entegrasyonu)</li>
-              <li>Ürün kartlarında “Satın Al” Etsy’ye yönlenir</li>
-              <li>Mobil uyum + temel hız düzeni</li>
-              <li><b>Revizyon:</b> 2 tur (tasarım / metin)</li>
-              <li><b>Teslim:</b> 5–8 iş günü</li>
-            </ul>
-
-            <div class="supportline">
-              <b>Devam desteği:</b> Ayda 1 kez basit geliştirme / düzenleme (içerik, bölüm ekleme, küçük iyileştirmeler).
-            </div>
-
-            <div class="callout" style="margin-top: 12px;">
-              Pro, “web sitem kurumsal olsun ve ürünler otomatik görünsün” diyenler için.
-            </div>
-
-            <a class="btn btn--primary" href="#" style="width:100%; margin-top: 12px; justify-content:center; text-decoration:none;">
-              Etsy’de Pro Satın Al
-            </a>
-          </div>
-        </article>
-
-        <!-- PREMIUM -->
-        <article class="card">
-          <div class="card__body">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
-              <h3 style="margin:0; font-size:1.15rem;">Premium</h3>
-              <span class="pill" style="margin:0;"><b>799 USD</b></span>
-            </div>
-
-            <div class="pillrow" style="margin-top: 10px;">
-              <span class="pill">Çoklu sayfa</span>
-              <span class="pill">Kategori düzeni</span>
-              <span class="pill">Daha güçlü vitrin</span>
-            </div>
-
-            <p class="micro" style="margin:10px 0 0;"><b>Kazanım:</b> Markasını büyütenler için uzun vadeli yapı.</p>
-
-            <ul style="margin:14px 0 0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-              <li><b>Kimler için:</b> Marka odaklı / uzun vadeli yapı isteyen</li>
-              <li>Çoklu sayfa yapı (ana sayfa + sayfalar)</li>
-              <li>Etsy entegrasyonu + kategori düzeni</li>
-              <li>Gelişmiş hız/performance düzeni</li>
-              <li>Temel SEO başlık/açıklama düzeni</li>
-              <li><b>Revizyon:</b> 3 tur</li>
-              <li><b>Teslim:</b> 8–12 iş günü</li>
-            </ul>
-
-            <div class="supportline">
-              <b>Devam desteği:</b> Ayda 2 kez geliştirme / iyileştirme (içerik, sayfa düzeni, küçük özellik ekleri).
-            </div>
-
-            <div class="callout" style="margin-top: 12px;">
-              Premium, markasını büyüten ve siteyi uzun süre kullanacaklar için.
-            </div>
-
-            <a class="btn btn--primary" href="#" style="width:100%; margin-top: 12px; justify-content:center; text-decoration:none;">
-              Etsy’de Premium Satın Al
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <div class="callout" style="margin-top: 16px;">
-        <b>Şeffaflık:</b> Revizyon “tur” olarak sayılır. Tur içinde metin/yerleşim/renk gibi düzenlemeler yapılır.
-        Sıfırdan yeni tasarım kapsam dışıdır (pakete göre kapsam netleştirilir).
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- TESLİMATLAR -->
-    <section class="section" id="teslimatlar">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Tam Olarak Ne Teslim Ediyoruz?</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Satın almadan önce net: kapsam, teslim, revizyon ve sahiplik.
-          </p>
-        </div>
-      </div>
-
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top: 18px;">
-        <div class="card">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Sahiplik</h3>
-            <p class="micro" style="margin:0 0 10px;">
-              Web sitesi dosyaları ve proje müşteriye aittir. İstersen kendi hesabında açarız, istersen senin adına kurup teslim ederiz.
-            </p>
-            <ul style="margin:0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-              <li>Şifre paylaşımı yok</li>
-              <li>Gerekirse erişim “collaborator” mantığıyla</li>
-              <li>Proje tesliminde kaynak dosyalar verilir</li>
-            </ul>
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Nasıl Çalışır?</h2>
+            <p>Öz: Ürün yönetimi Etsy’de kalır; web sitesi otomatik vitrin olur.</p>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Kurulum</h3>
-            <p class="micro" style="margin:0 0 10px;">
-              Kurumsal vitrin yapısı, mobil uyum, hızlı açılış ve Etsy yönlendirme akışı.
-            </p>
-            <ul style="margin:0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-              <li>“Satın Al” butonları Etsy’ye gider</li>
-              <li>İsteklere göre bölüm düzeni</li>
-              <li>Temel performans düzeni</li>
-            </ul>
-          </div>
+        <div class="grid grid--3">
+          <article class="card step reveal">
+            <div class="step__num">1</div>
+            <h3>Etsy’den paketi satın al</h3>
+            <p>Süreç Etsy üzerinden başlar; iletişim kayıtlı ve şeffaftır.</p>
+          </article>
+
+          <article class="card step reveal">
+            <div class="step__num">2</div>
+            <h3>Bilgileri netleştir</h3>
+            <p>Mağaza linki, logo/marka adı, renkler ve içerik istekleri.</p>
+          </article>
+
+          <article class="card step reveal">
+            <div class="step__num">3</div>
+            <h3>Kurulum + otomatik vitrin</h3>
+            <p>Ürünler otomatik görünür; “Satın Al” Etsy ürün sayfasına yönlenir.</p>
+          </article>
         </div>
 
-        <div class="card">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Revizyon</h3>
-            <p class="micro" style="margin:0 0 10px;">
-              Paketine göre revizyon hakkın var. Revizyon “tur” olarak sayılır.
-            </p>
-            <ul style="margin:0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-              <li>Metin, yerleşim, bölüm sırası</li>
-              <li>Renk ve basit stil ayarları</li>
-              <li>Kapsam dışı: sıfırdan yeni tasarım</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="callout" style="margin-top: 16px;">
-        <b>Net hedef:</b> Müşteri web sitende ürünü görür; “Satın Al”a basar; ödeme Etsy’de güvenle biter.
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- POLİTİKA -->
-    <section class="section" id="politika">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Politika ve Süreç (Satın Alma Öncesi)</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Sürpriz yok. Küçük yazı yok. Her şey yazılı, her şey net.
-          </p>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 18px;">
-        <div class="card__body">
-          <h3 style="margin:0 0 8px;">İade ve İptal</h3>
-          <p class="micro" style="margin:0 0 10px;">
-            Bu hizmet, kişiye özel dijital hizmettir. Satın alma işlemi Etsy üzerinden yapılır. İade/iptal koşulları Etsy platform kuralları ve sipariş kapsamına göre değerlendirilir.
-          </p>
-          <ul style="margin:0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-            <li>İş başladıktan sonra kapsam gereği iade uygun olmayabilir</li>
-            <li>Tüm iletişim Etsy mesajlarıyla kayıtlıdır</li>
-            <li>Hedefimiz: net kapsam + sorunsuz teslim</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 14px;">
-        <div class="card__body">
-          <h3 style="margin:0 0 8px;">Gerekli Bilgiler</h3>
-          <p class="micro" style="margin:0 0 10px;">
-            Sipariş sonrası Etsy mesajından şu bilgileri isteriz:
-          </p>
-          <ul style="margin:0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-            <li>Mağaza linki (Etsy)</li>
-            <li>Logo (varsa) / marka adı</li>
-            <li>İstenen renkler ve örnek beğeniler</li>
-            <li>İletişim metni ve kısa açıklamalar</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 14px;">
-        <div class="card__body">
-          <h3 style="margin:0 0 8px;">Entegrasyon Notu</h3>
-          <p class="micro" style="margin:0 0 10px;">
-            “Entegrasyon” ile ürünleri otomatik gösterebiliriz. Bu süreçte mağaza bilgileri müşteriye aittir.
-            Şifre istenmez; gerekli adımlar için uzaktan yönlendirme yapılır.
-          </p>
-          <ul style="margin:0; padding-left: 18px; color: var(--muted); line-height:1.6;">
-            <li>Müşteri bilgileri müşteride kalır</li>
-            <li>Hassas bilgi “gömülmez”; güvenli yöntem kullanılır</li>
-            <li>Kurulum adımları Etsy mesajıyla net anlatılır</li>
-          </ul>
+        <div class="callout reveal">
+          <b>Tek cümle:</b> Ürünü Etsy’de yayınla → web sitende otomatik görünsün → ödeme Etsy’de güvenle bitsin.
         </div>
       </div>
     </section>
 
-    <hr class="divider" />
+    <!-- Neden -->
+    <section class="section section--tint" id="neden">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Neden Shopgy?</h2>
+            <p>Bu model süslü değil; dönüşüm, güven ve operasyon kolaylığı üzerine kurulu.</p>
+          </div>
+        </div>
 
-    <!-- NEDEN SHOPGY -->
-    <section class="section" id="neden">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Neden Shopgy?</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Bu model “süs” değil; dönüşüm, güven ve operasyon kolaylığı üzerine kurulu.
-          </p>
-        </div>
-      </div>
-
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top: 18px;">
-        <div class="card">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Checkout riski yok</h3>
-            <p class="micro" style="margin:0;">
-              Yeni bir ödeme sistemi kurmuyoruz. Müşteri alıştığı yerde (Etsy) öder.
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Aylık maliyet yok</h3>
-            <p class="micro" style="margin:0;">
-              Abonelik yok. Tek sefer kurulumla profesyonel bir web vitrinin olur.
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Tek panel yönetim</h3>
-            <p class="micro" style="margin:0;">
-              Ürünleri Etsy’de yönetirsin; web sitesi otomatik güncellenir. Ek ürün girişi yok.
-            </p>
-          </div>
+        <div class="grid grid--3">
+          <article class="card info reveal">
+            <h3>Checkout riski yok</h3>
+            <p>Yeni ödeme sistemi kurmuyoruz. Müşteri Etsy’de öder, güven bozulmaz.</p>
+          </article>
+          <article class="card info reveal">
+            <h3>Aylık maliyet yok</h3>
+            <p>Abonelik yok. Tek sefer kurulumla premium vitrin elde edersin.</p>
+          </article>
+          <article class="card info reveal">
+            <h3>Tek panel yönetim</h3>
+            <p>Ürünleri Etsy’de güncellersin; web sitesi otomatik güncellenir.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <hr class="divider" />
-
-    <!-- VERİ / KANIT -->
+    <!-- Veri / Charts -->
     <section class="section" id="veri">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Etsy ile web sitesini neden entegre etmelisin?</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Karar anında güveni artıran sade gerçekler. (Grafikler model farkını anlatmak için örneklendirilmiştir.)
-          </p>
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Etsy ile web sitesini neden entegre etmelisin?</h2>
+            <p>Karar anında güveni artıran gerçekler. (Grafikler model farkını anlatmak için örneklenmiştir.)</p>
+          </div>
         </div>
-      </div>
 
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top: 18px;">
-        <div class="card chartCard" data-chart="chartCheckout">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Ödeme adımında güven</h3>
-            <div style="height: 170px; border:1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;">
+        <div class="grid grid--3">
+          <article class="card info chartCard reveal" data-chart="chartCheckout">
+            <h3>Ödeme adımında güven</h3>
+            <div class="chart-wrap">
               <canvas id="chartCheckout" aria-label="Güven grafiği"></canvas>
             </div>
-            <p class="micro" style="margin:10px 0 0;">
-              Ödeme akışını değiştirmeyiz: müşteri Etsy’ye alışık; güveni koruruz.
-            </p>
-            <p class="note" style="margin-top: 8px;">Not: Gösterim amaçlı model farkı.</p>
-          </div>
-        </div>
+            <p>Ödeme akışını değiştirmeyiz: müşteri Etsy’ye alışık; güveni koruruz.</p>
+            <p class="muted">Not: Gösterim amaçlı model farkı.</p>
+          </article>
 
-        <div class="card chartCard" data-chart="chartEtsy">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Tek panel yönetim</h3>
-            <div style="height: 170px; border:1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;">
+          <article class="card info chartCard reveal" data-chart="chartEtsy">
+            <h3>Tek panel yönetim</h3>
+            <div class="chart-wrap">
               <canvas id="chartEtsy" aria-label="Tek panel grafiği"></canvas>
             </div>
-            <p class="micro" style="margin:10px 0 0;">
-              Ürün ekleme/fiyat güncelleme gibi işler Etsy’de yapılır; web sitesi otomatik güncellenir.
-            </p>
-            <p class="note" style="margin-top: 8px;">Not: Gösterim amaçlı model farkı.</p>
-          </div>
-        </div>
+            <p>Ürün ekleme/fiyat güncelleme Etsy’de; web sitesi otomatik güncellenir.</p>
+            <p class="muted">Not: Gösterim amaçlı model farkı.</p>
+          </article>
 
-        <div class="card chartCard" data-chart="chartCost">
-          <div class="card__body">
-            <h3 style="margin:0 0 8px;">Uzun vadeli maliyet</h3>
-            <div style="height: 170px; border:1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;">
+          <article class="card info chartCard reveal" data-chart="chartCost">
+            <h3>Uzun vadeli maliyet</h3>
+            <div class="chart-wrap">
               <canvas id="chartCost" aria-label="Maliyet grafiği"></canvas>
             </div>
-            <p class="micro" style="margin:10px 0 0;">
-              Abonelik baskısı yok: tek sefer kurulum + kontrol sende.
-            </p>
-            <p class="note" style="margin-top: 8px;">Not: Gösterim amaçlı model farkı.</p>
-          </div>
+            <p>Abonelik baskısı yok: tek sefer kurulum + kontrol sende.</p>
+            <p class="muted">Not: Gösterim amaçlı model farkı.</p>
+          </article>
         </div>
-      </div>
 
-      <div class="callout" style="margin-top: 16px;">
-        <b>Özet:</b> Müşteri web sitende ürünü görür; “Satın Al”a basar; ödeme Etsy’de güvenle biter.
+        <div class="callout reveal">
+          <b>Özet:</b> Müşteri web sitende ürünü görür; “Satın Al”a basar; ödeme Etsy’de güvenle biter.
+        </div>
       </div>
     </section>
 
-    <hr class="divider" />
+    <!-- Paketler -->
+    <section class="section section--tint" id="paketler">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Paketlerimiz</h2>
+            <p>Hepsinde temel mantık aynı: web sitesi vitrin, satın alma Etsy’de.</p>
+          </div>
+        </div>
 
-    <!-- SSS -->
+        <div class="pricing-footnote reveal">
+          <div class="pricing-footnote__title">Not (çok net):</div>
+          <ul class="pricing-footnote__list">
+            <li>Bu hizmet “web sitesi + Etsy entegrasyonu” mantığıyla çalışır. Sadece tasarım değil; ürün akışı ve yönlendirme sistemi de kurulur.</li>
+            <li>Şifre paylaşımı yok. Gerekirse “collaborator” modeliyle ilerlenir.</li>
+          </ul>
+        </div>
+
+        <div class="grid grid--3 pricing">
+          <article class="card price reveal">
+            <div class="price__top">
+              <h3>Starter</h3>
+              <span class="badge">199 USD</span>
+            </div>
+            <div class="chips">
+              <span class="chip">Tek sayfa vitrin</span>
+              <span class="chip">Manuel bağlantı</span>
+              <span class="chip chip--strong">Hızlı teslim</span>
+            </div>
+            <ul class="list">
+              <li>Yeni başlayan / küçük mağaza</li>
+              <li>Kurumsal tek sayfa yapı</li>
+              <li>“Satın Al” Etsy ürün linklerine gider</li>
+              <li>Revizyon: 1 tur</li>
+              <li>Teslim: 3–5 iş günü</li>
+            </ul>
+            <a class="btn btn--primary w-100" href="#" aria-label="Starter Etsy linki">Etsy’de Starter Satın Al</a>
+            <div class="mini-note">Starter, hızlı premium vitrin isteyenler için.</div>
+          </article>
+
+          <article class="card price price--featured reveal">
+            <div class="price__top">
+              <h3>Pro</h3>
+              <span class="badge">399 USD</span>
+            </div>
+            <div class="chips">
+              <span class="chip chip--strong">En çok tercih</span>
+              <span class="chip">Bölümlü site</span>
+              <span class="chip">Entegrasyon</span>
+            </div>
+            <ul class="list">
+              <li>Düzenli satış yapanlar</li>
+              <li>Bölümlü ana sayfa + vitrin alanları</li>
+              <li>Otomatik ürün gösterimi (Etsy entegrasyonu)</li>
+              <li>Revizyon: 2 tur</li>
+              <li>Teslim: 5–8 iş günü</li>
+            </ul>
+            <a class="btn btn--primary w-100" href="#" aria-label="Pro Etsy linki">Etsy’de Pro Satın Al</a>
+            <div class="mini-note"><b>Devam desteği:</b> Ayda 1 kez basit geliştirme.</div>
+          </article>
+
+          <article class="card price reveal">
+            <div class="price__top">
+              <h3>Premium</h3>
+              <span class="badge">799 USD</span>
+            </div>
+            <div class="chips">
+              <span class="chip">Çoklu sayfa</span>
+              <span class="chip">Kategori düzeni</span>
+              <span class="chip chip--strong">Uzun vadeli</span>
+            </div>
+            <ul class="list">
+              <li>Marka odaklı / büyüme hedefli</li>
+              <li>Çoklu sayfa yapı</li>
+              <li>Gelişmiş hız/performance düzeni</li>
+              <li>Revizyon: 3 tur</li>
+              <li>Teslim: 8–12 iş günü</li>
+            </ul>
+            <a class="btn btn--primary w-100" href="#" aria-label="Premium Etsy linki">Etsy’de Premium Satın Al</a>
+            <div class="mini-note"><b>Devam desteği:</b> Ayda 2 kez iyileştirme.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teslimatlar -->
+    <section class="section" id="teslimatlar">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Tam Olarak Ne Teslim Ediyoruz?</h2>
+            <p>Satın almadan önce net: kapsam, teslim, revizyon ve sahiplik.</p>
+          </div>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card info reveal">
+            <h3>Sahiplik</h3>
+            <p>Web sitesi dosyaları ve proje müşteriye aittir. Şifre paylaşımı yok; gerekirse collaborator modeli.</p>
+            <ul class="bullets">
+              <li>Kaynak dosyalar teslim edilir</li>
+              <li>Domain/GitHub müşteriye ait olabilir</li>
+              <li>Şeffaf süreç</li>
+            </ul>
+          </article>
+
+          <article class="card info reveal">
+            <h3>Kurulum</h3>
+            <p>Kurumsal vitrin, mobil uyum, hız düzeni ve Etsy yönlendirme akışı.</p>
+            <ul class="bullets">
+              <li>“Satın Al” Etsy’ye gider</li>
+              <li>Bölüm düzeni sektöre göre</li>
+              <li>Temel performans optimizasyonu</li>
+            </ul>
+          </article>
+
+          <article class="card info reveal">
+            <h3>Revizyon</h3>
+            <p>Revizyon “tur” olarak sayılır. Tur içinde metin/yerleşim/renk düzenlenir.</p>
+            <ul class="bullets">
+              <li>Kapsam dışı: sıfırdan yeni tasarım</li>
+              <li>Net kapsam, net teslim</li>
+              <li>Satış sonrası düzen planı</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="callout reveal">
+          <b>Net hedef:</b> Müşteri web sitende ürünü görür; “Satın Al”a basar; ödeme Etsy’de güvenle biter.
+        </div>
+      </div>
+    </section>
+
+    <!-- Politika -->
+    <section class="section section--tint" id="politika">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Politika ve Süreç</h2>
+            <p>Sürpriz yok. Küçük yazı yok. Her şey yazılı, her şey net.</p>
+          </div>
+        </div>
+
+        <div class="policy">
+          <article class="card policy__card reveal">
+            <h3>İade ve İptal</h3>
+            <p>Bu hizmet kişiye özel dijital hizmettir. İade/iptal koşulları Etsy kuralları ve sipariş kapsamına göre değerlendirilir.</p>
+            <ul class="bullets">
+              <li>İş başladıktan sonra iade uygun olmayabilir</li>
+              <li>Tüm iletişim Etsy mesajlarıyla kayıtlıdır</li>
+              <li>Hedef: net kapsam + sorunsuz teslim</li>
+            </ul>
+          </article>
+
+          <article class="card policy__card reveal">
+            <h3>Gerekli Bilgiler</h3>
+            <p>Sipariş sonrası Etsy mesajından şunları isteriz:</p>
+            <ul class="bullets">
+              <li>Etsy mağaza linki</li>
+              <li>Logo / marka adı</li>
+              <li>Renk ve örnek beğeniler</li>
+              <li>Kısa iletişim metinleri</li>
+            </ul>
+          </article>
+
+          <article class="card policy__card reveal">
+            <h3>Entegrasyon Notu</h3>
+            <p>Şifre istenmez. Gerekli adımlar için uzaktan yönlendirme yapılır; gerekiyorsa collaborator modeli kullanılır.</p>
+            <ul class="bullets">
+              <li>Müşteri bilgileri müşteride kalır</li>
+              <li>Hassas bilgi gömülmez</li>
+              <li>Güvenli yöntemle kurulum</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="section" id="sss">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">Sık Sorulan Sorular</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Entegrasyon, güven, teslimat ve süreç — hepsi net.
-          </p>
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>Sık Sorulan Sorular</h2>
+            <p>Entegrasyon, güven, teslimat ve süreç — hepsi net.</p>
+          </div>
         </div>
-      </div>
 
-      <div style="display:grid; gap: 12px; margin-top: 18px;">
-        <details class="card" open>
-          <summary class="card__body faq__q"><b>Bu web sitesinde ödeme neden yok?</b></summary>
-          <div class="card__body" style="padding-top:0;">
-            <p class="micro" style="margin:0;">
-              Ödeme Etsy üzerinden yapılır. Böylece Etsy’nin güveni ve kullanıcı alışkanlığı korunur; ek ödeme altyapısı ve prosedürlerle uğraşmazsın.
-            </p>
-          </div>
-        </details>
+        <div class="faq">
+          <details class="faq__item reveal" open>
+            <summary>Bu web sitesinde ödeme neden yok?</summary>
+            <p>Ödeme Etsy üzerinden yapılır. Böylece Etsy güveni ve kullanıcı alışkanlığı korunur; ek ödeme altyapısı ve prosedürlerle uğraşmazsın.</p>
+          </details>
 
-        <details class="card">
-          <summary class="card__body faq__q"><b>Web sitesi + Etsy entegrasyonu neden avantajlı?</b></summary>
-          <div class="card__body" style="padding-top:0;">
-            <p class="micro" style="margin:0;">
-              Ürünlerini tek yerden (Etsy) yönetirsin. Etsy’de yayınladığın ürünler web sitende otomatik görünür.
-              Ek ürün girişi, manuel liste, teknik bakım yükü azalır.
-            </p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>Web sitesi + Etsy entegrasyonu neden avantajlı?</summary>
+            <p>Ürünlerini tek yerden (Etsy) yönetirsin. Etsy’de yayınladığın ürünler web sitende otomatik görünür. Teknik bakım yükü azalır.</p>
+          </details>
 
-        <details class="card">
-          <summary class="card__body faq__q"><b>Müşteri web sitemden nasıl satın alacak?</b></summary>
-          <div class="card__body" style="padding-top:0;">
-            <p class="micro" style="margin:0;">
-              Müşteri web sitende ürünü görür. “Satın Al” butonuna basınca Etsy’deki ürün sayfasına gider ve ödemeyi Etsy’de tamamlar.
-            </p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>Müşteri web sitemden nasıl satın alacak?</summary>
+            <p>Müşteri web sitende ürünü görür. “Satın Al” butonuna basınca Etsy ürün sayfasına gider ve ödemeyi Etsy’de tamamlar.</p>
+          </details>
 
-        <details class="card">
-          <summary class="card__body faq__q"><b>Etsy mağazamı bağlamak için şifremi vermem gerekir mi?</b></summary>
-          <div class="card__body" style="padding-top:0;">
-            <p class="micro" style="margin:0;">
-              Hayır. Şifre paylaşımı yapılmaz. Gerekli ayarlar için yönlendiririz; gerekiyorsa erişim “collaborator” modeliyle yönetilir.
-            </p>
-          </div>
-        </details>
+          <details class="faq__item reveal">
+            <summary>Etsy mağazamı bağlamak için şifremi vermem gerekir mi?</summary>
+            <p>Hayır. Şifre paylaşımı yapılmaz. Gerekirse erişim collaborator modeliyle yönetilir.</p>
+          </details>
 
-        <details class="card">
-          <summary class="card__body faq__q"><b>Revizyon ne demek?</b></summary>
-          <div class="card__body" style="padding-top:0;">
-            <p class="micro" style="margin:0;">
-              Revizyon “tur” olarak sayılır. Tur içinde metin/yerleşim/renk gibi düzenlemeler yapılır. Sıfırdan yeni tasarım kapsam dışıdır.
-            </p>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- İLETİŞİM -->
-    <section class="section" id="iletisim">
-      <div class="section__head">
-        <div>
-          <h2 style="margin:0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing:-.02em;">İletişim</h2>
-          <p class="section__head__meta" style="margin:8px 0 0;">
-            Sipariş ve tüm süreç Etsy üzerinden yürür. Satın almadan önce kısa soruların varsa buradan yazabilirsin.
-          </p>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 18px;">
-        <div class="card__body">
-          <p class="micro" style="margin:0 0 12px;">
-            <b>En hızlı yol:</b> Etsy üzerinden mesaj atmak. (İletişim kayıtlı ve şeffaf olur.)
-          </p>
-          <div class="btnrow">
-            <a class="btn btn--primary" href="#paketler" style="text-decoration:none;">Paketleri Gör</a>
-            <a class="btn" href="#politika" style="text-decoration:none;">Politikayı Oku</a>
-          </div>
-          <p class="note" style="margin-top: 10px;">
-            Not: Demo vitrinler çeşitlilik göstermek içindir; her müşteri için tasarım dili sektöre göre şekillenir.
-          </p>
+          <details class="faq__item reveal">
+            <summary>Revizyon ne demek?</summary>
+            <p>Revizyon “tur” olarak sayılır. Tur içinde metin/yerleşim/renk düzenlenir. Sıfırdan yeni tasarım kapsam dışıdır.</p>
+          </details>
         </div>
       </div>
     </section>
 
-    <footer style="padding: 30px 0 40px; color: var(--muted2);">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
-        <span>© Shopgy</span>
-        <span>Web sitesi vitrin • Ödeme Etsy’de</span>
+    <!-- İletişim -->
+    <section class="section section--tint" id="iletisim">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2>İletişim</h2>
+            <p>Sipariş ve süreç Etsy üzerinden yürür. Satın almadan önce soruların varsa yaz.</p>
+          </div>
+        </div>
+
+        <div class="card contact reveal">
+          <div class="contact__left">
+            <h3>En hızlı yol: Etsy mesajı</h3>
+            <p>İletişim kayıtlı ve şeffaf olur. Paket seçip hemen başlatabilirsin.</p>
+          </div>
+          <div class="contact__right">
+            <a class="btn btn--primary" href="#paketler">Paketleri Gör</a>
+            <a class="btn btn--ghost" href="#politika">Politikayı Oku</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container footer__inner">
+        <div>© <span id="year"></span> Shopgy</div>
+        <div class="footer__right">
+          <span class="muted">Web sitesi vitrin</span>
+          <span class="muted">Ödeme Etsy’de</span>
+        </div>
       </div>
     </footer>
-
   </main>
 
-  <!-- 1) Chart.js (grafikler için zorunlu) -->
+  <!-- Video Modal -->
+  <div class="modal" id="videoModal" aria-hidden="true" role="dialog" aria-label="Tanıtım videosu">
+    <div class="modal__backdrop" id="closeVideo" aria-hidden="true"></div>
+    <div class="modal__content" role="document">
+      <button class="modal__close" id="closeVideoBtn" type="button" aria-label="Kapat">×</button>
+
+      <!-- Demo video: İstersen assets/video.mp4 koyup src'i değiştir -->
+      <video class="modal__video" controls playsinline preload="metadata">
+        <source src="assets/demo.mp4" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+      </video>
+
+      <div class="modal__hint">
+        Bu video demo amaçlıdır. Müşteri için sektöre özel vitrin dili uygulanır.
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-
-  <!-- 2) Senin ana JS dosyan (charts + slider + modal vs.) -->
   <script src="script.js"></script>
-
 </body>
 </html>
