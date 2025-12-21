@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zayn Jewelry - Ultra Lüks Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Lato', 'sans-serif']
+                    },
+                    colors: {
+                        gold: '#D4AF37',
+                        dark: '#0a0a0a',
+                        glass: 'rgba(255, 255, 255, 0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #e5e5e5; }
+        .gold-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .product-card {
+            background: linear-gradient(145deg, #0f0f0f, #050505);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #D4AF37;
+            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.1);
+        }
+        .btn-gold {
+            background: linear-gradient(45deg, #D4AF37, #C5A028);
+            color: black;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-gold:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-serif text-gold tracking-widest">BY ZAYN</div>
+            <div class="hidden md:flex gap-8 text-xs tracking-[0.2em] text-gray-400">
+                <a href="#" class="hover:text-gold transition">KOLEKSİYON</a>
+                <a href="#" class="hover:text-gold transition">HİKAYEMİZ</a>
+                <a href="#" class="hover:text-gold transition">İLETİŞİM</a>
+            </div>
+            <a href="#" class="text-xs border border-gold/30 text-gold px-4 py-2 rounded-full hover:bg-gold hover:text-black transition">
+                ETSY MAĞAZASI
+            </a>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=2075&auto=format&fit=crop" class="w-full h-full object-cover opacity-30" alt="Background">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 mt-20">
+            <p class="text-gold text-xs tracking-[0.3em] mb-4 uppercase">El Yapımı Zarafet</p>
+            <h1 class="text-5xl md:text-8xl font-serif text-white mb-8 gold-glow">
+                Sessiz Lüks
+            </h1>
+            <p class="text-gray-400 max-w-lg mx-auto mb-10 font-light">
+                Doğadan ilham alan, sanatla şekillenen eşsiz parçalar. 
+                Sadece Etsy üzerinden satışta.
+            </p>
+            <a href="#koleksiyon" class="btn-gold px-8 py-4 rounded-sm tracking-widest text-sm uppercase">
+                Koleksiyonu Keşfet
+            </a>
+        </div>
+    </header>
+
+    <section id="koleksiyon" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-serif text-white mb-2">Özel Tasarımlar</h2>
+            <div class="w-24 h-1 bg-gold mx-auto opacity-50"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="product-card group relative overflow-hidden rounded-xl">
+                <div class="h-96 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1602751584552-8ba731f0e532?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100" alt="Ürün">
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-serif text-white mb-2">Zümrüt Kolye</h3>
+                    <p class="text-gold mb-4 text-lg">$145.00</p>
+                    <button class="w-full py-3 border border-white/20 hover:border-gold hover:text-gold text-white text-xs tracking-widest transition uppercase">
+                        Etsy'den Satın Al
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card group relative overflow-hidden rounded-xl">
+                <div class="h-96 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100" alt="Ürün">
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-serif text-white mb-2">Altın Yaprak Küpe</h3>
+                    <p class="text-gold mb-4 text-lg">$89.00</p>
+                    <button class="w-full py-3 border border-white/20 hover:border-gold hover:text-gold text-white text-xs tracking-widest transition uppercase">
+                        Etsy'den Satın Al
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card group relative overflow-hidden rounded-xl">
+                <div class="h-96 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100" alt="Ürün">
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-serif text-white mb-2">Vintage Yüzük</h3>
+                    <p class="text-gold mb-4 text-lg">$210.00</p>
+                    <button class="w-full py-3 border border-white/20 hover:border-gold hover:text-gold text-white text-xs tracking-widest transition uppercase">
+                        Etsy'den Satın Al
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-4 right-4 bg-white text-black px-4 py-2 text-xs font-bold rounded shadow-lg z-50">
+        DEMO MODU
+    </div>
+
+</body>
+</html>
