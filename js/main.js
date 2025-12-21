@@ -1,3 +1,14 @@
+/* =========================================================
+   Shopgy — script.js (TEK PARÇA / DÜZENLENMİŞ)
+   - Mobile menu
+   - Year
+   - Typewriter
+   - Scroll Reveal (stabilized)
+   - Showcase Slider
+   - Video Modal
+   - Charts (Chart.js) + Scroll Focus
+   ========================================================= */
+
 /* ----------------- Mobile menu ----------------- */
 (function () {
   const burger = document.getElementById("burger");
@@ -17,7 +28,7 @@
   }
 
   burger.addEventListener("click", toggle);
-  mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+  mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
 })();
 
 /* ----------------- Year ----------------- */
@@ -34,6 +45,7 @@
   const phrases = JSON.parse(el.getAttribute("data-type") || "[]");
   if (!phrases.length) return;
 
+  // Ensure first child is a text node so we can safely mutate it
   if (!el.firstChild || el.firstChild.nodeType !== Node.TEXT_NODE) {
     el.prepend(document.createTextNode(""));
   }
@@ -50,6 +62,7 @@
       setTimeout(tick, 1400);
       return;
     }
+
     if (deleting && i === 0) {
       deleting = false;
       p = (p + 1) % phrases.length;
@@ -76,15 +89,17 @@
     ".section__head, .hero__left, .hero__right, .showcase, .mock, .trust-bar, .reveal"
   );
 
-  targets.forEach(t => t.classList.add("reveal"));
+  if (!targets.length) return;
+
+  targets.forEach((t) => t.classList.add("reveal"));
 
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+    entries.forEach((e) => {
       if (e.isIntersecting) e.target.classList.add("is-visible");
     });
   }, { threshold: 0.12 });
 
-  targets.forEach(t => io.observe(t));
+  targets.forEach((t) => io.observe(t));
 })();
 
 /* ----------------- Showcase Slider ----------------- */
@@ -96,6 +111,8 @@
   if (!track || !dotsWrap || !prev || !next) return;
 
   const slides = Array.from(track.children);
+  if (!slides.length) return;
+
   let index = 0;
   let timer = null;
 
@@ -179,22 +196,34 @@
      örn: <div class="card chartCard" data-chart="chartCheckout">...</div>
 */
 (function () {
-  if (typeof Chart === "undefined") {
+  // Chart.js yoksa siteyi bozmayalım
+  if (typeof window.Chart === "undefined") {
     console.warn("[Shopgy] Chart.js bulunamadı. index.html'e Chart.js ekledin mi?");
     return;
   }
 
   const ids = ["chartCheckout", "chartEtsy", "chartCost"];
-  const missingCanvas = ids.filter(id => !document.getElementById(id));
+  const missingCanvas = ids.filter((id) => !document.getElementById(id));
   if (missingCanvas.length) {
     console.warn("[Shopgy] Canvas bulunamadı:", missingCanvas);
     return;
   }
 
+  // Chart üretici
   function makeBarChart(canvasId, labels, targetData, yMax = 100) {
     const canvas = document.getElementById(canvasId);
-    const ctx = canvas.getContext("2d");
+    if (!canvas) return null;
 
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+
+    // Eğer aynı canvas daha önce chart aldıysa (hot reload vb.) temizle
+    if (canvas._chartInstance) {
+      try { canvas._chartInstance.destroy(); } catch (_) {}
+      canvas._chartInstance = null;
+    }
+
+    // İlk başta 0’dan başlasın → görünür olunca hedefe animasyonla gitsin
     const initialData = targetData.map(() => 0);
 
     const chart = new Chart(ctx, {
@@ -228,10 +257,14 @@
 
     chart.__targetData = targetData;
     chart.__played = false;
+
+    // canvas üzerinde referans tut
+    canvas._chartInstance = chart;
+
     return chart;
   }
 
-  // Bu değerleri sonra stratejiye göre güncelleriz; şimdilik animasyon + görünürlük için net rakamlar.
+  // Demo değerler (istersen metinle %100 uyumlu hale getiririz)
   const charts = {
     chartCheckout: makeBarChart("chartCheckout", ["Checkout", "Satın Alma"], [70, 30], 100),
     chartEtsy: makeBarChart("chartEtsy", ["Etsy", "Yeni Kanal"], [80, 20], 100),
@@ -249,7 +282,7 @@
       if (!e.isIntersecting) return;
 
       // kart focus efekti
-      cards.forEach(c => c.classList.remove("is-active"));
+      cards.forEach((c) => c.classList.remove("is-active"));
       e.target.classList.add("is-active");
 
       const key = e.target.getAttribute("data-chart");
@@ -262,5 +295,5 @@
     });
   }, { threshold: 0.55 });
 
-  cards.forEach(c => io.observe(c));
+  cards.forEach((c) => io.observe(c));
 })();
