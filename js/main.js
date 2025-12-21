@@ -1,18 +1,21 @@
 /* =========================================================
-   Shopgy — script.js (TEK PARÇA / DÜZENLENMİŞ)
+   Shopgy — script.js (FINAL / ULTRA CLEAN)
    - Mobile menu
    - Year
    - Typewriter
-   - Scroll Reveal (stabilized)
+   - Scroll Reveal
    - Showcase Slider
    - Video Modal
    - Charts (Chart.js) + Scroll Focus
    ========================================================= */
 
+/* ----------------- Helpers ----------------- */
+function $(id) { return document.getElementById(id); }
+
 /* ----------------- Mobile menu ----------------- */
 (function () {
-  const burger = document.getElementById("burger");
-  const mobileMenu = document.getElementById("mobileMenu");
+  const burger = $("burger");
+  const mobileMenu = $("mobileMenu");
   if (!burger || !mobileMenu) return;
 
   function close() {
@@ -33,7 +36,7 @@
 
 /* ----------------- Year ----------------- */
 (function () {
-  const y = document.getElementById("year");
+  const y = $("year");
   if (y) y.textContent = String(new Date().getFullYear());
 })();
 
@@ -74,24 +77,10 @@
   tick();
 })();
 
-/* ----------------- Scroll Reveal (stabilized) ----------------- */
-/*
-  Not: Önceki sürümde ".card" otomatik reveal alıyordu.
-  Ancak ".card" hover'da transform yapıyor, ".reveal" da transform yapıyor.
-  Bu çakışma bazı cihazlarda "metin/kart kayması" gibi hissedilir.
-
-  Bu yüzden:
-  - Reveal hedeflerini kartlar yerine daha güvenli bloklara çektik.
-  - Eğer ekstra elementlere reveal istersen HTML'de o elemente "reveal" class'ı eklemen yeter.
-*/
+/* ----------------- Scroll Reveal ----------------- */
 (function () {
-  const targets = document.querySelectorAll(
-    ".section__head, .hero__left, .hero__right, .showcase, .mock, .trust-bar, .reveal"
-  );
-
+  const targets = document.querySelectorAll(".reveal");
   if (!targets.length) return;
-
-  targets.forEach((t) => t.classList.add("reveal"));
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -104,10 +93,10 @@
 
 /* ----------------- Showcase Slider ----------------- */
 (function () {
-  const track = document.getElementById("showcaseTrack");
-  const dotsWrap = document.getElementById("showcaseDots");
-  const prev = document.getElementById("showcasePrev");
-  const next = document.getElementById("showcaseNext");
+  const track = $("showcaseTrack");
+  const dotsWrap = $("showcaseDots");
+  const prev = $("showcasePrev");
+  const next = $("showcaseNext");
   if (!track || !dotsWrap || !prev || !next) return;
 
   const slides = Array.from(track.children);
@@ -150,11 +139,14 @@
 
 /* ----------------- Video Modal ----------------- */
 (function () {
-  const modal = document.getElementById("videoModal");
-  const closeBg = document.getElementById("closeVideo");
-  const closeBtn = document.getElementById("closeVideoBtn");
-  const openBtn = document.getElementById("openVideoBtn");
-  if (!modal || !closeBg || !closeBtn || !openBtn) return;
+  const modal = $("videoModal");
+  const closeBg = $("closeVideo");
+  const closeBtn = $("closeVideoBtn");
+  const openBtn = $("openVideoBtn");
+  const openBtnMobile = $("openVideoBtnMobile");
+  const openBtnCard = $("openVideoBtnCard");
+
+  if (!modal || !closeBg || !closeBtn) return;
 
   const video = modal.querySelector("video");
 
@@ -170,7 +162,10 @@
     if (video) { video.pause(); video.currentTime = 0; }
   }
 
-  openBtn.addEventListener("click", open);
+  if (openBtn) openBtn.addEventListener("click", open);
+  if (openBtnMobile) openBtnMobile.addEventListener("click", open);
+  if (openBtnCard) openBtnCard.addEventListener("click", open);
+
   closeBg.addEventListener("click", close);
   closeBtn.addEventListener("click", close);
 
@@ -180,23 +175,7 @@
 })();
 
 /* ----------------- Charts (Chart.js) + Scroll Focus ----------------- */
-/*
-  Gereksinimler:
-  1) index.html içinde Chart.js script'i, script.js'den önce yüklenmiş olmalı:
-     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-     <script src="script.js"></script>
-
-  2) Canvas id'leri:
-     - chartCheckout
-     - chartEtsy
-     - chartCost
-
-  3) Kart wrapper'ları:
-     class="card chartCard" ve data-chart="chartCheckout|chartEtsy|chartCost"
-     örn: <div class="card chartCard" data-chart="chartCheckout">...</div>
-*/
 (function () {
-  // Chart.js yoksa siteyi bozmayalım
   if (typeof window.Chart === "undefined") {
     console.warn("[Shopgy] Chart.js bulunamadı. index.html'e Chart.js ekledin mi?");
     return;
@@ -209,21 +188,17 @@
     return;
   }
 
-  // Chart üretici
   function makeBarChart(canvasId, labels, targetData, yMax = 100) {
     const canvas = document.getElementById(canvasId);
-    if (!canvas) return null;
+    const ctx = canvas && canvas.getContext ? canvas.getContext("2d") : null;
+    if (!canvas || !ctx) return null;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return null;
-
-    // Eğer aynı canvas daha önce chart aldıysa (hot reload vb.) temizle
+    // hot reload/yeniden init güvenliği
     if (canvas._chartInstance) {
       try { canvas._chartInstance.destroy(); } catch (_) {}
       canvas._chartInstance = null;
     }
 
-    // İlk başta 0’dan başlasın → görünür olunca hedefe animasyonla gitsin
     const initialData = targetData.map(() => 0);
 
     const chart = new Chart(ctx, {
@@ -257,14 +232,11 @@
 
     chart.__targetData = targetData;
     chart.__played = false;
-
-    // canvas üzerinde referans tut
     canvas._chartInstance = chart;
-
     return chart;
   }
 
-  // Demo değerler (istersen metinle %100 uyumlu hale getiririz)
+  // Demo değerler (sonra metinle %100 eşleştiririz)
   const charts = {
     chartCheckout: makeBarChart("chartCheckout", ["Checkout", "Satın Alma"], [70, 30], 100),
     chartEtsy: makeBarChart("chartEtsy", ["Etsy", "Yeni Kanal"], [80, 20], 100),
@@ -272,16 +244,13 @@
   };
 
   const cards = document.querySelectorAll(".chartCard[data-chart]");
-  if (!cards.length) {
-    console.warn("[Shopgy] .chartCard bulunamadı. HTML'de chart kartlarına class/data-chart ekli mi?");
-    return;
-  }
+  if (!cards.length) return;
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
 
-      // kart focus efekti
+      // focus efekti
       cards.forEach((c) => c.classList.remove("is-active"));
       e.target.classList.add("is-active");
 
