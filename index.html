@@ -3,155 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etsy Hub - Ultra Professional</title>
+    <title>Etsy Hub - Mağazanızı Markaya Dönüştürün</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        neon: '#4ade80', // Görseldeki yeşil
+                        neon: '#4ade80',
                         darkbg: '#050505',
-                        glass: 'rgba(255, 255, 255, 0.05)'
-                    },
-                    boxShadow: {
-                        'neon': '0 0 20px rgba(74, 222, 128, 0.5)',
+                        cardbg: 'rgba(255, 255, 255, 0.03)'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #050505; color: white; overflow-x: hidden; }
-        
-        /* Arka Plan Efektleri */
-        .glow-bg {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(74,222,128,0.15) 0%, rgba(0,0,0,0) 70%);
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: -1;
-            filter: blur(80px);
+        body { background-color: #050505; color: white; }
+        .glow-point {
+            position: absolute; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(74,222,128,0.2) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(60px); z-index: -1;
         }
-        
-        .stars {
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3;
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-        }
-
-        /* Buzlu Cam Kart Efekti */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
             transition: all 0.3s ease;
         }
-        
         .glass-card:hover {
-            border-color: rgba(74, 222, 128, 0.4);
+            border-color: #4ade80;
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(74, 222, 128, 0.15);
+            box-shadow: 0 10px 40px -10px rgba(74, 222, 128, 0.2);
+        }
+        /* Öne çıkan paket efekti */
+        .popular-badge {
+            position: absolute; top: 0; right: 0;
+            background: #4ade80; color: black;
+            font-size: 0.75rem; font-weight: bold;
+            padding: 4px 12px;
+            border-bottom-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
     </style>
 </head>
-<body class="antialiased relative min-h-screen">
+<body class="antialiased relative overflow-x-hidden">
 
-    <div class="glow-bg"></div>
-    <div class="stars"></div>
+    <div class="glow-point top-0 left-1/2 -translate-x-1/2"></div>
 
-    <nav class="flex justify-between items-center max-w-6xl mx-auto p-6 relative z-10">
+    <nav class="max-w-7xl mx-auto p-6 flex justify-between items-center relative z-10">
         <div class="text-2xl font-bold flex items-center gap-2">
-            <span class="w-3 h-3 bg-neon rounded-full shadow-neon"></span> ETSY HUB
+            <span class="w-3 h-3 bg-neon rounded-full shadow-[0_0_10px_#4ade80]"></span> ETSY HUB
         </div>
-        <div class="hidden md:flex gap-8 text-sm text-gray-400 font-medium">
-            <a href="#" class="hover:text-white transition">Programlar</a>
-            <a href="#" class="hover:text-white transition">Nasıl Çalışır?</a>
-            <a href="#" class="hover:text-white transition">Paketler</a>
+        <div class="hidden md:flex gap-8 text-sm text-gray-400">
+            <a href="#nasil-calisir" class="hover:text-white transition">Nasıl Çalışır?</a>
+            <a href="#paketler" class="hover:text-white transition">Paketler</a>
+            <a href="#sss" class="hover:text-white transition">SSS</a>
         </div>
-        <button class="bg-white/10 text-white px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition text-sm backdrop-blur-md">
-            Giriş Yap
-        </button>
+        <a href="#iletisim" class="px-5 py-2 border border-white/20 rounded-full text-sm hover:bg-white/10 transition">
+            İletişime Geç
+        </a>
     </nav>
 
-    <main class="max-w-4xl mx-auto text-center mt-20 px-4 relative z-10">
-        <div class="inline-block px-4 py-1 mb-6 rounded-full bg-neon/10 border border-neon/20 text-neon text-xs font-bold tracking-widest uppercase">
-            Ultra-Lüks İskelet
-        </div>
-        
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
-            Etsy mağazan için <br>
-            <span class="text-white">Otomatik Vitrin.</span>
+    <header class="text-center pt-20 pb-32 px-4 relative z-10">
+        <span class="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-neon uppercase tracking-widest mb-6 inline-block">
+            Etsy Satıcıları İçin Özel Çözüm
+        </span>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+            Mağazanızın Kendi <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-emerald-600">Web Sitesi Olsun.</span>
         </h1>
-        
-        <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            Ürünler otomatik gelsin, ödeme güvenli platformda kalsın. 
-            Karmaşık entegrasyonlara son. Sadece satışa odaklan.
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+            Aylık ödeme yok. Komisyon yok. Ürünleriniz Etsy'den otomatik çekilir, 
+            ödemeler Etsy üzerinden güvenle alınır.
         </p>
-
-        <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-            <button class="px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-600 text-black font-bold rounded-xl shadow-neon hover:scale-105 transition transform">
-                Paketleri Gör
-            </button>
-            <button class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition backdrop-blur-sm">
-                Bir Dakika İzle
-            </button>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#paketler" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:bg-emerald-400 transition shadow-[0_0_20px_rgba(74,222,128,0.4)]">
+                Paketleri İncele
+            </a>
+            <a href="#demo" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition">
+                Örnek Siteleri Gör
+            </a>
         </div>
-    </main>
+    </header>
 
-    <div class="mt-20 max-w-6xl mx-auto px-4 relative z-10">
-        <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-            <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-transparent to-transparent z-10"></div>
-            <div class="bg-gray-800 h-64 md:h-96 w-full flex items-center justify-center text-gray-500">
-                [ 3D Web Sitesi Vitrin Animasyonu ]
+    <section id="nasil-calisir" class="max-w-7xl mx-auto px-4 py-20 border-t border-white/5">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-2xl">
+                <div class="text-4xl mb-4">🔄</div>
+                <h3 class="text-xl font-bold mb-2">Otomatik Entegrasyon</h3>
+                <p class="text-gray-400 text-sm">Etsy mağazanızdaki ürünleri tek tıkla sitenize çekeriz. Stok ve fiyatlar her zaman güncel kalır.</p>
+            </div>
+            <div class="glass-card p-8 rounded-2xl">
+                <div class="text-4xl mb-4">💸</div>
+                <h3 class="text-xl font-bold mb-2">Aylık Ücret Yok</h3>
+                <p class="text-gray-400 text-sm">Shopify veya Wix gibi her ay ödeme yapmazsınız. Tek seferlik kurulum ücreti ödersiniz, site sizin olur.</p>
+            </div>
+            <div class="glass-card p-8 rounded-2xl">
+                <div class="text-4xl mb-4">🔒</div>
+                <h3 class="text-xl font-bold mb-2">Etsy Güvencesi</h3>
+                <p class="text-gray-400 text-sm">Müşteriler "Satın Al" dediğinde Etsy'ye yönlenir. Stripe, vergi veya şirket açma derdiniz olmaz.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="max-w-6xl mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-        
-        <div class="glass-card p-6">
-            <div class="w-10 h-10 bg-green-900/50 rounded-lg flex items-center justify-center mb-4 text-neon text-xl">
-                🛡️
-            </div>
-            <h3 class="text-lg font-bold mb-2">Kurumsal Görünüm</h3>
-            <p class="text-sm text-gray-400">Markanı profesyonel bir şirket gibi göster. Güven ver, dönüşüm sağla.</p>
+    <section id="paketler" class="max-w-7xl mx-auto px-4 py-20">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Size Uygun Paketi Seçin</h2>
+            <p class="text-gray-400">Tüm paketlerde hosting ve alan adı kurulumu dahildir.</p>
         </div>
 
-        <div class="glass-card p-6">
-            <div class="w-10 h-10 bg-purple-900/50 rounded-lg flex items-center justify-center mb-4 text-purple-400 text-xl">
-                E
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            
+            <div class="glass-card p-8 rounded-2xl border-white/10 flex flex-col relative">
+                <h3 class="text-xl font-medium text-gray-300 mb-2">Ekonomik Başlangıç</h3>
+                <div class="text-4xl font-bold mb-6 text-white">Standart</div>
+                <ul class="space-y-4 mb-8 text-gray-400 text-sm flex-1">
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Sade ve Şık Tasarım</li>
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Ana Sayfa + Ürünler</li>
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Manuel Ürün Yükleme</li>
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Mobil Uyumlu</li>
+                </ul>
+                <button class="w-full py-3 rounded-lg border border-white/20 hover:bg-white/10 transition text-white">Etsy'den Satın Al</button>
             </div>
-            <h3 class="text-lg font-bold mb-2">Etsy Uyumlu Akış</h3>
-            <p class="text-sm text-gray-400">Senkronize vitrin sistemi. Satış mağazanda, ödeme Etsy'de.</p>
-        </div>
 
-        <div class="glass-card p-6">
-            <div class="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4 text-blue-400 text-xl">
-                💻
+            <div class="glass-card p-8 rounded-2xl border-neon/50 bg-white/5 flex flex-col relative transform md:-translate-y-4 shadow-[0_0_30px_rgba(74,222,128,0.1)]">
+                <div class="popular-badge">EN ÇOK TERCİH EDİLEN</div>
+                <h3 class="text-xl font-medium text-neon mb-2">Profesyonel</h3>
+                <div class="text-4xl font-bold mb-6 text-white">Business</div>
+                <ul class="space-y-4 mb-8 text-gray-300 text-sm flex-1">
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Markaya Özel Renkler</li>
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Hakkımızda & Blog Sayfası</li>
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> <strong>Yarı-Otomatik</strong> Ürün Çekme</li>
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> Instagram Akışı</li>
+                    <li class="flex items-center gap-2"><span class="text-neon">✓</span> WhatsApp Butonu</li>
+                </ul>
+                <button class="w-full py-3 rounded-lg bg-neon text-black font-bold hover:bg-emerald-400 transition">Etsy'den Satın Al</button>
             </div>
-            <h3 class="text-lg font-bold mb-2">Tek Panel Yönetim</h3>
-            <p class="text-sm text-gray-400">Değişken maliyetlere son. Sadece mağazana odaklan.</p>
-        </div>
 
-        <div class="glass-card p-6">
-            <div class="w-10 h-10 bg-orange-900/50 rounded-lg flex items-center justify-center mb-4 text-orange-400 text-xl">
-                ⚡
+            <div class="glass-card p-8 rounded-2xl border-purple-500/30 flex flex-col relative">
+                <h3 class="text-xl font-medium text-purple-400 mb-2">Ultra Profesyonel</h3>
+                <div class="text-4xl font-bold mb-6 text-white">Elite</div>
+                <ul class="space-y-4 mb-8 text-gray-400 text-sm flex-1">
+                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> <strong>Dark Mode / Neon Tasarım</strong></li>
+                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> <strong>Tam Otomatik</strong> (Gece Güncellenir)</li>
+                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Çoklu Dil Desteği (TR/EN)</li>
+                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Özel SEO Çalışması</li>
+                    <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Video Arka Planlar</li>
+                </ul>
+                <button class="w-full py-3 rounded-lg border border-purple-500/50 hover:bg-purple-500/20 text-purple-200 transition">Etsy'den Satın Al</button>
             </div>
-            <h3 class="text-lg font-bold mb-2">Hız Odaklı</h3>
-            <p class="text-sm text-gray-400">GitHub altyapısı ile şimşek hızında açılan sayfalar.</p>
-        </div>
 
-    </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 text-gray-600 text-sm border-t border-white/5">
+        <p>&copy; 2024 Etsy Hub. Tüm hakları saklıdır.</p>
+    </footer>
 
 </body>
 </html>
