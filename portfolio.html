@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitrinX | Design Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+                    colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505', glass: 'rgba(255, 255, 255, 0.05)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: white; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s ease; }
+        .glass-card:hover { transform: translateY(-5px); border-color: #00ff9d; box-shadow: 0 0 30px rgba(0, 255, 157, 0.1); }
+        .filter-btn.active { background-color: #00ff9d; color: black; border-color: #00ff9d; }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-neon selection:text-black">
+
+    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-white hover:text-neon transition group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i> <span id="nav-back">Back to Home</span>
+            </a>
+            <div class="flex gap-4">
+                <button onclick="toggleLanguage()" class="text-xs font-bold border border-white/10 bg-white/5 px-3 py-2 rounded-lg hover:bg-white/10 transition">
+                    <i class="fa-solid fa-globe text-gray-400"></i> <span id="current-lang">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 text-center px-4">
+        <span class="text-purple-400 text-xs font-bold tracking-widest uppercase mb-4 block" id="page-subtitle">Curated Designs</span>
+        <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6" id="page-title">Choose Your Identity</h1>
+        <p class="text-gray-400 max-w-2xl mx-auto" id="page-desc">
+            We don't use generic templates. Each VitrinX theme is psychologically engineered to convert specific types of customers. Select your niche below.
+        </p>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 mb-16 flex flex-wrap justify-center gap-4" id="filters">
+        <button onclick="filterSelection('all')" class="filter-btn active border border-white/20 px-6 py-2 rounded-full text-sm font-bold hover:bg-white/10 transition">All</button>
+        <button onclick="filterSelection('fashion')" class="filter-btn border border-white/20 px-6 py-2 rounded-full text-sm font-bold hover:bg-white/10 transition" id="filter-fashion">Fashion</button>
+        <button onclick="filterSelection('jewelry')" class="filter-btn border border-white/20 px-6 py-2 rounded-full text-sm font-bold hover:bg-white/10 transition" id="filter-jewelry">Jewelry</button>
+        <button onclick="filterSelection('home')" class="filter-btn border border-white/20 px-6 py-2 rounded-full text-sm font-bold hover:bg-white/10 transition" id="filter-home">Home & Art</button>
+        <button onclick="filterSelection('digital')" class="filter-btn border border-white/20 px-6 py-2 rounded-full text-sm font-bold hover:bg-white/10 transition" id="filter-digital">Digital</button>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="filter-item fashion w-full">
+            <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col">
+                <div class="relative h-64 overflow-hidden">
+                    <div class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded z-10">BEST FOR POD</div>
+                    <img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-4">
+                        <a href="demo-fashion.html" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-neon transition" id="btn-preview-1">Live Preview</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-heading text-2xl font-bold mb-2">Urban Mode</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-1" id="desc-1">Bold typography and marquee effects designed for Streetwear and Print-on-Demand brands. High energy.</p>
+                    <div class="border-t border-white/10 pt-4 mt-auto">
+                        <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Perfect For:</span>
+                        <div class="flex gap-2 mt-2">
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">T-Shirts</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Hoodies</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Accessories</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-item jewelry w-full">
+            <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col border-purple/30">
+                <div class="relative h-64 overflow-hidden">
+                    <div class="absolute top-4 left-4 bg-purple text-white text-xs font-bold px-3 py-1 rounded z-10">PREMIUM</div>
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-4">
+                        <a href="demo-ultra.html" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-neon transition" id="btn-preview-2">Live Preview</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-purple-300">Ultra Luxe</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-1" id="desc-2">Minimalist, high-end aesthetic. Uses dark mode and gold accents to justify higher price points.</p>
+                    <div class="border-t border-white/10 pt-4 mt-auto">
+                        <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Perfect For:</span>
+                        <div class="flex gap-2 mt-2">
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Gold/Silver</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Handmade</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Luxury</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-item home w-full">
+            <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-4">
+                        <a href="demo-business.html" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-neon transition" id="btn-preview-3">Live Preview</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-heading text-2xl font-bold mb-2">Modern Living</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-1" id="desc-3">Clean, spacious layout that focuses on photography. Ideal for lifestyle brands and home goods.</p>
+                    <div class="border-t border-white/10 pt-4 mt-auto">
+                        <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Perfect For:</span>
+                        <div class="flex gap-2 mt-2">
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Decor</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Furniture</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Candles</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-item home w-full">
+            <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1582037928769-181f2422677e?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-4">
+                        <a href="demo-art.html" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-neon transition" id="btn-preview-4">Live Preview</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-heading text-2xl font-bold mb-2">The Gallery</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-1" id="desc-4">Museum-style layout. Frames your artwork with plenty of whitespace to let the colors pop.</p>
+                    <div class="border-t border-white/10 pt-4 mt-auto">
+                        <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Perfect For:</span>
+                        <div class="flex gap-2 mt-2">
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Prints</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Canvas</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Digital Art</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-item digital w-full">
+            <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col">
+                <div class="relative h-64 overflow-hidden">
+                    <div class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded z-10">FASTEST</div>
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-4">
+                        <a href="demo-starter.html" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-neon transition" id="btn-preview-5">Live Preview</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-heading text-2xl font-bold mb-2">Digital Flow</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-1" id="desc-5">Optimized for instant downloads. Clean, no-distraction layout to maximize conversion rates.</p>
+                    <div class="border-t border-white/10 pt-4 mt-auto">
+                        <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Perfect For:</span>
+                        <div class="flex gap-2 mt-2">
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Planners</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">Templates</span>
+                            <span class="text-xs border border-white/20 px-2 py-1 rounded text-gray-300">E-books</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="border-t border-white/10 bg-black py-20 text-center">
+        <h2 class="font-heading text-3xl font-bold mb-6" id="cta-title">Not Sure Which One?</h2>
+        <p class="text-gray-400 mb-8 max-w-lg mx-auto" id="cta-desc">Most sellers start with the BUSINESS plan and let us choose the best layout for their niche.</p>
+        <a href="index.html#pricing" class="bg-neon text-black px-8 py-4 rounded-xl font-bold hover:bg-emerald-400 transition" id="cta-btn">View Pricing Plans</a>
+    </section>
+
+    <script>
+        // Filter Function
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("filter-item");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "hidden");
+                if (x[i].className.indexOf(c) == -1) w3AddClass(x[i], "hidden");
+            }
+            
+            // Button Active State
+            var btns = document.getElementsByClassName("filter-btn");
+            for (i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+                if (btns[i].getAttribute('onclick').includes(c || 'all')) {
+                    btns[i].classList.add("active");
+                }
+            }
+        }
+
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Multi-Language
+        const translations = {
+            tr: {
+                'nav-back': 'Ana Sayfaya Dön',
+                'page-subtitle': 'Seçkin Tasarımlar',
+                'page-title': 'Kimliğini Seç',
+                'page-desc': 'Sıradan şablonlar kullanmıyoruz. Her VitrinX teması, belirli müşteri türlerini dönüştürmek için psikolojik olarak tasarlanmıştır.',
+                'filter-fashion': 'Moda', 'filter-jewelry': 'Takı', 'filter-home': 'Ev & Sanat', 'filter-digital': 'Dijital',
+                'btn-preview-1': 'Canlı Önizleme', 'btn-preview-2': 'Canlı Önizleme', 'btn-preview-3': 'Canlı Önizleme', 'btn-preview-4': 'Canlı Önizleme', 'btn-preview-5': 'Canlı Önizleme',
+                'desc-1': 'Sokak modası ve "Print-on-Demand" markaları için tasarlanmış cesur tipografi ve kayan yazı efektleri. Yüksek enerji.',
+                'desc-2': 'Minimalist, üst düzey estetik. Yüksek fiyat noktalarını haklı çıkarmak için karanlık mod ve altın vurgular kullanır.',
+                'desc-3': 'Fotoğrafçılığa odaklanan temiz, ferah düzen. Yaşam tarzı markaları ve ev eşyaları için ideal.',
+                'desc-4': 'Müze tarzı düzen. Renklerin patlamasını sağlamak için sanat eserlerinizi bol boşlukla çerçeveler.',
+                'desc-5': 'Anında indirmeler için optimize edilmiştir. Dönüşüm oranlarını en üst düzeye çıkarmak için temiz, dikkat dağıtmayan düzen.',
+                'cta-title': 'Hangisi Size Uygun?',
+                'cta-desc': 'Çoğu satıcı BUSINESS planı ile başlar ve nişleri için en iyi düzeni seçmemize izin verir.',
+                'cta-btn': 'Fiyatları Gör'
+            }
+        };
+
+        function setLanguage(lang) {
+            const btnLabel = document.getElementById('current-lang');
+            btnLabel.innerText = lang.toUpperCase();
+            if (lang === 'tr') {
+                const tr = translations.tr;
+                for (const key in tr) { const el = document.getElementById(key); if (el) el.innerHTML = tr[key]; }
+            } else {
+                if (localStorage.getItem('userLang') === 'tr') location.reload();
+            }
+            localStorage.setItem('userLang', lang);
+        }
+
+        function toggleLanguage() {
+            const current = localStorage.getItem('userLang') || 'en';
+            setLanguage(current === 'en' ? 'tr' : 'en');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('userLang');
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (savedLang === 'tr' || (!savedLang && browserLang.startsWith('tr'))) {
+                setLanguage('tr');
+            }
+        });
+    </script>
+</body>
+</html>
