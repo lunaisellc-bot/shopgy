@@ -19,11 +19,12 @@
                     colors: {
                         neon: '#00ff9d',
                         purple: '#bd00ff',
-                        dark: '#030014'
+                        dark: '#030014',
+                        surface: 'rgba(255,255,255,0.03)'
                     },
                     animation: {
                         'blob': 'blob 7s infinite',
-                        'scroll': 'scroll 30s linear infinite',
+                        'scroll': 'scroll 40s linear infinite',
                     },
                     keyframes: {
                         blob: {
@@ -43,17 +44,25 @@
     </script>
     <style>
         body { background-color: #030014; color: white; overflow-x: hidden; }
+        /* Slider Genişliği: 5 slide * 2 set * 250px = 2500px */
         .slider-track { display: flex; width: calc(250px * 10); animation: scroll 40s linear infinite; }
         .slide { width: 250px; padding: 15px; }
         .slide:hover { transform: scale(1.05); transition: 0.3s; z-index: 10; }
+        
         .price-tag {
             background: linear-gradient(90deg, #00ff9d 0%, #00b8ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        
+        /* Accordion (SSS) */
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
+        @keyframes sweep { 0%    {opacity: 0; transform: translateY(-10px)} 100%  {opacity: 1; transform: translateY(0)} }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased font-sans">
 
     <div class="fixed inset-0 z-0 pointer-events-none">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
@@ -69,6 +78,7 @@
                 <a href="#hizmet" class="hover:text-white transition" id="nav-service">Service</a>
                 <a href="#demos" class="hover:text-white transition" id="nav-demos">Showcases</a>
                 <a href="#paketler" class="hover:text-white transition" id="nav-pricing">Pricing</a>
+                <a href="#faq" class="hover:text-white transition" id="nav-faq">FAQ</a>
             </div>
             <div class="flex items-center gap-4">
                 <button onclick="toggleLanguage()" class="text-xs font-bold border border-white/20 px-3 py-1 rounded hover:bg-white/10 transition">
@@ -113,6 +123,7 @@
         </div>
         <div class="flex w-full overflow-hidden">
             <div class="slider-track">
+                
                 <div class="slide">
                     <a href="demo-ultra.html" target="_blank" class="block group relative">
                         <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition">
@@ -123,83 +134,109 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="slide">
+                    <a href="demo-fashion.html" target="_blank" class="block group relative">
+                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-red-500 transition">
+                            <img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
+                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                                <span class="text-xs font-bold text-red-400">STREETWEAR</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
                 <div class="slide">
                     <a href="demo-business.html" target="_blank" class="block group relative">
                         <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition">
                             <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
                             <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
-                                <span class="text-xs font-bold text-neon">PROFESSIONAL</span>
+                                <span class="text-xs font-bold text-neon">HOME DECOR</span>
                             </div>
                         </div>
                     </a>
                 </div>
+
+                <div class="slide">
+                    <a href="demo-art.html" target="_blank" class="block group relative">
+                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-yellow-400 transition">
+                            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
+                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                                <span class="text-xs font-bold text-yellow-200">WALL ART</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
                 <div class="slide">
                     <a href="demo-starter.html" target="_blank" class="block group relative">
                         <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-blue-400 transition">
                             <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
                             <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
-                                <span class="text-xs font-bold text-blue-300">STARTER</span>
+                                <span class="text-xs font-bold text-blue-300">DIGITAL PLANNER</span>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="slide">
-                    <a href="demo-ultra.html" target="_blank" class="block group relative">
-                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition">
-                            <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
-                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
-                                <span class="text-xs font-bold text-purple-300">PRESTIGE</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                 <div class="slide">
-                    <a href="demo-business.html" target="_blank" class="block group relative">
-                        <div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition">
-                            <img src="https://images.unsplash.com/photo-1540932296235-d84c01570d58?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition">
-                            <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
-                                <span class="text-xs font-bold text-neon">CORPORATE</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                
+                <div class="slide"><a href="demo-ultra.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-fashion.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-red-500 transition"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-business.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-art.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-yellow-400 transition"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-starter.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-blue-400 transition"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+
             </div>
         </div>
     </div>
 
     <section id="hizmet" class="max-w-5xl mx-auto py-20 px-4 relative z-10">
         <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" id="service-title">The Rules Are Simple.</h2>
-        
         <div class="grid md:grid-cols-3 gap-8 text-center">
-            <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-                <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-blue-400">
-                    <i class="fa-solid fa-globe"></i>
-                </div>
+            <div class="bg-surface p-8 rounded-2xl border border-white/10 hover:border-white/20 transition">
+                <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-blue-400"><i class="fa-solid fa-globe"></i></div>
                 <h3 class="font-bold text-xl mb-3" id="feat-1-title">1. You Own The Domain</h3>
-                <p class="text-gray-400 text-sm" id="feat-1-desc">
-                    You buy your domain (e.g., yourbrand.com) from Godaddy or Google. You keep 100% control and ownership.
-                </p>
+                <p class="text-gray-400 text-sm" id="feat-1-desc">You buy your domain (e.g., yourbrand.com). You keep 100% control.</p>
             </div>
-
-            <div class="bg-white/5 p-8 rounded-2xl border border-neon/30 relative">
+            <div class="bg-surface p-8 rounded-2xl border border-neon/30 relative hover:border-neon transition">
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-neon text-black text-xs font-bold px-3 py-1 rounded-full" id="feat-badge">OUR JOB</div>
-                <div class="w-16 h-16 bg-neon/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-neon">
-                    <i class="fa-solid fa-layer-group"></i>
-                </div>
+                <div class="w-16 h-16 bg-neon/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-neon"><i class="fa-solid fa-layer-group"></i></div>
                 <h3 class="font-bold text-xl mb-3" id="feat-2-title">2. We Build The Site</h3>
-                <p class="text-gray-400 text-sm" id="feat-2-desc">
-                    We install the design, connect it to your domain, and sync your Etsy products automatically.
-                </p>
+                <p class="text-gray-400 text-sm" id="feat-2-desc">We install the design, connect it to your domain, and sync your Etsy products.</p>
             </div>
-
-            <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-                <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-purple-400">
-                    <i class="fa-solid fa-check-double"></i>
-                </div>
+            <div class="bg-surface p-8 rounded-2xl border border-white/10 hover:border-white/20 transition">
+                <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-purple-400"><i class="fa-solid fa-check-double"></i></div>
                 <h3 class="font-bold text-xl mb-3" id="feat-3-title">3. Sales Stay on Etsy</h3>
-                <p class="text-gray-400 text-sm" id="feat-3-desc">
-                    The "Buy Now" button redirects customers to Etsy. You don't need Stripe or a new company setup.
-                </p>
+                <p class="text-gray-400 text-sm" id="feat-3-desc">The "Buy Now" button redirects to Etsy. You don't need Stripe or a new company.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto py-20 px-4 relative z-10">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" id="test-title">Trusted by Sellers</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-surface border border-white/5 p-6 rounded-2xl">
+                <div class="flex text-yellow-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-gray-300 text-sm mb-4 italic" id="test-1-text">"I always wanted a website but didn't want to pay monthly Shopify fees. VitrinX was the perfect solution. My brand looks 10x more professional."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center font-bold">S</div>
+                    <div class="text-xs"><p class="font-bold">Sarah M.</p><p class="text-gray-500">Jewelry Seller (USA)</p></div>
+                </div>
+            </div>
+            <div class="bg-surface border border-white/5 p-6 rounded-2xl">
+                <div class="flex text-yellow-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-gray-300 text-sm mb-4 italic" id="test-2-text">"Setup was super fast. Now I can run ads to my own domain without losing the security of Etsy payments. Highly recommended!"</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center font-bold">A</div>
+                    <div class="text-xs"><p class="font-bold">Ahmet K.</p><p class="text-gray-500">Home Decor (Turkey)</p></div>
+                </div>
+            </div>
+             <div class="bg-surface border border-white/5 p-6 rounded-2xl">
+                <div class="flex text-yellow-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-gray-300 text-sm mb-4 italic" id="test-3-text">"The designs are beautiful. I chose the Streetwear template and it fits my POD brand perfectly. Best investment for my shop."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center font-bold">L</div>
+                    <div class="text-xs"><p class="font-bold">Liam D.</p><p class="text-gray-500">Apparel (UK)</p></div>
+                </div>
             </div>
         </div>
     </section>
@@ -211,12 +248,9 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            
             <div class="bg-dark/50 border border-white/10 p-8 rounded-3xl hover:border-white/30 transition duration-300 flex flex-col">
                 <div class="text-gray-400 font-bold tracking-widest text-xs mb-2">STARTER</div>
-                <div class="flex items-baseline gap-1 mb-2">
-                    <span class="text-4xl font-heading font-bold text-white">$149</span>
-                </div>
+                <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$149</span></div>
                 <div class="text-xs text-gray-500 mb-6 line-through decoration-red-500">$299 Normal</div>
                 <div class="h-px w-full bg-white/10 mb-6"></div>
                 <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
@@ -229,74 +263,4 @@
             </div>
 
             <div class="bg-gradient-to-b from-white/10 to-black/50 border border-neon/50 p-8 rounded-3xl relative transform md:-translate-y-6 shadow-[0_0_40px_rgba(0,255,157,0.1)] flex flex-col">
-                <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl badge-bestseller">BEST SELLER</div>
-                <div class="text-neon font-bold tracking-widest text-xs mb-2">BUSINESS</div>
-                <div class="flex items-baseline gap-1 mb-2">
-                    <span class="text-5xl font-heading font-bold text-white price-tag">$299</span>
-                </div>
-                <div class="text-xs text-gray-400 mb-6 line-through decoration-red-500">$499 Normal</div>
-                <div class="h-px w-full bg-white/10 mb-6"></div>
-                <ul class="space-y-4 mb-8 text-sm text-white flex-1">
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-semi"><strong>Semi-Auto</strong> Sync</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-blog">Blog & About Pages</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-color">Custom Brand Colors</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-insta">Instagram Feed</span></li>
-                </ul>
-                <a href="demo-business.html" target="_blank" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold shadow-lg shadow-neon/20 btn-demo">View Demo</a>
-            </div>
-
-            <div class="bg-dark/50 border border-purple/30 p-8 rounded-3xl hover:border-purple transition duration-300 flex flex-col">
-                <div class="text-purple-400 font-bold tracking-widest text-xs mb-2">ULTRA ELITE</div>
-                <div class="flex items-baseline gap-1 mb-2">
-                    <span class="text-4xl font-heading font-bold text-white">$599</span>
-                </div>
-                <div class="text-xs text-gray-500 mb-6 line-through decoration-red-500">$899 Normal</div>
-                <div class="h-px w-full bg-white/10 mb-6"></div>
-                <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
-                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><strong>Fully Auto</strong> (Nightly Sync)</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-dark">Dark Mode / Neon UI</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-multi">Multi-Language Support</span></li>
-                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-video">Video Backgrounds</span></li>
-                </ul>
-                <a href="demo-ultra.html" target="_blank" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold btn-demo">View Demo</a>
-            </div>
-
-        </div>
-    </section>
-
-    <footer class="border-t border-white/10 bg-black py-12 text-center relative z-10">
-        <h2 class="text-2xl font-heading font-bold mb-4">VitrinX</h2>
-        <p class="text-gray-500 text-sm max-w-md mx-auto mb-6" id="footer-text">
-            We are not a hosting company. We are a design and software studio transforming your Etsy shop into a global brand.
-        </p>
-        <a href="mailto:info@vitrinx.com" class="text-neon hover:underline text-lg">info@vitrinx.com</a>
-        <p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology.</p>
-    </footer>
-
-    <script>
-        const translations = {
-            tr: {
-                'nav-service': 'Hizmet',
-                'nav-demos': 'Örnekler',
-                'nav-pricing': 'Fiyatlar',
-                'nav-cta': 'Başvuru Yap',
-                'hero-badge': 'Global Etsy Satıcıları İçin',
-                'hero-title-1': 'Sizin Domaininiz.',
-                'hero-title-2': 'Kusursuz Vitrin.',
-                'hero-desc': 'Etsy mağazanızı, <strong>size ait olan alan adına (domain)</strong> profesyonelce bağlıyoruz. Aylık ücret yok. Komisyon yok. Sadece tek seferlik kurulum.',
-                'btn-pricing': 'Fiyatları Gör',
-                'btn-demos': 'Canlı Demolar',
-                'slider-title': 'MÜŞTERİLERİNİZ BU TASARIMLARI GÖRECEK',
-                'service-title': 'Kurallar Çok Basit.',
-                'feat-1-title': '1. Domain Sizden',
-                'feat-1-desc': '`markaniz.com` gibi alan adınızı Godaddy veya Google\'dan siz satın alırsınız. Tapusu ve kontrolü %100 sizde olur.',
-                'feat-badge': 'BİZİM İŞİMİZ',
-                'feat-2-title': '2. Kurulum Bizden',
-                'feat-2-desc': 'Seçtiğiniz paketteki siteyi hazırlar, alan adınıza bağlar ve Etsy ürünlerinizi içeri aktarırız.',
-                'feat-3-title': '3. Satışlar Etsy\'de',
-                'feat-3-desc': 'Sitedeki "Satın Al" butonu müşteriyi Etsy\'ye yönlendirir. Stripe, vergi veya şirket açma derdiniz olmaz.',
-                'pricing-title': 'Tek Seferlik Kurulum',
-                'pricing-sub': 'Aylık ödeme yok. Ömür boyu kullanım.',
-                'badge-bestseller': 'ÇOK SATAN',
-                // Pricing Items Classes
-                't-clean': 'Sade & Hızlı 
+                <div class="absol
