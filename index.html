@@ -3,130 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URBAN | Streetwear Concept</title>
+    <title>VitrinX | Global Etsy Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { 
-                        'head': ['Oswald', 'sans-serif'],
-                        'body': ['Roboto', 'sans-serif']
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'] 
                     },
                     colors: {
-                        'accent': '#FF3C00', /* Cesur Turuncu */
-                        'offwhite': '#F5F5F5'
+                        neon: '#00ff9d',
+                        purple: '#bd00ff',
+                        dark: '#030014',
+                        surface: 'rgba(255,255,255,0.03)'
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'scroll': 'scroll 40s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Kayar Yazı Efekti */
-        .marquee-container { overflow: hidden; white-space: nowrap; background: black; color: white; padding: 10px 0; }
-        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 2px; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        body { background-color: #030014; color: white; overflow-x: hidden; }
+        .slider-track { display: flex; width: calc(250px * 10); animation: scroll 40s linear infinite; }
+        .slide { width: 250px; padding: 15px; }
+        .slide:hover { transform: scale(1.05); transition: 0.3s; z-index: 10; }
         
-        .img-zoom { overflow: hidden; }
-        .img-zoom img { transition: transform 0.5s ease; }
-        .img-zoom:hover img { transform: scale(1.1); }
+        .price-tag {
+            background: linear-gradient(90deg, #00ff9d 0%, #00b8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
     </style>
 </head>
-<body class="bg-offwhite font-body text-black">
+<body class="antialiased font-sans">
 
-    <div class="marquee-container">
-        <div class="marquee-content">
-            NEW DROP AVAILABLE NOW • FREE SHIPPING WORLDWIDE • LIMITED EDITION • STREETWEAR COLLECTION • NEW DROP AVAILABLE NOW • FREE SHIPPING WORLDWIDE • LIMITED EDITION • STREETWEAR COLLECTION
-        </div>
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
     </div>
 
-    <nav class="flex justify-between items-center p-6 border-b border-black sticky top-0 bg-offwhite/90 backdrop-blur z-50">
-        <div class="text-3xl font-head font-bold tracking-tighter">URBAN.</div>
-        <div class="hidden md:flex gap-8 font-bold text-sm tracking-widest uppercase">
-<a href="#" class="hover:text-accent transition">Hoodies</a>
-            <a href="#" class="hover:text-accent transition">T-Shirts</a>
-            <a href="#" class="hover:text-accent transition">Accessories</a>
-        </div>
-        <div class="flex gap-4">
-            <button class="font-head font-bold border-2 border-black px-6 py-2 hover:bg-black hover:text-white transition">ETSY SHOP</button>
+    <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 font-heading text-2xl font-bold tracking-tighter">
+                <span class="text-neon text-3xl">X</span> VitrinX
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#hizmet" class="hover:text-white transition" id="nav-service">Service</a>
+                <a href="#demos" class="hover:text-white transition" id="nav-demos">Showcases</a>
+                <a href="#paketler" class="hover:text-white transition" id="nav-pricing">Pricing</a>
+                <a href="#faq" class="hover:text-white transition" id="nav-faq">FAQ</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLanguage()" class="text-xs font-bold border border-white/20 px-3 py-1 rounded hover:bg-white/10 transition">
+                    <i class="fa-solid fa-globe"></i> <span id="current-lang">EN</span>
+                </button>
+                <a href="#paketler" class="bg-white/10 border border-white/20 px-6 py-2 rounded-full text-sm font-bold hover:bg-neon hover:text-black hover:border-neon transition duration-300" id="nav-cta">
+                    Start Global
+                </a>
+            </div>
         </div>
     </nav>
 
-    <header class="relative h-[80vh] flex items-center justify-center bg-gray-900 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Fashion">
-        <div class="relative z-10 text-center text-white">
-            <h1 class="text-6xl md:text-9xl font-head font-bold uppercase leading-none mb-4">Define<br>Yourself</h1>
-            <p class="text-xl mb-8 tracking-widest uppercase">Premium Streetwear Collection</p>
-            <a href="#" class="bg-accent text-white px-10 py-4 font-head text-xl font-bold uppercase tracking-wider hover:bg-white hover:text-black transition inline-block">
-                Shop The Drop
+    <header class="relative z-10 pt-40 pb-20 px-4 text-center max-w-5xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/30 bg-neon/5 text-neon text-xs font-bold mb-8 uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
+            <span id="hero-badge">For Global Etsy Sellers</span>
+        </div>
+        
+        <h1 class="font-heading text-5xl md:text-8xl font-bold leading-tight mb-6">
+            <span id="hero-title-1">Your Domain.</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple" id="hero-title-2">Flawless Showcase.</span>
+        </h1>
+        
+        <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-10 font-light leading-relaxed" id="hero-desc">
+            We professionally connect your Etsy shop to <strong>your own domain name</strong>. 
+            No monthly fees. No commissions. Just a one-time setup.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-5 justify-center">
+            <a href="#paketler" class="px-8 py-4 bg-gradient-to-r from-neon to-emerald-500 text-black font-bold rounded-xl shadow-[0_0_20px_rgba(0,255,157,0.4)] hover:scale-105 transition transform">
+                <i class="fa-solid fa-rocket mr-2"></i> <span id="btn-pricing">See Pricing</span>
+            </a>
+            <a href="#demos" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition backdrop-blur-md">
+                <i class="fa-solid fa-desktop mr-2"></i> <span id="btn-demos">Live Demos</span>
             </a>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 py-20">
-        <div class="flex justify-between items-end mb-10">
-            <h2 class="text-4xl font-head font-bold uppercase">Trending Now</h2>
-            <a href="#" class="font-bold underline hover:text-accent">View All Products</a>
+    <div class="relative w-full overflow-hidden bg-white/5 border-y border-white/5 py-10 z-10" id="demos">
+        <div class="max-w-7xl mx-auto mb-6 px-6 text-center">
+            <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest" id="slider-title">CUSTOMERS WILL SEE THESE DESIGNS</h3>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="group cursor-pointer">
-                <div class="img-zoom aspect-[3/4] mb-4 bg-gray-200 relative">
-                    <span class="absolute top-4 left-4 bg-accent text-white text-xs font-bold px-2 py-1 z-10">BEST SELLER</span>
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80" class="w-full h-full object-cover" alt="Tshirt">
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="font-head text-xl font-bold uppercase">Graphic Tee No.1</h3>
-                        <p class="text-gray-500 text-sm">Oversized Fit</p>
-</div>
-                    <span class="font-bold text-lg">$35.00</span>
-                </div>
-                <button class="w-full mt-4 border border-black py-2 font-head font-bold hover:bg-black hover:text-white transition uppercase">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer">
-                <div class="img-zoom aspect-[3/4] mb-4 bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&q=80" class="w-full h-full object-cover" alt="Hoodie">
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="font-head text-xl font-bold uppercase">Essential Hoodie</h3>
-                        <p class="text-gray-500 text-sm">Heavyweight Cotton</p>
-                    </div>
-                    <span class="font-bold text-lg">$65.00</span>
-                </div>
-                <button class="w-full mt-4 border border-black py-2 font-head font-bold hover:bg-black hover:text-white transition uppercase">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer">
-                <div class="img-zoom aspect-[3/4] mb-4 bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80" class="w-full h-full object-cover" alt="Black Shirt">
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="font-head text-xl font-bold uppercase">Noir Series</h3>
-                        <p class="text-gray-500 text-sm">Limited Edition</p>
-                    </div>
-                    <span class="font-bold text-lg">$42.00</span>
-                </div>
-                <button class="w-full mt-4 border border-black py-2 font-head font-bold hover:bg-black hover:text-white transition uppercase">Buy on Etsy</button>
+        <div class="flex w-full overflow-hidden">
+            <div class="slider-track">
+                <div class="slide"><a href="demo-ultra.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-purple-300">ULTRA LUXURY</span></div></div></a></div>
+                <div class="slide"><a href="demo-fashion.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-red-500 transition"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-red-400">STREETWEAR</span></div></div></a></div>
+                <div class="slide"><a href="demo-business.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-neon">HOME DECOR</span></div></div></a></div>
+                <div class="slide"><a href="demo-art.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-yellow-400 transition"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-yellow-200">WALL ART</span></div></div></a></div>
+                <div class="slide"><a href="demo-starter.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-blue-400 transition"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-blue-300">DIGITAL PLANNER</span></div></div></a></div>
+                <div class="slide"><a href="demo-ultra.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-fashion.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-red-500 transition"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-business.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-art.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-yellow-400 transition"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                <div class="slide"><a href="demo-starter.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-blue-400 transition"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
             </div>
         </div>
-    </section>
-
-    <section class="bg-black text-white py-20 text-center px-6">
-        <h2 class="text-4xl md:text-6xl font-head font-bold uppercase mb-6">Join The Movement</h2>
-        <p class="text-gray-400 mb-8 max-w-xl mx-auto">Subscribe for exclusive drops, early access, and special discounts directly to your inbox.</p>
-        <div class="flex justify-center gap-2 max-w-md mx-auto">
-            <input type="email" placeholder="ENTER YOUR EMAIL" class="bg-transparent border border-white p-4 w-full text-white placeholder-gray-500 focus:outline-none focus:border-accent">
-            <button class="bg-accent px-8 py-4 font-bold font-head uppercase hover:bg-white hover:text-black transition">Sign Up</button>
-        </div>
-    </section>
-<div class="fixed bottom-4 right-4 bg-accent text-white px-3 py-1 text-xs font-bold uppercase shadow-lg z-50">
-        FASHION DEMO
     </div>
 
-</body>
-</html>
+    <section id="hizmet" class="max-w-5xl mx-auto py-20 px-4 relative z-10">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" id="service-title">The Rules Are Simple.</h2>
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+            <div class="bg-surface p-8 rounded-2xl border border-white/10 hover:border-white/20 transition">
+                <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-blue-400"><i class="fa-solid fa-globe"></i></div>
+                <h3 class="font-bold text-xl mb-3" id="feat-1-title">1. You Own The Domain</h3>
+                <p class="text-gray-400 text-sm" id="feat-1-desc">You buy your domain (e.g., yourbrand.com). You keep 100% control.</p>
+            </div>
+            <div class="bg-surface p-8 rounded-2xl border border-neon/30 relative hover:border-neon transition">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-neon text-black text-xs font-bold px-3 py-1 rounded-full" id="feat-badge">OUR JOB</div>
+                <div class="w-16 h-16 bg-neon/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-neon"><i class="fa-solid fa-layer-group"></i></div>
+                <h3 class="font-bold text-xl mb-3" id="feat-2-title">2. We Build The Site</h3>
+                <p class="text-gray-400 text-sm" id="feat-2-desc">We install the design, connect it to your domain, and sync your Etsy products.</p>
+            </div>
+            <div class="bg-surface p-8 rounded-2xl border border-white/10 hover:border-white/20 transition">
+                <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-purple-400"><i class="fa-solid fa-check-double"></i></div>
+                <h3 class="font-bold text-xl mb-3" id="feat-3-title">3. Sales Stay on Etsy</h3>
+                <p class="text-gray-400 text-sm" id="feat-3-desc">The "Buy Now" button redirects to Etsy. You don't need Stripe or a new company.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto py-20 px-4 relative z-10">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" id="test-title">Trusted by Sellers</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-surface border border-white/5 p-6 rounded-2xl">
+                <div class="flex text-yellow-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-gray-300 text-sm mb-4 italic" id="test-1-text">"I always wanted a website but didn't want to pay monthly Shopify fees. VitrinX was the perfect solution. My brand looks 10x more professional."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center font-bold">S</div>
+                    <div class="text-xs"><p class="font-bold">Sarah M.</p><p class="text-gray-500">Jewelry Seller (USA)</p></div>
+                </div>
+            </div>
+            <div class="bg-surface border border-white/5 p-6 rounded-2xl">
+                <div class="flex text-yellow-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-gray-300 text-sm mb-4 italic" id="test-2-text">"Setup was super fast. Now I can run ads to my own domain without losing the security of Etsy payments. Highly recommended!"</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center font-bold">A</div>
+                    <div class="text-xs"><p class="font-bold">Ahmet K.</p><p class="text-gray-500">Home Decor (Turkey)</p></div>
+                </div>
+            </div>
+             <div class="bg-surface border border-white/5 p-6 rounded-2xl">
+                <div class="flex text-yellow-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-gray-300 text-sm mb-4 italic" id="test-3-text">"The designs are beautiful. I chose the Streetwear template and it fits my POD brand perfectly. Best investment for my shop."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center font-bold">L</div>
+                    <div class="text-xs"><p class="font-bold">Liam D.</p><p class="text-gray-500">Apparel (UK)</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="paketler" class="max-w-7xl mx-auto px-4 py-20 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" id="pricing-title">One-Time Setup</h2>
+            <p class="text-gray-400" id="pricing-sub">No monthly fees. Lifetime usage.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-dark/50 border border-white/10 p-8 rounded-3xl hover:border-white/30 transition duration-300 flex flex-col">
+                <div class="text-gray-400 font-bold tracking-widest text-xs mb-2">STARTER</div>
+                <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$149</span></div>
+                <div class="text-xs text-gray-500 mb-6 line-through decoration-red-500">$299 Normal</div>
+                <div class="h-px w-full bg-white/10 mb-6"></div>
+                <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-clean">Clean & Fast Design</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-manual">Manual Product Entry</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-host">Hosting Included</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-domain">Domain Connection</span></li>
+                </ul>
+                <a href="demo-starter.html" target="_blank" class="block w-full text-center py-4 rounded-xl border border-white/20 hover:bg-white hover:text-black transition font-bold btn-demo">View Demo</a>
+            </div>
+            <div class="bg-gradient-to-b from-white/10 to-black/50 border border-neon/50 p-8 rounded-3xl relative transform md:-translate-y-6 shadow-[0_0_40px_rgba(0,255,157,0.1)] flex flex-col">
+                <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl badge-bestseller">BEST SELLER</div>
+                <div class="text-neon font-bold tracking-widest text-xs mb-2">BUSINESS</div>
+                <div class="flex items-baseline gap-1 mb-2"><span class="text-5xl font-heading font-bold text-white price-tag">$299</span></div>
+                <div class="text-xs text-gray-400 mb-6 line-through decoration-red-500">$499 Normal</div>
+                <div class="h-px w-full bg-white/10 mb-6"></div>
+                <ul class="space-y-4 mb-8 text-sm text-white flex-1">
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-semi"><strong>Semi-Auto</strong> Sync</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-blog">Blog & About Pages</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-color">Custom Brand Colors</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-insta">Instagram Feed</span></li>
+                </ul>
+                <a href="demo-business.html" target="_blank" class="block w-full text-
