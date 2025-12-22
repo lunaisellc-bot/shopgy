@@ -11,12 +11,8 @@
         tailwind.config = { theme: { extend: { fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505' } } } }
     </script>
     <style>
-        /* CSS Tabanlı Grafik Animasyonu */
         .bar-fill { width: 0; transition: width 1.5s ease-out; }
         .chart-container:hover .bar-1 { width: 40%; }
-        .chart-container:hover .bar-2 { width: 65%; }
-        .chart-container:hover .bar-3 { width: 95%; }
-        /* Sayfa yüklenince otomatik dolsun */
         @keyframes fillBars { from { width: 0; } to { width: var(--target-width); } }
         .animate-bar { animation: fillBars 2s forwards; }
     </style>
@@ -46,51 +42,30 @@
                     
                     <div class="bg-white/5 p-6 rounded-xl border border-white/10 chart-container my-8">
                         <h4 class="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">Etsy Aktif Satıcı Sayısı (Tahmini)</h4>
-                        
-                        <div class="mb-4">
-                            <div class="flex justify-between text-xs mb-1"><span>2020</span> <span>4.3 Milyon</span></div>
-                            <div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gray-500 animate-bar" style="--target-width: 43%;"></div></div>
-                        </div>
-                        <div class="mb-4">
-                            <div class="flex justify-between text-xs mb-1"><span>2023</span> <span>7.5 Milyon</span></div>
-                            <div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-blue-400 animate-bar" style="--target-width: 75%;"></div></div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="flex justify-between text-xs mb-1"><span class="text-neon font-bold">2026 (Tahmin)</span> <span class="text-neon font-bold">11.2 Milyon</span></div>
-                            <div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-neon animate-bar" style="--target-width: 95%;"></div></div>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-2 text-right">*Kaynak: Statista & MarketPulse Projeksiyonları</p>
+                        <div class="mb-4"><div class="flex justify-between text-xs mb-1"><span>2020</span> <span>4.3 Milyon</span></div><div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gray-500 animate-bar" style="--target-width: 43%;"></div></div></div>
+                        <div class="mb-4"><div class="flex justify-between text-xs mb-1"><span>2023</span> <span>7.5 Milyon</span></div><div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-blue-400 animate-bar" style="--target-width: 75%;"></div></div></div>
+                        <div class="mb-2"><div class="flex justify-between text-xs mb-1"><span class="text-neon font-bold">2026 (Tahmin)</span> <span class="text-neon font-bold">11.2 Milyon</span></div><div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-neon animate-bar" style="--target-width: 95%;"></div></div></div>
                     </div>
                 </div>
 
                 <div class="mb-12">
-                    <h3 class="text-2xl font-bold text-red-400 mb-4 font-heading border-l-4 border-red-400 pl-4">ANTİTEZ: Görünürlük Ölümü (Kırmızı Okyanus)</h3>
+                    <h3 class="text-2xl font-bold text-red-400 mb-4 font-heading border-l-4 border-red-400 pl-4">ANTİTEZ: Görünürlük Ölümü</h3>
                     <p class="mb-4">Tezdeki büyüme harika görünse de, satıcılar için karanlık bir gerçeği barındırıyor. Alıcı sayısı aynı oranda artmıyor. Bu durum "Görünürlük Enflasyonu" yaratıyor.</p>
                     <ul class="list-disc pl-6 space-y-2 marker:text-red-400">
                         <li><strong>Reklam Maliyetleri:</strong> Etsy Ads Tıklama Başına Maliyet (CPC) son 3 yılda %40 arttı.</li>
                         <li><strong>Algoritma Baskısı:</strong> 11 Milyon satıcı arasında "ilk sayfada" çıkma ihtimaliniz matematiksel olarak %0.001'in altına düşüyor.</li>
-                        <li><strong>Fiyat Savaşı:</strong> Rekabet arttıkça, satıcılar fiyat kırıyor ve kar marjları eriyor.</li>
                     </ul>
                 </div>
 
                 <div class="mb-12">
-                    <h3 class="text-2xl font-bold text-blue-400 mb-4 font-heading border-l-4 border-blue-400 pl-4">SENTEZ (ÇÖZÜM): Mavi Okyanusa Kaçış</h3>
-                    <p class="mb-6">Hegel diyalektiğine göre çözüm, bu kaosun dışına çıkmaktır. Kırmızı okyanusta (Etsy içi rekabet) köpekbalıklarıyla savaşmak yerine, kendi Mavi Okyanusunuzu (VitrinX Destekli Web Sitesi) yaratmalısınız.</p>
-                    
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4 font-heading border-l-4 border-blue-400 pl-4">SENTEZ: Mavi Okyanusa Kaçış</h3>
+                    <p class="mb-6">Hegel diyalektiğine göre çözüm, bu kaosun dışına çıkmaktır. Kırmızı okyanusta (Etsy içi rekabet) savaşmak yerine, kendi Mavi Okyanusunuzu (VitrinX Destekli Web Sitesi) yaratmalısınız.</p>
                     <div class="grid md:grid-cols-2 gap-6 my-8">
-                        <div class="bg-red-900/10 border border-red-500/20 p-6 rounded-lg">
-                            <h4 class="text-red-400 font-bold mb-2">Etsy Sadece</h4>
-                            <p class="text-sm text-gray-400">Algoritmaya dua edersiniz. Müşteri sizin değil, Etsy'nindir. Fiyat rekabeti kaçınılmazdır.</p>
-                        </div>
-                        <div class="bg-neon/10 border border-neon/20 p-6 rounded-lg">
-                            <h4 class="text-neon font-bold mb-2">VitrinX + Domain</h4>
-                            <p class="text-sm text-gray-300">Algoritma yok. Müşteri datası (Email/Pixel) sizindir. Rakipsiz bir marka vitrini sunarsınız.</p>
-                        </div>
+                        <div class="bg-red-900/10 border border-red-500/20 p-6 rounded-lg"><h4 class="text-red-400 font-bold mb-2">Etsy Sadece</h4><p class="text-sm text-gray-400">Algoritmaya dua edersiniz. Fiyat rekabeti kaçınılmazdır.</p></div>
+                        <div class="bg-neon/10 border border-neon/20 p-6 rounded-lg"><h4 class="text-neon font-bold mb-2">VitrinX + Domain</h4><p class="text-sm text-gray-300">Algoritma yok. Müşteri datası sizindir. Rakipsiz bir marka vitrini.</p></div>
                     </div>
-
-                    <p>2026'da ayakta kalacak olanlar, Etsy'yi sadece bir "pazar yeri" olarak kullanıp, asıl marka merkezini kendi domainlerinde (.com) kuranlar olacaktır.</p>
+                    <p>2026'da ayakta kalacak olanlar, Etsy'yi sadece bir "pazar yeri" olarak kullanıp, asıl marka merkezini kendi domainlerinde kuranlar olacaktır.</p>
                 </div>
-
             </div>
             <div class="mt-16 pt-10 border-t border-white/10 text-center">
                 <h3 class="text-3xl font-heading font-bold text-white mb-4">Veriler Yalan Söylemez</h3>
