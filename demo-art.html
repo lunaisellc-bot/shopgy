@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE GALLERY | Wall Art Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Lato', 'sans-serif']
+                    },
+                    colors: {
+                        'paper': '#fdfbf7',
+                        'charcoal': '#333'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .frame-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.2);
+            border: 8px solid white;
+        }
+    </style>
+</head>
+<body class="bg-paper text-charcoal font-sans">
+
+    <header class="py-12 text-center border-b border-gray-200">
+        <h1 class="font-serif text-4xl italic mb-2">The Gallery.</h1>
+        <p class="text-xs uppercase tracking-[0.3em] text-gray-500">Curated Wall Art & Prints</p>
+    </header>
+
+    <nav class="flex justify-center gap-8 py-6 text-sm text-gray-500 uppercase tracking-widest">
+        <a href="#" class="hover:text-black transition">Abstract</a>
+        <a href="#" class="hover:text-black transition">Landscape</a>
+        <a href="#" class="hover:text-black transition">Minimal</a>
+        <a href="#" class="text-black font-bold border-b border-black">Shop All</a>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-6 mb-20">
+        <div class="relative h-[600px] w-full bg-gray-100 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Interior">
+            <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                <div class="bg-white p-8 md:p-12 text-center max-w-lg shadow-2xl">
+                    <h2 class="font-serif text-3xl mb-4">Transform Your Space</h2>
+                    <p class="text-gray-600 mb-8 font-light">
+                        Discover our new collection of minimalist prints designed to bring calm and inspiration to your home.
+                    </p>
+                    <button class="bg-charcoal text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-black transition">
+                        Visit Etsy Shop
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            
+            <div class="text-center group">
+                <div class="relative aspect-[4/5] mb-6 frame-shadow transition transform group-hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb39279c0f?w=800&q=80" class="w-full h-full object-cover" alt="Art 1">
+                    <div class="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-charcoal uppercase tracking-widest text-xs border border-charcoal px-4 py-2">View on Etsy</span>
+                    </div>
+                </div>
+                <h3 class="font-serif text-xl">Abstract Shapes No.1</h3>
+                <p class="text-gray-500 font-light mt-1">$25.00</p>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative aspect-[4/5] mb-6 frame-shadow transition transform group-hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1578321272186-b601d3723306?w=800&q=80" class="w-full h-full object-cover" alt="Art 2">
+                    <div class="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-charcoal uppercase tracking-widest text-xs border border-charcoal px-4 py-2">View on Etsy</span>
+                    </div>
+                </div>
+                <h3 class="font-serif text-xl">Beige Waves</h3>
+                <p class="text-gray-500 font-light mt-1">$25.00</p>
+            </div>
+
+            <div class="text-center group">
+                <div class="relative aspect-[4/5] mb-6 frame-shadow transition transform group-hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1507643179173-617d65455131?w=800&q=80" class="w-full h-full object-cover" alt="Art 3">
+                    <div class="absolute inset-0 bg-white/80 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-charcoal uppercase tracking-widest text-xs border border-charcoal px-4 py-2">View on Etsy</span>
+                    </div>
+                </div>
+                <h3 class="font-serif text-xl">Mountain Line Art</h3>
+                <p class="text-gray-500 font-light mt-1">$25.00</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="text-center py-10 border-t border-gray-200 text-xs text-gray-400 uppercase tracking-widest">
+        &copy; 2025 The Gallery. Powered by Etsy.
+    </footer>
+
+    <div class="fixed bottom-4 right-4 bg-charcoal text-white px-3 py-1 text-xs font-bold uppercase shadow-lg z-50">
+        ART DEMO
+    </div>
+
+</body>
+</html>
