@@ -66,7 +66,6 @@
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
     </div>
-
     <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2 font-heading text-2xl font-bold tracking-tighter">
@@ -186,7 +185,6 @@
             </div>
         </div>
     </section>
-
     <section id="paketler" class="max-w-7xl mx-auto px-4 py-20 relative z-10">
         <div class="text-center mb-16">
             <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" id="pricing-title">One-Time Setup</h2>
@@ -218,4 +216,78 @@
                     <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-color">Custom Brand Colors</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-insta">Instagram Feed</span></li>
                 </ul>
-                <a href="demo-business.html" target="_blank" class="block w-full text-
+                <a href="demo-business.html" target="_blank" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold shadow-lg shadow-neon/20 btn-demo">View Demo</a>
+            </div>
+            <div class="bg-dark/50 border border-purple/30 p-8 rounded-3xl hover:border-purple transition duration-300 flex flex-col">
+                <div class="text-purple-400 font-bold tracking-widest text-xs mb-2">ULTRA ELITE</div>
+                <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$599</span></div>
+                <div class="text-xs text-gray-500 mb-6 line-through decoration-red-500">$899 Normal</div>
+                <div class="h-px w-full bg-white/10 mb-6"></div>
+                <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><strong>Fully Auto</strong> (Nightly Sync)</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-dark">Dark Mode / Neon UI</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-multi">Multi-Language Support</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-video">Video Backgrounds</span></li>
+                </ul>
+                <a href="demo-ultra.html" target="_blank" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold btn-demo">View Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="max-w-3xl mx-auto px-4 py-20 relative z-10">
+        <h2 class="font-heading text-3xl font-bold text-center mb-10" id="faq-title">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-1-q">Do I need to open a company?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-1-a">No. The "Buy" buttons redirect to Etsy. Payment is processed by Etsy.</div></details>
+            <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-2-q">Can I use my own domain?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-2-a">Yes. You buy your domain. We connect our system to it. You own it 100%.</div></details>
+            <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-3-q">Is there a monthly fee?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-3-a">No. One-time setup fee only.</div></details>
+             <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-4-q">How long does setup take?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-4-a">Typically 48-72 hours after we receive your details.</div></details>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 bg-black py-12 text-center relative z-10">
+        <h2 class="text-2xl font-heading font-bold mb-4">VitrinX</h2>
+        <p class="text-gray-500 text-sm max-w-md mx-auto mb-6" id="footer-text">We are not a hosting company. We are a design and software studio transforming your Etsy shop into a global brand.</p>
+        <a href="mailto:info@vitrinx.com" class="text-neon hover:underline text-lg">info@vitrinx.com</a>
+        <p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            tr: {
+                'nav-service': 'Hizmet', 'nav-demos': 'Örnekler', 'nav-pricing': 'Fiyatlar', 'nav-faq': 'SSS', 'nav-cta': 'Başvuru Yap',
+                'hero-badge': 'Global Etsy Satıcıları İçin', 'hero-title-1': 'Sizin Domaininiz.', 'hero-title-2': 'Kusursuz Vitrin.',
+                'hero-desc': 'Etsy mağazanızı, <strong>size ait olan alan adına (domain)</strong> profesyonelce bağlıyoruz. Aylık ücret yok. Komisyon yok. Sadece tek seferlik kurulum.',
+                'btn-pricing': 'Fiyatları Gör', 'btn-demos': 'Canlı Demolar', 'slider-title': 'MÜŞTERİLERİNİZ BU TASARIMLARI GÖRECEK',
+                'service-title': 'Kurallar Çok Basit.', 'feat-1-title': '1. Domain Sizden', 'feat-1-desc': '`markaniz.com` gibi alan adınızı Godaddy veya Google\'dan siz satın alırsınız.',
+                'feat-badge': 'BİZİM İŞİMİZ', 'feat-2-title': '2. Kurulum Bizden', 'feat-2-desc': 'Seçtiğiniz paketteki siteyi hazırlar, alan adınıza bağlar ve Etsy ürünlerinizi içeri aktarırız.',
+                'feat-3-title': '3. Satışlar Etsy\'de', 'feat-3-desc': 'Sitedeki "Satın Al" butonu müşteriyi Etsy\'ye yönlendirir. Stripe, vergi veya şirket açma derdiniz olmaz.',
+                'test-title': 'Satıcılar Bize Güveniyor', 'test-1-text': '"Hep bir web sitem olsun istedim ama Shopify aidatlarını ödemek istemiyordum. VitrinX mükemmel bir çözüm oldu."',
+                'test-2-text': '"Kurulum çok hızlıydı. Artık Etsy ödeme güvenliğini kaybetmeden kendi domainime reklam çıkabiliyorum."',
+                'test-3-text': '"Tasarımlar harika. Giyim markam için Streetwear temasını seçtim ve tam oturdu."',
+                'pricing-title': 'Tek Seferlik Kurulum', 'pricing-sub': 'Aylık ödeme yok. Ömür boyu kullanım.', 'badge-bestseller': 'ÇOK SATAN',
+                't-clean': 'Sade & Hızlı Tasarım', 't-manual': 'Manuel Ürün Ekleme', 't-host': 'Hosting Kurulumu Dahil', 't-domain': 'Alan Adı Bağlama',
+                't-semi': '<strong>Yarı-Otomatik</strong> Çekim', 't-blog': 'Blog & Hakkımızda Sayfası', 't-color': 'Markanıza Özel Renkler', 't-insta': 'Instagram Akışı',
+                't-auto': '<strong>Tam Otomatik</strong> (Gece Güncellenir)', 't-dark': 'Dark Mode / Neon UI', 't-multi': 'Çoklu Dil Desteği', 't-video': 'Video Arka Planlar',
+                'btn-demo': 'Demoyu İncele', 'faq-title': 'Sıkça Sorulan Sorular',
+                'faq-1-q': 'Şirket açmam gerekiyor mu?', 'faq-1-a': 'Hayır. Satış Etsy üzerinden gerçekleşir.',
+                'faq-2-q': 'Kendi domainimi kullanabilir miyim?', 'faq-2-a': 'Evet. Domaini siz satın alırsınız, biz bağlarız.',
+                'faq-3-q': 'Aylık ücret var mı?', 'faq-3-a': 'Hayır. Tek seferlik kurulum ücreti.',
+                'faq-4-q': 'Kurulum ne kadar sürer?', 'faq-4-a': 'Genellikle 48-72 saat.',
+                'footer-text': 'Biz bir hosting firması değiliz. Biz, Etsy mağazanızı global bir markaya dönüştüren tasarım ve yazılım stüdyosuyuz.'
+            }
+        };
+        function setLanguage(lang) {
+            const btnLabel = document.getElementById('current-lang'); btnLabel.innerText = lang.toUpperCase();
+            if (lang === 'tr') {
+                const tr = translations.tr;
+                for (const key in tr) { const el = document.getElementById(key); if (el) el.innerHTML = tr[key]; }
+                const classMaps = {'t-clean': tr['t-clean'], 't-manual': tr['t-manual'], 't-host': tr['t-host'], 't-domain': tr['t-domain'], 't-semi': tr['t-semi'], 't-blog': tr['t-blog'], 't-color': tr['t-color'], 't-insta': tr['t-insta'], 't-auto': tr['t-auto'], 't-dark': tr['t-dark'], 't-multi': tr['t-multi'], 't-video': tr['t-video'], 'btn-demo': tr['btn-demo'], 'badge-bestseller': tr['badge-bestseller']};
+                for (const cls in classMaps) { document.querySelectorAll('.' + cls).forEach(el => el.innerHTML = classMaps[cls]); }
+            } else { if (localStorage.getItem('userLang') === 'tr') location.reload(); }
+            localStorage.setItem('userLang', lang);
+        }
+        function toggleLanguage() { const current = localStorage.getItem('userLang') || 'en'; setLanguage(current === 'en' ? 'tr' : 'en'); }
+        document.addEventListener('DOMContentLoaded', () => { const savedLang = localStorage.getItem('userLang'); const browserLang = navigator.language || navigator.userLanguage; if (savedLang === 'tr' || (!savedLang && browserLang.startsWith('tr'))) setLanguage('tr'); });
+    </script>
+</body>
+</html>
