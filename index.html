@@ -24,7 +24,6 @@
                     },
                     animation: {
                         'blob': 'blob 7s infinite',
-                        'scroll': 'scroll 40s linear infinite',
                     },
                     keyframes: {
                         blob: {
@@ -32,10 +31,6 @@
                             '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
                             '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
                             '100%': { transform: 'translate(0px, 0px) scale(1)' },
-},
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-100%)' },
                         }
                     }
                 }
@@ -44,10 +39,28 @@
     </script>
     <style>
         body { background-color: #030014; color: white; overflow-x: hidden; }
-        .slider-track { display: flex; width: calc(250px * 10); animation: scroll 40s linear infinite; }
-        .slide { width: 250px; padding: 15px; }
+        
+        /* DÜZELTİLEN SLIDER AYARLARI */
+        .slider-track {
+            display: flex;
+            width: calc(250px * 10); /* 10 slayt genişliği */
+            animation: scroll 30s linear infinite;
+        }
+        
+        .slide {
+            width: 250px;
+            padding: 15px;
+            flex-shrink: 0; /* Sıkışmayı engeller */
+        }
+        
         .slide:hover { transform: scale(1.05); transition: 0.3s; z-index: 10; }
         
+        /* Standart CSS Animasyonu */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 5)); } /* 5 slayt kayınca başa sarar */
+        }
+
         .price-tag {
             background: linear-gradient(90deg, #00ff9d 0%, #00b8ff 100%);
             -webkit-background-clip: text;
@@ -66,7 +79,6 @@
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
     </div>
-
     <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2 font-heading text-2xl font-bold tracking-tighter">
@@ -75,7 +87,7 @@
             <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
                 <a href="#hizmet" class="hover:text-white transition" id="nav-service">Service</a>
                 <a href="#demos" class="hover:text-white transition" id="nav-demos">Showcases</a>
-<a href="#paketler" class="hover:text-white transition" id="nav-pricing">Pricing</a>
+                <a href="#paketler" class="hover:text-white transition" id="nav-pricing">Pricing</a>
                 <a href="#faq" class="hover:text-white transition" id="nav-faq">FAQ</a>
             </div>
             <div class="flex items-center gap-4">
@@ -102,7 +114,7 @@
         
         <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-10 font-light leading-relaxed" id="hero-desc">
             We professionally connect your Etsy shop to <strong>your own domain name</strong>. 
-No monthly fees. No commissions. Just a one-time setup.
+            No monthly fees. No commissions. Just a one-time setup.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-5 justify-center">
@@ -119,28 +131,27 @@ No monthly fees. No commissions. Just a one-time setup.
         <div class="max-w-7xl mx-auto mb-6 px-6 text-center">
             <h3 class="text-sm font-bold text-gray-500 uppercase tracking-widest" id="slider-title">CUSTOMERS WILL SEE THESE DESIGNS</h3>
         </div>
-<div class="flex w-full overflow-hidden">
+        <div class="flex w-full overflow-hidden">
             <div class="slider-track">
                 <div class="slide"><a href="demo-ultra.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-purple-300">ULTRA LUXURY</span></div></div></a></div>
                 <div class="slide"><a href="demo-fashion.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-red-500 transition"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-red-400">STREETWEAR</span></div></div></a></div>
-<div class="slide"><a href="demo-business.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-neon">HOME DECOR</span></div></div></a></div>
+                <div class="slide"><a href="demo-business.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-neon">HOME DECOR</span></div></div></a></div>
                 <div class="slide"><a href="demo-art.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-yellow-400 transition"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-yellow-200">WALL ART</span></div></div></a></div>
                 <div class="slide"><a href="demo-starter.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-blue-400 transition"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"><div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent"><span class="text-xs font-bold text-blue-300">DIGITAL PLANNER</span></div></div></a></div>
-<div class="slide"><a href="demo-ultra.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
+                
+                <div class="slide"><a href="demo-ultra.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-purple transition"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
                 <div class="slide"><a href="demo-fashion.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-red-500 transition"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
                 <div class="slide"><a href="demo-business.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
-<div class="slide"><a href="demo-business.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-neon transition"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
                 <div class="slide"><a href="demo-art.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-yellow-400 transition"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
                 <div class="slide"><a href="demo-starter.html" target="_blank" class="block group relative"><div class="bg-gray-800 rounded-lg aspect-[3/4] overflow-hidden border border-white/10 group-hover:border-blue-400 transition"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition"></div></a></div>
             </div>
         </div>
     </div>
-
     <section id="hizmet" class="max-w-5xl mx-auto py-20 px-4 relative z-10">
         <h2 class="font-heading text-3xl md:text-4xl font-bold text-center mb-16" id="service-title">The Rules Are Simple.</h2>
         <div class="grid md:grid-cols-3 gap-8 text-center">
             <div class="bg-surface p-8 rounded-2xl border border-white/10 hover:border-white/20 transition">
-<div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-blue-400"><i class="fa-solid fa-globe"></i></div>
+                <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-blue-400"><i class="fa-solid fa-globe"></i></div>
                 <h3 class="font-bold text-xl mb-3" id="feat-1-title">1. You Own The Domain</h3>
                 <p class="text-gray-400 text-sm" id="feat-1-desc">You buy your domain (e.g., yourbrand.com). You keep 100% control.</p>
             </div>
@@ -154,7 +165,7 @@ No monthly fees. No commissions. Just a one-time setup.
                 <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl text-purple-400"><i class="fa-solid fa-check-double"></i></div>
                 <h3 class="font-bold text-xl mb-3" id="feat-3-title">3. Sales Stay on Etsy</h3>
                 <p class="text-gray-400 text-sm" id="feat-3-desc">The "Buy Now" button redirects to Etsy. You don't need Stripe or a new company.</p>
-</div>
+            </div>
         </div>
     </section>
 
@@ -174,7 +185,7 @@ No monthly fees. No commissions. Just a one-time setup.
                 <p class="text-gray-300 text-sm mb-4 italic" id="test-2-text">"Setup was super fast. Now I can run ads to my own domain without losing the security of Etsy payments. Highly recommended!"</p>
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center font-bold">A</div>
-<div class="text-xs"><p class="font-bold">Ahmet K.</p><p class="text-gray-500">Home Decor (Turkey)</p></div>
+                    <div class="text-xs"><p class="font-bold">Ahmet K.</p><p class="text-gray-500">Home Decor (Turkey)</p></div>
                 </div>
             </div>
              <div class="bg-surface border border-white/5 p-6 rounded-2xl">
@@ -193,7 +204,7 @@ No monthly fees. No commissions. Just a one-time setup.
             <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" id="pricing-title">One-Time Setup</h2>
             <p class="text-gray-400" id="pricing-sub">No monthly fees. Lifetime usage.</p>
         </div>
-<div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-dark/50 border border-white/10 p-8 rounded-3xl hover:border-white/30 transition duration-300 flex flex-col">
                 <div class="text-gray-400 font-bold tracking-widest text-xs mb-2">STARTER</div>
                 <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$149</span></div>
@@ -209,7 +220,7 @@ No monthly fees. No commissions. Just a one-time setup.
             </div>
             <div class="bg-gradient-to-b from-white/10 to-black/50 border border-neon/50 p-8 rounded-3xl relative transform md:-translate-y-6 shadow-[0_0_40px_rgba(0,255,157,0.1)] flex flex-col">
                 <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl badge-bestseller">BEST SELLER</div>
-<div class="text-neon font-bold tracking-widest text-xs mb-2">BUSINESS</div>
+                <div class="text-neon font-bold tracking-widest text-xs mb-2">BUSINESS</div>
                 <div class="flex items-baseline gap-1 mb-2"><span class="text-5xl font-heading font-bold text-white price-tag">$299</span></div>
                 <div class="text-xs text-gray-400 mb-6 line-through decoration-red-500">$499 Normal</div>
                 <div class="h-px w-full bg-white/10 mb-6"></div>
@@ -227,8 +238,7 @@ No monthly fees. No commissions. Just a one-time setup.
                 <div class="text-xs text-gray-500 mb-6 line-through decoration-red-500">$899 Normal</div>
                 <div class="h-px w-full bg-white/10 mb-6"></div>
                 <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
-                    <li class="flex
-gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><strong>Fully Auto</strong> (Nightly Sync)</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><strong>Fully Auto</strong> (Nightly Sync)</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-dark">Dark Mode / Neon UI</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-multi">Multi-Language Support</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-video">Video Backgrounds</span></li>
@@ -242,8 +252,7 @@ gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><st
         <h2 class="font-heading text-3xl font-bold text-center mb-10" id="faq-title">Frequently Asked Questions</h2>
         <div class="space-y-4">
             <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-1-q">Do I need to open a company?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-1-a">No. The "Buy" buttons redirect to Etsy. Payment is processed by Etsy.</div></details>
-            <details class="group
-bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-2-q">Can I use my own domain?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-2-a">Yes. You buy your domain. We connect our system to it. You own it 100%.</div></details>
+            <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-2-q">Can I use my own domain?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-2-a">Yes. You buy your domain. We connect our system to it. You own it 100%.</div></details>
             <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-3-q">Is there a monthly fee?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-3-a">No. One-time setup fee only.</div></details>
              <details class="group bg-surface border border-white/5 rounded-xl"><summary class="flex justify-between items-center p-6 font-medium cursor-pointer"><span id="faq-4-q">How long does setup take?</span><span class="text-neon transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span></summary><div class="text-gray-400 text-sm p-6 pt-0 leading-relaxed" id="faq-4-a">Typically 48-72 hours after we receive your details.</div></details>
         </div>
@@ -253,7 +262,7 @@ bg-surface border border-white/5 rounded-xl"><summary class="flex justify-betwee
         <h2 class="text-2xl font-heading font-bold mb-4">VitrinX</h2>
         <p class="text-gray-500 text-sm max-w-md mx-auto mb-6" id="footer-text">We are not a hosting company. We are a design and software studio transforming your Etsy shop into a global brand.</p>
         <a href="mailto:info@vitrinx.com" class="text-neon hover:underline text-lg">info@vitrinx.com</a>
-<p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology.</p>
+        <p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology.</p>
     </footer>
 
     <script>
@@ -270,8 +279,7 @@ bg-surface border border-white/5 rounded-xl"><summary class="flex justify-betwee
                 'test-2-text': '"Kurulum çok hızlıydı. Artık Etsy ödeme güvenliğini kaybetmeden kendi domainime reklam çıkabiliyorum."',
                 'test-3-text': '"Tasarımlar harika. Giyim markam için Streetwear temasını seçtim ve tam oturdu."',
                 'pricing-title': 'Tek Seferlik Kurulum', 'pricing-sub': 'Aylık ödeme yok. Ömür boyu kullanım.', 'badge-bestseller': 'ÇOK SATAN',
-                't-clean': 'Sade &
-Hızlı Tasarım', 't-manual': 'Manuel Ürün Ekleme', 't-host': 'Hosting Kurulumu Dahil', 't-domain': 'Alan Adı Bağlama',
+                't-clean': 'Sade & Hızlı Tasarım', 't-manual': 'Manuel Ürün Ekleme', 't-host': 'Hosting Kurulumu Dahil', 't-domain': 'Alan Adı Bağlama',
                 't-semi': '<strong>Yarı-Otomatik</strong> Çekim', 't-blog': 'Blog & Hakkımızda Sayfası', 't-color': 'Markanıza Özel Renkler', 't-insta': 'Instagram Akışı',
                 't-auto': '<strong>Tam Otomatik</strong> (Gece Güncellenir)', 't-dark': 'Dark Mode / Neon UI', 't-multi': 'Çoklu Dil Desteği', 't-video': 'Video Arka Planlar',
                 'btn-demo': 'Demoyu İncele', 'faq-title': 'Sıkça Sorulan Sorular',
@@ -288,7 +296,7 @@ Hızlı Tasarım', 't-manual': 'Manuel Ürün Ekleme', 't-host': 'Hosting Kurulu
                 const tr = translations.tr;
                 for (const key in tr) { const el = document.getElementById(key); if (el) el.innerHTML = tr[key]; }
                 const classMaps = {'t-clean': tr['t-clean'], 't-manual': tr['t-manual'], 't-host': tr['t-host'], 't-domain': tr['t-domain'], 't-semi': tr['t-semi'], 't-blog': tr['t-blog'], 't-color': tr['t-color'], 't-insta': tr['t-insta'], 't-auto': tr['t-auto'], 't-dark': tr['t-dark'], 't-multi': tr['t-multi'], 't-video': tr['t-video'], 'btn-demo': tr['btn-demo'], 'badge-bestseller': tr['badge-bestseller']};
-for (const cls in classMaps) { document.querySelectorAll('.' + cls).forEach(el => el.innerHTML = classMaps[cls]); }
+                for (const cls in classMaps) { document.querySelectorAll('.' + cls).forEach(el => el.innerHTML = classMaps[cls]); }
             } else { if (localStorage.getItem('userLang') === 'tr') location.reload(); }
             localStorage.setItem('userLang', lang);
         }
