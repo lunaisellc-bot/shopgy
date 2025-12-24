@@ -3,109 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitrinX | 2026 Market Analysis</title>
+    <title>2026 Market Trends | VitrinX Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505' } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505' }
+                }
+            }
+        }
     </script>
-    <style>
-        .bar-fill { width: 0; transition: width 1.5s ease-out; }
-        .chart-container:hover .bar-1 { width: 40%; }
-        @keyframes fillBars { from { width: 0; } to { width: var(--target-width); } }
-        .animate-bar { animation: fillBars 2s forwards; }
-    </style>
+    <style>body { background-color: #050505; color: white; }</style>
 </head>
-<body class="bg-dark text-gray-300 font-sans antialiased selection:bg-neon selection:text-black">
+<body class="antialiased font-sans">
 
     <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur border-b border-white/5">
         <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-white hover:text-neon transition group"><i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i> <span class="text-lg">Ana Sayfaya Dön</span></a>
-            <span class="text-xs font-bold text-blue-400 border border-blue-400/20 bg-blue-400/5 px-3 py-1 rounded-full tracking-widest">DATA ANALİZİ</span>
+            <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition">
+                <i class="fa-solid fa-arrow-left text-neon"></i> <span class="font-bold">Back to Home</span>
+            </a>
+            <span class="font-heading font-bold text-xl">VitrinX <span class="text-neon">Academy</span></span>
         </div>
     </nav>
 
     <article class="pt-32 pb-20 px-6">
         <div class="max-w-3xl mx-auto">
-            <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">Veri Analizi: 2025-2026 Etsy Ekosistemi ve "Kırmızı Okyanus" Tehlikesi</h1>
-            <div class="flex items-center gap-4 text-sm text-gray-500 mb-10 border-b border-white/10 pb-8"><span><i class="fa-solid fa-chart-line"></i> 7 Dakika Okuma</span><span>•</span><span>VitrinX Business Intelligence</span></div>
-            
+            <div class="mb-8">
+                <span class="text-neon text-xs font-bold tracking-widest uppercase mb-4 block">DATA & FORECAST</span>
+                <h1 class="font-heading text-4xl md:text-6xl font-bold leading-tight mb-6">2026: The "Ownership" Era in E-Commerce</h1>
+                <div class="flex items-center gap-4 text-sm text-gray-500">
+                    <span><i class="fa-regular fa-clock mr-2"></i> 6 min read</span>
+                    <span><i class="fa-solid fa-chart-line mr-2"></i> by Lunaise LLC Team</span>
+                </div>
+            </div>
+
             <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1200&q=80" class="w-full rounded-2xl mb-12 border border-white/10 shadow-2xl">
 
             <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed">
-                <p class="text-xl text-white font-serif italic mb-8">"İstatistikler yalan söylemez: Kalabalık artıyor, oksijen azalıyor."</p>
-                
-                <div class="mb-12">
-                    <h3 class="text-2xl font-bold text-neon mb-4 font-heading border-l-4 border-neon pl-4">TEZ: Pazar Büyüyor (Nicelik Artışı)</h3>
-                    <p class="mb-6">Etsy'nin resmi verilerine ve 2025 projeksiyonlarına göre platformdaki satıcı sayısı logaritmik bir artış gösteriyor. Pandemi sonrası başlayan e-ticaret dalgası, 2026 yılında zirve noktasına ulaşacak.</p>
-                    
-                    <div class="bg-white/5 p-6 rounded-xl border border-white/10 chart-container my-8">
-                        <h4 class="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">Etsy Aktif Satıcı Sayısı (Tahmini)</h4>
-                        <div class="mb-4"><div class="flex justify-between text-xs mb-1"><span>2020</span> <span>4.3 Milyon</span></div><div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gray-500 animate-bar" style="--target-width: 43%;"></div></div></div>
-                        <div class="mb-4"><div class="flex justify-between text-xs mb-1"><span>2023</span> <span>7.5 Milyon</span></div><div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-blue-400 animate-bar" style="--target-width: 75%;"></div></div></div>
-                        <div class="mb-2"><div class="flex justify-between text-xs mb-1"><span class="text-neon font-bold">2026 (Tahmin)</span> <span class="text-neon font-bold">11.2 Milyon</span></div><div class="h-3 bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-neon animate-bar" style="--target-width: 95%;"></div></div></div>
-                    </div>
+                <p class="text-xl text-white font-serif italic mb-8">"Renting your business space from Etsy is fine for starting out. But you never build a mansion on rented land."</p>
+
+                <h3 class="text-2xl font-heading text-white font-bold mt-12 mb-4">The "Red Ocean" is Rising</h3>
+                <p>Etsy now hosts over 9 million active sellers. The competition is fierce. Fees have increased multiple times in the last 5 years. What happens in 2026?</p>
+                <p>Data suggests a split market:</p>
+                <ul class="list-disc pl-6 space-y-2 marker:text-neon">
+                    <li><strong>Generic Sellers:</strong> Fighting price wars, paying high ad fees, disappearing in the noise.</li>
+                    <li><strong>Brand Owners:</strong> Using Etsy as just ONE sales channel, while building their own asset (Email list, Domain, Brand Loyalty).</li>
+                </ul>
+
+                <h3 class="text-2xl font-heading text-white font-bold mt-12 mb-4">Why "Ownership" is the Key</h3>
+                <p>If Etsy changes its algorithm tomorrow, a Generic Seller loses their income overnight. A Brand Owner with their own website (VitrinX) still has their domain, their direct traffic, and their professional presence.</p>
+                <p>VitrinX allows you to have the best of both worlds: <strong>The safety of Etsy's payment system + The stability of owning your own .com.</strong></p>
+
+                <div class="bg-white/5 border-l-4 border-blue-500 p-6 my-12 rounded-r-xl">
+                    <h4 class="text-white font-bold mb-2">The Pixel Advantage</h4>
+                    <p class="text-sm">With your own website, you can install Meta Pixel (Facebook) or TikTok Pixel. This allows you to retarget visitors who didn't buy. You cannot do this effectively on a plain Etsy shop page.</p>
                 </div>
 
-                <div class="mb-12">
-                    <h3 class="text-2xl font-bold text-red-400 mb-4 font-heading border-l-4 border-red-400 pl-4">ANTİTEZ: Görünürlük Ölümü</h3>
-                    <p class="mb-4">Tezdeki büyüme harika görünse de, satıcılar için karanlık bir gerçeği barındırıyor. Alıcı sayısı aynı oranda artmıyor. Bu durum "Görünürlük Enflasyonu" yaratıyor.</p>
-                    <ul class="list-disc pl-6 space-y-2 marker:text-red-400">
-                        <li><strong>Reklam Maliyetleri:</strong> Etsy Ads Tıklama Başına Maliyet (CPC) son 3 yılda %40 arttı.</li>
-                        <li><strong>Algoritma Baskısı:</strong> 11 Milyon satıcı arasında "ilk sayfada" çıkma ihtimaliniz matematiksel olarak %0.001'in altına düşüyor.</li>
-                    </ul>
-                </div>
-
-                <div class="mb-12">
-                    <h3 class="text-2xl font-bold text-blue-400 mb-4 font-heading border-l-4 border-blue-400 pl-4">SENTEZ: Mavi Okyanusa Kaçış</h3>
-                    <p class="mb-6">Hegel diyalektiğine göre çözüm, bu kaosun dışına çıkmaktır. Kırmızı okyanusta (Etsy içi rekabet) savaşmak yerine, kendi Mavi Okyanusunuzu (VitrinX Destekli Web Sitesi) yaratmalısınız.</p>
-                    <div class="grid md:grid-cols-2 gap-6 my-8">
-                        <div class="bg-red-900/10 border border-red-500/20 p-6 rounded-lg"><h4 class="text-red-400 font-bold mb-2">Etsy Sadece</h4><p class="text-sm text-gray-400">Algoritmaya dua edersiniz. Fiyat rekabeti kaçınılmazdır.</p></div>
-                        <div class="bg-neon/10 border border-neon/20 p-6 rounded-lg"><h4 class="text-neon font-bold mb-2">VitrinX + Domain</h4><p class="text-sm text-gray-300">Algoritma yok. Müşteri datası sizindir. Rakipsiz bir marka vitrini.</p></div>
-                    </div>
-                    <p>2026'da ayakta kalacak olanlar, Etsy'yi sadece bir "pazar yeri" olarak kullanıp, asıl marka merkezini kendi domainlerinde kuranlar olacaktır.</p>
-                </div>
-            </div>
-            <div class="mt-16 pt-10 border-t border-white/10 text-center">
-                <h3 class="text-3xl font-heading font-bold text-white mb-4">Veriler Yalan Söylemez</h3>
-                <a href="index.html#pricing" class="inline-block bg-blue-500 text-white font-bold px-10 py-4 rounded-xl hover:bg-blue-600 transition shadow-lg">Geleceğe Yatırım Yap</a>
-            </div>
-        </div>
-        <div class="mt-20 pt-10 border-t border-white/5">
-            <div class="flex justify-between items-center mb-12">
-                <span class="text-sm text-gray-500 font-bold">Share this insight:</span>
-                <div class="flex gap-4">
-                    <button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-neon hover:text-black transition"><i class="fa-brands fa-whatsapp"></i></button>
-                    <button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-400 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></button>
-                </div>
+                <h3 class="text-2xl font-heading text-white font-bold mt-12 mb-4">Future-Proof Your Business</h3>
+                <p>The smartest investment you can make in 2025 is to diversify. Don't leave all your eggs in one basket. Build your vitrine today.</p>
             </div>
 
-            <div class="bg-gradient-to-r from-white/5 to-white/0 p-8 rounded-2xl border border-white/10 mb-16 relative overflow-hidden">
-                <div class="absolute -right-10 -top-10 w-40 h-40 bg-neon/10 rounded-full blur-3xl"></div>
-                <div class="relative z-10">
-                    <h3 class="font-heading text-2xl font-bold text-white mb-2">Don't Miss the Next Report</h3>
-                    <p class="text-gray-400 text-sm mb-6 max-w-md">Join 1,200+ Etsy sellers receiving weekly strategies.</p>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="Enter your email..." class="bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm text-white focus:border-neon focus:outline-none w-full max-w-xs">
-                        <button class="bg-white text-black font-bold px-6 py-3 rounded-lg hover:bg-neon transition text-sm">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="text-white font-bold mb-6 border-l-4 border-neon pl-4">Read Next</h4>
-            <div class="grid md:grid-cols-2 gap-6">
-                <a href="blog-strategy.html" class="group block bg-white/5 rounded-xl p-4 border border-white/5 hover:border-white/20 transition">
-                    <div class="text-xs text-purple-400 font-bold mb-2">STRATEGY</div>
-                    <h5 class="text-white font-bold group-hover:text-purple-400 transition">Why Domain Authority Matters</h5>
-                </a>
-                <a href="blog-mindset.html" class="group block bg-white/5 rounded-xl p-4 border border-white/5 hover:border-white/20 transition">
-                    <div class="text-xs text-neon font-bold mb-2">MINDSET</div>
-                    <h5 class="text-white font-bold group-hover:text-neon transition">The Art of Perseverance</h5>
-                </a>
+            <div class="mt-16 pt-12 border-t border-white/10 text-center">
+                <h3 class="font-heading text-2xl font-bold mb-4">Secure your future.</h3>
+                <a href="index.html#pricing" class="inline-block bg-neon text-black font-bold px-8 py-4 rounded-xl hover:bg-emerald-400 transition">Start Now</a>
             </div>
         </div>
     </article>
-    <footer class="mt-20 py-10 text-center text-xs text-gray-600 border-t border-white/5">&copy; 2025 VitrinX Data Labs.</footer>
+    
+    <footer class="border-t border-white/10 py-8 text-center text-gray-600 text-xs">
+        &copy; 2025 VitrinX Technology. A brand of Lunaise LLC.
+    </footer>
 </body>
 </html>
