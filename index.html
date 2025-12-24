@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitrinX | Global Brand Architects</title>
+    <title>VitrinX | Etsy to Web Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,46 +24,23 @@
     <style>
         body { background-color: #050505; color: white; overflow-x: hidden; }
         
-        /* --- PERFORMANS AYARLI SWIPER (TİTREME ÇÖZÜMÜ) --- */
+        /* --- PERFORMANS AYARLI SWIPER --- */
         .swiper { width: 100%; padding-top: 50px; padding-bottom: 50px; }
-        
         .swiper-slide { 
-            background-position: center; 
-            background-size: cover; 
-            width: 300px; 
-            height: 450px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            overflow: hidden; 
-            
-            /* Performans İyileştirmeleri */
-            box-shadow: 0 15px 50px rgba(0,0,0,0.5); /* Yansıma kaldırıldı, sadece gölge */
-            will-change: transform; /* Tarayıcıya ön hazırlık emri */
-            transform: translateZ(0); /* GPU Hızlandırma */
+            background-position: center; background-size: cover; width: 300px; height: 450px; 
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5); 
+            will-change: transform; transform: translateZ(0); 
         }
-        
-        .swiper-slide img { 
-            display: block; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover;
-            backface-visibility: hidden; /* Resim titremesini engeller */
-        }
+        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; backface-visibility: hidden; }
 
         /* --- DİĞER EFEKTLER --- */
         .glass-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(10px); /* Blur azaltıldı (Hız için) */
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
         .glass-card:hover { transform: translateY(-5px); border-color: #00ff9d; box-shadow: 0 0 30px rgba(0, 255, 157, 0.1); }
-        .quote-text { background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        details > summary { list-style: none; cursor: pointer; }
-        details > summary::-webkit-details-marker { display: none; }
-        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
-        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+        .step-line::before { content: ''; position: absolute; top: 50%; left: -50%; width: 200%; height: 2px; background: linear-gradient(90deg, transparent, #00ff9d, transparent); z-index: -1; opacity: 0.2; }
     </style>
 </head>
 <body class="antialiased font-sans selection:bg-neon selection:text-black">
@@ -77,13 +54,12 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="relative w-8 h-8 flex items-center justify-center bg-gradient-to-tr from-neon to-emerald-600 rounded-lg shadow-[0_0_15px_rgba(0,255,157,0.5)]">
-                    <span
-class="font-heading font-bold text-black text-xl">X</span>
+                    <span class="font-heading font-bold text-black text-xl">X</span>
                 </div>
                 <span class="font-heading text-xl font-bold tracking-tight">VitrinX</span>
             </div>
             <div class="hidden md:flex gap-10 text-sm font-medium text-gray-400">
-                <a href="#vision" class="hover:text-white transition" id="nav-vision">Vision</a>
+                <a href="#how-it-works" class="hover:text-white transition" id="nav-how">How it Works</a>
                 <a href="portfolio.html" class="hover:text-white transition" id="nav-demos">Showcase</a>
                 <a href="#features" class="hover:text-white transition" id="nav-features">Why Us</a>
                 <a href="#pricing" class="hover:text-white transition" id="nav-pricing">Pricing</a>
@@ -99,65 +75,90 @@ class="font-heading font-bold text-black text-xl">X</span>
 
     <header class="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
         <div class="mb-6 animate-float">
-            <span class="px-4 py-1.5 rounded-full border border-purple/30 bg-purple/10 text-purple-300 text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_10px_rgba(189,0,255,0.2)]" id="hero-badge">Etsy Elite Solutions</span>
+            <span class="px-4 py-1.5 rounded-full border border-neon/30 bg-neon/10 text-neon text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_10px_rgba(0,255,157,0.2)]" id="hero-badge">OFFICIAL ETSY INTEGRATION</span>
         </div>
-        <h1 class="font-heading text-5xl md:text-8xl font-bold leading-tight mb-8">
-            <span id="hero-title-1">Don't Just Sell.</span> <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple drop-shadow-[0_0_15px_rgba(0,255,157,0.3)]" id="hero-title-2">Build an Empire.</span>
+        
+        <h1 class="font-heading text-5xl md:text-7xl font-bold leading-tight mb-8">
+            <span id="hero-title-1">Turn Your Etsy Shop</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple drop-shadow-[0_0_15px_rgba(0,255,157,0.3)]" id="hero-title-2">Into a Brand Website.</span>
         </h1>
+        
         <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed" id="hero-desc">
-            The subconscious mind knows the difference between a seller and a brand. Give your Etsy shop the prestige of its own <strong>.com domain</strong>. Own your future.
+            We instantly <strong>sync your Etsy products, photos, and reviews</strong> to your own professional .com website. No coding required. Build your empire beyond the marketplace.
         </p>
+        
         <div class="flex flex-col sm:flex-row gap-6">
             <a href="portfolio.html" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105">
                 <div class="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <span class="relative flex items-center gap-2"><i class="fa-solid fa-eye"></i> <span id="btn-explore">Visualize Your Store</span></span>
+                <span class="relative flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles"></i> <span id="btn-explore">See Example Sites</span></span>
             </a>
-            <a href="#pricing" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center gap-2">
-                <span id="btn-plans">View Investments</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+            <a href="#how-it-works" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center gap-2">
+                <span id="btn-how">How It Works?</span> <i class="fa-solid fa-arrow-down text-xs"></i>
             </a>
         </div>
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-600"><i class="fa-solid fa-chevron-down"></i></div>
     </header>
 
+    <section id="how-it-works" class="py-16 border-b border-white/5 bg-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 text-center relative step-line">
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-dark border border-white/20 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-[0_0_20px_rgba(255,255,255,0.1)]">1</div>
+                    <h3 class="font-bold text-white text-xl mb-2" id="step-1-title">Connect Etsy</h3>
+                    <p class="text-gray-400 text-sm px-4" id="step-1-desc">Enter your shop name. Our system connects to your Etsy catalog securely.</p>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-dark border border-neon rounded-full flex items-center justify-center mx-auto mb-4 text-2xl text-neon shadow-[0_0_20px_rgba(0,255,157,0.3)]">2</div>
+                    <h3 class="font-bold text-white text-xl mb-2" id="step-2-title">Auto-Sync</h3>
+                    <p class="text-gray-400 text-sm px-4" id="step-2-desc">We pull all your products, prices, and images automatically. No manual work.</p>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-dark border border-purple rounded-full flex items-center justify-center mx-auto mb-4 text-2xl text-purple-400 shadow-[0_0_20px_rgba(189,0,255,0.3)]">3</div>
+                    <h3 class="font-bold text-white text-xl mb-2" id="step-3-title">Launch .COM</h3>
+                    <p class="text-gray-400 text-sm px-4" id="step-3-desc">Your brand new website is live on your own domain. Ready to sell.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="showcase" class="py-24 relative overflow-hidden">
         <div class="text-center mb-12">
-            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4" id="slider-title">World-Class Vitrines</h2>
-            <p class="text-gray-500 font-serif italic text-lg" id="slider-sub">"Success is the sum of small efforts, repeated day in and day out."</p>
+            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4" id="slider-title">Themes Ready for Your Products</h2>
+            <p class="text-gray-500 font-serif italic text-lg" id="slider-sub">"Select a design, we fill it with your Etsy items."</p>
         </div>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&q=80" alt="Luxury" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-neon font-heading text-2xl font-bold mb-2">ULTRA LUXE</span><a href="demo-ultra.html" target="_blank" class="px-6 py-2 border border-neon text-neon rounded-full hover:bg-neon hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
-                <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=600&q=80" alt="Fashion" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-red-500 font-heading text-2xl font-bold mb-2">STREETWEAR</span><a href="demo-fashion.html" target="_blank" class="px-6 py-2 border border-red-500 text-red-500
-hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
+                <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=600&q=80" alt="Fashion" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-red-500 font-heading text-2xl font-bold mb-2">STREETWEAR</span><a href="demo-fashion.html" target="_blank" class="px-6 py-2 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
                 <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Decor" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-blue-400 font-heading text-2xl font-bold mb-2">HOME DECOR</span><a href="demo-business.html" target="_blank" class="px-6 py-2 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-400 hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
                 <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1582037928769-181f2422677e?w=600&q=80" alt="Art" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-yellow-400 font-heading text-2xl font-bold mb-2">ART GALLERY</span><a href="demo-art.html" target="_blank" class="px-6 py-2 border border-yellow-400 text-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
                 <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt="Digital" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-purple-400 font-heading text-2xl font-bold mb-2">DIGITAL</span><a href="demo-starter.html" target="_blank" class="px-6 py-2 border border-purple-400 text-purple-400 rounded-full hover:bg-purple-400 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
             </div>
         </div>
-        <div class="text-center mt-8"><p class="text-xs text-gray-500 uppercase tracking-widest animate-pulse-slow"><i class="fa-solid fa-arrows-left-right"></i> Drag to Explore</p></div>
     </section>
 
-    <section id="vision" class="max-w-7xl mx-auto px-6 py-32 relative">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="relative">
-                <div class="absolute -inset-4 bg-gradient-to-r from-neon to-purple opacity-20 blur-2xl rounded-full"></div>
-                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" class="relative rounded-2xl border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition duration-700" alt="Success">
+    <section id="features" class="max-w-5xl mx-auto py-24 px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-heading text-4xl font-bold mb-6" id="comp-title">Why Use VitrinX?</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto" id="comp-sub">Building a website manually takes weeks. VitrinX does it in minutes by using your existing Etsy data.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 grayscale opacity-70 hover:opacity-100 transition">
+                <h3 class="text-xl font-bold text-red-400 mb-6"><i class="fa-solid fa-xmark mr-2"></i> Manual Website Builders</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex justify-between"><span>Product Upload</span> <span class="text-white">Manual (One by one)</span></li>
+                    <li class="flex justify-between"><span>Reviews Sync</span> <span class="text-white">Not possible</span></li>
+                    <li class="flex justify-between"><span>Maintenance</span> <span class="text-white">High Effort</span></li>
+                </ul>
             </div>
-            <div>
-                <span class="text-neon text-xs font-bold tracking-widest uppercase mb-2 block" id="vision-badge">The Mindset</span>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    <span class="quote-text">"Your brand is what people say about you</span><br>
-                    when you are not in the room."
-                </h2>
-                <p class="text-gray-400 mb-6 leading-relaxed text-lg" id="vision-desc">
-                    Success is 80% psychology. If you treat your Etsy shop like a small hobby, the world will treat it that way. 
-                    But when you present it as a <strong>Global Brand</strong> with its own infrastructure, you command respect and higher prices.
-                </p>
-                <div class="flex gap-8 border-t border-white/10 pt-8">
-                    <div><div class="text-3xl font-bold text-white mb-1">100%</div><div class="text-xs text-gray-500 uppercase tracking-widest" id="stat-1">Ownership</div></div>
-                    <div><div class="text-3xl font-bold text-white mb-1">0%</div><div class="text-xs text-gray-500 uppercase tracking-widest" id="stat-2">Commission</div></div>
-                </div>
+            <div class="p-8 rounded-2xl border border-neon/30 bg-neon/5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1">VITRINX</div>
+                <h3 class="text-xl font-bold text-neon mb-6"><i class="fa-solid fa-check mr-2"></i> The VitrinX Solution</h3>
+                <ul class="space-y-4 text-sm text-gray-300">
+                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Product Upload</span> <span class="text-white font-bold">Auto-Sync from Etsy</span></li>
+                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Reviews Sync</span> <span class="text-white font-bold">Auto-Import</span></li>
+                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Maintenance</span> <span class="text-white font-bold">Zero Effort</span></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -166,69 +167,38 @@ hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a></div></div
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h2 class="font-heading text-3xl font-bold mb-2" id="blog-title">Growth Academy</h2>
-                    <p class="text-gray-400 text-sm" id="blog-sub">Insights to scale your Etsy business.</p>
+                    <h2 class="font-heading text-3xl font-bold mb-2" id="blog-title">Seller Resources</h2>
+                    <p class="text-gray-400 text-sm" id="blog-sub">Learn how to grow your brand beyond Etsy.</p>
                 </div>
                 <a href="blog-strategy.html" class="text-neon text-sm font-bold hover:underline hidden md:block" id="blog-link">Read All Articles -></a>
             </div>
-
             <div class="grid md:grid-cols-3 gap-8">
-                <a
-href="blog-strategy.html" class="glass-card rounded-xl p-6 group cursor-pointer block">
+                <a href="blog-strategy.html" class="glass-card rounded-xl p-6 group cursor-pointer block">
                     <div class="h-40 bg-gray-800 rounded-lg mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1558494949-efc02570fbc9?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
                     <div class="text-xs text-purple-400 font-bold mb-2">STRATEGY</div>
-                    <h3 class="font-bold text-lg mb-2 group-hover:text-neon transition" id="art-1-title">Why "Domain Authority" Matters</h3>
+                    <h3 class="font-bold text-lg mb-2 group-hover:text-neon transition" id="art-1-title">Why You Need a Website</h3>
                     <p class="text-gray-500 text-xs leading-relaxed" id="art-1-desc">Owning your .com builds trust and allows you to run Facebook Ads without losing data.</p>
                 </a>
                  <a href="blog-mindset.html" class="glass-card rounded-xl p-6 group cursor-pointer block">
                     <div class="h-40 bg-gray-800 rounded-lg mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
                     <div class="text-xs text-neon font-bold mb-2">MINDSET</div>
-                    <h3 class="font-bold text-lg mb-2 group-hover:text-neon transition" id="art-2-title">The Art of Perseverance</h3>
-                    <p
-class="text-gray-500 text-xs leading-relaxed" id="art-2-desc">"Capital is not what a man has, but what a man is." How to build brand character.</p>
+                    <h3 class="font-bold text-lg mb-2 group-hover:text-neon transition" id="art-2-title">Building a Brand vs Selling</h3>
+                    <p class="text-gray-500 text-xs leading-relaxed" id="art-2-desc">How to transition from a marketplace seller to a brand owner.</p>
                 </a>
                  <a href="blog-trends.html" class="glass-card rounded-xl p-6 group cursor-pointer block">
                     <div class="h-40 bg-gray-800 rounded-lg mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
                     <div class="text-xs text-blue-400 font-bold mb-2">DATA ANALYSIS</div>
                     <h3 class="font-bold text-lg mb-2 group-hover:text-neon transition" id="art-3-title">2026 Etsy Market Forecast</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed" id="art-3-desc">11 Million sellers. Rising costs. Why the "Red Ocean" is dangerous and the data behind it.</p>
+                    <p class="text-gray-500 text-xs leading-relaxed" id="art-3-desc">Why having your own website is the only way to survive the competition.</p>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="max-w-5xl mx-auto py-24 px-6">
-        <div class="text-center mb-16">
-            <h2 class="font-heading text-4xl font-bold mb-6" id="comp-title">Don't Rent. Own.</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto" id="comp-sub">Shopify and Wix are landlords. They charge you rent every month. VitrinX builds you a house you own forever.</p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-4">
-            <div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 grayscale opacity-70 hover:opacity-100 transition">
-                <h3 class="text-xl font-bold text-red-400 mb-6"><i class="fa-solid fa-xmark mr-2"></i> The Others (Shopify/Wix)</h3>
-                <ul class="space-y-4 text-sm text-gray-400">
-                    <li class="flex justify-between"><span>Monthly Fees</span> <span class="text-white">$29 - $299 / month</span></li>
-                    <li class="flex justify-between"><span>Transaction Fees</span> <span class="text-white">2.0% + Etsy Fees</span></li>
-                    <li class="flex justify-between"><span>Product Sync</span> <span class="text-white">Often requires paid apps</span></li>
-                    <li class="flex justify-between"><span>Ownership</span> <span class="text-white">You rent the platform</span></li>
-                </ul>
-            </div>
-            <div class="p-8 rounded-2xl border border-neon/30 bg-neon/5 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1">VITRINX</div>
-                <h3 class="text-xl font-bold text-neon mb-6"><i class="fa-solid fa-check mr-2"></i> The VitrinX Way</h3>
-                <ul class="space-y-4 text-sm text-gray-300">
-                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Monthly Fees</span> <span class="text-white font-bold">$0 (Forever)</span></li>
-                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Transaction Fees</span> <span class="text-white font-bold">0% Commission</span></li>
-                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Product Sync</span> <span class="text-white font-bold">Included</span></li>
-                    <li class="flex justify-between"><span>Ownership</span> <span class="text-white font-bold">100% Yours</span></li>
-                </ul>
             </div>
         </div>
     </section>
 
     <section id="pricing" class="max-w-7xl mx-auto px-6 py-24 relative z-10">
         <div class="text-center mb-16">
-            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" id="pricing-title">One-Time Investment</h2>
-            <p class="text-gray-400" id="pricing-sub">No monthly fees. Future-proof your business.</p>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" id="pricing-title">One-Time Setup Fee</h2>
+            <p class="text-gray-400" id="pricing-sub">We build it once. You own it forever. No monthly fees.</p>
         </div>
         <div class="grid md:grid-cols-3 gap-8">
             <div class="glass-card p-8 rounded-3xl flex flex-col">
@@ -236,12 +206,11 @@ class="text-gray-500 text-xs leading-relaxed" id="art-2-desc">"Capital is not wh
                 <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$149</span></div>
                 <div class="text-xs text-gray-500 mb-6 line-through">$299 Normal</div>
                 <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
-                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-clean">Clean Design</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-clean">Etsy Product Sync</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-host">Hosting Included</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-domain">Domain Connection</span></li>
                 </ul>
-                <a
-href="demo-starter.html" target="_blank" class="block w-full text-center py-4 rounded-xl border border-white/20 hover:bg-white hover:text-black transition font-bold btn-demo">Review Demo</a>
+                <a href="demo-starter.html" target="_blank" class="block w-full text-center py-4 rounded-xl border border-white/20 hover:bg-white hover:text-black transition font-bold btn-demo">Review Demo</a>
             </div>
             <div class="p-1 rounded-3xl bg-gradient-to-b from-neon to-emerald-900 shadow-[0_0_50px_rgba(0,255,157,0.2)] transform md:-translate-y-4">
                 <div class="bg-black h-full w-full rounded-[20px] p-8 flex flex-col relative overflow-hidden">
@@ -250,7 +219,7 @@ href="demo-starter.html" target="_blank" class="block w-full text-center py-4 ro
                     <div class="flex items-baseline gap-1 mb-2"><span class="text-5xl font-heading font-bold text-white">$299</span></div>
                     <div class="text-xs text-gray-400 mb-6 line-through">$499 Normal</div>
                     <ul class="space-y-4 mb-8 text-sm text-white flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-semi"><strong>Semi-Auto</strong> Sync</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-semi"><strong>Auto-Sync</strong> (Daily)</span></li>
                         <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-blog">Blog & About Pages</span></li>
                         <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-color">Custom Branding</span></li>
                         <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-insta">Social Media Feeds</span></li>
@@ -263,7 +232,7 @@ href="demo-starter.html" target="_blank" class="block w-full text-center py-4 ro
                 <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$599</span></div>
                 <div class="text-xs text-gray-500 mb-6 line-through">$899 Normal</div>
                 <ul class="space-y-4 mb-8 text-sm text-gray-300 flex-1">
-                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><strong>Fully Auto</strong> Sync</span></li>
+                    <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto"><strong>Real-time</strong> Sync</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-dark">Neon / Dark Mode UI</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-multi">Multi-Language</span></li>
                     <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-video">Video Backgrounds</span></li>
@@ -280,48 +249,39 @@ href="demo-starter.html" target="_blank" class="block w-full text-center py-4 ro
             <a href="#" class="hover:text-neon transition"><i class="fa-brands fa-twitter"></i></a>
             <a href="#" class="hover:text-neon transition"><i class="fa-brands fa-linkedin"></i></a>
         </div>
-        <p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology. Designed for Leaders.</p>
+        <p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology. Etsy Integration Solutions.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Performans ayarlı Swiper
         var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: true,
-            speed: 800, // Daha yumuşak geçiş
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-            },
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
+            effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto", loop: true,
+            speed: 800,
+            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
+            autoplay: { delay: 2500, disableOnInteraction: false }
         });
 
+        // ÇEVİRİLER (GÜNCELLENDİ)
         const translations = {
             tr: {
-                'nav-vision': 'Vizyon', 'nav-demos': 'Vitrinler', 'nav-features': 'Neden Biz?', 'nav-pricing': 'Fiyatlar', 'nav-cta': 'Hemen Başla',
-                'hero-badge': 'Etsy Satıcıları İçin Elit Çözüm', 'hero-title-1': 'Sadece Satma.', 'hero-title-2': 'İmparatorluğunu Kur.',
-                'hero-desc': 'Bilinçaltı, sıradan bir satıcı ile bir marka arasındaki farkı bilir. Etsy mağazanıza kendi .com domaininin prestijini kazandırın. Geleceğinize sahip çıkın.',
-                'btn-explore': 'Mağazanı Hayal Et', 'btn-plans': 'Yatırımları Gör', 'slider-title': 'Dünya Sınıfı Vitrinler', 'slider-sub': '"Başarı, her gün tekrarlanan küçük çabaların toplamıdır."',
-                'vision-badge': 'Zihniyet',
-                'vision-desc': 'Başarı %80 psikolojidir. Eğer Etsy mağazanıza bir hobi gibi davranırsanız, dünya da ona hobi muamelesi yapar. Onu Küresel Bir Marka gibi sunarsanız, dünya (ve algoritma) ona saygı duyar.',
-                'stat-1': 'Sahiplik', 'stat-2': 'Komisyon', 'blog-title': 'Büyüme Akademisi', 'blog-sub': 'Etsy işinizi büyütmek için içgörüler.', 'blog-link': 'Tüm Yazıları Oku ->',
-                'art-1-title': 'Etsy Satıcıları İçin "Domain Otoritesi" Neden Önemli?', 'art-1-desc': 'Kendi .com adresinize sahip olmak güven inşa eder ve veri kaybetmeden reklam vermenizi sağlar.',
-                'art-2-title': 'Azmin Sanatı: Marka Karakteri İnşa Etmek', 'art-2-desc': '"Sermaye sahip olduğunuz şey değil, olduğunuz kişidir." Sürdürülebilir başarı için ipuçları.',
-                'art-3-title': '2026 Etsy Pazar Analizi', 'art-3-desc': '11 Milyon satıcı. Artan maliyetler. Neden "Kırmızı Okyanus" tehlikeli ve arkasındaki veriler.',
-                'comp-title': 'Kiralama. Sahip Ol.', 'comp-sub': 'Shopify ve Wix ev sahibidir, sizden kira alır. VitrinX size sonsuza dek sizin olan bir ev inşa eder.',
-                'pricing-title': 'Tek Seferlik Yatırım', 'pricing-sub': 'Aylık ödeme yok. İşinizi geleceğe hazırlayın.',
-                't-clean': 'Temiz Tasarım', 't-host': 'Hosting Dahil', 't-domain': 'Alan Adı Bağlama', 't-semi': 'Yarı-Otomatik Çekim', 't-blog': 'Blog & Sayfalar', 't-color': 'Özel Markalama', 't-auto': 'Tam Otomatik Çekim', 't-dark': 'Neon / Koyu Mod', 't-video': 'Video Arka Planlar',
-                'btn-view': 'DEMOYU GÖR', 'btn-demo': 'Demoyu İncele', 'badge-bestseller': 'EN ÇOK TERCİH EDİLEN'
+                'nav-how': 'Nasıl Çalışır?', 'nav-demos': 'Vitrinler', 'nav-features': 'Neden Biz?', 'nav-pricing': 'Fiyatlar', 'nav-cta': 'Hemen Başla',
+                'hero-badge': 'RESMİ ETSY ENTEGRASYONU', 
+                'hero-title-1': 'Etsy Mağazanı', 
+                'hero-title-2': 'Profesyonel Siteye Çevir.',
+                'hero-desc': 'Etsy mağazanızdaki <strong>ürünleri, fotoğrafları ve yorumları</strong> anında kendi .com web sitenize senkronize ediyoruz. Kodlama yok. Sadece markanız var.',
+                'btn-explore': 'Örnek Siteleri Gör', 'btn-how': 'Nasıl Çalışır?',
+                'step-1-title': 'Etsy\'yi Bağla', 'step-1-desc': 'Mağaza adını gir. Sistemimiz kataloğuna güvenle bağlanır.',
+                'step-2-title': 'Otomatik Çekim', 'step-2-desc': 'Tüm ürünlerin, fiyatların ve görsellerin otomatik çekilir.',
+                'step-3-title': '.COM Yayında', 'step-3-desc': 'Web siten kendi alan adınla yayına girer. Satışa hazırsın.',
+                'slider-title': 'Ürünlerin İçin Hazır Temalar', 'slider-sub': '"Bir tasarım seç, içini Etsy ürünlerinle dolduralım."',
+                'comp-title': 'Neden VitrinX?', 'comp-sub': 'Manuel site kurmak haftalar sürer. VitrinX, Etsy verini kullanarak bunu dakikalar içinde yapar.',
+                'pricing-title': 'Tek Seferlik Kurulum', 'pricing-sub': 'Bir kere kuruyoruz, ömür boyu senin. Aylık kira yok.',
+                't-clean': 'Etsy Ürün Aktarımı', 't-host': 'Hosting Dahil', 't-domain': 'Alan Adı Bağlama', 't-semi': 'Otomatik Güncelleme', 't-blog': 'Blog & Sayfalar', 't-color': 'Özel Markalama', 't-auto': 'Anlık Senkronizasyon', 't-dark': 'Neon / Koyu Mod', 't-video': 'Video Arka Planlar',
+                'btn-view': 'DEMOYU GÖR', 'btn-demo': 'Demoyu İncele', 'badge-bestseller': 'EN ÇOK TERCİH EDİLEN',
+                'blog-title': 'Satıcı Kaynakları', 'blog-sub': 'Markanı Etsy\'nin ötesine taşı.', 'blog-link': 'Tümünü Oku ->',
+                'art-1-title': 'Neden Web Siten Olmalı?', 'art-1-desc': 'Kendi siten güven verir ve reklam verilerini toplamanı sağlar.',
+                'art-2-title': 'Satıcı değil Marka Olmak', 'art-2-desc': 'Pazar yeri satıcılığından marka sahipliğine geçiş.',
+                'art-3-title': '2026 Etsy Pazar Analizi', 'art-3-desc': 'Rekabet artarken hayatta kalmanın tek yolu kendi siteni kurmaktır.'
             }
         };
 
