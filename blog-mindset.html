@@ -3,86 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitrinX | Mindset & Psychology</title>
+    <title>From Hobbyist to CEO | VitrinX Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505' } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505' }
+                }
+            }
+        }
     </script>
+    <style>body { background-color: #050505; color: white; }</style>
 </head>
-<body class="bg-dark text-gray-300 font-sans antialiased selection:bg-neon selection:text-black">
+<body class="antialiased font-sans">
 
     <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur border-b border-white/5">
         <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-white hover:text-neon transition group"><i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i> <span class="text-lg">Ana Sayfaya Dön</span></a>
-            <span class="text-xs font-bold text-neon border border-neon/20 bg-neon/5 px-3 py-1 rounded-full tracking-widest">MINDSET</span>
+            <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition">
+                <i class="fa-solid fa-arrow-left text-neon"></i> <span class="font-bold">Back to Home</span>
+            </a>
+            <span class="font-heading font-bold text-xl">VitrinX <span class="text-neon">Academy</span></span>
         </div>
     </nav>
 
     <article class="pt-32 pb-20 px-6">
         <div class="max-w-3xl mx-auto">
-            <h1 class="font-heading text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Azmin Sanatı: Bir Marka Karakteri İnşa Etmek</h1>
-            <div class="flex items-center gap-4 text-sm text-gray-500 mb-10 border-b border-white/10 pb-8"><span><i class="fa-regular fa-clock"></i> 4 Dakika Okuma</span><span>•</span><span>VitrinX Editör</span></div>
-            
+            <div class="mb-8">
+                <span class="text-neon text-xs font-bold tracking-widest uppercase mb-4 block">MINDSET & BRANDING</span>
+                <h1 class="font-heading text-4xl md:text-6xl font-bold leading-tight mb-6">From Hobbyist to CEO: Why Perception is Everything</h1>
+                <div class="flex items-center gap-4 text-sm text-gray-500">
+                    <span><i class="fa-regular fa-clock mr-2"></i> 5 min read</span>
+                    <span><i class="fa-solid fa-user-tie mr-2"></i> by Lunaise LLC Team</span>
+                </div>
+            </div>
+
             <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=1200&q=80" class="w-full rounded-2xl mb-12 border border-white/10 shadow-2xl">
 
             <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed">
-                <p class="text-xl text-white font-serif italic mb-8 border-l-4 border-white/20 pl-6">"Sermaye bir insanın sahip olduğu şey değildir; sermaye, insanın ta kendisidir." — Samuel Smiles</p>
-                
-                <h3 class="text-2xl font-bold text-white mt-10 mb-4 font-heading">Bilinçaltı ve Fiyatlandırma</h3>
-                <p class="mb-6">Joseph Murphy, "Bilinçaltınızın Gücü" adlı eserinde, dış dünyamızın içsel inançlarımızın bir yansıması olduğunu söyler. Bu prensip E-ticarette de geçerlidir. Eğer siz bilinçaltınızda mağazanızı "küçük bir hobi" olarak kodlarsanız, müşterileriniz de ürünlerinize "hobi fiyatları" biçer.</p>
+                <p class="text-xl text-white font-serif italic mb-8">"Customers don't pay for the product. They pay for the story, the trust, and the brand authority."</p>
 
-                <h3 class="text-2xl font-bold text-white mt-10 mb-4 font-heading">Vitrin Etkisi</h3>
-                <p class="mb-6">Müşteri bir web sitesine girdiği ilk 0.5 saniyede karar verir. Profesyonel, kendi domainine sahip, ışıklandırması (tasarımı) düzgün bir mağaza, müşterinin bilinçaltına şu mesajı fısıldar: <strong>"Burada kalite var. Burada güven var."</strong></p>
-                <p>Samuel Smiles'ın dediği gibi, karakter en büyük güçtür. Markanızın karakteri ise web sitenizdir. Bir Etsy sayfasının standart şablonları arasında kaybolmak yerine, VitrinX ile markanıza "Karakter" kazandırırsınız.</p>
+                <h3 class="text-2xl font-heading text-white font-bold mt-12 mb-4">The "Etsy Seller" Trap</h3>
+                <p>There are two types of sellers on Etsy:</p>
+                <ol class="list-decimal pl-6 space-y-2 marker:text-neon">
+                    <li>The Hobbyist: "I make cute things in my spare time."</li>
+                    <li>The Brand Owner: "I run a design company."</li>
+                </ol>
+                <p class="mt-4">The Hobbyist competes on price. They get haggled. They work hard for little money.<br>The Brand Owner commands high prices. They have loyal fans. They sleep well.</p>
 
-                <div class="bg-white/5 border border-white/10 p-8 rounded-xl my-10">
-                    <p class="text-white font-bold mb-2">Kendinize Sorun:</p>
-                    <p class="text-sm text-gray-400 italic">"Dünyanın en lüks markaları (Gucci, Apple, Tesla) sadece bir pazar yerinde mi satış yapıyor, yoksa kendi kalelerini mi inşa ediyorlar?"</p>
+                <h3 class="text-2xl font-heading text-white font-bold mt-12 mb-4">The Power of "Official"</h3>
+                <p>At VitrinX (operated by Lunaise LLC), we saw this shift firsthand. When we registered our LLC in Wyoming and got our EIN, the tone of our conversations changed. We weren't just developers anymore; we were a Company.</p>
+                <p>The same applies to you. Having a <strong>.com website</strong> is your digital suit and tie. Even if the transaction happens on Etsy, the customer seeing your professional site thinks: <em>"This is a serious business. I can trust them with my $200 order."</em></p>
+
+                <div class="bg-white/5 border-l-4 border-purple p-6 my-12 rounded-r-xl">
+                    <h4 class="text-white font-bold mb-2">The Price of Trust</h4>
+                    <p class="text-sm">Studies show that online shoppers are willing to pay <strong>20-30% more</strong> for the exact same item if it comes from a branded, trustworthy source rather than a generic marketplace listing.</p>
                 </div>
-                
-                <p>Siz imparatorluğunuzu kurmaya başladığınız an, dünya size imparator muamelesi yapmaya başlayacaktır.</p>
-            </div>
-            <div class="mt-16 pt-10 border-t border-white/10 text-center">
-                <h3 class="text-3xl font-heading font-bold text-white mb-4">Karakterinizi Yansıtın</h3>
-                <a href="portfolio.html" class="inline-block bg-white text-black font-bold px-10 py-4 rounded-xl hover:bg-gray-200 transition">Tasarımları Gör</a>
-            </div>
-        </div>
-        <div class="mt-20 pt-10 border-t border-white/5">
-            <div class="flex justify-between items-center mb-12">
-                <span class="text-sm text-gray-500 font-bold">Share this insight:</span>
-                <div class="flex gap-4">
-                    <button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-neon hover:text-black transition"><i class="fa-brands fa-whatsapp"></i></button>
-                    <button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-400 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></button>
-                </div>
+
+                <h3 class="text-2xl font-heading text-white font-bold mt-12 mb-4">Own Your Identity</h3>
+                <p>Don't just be a shop on a marketplace. Be a destination. Start with your domain, then your LLC. Step into the role of a CEO.</p>
             </div>
 
-            <div class="bg-gradient-to-r from-white/5 to-white/0 p-8 rounded-2xl border border-white/10 mb-16 relative overflow-hidden">
-                <div class="absolute -right-10 -top-10 w-40 h-40 bg-neon/10 rounded-full blur-3xl"></div>
-                <div class="relative z-10">
-                    <h3 class="font-heading text-2xl font-bold text-white mb-2">Don't Miss the Next Report</h3>
-                    <p class="text-gray-400 text-sm mb-6 max-w-md">Join 1,200+ Etsy sellers receiving weekly strategies.</p>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="Enter your email..." class="bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-sm text-white focus:border-neon focus:outline-none w-full max-w-xs">
-                        <button class="bg-white text-black font-bold px-6 py-3 rounded-lg hover:bg-neon transition text-sm">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="text-white font-bold mb-6 border-l-4 border-neon pl-4">Read Next</h4>
-            <div class="grid md:grid-cols-2 gap-6">
-                <a href="blog-strategy.html" class="group block bg-white/5 rounded-xl p-4 border border-white/5 hover:border-white/20 transition">
-                    <div class="text-xs text-purple-400 font-bold mb-2">STRATEGY</div>
-                    <h5 class="text-white font-bold group-hover:text-purple-400 transition">Why Domain Authority Matters</h5>
-                </a>
-                <a href="blog-trends.html" class="group block bg-white/5 rounded-xl p-4 border border-white/5 hover:border-white/20 transition">
-                    <div class="text-xs text-blue-400 font-bold mb-2">DATA</div>
-                    <h5 class="text-white font-bold group-hover:text-blue-400 transition">2026 Etsy Market Forecast</h5>
-                </a>
+            <div class="mt-16 pt-12 border-t border-white/10 text-center">
+                <h3 class="font-heading text-2xl font-bold mb-4">Start your brand journey.</h3>
+                <a href="index.html#pricing" class="inline-block bg-neon text-black font-bold px-8 py-4 rounded-xl hover:bg-emerald-400 transition">Launch Website</a>
             </div>
         </div>
     </article>
-    <footer class="mt-20 py-10 text-center text-xs text-gray-600 border-t border-white/5">&copy; 2025 VitrinX Academy.</footer>
+    
+    <footer class="border-t border-white/10 py-8 text-center text-gray-600 text-xs">
+        &copy; 2025 VitrinX Technology. A brand of Lunaise LLC.
+    </footer>
 </body>
 </html>
