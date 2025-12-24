@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitrinX | Etsy to Web Solutions</title>
+    <title>VitrinX | Etsy Integration Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,22 +24,49 @@
     <style>
         body { background-color: #050505; color: white; overflow-x: hidden; }
         
-        /* --- PERFORMANS AYARLI SWIPER --- */
+        /* SWIPER OPTİMİZASYONU (Titreme Giderildi) */
         .swiper { width: 100%; padding-top: 50px; padding-bottom: 50px; }
+        
         .swiper-slide { 
-            background-position: center; background-size: cover; width: 300px; height: 450px; 
-            border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; 
+            background-position: center; 
+            background-size: cover; 
+            width: 300px; 
+            height: 450px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            overflow: hidden; 
             box-shadow: 0 15px 50px rgba(0,0,0,0.5); 
-            will-change: transform; transform: translateZ(0); 
+            will-change: transform; 
+            transform: translateZ(0); 
         }
-        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; backface-visibility: hidden; }
+        
+        .swiper-slide img { 
+            display: block; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            backface-visibility: hidden; 
+            transition: transform 0.5s;
+        }
+        .swiper-slide:hover img { transform: scale(1.05); }
 
-        /* --- DİĞER EFEKTLER --- */
+        /* DİĞER EFEKTLER */
         .glass-card { 
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
         .glass-card:hover { transform: translateY(-5px); border-color: #00ff9d; box-shadow: 0 0 30px rgba(0, 255, 157, 0.1); }
+        
+        /* FAQ Detayları */
+        details > summary { list-style: none; cursor: pointer; transition: all 0.3s; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary { color: #00ff9d; }
+        details[open] summary ~ * { animation: sweep .5s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+        
         .step-line::before { content: ''; position: absolute; top: 50%; left: -50%; width: 200%; height: 2px; background: linear-gradient(90deg, transparent, #00ff9d, transparent); z-index: -1; opacity: 0.2; }
     </style>
 </head>
@@ -61,8 +88,8 @@
             <div class="hidden md:flex gap-10 text-sm font-medium text-gray-400">
                 <a href="#how-it-works" class="hover:text-white transition" id="nav-how">How it Works</a>
                 <a href="portfolio.html" class="hover:text-white transition" id="nav-demos">Showcase</a>
-                <a href="#features" class="hover:text-white transition" id="nav-features">Why Us</a>
                 <a href="#pricing" class="hover:text-white transition" id="nav-pricing">Pricing</a>
+                <a href="#faq" class="hover:text-white transition" id="nav-faq">FAQ</a>
             </div>
             <div class="flex items-center gap-4">
                 <button onclick="toggleLanguage()" class="flex items-center gap-2 text-xs font-bold border border-white/10 bg-white/5 px-3 py-2 rounded-lg hover:bg-white/10 transition">
@@ -75,22 +102,22 @@
 
     <header class="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
         <div class="mb-6 animate-float">
-            <span class="px-4 py-1.5 rounded-full border border-neon/30 bg-neon/10 text-neon text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_10px_rgba(0,255,157,0.2)]" id="hero-badge">OFFICIAL ETSY INTEGRATION</span>
+            <span class="px-4 py-1.5 rounded-full border border-neon/30 bg-neon/10 text-neon text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_10px_rgba(0,255,157,0.2)]" id="hero-badge">OFFICIAL API INTEGRATION</span>
         </div>
         
         <h1 class="font-heading text-5xl md:text-7xl font-bold leading-tight mb-8">
-            <span id="hero-title-1">Turn Your Etsy Shop</span> <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple drop-shadow-[0_0_15px_rgba(0,255,157,0.3)]" id="hero-title-2">Into a Brand Website.</span>
+            <span id="hero-title-1">We Sync Your Etsy Shop</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple drop-shadow-[0_0_15px_rgba(0,255,157,0.3)]" id="hero-title-2">To Your Own Website.</span>
         </h1>
         
         <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed" id="hero-desc">
-            We instantly <strong>sync your Etsy products, photos, and reviews</strong> to your own professional .com website. No coding required. Build your empire beyond the marketplace.
+            Stop sending traffic only to a marketplace. We build a professional <strong>.com website</strong> that automatically pulls products from your Etsy store. <br><span class="text-white text-sm mt-2 block opacity-70">(Payments are still processed securely via Etsy)</span>
         </p>
         
         <div class="flex flex-col sm:flex-row gap-6">
             <a href="portfolio.html" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105">
                 <div class="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                <span class="relative flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles"></i> <span id="btn-explore">See Example Sites</span></span>
+                <span class="relative flex items-center gap-2"><i class="fa-solid fa-laptop-code"></i> <span id="btn-explore">See Demo Sites</span></span>
             </a>
             <a href="#how-it-works" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center gap-2">
                 <span id="btn-how">How It Works?</span> <i class="fa-solid fa-arrow-down text-xs"></i>
@@ -101,21 +128,24 @@
 
     <section id="how-it-works" class="py-16 border-b border-white/5 bg-white/5">
         <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl font-bold mb-4">The Integration Process</h2>
+            </div>
             <div class="grid md:grid-cols-3 gap-8 text-center relative step-line">
                 <div class="relative z-10">
                     <div class="w-16 h-16 bg-dark border border-white/20 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-[0_0_20px_rgba(255,255,255,0.1)]">1</div>
-                    <h3 class="font-bold text-white text-xl mb-2" id="step-1-title">Connect Etsy</h3>
-                    <p class="text-gray-400 text-sm px-4" id="step-1-desc">Enter your shop name. Our system connects to your Etsy catalog securely.</p>
+                    <h3 class="font-bold text-white text-xl mb-2" id="step-1-title">API Connection</h3>
+                    <p class="text-gray-400 text-sm px-4" id="step-1-desc">We connect to Etsy's Open API v3 using your shop name to access your public catalog.</p>
                 </div>
                 <div class="relative z-10">
                     <div class="w-16 h-16 bg-dark border border-neon rounded-full flex items-center justify-center mx-auto mb-4 text-2xl text-neon shadow-[0_0_20px_rgba(0,255,157,0.3)]">2</div>
-                    <h3 class="font-bold text-white text-xl mb-2" id="step-2-title">Auto-Sync</h3>
-                    <p class="text-gray-400 text-sm px-4" id="step-2-desc">We pull all your products, prices, and images automatically. No manual work.</p>
+                    <h3 class="font-bold text-white text-xl mb-2" id="step-2-title">Data Fetch & Design</h3>
+                    <p class="text-gray-400 text-sm px-4" id="step-2-desc">We fetch your Photos, Titles, and Descriptions. Then we place them into our High-End Templates.</p>
                 </div>
                 <div class="relative z-10">
                     <div class="w-16 h-16 bg-dark border border-purple rounded-full flex items-center justify-center mx-auto mb-4 text-2xl text-purple-400 shadow-[0_0_20px_rgba(189,0,255,0.3)]">3</div>
-                    <h3 class="font-bold text-white text-xl mb-2" id="step-3-title">Launch .COM</h3>
-                    <p class="text-gray-400 text-sm px-4" id="step-3-desc">Your brand new website is live on your own domain. Ready to sell.</p>
+                    <h3 class="font-bold text-white text-xl mb-2" id="step-3-title">Referral Checkout</h3>
+                    <p class="text-gray-400 text-sm px-4" id="step-3-desc">Customers browse on your site, but click "Buy on Etsy" to checkout securely. You gain SEO boost.</p>
                 </div>
             </div>
         </div>
@@ -128,39 +158,44 @@
         </div>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&q=80" alt="Luxury" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-neon font-heading text-2xl font-bold mb-2">ULTRA LUXE</span><a href="demo-ultra.html" target="_blank" class="px-6 py-2 border border-neon text-neon rounded-full hover:bg-neon hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
-                <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=600&q=80" alt="Fashion" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-red-500 font-heading text-2xl font-bold mb-2">STREETWEAR</span><a href="demo-fashion.html" target="_blank" class="px-6 py-2 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
-                <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Decor" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-blue-400 font-heading text-2xl font-bold mb-2">HOME DECOR</span><a href="demo-business.html" target="_blank" class="px-6 py-2 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-400 hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
-                <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1582037928769-181f2422677e?w=600&q=80" alt="Art" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-yellow-400 font-heading text-2xl font-bold mb-2">ART GALLERY</span><a href="demo-art.html" target="_blank" class="px-6 py-2 border border-yellow-400 text-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
-                <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt="Digital" /><div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center"><span class="text-purple-400 font-heading text-2xl font-bold mb-2">DIGITAL</span><a href="demo-starter.html" target="_blank" class="px-6 py-2 border border-purple-400 text-purple-400 rounded-full hover:bg-purple-400 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a></div></div>
+                <div class="swiper-slide group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=600&q=80" alt="Luxury Website Layout" />
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center">
+                        <span class="text-neon font-heading text-2xl font-bold mb-2">ULTRA LUXE</span>
+                        <a href="demo-ultra.html" target="_blank" class="px-6 py-2 border border-neon text-neon rounded-full hover:bg-neon hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a>
+                    </div>
+                </div>
+                <div class="swiper-slide group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=600&q=80" alt="Fashion Website Layout" />
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center">
+                        <span class="text-red-500 font-heading text-2xl font-bold mb-2">STREETWEAR</span>
+                        <a href="demo-fashion.html" target="_blank" class="px-6 py-2 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a>
+                    </div>
+                </div>
+                <div class="swiper-slide group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80" alt="Decor Website Layout" />
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center">
+                        <span class="text-blue-400 font-heading text-2xl font-bold mb-2">HOME DECOR</span>
+                        <a href="demo-business.html" target="_blank" class="px-6 py-2 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-400 hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a>
+                    </div>
+                </div>
+                <div class="swiper-slide group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1545989253-02cc26577f88?w=600&q=80" alt="Art Website Layout" />
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center">
+                        <span class="text-yellow-400 font-heading text-2xl font-bold mb-2">ART GALLERY</span>
+                        <a href="demo-art.html" target="_blank" class="px-6 py-2 border border-yellow-400 text-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition font-bold text-sm btn-view">VIEW DEMO</a>
+                    </div>
+                </div>
+                <div class="swiper-slide group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1555421689-49263307f3dd?w=600&q=80" alt="Digital Website Layout" />
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center">
+                        <span class="text-purple-400 font-heading text-2xl font-bold mb-2">DIGITAL</span>
+                        <a href="demo-starter.html" target="_blank" class="px-6 py-2 border border-purple-400 text-purple-400 rounded-full hover:bg-purple-400 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section id="features" class="max-w-5xl mx-auto py-24 px-6">
-        <div class="text-center mb-16">
-            <h2 class="font-heading text-4xl font-bold mb-6" id="comp-title">Why Use VitrinX?</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto" id="comp-sub">Building a website manually takes weeks. VitrinX does it in minutes by using your existing Etsy data.</p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-4">
-            <div class="p-8 rounded-2xl border border-red-500/20 bg-red-500/5 grayscale opacity-70 hover:opacity-100 transition">
-                <h3 class="text-xl font-bold text-red-400 mb-6"><i class="fa-solid fa-xmark mr-2"></i> Manual Website Builders</h3>
-                <ul class="space-y-4 text-sm text-gray-400">
-                    <li class="flex justify-between"><span>Product Upload</span> <span class="text-white">Manual (One by one)</span></li>
-                    <li class="flex justify-between"><span>Reviews Sync</span> <span class="text-white">Not possible</span></li>
-                    <li class="flex justify-between"><span>Maintenance</span> <span class="text-white">High Effort</span></li>
-                </ul>
-            </div>
-            <div class="p-8 rounded-2xl border border-neon/30 bg-neon/5 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1">VITRINX</div>
-                <h3 class="text-xl font-bold text-neon mb-6"><i class="fa-solid fa-check mr-2"></i> The VitrinX Solution</h3>
-                <ul class="space-y-4 text-sm text-gray-300">
-                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Product Upload</span> <span class="text-white font-bold">Auto-Sync from Etsy</span></li>
-                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Reviews Sync</span> <span class="text-white font-bold">Auto-Import</span></li>
-                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Maintenance</span> <span class="text-white font-bold">Zero Effort</span></li>
-                </ul>
-            </div>
-        </div>
+        <div class="text-center mt-8"><p class="text-xs text-gray-500 uppercase tracking-widest animate-pulse-slow"><i class="fa-solid fa-arrows-left-right"></i> Drag to Explore</p></div>
     </section>
 
     <section id="academy" class="py-24 bg-white/5 border-y border-white/5">
@@ -198,7 +233,7 @@
     <section id="pricing" class="max-w-7xl mx-auto px-6 py-24 relative z-10">
         <div class="text-center mb-16">
             <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" id="pricing-title">One-Time Setup Fee</h2>
-            <p class="text-gray-400" id="pricing-sub">We build it once. You own it forever. No monthly fees.</p>
+            <p class="text-gray-400" id="pricing-sub">We build the bridge between Etsy and your Domain.</p>
         </div>
         <div class="grid md:grid-cols-3 gap-8">
             <div class="glass-card p-8 rounded-3xl flex flex-col">
@@ -242,15 +277,110 @@
         </div>
     </section>
 
-    <footer class="border-t border-white/10 bg-black pt-20 pb-10 text-center relative z-10">
-        <h2 class="text-3xl font-heading font-bold mb-6">VitrinX</h2>
-        <div class="flex justify-center gap-6 mb-10 text-2xl text-gray-400">
-            <a href="#" class="hover:text-neon transition"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="hover:text-neon transition"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="hover:text-neon transition"><i class="fa-brands fa-linkedin"></i></a>
+    <section id="faq" class="py-24 border-t border-white/5 bg-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="font-heading text-3xl font-bold mb-8 text-center" id="faq-title">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                
+                <details class="glass-card rounded-xl p-4 group">
+                    <summary class="font-bold flex justify-between items-center" id="faq-1-q">Do I need to upload products manually? <i class="fa-solid fa-plus text-xs opacity-50"></i></summary>
+                    <p class="mt-4 text-gray-400 text-sm" id="faq-1-a">No. We connect via Etsy API. All photos, descriptions, and prices are fetched automatically.</p>
+                </details>
+
+                <details class="glass-card rounded-xl p-4 group">
+                    <summary class="font-bold flex justify-between items-center text-neon" id="faq-api-q">Does Etsy approval take time? <i class="fa-solid fa-plus text-xs opacity-50"></i></summary>
+                    <p class="mt-4 text-gray-300 text-sm leading-relaxed" id="faq-api-a">
+                        Yes, for security, Etsy reviews requests. This takes about **2-3 days**. <br><br>
+                        During this time, if they ask <em>"Is this for commercial use?"</em> or <em>"Did you write the code?"</em>, don't worry! We provide you with the <strong>exact "Copy-Paste" answers</strong> that guarantee approval.
+                    </p>
+                </details>
+                
+                <details class="glass-card rounded-xl p-4 group">
+                    <summary class="font-bold flex justify-between items-center" id="faq-2-q">How does payment work? <i class="fa-solid fa-plus text-xs opacity-50"></i></summary>
+                    <p class="mt-4 text-gray-400 text-sm" id="faq-2-a">Customers click "Buy" on your site and are redirected to Etsy checkout. You don't need a separate payment gateway.</p>
+                </details>
+
+                <details class="glass-card rounded-xl p-4 group">
+                    <summary class="font-bold flex justify-between items-center" id="faq-3-q">Does this help my ranking? <i class="fa-solid fa-plus text-xs opacity-50"></i></summary>
+                    <p class="mt-4 text-gray-400 text-sm" id="faq-3-a">Yes! Bringing external traffic from your own domain is a huge signal for Etsy's algorithm.</p>
+                </details>
+            </div>
         </div>
-        <p class="text-gray-600 text-xs mt-8">&copy; 2025 VitrinX Technology. Etsy Integration Solutions.</p>
+    </section>
+
+    <footer class="border-t border-white/10 bg-black pt-20 pb-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
+            
+            <div class="col-span-2">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+                    <div class="w-8 h-8 flex items-center justify-center bg-gradient-to-tr from-neon to-emerald-600 rounded-lg">
+                        <span class="font-heading font-bold text-black text-xl">X</span>
+                    </div>
+                    <span class="font-heading text-2xl font-bold text-white">VitrinX</span>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-sm mx-auto md:mx-0 mb-6">
+                    We turn Etsy sellers into global brand owners. <br>
+                    Official API integration partners.
+                </p>
+                <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-building-columns text-gray-400 text-xs"></i>
+                    <div class="text-left">
+                        <div class="text-[10px] text-gray-500 uppercase tracking-wider">Operated By</div>
+                        <div class="text-xs font-bold text-white">Lunaise LLC (Sheridan, WY)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-6">Contact Us</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex items-center justify-center md:justify-start gap-3">
+                        <i class="fa-solid fa-phone text-neon"></i> 
+                        <div>
+                            <span class="block text-white">+1 (307) 205-9144</span>
+                            <span class="text-xs text-gray-500">US Office (Call & SMS Only)</span>
+                        </div>
+                    </li>
+                    
+                    <li class="flex items-center justify-center md:justify-start gap-3">
+                        <i class="fa-brands fa-whatsapp text-[#25D366]"></i> 
+                        <div>
+                            <a href="https://wa.me/905419787726" class="block text-white hover:text-neon transition">+90 (541) 978 77 26</a>
+                            <span class="text-xs text-gray-500">Tech Support (24/7 Chat)</span>
+                        </div>
+                    </li>
+                    
+                    <li class="flex items-center justify-center md:justify-start gap-3">
+                        <i class="fa-solid fa-envelope text-neon"></i> 
+                        <span>support@vitrinx.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-6">Legal</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-neon transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-neon transition">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-neon transition">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-8 text-center flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-6 gap-4">
+            <p class="text-gray-600 text-xs">
+                &copy; 2025 VitrinX. All rights reserved.
+            </p>
+            <p class="text-gray-600 text-xs flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span> 
+                Registered Entity: <strong>Lunaise LLC (EIN Verified)</strong>
+            </p>
+        </div>
     </footer>
+
+    <a href="https://wa.me/905419787726?text=Hello%20VitrinX,%20I%20need%20support." target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.5)] transition hover:scale-110 animate-bounce">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -261,19 +391,23 @@
             autoplay: { delay: 2500, disableOnInteraction: false }
         });
 
-        // ÇEVİRİLER (GÜNCELLENDİ)
         const translations = {
             tr: {
-                'nav-how': 'Nasıl Çalışır?', 'nav-demos': 'Vitrinler', 'nav-features': 'Neden Biz?', 'nav-pricing': 'Fiyatlar', 'nav-cta': 'Hemen Başla',
-                'hero-badge': 'RESMİ ETSY ENTEGRASYONU', 
+                'nav-how': 'Nasıl Çalışır?', 'nav-demos': 'Vitrinler', 'nav-features': 'Neden Biz?', 'nav-pricing': 'Fiyatlar', 'nav-cta': 'Hemen Başla', 'nav-faq': 'SSS',
+                'hero-badge': 'RESMİ API ENTEGRASYONU', 
                 'hero-title-1': 'Etsy Mağazanı', 
-                'hero-title-2': 'Profesyonel Siteye Çevir.',
-                'hero-desc': 'Etsy mağazanızdaki <strong>ürünleri, fotoğrafları ve yorumları</strong> anında kendi .com web sitenize senkronize ediyoruz. Kodlama yok. Sadece markanız var.',
+                'hero-title-2': 'Kendi Sitene Klonla.',
+                'hero-desc': 'Sadece bir pazar yerine bağlı kalmayın. Etsy mağazanızdaki <strong>ürünleri ve fotoğrafları</strong> otomatik çekerek size özel .com web sitesini kuruyoruz. <br>(Ödemeler güvenle Etsy üzerinden alınır)',
                 'btn-explore': 'Örnek Siteleri Gör', 'btn-how': 'Nasıl Çalışır?',
-                'step-1-title': 'Etsy\'yi Bağla', 'step-1-desc': 'Mağaza adını gir. Sistemimiz kataloğuna güvenle bağlanır.',
-                'step-2-title': 'Otomatik Çekim', 'step-2-desc': 'Tüm ürünlerin, fiyatların ve görsellerin otomatik çekilir.',
-                'step-3-title': '.COM Yayında', 'step-3-desc': 'Web siten kendi alan adınla yayına girer. Satışa hazırsın.',
+                'step-1-title': 'API Bağlantısı', 'step-1-desc': 'Mağaza adınla Etsy API sistemine bağlanıyoruz.',
+                'step-2-title': 'Veri Çekimi', 'step-2-desc': 'Ürün fotoların ve açıklamaların otomatik çekilip tasarıma yerleşiyor.',
+                'step-3-title': 'Yönlendirmeli Satış', 'step-3-desc': 'Müşteri sitende gezer, "Satın Al" deyince Etsy ödemesine gider. Stok sorunu olmaz.',
                 'slider-title': 'Ürünlerin İçin Hazır Temalar', 'slider-sub': '"Bir tasarım seç, içini Etsy ürünlerinle dolduralım."',
+                'faq-title': 'Sıkça Sorulan Sorular',
+                'faq-1-q': 'Ürünleri tek tek yükleyecek miyim?', 'faq-1-a': 'Hayır. Etsy API ile bağlanıp her şeyi (Foto, Fiyat, Açıklama) otomatik çekiyoruz.',
+                'faq-2-q': 'Ödemeyi nasıl alacağım?', 'faq-2-a': 'Web sitesi bir katalog görevi görür. Müşteri "Satın Al" dediğinde Etsy ödeme sayfasına yönlenir. Güven sorunu yaşanmaz.',
+                'faq-api-q': 'Etsy onayı ne kadar sürer?', 'faq-api-a': 'Güvenlik nedeniyle Etsy incelemesi yaklaşık <strong>2-3 gün</strong> sürer. <br><br>Bu süreçte <em>"Bu kodu kim yazdı?"</em> veya <em>"Başkasına satacak mısınız?"</em> diye sorarlarsa endişelenmeyin! Size onayı garantileyen <strong>"Kopyala-Yapıştır Cevap Anahtarı"</strong>nı veriyoruz.',
+                'faq-3-q': 'Etsy sıralamama faydası var mı?', 'faq-3-a': 'Evet! Kendi sitenden (External Traffic) gelen müşteriler, Etsy algoritmasında mağazanı öne çıkarır.',
                 'comp-title': 'Neden VitrinX?', 'comp-sub': 'Manuel site kurmak haftalar sürer. VitrinX, Etsy verini kullanarak bunu dakikalar içinde yapar.',
                 'pricing-title': 'Tek Seferlik Kurulum', 'pricing-sub': 'Bir kere kuruyoruz, ömür boyu senin. Aylık kira yok.',
                 't-clean': 'Etsy Ürün Aktarımı', 't-host': 'Hosting Dahil', 't-domain': 'Alan Adı Bağlama', 't-semi': 'Otomatik Güncelleme', 't-blog': 'Blog & Sayfalar', 't-color': 'Özel Markalama', 't-auto': 'Anlık Senkronizasyon', 't-dark': 'Neon / Koyu Mod', 't-video': 'Video Arka Planlar',
