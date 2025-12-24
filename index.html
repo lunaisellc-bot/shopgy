@@ -31,43 +31,22 @@
     <style>
         body { background-color: #050505; color: white; overflow-x: hidden; }
         
-        /* SWIPER OPTİMİZASYONU */
         .swiper { width: 100%; padding-top: 50px; padding-bottom: 50px; }
-        
         .swiper-slide { 
-            background-position: center; 
-            background-size: cover; 
-            width: 300px; 
-            height: 450px; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            overflow: hidden; 
+            background-position: center; background-size: cover; width: 300px; height: 450px; 
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; 
             box-shadow: 0 15px 50px rgba(0,0,0,0.5); 
-            will-change: transform; 
-            transform: translateZ(0); 
+            will-change: transform; transform: translateZ(0); 
         }
-        
-        .swiper-slide img { 
-            display: block; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover;
-            backface-visibility: hidden; 
-            transition: transform 0.5s;
-        }
+        .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; backface-visibility: hidden; transition: transform 0.5s; }
         .swiper-slide:hover img { transform: scale(1.05); }
 
-        /* DİĞER EFEKTLER */
         .glass-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
         .glass-card:hover { transform: translateY(-5px); border-color: #00ff9d; box-shadow: 0 0 30px rgba(0, 255, 157, 0.1); }
         
-        /* FAQ Detayları */
         details > summary { list-style: none; cursor: pointer; transition: all 0.3s; }
         details > summary::-webkit-details-marker { display: none; }
         details[open] summary { color: #00ff9d; }
@@ -111,16 +90,13 @@
         <div class="mb-6 animate-float">
             <span class="px-4 py-1.5 rounded-full border border-neon/30 bg-neon/10 text-neon text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_10px_rgba(0,255,157,0.2)]" id="hero-badge">OFFICIAL API INTEGRATION</span>
         </div>
-        
         <h1 class="font-heading text-5xl md:text-7xl font-bold leading-tight mb-8">
             <span id="hero-title-1">We Sync Your Etsy Shop</span> <br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple drop-shadow-[0_0_15px_rgba(0,255,157,0.3)]" id="hero-title-2">To Your Own Website.</span>
         </h1>
-        
         <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed" id="hero-desc">
             Stop sending traffic only to a marketplace. We build a professional <strong>.com website</strong> that automatically pulls products from your Etsy store. <br><span class="text-white text-sm mt-2 block opacity-70">(Payments are still processed securely via Etsy)</span>
         </p>
-        
         <div class="flex flex-col sm:flex-row gap-6">
             <a href="portfolio.html" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105">
                 <div class="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
@@ -173,7 +149,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=600&q=80" alt="Fashion Website Layout" />
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Fashion Store Layout" />
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center">
                         <span class="text-red-500 font-heading text-2xl font-bold mb-2">STREETWEAR</span>
                         <a href="demo-fashion.html" target="_blank" class="px-6 py-2 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a>
@@ -194,7 +170,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1555421689-49263307f3dd?w=600&q=80" alt="Digital Website Layout" />
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Digital Website Layout" />
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center">
                         <span class="text-purple-400 font-heading text-2xl font-bold mb-2">DIGITAL</span>
                         <a href="demo-starter.html" target="_blank" class="px-6 py-2 border border-purple-400 text-purple-400 rounded-full hover:bg-purple-400 hover:text-white transition font-bold text-sm btn-view">VIEW DEMO</a>
@@ -215,7 +191,6 @@
                 <a href="blog-strategy.html" class="text-neon text-sm font-bold hover:underline hidden md:block" id="blog-link">Read All Articles -></a>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                
                 <a href="blog-strategy.html" class="glass-card rounded-xl p-6 group cursor-pointer block">
                     <div class="h-40 bg-gray-800 rounded-lg mb-4 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Data Analytics">
@@ -224,7 +199,6 @@
                     <h3 class="font-bold text-lg mb-2 group-hover:text-neon transition" id="art-1-title">The "External Traffic" Secret</h3>
                     <p class="text-gray-500 text-xs leading-relaxed" id="art-1-desc">How sending traffic to your own .com site tricks the Etsy algorithm into ranking you higher.</p>
                 </a>
-                
                 <a href="blog-mindset.html" class="glass-card rounded-xl p-6 group cursor-pointer block">
                     <div class="h-40 bg-gray-800 rounded-lg mb-4 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Statue">
@@ -233,7 +207,6 @@
                     <h3 class="font-bold text-lg mb-2 group-hover:text-neon transition" id="art-2-title">From Hobbyist to CEO</h3>
                     <p class="text-gray-500 text-xs leading-relaxed" id="art-2-desc">Why registering as a legal entity (like an LLC) changes how customers and Etsy treat you.</p>
                 </a>
-                
                 <a href="blog-trends.html" class="glass-card rounded-xl p-6 group cursor-pointer block">
                     <div class="h-40 bg-gray-800 rounded-lg mb-4 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Abstract Tech">
@@ -309,7 +282,7 @@
                 <details class="glass-card rounded-xl p-4 group">
                     <summary class="font-bold flex justify-between items-center text-neon" id="faq-api-q">Does Etsy approval take time? <i class="fa-solid fa-plus text-xs opacity-50"></i></summary>
                     <p class="mt-4 text-gray-300 text-sm leading-relaxed" id="faq-api-a">
-                        Yes, for security, Etsy reviews requests. This takes about **2-3 days**. <br><br>
+                        Yes, for security, Etsy reviews requests. This takes about <strong>2-3 days</strong>. <br><br>
                         During this time, if they ask <em>"Is this for commercial use?"</em> or <em>"Did you write the code?"</em>, don't worry! We provide you with the <strong>exact "Copy-Paste" answers</strong> that guarantee approval.
                     </p>
                 </details>
@@ -329,7 +302,6 @@
 
     <footer class="border-t border-white/10 bg-black pt-20 pb-10 relative z-10">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
-            
             <div class="col-span-2">
                 <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
                     <div class="w-8 h-8 flex items-center justify-center bg-gradient-to-tr from-neon to-emerald-600 rounded-lg">
@@ -360,7 +332,6 @@
                             <span class="text-xs text-gray-500">US Office (Call & SMS Only)</span>
                         </div>
                     </li>
-                    
                     <li class="flex items-center justify-center md:justify-start gap-3">
                         <i class="fa-brands fa-whatsapp text-[#25D366]"></i> 
                         <div>
@@ -368,7 +339,6 @@
                             <span class="text-xs text-gray-500">Tech Support (24/7 Chat)</span>
                         </div>
                     </li>
-                    
                     <li class="flex items-center justify-center md:justify-start gap-3">
                         <i class="fa-solid fa-envelope text-neon"></i> 
                         <span>support@vitrinx.com</span>
