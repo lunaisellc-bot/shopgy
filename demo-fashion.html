@@ -1,133 +1,535 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URBAN | Streetwear Concept</title>
+    <title>URBAN ARMOR | Technical Streetwear</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=JetBrains+Mono:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { 
                         'head': ['Oswald', 'sans-serif'],
-                        'body': ['Roboto', 'sans-serif']
+                        'mono': ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        'accent': '#FF3C00', /* Cesur Turuncu */
-                        'offwhite': '#F5F5F5'
+                        'void': '#050505',
+                        'concrete': '#1a1a1a',
+                        'acid': '#CCFF00', /* Neon Lime - Hype Rengi */
+                        'steel': '#888888'
+                    },
+                    animation: {
+                        'marquee': 'marquee 15s linear infinite',
+                        'marquee-reverse': 'marqueeReverse 15s linear infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                        'spin-slow': 'spin 10s linear infinite'
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        marqueeReverse: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(0%)' },
+                        },
+                        glitch: {
+                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                            '62%': { transform: 'translate(0,0) skew(5deg)' }
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Kayar Yazı Efekti */
-        .marquee-container { overflow: hidden; white-space: nowrap; background: black; color: white; padding: 10px 0; }
-        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 2px; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        /* GRID BACKGROUND TEXTURE */
+        .grid-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* CUSTOM CURSOR */
+        body { cursor: crosshair; }
         
-        .img-zoom { overflow: hidden; }
-        .img-zoom img { transition: transform 0.5s ease; }
-        .img-zoom:hover img { transform: scale(1.1); }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #CCFF00; border-radius: 0; }
+
+        /* IMAGE HOVER EFFECTS */
+        .glitch-img-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .glitch-img-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(204, 255, 0, 0.2);
+            mix-blend-mode: multiply;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .glitch-img-container:hover::after {
+            opacity: 1;
+        }
+        .glitch-img-container img {
+            transition: transform 0.1s steps(5); /* Frame-by-frame effect */
+        }
+        .glitch-img-container:hover img {
+            transform: scale(1.05);
+            filter: contrast(120%) grayscale(100%);
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* BRUTALIST BUTTON */
+        .btn-brutal {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .btn-brutal::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: #CCFF00;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        .btn-brutal:hover::before {
+            left: 0;
+        }
+        .btn-brutal:hover {
+            color: black;
+            border-color: #CCFF00;
+        }
     </style>
 </head>
-<body class="bg-offwhite font-body text-black">
+<body class="bg-void text-white font-head selection:bg-acid selection:text-black overflow-x-hidden">
 
-    <div class="marquee-container">
-        <div class="marquee-content">
-            NEW DROP AVAILABLE NOW • FREE SHIPPING WORLDWIDE • LIMITED EDITION • STREETWEAR COLLECTION • NEW DROP AVAILABLE NOW • FREE SHIPPING WORLDWIDE • LIMITED EDITION • STREETWEAR COLLECTION
+    <div class="grid-overlay"></div>
+
+    <div class="bg-acid text-black overflow-hidden py-1 border-b border-black">
+        <div class="animate-marquee whitespace-nowrap font-mono text-xs font-bold tracking-widest">
+            WARNING: HIGH DEMAND • WORLDWIDE SHIPPING • SECURE CHECKOUT VIA ETSY • LIMITED STOCK • NO RESTOCKS • WARNING: HIGH DEMAND • WORLDWIDE SHIPPING • SECURE CHECKOUT VIA ETSY
         </div>
     </div>
 
-    <nav class="flex justify-between items-center p-6 border-b border-black sticky top-0 bg-offwhite/90 backdrop-blur z-50">
-        <div class="text-3xl font-head font-bold tracking-tighter">URBAN.</div>
-        <div class="hidden md:flex gap-8 font-bold text-sm tracking-widest uppercase">
-            <a href="#" class="hover:text-accent transition">Hoodies</a>
-            <a href="#" class="hover:text-accent transition">T-Shirts</a>
-            <a href="#" class="hover:text-accent transition">Accessories</a>
+    <nav class="fixed w-full z-50 top-6 px-6 md:px-10 flex justify-between items-start mix-blend-difference text-white pointer-events-none">
+        <div class="pointer-events-auto">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tighter leading-none hover:text-acid transition cursor-pointer">
+                URBAN<br>ARMOR<span class="text-acid">.</span>
+            </h1>
+            <p class="font-mono text-[10px] text-gray-400 mt-2 tracking-widest">EST. 2025 // SECTOR 7</p>
         </div>
-        <div class="flex gap-4">
-            <button class="font-head font-bold border-2 border-black px-6 py-2 hover:bg-black hover:text-white transition">ETSY SHOP</button>
+
+        <div class="hidden md:flex flex-col items-end gap-1 pointer-events-auto">
+            <a href="#drop" class="text-xl font-bold uppercase hover:line-through decoration-acid decoration-4">The Drop</a>
+            <a href="#" class="text-xl font-bold uppercase hover:line-through decoration-acid decoration-4">Archives</a>
+            <a href="#" class="text-xl font-bold uppercase hover:line-through decoration-acid decoration-4">About</a>
+            <div class="mt-4 border border-white px-4 py-1 rounded-full font-mono text-xs hover:bg-white hover:text-black transition cursor-pointer">
+                CART [0]
+            </div>
+        </div>
+        
+        <div class="md:hidden pointer-events-auto text-2xl">
+            <i class="fa-solid fa-bars"></i>
         </div>
     </nav>
 
-    <header class="relative h-[80vh] flex items-center justify-center bg-gray-900 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Fashion">
-        <div class="relative z-10 text-center text-white">
-            <h1 class="text-6xl md:text-9xl font-head font-bold uppercase leading-none mb-4">Define<br>Yourself</h1>
-            <p class="text-xl mb-8 tracking-widest uppercase">Premium Streetwear Collection</p>
-            <a href="#" class="bg-accent text-white px-10 py-4 font-head text-xl font-bold uppercase tracking-wider hover:bg-white hover:text-black transition inline-block">
-                Shop The Drop
-            </a>
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1541336528065-8f1fdc435835?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-40 grayscale" alt="Streetwear Hero">
+            <div class="absolute inset-0 bg-gradient-to-t from-void via-transparent to-void"></div>
+        </div>
+
+        <div class="relative z-10 text-center w-full px-4">
+            <div class="font-mono text-acid text-xs md:text-sm tracking-[0.5em] mb-4 animate-pulse">SYSTEM ONLINE</div>
+            
+            <h2 class="text-[12vw] leading-[0.8] font-bold tracking-tighter mix-blend-overlay text-white opacity-80 select-none">
+                FUTURE<br>RESIST
+            </h2>
+            
+            <div class="mt-12 flex flex-col items-center gap-6">
+                <p class="font-mono text-xs md:text-sm max-w-md text-gray-400">
+                    // TECHNICAL APPAREL FOR THE MODERN DYSTOPIA. <br>
+                    ENGINEERED IN MALATYA. WORN WORLDWIDE.
+                </p>
+                <a href="#drop" class="btn-brutal border border-white px-10 py-4 text-sm font-mono tracking-widest uppercase inline-block">
+                    Enter Shop
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-10 font-mono text-[10px] text-gray-600 hidden md:block">
+            LAT: 38.3552 N <br> LNG: 38.3095 E
+        </div>
+        <div class="absolute bottom-10 right-10 font-mono text-[10px] text-acid animate-spin-slow">
+            <i class="fa-solid fa-gear text-2xl"></i>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 py-20">
-        <div class="flex justify-between items-end mb-10">
-            <h2 class="text-4xl font-head font-bold uppercase">Trending Now</h2>
-            <a href="#" class="font-bold underline hover:text-accent">View All Products</a>
+    <div class="bg-void border-y border-white/10 py-8 overflow-hidden">
+        <div class="animate-marquee-reverse whitespace-nowrap font-head text-6xl md:text-8xl font-bold text-white/5 uppercase tracking-tighter select-none">
+            Don't Conform • Break The Simulation • Urban Armor • Heavy Cotton • Limited Edition •
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="group cursor-pointer">
-                <div class="img-zoom aspect-[3/4] mb-4 bg-gray-200 relative">
-                    <span class="absolute top-4 left-4 bg-accent text-white text-xs font-bold px-2 py-1 z-10">BEST SELLER</span>
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80" class="w-full h-full object-cover" alt="Tshirt">
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="font-head text-xl font-bold uppercase">Graphic Tee No.1</h3>
-                        <p class="text-gray-500 text-sm">Oversized Fit</p>
-                    </div>
-                    <span class="font-bold text-lg">$35.00</span>
-                </div>
-                <button class="w-full mt-4 border border-black py-2 font-head font-bold hover:bg-black hover:text-white transition uppercase">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer">
-                <div class="img-zoom aspect-[3/4] mb-4 bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&q=80" class="w-full h-full object-cover" alt="Hoodie">
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="font-head text-xl font-bold uppercase">Essential Hoodie</h3>
-                        <p class="text-gray-500 text-sm">Heavyweight Cotton</p>
-                    </div>
-                    <span class="font-bold text-lg">$65.00</span>
-                </div>
-                <button class="w-full mt-4 border border-black py-2 font-head font-bold hover:bg-black hover:text-white transition uppercase">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer">
-                <div class="img-zoom aspect-[3/4] mb-4 bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80" class="w-full h-full object-cover" alt="Black Shirt">
-                </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="font-head text-xl font-bold uppercase">Noir Series</h3>
-                        <p class="text-gray-500 text-sm">Limited Edition</p>
-                    </div>
-                    <span class="font-bold text-lg">$42.00</span>
-                </div>
-                <button class="w-full mt-4 border border-black py-2 font-head font-bold hover:bg-black hover:text-white transition uppercase">Buy on Etsy</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-black text-white py-20 text-center px-6">
-        <h2 class="text-4xl md:text-6xl font-head font-bold uppercase mb-6">Join The Movement</h2>
-        <p class="text-gray-400 mb-8 max-w-xl mx-auto">Subscribe for exclusive drops, early access, and special discounts directly to your inbox.</p>
-        <div class="flex justify-center gap-2 max-w-md mx-auto">
-            <input type="email" placeholder="ENTER YOUR EMAIL" class="bg-transparent border border-white p-4 w-full text-white placeholder-gray-500 focus:outline-none focus:border-accent">
-            <button class="bg-accent px-8 py-4 font-bold font-head uppercase hover:bg-white hover:text-black transition">Sign Up</button>
-        </div>
-    </section>
-
-    <div class="fixed bottom-4 right-4 bg-accent text-white px-3 py-1 text-xs font-bold uppercase shadow-lg z-50">
-        FASHION DEMO
     </div>
 
+    <section id="drop" class="px-4 md:px-8 py-24 bg-void relative">
+        <div class="flex justify-between items-end mb-16 border-b border-white/20 pb-4 reveal">
+            <div>
+                <span class="font-mono text-acid text-xs">COLLECTION 001</span>
+                <h3 class="text-4xl md:text-6xl font-bold uppercase">Mainline</h3>
+            </div>
+            <div class="font-mono text-xs text-right hidden md:block">
+                <span class="block">ITEMS: 15</span>
+                <span class="block text-acid">STATUS: LIVE</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-16">
+
+            <div class="group cursor-pointer reveal">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <span class="absolute top-2 left-2 bg-acid text-black font-mono text-[9px] px-2 py-1 font-bold z-10">BESTSELLER</span>
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&q=80" class="w-full h-full object-cover" alt="Hoodie">
+                    <div class="absolute bottom-2 right-2 font-mono text-[9px] text-acid bg-black/80 px-2 py-1 opacity-0 group-hover:opacity-100 transition">
+                        450GSM COTTON
+                    </div>
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Oversized Hoodie</h4>
+                        <p class="text-gray-500">Heavyweight / Black</p>
+                    </div>
+                    <span class="text-white">$85</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-75">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80" class="w-full h-full object-cover" alt="Tee">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Graphic Tee V1</h4>
+                        <p class="text-gray-500">Boxy Fit / White</p>
+                    </div>
+                    <span class="text-white">$45</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80" class="w-full h-full object-cover" alt="Jacket">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Tactical Vest</h4>
+                        <p class="text-gray-500">Utility / Multi-pocket</p>
+                    </div>
+                    <span class="text-white">$120</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-150">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <span class="absolute top-2 left-2 border border-white text-white font-mono text-[9px] px-2 py-1 font-bold z-10">LOW STOCK</span>
+                    <img src="https://images.unsplash.com/photo-1551488852-0847ec3663a6?w=800&q=80" class="w-full h-full object-cover" alt="Beanie">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Docker Beanie</h4>
+                        <p class="text-gray-500">Wool Blend / Orange</p>
+                    </div>
+                    <span class="text-white">$30</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=80" class="w-full h-full object-cover" alt="Cargo">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Tech Cargo Pants</h4>
+                        <p class="text-gray-500">Ripstop / Olive</p>
+                    </div>
+                    <span class="text-white">$95</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-75">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=800&q=80" class="w-full h-full object-cover" alt="Print Tee">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Acid Wash Tee</h4>
+                        <p class="text-gray-500">Vintage Wash / Grey</p>
+                    </div>
+                    <span class="text-white">$50</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" class="w-full h-full object-cover" alt="Sneaker">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Proto-Runner</h4>
+                        <p class="text-gray-500">Mesh / Red Accent</p>
+                    </div>
+                    <span class="text-white">$180</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-150">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1520975661595-6453be3f7070?w=800&q=80" class="w-full h-full object-cover" alt="Denim">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Distressed Denim</h4>
+                        <p class="text-gray-500">Japanese Denim / Blue</p>
+                    </div>
+                    <span class="text-white">$140</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+            
+             <div class="group cursor-pointer reveal">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80" class="w-full h-full object-cover" alt="Black Shirt">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Core Black Tee</h4>
+                        <p class="text-gray-500">Essential / Jet Black</p>
+                    </div>
+                    <span class="text-white">$40</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-75">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=800&q=80" class="w-full h-full object-cover" alt="Puffer">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Cropped Puffer</h4>
+                        <p class="text-gray-500">Nylon / Reflective</p>
+                    </div>
+                    <span class="text-white">$210</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80" class="w-full h-full object-cover" alt="High Tops">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">High Top Trainers</h4>
+                        <p class="text-gray-500">Leather / Monochrome</p>
+                    </div>
+                    <span class="text-white">$160</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-150">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1525450824786-227cbef707f3?w=800&q=80" class="w-full h-full object-cover" alt="Tote">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Industrial Tote</h4>
+                        <p class="text-gray-500">Heavy Canvas / Print</p>
+                    </div>
+                    <span class="text-white">$55</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+             <div class="group cursor-pointer reveal">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&q=80" class="w-full h-full object-cover" alt="Cap">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Distressed Cap</h4>
+                        <p class="text-gray-500">Cotton / Frayed</p>
+                    </div>
+                    <span class="text-white">$35</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+             <div class="group cursor-pointer reveal delay-75">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=800&q=80" class="w-full h-full object-cover" alt="Long Sleeve">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Layering Tee</h4>
+                        <p class="text-gray-500">Long Sleeve / Mesh</p>
+                    </div>
+                    <span class="text-white">$60</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+             <div class="group cursor-pointer reveal delay-100">
+                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
+                    <span class="absolute top-2 left-2 bg-white text-black font-mono text-[9px] px-2 py-1 font-bold z-10">COLLAB</span>
+                    <img src="https://images.unsplash.com/photo-1605518216938-7f31b7b64071?w=800&q=80" class="w-full h-full object-cover" alt="Shorts">
+                </div>
+                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
+                    <div>
+                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Basketball Shorts</h4>
+                        <p class="text-gray-500">Mesh / Oversized</p>
+                    </div>
+                    <span class="text-white">$70</span>
+                </div>
+                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
+            </div>
+
+        </div>
+
+        <div class="mt-24 text-center reveal">
+            <button class="btn-brutal border border-white text-white px-12 py-4 font-mono text-xs tracking-widest uppercase inline-block hover:text-black">
+                View All Archive
+            </button>
+        </div>
+    </section>
+
+    <section class="relative h-[60vh] flex items-center justify-center border-t border-white/10 bg-acid">
+        <div class="absolute inset-0 z-0">
+             <img src="https://images.unsplash.com/photo-1549497557-d54b4f5325b5?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-20 mix-blend-multiply grayscale" alt="Crowd">
+        </div>
+        
+        <div class="relative z-10 text-center px-6">
+            <h3 class="text-black text-6xl md:text-9xl font-bold tracking-tighter uppercase mb-4 leading-none">
+                Don't <br>Sleep.
+            </h3>
+            <p class="font-mono text-black text-sm md:text-base mb-8 max-w-lg mx-auto">
+                LIMITED QUANTITIES. ONCE THEY'RE GONE, THEY'RE GONE. SIGN UP FOR EARLY ACCESS TO DROP 002.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-0 max-w-md mx-auto border border-black">
+                <input type="email" placeholder="EMAIL ADDRESS" class="bg-transparent text-black placeholder-black/50 p-4 w-full focus:outline-none font-mono text-xs uppercase">
+                <button class="bg-black text-acid px-8 py-4 font-bold uppercase hover:bg-white hover:text-black transition">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-void text-white pt-20 pb-10 px-6 border-t border-white/10 font-mono text-xs">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-acid">URBAN ARMOR</h4>
+                <p class="text-gray-500 leading-relaxed max-w-xs">
+                    Redefining the silhouette of the modern city. Technical fabrics meets brutalist aesthetics.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-white mb-4 uppercase">Support</h4>
+                <ul class="space-y-2 text-gray-500">
+                    <li><a href="#" class="hover:text-acid transition">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-acid transition">Size Guide</a></li>
+                    <li><a href="#" class="hover:text-acid transition">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-white mb-4 uppercase">Legal</h4>
+                <ul class="space-y-2 text-gray-500">
+                    <li><a href="#" class="hover:text-acid transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-acid transition">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-white mb-4 uppercase">Socials</h4>
+                <div class="flex gap-4 text-xl text-gray-500">
+                    <a href="#" class="hover:text-acid transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-acid transition"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="hover:text-acid transition"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-gray-600">
+            <p>&copy; 2025 URBAN ARMOR. POWERED BY VITRINX.</p>
+            <p>DESIGNED IN THE VOID.</p>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="#" class="relative group">
+            <div class="absolute inset-0 bg-acid blur-md opacity-50 group-hover:opacity-100 transition duration-500"></div>
+            <div class="relative bg-black border border-acid text-acid h-20 w-20 rounded-full flex items-center justify-center animate-spin-slow">
+                 <svg viewBox="0 0 100 100" width="100" height="100">
+                  <path id="curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent"/>
+                  <text font-size="12" font-family="JetBrains Mono" font-weight="bold" fill="currentColor">
+                    <textPath xlink:href="#curve">
+                      • VERIFIED • AUTHENTIC 
+                    </textPath>
+                  </text>
+                </svg>
+            </div>
+            <i class="fa-solid fa-check absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-acid text-xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
