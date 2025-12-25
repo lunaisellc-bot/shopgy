@@ -1,176 +1,555 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naturel Home - Profesyonel Demo</title>
+    <title>NATUREL HOME | Sustainable Living</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    fontFamily: { 
+                        'serif': ['Cormorant Garamond', 'serif'],
+                        'sans': ['Outfit', 'sans-serif']
+                    },
                     colors: {
-                        brand: '#2C5F2D', // Orman Yeşili
-                        secondary: '#97BC62',
-                        light: '#F8F9FA'
+                        'cream': '#FDFBF7',
+                        'earth': '#2C2A26',
+                        'olive': '#3A4D39',
+                        'clay': '#8B7E74',
+                        'sand': '#E6E2DD'
+                    },
+                    animation: {
+                        'marquee': 'marquee 40s linear infinite',
+                        'spin-slow': 'spin 15s linear infinite',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards'
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        .hero-bg {
-            background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+        /* ORGANIC TEXTURE OVERLAY */
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 99;
         }
-        .btn-brand {
-            background-color: #2C5F2D;
-            color: white;
-            transition: all 0.3s;
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #3A4D39; }
+
+        /* REVEAL ON SCROLL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .btn-brand:hover {
-            background-color: #1a3c1b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(44, 95, 45, 0.3);
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* PRODUCT CARD HOVER */
+        .product-card .img-wrap img {
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .product-card:hover .img-wrap img {
+            transform: scale(1.08);
+        }
+        .product-card .actions {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        .product-card:hover .actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* TEXT SELECTION */
+        ::selection {
+            background: #3A4D39;
+            color: #FDFBF7;
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 antialiased">
+<body class="bg-cream text-earth font-sans antialiased selection:bg-olive selection:text-white overflow-x-hidden">
 
-    <div class="bg-brand text-white text-center py-2 text-xs font-medium tracking-wide">
-        📦 TÜM DÜNYAYA ÜCRETSİZ KARGO | ETSY GÜVENCESİYLE
+    <div class="grain-overlay"></div>
+
+    <div class="bg-olive text-cream text-center py-2 text-[10px] uppercase tracking-[0.2em] font-medium relative z-50">
+        Free Worldwide Shipping on Orders Over $150
     </div>
 
-    <nav class="border-b border-gray-100 py-4">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="text-2xl font-bold text-brand tracking-tighter">NATUREL.</div>
-            
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-500">
-                <a href="#" class="hover:text-brand transition">YENİLER</a>
-                <a href="#" class="hover:text-brand transition">EV DEKOR</a>
-                <a href="#" class="hover:text-brand transition">MUTFAK</a>
-                <a href="#" class="hover:text-brand transition">BLOG</a>
-            </div>
+    <nav class="fixed w-full z-40 top-8 transition-all duration-500 px-6 md:px-12 flex justify-between items-center" id="navbar">
+        <div class="flex gap-8 text-xs uppercase tracking-widest font-medium hidden md:flex">
+            <a href="#collection" class="hover:text-olive transition">Furniture</a>
+            <a href="#collection" class="hover:text-olive transition">Decor</a>
+            <a href="#" class="hover:text-olive transition">Journal</a>
+        </div>
 
-            <div class="flex items-center gap-4">
-                <button class="text-sm font-bold text-brand border-2 border-brand px-5 py-2 rounded-full hover:bg-brand hover:text-white transition">
-                    Mağazayı Gör
-                </button>
-            </div>
+        <div class="font-serif text-3xl font-bold tracking-tight text-center cursor-pointer">
+            NATUREL.
+        </div>
+
+        <div class="flex gap-6 text-xs uppercase tracking-widest font-medium">
+            <a href="#" class="hover:text-olive transition">Search</a>
+            <a href="#" class="hover:text-olive transition">Cart (2)</a>
         </div>
     </nav>
 
-    <header class="relative h-[500px] flex items-center">
-        <div class="absolute inset-0 hero-bg">
-            <div class="absolute inset-0 bg-black/20"></div> </div>
-        <div class="relative max-w-7xl mx-auto px-6 w-full">
-            <div class="max-w-xl bg-white/90 backdrop-blur-sm p-10 rounded-2xl shadow-xl">
-                <span class="text-brand font-bold text-xs uppercase tracking-wider mb-2 block">Yeni Koleksiyon</span>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                    Eviniz İçin <br>Doğal Dokunuşlar.
-                </h1>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Sürdürülebilir malzemelerle üretilen el yapımı dekorasyon ürünleri. 
-                    Evinizin havasını değiştirin.
-                </p>
-                <div class="flex gap-4">
-                    <a href="#" class="btn-brand px-8 py-3 rounded-lg font-bold text-sm">Alışverişe Başla</a>
-                    <a href="#" class="px-8 py-3 border border-gray-300 rounded-lg font-bold text-sm hover:bg-gray-50 transition">Kategoriler</a>
-                </div>
+    <header class="relative h-[95vh] w-full overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=2000&auto=format&fit=crop" 
+                 class="w-full h-full object-cover scale-105" 
+                 alt="Minimalist Interior">
+            <div class="absolute inset-0 bg-black/10"></div>
+        </div>
+
+        <div class="relative z-10 text-center text-white px-4 max-w-4xl">
+            <p class="text-[10px] md:text-xs uppercase tracking-[0.4em] mb-6 reveal delay-100 mix-blend-overlay font-bold">The 2025 Collection</p>
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.9] mb-8 reveal delay-200">
+                Design for <br> <span class="italic font-light">Slow Living</span>
+            </h1>
+            <p class="font-sans font-light text-sm md:text-base max-w-lg mx-auto leading-relaxed opacity-90 reveal delay-300 mb-12">
+                Handcrafted furniture and decor made from sustainable materials. <br> 
+                Bringing the calmness of nature into your sanctuary.
+            </p>
+            
+            <div class="reveal delay-500">
+                <a href="#collection" class="group relative inline-flex items-center gap-3 px-8 py-4 bg-white text-earth text-xs uppercase tracking-[0.2em] transition-all hover:bg-olive hover:text-white">
+                    Explore Shop
+                    <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                </a>
             </div>
         </div>
     </header>
 
-    <section class="py-12 bg-light border-y border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-                <div class="text-3xl mb-2">🌿</div>
-                <h3 class="font-bold mb-1">El Yapımı</h3>
-                <p class="text-sm text-gray-500">%100 doğal malzemeler</p>
-            </div>
-            <div>
-                <div class="text-3xl mb-2">✨</div>
-                <h3 class="font-bold mb-1">Eşsiz Tasarım</h3>
-                <p class="text-sm text-gray-500">Her parça tek ve özel</p>
-            </div>
-            <div>
-                <div class="text-3xl mb-2">🛡️</div>
-                <h3 class="font-bold mb-1">Güvenli Ödeme</h3>
-                <p class="text-sm text-gray-500">Etsy koruması altında</p>
-            </div>
+    <div class="py-4 border-b border-earth/5 bg-sand/30 overflow-hidden whitespace-nowrap backdrop-blur-sm">
+        <div class="inline-block animate-marquee">
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">Sustainable Materials</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">•</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">Ethically Handcrafted</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">•</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">Lifetime Warranty</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">•</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">Organic Finishes</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">•</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">Sustainable Materials</span>
+            <span class="text-sm font-sans text-earth/60 mx-12 uppercase tracking-[0.2em]">•</span>
         </div>
-    </section>
-
-    <section class="py-20 max-w-7xl mx-auto px-6">
-        <div class="flex justify-between items-end mb-10">
-            <div>
-                <h2 class="text-3xl font-bold text-gray-900">Popüler Ürünler</h2>
-                <p class="text-gray-500 mt-2">Bu ayın en çok satan parçaları</p>
-            </div>
-            <a href="#" class="text-brand font-bold hover:underline">Tümünü Gör →</a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="group">
-                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
-                    <img src="https://images.unsplash.com/photo-1594051528657-6967000d66c5?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Vazo">
-                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
-                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
-                            Etsy'de İncele
-                        </button>
-                    </div>
-                </div>
-                <h3 class="font-bold text-lg text-gray-900">Seramik Vazo</h3>
-                <p class="text-gray-500">$45.00</p>
-            </div>
-
-            <div class="group">
-                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
-                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Masa">
-                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
-                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
-                            Etsy'de İncele
-                        </button>
-                    </div>
-                </div>
-                <h3 class="font-bold text-lg text-gray-900">Ahşap Sehpa</h3>
-                <p class="text-gray-500">$120.00</p>
-            </div>
-
-            <div class="group">
-                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
-                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Lamba">
-                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
-                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
-                            Etsy'de İncele
-                        </button>
-                    </div>
-                </div>
-                <h3 class="font-bold text-lg text-gray-900">Minimalist Lamba</h3>
-                <p class="text-gray-500">$85.00</p>
-            </div>
-            
-            <div class="group">
-                <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 h-80">
-                    <img src="https://images.unsplash.com/photo-1544457070-4cd773b4d71e?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Yastık">
-                    <div class="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition duration-300">
-                        <button class="w-full bg-white text-gray-900 py-3 rounded-lg font-bold shadow-lg hover:bg-brand hover:text-white transition">
-                            Etsy'de İncele
-                        </button>
-                    </div>
-                </div>
-                <h3 class="font-bold text-lg text-gray-900">Keten Yastık</h3>
-                <p class="text-gray-500">$35.00</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 text-xs font-bold rounded shadow-lg z-50">
-        PROFESYONEL DEMO
     </div>
 
+    <section class="py-24 md:py-32 px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal">
+        <div class="relative">
+            <div class="aspect-[4/5] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1595515106967-1434857ed8dd?w=800&q=80" class="w-full h-full object-cover" alt="Craftsmanship">
+            </div>
+            <div class="absolute -bottom-8 -right-8 bg-olive text-cream p-8 max-w-xs hidden md:block">
+                <p class="font-serif text-2xl italic">"Simplicity is the ultimate sophistication."</p>
+            </div>
+        </div>
+        <div>
+            <span class="text-olive text-xs tracking-[0.3em] uppercase block mb-6">Our Philosophy</span>
+            <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-8 text-earth">
+                We believe in objects that <br> <span class="italic text-clay">age beautifully.</span>
+            </h2>
+            <p class="text-earth/70 font-light leading-loose text-sm md:text-base mb-8">
+                In a world of fast furniture, we choose to slow down. Every piece in our collection is crafted by artisans who understand the language of wood, clay, and linen. We don't just sell decor; we curate the backdrop of your life's most quiet moments.
+            </p>
+            <a href="#" class="text-xs uppercase tracking-widest border-b border-earth pb-1 hover:text-olive hover:border-olive transition">Read Our Story</a>
+        </div>
+    </section>
+
+    <section id="collection" class="px-4 md:px-12 py-20 bg-cream border-t border-earth/5">
+        <div class="text-center mb-20 reveal">
+            <span class="text-clay text-xs tracking-[0.3em] uppercase block mb-3">Curated Selection</span>
+            <h3 class="font-serif text-4xl md:text-5xl text-earth">The Sanctuary Collection</h3>
+        </div>
+
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[4/3]">
+                    <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 text-[10px] uppercase tracking-widest font-bold z-10">Best Seller</div>
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" class="w-full h-full object-cover" alt="Sofa">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div class="flex justify-between items-baseline">
+                    <div>
+                        <h4 class="font-serif text-xl text-earth">The Cloud Sofa</h4>
+                        <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Italian Velvet • Green</p>
+                    </div>
+                    <span class="font-sans font-medium text-sm">$1,299</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal delay-100">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[3/4]">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80" class="w-full h-full object-cover" alt="Chair">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Oak Lounge Chair</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Solid Wood • Linen</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$450</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-square">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800&q=80" class="w-full h-full object-cover" alt="Ceramic">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Wabi-Sabi Vase</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Hand Thrown Clay</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$65</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal delay-100">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[3/5]">
+                    <div class="absolute top-4 left-4 bg-olive text-white px-3 py-1 text-[10px] uppercase tracking-widest font-bold z-10">New</div>
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1507473888900-52e1adad5474?w=800&q=80" class="w-full h-full object-cover" alt="Lamp">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Sculptural Table Lamp</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Brass & Linen</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$180</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[16/9]">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=800&q=80" class="w-full h-full object-cover" alt="Table">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Travertine Coffee Table</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Natural Stone</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$890</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-square">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1575414003591-ece8d0416c7a?w=800&q=80" class="w-full h-full object-cover" alt="Rug">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Berber Wool Rug</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Hand Knotted • Morocco</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$320</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal delay-100">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[3/4]">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1522771753035-4a504630d355?w=800&q=80" class="w-full h-full object-cover" alt="Bedding">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">French Linen Duvet</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">100% Organic Flax</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$210</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-square">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1503602642458-2321114453ad?w=800&q=80" class="w-full h-full object-cover" alt="Stool">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Rustic Teak Stool</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Reclaimed Wood</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$95</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal delay-100">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[2/3]">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1618219944342-824e40a13285?w=800&q=80" class="w-full h-full object-cover" alt="Mirror">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Arch Floor Mirror</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Aged Brass Frame</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$280</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-square">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1591129841117-3ad81134715c?w=800&q=80" class="w-full h-full object-cover" alt="Basket">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Seagrass Storage Basket</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Hand Woven</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$45</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[3/4]">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1602825389660-3f5a7a01f0cb?w=800&q=80" class="w-full h-full object-cover" alt="Candle">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Botanical Soy Candles</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Set of 3 • Cedarwood</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$55</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal delay-100">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[3/5]">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80" class="w-full h-full object-cover" alt="Dining Chair">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Wishbone Dining Chair</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Beech Wood</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$195</span>
+                </div>
+            </div>
+
+            <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-square">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1582201943021-e8e6444cf12d?w=800&q=80" class="w-full h-full object-cover" alt="Art">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Textured Canvas Art</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Original Painting</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$140</span>
+                </div>
+            </div>
+
+             <div class="break-inside-avoid product-card group cursor-pointer reveal">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-[16/9]">
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1597072689227-8882273e8f6e?w=800&q=80" class="w-full h-full object-cover" alt="Shelf">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Floating Oak Shelves</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Set of 2</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$110</span>
+                </div>
+            </div>
+
+             <div class="break-inside-avoid product-card group cursor-pointer reveal delay-100">
+                <div class="relative overflow-hidden mb-4 bg-sand/20 aspect-square">
+                    <div class="absolute top-4 left-4 bg-earth text-white px-3 py-1 text-[10px] uppercase tracking-widest font-bold z-10">Low Stock</div>
+                    <div class="img-wrap h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=800&q=80" class="w-full h-full object-cover" alt="Mugs">
+                    </div>
+                    <div class="actions absolute bottom-0 left-0 w-full p-4">
+                        <button class="w-full bg-earth text-white py-3 text-xs uppercase tracking-widest hover:bg-olive transition">View on Etsy</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl text-earth">Speckled Stoneware Mugs</h4>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mt-1">Set of 4</p>
+                    <span class="font-sans font-medium text-sm block mt-1">$48</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-24 reveal">
+            <button class="border border-earth bg-transparent text-earth px-16 py-4 text-xs uppercase tracking-[0.3em] hover:bg-earth hover:text-white transition duration-500">
+                Load More
+            </button>
+        </div>
+    </section>
+
+    <section class="relative py-32 bg-olive text-cream overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1606744888344-493238656365?w=1600&q=80')] bg-cover bg-fixed bg-center"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center reveal">
+            <span class="text-xs font-bold tracking-[0.4em] uppercase mb-6 block opacity-80">Naturel Services</span>
+            <h3 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">Need help styling your space?</h3>
+            <p class="text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed opacity-90 mb-12">
+                Our interior stylists are available for virtual consultations to help you select the perfect pieces for your home. Complimentary for orders over $1,000.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <button class="bg-cream text-olive px-10 py-4 text-xs uppercase tracking-[0.2em] font-bold hover:bg-white transition">Book Consultation</button>
+                <button class="border border-cream text-cream px-10 py-4 text-xs uppercase tracking-[0.2em] hover:bg-cream hover:text-olive transition">View Lookbook</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-earth text-sand pt-24 pb-12 px-6 md:px-12 border-t border-sand/10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="md:col-span-1">
+                <h4 class="font-serif text-3xl mb-6 text-cream">NATUREL.</h4>
+                <p class="text-xs text-sand/60 leading-loose max-w-xs">
+                    We design for life’s quiet moments. <br>
+                    Sustainable. Ethical. Timeless. <br>
+                    Based in Copenhagen.
+                </p>
+            </div>
+            
+            <div>
+                <h5 class="text-[10px] uppercase tracking-[0.2em] text-olive mb-6 font-bold">Shop</h5>
+                <ul class="text-sm font-light space-y-4 text-sand/80">
+                    <li><a href="#" class="hover:text-white transition">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-white transition">Furniture</a></li>
+                    <li><a href="#" class="hover:text-white transition">Lighting</a></li>
+                    <li><a href="#" class="hover:text-white transition">Decor</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] uppercase tracking-[0.2em] text-olive mb-6 font-bold">Company</h5>
+                <ul class="text-sm font-light space-y-4 text-sand/80">
+                    <li><a href="#" class="hover:text-white transition">Our Story</a></li>
+                    <li><a href="#" class="hover:text-white transition">Sustainability</a></li>
+                    <li><a href="#" class="hover:text-white transition">Artisans</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] uppercase tracking-[0.2em] text-olive mb-6 font-bold">Newsletter</h5>
+                <p class="text-xs text-sand/60 mb-6 font-light">10% off your first order when you subscribe.</p>
+                <div class="border-b border-sand/20 flex pb-2">
+                    <input type="email" placeholder="Your Email" class="bg-transparent border-none outline-none text-white text-sm w-full placeholder-sand/50">
+                    <button class="text-xs uppercase tracking-widest text-cream hover:text-olive transition">Join</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-sand/5 text-[10px] text-sand/40 uppercase tracking-widest">
+            <p>&copy; 2025 Naturel Home. Powered by VitrinX.</p>
+            <div class="flex gap-8 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition">Privacy</a>
+                <a href="#" class="hover:text-white transition">Terms</a>
+                <a href="#" class="hover:text-white transition">Returns</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-8 right-8 z-50 mix-blend-difference">
+        <a href="#" class="bg-cream text-earth h-24 w-24 rounded-full flex items-center justify-center animate-spin-slow shadow-2xl group hover:scale-110 transition duration-500">
+             <svg viewBox="0 0 100 100" width="100" height="100">
+              <path id="curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent"/>
+              <text font-size="10.5" font-family="Outfit" font-weight="bold" letter-spacing="2.5" fill="currentColor">
+                <textPath xlink:href="#curve">
+                  VIEW ON ETSY • VIEW ON ETSY • 
+                </textPath>
+              </text>
+            </svg>
+            <span class="absolute text-2xl group-hover:-rotate-45 transition duration-300">
+                <i class="fa-solid fa-arrow-right"></i>
+            </span>
+        </a>
+    </div>
+
+    <script>
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-cream/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+                navbar.classList.remove('top-8');
+                navbar.classList.add('top-0');
+            } else {
+                navbar.classList.remove('bg-cream/90', 'backdrop-blur-md', 'shadow-sm', 'py-4', 'top-0');
+                navbar.classList.add('top-8');
+            }
+        });
+    </script>
 </body>
 </html>
