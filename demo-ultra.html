@@ -1,143 +1,531 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en" class="scroll-smooth cursor-none">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zayn Jewelry - Ultra Lüks Demo</title>
+    <title>ÉTHER | Timeless Elegance</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { 
-                        serif: ['Cinzel', 'serif'],
-                        sans: ['Lato', 'sans-serif']
+                        'serif': ['Cinzel', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif']
                     },
                     colors: {
-                        gold: '#D4AF37',
-                        dark: '#0a0a0a',
-                        glass: 'rgba(255, 255, 255, 0.05)'
+                        'deep': '#0F0E0E', /* Very warm black */
+                        'sand': '#C2B280', /* Antique Gold */
+                        'silk': '#F5F5F0', /* Off White */
+                        'charcoal': '#1C1C1C'
+                    },
+                    animation: {
+                        'spin-slow': 'spin 15s linear infinite',
+                        'marquee': 'marquee 30s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #050505; color: #e5e5e5; }
-        .gold-glow {
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        /* LUXURY NOISE TEXTURE */
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 90;
         }
-        .product-card {
-            background: linear-gradient(145deg, #0f0f0f, #050505);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
+
+        /* CUSTOM CURSOR MAGIC */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 100;
+            pointer-events: none;
         }
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: #D4AF37;
-            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.1);
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background-color: #C2B280;
         }
-        .btn-gold {
-            background: linear-gradient(45deg, #D4AF37, #C5A028);
-            color: black;
-            font-weight: bold;
-            transition: all 0.3s;
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(194, 178, 128, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
-        .btn-gold:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        /* Hover Effect for Links */
+        body:hover .cursor-outline { opacity: 1; }
+        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline {
+            width: 60px; height: 60px;
+            background-color: rgba(194, 178, 128, 0.1);
+            border-color: #C2B280;
         }
+
+        /* SCROLL REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* IMAGE HOVER PARALLAX */
+        .img-wrap { overflow: hidden; }
+        .img-wrap img { transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); width: 100%; height: 100%; object-fit: cover; }
+        .group:hover .img-wrap img { transform: scale(1.1); }
+
+        /* TYPOGRAPHY SELECTION */
+        ::selection { background: #C2B280; color: #0F0E0E; }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-deep text-silk font-sans antialiased overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-serif text-gold tracking-widest">BY ZAYN</div>
-            <div class="hidden md:flex gap-8 text-xs tracking-[0.2em] text-gray-400">
-                <a href="#" class="hover:text-gold transition">KOLEKSİYON</a>
-                <a href="#" class="hover:text-gold transition">HİKAYEMİZ</a>
-                <a href="#" class="hover:text-gold transition">İLETİŞİM</a>
-            </div>
-            <a href="#" class="text-xs border border-gold/30 text-gold px-4 py-2 rounded-full hover:bg-gold hover:text-black transition">
-                ETSY MAĞAZASI
+    <div class="noise"></div>
+
+    <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
+    <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-500 py-6 px-8 flex justify-between items-center mix-blend-difference" id="navbar">
+        <div class="flex gap-12 text-xs uppercase tracking-[0.2em] font-light hidden md:flex">
+            <a href="#collection" class="hover:text-sand transition duration-300 relative group">
+                Collections
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-sand transition-all group-hover:w-full"></span>
             </a>
+            <a href="#about" class="hover:text-sand transition duration-300 relative group">
+                Maison
+                <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-sand transition-all group-hover:w-full"></span>
+            </a>
+        </div>
+
+        <div class="text-3xl md:text-4xl font-serif text-center tracking-widest cursor-pointer">
+            ÉTHER
+        </div>
+
+        <div class="flex gap-6 text-xs uppercase tracking-[0.2em] font-light">
+            <a href="#" class="hover:text-sand transition duration-300">Search</a>
+            <a href="#" class="hover:text-sand transition duration-300">Bag (0)</a>
         </div>
     </nav>
 
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=2075&auto=format&fit=crop" class="w-full h-full object-cover opacity-30" alt="Background">
-            <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+             <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-60" alt="Silk Texture">
+             <div class="absolute inset-0 bg-gradient-to-b from-deep/30 via-transparent to-deep"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4">
+            <p class="text-[10px] md:text-xs text-sand uppercase tracking-[0.5em] mb-6 reveal delay-100">Fall / Winter 2025</p>
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl text-silk mix-blend-overlay opacity-90 mb-8 reveal delay-200 tracking-wide">
+                SILENCE
+            </h1>
+            <p class="font-sans font-extralight text-sm md:text-base max-w-md mx-auto leading-loose text-gray-300 reveal delay-300 mb-12">
+                A dialogue between texture and form. <br>
+                Handcrafted for the woman who speaks without words.
+            </p>
+            
+            <div class="reveal delay-500">
+                <a href="#collection" class="border border-white/20 px-10 py-4 text-xs uppercase tracking-[0.3em] hover:bg-sand hover:text-deep hover:border-sand transition duration-500">
+                    Enter Boutique
+                </a>
+            </div>
         </div>
         
-        <div class="relative z-10 text-center px-4 mt-20">
-            <p class="text-gold text-xs tracking-[0.3em] mb-4 uppercase">El Yapımı Zarafet</p>
-            <h1 class="text-5xl md:text-8xl font-serif text-white mb-8 gold-glow">
-                Sessiz Lüks
-            </h1>
-            <p class="text-gray-400 max-w-lg mx-auto mb-10 font-light">
-                Doğadan ilham alan, sanatla şekillenen eşsiz parçalar. 
-                Sadece Etsy üzerinden satışta.
-            </p>
-            <a href="#koleksiyon" class="btn-gold px-8 py-4 rounded-sm tracking-widest text-sm uppercase">
-                Koleksiyonu Keşfet
-            </a>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-[10px] text-white/50 uppercase tracking-[0.3em] animate-pulse">
+            Scroll
         </div>
     </header>
 
-    <section id="koleksiyon" class="py-24 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-serif text-white mb-2">Özel Tasarımlar</h2>
-            <div class="w-24 h-1 bg-gold mx-auto opacity-50"></div>
+    <div class="py-6 border-y border-white/5 bg-deep overflow-hidden whitespace-nowrap relative z-10">
+        <div class="inline-block animate-marquee">
+            <span class="text-4xl font-serif text-white/5 mx-12 italic">Slow Fashion</span>
+            <span class="text-4xl font-serif text-white/5 mx-12 italic">Natural Fibers</span>
+            <span class="text-4xl font-serif text-white/5 mx-12 italic">Made in Atelier</span>
+            <span class="text-4xl font-serif text-white/5 mx-12 italic">Timeless Design</span>
+            <span class="text-4xl font-serif text-white/5 mx-12 italic">Slow Fashion</span>
+            <span class="text-4xl font-serif text-white/5 mx-12 italic">Natural Fibers</span>
         </div>
+    </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="product-card group relative overflow-hidden rounded-xl">
-                <div class="h-96 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1602751584552-8ba731f0e532?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100" alt="Ürün">
-                </div>
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-serif text-white mb-2">Zümrüt Kolye</h3>
-                    <p class="text-gold mb-4 text-lg">$145.00</p>
-                    <button class="w-full py-3 border border-white/20 hover:border-gold hover:text-gold text-white text-xs tracking-widest transition uppercase">
-                        Etsy'den Satın Al
-                    </button>
-                </div>
+    <section id="about" class="py-32 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20 reveal">
+        <div class="w-full md:w-1/2">
+            <div class="img-wrap aspect-[3/4] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=800&q=80" alt="Atelier">
             </div>
-
-            <div class="product-card group relative overflow-hidden rounded-xl">
-                <div class="h-96 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100" alt="Ürün">
-                </div>
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-serif text-white mb-2">Altın Yaprak Küpe</h3>
-                    <p class="text-gold mb-4 text-lg">$89.00</p>
-                    <button class="w-full py-3 border border-white/20 hover:border-gold hover:text-gold text-white text-xs tracking-widest transition uppercase">
-                        Etsy'den Satın Al
-                    </button>
-                </div>
-            </div>
-
-            <div class="product-card group relative overflow-hidden rounded-xl">
-                <div class="h-96 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100" alt="Ürün">
-                </div>
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-serif text-white mb-2">Vintage Yüzük</h3>
-                    <p class="text-gold mb-4 text-lg">$210.00</p>
-                    <button class="w-full py-3 border border-white/20 hover:border-gold hover:text-gold text-white text-xs tracking-widest transition uppercase">
-                        Etsy'den Satın Al
-                    </button>
-                </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <span class="text-sand text-xs tracking-[0.3em] uppercase block mb-8">The Philosophy</span>
+            <h2 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">
+                Beauty in <br> <span class="italic text-gray-500">Imperfection.</span>
+            </h2>
+            <p class="text-gray-400 font-light leading-loose mb-10 text-sm md:text-base">
+                We reject the rhythm of fast fashion. Instead, we embrace the slow, deliberate art of creation. Each garment is cut from Italian silk, French linen, or organic cotton, designed to age with grace alongside its wearer.
+            </p>
+            <div class="flex items-center gap-4 text-xs uppercase tracking-widest text-sand">
+                <span class="w-12 h-[1px] bg-sand"></span>
+                Read The Journal
             </div>
         </div>
     </section>
 
-    <div class="fixed bottom-4 right-4 bg-white text-black px-4 py-2 text-xs font-bold rounded shadow-lg z-50">
-        DEMO MODU
+    <section id="collection" class="py-20 bg-[#0c0c0c]">
+        
+        <div class="max-w-7xl mx-auto px-6 mb-24 flex justify-between items-end reveal">
+            <div>
+                <span class="text-gray-500 text-xs tracking-[0.3em] uppercase block mb-2">Curated Selection</span>
+                <h3 class="font-serif text-4xl text-silk">The Collection</h3>
+            </div>
+            <a href="#" class="text-xs uppercase tracking-[0.2em] border-b border-white/20 pb-1 hover:text-sand hover:border-sand transition">View All 42 Items</a>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20">
+
+            <div class="group cursor-pointer reveal">
+                <div class="img-wrap aspect-[3/4] mb-6 relative">
+                    <span class="absolute top-4 left-4 bg-sand text-deep text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Signature</span>
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80" alt="Silk Dress">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">The Ophelia Gown</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">100% Mulberry Silk</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$450</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100 lg:mt-16">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80" alt="Blazer">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Structure Blazer</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Raw Linen</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$280</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-200">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=80" alt="Knit">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Mohair Cardigan</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Hand Knitted</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$195</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=800&q=80" alt="Trousers">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Palazzo Trousers</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Viscose Blend</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$160</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100 lg:mt-16">
+                <div class="img-wrap aspect-[4/5] mb-6">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80" alt="Pearls">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Baroque Earrings</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Freshwater Pearl</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$85</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-200">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?w=800&q=80" alt="Slip Dress">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Midnight Slip</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Silk Satin</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$220</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=80" alt="Coat">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Atelier Coat</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Wool & Cashmere</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$580</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100 lg:mt-16">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1604085572504-a392ddf0d86a?w=800&q=80" alt="Blouse">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Poet Blouse</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Organic Cotton</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$140</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-200">
+                <div class="img-wrap aspect-[4/5] mb-6">
+                    <img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80" alt="Scarf">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Heritage Scarf</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Printed Silk</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$95</span>
+                </div>
+            </div>
+
+             <div class="group cursor-pointer reveal">
+                <div class="img-wrap aspect-[3/4] mb-6 relative">
+                     <span class="absolute top-4 left-4 border border-white/50 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Limited</span>
+                    <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&q=80" alt="Gown">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Velvet Evening Gown</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Deep Emerald</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$380</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100 lg:mt-16">
+                <div class="img-wrap aspect-square mb-6">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80" alt="Bag">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Mini Tote</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Vegetable Tanned Leather</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$250</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-200">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&q=80" alt="Sandals">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Summer Slides</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Handmade Leather</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$110</span>
+                </div>
+            </div>
+
+             <div class="group cursor-pointer reveal">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1574015974293-817f0ebebb74?w=800&q=80" alt="Swim">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Sculpt Swimsuit</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Recycled Nylon</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$130</span>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer reveal delay-100 lg:mt-16">
+                <div class="img-wrap aspect-square mb-6">
+                    <img src="https://images.unsplash.com/photo-1624223032152-78d12d4d8091?w=800&q=80" alt="Belt">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Cinched Belt</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Gold Hardware</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$75</span>
+                </div>
+            </div>
+
+             <div class="group cursor-pointer reveal delay-200">
+                <div class="img-wrap aspect-[3/4] mb-6">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&q=80" alt="Perfume">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/10 pt-4">
+                    <div>
+                        <h4 class="font-serif text-xl italic text-gray-200 group-hover:text-sand transition">Éther No.5</h4>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Solid Perfume Balm</p>
+                    </div>
+                    <span class="font-sans font-light text-sm">$60</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-32 reveal">
+            <button class="text-sand border border-sand bg-transparent px-16 py-5 text-xs uppercase tracking-[0.3em] hover:bg-sand hover:text-deep transition duration-500">
+                View Full Archive
+            </button>
+        </div>
+    </section>
+
+    <section class="relative py-40 bg-deep overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=2070&q=80')] bg-cover bg-center bg-fixed"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center reveal">
+            <div class="w-20 h-20 border border-sand/50 rounded-full flex items-center justify-center mx-auto mb-10 text-sand text-3xl font-serif italic">É</div>
+            <h3 class="font-serif text-4xl md:text-6xl mb-8 leading-tight text-white">Made to Measure</h3>
+            <p class="text-sm md:text-base font-light max-w-xl mx-auto leading-loose text-gray-400 mb-12">
+                We believe in the perfect fit. Provide your measurements at checkout, and our atelier will adjust the hem and fit of your garment at no additional cost.
+            </p>
+            <button class="bg-sand text-deep px-12 py-5 text-xs uppercase tracking-[0.2em] font-medium hover:bg-white transition duration-500">
+                Start Consultation
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-[#050505] text-silk/80 pt-32 pb-12 px-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
+            
+            <div class="md:col-span-4">
+                <h4 class="font-serif text-3xl mb-8 tracking-widest text-white">ÉTHER</h4>
+                <p class="text-xs font-light leading-loose text-gray-500 max-w-xs mb-8">
+                    A conscious luxury brand based in Paris & Malatya. We craft garments that honor the past and protect the future.
+                </p>
+                <div class="flex gap-4 text-xs font-light tracking-widest text-gray-400">
+                    <a href="#" class="hover:text-sand">Instagram</a>
+                    <a href="#" class="hover:text-sand">Pinterest</a>
+                    <a href="#" class="hover:text-sand">Journal</a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2">
+                <h5 class="text-[10px] uppercase tracking-[0.2em] text-sand mb-8">Shop</h5>
+                <ul class="text-xs font-light space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-white transition">Dresses</a></li>
+                    <li><a href="#" class="hover:text-white transition">Outerwear</a></li>
+                    <li><a href="#" class="hover:text-white transition">Accessories</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-2">
+                <h5 class="text-[10px] uppercase tracking-[0.2em] text-sand mb-8">Client Care</h5>
+                <ul class="text-xs font-light space-y-4 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Shipping</a></li>
+                    <li><a href="#" class="hover:text-white transition">Returns & Exchange</a></li>
+                    <li><a href="#" class="hover:text-white transition">Size Guide</a></li>
+                    <li><a href="#" class="hover:text-white transition">Garment Care</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-4">
+                <h5 class="text-[10px] uppercase tracking-[0.2em] text-sand mb-8">Newsletter</h5>
+                <p class="text-xs font-light text-gray-500 mb-6">Subscribe for early access to limited drops.</p>
+                <div class="border-b border-white/20 flex pb-4">
+                    <input type="email" placeholder="Email Address" class="bg-transparent border-none outline-none text-white text-xs w-full placeholder-gray-600 uppercase tracking-widest">
+                    <button class="text-xs uppercase tracking-widest text-sand hover:text-white transition">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-[9px] text-gray-600 uppercase tracking-[0.2em]">
+            <p>&copy; 2025 ÉTHER STUDIOS. POWERED BY VITRINX.</p>
+            <div class="flex gap-8 mt-4 md:mt-0">
+                <p>Private Policy</p>
+                <p>Terms of Use</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-8 right-8 z-50 mix-blend-difference">
+        <a href="#" class="bg-sand text-deep h-24 w-24 rounded-full flex items-center justify-center animate-spin-slow shadow-[0_0_30px_rgba(194,178,128,0.2)] group hover:scale-110 transition duration-700">
+             <svg viewBox="0 0 100 100" width="100" height="100">
+              <path id="curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent"/>
+              <text font-size="10.5" font-family="Montserrat" font-weight="500" letter-spacing="2" fill="currentColor">
+                <textPath xlink:href="#curve">
+                  VISIT BOUTIQUE • VISIT BOUTIQUE • 
+                </textPath>
+              </text>
+            </svg>
+            <span class="absolute text-2xl font-serif italic group-hover:scale-125 transition duration-300">É</span>
+        </a>
     </div>
 
+    <script>
+        // CUSTOM CURSOR LOGIC
+        const cursorDot = document.getElementById("cursor-dot");
+        const cursorOutline = document.getElementById("cursor-outline");
+
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with slight delay (handled by CSS transition, JS just sets pos)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // SCROLL REVEAL
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // NAVBAR SCROLL EFFECT
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-deep/80', 'backdrop-blur-md', 'py-4');
+                navbar.classList.remove('py-6', 'mix-blend-difference');
+            } else {
+                navbar.classList.remove('bg-deep/80', 'backdrop-blur-md', 'py-4');
+                navbar.classList.add('py-6', 'mix-blend-difference');
+            }
+        });
+    </script>
 </body>
 </html>
