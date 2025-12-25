@@ -29,7 +29,16 @@
         }
     </script>
     <style>
-        body { background-color: #050505; color: white; overflow-x: hidden; }
+        /* [DÜZELTME] HTML ve BODY'ye kilit vuruldu. Sağa taşma engellendi. */
+        html, body { 
+            background-color: #050505; 
+            color: white; 
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important; 
+            margin: 0; 
+            padding: 0;
+        }
         
         .swiper { width: 100%; padding-top: 50px; padding-bottom: 50px; }
         .swiper-slide { 
@@ -109,7 +118,7 @@
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-600"><i class="fa-solid fa-chevron-down"></i></div>
     </header>
 
-    <section id="how-it-works" class="py-16 border-b border-white/5 bg-white/5">
+    <section id="how-it-works" class="py-16 border-b border-white/5 bg-white/5 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="font-heading text-3xl font-bold mb-4">The Integration Process</h2>
