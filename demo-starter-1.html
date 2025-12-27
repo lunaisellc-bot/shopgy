@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VERTEX | Cinematic Mobile Experience</title>
+    <title>NEXUS | Digital Creator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -14,192 +14,241 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'display': ['Anton', 'sans-serif'],
+                        'head': ['Space Grotesk', 'sans-serif'],
                         'body': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'accent': '#FF3B30', /* Canlı Kırmızı */
-                        'dark': '#000000',
-                        'light': '#FFFFFF'
+                        'cyber': '#00FFA3', /* Neon Yeşil */
+                        'void': '#050505',
+                        'panel': '#111111'
                     }
                 }
             }
         }
     </script>
     <style>
-        /* TEMEL AYARLAR */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Dışarı taşmayı engelle */
-            background-color: #000;
-            color: #fff;
-        }
-
-        /* SNAP SCROLL CONTAINER (Sihir Burada) */
+        /* SNAP SCROLL SETUP */
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #050505; color: #fff; }
+        
         .snap-container {
-            height: 100vh; /* Tam ekran yüksekliği */
-            height: 100dvh; /* Mobilde adres çubuğunu hesaba katar */
-            overflow-y: scroll; /* Dikey kaydırma */
-            scroll-snap-type: y mandatory; /* Y ekseninde zorunlu kilitleme */
+            height: 100vh;
+            height: 100dvh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
 
-        /* HER BÖLÜM (SECTION) */
         section {
             height: 100vh;
             height: 100dvh;
             width: 100%;
-            scroll-snap-align: start; /* Başlangıca kilitle */
+            scroll-snap-align: start;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* GÖRSEL EFEKTLER */
-        .bg-img {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            z-index: -1; transition: transform 1s ease-out; opacity: 0.6;
-        }
-        /* Aktif sahnede resim hafif zoom yapar */
-        section.active .bg-img { transform: scale(1.1); }
-
-        /* YAZI ANİMASYONLARI */
-        .slide-up {
-            transform: translateY(100px); opacity: 0; transition: all 0.8s ease-out;
-        }
-        section.active .slide-up {
-            transform: translateY(0); opacity: 1;
-        }
-        /* Gecikmeli girişler */
+        /* ANIMATIONS */
+        .slide-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        section.active .slide-up { opacity: 1; transform: translateY(0); }
         .delay-100 { transition-delay: 0.1s; }
         .delay-200 { transition-delay: 0.2s; }
         .delay-300 { transition-delay: 0.3s; }
 
-        /* BUTONLAR */
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s;
+        /* GLASS CARD */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .btn-glass:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.2); }
 
-        /* SCROLL INDICATOR */
-        .scroll-hint {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            animation: bounce 2s infinite; pointer-events: none; z-index: 20;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-            40% {transform: translateX(-50%) translateY(-10px);}
-            60% {transform: translateX(-50%) translateY(-5px);}
+        /* GLOW TEXT */
+        .text-glow { text-shadow: 0 0 20px rgba(0, 255, 163, 0.5); }
+
+        /* BACKGROUND GRADIENT MESH */
+        .bg-gradient-mesh {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 163, 0.15) 0%, rgba(5, 5, 5, 1) 70%);
         }
     </style>
 </head>
-<body class="font-body">
+<body class="font-body selection:bg-cyber selection:text-black">
 
     <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference text-white">
-        <span class="font-display text-2xl tracking-wider">VERTEX</span>
-        <div class="flex gap-4">
-            <i class="fa-solid fa-bag-shopping text-xl"></i>
-            <i class="fa-solid fa-bars text-xl"></i>
-        </div>
+        <span class="font-head text-xl font-bold tracking-widest">NEXUS<span class="text-cyber">.</span></span>
+        <a href="#" class="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-cyber transition">
+            My Cart (0)
+        </a>
     </nav>
 
-    <main class="snap-container" id="scroller">
+    <main class="snap-container">
 
-        <section data-index="0" class="active">
-            <img src="https://images.unsplash.com/photo-1550614000-4b9519e02a15?q=80&w=1974&auto=format&fit=crop" class="bg-img" alt="Fashion">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
+        <section data-index="0" class="active bg-gradient-mesh">
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
             
             <div class="relative z-10 text-center px-6">
-                <p class="text-accent font-bold tracking-[0.3em] text-xs uppercase mb-4 slide-up">New Collection</p>
-                <h1 class="font-display text-7xl md:text-9xl mb-6 slide-up delay-100">REBEL<br>MODE</h1>
-                <p class="text-gray-300 max-w-sm mx-auto mb-8 text-sm leading-relaxed slide-up delay-200">
-                    Defy the ordinary. Explore the new season of streetwear designed for the bold.
+                <div class="w-24 h-24 mx-auto rounded-full border-2 border-cyber p-1 mb-6 slide-up">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" class="w-full h-full object-cover rounded-full" alt="Creator">
+                </div>
+                
+                <h1 class="font-head text-5xl md:text-7xl font-bold mb-4 slide-up delay-100">
+                    ALEX <span class="text-cyber text-glow">DEV</span>
+                </h1>
+                
+                <p class="text-gray-400 max-w-md mx-auto mb-8 slide-up delay-200">
+                    Digital Architect & Notion Wizard. Building systems to help you work smarter, not harder.
                 </p>
-                <button class="btn-glass px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest slide-up delay-300">
-                    Start Exploring
-                </button>
+
+                <div class="flex gap-4 justify-center slide-up delay-300">
+                    <a href="#" class="text-2xl text-gray-500 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="text-2xl text-gray-500 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="text-2xl text-gray-500 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                </div>
             </div>
             
-            <div class="scroll-hint text-xs uppercase tracking-widest opacity-70">
-                Swipe Up <i class="fa-solid fa-chevron-down ml-1"></i>
+            <div class="absolute bottom-8 text-xs text-gray-600 animate-bounce">
+                SWIPE UP
             </div>
         </section>
 
         <section data-index="1">
-            <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=1976&auto=format&fit=crop" class="bg-img" alt="Hoodie">
-            <div class="absolute inset-0 bg-black/40"></div>
-            
-            <div class="relative z-10 w-full px-6 flex flex-col items-start">
-                <div class="bg-accent text-white px-3 py-1 text-[10px] font-bold uppercase mb-4 slide-up">Best Seller</div>
-                <h2 class="font-display text-5xl md:text-7xl mb-4 slide-up delay-100">Oversized<br>Hoodie</h2>
-                <div class="flex items-center gap-4 mb-8 slide-up delay-200">
-                    <span class="text-2xl font-bold">$89.00</span>
-                    <span class="text-gray-400 line-through text-sm">$120.00</span>
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1600&q=80" class="w-full h-full object-cover opacity-20" alt="Abstract">
+                <div class="absolute inset-0 bg-gradient-to-t from-void via-void/80 to-transparent"></div>
+            </div>
+
+            <div class="relative z-10 w-full max-w-md px-6">
+                <div class="flex items-center gap-2 mb-4 slide-up">
+                    <span class="bg-cyber text-black text-[10px] font-bold px-2 py-1 rounded">BESTSELLER</span>
+                    <span class="text-cyber text-xs"><i class="fa-solid fa-star"></i> 5.0</span>
                 </div>
-                <div class="flex gap-4 w-full slide-up delay-300">
-                    <button class="flex-1 bg-white text-black py-4 font-bold text-xs uppercase tracking-widest hover:bg-gray-200 transition">
-                        Add to Cart
-                    </button>
-                    <button class="btn-glass w-16 flex items-center justify-center text-xl">
-                        <i class="fa-regular fa-heart"></i>
+
+                <div class="glass-panel p-6 rounded-2xl mb-6 slide-up delay-100 border-l-4 border-l-cyber">
+                    <h2 class="font-head text-3xl font-bold mb-2">Creator OS 2.0</h2>
+                    <p class="text-sm text-gray-400 mb-4">
+                        The ultimate Notion template to manage your content, clients, and projects in one place.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-4">
+                        <li><i class="fa-solid fa-check text-cyber mr-2"></i> Content Calendar</li>
+                        <li><i class="fa-solid fa-check text-cyber mr-2"></i> CRM Dashboard</li>
+                        <li><i class="fa-solid fa-check text-cyber mr-2"></i> Finance Tracker</li>
+                    </ul>
+                </div>
+
+                <div class="flex items-center justify-between gap-4 slide-up delay-200">
+                    <div>
+                        <span class="block text-2xl font-bold text-white">$39</span>
+                        <span class="text-xs text-gray-500">Instant Download</span>
+                    </div>
+                    <button class="bg-white text-black px-8 py-4 rounded-xl font-bold hover:bg-cyber transition flex items-center gap-2">
+                        Get It Now <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
         </section>
 
         <section data-index="2">
-            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1974&auto=format&fit=crop" class="bg-img grayscale contrast-125" alt="Vibe">
-            <div class="absolute inset-0 bg-accent/20 mix-blend-overlay"></div>
-            
-            <div class="relative z-10 text-center border-y border-white/30 py-12 w-full backdrop-blur-sm">
-                <h2 class="font-display text-6xl md:text-8xl italic slide-up">"PURE<br>CHAOS"</h2>
-                <p class="text-xs font-mono mt-4 slide-up delay-100">LIMITED EDITION DROP 002</p>
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80" class="w-full h-full object-cover opacity-20" alt="Code">
+                <div class="absolute inset-0 bg-void/90"></div>
+            </div>
+
+            <div class="relative z-10 text-center px-6">
+                <div class="w-20 h-20 bg-blue-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6 slide-up backdrop-blur-md border border-blue-500/30">
+                    <i class="fa-solid fa-video text-4xl text-blue-400"></i>
+                </div>
+
+                <h2 class="font-head text-4xl font-bold mb-4 slide-up delay-100">
+                    Master Web Design <br> <span class="text-blue-400">in 30 Days</span>
+                </h2>
+                
+                <p class="text-gray-400 max-w-sm mx-auto mb-8 text-sm slide-up delay-200">
+                    Stop guessing. Learn the exact framework I used to scale my agency to $10k/mo. No coding required.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-8 slide-up delay-300">
+                    <div class="bg-white/5 p-3 rounded-lg text-xs">
+                        <span class="block font-bold text-white text-lg">8h</span>
+                        Video Content
+                    </div>
+                    <div class="bg-white/5 p-3 rounded-lg text-xs">
+                        <span class="block font-bold text-white text-lg">50+</span>
+                        Lessons
+                    </div>
+                </div>
+
+                <button class="w-full max-w-xs bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-500 transition slide-up delay-300">
+                    Enroll for $99
+                </button>
             </div>
         </section>
 
-        <section data-index="3" class="bg-black">
-            <div class="grid grid-cols-2 gap-2 p-2 w-full h-full">
-                <div class="relative overflow-hidden group h-full">
-                    <img src="https://images.unsplash.com/photo-1523396870177-0295196caa55?w=500&q=80" class="w-full h-full object-cover slide-up" alt="Item">
-                    <div class="absolute bottom-4 left-4 font-display text-xl slide-up delay-100">Shoes</div>
-                </div>
-                <div class="relative overflow-hidden group h-full">
-                    <img src="https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=500&q=80" class="w-full h-full object-cover slide-up delay-100" alt="Item">
-                    <div class="absolute bottom-4 left-4 font-display text-xl slide-up delay-200">Jackets</div>
-                </div>
-                <div class="relative overflow-hidden group h-full">
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&q=80" class="w-full h-full object-cover slide-up delay-200" alt="Item">
-                    <div class="absolute bottom-4 left-4 font-display text-xl slide-up delay-300">Tees</div>
-                </div>
-                <div class="relative overflow-hidden group h-full bg-accent flex items-center justify-center slide-up delay-300">
-                    <a href="#" class="font-display text-3xl text-black hover:scale-110 transition">VIEW<br>ALL -></a>
-                </div>
-            </div>
+        <section data-index="3">
+             <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/40 via-void to-void"></div>
+
+             <div class="relative z-10 w-full px-6">
+                 <h2 class="font-head text-3xl font-bold mb-8 text-center slide-up">More Resources</h2>
+
+                 <div class="space-y-4 max-w-sm mx-auto slide-up delay-100">
+                     <a href="#" class="glass-panel p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition group">
+                         <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400">
+                             <i class="fa-solid fa-shapes"></i>
+                         </div>
+                         <div class="flex-1">
+                             <h4 class="font-bold text-sm">3D Icon Pack</h4>
+                             <p class="text-xs text-gray-500">200+ Assets</p>
+                         </div>
+                         <span class="text-xs font-mono border border-gray-700 px-2 py-1 rounded">$15</span>
+                     </a>
+
+                     <a href="#" class="glass-panel p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition group">
+                         <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center text-pink-400">
+                             <i class="fa-brands fa-figma"></i>
+                         </div>
+                         <div class="flex-1">
+                             <h4 class="font-bold text-sm">Figma UI Kit</h4>
+                             <p class="text-xs text-gray-500">Dark Mode Ready</p>
+                         </div>
+                         <span class="text-xs font-mono border border-gray-700 px-2 py-1 rounded">$29</span>
+                     </a>
+
+                     <a href="#" class="glass-panel p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition group border-cyber/30">
+                         <div class="w-12 h-12 bg-cyber/20 rounded-lg flex items-center justify-center text-cyber">
+                             <i class="fa-solid fa-book"></i>
+                         </div>
+                         <div class="flex-1">
+                             <h4 class="font-bold text-sm text-cyber">Freelance Guide</h4>
+                             <p class="text-xs text-gray-500">PDF E-book</p>
+                         </div>
+                         <span class="text-[10px] font-bold bg-cyber text-black px-2 py-1 rounded">FREE</span>
+                     </a>
+                 </div>
+             </div>
         </section>
 
         <section data-index="4">
-            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=2073&auto=format&fit=crop" class="bg-img" alt="Footer">
-            <div class="absolute inset-0 bg-black/70"></div>
-            
             <div class="relative z-10 text-center px-6">
-                <h2 class="font-display text-5xl mb-6 slide-up">JOIN THE<br>CLUB</h2>
-                <p class="text-gray-400 text-sm mb-8 slide-up delay-100">Get 10% off your first order.</p>
+                <i class="fa-regular fa-envelope text-4xl text-gray-500 mb-6 slide-up"></i>
                 
-                <form class="flex flex-col gap-4 w-full max-w-xs mx-auto slide-up delay-200">
-                    <input type="email" placeholder="EMAIL ADDRESS" class="bg-white/10 border border-white/20 p-4 text-center text-white placeholder-white/50 focus:outline-none focus:border-accent">
-                    <button class="bg-accent text-white py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Subscribe</button>
+                <h2 class="font-head text-4xl font-bold mb-4 slide-up delay-100">
+                    Join the <span class="text-cyber">Inner Circle</span>
+                </h2>
+                <p class="text-gray-400 text-sm mb-8 max-w-xs mx-auto slide-up delay-200">
+                    Get free templates, design tips, and product drops straight to your inbox.
+                </p>
+
+                <form class="w-full max-w-xs mx-auto slide-up delay-300">
+                    <input type="email" placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-center text-white mb-4 focus:outline-none focus:border-cyber transition">
+                    <button class="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-cyber transition">
+                        Subscribe
+                    </button>
                 </form>
-                
-                <div class="mt-12 text-[10px] text-gray-500 slide-up delay-300">
-                    © 2025 VERTEX. POWERED BY VITRINX.
+
+                <div class="mt-12 text-[10px] text-gray-600 slide-up delay-300">
+                    © 2025 NEXUS DIGITAL. POWERED BY VITRINX.
                 </div>
             </div>
         </section>
@@ -207,26 +256,19 @@
     </main>
 
     <script>
-        // Animasyonları Tetikleyen Gözlemci (Observer)
+        // SCROLL OBSERVER (Auto Animation)
         const sections = document.querySelectorAll('section');
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Ekrana giren bölüme 'active' sınıfı ekle
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 } else {
-                    // Ekrandan çıkınca animasyonu sıfırla (tekrar giriş için)
                     entry.target.classList.remove('active');
                 }
             });
-        }, { 
-            threshold: 0.5 // Bölümün %50'si görünür olunca tetikle
-        });
+        }, { threshold: 0.5 });
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+        sections.forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
