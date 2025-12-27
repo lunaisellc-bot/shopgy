@@ -1,299 +1,340 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mihrap | Timeless Home & Living</title>
-  <meta name="description" content="Handcrafted furniture and organic home decor.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT X | High-End Streetwear</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Playfair Display', 'serif'],
-            sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            'earth-100': '#F9F8F6', /* Çok açık krem */
-            'earth-200': '#EBE9E4', /* Açık bej */
-            'earth-800': '#2C2B29', /* Kömür grisi */
-            'wood': '#8B5A2B',     /* Ahşap detayı */
-          },
-          animation: {
-            'fade-in': 'fadeIn 1.5s ease-out forwards',
-            'slide-up': 'slideUp 1s ease-out forwards',
-          },
-          keyframes: {
-            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-            slideUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
-          }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'head': ['Oswald', 'sans-serif'],
+                        'body': ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        'acid': '#D9FF00', /* Neon Asit Sarısı - Çok Trend */
+                        'off-white': '#F0F0F0',
+                        'blk': '#080808'
+                    },
+                    cursor: {
+                        'none': 'none',
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
+    </script>
 
-  <style>
-    /* Özel CSS Ayarları */
-    body { background-color: #F9F8F6; color: #2C2B29; }
-    
-    /* Resim Hover Efekti */
-    .product-card:hover .product-img { transform: scale(1.05); }
-    .product-img { transition: transform 0.7s ease; }
-    
-    /* Buton Hover */
-    .btn-wood {
-      background-color: #2C2B29; color: white;
-      transition: all 0.3s ease;
-    }
-    .btn-wood:hover { background-color: #8B5A2B; padding-right: 1.5rem; }
-  </style>
-</head>
-
-<body class="antialiased font-sans">
-
-  <nav class="fixed w-full z-50 bg-[#F9F8F6]/90 backdrop-blur-md border-b border-gray-200 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <a href="#" class="font-serif text-3xl font-bold tracking-tight text-earth-800">
-        Mihrap<span class="text-wood">.</span>
-      </a>
-
-      <div class="hidden md:flex gap-10 text-sm font-medium tracking-wide text-gray-600">
-        <a href="#collections" class="hover:text-wood transition">COLLECTIONS</a>
-        <a href="#new-arrivals" class="hover:text-wood transition">NEW IN</a>
-        <a href="#about" class="hover:text-wood transition">OUR CRAFT</a>
-      </div>
-
-      <div class="flex items-center gap-6">
-        <a href="#" class="text-gray-800 hover:text-wood transition"><i class="fa-solid fa-magnifying-glass"></i></a>
-        <a href="https://www.etsy.com" target="_blank" class="hidden sm:flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-full hover:border-wood hover:text-wood transition text-xs font-bold uppercase tracking-widest">
-          <i class="fa-brands fa-etsy"></i> Visit Shop
-        </a>
-        <button class="md:hidden text-2xl text-gray-800"><i class="fa-solid fa-bars"></i></button>
-      </div>
-    </div>
-  </nav>
-
-  <header class="relative w-full h-screen overflow-hidden flex items-center justify-center">
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80" alt="Luxury Living Room" class="w-full h-full object-cover animate-fade-in">
-      <div class="absolute inset-0 bg-black/20"></div> </div>
-
-    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-      <p class="text-white/90 text-sm md:text-base tracking-[0.3em] uppercase mb-4 animate-slide-up" style="animation-delay: 0.2s;">Handcrafted in Turkey</p>
-      <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight animate-slide-up" style="animation-delay: 0.4s;">
-        The Art of <br> <span class="italic font-light">Slow Living</span>
-      </h1>
-      <div class="animate-slide-up" style="animation-delay: 0.6s;">
-        <a href="#new-arrivals" class="bg-white text-gray-900 px-10 py-4 rounded-none font-medium uppercase tracking-widest text-xs hover:bg-wood hover:text-white transition duration-500">
-          Explore Collection
-        </a>
-      </div>
-    </div>
-
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70 animate-bounce">
-      <i class="fa-thin fa-arrow-down text-3xl font-thin"></i>
-    </div>
-  </header>
-
-  <section id="collections" class="py-24 px-6 max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="font-serif text-4xl text-earth-800 mb-3">Curated Spaces</h2>
-      <div class="w-16 h-0.5 bg-wood mx-auto"></div>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6 h-[600px]">
-      <div class="relative group overflow-hidden h-full cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Living Room">
-        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition duration-500"></div>
-        <div class="absolute bottom-10 left-10 text-white">
-          <span class="block text-xs tracking-widest uppercase mb-2">01.</span>
-          <h3 class="font-serif text-4xl italic">Living Room</h3>
-          <span class="inline-block mt-4 border-b border-white pb-1 text-xs tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">DISCOVER</span>
-        </div>
-      </div>
-      
-      <div class="grid grid-rows-2 gap-6 h-full">
-        <div class="relative group overflow-hidden h-full cursor-pointer">
-          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Dining">
-          <div class="absolute bottom-8 left-8 text-white z-10">
-            <h3 class="font-serif text-3xl italic">Dining & Kitchen</h3>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        </div>
-        <div class="relative group overflow-hidden h-full cursor-pointer">
-          <img src="https://images.unsplash.com/photo-1540932296774-3ed466067aa2?w=800&q=80" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Decor">
-          <div class="absolute bottom-8 left-8 text-white z-10">
-            <h3 class="font-serif text-3xl italic">Accents & Decor</h3>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="new-arrivals" class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex justify-between items-end mb-12">
-        <div>
-          <span class="text-wood text-xs font-bold tracking-[0.2em] uppercase block mb-2">New Arrivals</span>
-          <h2 class="font-serif text-4xl text-earth-800">Autumn Collection</h2>
-        </div>
-        <a href="#" class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-wood transition border-b border-gray-300 hover:border-wood pb-1">View All Products</a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
+    <style>
+        /* 10K DOLARLIK HİSSİYAT İÇİN CSS TRİKLERİ */
         
-        <div class="group">
-          <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] mb-6 product-card">
-            <img src="https://images.unsplash.com/photo-1567538096630-e08558e0fcde?w=600&q=80" class="w-full h-full object-cover product-img" alt="Chair">
-            <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 text-[10px] font-bold tracking-widest uppercase">Best Seller</div>
+        body {
+            background-color: #080808;
+            color: #F0F0F0;
+            cursor: none; /* Standart mouse'u gizle */
+            overflow-x: hidden;
+        }
+
+        /* CUSTOM CURSOR */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #D9FF00;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        
+        /* Hover durumunda cursor büyür */
+        body.hovering .cursor-outline {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(217, 255, 0, 0.1);
+            border-color: #D9FF00;
+            mix-blend-mode: difference;
+        }
+
+        /* MARQUEE ANIMATION (Kayan Yazı) */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* NOISE OVERLAY (Pahalı Doku) */
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+        }
+
+        /* RESİM HOVER EFEKTİ */
+        .reveal-img {
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), transform 0.8s;
+        }
+        .product-card:hover .reveal-img {
+            transform: scale(1.1);
+        }
+        
+        /* MIX BLEND MODE (Yazı resmin üstüne gelince renk değiştirir) */
+        .blend-text {
+            mix-blend-mode: difference;
+            color: white;
+        }
+        
+        /* SCROLL BAR GİZLEME */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* MANYETİK BUTON */
+        .btn-magnet {
+            transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-acid selection:text-black">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+    
+    <div class="noise"></div>
+
+    <nav class="fixed w-full z-40 px-6 py-6 flex justify-between items-center mix-blend-difference text-white">
+        <a href="#" class="font-head text-3xl font-bold tracking-tighter hoverable" data-cursor="brand">PRJCT<span class="text-acid">X</span></a>
+        
+        <div class="hidden md:flex gap-12 text-xs font-bold tracking-[0.2em] uppercase">
+            <a href="#drop" class="hoverable hover:text-acid transition">Latest Drop</a>
+            <a href="#vision" class="hoverable hover:text-acid transition">Vision</a>
+            <a href="#archive" class="hoverable hover:text-acid transition">Archive</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <span class="hidden md:block text-[10px] font-mono opacity-60">EST. 2025 // TURKEY</span>
+            <a href="#" class="hoverable text-xl"><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+    </nav>
+
+    <header class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=1600&q=80" class="w-full h-full object-cover opacity-40 grayscale" alt="Background">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-[#080808]"></div>
+        </div>
+
+        <div class="relative z-10 text-center w-full px-4">
+            <h1 class="font-head text-[15vw] leading-[0.8] font-bold text-transparent text-stroke tracking-tighter uppercase mix-blend-overlay opacity-80 select-none">
+                UNREAL
+            </h1>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">
+                 <h1 class="font-head text-[15vw] leading-[0.8] font-bold text-white tracking-tighter uppercase clip-text animate-pulse">
+                    UNREAL
+                </h1>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-6 right-6 flex justify-between items-end z-20">
+            <div class="max-w-xs">
+                <p class="text-xs text-gray-400 leading-relaxed font-mono">
+                    // WEAR THE NOISE.<br>
+                    LIMITED FABRIC. HANDCRAFTED.<br>
+                    NO RESTOCKS. EVER.
+                </p>
+            </div>
+            <a href="#drop" class="hoverable btn-magnet group relative px-8 py-4 bg-acid text-black font-head font-bold uppercase tracking-widest text-sm overflow-hidden">
+                <span class="relative z-10 group-hover:text-white transition-colors duration-300">Shop The Drop</span>
+                <div class="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+            </a>
+        </div>
+    </header>
+
+    <div class="bg-acid text-black py-4 border-y border-black relative z-20 rotate-1 scale-105">
+        <div class="marquee-container font-head text-4xl font-bold uppercase tracking-tighter">
+            <div class="marquee-content">
+                New Collection Available — Worldwide Shipping — Etsy Verified — Secure Checkout — Premium Fabric — New Collection Available — Worldwide Shipping — Etsy Verified — Secure Checkout — Premium Fabric —
+            </div>
+        </div>
+    </div>
+
+    <section id="drop" class="py-32 px-4 md:px-12 max-w-[1600px] mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-6">
+            <h2 class="font-head text-6xl md:text-8xl text-white uppercase tracking-tighter">
+                Drop <span class="text-stroke text-transparent" style="-webkit-text-stroke: 1px #fff;">01</span>
+            </h2>
+            <p class="text-right text-xs font-mono text-gray-500 mt-4 md:mt-0">
+                [ 4 ITEMS LEFT ] <br> DO NOT SLEEP.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
             
-            <a href="https://www.etsy.com" target="_blank" class="absolute bottom-0 left-0 w-full bg-earth-800 text-white text-center py-4 translate-y-full group-hover:translate-y-0 transition duration-300 font-medium text-xs tracking-widest uppercase flex items-center justify-center gap-2">
-              <i class="fa-brands fa-etsy"></i> Buy on Etsy
-            </a>
-          </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-serif text-xl text-gray-900 group-hover:text-wood transition">Velvet Lounge Chair</h3>
-              <p class="text-gray-500 text-sm mt-1">Mid-Century Modern</p>
+            <div class="group product-card cursor-pointer">
+                <div class="relative overflow-hidden h-[600px] w-full mb-6 bg-gray-900">
+                    <img src="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=800&q=80" class="w-full h-full object-cover reveal-img grayscale group-hover:grayscale-0" alt="Hoodie">
+                    <div class="absolute top-4 left-4 bg-acid text-black text-[10px] font-bold px-2 py-1 uppercase">Sold Out Soon</div>
+                </div>
+                <div class="flex justify-between items-start border-t border-white/20 pt-4">
+                    <div>
+                        <h3 class="font-head text-3xl uppercase tracking-wide group-hover:text-acid transition">Oversized Hoodie</h3>
+                        <p class="text-gray-500 text-xs font-mono mt-1">HEAVYWEIGHT COTTON // 500GSM</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block font-head text-2xl text-white">$120.00</span>
+                        <a href="https://etsy.com" class="hoverable inline-block mt-2 text-[10px] uppercase border border-white/30 px-4 py-2 hover:bg-white hover:text-black transition">Buy on Etsy</a>
+                    </div>
+                </div>
             </div>
-            <span class="font-medium text-gray-900">$450</span>
-          </div>
-        </div>
 
-        <div class="group">
-          <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] mb-6 product-card">
-            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" class="w-full h-full object-cover product-img" alt="Sofa">
-            <a href="https://www.etsy.com" target="_blank" class="absolute bottom-0 left-0 w-full bg-earth-800 text-white text-center py-4 translate-y-full group-hover:translate-y-0 transition duration-300 font-medium text-xs tracking-widest uppercase flex items-center justify-center gap-2">
-              <i class="fa-brands fa-etsy"></i> Buy on Etsy
-            </a>
-          </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-serif text-xl text-gray-900 group-hover:text-wood transition">Minimalist Beige Sofa</h3>
-              <p class="text-gray-500 text-sm mt-1">Organic Cotton</p>
+            <div class="group product-card cursor-pointer md:mt-32">
+                <div class="relative overflow-hidden h-[600px] w-full mb-6 bg-gray-900">
+                    <img src="https://images.unsplash.com/photo-1551488852-d804297a7a53?w=800&q=80" class="w-full h-full object-cover reveal-img grayscale group-hover:grayscale-0" alt="Jacket">
+                    <div class="absolute top-4 left-4 border border-white text-white text-[10px] font-bold px-2 py-1 uppercase">New Arrival</div>
+                </div>
+                <div class="flex justify-between items-start border-t border-white/20 pt-4">
+                    <div>
+                        <h3 class="font-head text-3xl uppercase tracking-wide group-hover:text-acid transition">Utility Bomber</h3>
+                        <p class="text-gray-500 text-xs font-mono mt-1">WATER RESISTANT // TECHWEAR</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block font-head text-2xl text-white">$240.00</span>
+                        <a href="https://etsy.com" class="hoverable inline-block mt-2 text-[10px] uppercase border border-white/30 px-4 py-2 hover:bg-white hover:text-black transition">Buy on Etsy</a>
+                    </div>
+                </div>
             </div>
-            <span class="font-medium text-gray-900">$1,200</span>
-          </div>
-        </div>
 
-        <div class="group">
-          <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] mb-6 product-card">
-            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&q=80" class="w-full h-full object-cover product-img" alt="Lamp">
-            <a href="https://www.etsy.com" target="_blank" class="absolute bottom-0 left-0 w-full bg-earth-800 text-white text-center py-4 translate-y-full group-hover:translate-y-0 transition duration-300 font-medium text-xs tracking-widest uppercase flex items-center justify-center gap-2">
-              <i class="fa-brands fa-etsy"></i> Buy on Etsy
-            </a>
-          </div>
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-serif text-xl text-gray-900 group-hover:text-wood transition">Ceramic Table Lamp</h3>
-              <p class="text-gray-500 text-sm mt-1">Handmade Glaze</p>
+             <div class="group product-card cursor-pointer">
+                <div class="relative overflow-hidden h-[600px] w-full mb-6 bg-gray-900">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80" class="w-full h-full object-cover reveal-img grayscale group-hover:grayscale-0" alt="Tee">
+                </div>
+                <div class="flex justify-between items-start border-t border-white/20 pt-4">
+                    <div>
+                        <h3 class="font-head text-3xl uppercase tracking-wide group-hover:text-acid transition">Graphic Tee 004</h3>
+                        <p class="text-gray-500 text-xs font-mono mt-1">ACID WASH // SCREEN PRINT</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block font-head text-2xl text-white">$45.00</span>
+                        <a href="https://etsy.com" class="hoverable inline-block mt-2 text-[10px] uppercase border border-white/30 px-4 py-2 hover:bg-white hover:text-black transition">Buy on Etsy</a>
+                    </div>
+                </div>
             </div>
-            <span class="font-medium text-gray-900">$180</span>
-          </div>
+
+        </div>
+        
+        <div class="text-center mt-32">
+            <a href="https://etsy.com" class="hoverable relative inline-block group">
+                <span class="font-head text-6xl md:text-9xl text-white group-hover:text-transparent group-hover:text-stroke transition duration-500">VIEW ALL</span>
+                <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-acid text-sm font-bold opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap">ON ETSY STORE</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="vision" class="relative py-32 bg-acid text-black overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <filter id="noiseFilter2"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter>
+                <rect width="100%" height="100%" filter="url(#noiseFilter2)" />
+            </svg>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="font-head text-5xl md:text-7xl font-bold mb-8 uppercase leading-none">
+                "We don't sell clothes.<br>We engineer <span class="italic bg-black text-acid px-2">status.</span>"
+            </h2>
+            <p class="font-mono text-sm max-w-lg mx-auto leading-relaxed border-l-2 border-black pl-6 text-left">
+                Designed in the shadows. Worn in the spotlight. Every piece is a limited run. Once it's gone, it belongs to the archive. No restocks. No compromises.
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white pt-20 pb-6 px-6 border-t border-white/10">
+        <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+            <div class="max-w-md">
+                <a href="#" class="font-head text-4xl font-bold mb-6 block">PRJCT<span class="text-acid">X</span></a>
+                <form class="flex border-b border-white/30 pb-2">
+                    <input type="email" placeholder="ENTER EMAIL FOR EARLY ACCESS" class="bg-transparent w-full outline-none font-mono text-sm placeholder-gray-600 focus:placeholder-white transition">
+                    <button type="button" class="text-acid font-bold hover:text-white transition">→</button>
+                </form>
+            </div>
+            
+            <div class="flex gap-12 font-mono text-xs text-gray-500 uppercase">
+                <ul class="space-y-2">
+                    <li class="text-white font-bold mb-2">Legal</li>
+                    <li><a href="#" class="hover:text-acid transition">Terms</a></li>
+                    <li><a href="#" class="hover:text-acid transition">Privacy</a></li>
+                    <li><a href="#" class="hover:text-acid transition">Returns</a></li>
+                </ul>
+                <ul class="space-y-2">
+                    <li class="text-white font-bold mb-2">Social</li>
+                    <li><a href="#" class="hover:text-acid transition">Instagram</a></li>
+                    <li><a href="#" class="hover:text-acid transition">TikTok</a></li>
+                </ul>
+            </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="py-24 bg-earth-200">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <div class="relative">
-        <img src="https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=800&q=80" class="w-full shadow-2xl" alt="Craftsmanship">
-        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-wood p-8 text-white flex flex-col justify-center items-center text-center hidden md:flex">
-          <span class="text-4xl font-serif block mb-2">15+</span>
-          <span class="text-xs uppercase tracking-widest">Years of<br>Excellence</span>
+        <div class="max-w-[1600px] mx-auto flex justify-between items-end border-t border-white/10 pt-6">
+            <p class="text-[10px] text-gray-700 font-mono">© 2025 PRJCTX. ALL RIGHTS RESERVED.</p>
+            <p class="text-[100px] leading-[0.8] font-head text-white/5 select-none pointer-events-none -mb-6 -mr-4">X</p>
         </div>
-      </div>
-      
-      <div>
-        <span class="text-wood text-xs font-bold tracking-[0.2em] uppercase block mb-4">Our Philosophy</span>
-        <h2 class="font-serif text-4xl md:text-5xl text-earth-800 mb-8 leading-tight">Designed for Life, <br> Crafted for You.</h2>
-        <p class="text-gray-600 leading-relaxed mb-6 font-light">
-          We believe that furniture shouldn't just fill a space; it should define it. Each piece in our collection is sourced from artisans who value integrity over speed.
-        </p>
-        <p class="text-gray-600 leading-relaxed mb-10 font-light">
-          Using sustainable oak, organic fabrics, and time-honored joinery techniques, we bring you items that age gracefully with your home.
-        </p>
-        <a href="#collections" class="btn-wood inline-block px-10 py-4 text-xs font-bold uppercase tracking-widest">
-          Read Our Story
-        </a>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="py-24 text-center px-6">
-    <div class="max-w-xl mx-auto">
-      <h2 class="font-serif text-3xl text-earth-800 mb-4">Join the Inner Circle</h2>
-      <p class="text-gray-500 mb-8 font-light">Subscribe to receive updates, access to exclusive deals, and more.</p>
-      <form class="flex flex-col sm:flex-row gap-4">
-        <input type="email" placeholder="Enter your email address" class="flex-1 bg-transparent border-b border-gray-300 py-3 px-2 focus:outline-none focus:border-wood transition placeholder-gray-400">
-        <button type="button" class="bg-earth-800 text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-wood transition">Sign Up</button>
-      </form>
-    </div>
-  </section>
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const hoverables = document.querySelectorAll('.hoverable, a, button');
 
-  <footer class="bg-[#1a1a1a] text-white pt-20 pb-10 border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-      <div class="col-span-1 md:col-span-1">
-        <a href="#" class="font-serif text-2xl font-bold tracking-tight mb-6 block">Mihrap.</a>
-        <p class="text-gray-400 text-sm leading-loose font-light">
-          Elevating spaces with organic textures and timeless designs. Your home, reimagined.
-        </p>
-      </div>
-      
-      <div>
-        <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-gray-300">Shop</h4>
-        <ul class="space-y-4 text-sm text-gray-500 font-light">
-          <li><a href="#" class="hover:text-white transition">New Arrivals</a></li>
-          <li><a href="#" class="hover:text-white transition">Best Sellers</a></li>
-          <li><a href="#" class="hover:text-white transition">Living Room</a></li>
-          <li><a href="#" class="hover:text-white transition">Decor</a></li>
-        </ul>
-      </div>
+        // Mouse hareketi
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
 
-      <div>
-        <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-gray-300">Support</h4>
-        <ul class="space-y-4 text-sm text-gray-500 font-light">
-          <li><a href="#" class="hover:text-white transition">Shipping Policy</a></li>
-          <li><a href="#" class="hover:text-white transition">Returns & Exchange</a></li>
-          <li><a href="#" class="hover:text-white transition">Care Instructions</a></li>
-          <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
-        </ul>
-      </div>
+            // Dot anında gelir
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
 
-      <div>
-        <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-gray-300">Follow Us</h4>
-        <div class="flex gap-4">
-          <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-pinterest"></i></a>
-          <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-facebook-f"></i></a>
-        </div>
-      </div>
-    </div>
+            // Outline biraz gecikmeli gelir (smooth effect)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
 
-    <div class="border-t border-white/10 pt-8 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-gray-600 text-xs">&copy; 2025 Mihrap Furniture. Powered by VitrinX.</p>
-      <div class="flex gap-4">
-        <i class="fa-brands fa-cc-visa text-gray-500 text-xl"></i>
-        <i class="fa-brands fa-cc-mastercard text-gray-500 text-xl"></i>
-        <i class="fa-brands fa-cc-paypal text-gray-500 text-xl"></i>
-      </div>
-    </div>
-  </footer>
-
-  <a href="https://wa.me/905419787726" target="_blank"
-     class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-xl transition transform hover:scale-110">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
+        // Hover efektleri
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+            });
+        });
+    </script>
 </body>
 </html>
