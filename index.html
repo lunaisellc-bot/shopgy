@@ -1,663 +1,297 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinX | Enterprise Grade Etsy Solutions</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITRINX | Premium Etsy Themes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <meta property="og:title" content="VitrinX | Turn Your Etsy Shop into a Global Brand" />
-  <meta property="og:description" content="Secure, verified API integration. We sync your Etsy inventory to your own flagship .com website. Operated by Lunaise LLC (Sheridan, WY)." />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80" />
-  <meta property="og:url" content="https://www.vitrinx.com" />
-  <meta property="og:type" content="website" />
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Space Grotesk', 'sans-serif'],
-            sans: ['Inter', 'sans-serif'],
-            serif: ['Playfair Display', 'serif']
-          },
-          colors: {
-            neon: '#00ff9d',
-            purple: '#bd00ff',
-            dark: '#050505',
-          },
-          animation: {
-            'float': 'float 8s ease-in-out infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'spin-slow': 'spin 12s linear infinite'
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'head': ['Space Grotesk', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand': '#6366f1', // Indigo
+                        'dark': '#0f172a', // Slate 900
+                        'card': '#1e293b'  // Slate 800
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards'
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
-
-  <style>
-    /* GLOBAL SETTINGS */
-    html, body {
-      background-color: #050505;
-      color: white;
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden !important;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* CINEMATIC REVEAL ANIMATION CLASSES */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* NOISE TEXTURE (THE "EXPENSIVE" FEEL) */
-    .noise-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.04;
-    }
-
-    /* SUBTLE GRID BACKGROUND */
-    .bg-grid {
-      background-size: 50px 50px;
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-    }
-
-    /* SWIPER */
-    .swiper { width: 100%; padding-top: 60px; padding-bottom: 60px; }
-    .swiper-slide {
-      background-position: center; background-size: cover; width: 320px; height: 480px;
-      border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-      will-change: transform; transition: transform 0.5s;
-    }
-    .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .swiper-slide:hover img { transform: scale(1.05); }
-
-    /* GLASS CARDS - REFINED */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .glass-card:hover { transform: translateY(-5px); border-color: rgba(0, 255, 157, 0.2); box-shadow: 0 0 40px rgba(0, 255, 157, 0.05); }
-
-    /* DETAILS ANIMATION */
-    details > summary { list-style: none; cursor: pointer; transition: color 0.3s; }
-    details > summary::-webkit-details-marker { display: none; }
-    details[open] summary { color: #00ff9d; }
-    details[open] summary ~ * { animation: sweep .4s ease-out; }
-    @keyframes sweep { 0% {opacity: 0; transform: translateY(-8px)} 100% {opacity: 1; transform: translateY(0)} }
-
-    @media (max-width: 640px){ #hero-desc{ font-size: 1rem; } }
-  </style>
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .demo-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .demo-card:hover {
+            transform: translateY(-10px);
+            border-color: #6366f1;
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
 </head>
+<body class="font-body selection:bg-brand selection:text-white">
 
-<body class="antialiased font-sans selection:bg-neon selection:text-black">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 4s"></div>
+    </div>
 
-  <div class="noise-overlay"></div>
-
-  <div class="fixed inset-0 z-0 pointer-events-none">
-    <div class="absolute inset-0 bg-grid opacity-50"></div>
-    <div class="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] bg-purple rounded-full mix-blend-screen filter blur-[200px] opacity-10 animate-float"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-neon rounded-full mix-blend-screen filter blur-[200px] opacity-10 animate-float" style="animation-delay: 3s;"></div>
-  </div>
-
-  <nav class="fixed w-full z-50 bg-dark/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="navbar">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="relative w-9 h-9 flex items-center justify-center bg-gradient-to-tr from-neon to-emerald-700 rounded-xl shadow-[0_0_20px_rgba(0,255,157,0.3)] group cursor-pointer overflow-hidden">
-          <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          <span class="font-heading font-bold text-black text-xl relative z-10">X</span>
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center text-white font-bold">V</div>
+                <span class="font-head text-xl font-bold tracking-tight">VITRINX</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+                <a href="#demos" class="hover:text-white transition">Themes</a>
+                <a href="#features" class="hover:text-white transition">Features</a>
+                <a href="#pricing" class="hover:text-white transition">Pricing</a>
+            </div>
+            <a href="https://etsy.com" target="_blank" class="bg-white text-dark px-6 py-2 rounded-full text-sm font-bold hover:bg-brand hover:text-white transition">
+                Buy on Etsy
+            </a>
         </div>
-        <span class="font-heading text-xl font-bold tracking-tight text-white">VitrinX</span>
-      </div>
+    </nav>
 
-      <div class="hidden md:flex gap-10 text-sm font-medium text-gray-400">
-        <a href="#how-it-works" class="hover:text-white transition duration-300" id="nav-how">How it Works</a>
-        <a href="portfolio.html" class="hover:text-white transition duration-300" id="nav-demos">Showcase</a>
-        <a href="#pricing" class="hover:text-white transition duration-300" id="nav-pricing">Pricing</a>
-        <a href="#faq" class="hover:text-white transition duration-300" id="nav-faq">FAQ</a>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <button onclick="toggleLanguage()" class="flex items-center gap-2 text-[10px] font-bold border border-white/10 bg-white/5 px-3 py-2 rounded-lg hover:bg-white/10 transition uppercase tracking-wider">
-          <i class="fa-solid fa-globe text-gray-400"></i> <span id="current-lang">EN</span>
-        </button>
-        <a href="#pricing" class="hidden sm:block bg-white text-black px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-neon transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(0,255,157,0.4)]" id="nav-cta">Launch Brand</a>
-      </div>
-    </div>
-  </nav>
-
-  <header class="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
-    <div class="mb-8 animate-float">
-      <div class="px-5 py-2 rounded-full border border-neon/20 bg-neon/5 text-neon text-[9px] font-bold uppercase tracking-[0.3em] shadow-[0_0_25px_rgba(0,255,157,0.15)] backdrop-blur-md flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span>
-        <span id="hero-badge">VERIFIED PARTNER ARCHITECTURE</span>
-      </div>
-    </div>
-
-    <h1 class="reveal font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 tracking-tighter">
-      <span id="hero-title-1">Sync Your Etsy Shop</span> <br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple drop-shadow-[0_0_40px_rgba(0,255,157,0.15)]" id="hero-title-2">To Your Own Flagship.</span>
-    </h1>
-
-    <p class="reveal text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed delay-100" id="hero-desc">
-      Stop sending traffic only to a marketplace. We build a professional <strong>.com website</strong> that automatically pulls products from your Etsy store.
-      <br><span class="text-white/50 text-xs mt-3 block font-mono uppercase tracking-widest">(Payments processed securely via Etsy)</span>
-    </p>
-
-    <div class="reveal flex flex-col sm:flex-row gap-6 delay-200">
-      <a href="portfolio.html" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105 shadow-[0_0_40px_rgba(0,255,157,0.25)]">
-        <div class="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-        <span class="relative flex items-center gap-2 tracking-wide"><i class="fa-solid fa-laptop-code"></i> <span id="btn-explore">View Live Demos</span></span>
-      </a>
-      <a href="#how-it-works" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center gap-2 tracking-wide">
-        <span id="btn-how">How It Works?</span> <i class="fa-solid fa-arrow-down text-xs"></i>
-      </a>
-    </div>
-
-    <div class="mt-20 max-w-3xl mx-auto text-center reveal delay-300 opacity-80">
-      <p class="text-xl md:text-2xl font-heading font-medium text-white mb-4 leading-tight" id="pv-title">
-        People don’t buy products. They buy <span class="text-neon border-b border-neon/50 pb-1">brands</span>.
-      </p>
-      <p class="text-gray-500 text-sm md:text-base leading-relaxed font-light" id="pv-desc">
-        The decision happens before the cart. VitrinX shapes that decision in your favor.
-      </p>
-    </div>
-
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-600"><i class="fa-solid fa-chevron-down"></i></div>
-  </header>
-
-  <section class="py-24 bg-black text-center border-t border-white/5 border-b border-white/5 relative overflow-hidden">
-     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-neon to-transparent opacity-50"></div>
-    <p class="reveal text-2xl md:text-4xl font-heading font-bold text-white px-6 tracking-tight" id="transition-title">
-      Etsy lists products. <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-emerald-400">Brands build perception.</span>
-    </p>
-  </section>
-
-  <section id="how-it-works" class="py-24 border-b border-white/5 bg-white/[0.02] overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-20 reveal">
-        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4 tracking-tight">The Integration Logic</h2>
-        <div class="w-24 h-0.5 bg-neon mx-auto rounded-full opacity-30"></div>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-12 text-center relative step-line reveal delay-100">
-        <div class="relative z-10 group cursor-default">
-          <div class="w-24 h-24 bg-dark border border-white/10 group-hover:border-neon/50 transition-colors duration-500 rounded-2xl flex items-center justify-center mx-auto mb-8 text-3xl shadow-[0_0_40px_rgba(0,0,0,0.5)] rotate-3 group-hover:rotate-0 transition-transform">
-            <i class="fa-solid fa-link text-white/50 group-hover:text-neon transition-colors"></i>
-          </div>
-          <h3 class="font-bold text-white text-xl mb-3 tracking-wide" id="step-1-title">API Connection</h3>
-          <p class="text-gray-500 text-sm px-4 leading-relaxed" id="step-1-desc">We connect to Etsy's Open API v3 using your shop name to access your public catalog securely.</p>
+    <header class="pt-40 pb-20 px-6 text-center relative z-10">
+        <div class="inline-block px-4 py-1.5 mb-6 border border-brand/30 rounded-full bg-brand/10 text-brand text-xs font-bold uppercase tracking-widest animate-fade-up">
+            ✨ New 2025 Collection
         </div>
-
-        <div class="relative z-10 group cursor-default">
-          <div class="w-24 h-24 bg-dark border border-neon/30 group-hover:border-neon transition-colors duration-500 rounded-2xl flex items-center justify-center mx-auto mb-8 text-3xl text-neon shadow-[0_0_40px_rgba(0,255,157,0.15)] -rotate-3 group-hover:rotate-0 transition-transform">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-          </div>
-          <h3 class="font-bold text-white text-xl mb-3 tracking-wide" id="step-2-title">Data Fetch & Design</h3>
-          <p class="text-gray-500 text-sm px-4 leading-relaxed" id="step-2-desc">We fetch your Photos, Titles, and Descriptions. Then we inject them into our High-End Templates.</p>
-        </div>
-
-        <div class="relative z-10 group cursor-default">
-          <div class="w-24 h-24 bg-dark border border-purple/30 group-hover:border-purple transition-colors duration-500 rounded-2xl flex items-center justify-center mx-auto mb-8 text-3xl text-purple-400 shadow-[0_0_40px_rgba(189,0,255,0.15)] rotate-3 group-hover:rotate-0 transition-transform">
-            <i class="fa-solid fa-bag-shopping"></i>
-          </div>
-          <h3 class="font-bold text-white text-xl mb-3 tracking-wide" id="step-3-title">Referral Checkout</h3>
-          <p class="text-gray-500 text-sm px-4 leading-relaxed" id="step-3-desc">Customers browse on your site, but click “Buy on Etsy” to checkout securely. You gain SEO boost.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-32 bg-gradient-to-b from-dark to-[#0a0a0a] border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 leading-tight" id="scenes-title">
-          See it through your <br> <span class="text-gray-500">customer’s eyes.</span>
-        </h2>
-        <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-light" id="scenes-sub">
-          Small shifts in presentation create big shifts in perceived value.
+        <h1 class="font-head text-5xl md:text-7xl font-bold mb-6 leading-tight max-w-4xl mx-auto animate-fade-up" style="animation-delay: 0.1s">
+            Turn Your Etsy Shop into a <br> <span class="text-gradient">Professional Brand</span>
+        </h1>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10 animate-fade-up" style="animation-delay: 0.2s">
+            Premium, no-code websites for Etsy sellers. Choose a theme, connect your shop, and start selling your own way.
         </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 text-left">
-        <div class="glass-card p-10 rounded-3xl reveal delay-100 group">
-          <div class="w-12 h-12 mb-6 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-neon/10 group-hover:border-neon/30 transition-colors">
-            <i class="fa-solid fa-film text-gray-400 group-hover:text-neon transition-colors"></i>
-          </div>
-          <h3 class="font-heading text-xl font-bold mb-4" id="scene1-title">Instagram Visitor</h3>
-          <p class="text-gray-500 text-sm leading-relaxed" id="scene1-desc">
-            One Reel. One click. First impression. An Etsy link feels like a marketplace. Your domain feels like a brand.
-          </p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-up" style="animation-delay: 0.3s">
+            <a href="#demos" class="bg-brand text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-brand/90 transition shadow-lg shadow-brand/25">
+                View All Demos
+            </a>
+            <a href="#how-it-works" class="glass text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition">
+                How It Works
+            </a>
         </div>
+    </header>
 
-        <div class="glass-card p-10 rounded-3xl reveal delay-200 group">
-          <div class="w-12 h-12 mb-6 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-neon/10 group-hover:border-neon/30 transition-colors">
-            <i class="fa-solid fa-magnifying-glass text-gray-400 group-hover:text-neon transition-colors"></i>
-          </div>
-          <h3 class="font-heading text-xl font-bold mb-4" id="scene2-title">Google Brand Search</h3>
-          <p class="text-gray-500 text-sm leading-relaxed" id="scene2-desc">
-            They search your name. Etsy page—or your flagship domain? A domain signals permanence. Permanence builds trust.
-          </p>
-        </div>
-
-        <div class="glass-card p-10 rounded-3xl reveal delay-300 group">
-          <div class="w-12 h-12 mb-6 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-neon/10 group-hover:border-neon/30 transition-colors">
-            <i class="fa-solid fa-layer-group text-gray-400 group-hover:text-neon transition-colors"></i>
-          </div>
-          <h3 class="font-heading text-xl font-bold mb-4" id="scene3-title">Collection Effect</h3>
-          <p class="text-gray-500 text-sm leading-relaxed" id="scene3-desc">
-            Etsy sells items. Brand sites sell collections. Seeing the same design across products triggers: “one is not enough.”
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="showcase" class="py-32 relative overflow-hidden bg-black">
-    <div class="text-center mb-16 reveal">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4 tracking-tight" id="slider-title">Curated Themes</h2>
-      <p class="text-gray-500 font-serif italic text-lg" id="slider-sub">"Select a design, we fill it with your Etsy items."</p>
-    </div>
-
-    <div class="swiper mySwiper reveal delay-100">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide group cursor-pointer">
-          <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=600&q=80" alt="Luxury" />
-          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
-            <span class="text-neon font-heading text-2xl font-bold mb-3 tracking-widest">ULTRA LUXE</span>
-            <a href="demo-ultra.html" target="_blank" class="px-8 py-3 border border-neon text-neon rounded-full hover:bg-neon hover:text-black transition font-bold text-[10px] tracking-[0.2em] btn-view">VIEW DEMO</a>
-          </div>
-        </div>
-        <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Fashion" /><div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm"><span class="text-red-500 font-heading text-2xl font-bold mb-3 tracking-widest">STREETWEAR</span><a href="demo-fashion.html" target="_blank" class="px-8 py-3 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition font-bold text-[10px] tracking-[0.2em] btn-view">VIEW DEMO</a></div></div>
-        <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80" alt="Decor" /><div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm"><span class="text-blue-400 font-heading text-2xl font-bold mb-3 tracking-widest">HOME DECOR</span><a href="demo-business.html" target="_blank" class="px-8 py-3 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-400 hover:text-black transition font-bold text-[10px] tracking-[0.2em] btn-view">VIEW DEMO</a></div></div>
-        <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1545989253-02cc26577f88?w=600&q=80" alt="Art" /><div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm"><span class="text-yellow-400 font-heading text-2xl font-bold mb-3 tracking-widest">ART GALLERY</span><a href="demo-art.html" target="_blank" class="px-8 py-3 border border-yellow-400 text-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition font-bold text-[10px] tracking-[0.2em] btn-view">VIEW DEMO</a></div></div>
-        <div class="swiper-slide group cursor-pointer"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Digital" /><div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm"><span class="text-purple-400 font-heading text-2xl font-bold mb-3 tracking-widest">DIGITAL</span><a href="demo-starter.html" target="_blank" class="px-8 py-3 border border-purple-400 text-purple-400 rounded-full hover:bg-purple-400 hover:text-white transition font-bold text-[10px] tracking-[0.2em] btn-view">VIEW DEMO</a></div></div>
-      </div>
-    </div>
-    
-    <div class="text-center mt-12">
-       <p class="text-[9px] text-gray-600 uppercase tracking-[0.3em] flex items-center justify-center gap-3">
-        <i class="fa-solid fa-arrow-left"></i> Drag <i class="fa-solid fa-arrow-right"></i>
-      </p>
-    </div>
-  </section>
-
-  <section class="py-32 bg-white/[0.02] border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-20 text-center tracking-tight reveal" id="testi-title">Trusted by Sellers Worldwide</h2>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass-card p-10 rounded-2xl reveal delay-100">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-gray-800 rounded-full overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" class="w-full h-full object-cover" alt="User">
+    <section id="demos" class="py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-12 border-b border-white/10 pb-4">
+                <div>
+                    <h2 class="font-head text-3xl font-bold">Choose Your Aesthetic</h2>
+                    <p class="text-slate-400 mt-2">10+ Premium templates crafted for specific niches.</p>
+                </div>
+                <div class="hidden md:flex gap-2">
+                    <button class="px-4 py-2 rounded-lg bg-white/10 text-white text-sm font-bold">All</button>
+                    <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-slate-400 text-sm">Fashion</button>
+                    <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-slate-400 text-sm">Home</button>
+                </div>
             </div>
-            <div>
-              <div class="font-bold text-white tracking-wide">Sarah J.</div>
-              <div class="text-[10px] text-gray-500 uppercase tracking-widest">Jewelry (USA)</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <a href="demo-ultra.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Streetwear">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Project X</h3>
+                            <span class="text-xs font-bold bg-brand/20 text-brand px-2 py-1 rounded">Streetwear</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">High-energy, brutalist design for modern clothing brands.</p>
+                    </div>
+                </a>
+
+                <a href="demo-art.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Art">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">The Gallery</h3>
+                            <span class="text-xs font-bold bg-purple-500/20 text-purple-400 px-2 py-1 rounded">Art & Prints</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Museum-quality minimalist layout for artists and photographers.</p>
+                    </div>
+                </a>
+
+                <a href="demo-fashion-2.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Luxury">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Atelier Noir</h3>
+                            <span class="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded">Luxury</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Editorial style design with parallax effects for high-end fashion.</p>
+                    </div>
+                </a>
+
+                <a href="demo-jewelry.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Jewelry">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Aurora</h3>
+                            <span class="text-xs font-bold bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded">Jewelry</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Elegant, macro-focused design with gold accents and smooth reveals.</p>
+                    </div>
+                </a>
+
+                <a href="demo-business-1.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Furniture">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Naturel</h3>
+                            <span class="text-xs font-bold bg-green-500/20 text-green-400 px-2 py-1 rounded">Home Decor</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Organic textures and earthy tones for furniture and handmade goods.</p>
+                    </div>
+                </a>
+
+                 <a href="demo-starter.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Fitness">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Iron Clad</h3>
+                            <span class="text-xs font-bold bg-red-500/20 text-red-400 px-2 py-1 rounded">Digital</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Vertical snap-scroll layout for fitness coaches and digital creators.</p>
+                    </div>
+                </a>
+                
+                <a href="demo-event.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Wedding">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Velvet</h3>
+                            <span class="text-xs font-bold bg-pink-500/20 text-pink-400 px-2 py-1 rounded">Weddings</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Interactive digital invitation with envelope reveal and timeline.</p>
+                    </div>
+                </a>
+
+                <a href="demo-kids.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Kids">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Little Wonders</h3>
+                            <span class="text-xs font-bold bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded">Kids</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Playful, colorful, and animated design for toy stores and nurseries.</p>
+                    </div>
+                </a>
+                
+                <a href="demo-event-2.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div class="aspect-video bg-black relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df4?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Baby">
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                         <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Little Bloom</h3>
+                            <span class="text-xs font-bold bg-orange-500/20 text-orange-400 px-2 py-1 rounded">Events</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Boho style baby shower and birthday invitation with scrapbook look.</p>
+                    </div>
+                </a>
+
             </div>
-          </div>
-          <p class="text-gray-400 text-sm italic leading-loose" id="testi-1">"I was afraid because I don't know any coding. But VitrinX set up everything. My site looks like a luxury brand now!"</p>
-          <div class="flex gap-1 text-yellow-500/80 text-[10px] mt-6"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        </div>
-
-        <div class="glass-card p-10 rounded-2xl border-neon/30 bg-neon/[0.02] relative reveal delay-200">
-          <div class="absolute top-6 right-6 text-neon opacity-20 text-5xl font-serif">"</div>
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-gray-800 rounded-full overflow-hidden border border-neon/30 grayscale hover:grayscale-0 transition-all duration-500">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" class="w-full h-full object-cover" alt="User">
+            
+            <div class="mt-12 text-center">
+                <a href="https://github.com" target="_blank" class="inline-flex items-center gap-2 text-slate-400 hover:text-white transition">
+                    <i class="fa-brands fa-github"></i> View Source Code
+                </a>
             </div>
-            <div>
-              <div class="font-bold text-white tracking-wide">Mike T.</div>
-              <div class="text-[10px] text-neon uppercase tracking-widest">Digital Art (UK)</div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 bg-darker py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <div class="w-6 h-6 bg-brand rounded flex items-center justify-center text-white text-xs font-bold">V</div>
+                <span class="font-head font-bold text-lg">VITRINX</span>
             </div>
-          </div>
-          <p class="text-gray-300 text-sm italic leading-loose" id="testi-2">"External traffic strategy helped. After sending visitors from my domain, my shop visibility improved over time. Great investment."</p>
-          <div class="flex gap-1 text-neon text-[10px] mt-6"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        </div>
-
-        <div class="glass-card p-10 rounded-2xl reveal delay-300">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 bg-gray-800 rounded-full overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" class="w-full h-full object-cover" alt="User">
+            <p class="text-slate-500 text-sm">© 2025 VitrinX. All rights reserved.</p>
+            <div class="flex gap-4 mt-4 md:mt-0 text-slate-400">
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-etsy"></i></a>
             </div>
-            <div>
-              <div class="font-bold text-white tracking-wide">Elara</div>
-              <div class="text-[10px] text-gray-500 uppercase tracking-widest">Fashion (FR)</div>
-            </div>
-          </div>
-          <p class="text-gray-400 text-sm italic leading-loose" id="testi-3">"I wanted to change my banner but didn't know how. I messaged support on WhatsApp and they did it quickly. Amazing service."</p>
-          <div class="flex gap-1 text-yellow-500/80 text-[10px] mt-6"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
         </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="py-24 bg-black relative overflow-hidden">
-    <div class="absolute inset-0 bg-neon/5 blur-3xl opacity-50"></div>
-    <div class="max-w-5xl mx-auto px-6 text-center relative z-10 reveal">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-8 text-white tracking-tight" id="support-title">Zero Coding. <span class="text-neon">Total Control.</span></h2>
-      <p class="text-gray-400 text-lg mb-12 max-w-2xl mx-auto leading-relaxed font-light" id="support-desc">
-        We handle the technical heavy lifting. <br>
-        Every Business package comes with <strong>30 Days of Concierge Support</strong>.
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4 text-xs font-bold text-white uppercase tracking-widest">
-        <div class="flex items-center justify-center gap-3 bg-white/5 px-6 py-4 rounded-full border border-white/5 hover:bg-white/10 transition"><i class="fa-solid fa-rocket text-neon"></i> <span id="sup-1">30-Day Launch</span></div>
-        <div class="flex items-center justify-center gap-3 bg-white/5 px-6 py-4 rounded-full border border-white/5 hover:bg-white/10 transition"><i class="fa-brands fa-whatsapp text-neon"></i> <span id="sup-2">WhatsApp Assistant</span></div>
-        <div class="flex items-center justify-center gap-3 bg-white/5 px-6 py-4 rounded-full border border-white/5 hover:bg-white/10 transition"><i class="fa-solid fa-shield-halved text-neon"></i> <span id="sup-3">Lifetime Warranty</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="academy" class="py-32 bg-white/[0.02] border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex justify-between items-end mb-16 reveal">
-        <div>
-          <h2 class="font-heading text-3xl font-bold mb-2 tracking-tight" id="blog-title">Seller Resources</h2>
-          <p class="text-gray-500 text-sm" id="blog-sub">Expert insights to scale beyond the marketplace.</p>
-        </div>
-        <a href="blog-strategy.html" class="text-neon text-xs font-bold hover:underline hidden md:block uppercase tracking-widest" id="blog-link">Read All -></a>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <a href="blog-strategy.html" class="glass-card rounded-2xl p-6 group cursor-pointer block hover:bg-white/5 reveal delay-100">
-          <div class="h-48 bg-gray-900 rounded-xl mb-6 overflow-hidden relative">
-             <div class="absolute inset-0 bg-purple/20 mix-blend-overlay z-10"></div>
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" alt="Strategy">
-          </div>
-          <div class="text-[9px] text-purple-400 font-bold mb-3 tracking-[0.2em] uppercase">STRATEGY</div>
-          <h3 class="font-bold text-lg mb-3 group-hover:text-neon transition" id="art-1-title">External Traffic: Healthy Growth</h3>
-          <p class="text-gray-500 text-xs leading-relaxed" id="art-1-desc">How brand searches support visibility signals over time.</p>
-        </a>
-        <a href="blog-mindset.html" class="glass-card rounded-2xl p-6 group cursor-pointer block hover:bg-white/5 reveal delay-200">
-          <div class="h-48 bg-gray-900 rounded-xl mb-6 overflow-hidden relative">
-            <div class="absolute inset-0 bg-neon/10 mix-blend-overlay z-10"></div>
-            <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" alt="Mindset">
-          </div>
-          <div class="text-[9px] text-neon font-bold mb-3 tracking-[0.2em] uppercase">MINDSET</div>
-          <h3 class="font-bold text-lg mb-3 group-hover:text-neon transition" id="art-2-title">From Hobbyist to CEO</h3>
-          <p class="text-gray-500 text-xs leading-relaxed" id="art-2-desc">Why legal entities (LLC) change how customers treat you.</p>
-        </a>
-        <a href="blog-trends.html" class="glass-card rounded-2xl p-6 group cursor-pointer block hover:bg-white/5 reveal delay-300">
-          <div class="h-48 bg-gray-900 rounded-xl mb-6 overflow-hidden relative">
-            <div class="absolute inset-0 bg-blue-500/20 mix-blend-overlay z-10"></div>
-            <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" alt="Trends">
-          </div>
-          <div class="text-[9px] text-blue-400 font-bold mb-3 tracking-[0.2em] uppercase">MARKET WATCH</div>
-          <h3 class="font-bold text-lg mb-3 group-hover:text-neon transition" id="art-3-title">2026: The "Ownership" Era</h3>
-          <p class="text-gray-500 text-xs leading-relaxed" id="art-3-desc">Why owning your domain is a long-term safety net.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="max-w-7xl mx-auto px-6 py-32 relative z-10">
-    <div class="text-center mb-20 reveal">
-      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 tracking-tight" id="pricing-title">One-Time Investment</h2>
-      <p class="text-gray-400 font-light" id="pricing-sub">Own your platform. No monthly fees to VitrinX.</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6 items-start">
-      <div class="glass-card p-8 rounded-[32px] flex flex-col opacity-80 hover:opacity-100 transition duration-500 reveal delay-100">
-        <div class="text-gray-500 font-bold tracking-[0.2em] text-[10px] mb-6">STARTER</div>
-        <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$149</span></div>
-        <div class="text-xs text-gray-500 mb-10 border-b border-white/5 pb-6">Entry level presence</div>
-
-        <ul class="space-y-5 mb-10 text-sm text-gray-400 flex-1 font-light">
-          <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-clean">Etsy Sync</span></li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-host">Hosting Included</span></li>
-          <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-domain">Domain Connect</span></li>
-          <li class="flex gap-3 text-gray-600"><i class="fa-solid fa-xmark"></i> <span class="t-no-design">No Design Edits</span></li>
-        </ul>
-        <div class="mt-auto mb-8 bg-black/40 rounded-xl p-4 text-[10px] text-gray-500 font-mono">
-           <div class="flex justify-between mb-2"><span class="pkg-setup">Setup:</span><span class="text-gray-300 pkg-starter-setup">2–4 Days</span></div>
-           <div class="flex justify-between"><span class="pkg-support">Support:</span><span class="text-gray-300 pkg-starter-support">Basic</span></div>
-        </div>
-        <a href="portfolio.html" class="block w-full text-center py-4 rounded-xl border border-white/10 hover:bg-white hover:text-black transition font-bold text-xs uppercase tracking-widest btn-demo">Browse</a>
-      </div>
-
-      <div class="p-[1px] rounded-[32px] bg-gradient-to-b from-neon to-emerald-900/50 shadow-[0_0_80px_rgba(0,255,157,0.1)] transform md:-translate-y-6 relative z-10 reveal delay-200">
-        <div class="bg-black/90 backdrop-blur-xl h-full w-full rounded-[31px] p-8 flex flex-col relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-neon text-black text-[9px] font-bold px-4 py-2 rounded-bl-xl badge-bestseller tracking-widest">BEST VALUE</div>
-
-          <div class="text-neon font-bold tracking-[0.2em] text-[10px] mb-6">BUSINESS</div>
-          <div class="flex items-baseline gap-1 mb-2"><span class="text-5xl font-heading font-bold text-white">$299</span></div>
-          <div class="text-xs text-gray-400 mb-10 border-b border-white/10 pb-6">For growing brands</div>
-
-          <ul class="space-y-5 mb-10 text-sm text-white flex-1 font-medium">
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-semi">Daily Auto-Sync</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-blog">Blog & About</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-color">Custom Branding</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span class="t-30-days"><strong>30 Days</strong> Support</span></li>
-          </ul>
-
-           <div class="mt-auto mb-8 bg-neon/5 border border-neon/10 rounded-xl p-4 text-[10px] text-gray-400 font-mono">
-             <div class="flex justify-between mb-2"><span class="pkg-setup">Setup:</span><span class="text-neon pkg-business-setup">3–5 Days</span></div>
-             <div class="flex justify-between"><span class="pkg-support">Support:</span><span class="text-neon pkg-business-support">Priority</span></div>
-          </div>
-
-          <a href="portfolio.html" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold text-xs uppercase tracking-widest shadow-lg shadow-neon/20 btn-demo">Start Now</a>
-        </div>
-      </div>
-
-      <div class="glass-card p-8 rounded-[32px] border-purple/30 hover:border-purple/60 transition duration-500 reveal delay-300">
-        <div class="text-purple-400 font-bold tracking-[0.2em] text-[10px] mb-6">ELITE</div>
-        <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$599</span></div>
-        <div class="text-xs text-gray-500 mb-10 border-b border-white/5 pb-6">Full automation</div>
-
-        <ul class="space-y-5 mb-10 text-sm text-gray-300 flex-1 font-light">
-          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-auto">Real-time Sync</span></li>
-          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-dark">Neon / Dark UI</span></li>
-          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-multi">Multi-Language</span></li>
-          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span class="t-90-days"><strong>90 Days</strong> Support</span></li>
-        </ul>
-
-         <div class="mt-auto mb-8 bg-purple/5 border border-purple/10 rounded-xl p-4 text-[10px] text-gray-400 font-mono">
-           <div class="flex justify-between mb-2"><span class="pkg-setup">Setup:</span><span class="text-purple-300 pkg-elite-setup">7–10 Days</span></div>
-           <div class="flex justify-between"><span class="pkg-support">Support:</span><span class="text-purple-300 pkg-elite-support">VIP</span></div>
-        </div>
-
-        <a href="portfolio.html" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold text-xs uppercase tracking-widest btn-demo">Contact</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="py-24 border-t border-white/5 bg-white/[0.02]">
-    <div class="max-w-3xl mx-auto px-6 reveal">
-      <h2 class="font-heading text-3xl font-bold mb-12 text-center tracking-tight" id="faq-title">FAQ</h2>
-
-      <div class="space-y-4">
-        <details class="glass-card rounded-2xl p-6 group">
-          <summary class="font-bold flex justify-between items-center text-sm" id="faq-1-q">Do I upload products manually? <i class="fa-solid fa-plus text-xs opacity-50 transition-transform group-open:rotate-45"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm leading-relaxed font-light pl-4 border-l border-neon/30" id="faq-1-a">No. We connect via Etsy API. All data is fetched automatically.</p>
-        </details>
-
-        <details class="glass-card rounded-2xl p-6 group border-neon/20">
-          <summary class="font-bold flex justify-between items-center text-neon text-sm" id="faq-api-q">Etsy approval process? <i class="fa-solid fa-plus text-xs opacity-50 transition-transform group-open:rotate-45"></i></summary>
-          <p class="mt-4 text-gray-300 text-sm leading-relaxed font-light pl-4 border-l border-neon/50" id="faq-api-a">
-            Takes <strong>2–3 days</strong>. If Etsy asks about the code or commercial use, we provide you with the exact "copy-paste" answers to ensure approval.
-          </p>
-        </details>
-        
-        <details class="glass-card rounded-2xl p-6 group"><summary class="font-bold flex justify-between items-center text-sm" id="faq-2-q">Payments? <i class="fa-solid fa-plus text-xs opacity-50 transition-transform group-open:rotate-45"></i></summary><p class="mt-4 text-gray-400 text-sm leading-relaxed font-light pl-4 border-l border-neon/30" id="faq-2-a">Redirects to Etsy checkout. Secure and simple.</p></details>
-        <details class="glass-card rounded-2xl p-6 group"><summary class="font-bold flex justify-between items-center text-sm" id="faq-3-q">Ranking help? <i class="fa-solid fa-plus text-xs opacity-50 transition-transform group-open:rotate-45"></i></summary><p class="mt-4 text-gray-400 text-sm leading-relaxed font-light pl-4 border-l border-neon/30" id="faq-3-a">External traffic helps long-term visibility signals.</p></details>
-        <details class="glass-card rounded-2xl p-6 group"><summary class="font-bold flex justify-between items-center text-sm" id="faq-4-q">Lifetime Tech Warranty? <i class="fa-solid fa-plus text-xs opacity-50 transition-transform group-open:rotate-45"></i></summary><p class="mt-4 text-gray-400 text-sm leading-relaxed font-light pl-4 border-l border-neon/30" id="faq-4-a">Includes bug fixes and security updates for the current version.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <footer class="border-t border-white/10 bg-black pt-20 pb-10 relative z-10">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
-      <div class="col-span-2">
-        <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
-          <span class="font-heading text-2xl font-bold text-white tracking-tight">VitrinX</span>
-        </div>
-        <p class="text-gray-500 text-xs leading-relaxed max-w-sm mx-auto md:mx-0 mb-8 font-light" id="footer-blurb">
-          We turn Etsy sellers into brand owners.<br>Verified API-based architecture.
-        </p>
-        <div class="inline-flex items-center gap-3 border border-white/10 bg-white/5 px-4 py-3 rounded-xl hover:bg-white/10 transition cursor-default">
-          <div class="text-left">
-            <div class="text-[9px] text-gray-500 uppercase tracking-widest font-bold">OPERATED BY</div>
-            <div class="text-xs font-bold text-white">Lunaise LLC (Sheridan, WY)</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4 class="text-white font-bold mb-6 tracking-widest text-[10px] uppercase">Contact</h4>
-        <ul class="space-y-4 text-xs text-gray-400 font-light">
-          <li class="flex items-center justify-center md:justify-start gap-3"><i class="fa-brands fa-whatsapp text-[#25D366]"></i> <a href="https://wa.me/905419787726" class="hover:text-white transition">+90 (541) 978 77 26</a></li>
-          <li class="flex items-center justify-center md:justify-start gap-3"><i class="fa-solid fa-envelope text-neon"></i> <span>support@vitrinx.com</span></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-white font-bold mb-6 tracking-widest text-[10px] uppercase">Legal</h4>
-        <ul class="space-y-4 text-xs text-gray-400 font-light">
-          <li><a href="legal.html#privacy" class="hover:text-neon transition">Privacy</a></li>
-          <li><a href="legal.html#terms" class="hover:text-neon transition">Terms</a></li>
-          <li><a href="legal.html#refund" class="hover:text-neon transition">Refund</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="border-t border-white/5 pt-8 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="text-center md:text-left">
-        <p class="text-gray-600 text-[10px] mb-2">&copy; 2025 VitrinX. All rights reserved.</p>
-        <p class="text-gray-700 text-[9px] max-w-md leading-relaxed">
-          Etsy is a trademark of Etsy, Inc. This application uses the Etsy API but is not endorsed or certified by Etsy, Inc. 
-        </p>
-      </div>
-      <p class="text-gray-600 text-[10px] flex items-center gap-2 border border-white/5 px-3 py-1 rounded-full bg-white/[0.02]">
-        <span class="w-1 h-1 rounded-full bg-emerald-500 shadow-[0_0_5px_#10b981]"></span> EIN Verified
-      </p>
-    </div>
-  </footer>
-
-  <a href="https://wa.me/905419787726?text=Hello%20VitrinX,%20I%20am%20interested%20in%20building%20my%20brand." target="_blank"
-     class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-[0_0_30px_rgba(37,211,102,0.4)] transition hover:scale-110 hover:-translate-y-1">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <script>
-    /* SCROLL REVEAL LOGIC */
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    /* SWIPER */
-    var swiper = new Swiper(".mySwiper", {
-      effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto", loop: true,
-      speed: 1000,
-      coverflowEffect: { rotate: 0, stretch: 0, depth: 150, modifier: 1, slideShadows: false }, // Cleaner effect
-      autoplay: { delay: 3000, disableOnInteraction: false }
-    });
-
-    /* TRANSLATIONS (Shortened for brevity but logically complete) */
-    const translations = {
-      tr: {
-        'nav-how': 'Nasıl Çalışır?', 'nav-demos': 'Vitrinler', 'nav-pricing': 'Paketler', 'nav-faq': 'SSS', 'nav-cta': 'Markanı Başlat',
-        'hero-badge': 'DOĞRULANMIŞ PARTNER MİMARİSİ',
-        'hero-title-1': 'Etsy Mağazanızı', 'hero-title-2': 'Kendi Amiral Geminize Dönüştürün.',
-        'hero-desc': 'Trafiğinizi sadece pazar yerine göndermeyin. Size özel, profesyonel <strong>.com web sitesi</strong> kuruyoruz.',
-        'btn-explore': 'Demoları İncele', 'btn-how': 'Süreç Nasıl?',
-        'pv-title': 'İnsanlar ürünü değil, <span class="text-neon border-b border-neon/50 pb-1">markayı</span> satın alır.',
-        'pv-desc': 'Karar, sepete eklemeden önce verilir.',
-        'transition-title': 'Etsy ürün listeler. <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-emerald-400">Markalar algı inşa eder.</span>',
-        'step-1-title': 'API Bağlantısı', 'step-1-desc': 'Güvenli protokollerle mağaza kataloğuna bağlanıyoruz.',
-        'step-2-title': 'Veri & Tasarım', 'step-2-desc': 'Görselleri alıp lüks şablonlara işliyoruz.',
-        'step-3-title': 'Yönlendirme', 'step-3-desc': 'Ödeme Etsy’de tamamlanır, SEO puanınız artar.',
-        'scenes-title': 'Müşterinin <br> <span class="text-gray-500">gözünden bak.</span>',
-        'scenes-sub': 'Sunumdaki küçük farklar, değer algısında büyük fark yaratır.',
-        'scene1-title': 'Instagram Ziyaretçisi', 'scene1-desc': 'Etsy linki "pazar" hissi verir. Alan adın "marka" hissi.',
-        'scene2-title': 'Google Araması', 'scene2-desc': 'İsmini arıyorlar. Alan adı kalıcılık ve güven demektir.',
-        'scene3-title': 'Koleksiyon Etkisi', 'scene3-desc': 'Etsy ürün satar. Site koleksiyon satar.',
-        'slider-title': 'Seçkin Temalar', 'slider-sub': '"Bir tasarım seçin, içini ürünlerinizle dolduralım."',
-        'testi-title': 'Dünya Genelinde Tercih Edilen',
-        'testi-1': '"Kodlama bilmediğim için korkuyordum. Ama VitrinX her şeyi halletti. Sitem artık lüks bir marka gibi!"',
-        'testi-2': '"Dış trafik stratejisiyle görünürlüğüm zamanla iyileşti."',
-        'testi-3': '"Banner değiştirmek istedim, WhatsApp’tan yazdım ve hemen hallettiler."',
-        'support-title': 'Kodlama Yok. <span class="text-neon">Tam Kontrol.</span>',
-        'support-desc': 'Teknik yük bizde. Business paketi <strong>30 Gün Asistan</strong> içerir.',
-        'sup-1': '30 Gün Lansman', 'sup-2': 'WhatsApp Asistanı', 'sup-3': 'Ömür Boyu Garanti',
-        'blog-title': 'Kaynaklar', 'blog-sub': 'Markanızı büyütme stratejileri.', 'blog-link': 'Tümünü Oku ->',
-        'art-1-title': 'Dış Trafik Stratejisi', 'art-1-desc': 'Marka aramaları görünürlüğü nasıl artırır?',
-        'art-2-title': 'Hobicilikten CEO’luğa', 'art-2-desc': 'Yasal yapının (LLC) önemi.',
-        'art-3-title': '2026: Sahiplik Dönemi', 'art-3-desc': 'Domain sahibi olmanın önemi.',
-        'pricing-title': 'Tek Seferlik Yatırım', 'pricing-sub': 'Aylık ücret yok. Platform senin.',
-        'faq-title': 'Sıkça Sorulan Sorular',
-        'faq-1-q': 'Ürünleri manuel mi yüklüyorum?', 'faq-1-a': 'Hayır. API ile her şey otomatik çekilir.',
-        'faq-api-q': 'Onay süreci ne kadar?', 'faq-api-a': '2-3 gün. Gerekli tüm cevapları size sağlıyoruz.',
-        'faq-2-q': 'Ödeme nasıl?', 'faq-2-a': 'Etsy üzerinden güvenle alınır.',
-        'faq-3-q': 'Sıralamaya etkisi?', 'faq-3-a': 'Dış trafik sinyalleri uzun vadede faydalıdır.',
-        'faq-4-q': 'Ömür Boyu Garanti nedir?', 'faq-4-a': 'Mevcut sürümdeki hataları ve güvenliği kapsar.',
-        'footer-blurb': 'Etsy satıcılarını marka sahiplerine dönüştürüyoruz.',
-        't-clean': 'Etsy Senkronizasyonu', 't-host': 'Hosting Dahil', 't-domain': 'Alan Adı', 't-semi': 'Günlük Oto-Sync', 't-blog': 'Blog & Hakkımızda', 't-color': 'Özel Markalama', 't-auto': 'Anlık Sync', 't-dark': 'Neon UI', 't-multi': 'Çoklu Dil', 't-no-design': 'Tasarım Yok', 't-30-days': '<strong>30 Gün</strong> Destek', 't-90-days': '<strong>90 Gün</strong> Destek', 'btn-view': 'DEMO', 'btn-demo': 'İNCELE', 'badge-bestseller': 'EN İYİ',
-        'pkg-setup': 'Kurulum:', 'pkg-support': 'Destek:',
-        'pkg-starter-setup': '2-4 Gün', 'pkg-starter-support': 'Temel',
-        'pkg-business-setup': '3-5 Gün', 'pkg-business-support': 'Öncelikli',
-        'pkg-elite-setup': '7-10 Gün', 'pkg-elite-support': 'VIP'
-      }
-    };
-
-    function setLanguage(lang) {
-      const btnLabel = document.getElementById('current-lang');
-      btnLabel.innerText = lang.toUpperCase();
-      if (lang === 'tr') {
-        const tr = translations.tr;
-        for (const key in tr) { const el = document.getElementById(key); if (el) el.innerHTML = tr[key]; }
-        const classMaps = { 
-          't-clean': tr['t-clean'], 't-host': tr['t-host'], 't-domain': tr['t-domain'], 't-semi': tr['t-semi'], 't-blog': tr['t-blog'], 't-color': tr['t-color'], 't-auto': tr['t-auto'], 't-dark': tr['t-dark'], 't-multi': tr['t-multi'], 't-no-design': tr['t-no-design'], 't-30-days': tr['t-30-days'], 't-90-days': tr['t-90-days'], 'btn-view': tr['btn-view'], 'btn-demo': tr['btn-demo'], 'badge-bestseller': tr['badge-bestseller'], 'pkg-setup': tr['pkg-setup'], 'pkg-support': tr['pkg-support'], 'pkg-starter-setup': tr['pkg-starter-setup'], 'pkg-starter-support': tr['pkg-starter-support'], 'pkg-business-setup': tr['pkg-business-setup'], 'pkg-business-support': tr['pkg-business-support'], 'pkg-elite-setup': tr['pkg-elite-setup'], 'pkg-elite-support': tr['pkg-elite-support'] 
-        };
-        for (const cls in classMaps) { document.querySelectorAll('.' + cls).forEach(el => el.innerHTML = classMaps[cls]); }
-      } else { if (localStorage.getItem('userLang') === 'tr') location.reload(); }
-      localStorage.setItem('userLang', lang);
-    }
-    function toggleLanguage() { const current = localStorage.getItem('userLang') || 'en'; setLanguage(current === 'en' ? 'tr' : 'en'); }
-    document.addEventListener('DOMContentLoaded', () => { const savedLang = localStorage.getItem('userLang'); if (savedLang === 'tr') setLanguage('tr'); });
-    window.addEventListener('scroll', () => { 
-      const nav = document.getElementById('navbar'); 
-      if (window.scrollY > 50) nav.classList.add('shadow-lg', 'bg-black/90'); 
-      else nav.classList.remove('shadow-lg', 'bg-black/90'); 
-    });
-  </script>
 </body>
 </html>
