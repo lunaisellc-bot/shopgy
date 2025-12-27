@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMA | Mindful Living</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'head': ['Tenor Sans', 'sans-serif'],
+                        'body': ['Urbanist', 'sans-serif'],
+                    },
+                    colors: {
+                        'clay': '#E6E2DD',
+                        'sage': '#8DA399',
+                        'charcoal': '#2D2D2D',
+                        'sand': '#F5F5F0'
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F5F5F0; color: #2D2D2D; }
+        
+        /* SOFT SHADOWS */
+        .soft-card {
+            transition: all 0.4s ease;
+        }
+        .soft-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+        }
+
+        /* IMAGE HOVER */
+        .img-wrap { overflow: hidden; }
+        .img-wrap img { transition: transform 0.7s ease; }
+        .group:hover .img-wrap img { transform: scale(1.05); }
+
+        /* BUTTON UNDERLINE */
+        .btn-link { position: relative; }
+        .btn-link::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 1px; background: currentColor; transition: width 0.3s;
+        }
+        .btn-link:hover::after { width: 100%; }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #8DA399; border-radius: 3px; }
+    </style>
+</head>
+<body class="font-body antialiased selection:bg-sage selection:text-white">
+
+    <div class="bg-sage text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
+        Spring Sale: 20% Off All Ceramics • Use Code: LUMA20
+    </div>
+
+    <nav class="sticky top-0 z-50 bg-[#F5F5F0]/80 backdrop-blur-md border-b border-gray-200/50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <button class="md:hidden text-2xl"><i class="fa-solid fa-bars font-thin"></i></button>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+                <a href="#shop" class="hover:text-sage transition">Shop</a>
+                <a href="#collections" class="hover:text-sage transition">Collections</a>
+                <a href="#about" class="hover:text-sage transition">Our Story</a>
+            </div>
+
+            <a href="#" class="font-head text-3xl tracking-widest absolute left-1/2 -translate-x-1/2">LUMA</a>
+
+            <div class="flex items-center gap-6 text-gray-600">
+                <a href="#" class="hover:text-sage transition"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="#" class="hover:text-sage transition relative">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="absolute -top-1 -right-2 bg-sage text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative w-full h-[85vh] grid md:grid-cols-2">
+        <div class="flex flex-col justify-center px-10 md:px-24 bg-clay/20 order-2 md:order-1">
+            <span class="text-sage font-bold tracking-[0.2em] text-xs uppercase mb-4 animate-fade-up">Handcrafted & Sustainable</span>
+            <h1 class="font-head text-5xl md:text-7xl mb-6 leading-tight animate-fade-up" style="animation-delay: 0.1s;">
+                Bring Nature <br> <span class="italic text-gray-500">Home.</span>
+            </h1>
+            <p class="text-gray-600 mb-10 max-w-md leading-relaxed animate-fade-up" style="animation-delay: 0.2s;">
+                Discover our curated collection of artisan ceramics, organic textiles, and mindful home decor designed to elevate your sanctuary.
+            </p>
+            <div class="flex gap-4 animate-fade-up" style="animation-delay: 0.3s;">
+                <a href="#shop" class="bg-charcoal text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-sage transition">Shop Now</a>
+                <a href="#collections" class="border border-charcoal px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-charcoal hover:text-white transition">Explore</a>
+            </div>
+        </div>
+        
+        <div class="relative h-full overflow-hidden order-1 md:order-2">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover hover:scale-105 transition duration-[2s]" alt="Minimalist Interior">
+             <div class="absolute bottom-10 right-10 bg-white/80 backdrop-blur px-6 py-4 hidden md:block">
+                <p class="font-head text-xl">The Sunday Chair</p>
+                <p class="text-xs text-gray-500">$450.00</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="collections" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="font-head text-4xl mb-3">Curated Spaces</h2>
+            <div class="w-12 h-0.5 bg-sage mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <a href="#" class="group block relative overflow-hidden h-[500px] soft-card">
+                <div class="img-wrap h-full w-full">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" class="w-full h-full object-cover" alt="Kitchen">
+                </div>
+                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="font-head text-3xl mb-1">Kitchen & Dining</h3>
+                    <span class="text-xs uppercase tracking-widest btn-link">View Collection</span>
+                </div>
+            </a>
+
+            <a href="#" class="group block relative overflow-hidden h-[500px] soft-card mt-0 md:-mt-12">
+                <div class="img-wrap h-full w-full">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80" class="w-full h-full object-cover" alt="Living">
+                </div>
+                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="font-head text-3xl mb-1">Living Room</h3>
+                    <span class="text-xs uppercase tracking-widest btn-link">View Collection</span>
+                </div>
+            </a>
+
+            <a href="#" class="group block relative overflow-hidden h-[500px] soft-card">
+                <div class="img-wrap h-full w-full">
+                    <img src="https://images.unsplash.com/photo-1540932296774-3ed466067aa2?w=800&q=80" class="w-full h-full object-cover" alt="Decor">
+                </div>
+                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="font-head text-3xl mb-1">Objects & Decor</h3>
+                    <span class="text-xs uppercase tracking-widest btn-link">View Collection</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="shop" class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="font-head text-3xl">New Arrivals</h2>
+                <a href="#" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-sage btn-link">Shop All</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
+                        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Vase">
+                        <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
+                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-sage text-white text-[10px] px-2 py-1 uppercase tracking-widest">New</span>
+                    </div>
+                    <h3 class="font-head text-lg text-gray-800">Ceramic Curve Vase</h3>
+                    <span class="text-gray-500 text-sm">$45.00</span>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
+                        <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Candle">
+                         <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
+                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <h3 class="font-head text-lg text-gray-800">Sandalwood Soy Candle</h3>
+                    <span class="text-gray-500 text-sm">$28.00</span>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
+                        <img src="https://images.unsplash.com/photo-1589982366601-e6e246944061?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Throw">
+                         <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
+                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <h3 class="font-head text-lg text-gray-800">Organic Cotton Throw</h3>
+                    <span class="text-gray-500 text-sm">$85.00</span>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
+                        <img src="https://images.unsplash.com/photo-1579539243301-a1871e0696eb?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Plant Pot">
+                         <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
+                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
+                        </div>
+                        <span class="absolute top-3 left-3 bg-clay text-charcoal text-[10px] px-2 py-1 uppercase tracking-widest">Low Stock</span>
+                    </div>
+                    <h3 class="font-head text-lg text-gray-800">Terracotta Planter</h3>
+                    <span class="text-gray-500 text-sm">$32.00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-clay/30">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <i class="fa-solid fa-quote-left text-4xl text-sage mb-8 opacity-50"></i>
+            <h2 class="font-head text-3xl md:text-4xl leading-relaxed mb-8">
+                "Luma has completely transformed my living space. The quality of the ceramics is unmatched, and I love knowing everything is ethically sourced."
+            </h2>
+            <div class="flex items-center justify-center gap-4">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" class="w-12 h-12 rounded-full object-cover" alt="User">
+                <div class="text-left">
+                    <p class="font-bold text-sm">Elena Miles</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest">Verified Buyer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 text-center">
+        <h2 class="font-head text-3xl mb-4">Join Our Community</h2>
+        <p class="text-gray-500 mb-8 max-w-md mx-auto">Receive 10% off your first order, plus design tips and early access to new collections.</p>
+        <form class="max-w-md mx-auto flex gap-0 border-b border-charcoal pb-1">
+            <input type="email" placeholder="Your email address" class="w-full bg-transparent outline-none placeholder-gray-400 text-sm">
+            <button class="text-xs font-bold uppercase tracking-widest hover:text-sage transition">Subscribe</button>
+        </form>
+    </section>
+
+    <footer class="bg-charcoal text-white pt-20 pb-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-1">
+                <a href="#" class="font-head text-3xl tracking-widest mb-6 block">LUMA</a>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Mindfully curated goods for the modern home. 
+                    Based in Stockholm, shipping worldwide.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-clay">Shop</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">All Products</a></li>
+                    <li><a href="#" class="hover:text-white transition">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-white transition">Sustainability</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-clay">Help</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-white transition">Care Instructions</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-clay">Follow</h4>
+                <div class="flex gap-4 text-xl text-gray-400">
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-xs text-gray-500 uppercase tracking-widest">
+            <p>&copy; 2025 LUMA HOME. POWERED BY VITRINX.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <i class="fa-brands fa-cc-visa text-lg"></i>
+                <i class="fa-brands fa-cc-mastercard text-lg"></i>
+                <i class="fa-brands fa-cc-paypal text-lg"></i>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/905419787726" class="fixed bottom-6 right-6 z-50 bg-sage hover:bg-charcoal text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
+
+</body>
+</html>
