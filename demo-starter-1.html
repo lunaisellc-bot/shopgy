@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HORIZON | Cinematic Experience</title>
+    <title>VERTEX | Cinematic Mobile Experience</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -14,277 +14,219 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'head': ['Syne', 'sans-serif'],
-                        'body': ['Manrope', 'sans-serif'],
+                        'display': ['Anton', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'void': '#0A0A0A',
-                        'neon': '#E2FF00'
+                        'accent': '#FF3B30', /* Canlı Kırmızı */
+                        'dark': '#000000',
+                        'light': '#FFFFFF'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { 
-            background-color: #0A0A0A; 
-            color: #fff; 
-            margin: 0; 
-            padding: 0; 
-            overflow: hidden; /* Scrollbar'ı gizle, JS ile kontrol edeceğiz */
-            height: 100vh;
-            width: 100vw;
-        }
-
-        /* ANA KONTEYNER */
-        .scroll-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* TEMEL AYARLAR */
+        html, body {
+            margin: 0;
+            padding: 0;
             height: 100%;
-            display: flex;
-            align-items: center;
-            padding: 0 10vw;
-            gap: 8vw;
-            will-change: transform; /* Performans optimizasyonu */
-        }
-
-        /* RESİM KARTLARI */
-        .card {
-            position: relative;
-            flex-shrink: 0;
-            height: 60vh;
-            width: 40vh;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.2); /* Parallax için pay */
-            transition: transform 0.5s;
-        }
-        
-        .card:hover img {
-            transform: scale(1);
-        }
-
-        /* GIANT TEXT (Resimlerin arkasında/önünde) */
-        .outline-text {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-            color: transparent;
-        }
-        
-        /* BLEND MODES (Yazı resmin üstüne gelince renk değiştirir) */
-        .blend-layer {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            white-space: nowrap;
-            font-family: 'Syne', sans-serif;
-            font-size: 25vh;
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            pointer-events: none;
-            z-index: 10;
-            mix-blend-mode: difference;
+            overflow: hidden; /* Dışarı taşmayı engelle */
+            background-color: #000;
             color: #fff;
-            line-height: 0.8;
         }
 
-        /* CUSTOM CURSOR */
-        .cursor {
-            position: fixed;
-            top: 0; left: 0;
-            width: 20px; height: 20px;
-            background: #E2FF00;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 999;
-            mix-blend-mode: exclusion;
-            transition: transform 0.2s;
+        /* SNAP SCROLL CONTAINER (Sihir Burada) */
+        .snap-container {
+            height: 100vh; /* Tam ekran yüksekliği */
+            height: 100dvh; /* Mobilde adres çubuğunu hesaba katar */
+            overflow-y: scroll; /* Dikey kaydırma */
+            scroll-snap-type: y mandatory; /* Y ekseninde zorunlu kilitleme */
+            scroll-behavior: smooth;
         }
 
-        /* PROGRESS BAR */
-        .progress-bar {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 2px;
-            background: rgba(255,255,255,0.2);
-            z-index: 50;
+        /* HER BÖLÜM (SECTION) */
+        section {
+            height: 100vh;
+            height: 100dvh;
+            width: 100%;
+            scroll-snap-align: start; /* Başlangıca kilitle */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
-        .progress-fill {
-            height: 100%;
-            background: #E2FF00;
-            width: 0%;
+
+        /* GÖRSEL EFEKTLER */
+        .bg-img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            z-index: -1; transition: transform 1s ease-out; opacity: 0.6;
         }
-        
-        /* NOISE */
-        .noise {
-            position: fixed; inset: 0; z-index: -1; opacity: 0.05;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+        /* Aktif sahnede resim hafif zoom yapar */
+        section.active .bg-img { transform: scale(1.1); }
+
+        /* YAZI ANİMASYONLARI */
+        .slide-up {
+            transform: translateY(100px); opacity: 0; transition: all 0.8s ease-out;
+        }
+        section.active .slide-up {
+            transform: translateY(0); opacity: 1;
+        }
+        /* Gecikmeli girişler */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* BUTONLAR */
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+        .btn-glass:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.2); }
+
+        /* SCROLL INDICATOR */
+        .scroll-hint {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            animation: bounce 2s infinite; pointer-events: none; z-index: 20;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
         }
     </style>
 </head>
 <body class="font-body">
 
-    <div class="noise"></div>
-    <div class="cursor hidden md:block"></div>
-
-    <nav class="fixed top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference">
-        <a href="#" class="font-head text-2xl font-bold tracking-tighter">HORIZON</a>
-        <div class="text-xs font-bold uppercase tracking-widest hidden md:block">
-            Scroll to Explore <i class="fa-solid fa-arrow-right ml-2 animate-pulse"></i>
+    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference text-white">
+        <span class="font-display text-2xl tracking-wider">VERTEX</span>
+        <div class="flex gap-4">
+            <i class="fa-solid fa-bag-shopping text-xl"></i>
+            <i class="fa-solid fa-bars text-xl"></i>
         </div>
-        <a href="#" class="text-xl hover:text-neon transition"><i class="fa-solid fa-bars"></i></a>
     </nav>
 
-    <div class="blend-layer">
-        BEYOND THE ORDINARY &nbsp;&nbsp;&nbsp; — &nbsp;&nbsp;&nbsp; PURE AESTHETICS
-    </div>
+    <main class="snap-container" id="scroller">
 
-    <div class="scroll-container" id="scrollContainer">
-        
-        <div class="flex flex-col justify-center w-[40vw] pl-10">
-            <h1 class="font-head text-6xl md:text-8xl font-bold leading-none mb-6">
-                Redefine <br> <span class="text-neon">Perspective.</span>
-            </h1>
-            <p class="text-gray-400 max-w-md leading-relaxed">
-                A new dimension of digital storytelling. We break the vertical limit. Swipe to discover the collection.
-            </p>
-        </div>
-
-        <div class="card group">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80" alt="Model">
-            <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 class="font-head text-2xl">Portrait</h3>
-                <p class="text-neon text-xs uppercase tracking-widest">Photography</p>
+        <section data-index="0" class="active">
+            <img src="https://images.unsplash.com/photo-1550614000-4b9519e02a15?q=80&w=1974&auto=format&fit=crop" class="bg-img" alt="Fashion">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
+            
+            <div class="relative z-10 text-center px-6">
+                <p class="text-accent font-bold tracking-[0.3em] text-xs uppercase mb-4 slide-up">New Collection</p>
+                <h1 class="font-display text-7xl md:text-9xl mb-6 slide-up delay-100">REBEL<br>MODE</h1>
+                <p class="text-gray-300 max-w-sm mx-auto mb-8 text-sm leading-relaxed slide-up delay-200">
+                    Defy the ordinary. Explore the new season of streetwear designed for the bold.
+                </p>
+                <button class="btn-glass px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest slide-up delay-300">
+                    Start Exploring
+                </button>
             </div>
-        </div>
-
-        <div class="card group mt-20"> <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80" alt="Male">
-            <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 class="font-head text-2xl">Editorial</h3>
-                <p class="text-neon text-xs uppercase tracking-widest">Vogue 2025</p>
+            
+            <div class="scroll-hint text-xs uppercase tracking-widest opacity-70">
+                Swipe Up <i class="fa-solid fa-chevron-down ml-1"></i>
             </div>
-        </div>
+        </section>
 
-        <div class="w-[30vw] flex items-center justify-center text-center">
-            <p class="font-head text-4xl leading-tight">
-                "Design is not just what it looks like. Design is how it <span class="italic text-neon">moves.</span>"
-            </p>
-        </div>
-
-        <div class="card group -mt-10"> <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" alt="Product">
-             <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 class="font-head text-2xl">Sneaker</h3>
-                <p class="text-neon text-xs uppercase tracking-widest">Product Design</p>
+        <section data-index="1">
+            <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=1976&auto=format&fit=crop" class="bg-img" alt="Hoodie">
+            <div class="absolute inset-0 bg-black/40"></div>
+            
+            <div class="relative z-10 w-full px-6 flex flex-col items-start">
+                <div class="bg-accent text-white px-3 py-1 text-[10px] font-bold uppercase mb-4 slide-up">Best Seller</div>
+                <h2 class="font-display text-5xl md:text-7xl mb-4 slide-up delay-100">Oversized<br>Hoodie</h2>
+                <div class="flex items-center gap-4 mb-8 slide-up delay-200">
+                    <span class="text-2xl font-bold">$89.00</span>
+                    <span class="text-gray-400 line-through text-sm">$120.00</span>
+                </div>
+                <div class="flex gap-4 w-full slide-up delay-300">
+                    <button class="flex-1 bg-white text-black py-4 font-bold text-xs uppercase tracking-widest hover:bg-gray-200 transition">
+                        Add to Cart
+                    </button>
+                    <button class="btn-glass w-16 flex items-center justify-center text-xl">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card group w-[60vh]">
-            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1000&q=80" alt="Architecture">
-            <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 class="font-head text-2xl">Interior</h3>
-                <p class="text-neon text-xs uppercase tracking-widest">Architecture</p>
+        <section data-index="2">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1974&auto=format&fit=crop" class="bg-img grayscale contrast-125" alt="Vibe">
+            <div class="absolute inset-0 bg-accent/20 mix-blend-overlay"></div>
+            
+            <div class="relative z-10 text-center border-y border-white/30 py-12 w-full backdrop-blur-sm">
+                <h2 class="font-display text-6xl md:text-8xl italic slide-up">"PURE<br>CHAOS"</h2>
+                <p class="text-xs font-mono mt-4 slide-up delay-100">LIMITED EDITION DROP 002</p>
             </div>
-        </div>
+        </section>
 
-        <div class="card group mt-16">
-            <img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?w=800&q=80" alt="Abstract">
-            <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 class="font-head text-2xl">Abstract</h3>
-                <p class="text-neon text-xs uppercase tracking-widest">3D Art</p>
+        <section data-index="3" class="bg-black">
+            <div class="grid grid-cols-2 gap-2 p-2 w-full h-full">
+                <div class="relative overflow-hidden group h-full">
+                    <img src="https://images.unsplash.com/photo-1523396870177-0295196caa55?w=500&q=80" class="w-full h-full object-cover slide-up" alt="Item">
+                    <div class="absolute bottom-4 left-4 font-display text-xl slide-up delay-100">Shoes</div>
+                </div>
+                <div class="relative overflow-hidden group h-full">
+                    <img src="https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=500&q=80" class="w-full h-full object-cover slide-up delay-100" alt="Item">
+                    <div class="absolute bottom-4 left-4 font-display text-xl slide-up delay-200">Jackets</div>
+                </div>
+                <div class="relative overflow-hidden group h-full">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&q=80" class="w-full h-full object-cover slide-up delay-200" alt="Item">
+                    <div class="absolute bottom-4 left-4 font-display text-xl slide-up delay-300">Tees</div>
+                </div>
+                <div class="relative overflow-hidden group h-full bg-accent flex items-center justify-center slide-up delay-300">
+                    <a href="#" class="font-display text-3xl text-black hover:scale-110 transition">VIEW<br>ALL -></a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="flex flex-col justify-center items-start w-[30vw] pr-20">
-            <h2 class="font-head text-5xl mb-6">Next Level.</h2>
-            <a href="#" class="border border-white px-8 py-4 rounded-full hover:bg-neon hover:text-black hover:border-neon transition duration-300 font-bold uppercase text-xs tracking-widest">
-                Start Project
-            </a>
-        </div>
+        <section data-index="4">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=2073&auto=format&fit=crop" class="bg-img" alt="Footer">
+            <div class="absolute inset-0 bg-black/70"></div>
+            
+            <div class="relative z-10 text-center px-6">
+                <h2 class="font-display text-5xl mb-6 slide-up">JOIN THE<br>CLUB</h2>
+                <p class="text-gray-400 text-sm mb-8 slide-up delay-100">Get 10% off your first order.</p>
+                
+                <form class="flex flex-col gap-4 w-full max-w-xs mx-auto slide-up delay-200">
+                    <input type="email" placeholder="EMAIL ADDRESS" class="bg-white/10 border border-white/20 p-4 text-center text-white placeholder-white/50 focus:outline-none focus:border-accent">
+                    <button class="bg-accent text-white py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Subscribe</button>
+                </form>
+                
+                <div class="mt-12 text-[10px] text-gray-500 slide-up delay-300">
+                    © 2025 VERTEX. POWERED BY VITRINX.
+                </div>
+            </div>
+        </section>
 
-    </div>
-
-    <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-    </div>
+    </main>
 
     <script>
-        const container = document.getElementById('scrollContainer');
-        const progressFill = document.getElementById('progressFill');
-        const cursor = document.querySelector('.cursor');
+        // Animasyonları Tetikleyen Gözlemci (Observer)
+        const sections = document.querySelectorAll('section');
         
-        // State variables
-        let current = 0;
-        let target = 0;
-        let ease = 0.08; // Akışkanlık değeri (küçükse daha yumuşak)
-        
-        // Window dimensions
-        let maxScroll = container.scrollWidth - window.innerWidth;
-        
-        // Resize handler
-        window.addEventListener('resize', () => {
-            maxScroll = container.scrollWidth - window.innerWidth;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Ekrana giren bölüme 'active' sınıfı ekle
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    // Ekrandan çıkınca animasyonu sıfırla (tekrar giriş için)
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, { 
+            threshold: 0.5 // Bölümün %50'si görünür olunca tetikle
         });
 
-        // Wheel Event (Mapping vertical scroll to horizontal)
-        window.addEventListener('wheel', (e) => {
-            target += e.deltaY;
-            // Clamp target
-            target = Math.max(0, Math.min(target, maxScroll));
+        sections.forEach(section => {
+            observer.observe(section);
         });
-
-        // Animation Loop
-        function animate() {
-            // Linear Interpolation (Lerp) for smooth scrolling
-            current = lerp(current, target, ease);
-            
-            // Calculate velocity for skew effect (Hız)
-            let velocity = target - current;
-            let skew = velocity * 0.15; // Skew katsayısı
-            
-            // Apply Transform
-            container.style.transform = `translate3d(${-current}px, 0, 0) skewX(${skew}deg)`;
-            
-            // Update Progress Bar
-            let progress = (current / maxScroll) * 100;
-            progressFill.style.width = `${progress}%`;
-
-            requestAnimationFrame(animate);
-        }
-        
-        // Helper function
-        function lerp(start, end, t) {
-            return start * (1 - t) + end * t;
-        }
-
-        animate();
-
-        // Cursor Logic
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            // Hover scale effect
-            if(e.target.tagName === 'A' || e.target.tagName === 'IMG') {
-                cursor.style.transform = 'scale(3)';
-                cursor.style.background = '#fff';
-                cursor.style.mixBlendMode = 'difference';
-            } else {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.background = '#E2FF00';
-                cursor.style.mixBlendMode = 'exclusion';
-            }
-        });
-
     </script>
 </body>
 </html>
