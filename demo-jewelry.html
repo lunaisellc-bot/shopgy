@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURORA | Fine Jewelry</title>
+    <title>AURORA | High Jewelry Maison</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Mulish:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -19,18 +19,29 @@
                     },
                     colors: {
                         'gold': '#D4AF37',
-                        'champagne': '#F7E7CE',
+                        'gold-light': '#F7E7CE',
                         'charcoal': '#1a1a1a',
-                        'light': '#FAFAFA'
+                        'cream': '#FAFAFA',
+                        'deep-bg': '#0A0A0A'
                     },
                     animation: {
+                        'ken-burns': 'kenBurns 25s ease-out infinite alternate',
                         'shine': 'shine 3s infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-up': 'fadeUp 1s ease-out forwards'
                     },
                     keyframes: {
+                        kenBurns: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.15)' }
+                        },
                         shine: {
                             '0%': { transform: 'translateX(-100%)' },
                             '100%': { transform: 'translateX(100%)' }
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
                         }
                     }
                 }
@@ -40,272 +51,244 @@
     <style>
         body { background-color: #FAFAFA; color: #1a1a1a; overflow-x: hidden; }
 
-        /* MACRO ZOOM EFFECT */
-        .zoom-container { overflow: hidden; position: relative; cursor: crosshair; }
-        .zoom-img { transition: transform 0.5s ease-out; width: 100%; height: 100%; object-fit: cover; }
-        .zoom-container:hover .zoom-img { transform: scale(1.4); }
-
-        /* GOLD TEXTURE */
-        .text-gold-gradient {
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            -webkit-background-clip: text;
-            color: transparent;
+        /* DIAMOND DUST TEXTURE */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 90; mix-blend-mode: overlay;
         }
 
+        /* MACRO ZOOM EFFECT ON PRODUCTS */
+        .zoom-container { overflow: hidden; position: relative; cursor: crosshair; }
+        .zoom-img { transition: transform 0.6s ease-out; width: 100%; height: 100%; object-fit: cover; }
+        .zoom-container:hover .zoom-img { transform: scale(1.3); }
+
         /* REVEAL ANIMATION */
-        .reveal-fade { opacity: 0; transform: translateY(20px); transition: all 1s ease; }
-        .reveal-fade.active { opacity: 1; transform: translateY(0); }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* THIN BORDERS */
-        .border-thin { border: 1px solid rgba(0,0,0,0.05); }
-
-        /* CUSTOM SCROLLBAR */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #D4AF37; }
+        /* MAGNETIC BUTTON */
+        .btn-magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-block; }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-gold selection:text-white">
 
-    <div class="bg-[#1a1a1a] text-white text-center py-2 text-[10px] tracking-[0.2em] uppercase font-light relative overflow-hidden">
-        <span class="relative z-10">Complimentary Gift Packaging on All Orders</span>
+    <div class="noise-overlay"></div>
+
+    <div class="bg-deep-bg text-gold-light text-center py-2 text-[10px] tracking-[0.2em] uppercase font-light relative overflow-hidden z-50">
+        <span class="relative z-10"><i class="fa-solid fa-gem mr-2"></i> Complimentary Insured Shipping & Gift Wrapping</span>
         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent w-1/2 h-full -skew-x-12 animate-shine"></div>
     </div>
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-            <div class="w-24 hidden md:block">
-                <a href="#" class="text-xs uppercase tracking-widest hover:text-gold transition">Shop</a>
+    <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="hidden md:flex gap-8 text-xs uppercase tracking-[0.2em] font-bold">
+                <a href="#featured" class="hover:text-gold transition">High Jewelry</a>
+                <a href="#categories" class="hover:text-gold transition">Collections</a>
             </div>
 
-            <a href="#" class="font-serif text-3xl font-bold tracking-wider text-center flex-1">
+            <a href="#" class="font-serif text-3xl font-bold tracking-wider text-center flex-1 md:flex-none">
                 AURORA
             </a>
 
-            <div class="flex items-center justify-end gap-6 w-24">
-                <a href="#" class="hover:text-gold transition"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="#" class="hover:text-gold transition"><i class="fa-regular fa-heart"></i></a>
-                <a href="#" class="hover:text-gold transition"><i class="fa-solid fa-bag-shopping"></i></a>
+            <div class="flex items-center justify-end gap-6 text-charcoal">
+                <a href="#" class="hover:text-gold transition hidden md:block text-xs uppercase tracking-widest font-bold">Account</a>
+                <a href="#" class="hover:text-gold transition"><i class="fa-solid fa-bag-shopping text-lg"></i></a>
             </div>
         </div>
     </nav>
 
-    <header class="relative w-full h-[85vh]">
-        <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?q=80&w=2531&auto=format&fit=crop" class="w-full h-full object-cover" alt="Jewelry Model">
-        <div class="absolute inset-0 bg-black/10"></div>
+    <header class="relative w-full h-[90vh] overflow-hidden bg-deep-bg">
+        <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=2535&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 animate-ken-burns" alt="High Jewelry Model">
+        <div class="absolute inset-0 bg-gradient-to-t from-deep-bg via-transparent to-deep-bg/30"></div>
         
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
-            <p class="text-xs uppercase tracking-[0.4em] mb-4 animate-pulse-slow">The Eternal Collection</p>
-            <h1 class="font-serif text-5xl md:text-7xl mb-8 leading-tight drop-shadow-lg">
-                Timeless <br> <span class="italic text-champagne">Elegance</span>
+            <p class="text-xs uppercase tracking-[0.4em] mb-6 text-gold-light animate-pulse-slow animate-fade-up">Maison de Haute Joaillerie</p>
+            <h1 class="font-serif text-5xl md:text-8xl mb-10 leading-tight drop-shadow-2xl animate-fade-up" style="animation-delay: 0.2s;">
+                Eternal <br> <span class="italic text-gold">Brilliance</span>
             </h1>
-            <a href="#featured" class="bg-white text-charcoal px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gold hover:text-white transition duration-500">
-                View Collection
-            </a>
+            
+            <div class="animate-fade-up" style="animation-delay: 0.4s;">
+                <a href="#featured" class="btn-magnetic group relative inline-flex items-center justify-center px-12 py-4 overflow-hidden font-bold tracking-[0.2em] text-charcoal bg-white shadow-2xl transition-all duration-300 hover:bg-gold hover:text-white">
+                    <span class="relative text-xs uppercase">Discover the Collection</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold-light text-[10px] uppercase tracking-widest animate-bounce">
+            Scroll to Explore
         </div>
     </header>
 
-    <section class="py-24 bg-light">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="font-serif text-3xl text-gray-800">By Category</h2>
-                <div class="w-8 h-px bg-gold mx-auto mt-4"></div>
+    <section id="categories" class="py-32 bg-cream relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4">The Collections</span>
+                <h2 class="font-serif text-4xl text-charcoal">Curated Categories</h2>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-12 md:gap-20">
-                <a href="#" class="group text-center">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-4 border border-transparent group-hover:border-gold p-1 transition duration-500">
-                        <img src="https://images.unsplash.com/photo-1602751584552-8ba4205528c5?w=400&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700" alt="Rings">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <a href="#" class="group text-center reveal">
+                    <div class="aspect-square rounded-full overflow-hidden mb-6 border-[3px] border-transparent group-hover:border-gold/30 p-1 transition duration-500 relative">
+                        <img src="https://images.unsplash.com/photo-1602751584552-8ba4205528c5?w=500&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0" alt="Rings">
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-bold group-hover:text-gold transition">Rings</span>
+                    <h3 class="text-sm uppercase tracking-[0.2em] font-bold group-hover:text-gold transition">Rings</h3>
                 </a>
-                <a href="#" class="group text-center">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-4 border border-transparent group-hover:border-gold p-1 transition duration-500">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700" alt="Necklaces">
+                <a href="#" class="group text-center reveal delay-100">
+                    <div class="aspect-square rounded-full overflow-hidden mb-6 border-[3px] border-transparent group-hover:border-gold/30 p-1 transition duration-500 relative">
+                        <img src="https://images.unsplash.com/photo-1599643478518-17488fbbcd75?w=500&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0" alt="Necklaces">
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-bold group-hover:text-gold transition">Necklaces</span>
+                    <h3 class="text-sm uppercase tracking-[0.2em] font-bold group-hover:text-gold transition">Necklaces</h3>
                 </a>
-                <a href="#" class="group text-center">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-4 border border-transparent group-hover:border-gold p-1 transition duration-500">
-                        <img src="https://images.unsplash.com/photo-1635767798638-3e252346484e?w=400&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700" alt="Earrings">
+                <a href="#" class="group text-center reveal delay-200">
+                    <div class="aspect-square rounded-full overflow-hidden mb-6 border-[3px] border-transparent group-hover:border-gold/30 p-1 transition duration-500 relative">
+                        <img src="https://images.unsplash.com/photo-1635767798638-3e252346484e?w=500&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0" alt="Earrings">
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-bold group-hover:text-gold transition">Earrings</span>
+                    <h3 class="text-sm uppercase tracking-[0.2em] font-bold group-hover:text-gold transition">Earrings</h3>
                 </a>
-                <a href="#" class="group text-center">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-4 border border-transparent group-hover:border-gold p-1 transition duration-500">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700" alt="Bracelets">
+                <a href="#" class="group text-center reveal delay-300">
+                    <div class="aspect-square rounded-full overflow-hidden mb-6 border-[3px] border-transparent group-hover:border-gold/30 p-1 transition duration-500 relative">
+                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition duration-700 grayscale group-hover:grayscale-0" alt="Bracelets">
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-bold group-hover:text-gold transition">Bracelets</span>
+                    <h3 class="text-sm uppercase tracking-[0.2em] font-bold group-hover:text-gold transition">Bracelets</h3>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="featured" class="py-24 px-6 md:px-12 bg-white">
-        <div class="flex justify-between items-end mb-12 max-w-[1600px] mx-auto">
+    <section id="featured" class="py-32 px-6 md:px-12 bg-white">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 max-w-[1600px] mx-auto reveal">
             <div>
-                <span class="text-gold text-[10px] uppercase tracking-[0.2em] font-bold">Handcrafted</span>
-                <h2 class="font-serif text-3xl md:text-4xl mt-2">New Arrivals</h2>
+                <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">Atelier</span>
+                <h2 class="font-serif text-4xl md:text-5xl mt-4">New Arrivals</h2>
             </div>
-            <a href="#" class="text-xs font-bold uppercase tracking-widest hover:text-gold transition border-b border-black pb-1 hover:border-gold">View All</a>
+            <a href="#" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-gold transition border-b border-charcoal pb-1 hover:border-gold mt-6 md:mt-0">View All Creations</a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 max-w-[1600px] mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20 max-w-[1600px] mx-auto">
             
-            <div class="group reveal-fade">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
+            <div class="group reveal">
+                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-6 relative">
                     <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80" class="zoom-img" alt="Gold Ring">
-                    <span class="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-widest text-gold bg-white px-2 py-1">18k Gold</span>
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
+                    <span class="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-widest text-charcoal bg-white/90 backdrop-blur px-3 py-1">18k Gold</span>
                 </div>
                 <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Signet Ring</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Solid Gold</p>
-                    <span class="font-bold text-sm">$450</span>
+                    <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition">The Signet Ring</h3>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mb-3">Solid Gold • Engravable</p>
+                    <span class="font-bold text-base">$1,450</span>
                 </div>
             </div>
 
-            <div class="group reveal-fade delay-100">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1599643478518-17488fbbcd75?w=800&q=80" class="zoom-img" alt="Pearl Necklace">
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
+            <div class="group reveal delay-100">
+                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1617038220319-88af10f94178?w=800&q=80" class="zoom-img" alt="Hoops">
                 </div>
                 <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Pearl Pendant</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Freshwater Pearl</p>
-                    <span class="font-bold text-sm">$220</span>
+                    <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition">Classic Hoops</h3>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mb-3">Vermeil • 40mm</p>
+                    <span class="font-bold text-base">$295</span>
                 </div>
             </div>
 
-            <div class="group reveal-fade delay-200">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
+            <div class="group reveal delay-200">
+                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-6 relative">
                     <img src="https://images.unsplash.com/photo-1630019852942-f89202989a51?w=800&q=80" class="zoom-img" alt="Diamond Studs">
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
+                     <span class="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-widest text-white bg-gold px-3 py-1">Icon</span>
                 </div>
                 <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Diamond Solitaire</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">VS1 Clarity</p>
-                    <span class="font-bold text-sm">$890</span>
+                    <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition">Diamond Solitaire</h3>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mb-3">0.5ct • VS1 Clarity</p>
+                    <span class="font-bold text-base">$2,890</span>
                 </div>
             </div>
 
-            <div class="group reveal-fade delay-300">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" class="zoom-img" alt="Gold Chain">
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
+            <div class="group reveal delay-300">
+                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd?w=800&q=80" class="zoom-img" alt="Emerald Ring">
                 </div>
                 <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Link Chain</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Vermeil</p>
-                    <span class="font-bold text-sm">$180</span>
-                </div>
-            </div>
-            
-            <div class="group reveal-fade">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1617038220319-88af10f94178?w=800&q=80" class="zoom-img" alt="Hoop Earrings">
-                     <span class="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-widest text-white bg-gold px-2 py-1">Best Seller</span>
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
-                </div>
-                <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Classic Hoops</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Gold Filled</p>
-                    <span class="font-bold text-sm">$95</span>
-                </div>
-            </div>
-
-            <div class="group reveal-fade delay-100">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd?w=800&q=80" class="zoom-img" alt="Gemstone Ring">
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
-                </div>
-                <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Emerald Cut</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Green Onyx</p>
-                    <span class="font-bold text-sm">$135</span>
-                </div>
-            </div>
-
-            <div class="group reveal-fade delay-200">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1590548784585-643d2b9f2925?w=800&q=80" class="zoom-img" alt="Cuff">
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
-                </div>
-                <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Hammered Cuff</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Brass</p>
-                    <span class="font-bold text-sm">$75</span>
-                </div>
-            </div>
-
-            <div class="group reveal-fade delay-300">
-                <div class="zoom-container aspect-[4/5] bg-gray-50 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1629224316810-9d8805b95076?w=800&q=80" class="zoom-img" alt="Stacking Rings">
-                    <button class="absolute bottom-0 w-full bg-charcoal text-white py-3 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">Add to Bag</button>
-                </div>
-                <div class="text-center">
-                    <h3 class="font-serif text-lg mb-1 group-hover:text-gold transition">Stacking Set</h3>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Set of 3</p>
-                    <span class="font-bold text-sm">$110</span>
+                    <h3 class="font-serif text-xl mb-2 group-hover:text-gold transition">Emerald Cut Ring</h3>
+                    <p class="text-[11px] text-gray-500 uppercase tracking-widest mb-3">Green Onyx • Gold</p>
+                    <span class="font-bold text-base">$535</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-[#1a1a1a] text-white text-center relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-50"></div>
-        <div class="max-w-3xl mx-auto px-6 relative z-10">
-            <span class="text-gold text-xs uppercase tracking-[0.4em] mb-6 block">Our Craft</span>
-            <h2 class="font-serif text-4xl md:text-5xl mb-8 leading-tight">Jewelry that tells <br> <span class="italic text-gray-400">your story.</span></h2>
-            <p class="text-gray-400 font-light leading-loose mb-10 text-sm">
-                Each piece in the Aurora collection is meticulously handcrafted by master jewelers in Istanbul. We use only recycled gold and ethically sourced gemstones, ensuring that your sparkle leaves a light footprint.
-            </p>
-            <a href="#" class="inline-block border border-gold text-gold px-12 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gold hover:text-charcoal transition duration-300">
-                Read About Us
-            </a>
+    <section class="py-32 bg-deep-bg text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center relative z-10">
+            <div class="reveal order-2 md:order-1">
+                <span class="text-gold text-xs uppercase tracking-[0.4em] mb-8 block">The Maison</span>
+                <h2 class="font-serif text-5xl md:text-6xl mb-10 leading-tight">
+                    Crafting <span class="italic text-gold-light">Legacies</span> <br> Since 2025.
+                </h2>
+                <p class="text-gray-400 font-light leading-loose mb-12 text-sm max-w-xl relative">
+                    <span class="text-6xl text-gold absolute -top-8 -left-4 opacity-20 font-serif">"</span>
+                    Each Aurora piece is a testament to exceptional craftsmanship. Meticulously handcrafted by master artisans in Istanbul, we use only responsibly sourced materials to create heirlooms that transcend generations.
+                </p>
+                <a href="#" class="btn-magnetic inline-block border border-gold text-gold px-12 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gold hover:text-deep-bg transition duration-300">
+                    Discover Our Craft
+                </a>
+            </div>
+            <div class="reveal delay-200 order-1 md:order-2 relative h-[600px]">
+                 <div class="absolute inset-0 border-2 border-gold/20 translate-x-4 translate-y-4"></div>
+                <img src="https://images.unsplash.com/photo-1610506398605-3e56c6c92448?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000 relative z-10" alt="Artisan">
+            </div>
         </div>
     </section>
 
-    <footer class="bg-light pt-20 pb-10 px-6 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
+    <footer class="bg-cream pt-24 pb-12 px-6 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20 text-center md:text-left">
             <div class="md:col-span-1">
-                <a href="#" class="font-serif text-3xl font-bold tracking-wider mb-6 block text-charcoal">AURORA</a>
+                <a href="#" class="font-serif text-4xl font-bold tracking-wider mb-8 block text-charcoal">AURORA</a>
+                <p class="text-xs text-gray-500 leading-loose uppercase tracking-widest">
+                    High Jewelry Maison <br> Istanbul • Paris • New York
+                </p>
             </div>
             
             <div>
-                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-charcoal">Collections</h4>
-                <ul class="space-y-3 text-xs text-gray-500">
-                    <li><a href="#" class="hover:text-gold transition">Wedding & Engagement</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Fine Jewelry</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Personalized</a></li>
+                <h4 class="font-bold text-xs uppercase tracking-[0.2em] mb-8 text-gold">Client Services</h4>
+                <ul class="space-y-4 text-xs text-charcoal/70 font-bold uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-gold transition">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-gold transition">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-gold transition">Book an Appointment</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-charcoal">Care</h4>
-                <ul class="space-y-3 text-xs text-gray-500">
-                    <li><a href="#" class="hover:text-gold transition">Size Guide</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Jewelry Care</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Warranty</a></li>
+                <h4 class="font-bold text-xs uppercase tracking-[0.2em] mb-8 text-gold">The Maison</h4>
+                <ul class="space-y-4 text-xs text-charcoal/70 font-bold uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-gold transition">Our Story</a></li>
+                    <li><a href="#" class="hover:text-gold transition">Sustainability</a></li>
+                    <li><a href="#" class="hover:text-gold transition">Careers</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-charcoal">Social</h4>
-                <div class="flex justify-center md:justify-start gap-6 text-gray-500">
-                    <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-pinterest"></i></a>
-                    <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-tiktok"></i></a>
+                 <h4 class="font-bold text-xs uppercase tracking-[0.2em] mb-8 text-gold">Newsletter</h4>
+                <p class="text-xs text-charcoal/60 mb-6">Receive early access to new creations.</p>
+                <div class="border-b border-charcoal/20 flex pb-3">
+                    <input type="email" placeholder="EMAIL ADDRESS" class="bg-transparent border-none outline-none text-charcoal text-xs w-full placeholder-charcoal/40 tracking-widest uppercase">
+                    <button class="text-xs uppercase tracking-widest text-gold font-bold hover:text-charcoal transition">Subscribe</button>
                 </div>
             </div>
         </div>
         
-        <div class="max-w-7xl mx-auto border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-400 uppercase tracking-widest">
+        <div class="max-w-7xl mx-auto border-t border-gray-200/50 pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-400 uppercase tracking-[0.2em]">
             <p>&copy; 2025 AURORA JEWELRY. POWERED BY VITRINX.</p>
+             <div class="flex gap-8 mt-4 md:mt-0 text-lg">
+                    <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-pinterest-p"></i></a>
+            </div>
         </div>
     </footer>
     
-     <a href="https://wa.me/905419787726" class="fixed bottom-6 right-6 z-50 bg-[#1a1a1a] border border-gold text-gold w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300 hover:bg-gold hover:text-white">
-        <i class="fa-brands fa-whatsapp text-xl"></i>
+    <a href="https://wa.me/905419787726" class="fixed bottom-8 right-8 z-50 group btn-magnetic">
+        <div class="relative bg-deep-bg border border-gold/50 text-gold w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform group-hover:scale-110 group-hover:bg-gold group-hover:text-deep-bg">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </div>
     </a>
 
     <script>
@@ -316,9 +299,35 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
 
-        document.querySelectorAll('.reveal-fade').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        /* MAGNETIC BUTTON EFFECT */
+        const btns = document.querySelectorAll('.btn-magnetic');
+        btns.forEach(btn => {
+            btn.addEventListener('mousemove', function(e) {
+                const pos = btn.getBoundingClientRect();
+                const x = e.clientX - pos.left - pos.width / 2;
+                const y = e.clientY - pos.top - pos.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            btn.addEventListener('mouseleave', function() {
+                btn.style.transform = 'translate(0px, 0px)';
+            });
+        });
+        
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-4', 'shadow-sm');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('py-4', 'shadow-sm');
+                navbar.classList.add('py-6');
+            }
+        });
     </script>
 </body>
 </html>
