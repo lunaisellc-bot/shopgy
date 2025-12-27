@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOPHIA & LIAM | Save The Date</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'script': ['Great Vibes', 'cursive'],
+                        'serif': ['Cormorant Garamond', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'blush': '#FCE4EC',
+                        'rose': '#E91E63',
+                        'sage': '#A5D6A7',
+                        'champagne': '#F7E7CE',
+                        'paper': '#FFFBFA'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'sway': 'sway 4s ease-in-out infinite',
+                        'fade-in': 'fadeIn 2s ease-out forwards'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        sway: {
+                            '0%, 100%': { transform: 'rotate(-2deg)' },
+                            '50%': { transform: 'rotate(2deg)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FFFBFA; color: #5D4037; overflow-x: hidden; }
+
+        /* PAPER TEXTURE */
+        .texture {
+            position: fixed; inset: 0; pointer-events: none; z-index: -1;
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+            opacity: 0.8;
+        }
+
+        /* FALLING PETALS (Yaprak/Konfeti Efekti) */
+        .petal {
+            position: fixed; top: -10%; z-index: 50;
+            background: #FFCDD2; opacity: 0.6;
+            border-radius: 100% 0 100% 0;
+            animation: falling linear infinite;
+        }
+        @keyframes falling {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(100px, 100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* POLAROID FRAME */
+        .polaroid {
+            background: #fff;
+            padding: 10px 10px 35px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+        .polaroid:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
+
+        /* COUNTDOWN BOX */
+        .count-box {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="font-serif selection:bg-rose selection:text-white">
+
+    <div class="texture"></div>
+
+    <div class="petal w-4 h-4 left-[10%]" style="animation-duration: 8s; animation-delay: 0s;"></div>
+    <div class="petal w-3 h-3 left-[30%]" style="animation-duration: 12s; animation-delay: 2s;"></div>
+    <div class="petal w-5 h-5 left-[70%]" style="animation-duration: 10s; animation-delay: 1s;"></div>
+    <div class="petal w-4 h-4 left-[90%]" style="animation-duration: 15s; animation-delay: 4s;"></div>
+
+    <div class="fixed top-6 right-6 z-50">
+        <button class="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-rose/70 animate-spin-slow hover:scale-110 transition">
+            <i class="fa-solid fa-music"></i>
+        </button>
+    </div>
+
+    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+        <img src="https://cdn.pixabay.com/photo/2020/03/17/13/57/floral-4940503_1280.png" class="absolute top-0 left-0 w-64 opacity-60 -translate-x-10 -translate-y-10" alt="Flower">
+        <img src="https://cdn.pixabay.com/photo/2020/03/17/13/57/floral-4940503_1280.png" class="absolute bottom-0 right-0 w-64 opacity-60 translate-x-10 translate-y-10 rotate-180" alt="Flower">
+
+        <p class="font-sans text-xs uppercase tracking-[0.4em] mb-4 text-gray-500 animate-fade-in">Save The Date</p>
+        
+        <h1 class="font-script text-7xl md:text-9xl text-rose/80 mb-2 animate-float">Sophia & Liam</h1>
+        
+        <div class="flex items-center gap-4 my-6 text-gray-400 font-sans text-xs tracking-widest">
+            <span class="h-px w-12 bg-gray-300"></span>
+            <span>ARE GETTING MARRIED</span>
+            <span class="h-px w-12 bg-gray-300"></span>
+        </div>
+
+        <h2 class="text-4xl md:text-5xl font-italic mb-8">September 15, 2025</h2>
+        
+        <p class="font-sans text-sm text-gray-500 max-w-md leading-relaxed mb-12">
+            We invite you to share in our joy and request your company as we exchange vows and celebrate our new life together.
+        </p>
+
+        <a href="#rsvp" class="bg-rose text-white px-10 py-4 rounded-full font-sans text-xs font-bold uppercase tracking-widest shadow-xl hover:bg-rose/80 transition transform hover:-translate-y-1">
+            RSVP Now
+        </a>
+        
+        <div class="absolute bottom-10 animate-bounce text-rose/50">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="py-20 bg-blush/20">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <p class="font-script text-4xl mb-8 text-gray-600">Countdown to Forever</p>
+            
+            <div class="flex flex-wrap justify-center gap-6 md:gap-12">
+                <div class="count-box w-24 h-24 flex flex-col items-center justify-center rounded-lg shadow-sm">
+                    <span class="text-3xl font-bold text-rose">124</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500">Days</span>
+                </div>
+                <div class="count-box w-24 h-24 flex flex-col items-center justify-center rounded-lg shadow-sm">
+                    <span class="text-3xl font-bold text-rose">08</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500">Hours</span>
+                </div>
+                <div class="count-box w-24 h-24 flex flex-col items-center justify-center rounded-lg shadow-sm">
+                    <span class="text-3xl font-bold text-rose">45</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500">Mins</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 overflow-hidden relative">
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-5xl mb-4">Our Story</h2>
+            <div class="w-16 h-1 bg-rose/20 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div class="polaroid rotate-[-3deg]">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=500&q=80" class="w-full aspect-square object-cover mb-4 filter sepia-[.3]" alt="Couple">
+                <p class="font-script text-2xl text-center text-gray-600">The Beginning</p>
+                <p class="font-sans text-[10px] text-center text-gray-400 uppercase">Paris, 2021</p>
+            </div>
+
+            <div class="polaroid rotate-[2deg] md:mt-12">
+                <img src="https://images.unsplash.com/photo-1522673607200-1645062cd495?w=500&q=80" class="w-full aspect-square object-cover mb-4 filter sepia-[.3]" alt="Couple">
+                <p class="font-script text-2xl text-center text-gray-600">She Said Yes!</p>
+                <p class="font-sans text-[10px] text-center text-gray-400 uppercase">Capri, 2024</p>
+            </div>
+
+            <div class="polaroid rotate-[-1deg]">
+                <img src="https://images.unsplash.com/photo-1621621667797-e06afc217fb0?w=500&q=80" class="w-full aspect-square object-cover mb-4 filter sepia-[.3]" alt="Couple">
+                <p class="font-script text-2xl text-center text-gray-600">Forever Us</p>
+                <p class="font-sans text-[10px] text-center text-gray-400 uppercase">Future Loading...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white relative">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-center md:text-right">
+                <span class="font-sans text-xs font-bold text-rose uppercase tracking-widest mb-2 block">The Ceremony</span>
+                <h3 class="font-serif text-4xl mb-4">Grand Hotel Villa</h3>
+                <p class="text-gray-500 mb-6 leading-relaxed">
+                    Lake Como, Italy <br>
+                    Starting at 4:00 PM
+                </p>
+                <a href="#" class="text-xs uppercase border-b border-gray-300 pb-1 hover:text-rose hover:border-rose transition">View Map</a>
+            </div>
+            
+            <div class="h-64 md:h-80 w-full rounded-t-full overflow-hidden border-4 border-double border-rose/20">
+                <img src="https://images.unsplash.com/photo-1544124499-58912cbddaad?w=800&q=80" class="w-full h-full object-cover hover:scale-110 transition duration-[2s]" alt="Venue">
+            </div>
+            
+             <div class="h-64 md:h-80 w-full rounded-b-full overflow-hidden border-4 border-double border-rose/20 order-4 md:order-3">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" class="w-full h-full object-cover hover:scale-110 transition duration-[2s]" alt="Party">
+            </div>
+
+            <div class="text-center md:text-left order-3 md:order-4">
+                <span class="font-sans text-xs font-bold text-rose uppercase tracking-widest mb-2 block">The Reception</span>
+                <h3 class="font-serif text-4xl mb-4">Dinner & Dancing</h3>
+                <p class="text-gray-500 mb-6 leading-relaxed">
+                    Followed by cocktails and sunset views. <br>
+                    Dress Code: Black Tie
+                </p>
+                <a href="#" class="text-xs uppercase border-b border-gray-300 pb-1 hover:text-rose hover:border-rose transition">Add to Calendar</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp" class="py-32 bg-rose/5 relative">
+        <div class="max-w-xl mx-auto px-6 bg-white p-12 shadow-2xl rounded-sm text-center border border-gray-100">
+            <p class="font-script text-4xl text-rose mb-2">Are you attending?</p>
+            <p class="text-gray-400 text-xs uppercase tracking-widest mb-8">Please respond by August 1st</p>
+            
+            <form class="space-y-6">
+                <input type="text" placeholder="Full Name" class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-rose transition text-center font-serif text-lg">
+                
+                <div class="flex justify-center gap-8 py-4">
+                     <label class="flex items-center gap-2 cursor-pointer group">
+                        <div class="w-4 h-4 border border-gray-400 rounded-full group-hover:border-rose"></div>
+                        <span class="text-sm text-gray-600 uppercase tracking-wide">Joyfully Accept</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <div class="w-4 h-4 border border-gray-400 rounded-full group-hover:border-rose"></div>
+                        <span class="text-sm text-gray-600 uppercase tracking-wide">Regretfully Decline</span>
+                    </label>
+                </div>
+                
+                <select class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-rose transition text-center font-serif text-lg text-gray-500 bg-transparent">
+                    <option>Number of Guests</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+
+                <button class="w-full bg-rose text-white py-4 rounded-full font-bold uppercase tracking-widest shadow-lg hover:bg-rose/90 transition mt-6">
+                    Send RSVP
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-white py-12 text-center">
+        <p class="font-script text-3xl text-gray-400 mb-4">Sophia & Liam</p>
+        <p class="font-sans text-[10px] text-gray-300 uppercase tracking-[0.3em]">
+            With Love • 2025
+        </p>
+        <div class="mt-8">
+            <a href="#" class="text-xs text-rose uppercase tracking-widest font-bold border border-rose px-6 py-2 rounded-full hover:bg-rose hover:text-white transition">Gift Registry</a>
+        </div>
+        <p class="mt-8 text-[9px] text-gray-300">POWERED BY VITRINX.</p>
+    </footer>
+
+</body>
+</html>
