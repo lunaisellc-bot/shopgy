@@ -11,11 +11,19 @@
   <meta property="og:url" content="https://www.vitrinx.com" />
   <meta property="og:type" content="website" />
 
+  <script>
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <script>
     tailwind.config = {
@@ -35,7 +43,6 @@
           animation: {
             'float': 'float 8s ease-in-out infinite',
             'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'spin-slow': 'spin 12s linear infinite'
           },
           keyframes: {
             float: {
@@ -54,6 +61,7 @@
       background-color: #050505; color: white;
       width: 100%; overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      scroll-padding-top: 100px;
     }
 
     /* REVEAL ON SCROLL */
@@ -85,22 +93,58 @@
       transform: translateY(-5px);
     }
 
-    /* SWIPER CUSTOMIZATION */
-    .swiper { width: 100%; padding: 50px 0; }
-    .swiper-slide {
-      width: 300px; height: 460px;
-      border-radius: 20px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.3s;
-    }
-    .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
-    .swiper-slide-active { transform: scale(1.1); border-color: #00ff9d; z-index: 10; box-shadow: 0 0 30px rgba(0,255,157,0.2); }
-
     /* FAQ ACCORDION */
     details > summary { list-style: none; cursor: pointer; }
     details > summary::-webkit-details-marker { display: none; }
     details[open] summary ~ * { animation: sweep .3s ease-out; }
     @keyframes sweep { 0% {opacity: 0; transform: translateY(-5px)} 100% {opacity: 1; transform: translateY(0)} }
+
+    /* INFINITE MARQUEE STYLES */
+    .marquee-container {
+        width: 100%; overflow: hidden; white-space: nowrap; position: relative;
+    }
+    .marquee-container::before, .marquee-container::after {
+        content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none;
+    }
+    .marquee-container::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
+    .marquee-container::after { right: 0; background: linear-gradient(to left, #050505, transparent); }
+
+    .marquee-content { display: inline-flex; gap: 24px; }
+    .scroll-left { animation: scrollLeft 60s linear infinite; }
+    .scroll-right { animation: scrollRight 65s linear infinite; }
+    .hover\:pause:hover { animation-play-state: paused; }
+
+    @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+    /* THEME CARDS */
+    .theme-card {
+        width: 280px; height: 380px; border-radius: 20px; overflow: hidden; position: relative; flex-shrink: 0;
+        border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;
+    }
+    .theme-card img {
+        width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: grayscale(100%);
+    }
+    .theme-card:hover {
+        transform: scale(1.05); border-color: rgba(0, 255, 157, 0.5); z-index: 10; box-shadow: 0 0 30px rgba(0,255,157,0.1);
+    }
+    .theme-card:hover img { transform: scale(1.1); filter: grayscale(0%); }
+    
+    .overlay {
+        position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column;
+        align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; gap: 15px;
+    }
+    .theme-card:hover .overlay { opacity: 1; }
+    
+    .tag {
+        font-size: 10px; font-weight: bold; letter-spacing: 0.2em; padding: 5px 10px; border: 1px solid; border-radius: 5px;
+        transform: translateY(20px); transition: transform 0.4s;
+    }
+    .btn-view {
+        font-size: 12px; font-weight: bold; padding: 10px 25px; border-radius: 50px; cursor: pointer;
+        transform: translateY(20px); transition: transform 0.4s 0.1s;
+    }
+    .theme-card:hover .tag, .theme-card:hover .btn-view { transform: translateY(0); }
   </style>
 </head>
 
@@ -116,7 +160,7 @@
 
   <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="flex items-center gap-2 group">
+      <a href="#" onclick="window.scrollTo(0,0); return false;" class="flex items-center gap-2 group">
         <div class="w-8 h-8 bg-gradient-to-br from-neon to-emerald-800 rounded-lg flex items-center justify-center font-bold text-black group-hover:rotate-12 transition">V</div>
         <span class="font-heading text-xl font-bold tracking-tight">VitrinX</span>
       </a>
@@ -129,7 +173,6 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <button onclick="toggleLang()" class="text-xs font-bold text-gray-500 hover:text-white">EN / TR</button>
         <a href="#pricing" class="hidden sm:block bg-white text-black px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-[0_0_20px_rgba(0,255,157,0.4)]">
           Start Brand
         </a>
@@ -224,27 +267,135 @@
     </div>
   </section>
 
-  <section class="py-24 bg-black relative overflow-hidden border-y border-white/5">
-    <div class="text-center mb-12 reveal">
-      <h2 class="font-heading text-4xl font-bold mb-4">Choose Your Flagship</h2>
-      <p class="text-gray-500">From luxury fashion to digital products. We have a design for you.</p>
+  <section class="py-24 bg-[#050505] relative overflow-hidden border-y border-white/5">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-neon/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="text-center mb-16 reveal relative z-10 px-6">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">World Class Designs</h2>
+      <p class="text-gray-500">Don't just build a website. Build a legacy.</p>
     </div>
 
-    <div class="swiper mySwiper reveal delay-100">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&q=80" alt="Streetwear" /></div>
-        <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Luxury" /></div>
-        <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="Decor" /></div>
-        <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=600&q=80" alt="Jewelry" /></div>
-        <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Fitness" /></div>
-        <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding" /></div>
+    <div class="marquee-container mb-8">
+      <div class="marquee-content scroll-left hover:pause">
+        <a href="demo-ultra.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-red-500 text-red-500">PROJECT X</span>
+                <span class="btn-view bg-red-500 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-art.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-yellow-400 text-yellow-400">GALLERY</span>
+                <span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-fashion2.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-white text-white">ATELIER</span>
+                <span class="btn-view bg-white text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-fashion.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-emerald-400 text-emerald-400">ARMOR</span>
+                <span class="btn-view bg-emerald-400 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-business.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-stone-300 text-stone-300">LUMA</span>
+                <span class="btn-view bg-stone-300 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-ultra.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-red-500 text-red-500">PROJECT X</span>
+                <span class="btn-view bg-red-500 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-art.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-yellow-400 text-yellow-400">GALLERY</span>
+                <span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-fashion2.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-white text-white">ATELIER</span>
+                <span class="btn-view bg-white text-black">VIEW DEMO</span>
+            </div>
+        </a>
       </div>
     </div>
 
-    <div class="text-center mt-8">
-      <a href="portfolio.html" class="inline-flex items-center gap-2 text-neon text-sm font-bold uppercase tracking-widest hover:underline">
-        View All 12 Themes <i class="fa-solid fa-arrow-right"></i>
-      </a>
+    <div class="marquee-container">
+      <div class="marquee-content scroll-right hover:pause">
+        <a href="demo-business-2.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-green-400 text-green-400">NATUREL</span>
+                <span class="btn-view bg-green-400 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-jewelry.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-yellow-200 text-yellow-200">AURORA</span>
+                <span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-kids.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-cyan-400 text-cyan-400">WONDERS</span>
+                <span class="btn-view bg-cyan-400 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-starter.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-green-500 text-green-500">IRON</span>
+                <span class="btn-view bg-green-500 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-event.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-pink-300 text-pink-300">VELVET</span>
+                <span class="btn-view bg-pink-300 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+         <a href="demo-business-2.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-green-400 text-green-400">NATUREL</span>
+                <span class="btn-view bg-green-400 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-jewelry.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-yellow-200 text-yellow-200">AURORA</span>
+                <span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+        <a href="demo-kids.html" target="_blank" class="theme-card group">
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&q=80" alt="Theme">
+            <div class="overlay">
+                <span class="tag border-cyan-400 text-cyan-400">WONDERS</span>
+                <span class="btn-view bg-cyan-400 text-black">VIEW DEMO</span>
+            </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -354,15 +505,7 @@
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    /* Init Swiper */
-    const swiper = new Swiper('.mySwiper', {
-      effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto',
-      coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: true },
-      loop: true, autoplay: { delay: 2500 }
-    });
-
     /* Reveal Animation */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
