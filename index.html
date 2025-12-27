@@ -1,297 +1,467 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VITRINX | Premium Etsy Themes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinX | Enterprise Grade Etsy Solutions</title>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'head': ['Space Grotesk', 'sans-serif'],
-                        'body': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'brand': '#6366f1', // Indigo
-                        'dark': '#0f172a', // Slate 900
-                        'card': '#1e293b'  // Slate 800
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'fade-up': 'fadeUp 0.8s ease-out forwards'
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        fadeUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
+  <meta property="og:title" content="VitrinX | Turn Your Etsy Shop into a Global Brand" />
+  <meta property="og:description" content="Secure, verified API integration. We sync your Etsy inventory to your own flagship .com website." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80" />
+  <meta property="og:url" content="https://www.vitrinx.com" />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          colors: {
+            neon: '#00ff9d',
+            purple: '#bd00ff',
+            dark: '#050505',
+          },
+          animation: {
+            'float': 'float 8s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 12s linear infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' }
             }
+          }
         }
-    </script>
-    <style>
-        body { background-color: #0f172a; color: #f8fafc; }
-        .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .demo-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .demo-card:hover {
-            transform: translateY(-10px);
-            border-color: #6366f1;
-            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
-        }
-        .text-gradient {
-            background: linear-gradient(to right, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-    </style>
-</head>
-<body class="font-body selection:bg-brand selection:text-white">
+      }
+    }
+  </script>
 
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 2s"></div>
-        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 4s"></div>
+  <style>
+    /* GLOBAL SETTINGS */
+    html, body {
+      background-color: #050505;
+      color: white;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* REVEAL ANIMATION */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* NOISE TEXTURE */
+    .noise-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.04;
+    }
+
+    /* BG GRID */
+    .bg-grid {
+      background-size: 50px 50px;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    }
+
+    /* SWIPER SETTINGS */
+    .swiper { width: 100%; padding-top: 60px; padding-bottom: 60px; }
+    .swiper-slide {
+      background-position: center; background-size: cover; width: 300px; height: 450px;
+      border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      will-change: transform; transition: transform 0.5s;
+    }
+    .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .swiper-slide:hover img { transform: scale(1.05); }
+
+    /* GLASS CARDS */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .glass-card:hover { transform: translateY(-5px); border-color: rgba(0, 255, 157, 0.2); box-shadow: 0 0 40px rgba(0, 255, 157, 0.05); }
+
+    /* FAQ ANIMATION */
+    details > summary { list-style: none; cursor: pointer; transition: color 0.3s; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] summary { color: #00ff9d; }
+    details[open] summary ~ * { animation: sweep .4s ease-out; }
+    @keyframes sweep { 0% {opacity: 0; transform: translateY(-8px)} 100% {opacity: 1; transform: translateY(0)} }
+  </style>
+</head>
+
+<body class="antialiased font-sans selection:bg-neon selection:text-black">
+
+  <div class="noise-overlay"></div>
+
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="absolute inset-0 bg-grid opacity-50"></div>
+    <div class="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] bg-purple rounded-full mix-blend-screen filter blur-[200px] opacity-10 animate-float"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-neon rounded-full mix-blend-screen filter blur-[200px] opacity-10 animate-float" style="animation-delay: 3s;"></div>
+  </div>
+
+  <nav class="fixed w-full z-50 bg-dark/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="relative w-9 h-9 flex items-center justify-center bg-gradient-to-tr from-neon to-emerald-700 rounded-xl shadow-[0_0_20px_rgba(0,255,157,0.3)] group cursor-pointer overflow-hidden">
+          <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+          <span class="font-heading font-bold text-black text-xl relative z-10">X</span>
+        </div>
+        <span class="font-heading text-xl font-bold tracking-tight text-white">VitrinX</span>
+      </div>
+
+      <div class="hidden md:flex gap-10 text-sm font-medium text-gray-400">
+        <a href="#how-it-works" class="hover:text-white transition duration-300">How it Works</a>
+        <a href="#showcase" class="hover:text-white transition duration-300">Showcase</a>
+        <a href="#pricing" class="hover:text-white transition duration-300">Pricing</a>
+        <a href="#faq" class="hover:text-white transition duration-300">FAQ</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button onclick="toggleLanguage()" class="flex items-center gap-2 text-[10px] font-bold border border-white/10 bg-white/5 px-3 py-2 rounded-lg hover:bg-white/10 transition uppercase tracking-wider">
+          <i class="fa-solid fa-globe text-gray-400"></i> <span id="current-lang">EN</span>
+        </button>
+        <a href="#pricing" class="hidden sm:block bg-white text-black px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-neon transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(0,255,157,0.4)]">Launch Brand</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+    <div class="mb-8 animate-float">
+      <div class="px-5 py-2 rounded-full border border-neon/20 bg-neon/5 text-neon text-[9px] font-bold uppercase tracking-[0.3em] shadow-[0_0_25px_rgba(0,255,157,0.15)] backdrop-blur-md flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span>
+        <span>VERIFIED PARTNER ARCHITECTURE</span>
+      </div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-brand rounded-lg flex items-center justify-center text-white font-bold">V</div>
-                <span class="font-head text-xl font-bold tracking-tight">VITRINX</span>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-                <a href="#demos" class="hover:text-white transition">Themes</a>
-                <a href="#features" class="hover:text-white transition">Features</a>
-                <a href="#pricing" class="hover:text-white transition">Pricing</a>
-            </div>
-            <a href="https://etsy.com" target="_blank" class="bg-white text-dark px-6 py-2 rounded-full text-sm font-bold hover:bg-brand hover:text-white transition">
-                Buy on Etsy
-            </a>
-        </div>
-    </nav>
+    <h1 class="reveal font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 tracking-tighter">
+      Sync Your Etsy Shop <br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple drop-shadow-[0_0_40px_rgba(0,255,157,0.15)]">To Your Own Flagship.</span>
+    </h1>
 
-    <header class="pt-40 pb-20 px-6 text-center relative z-10">
-        <div class="inline-block px-4 py-1.5 mb-6 border border-brand/30 rounded-full bg-brand/10 text-brand text-xs font-bold uppercase tracking-widest animate-fade-up">
-            ✨ New 2025 Collection
+    <p class="reveal text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed delay-100">
+      Stop sending traffic only to a marketplace. We build a professional <strong>.com website</strong> that automatically pulls products from your Etsy store.
+    </p>
+
+    <div class="reveal flex flex-col sm:flex-row gap-6 delay-200">
+      <a href="#showcase" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105 shadow-[0_0_40px_rgba(0,255,157,0.25)]">
+        <div class="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+        <span class="relative flex items-center gap-2 tracking-wide"><i class="fa-solid fa-laptop-code"></i> View Live Demos</span>
+      </a>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-600"><i class="fa-solid fa-chevron-down"></i></div>
+  </header>
+
+  <section id="how-it-works" class="py-24 border-t border-b border-white/5 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 reveal">
+        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4 tracking-tight">The Integration Logic</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12 text-center reveal delay-100">
+        <div class="group">
+          <div class="w-20 h-20 bg-dark border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl group-hover:border-neon transition duration-500">
+            <i class="fa-solid fa-link text-gray-500 group-hover:text-neon transition"></i>
+          </div>
+          <h3 class="font-bold text-white text-xl mb-3">1. Connect API</h3>
+          <p class="text-gray-500 text-sm px-4">We sync securely with your Etsy catalog.</p>
         </div>
-        <h1 class="font-head text-5xl md:text-7xl font-bold mb-6 leading-tight max-w-4xl mx-auto animate-fade-up" style="animation-delay: 0.1s">
-            Turn Your Etsy Shop into a <br> <span class="text-gradient">Professional Brand</span>
-        </h1>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10 animate-fade-up" style="animation-delay: 0.2s">
-            Premium, no-code websites for Etsy sellers. Choose a theme, connect your shop, and start selling your own way.
+        <div class="group">
+          <div class="w-20 h-20 bg-dark border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl group-hover:border-neon transition duration-500">
+            <i class="fa-solid fa-wand-magic-sparkles text-gray-500 group-hover:text-neon transition"></i>
+          </div>
+          <h3 class="font-bold text-white text-xl mb-3">2. Select Theme</h3>
+          <p class="text-gray-500 text-sm px-4">Choose one of our premium designs below.</p>
+        </div>
+        <div class="group">
+          <div class="w-20 h-20 bg-dark border border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl group-hover:border-neon transition duration-500">
+            <i class="fa-solid fa-rocket text-gray-500 group-hover:text-neon transition"></i>
+          </div>
+          <h3 class="font-bold text-white text-xl mb-3">3. Launch Brand</h3>
+          <p class="text-gray-500 text-sm px-4">Start driving traffic to your own domain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase" class="py-32 relative overflow-hidden bg-black">
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4 tracking-tight">Premium Themes</h2>
+      <p class="text-gray-500 font-serif italic text-lg">"Select a design, we fill it with your products."</p>
+    </div>
+
+    <div class="swiper mySwiper reveal delay-100">
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&q=80" alt="Streetwear" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-red-500 font-heading text-2xl font-bold mb-3 tracking-widest">PROJECT X</span>
+            <a href="demo-ultra.html" target="_blank" class="px-8 py-3 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=600&q=80" alt="Art" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-yellow-400 font-heading text-2xl font-bold mb-3 tracking-widest">THE GALLERY</span>
+            <a href="demo-art.html" target="_blank" class="px-8 py-3 border border-yellow-400 text-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Luxury" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-white font-heading text-2xl font-bold mb-3 tracking-widest">ATELIER NOIR</span>
+            <a href="demo-fashion-2.html" target="_blank" class="px-8 py-3 border border-white text-white rounded-full hover:bg-white hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Techwear" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-emerald-400 font-heading text-2xl font-bold mb-3 tracking-widest">URBAN ARMOR</span>
+            <a href="demo-fashion.html" target="_blank" class="px-8 py-3 border border-emerald-400 text-emerald-400 rounded-full hover:bg-emerald-400 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="Home" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-stone-300 font-heading text-2xl font-bold mb-3 tracking-widest">LUMA LIVING</span>
+            <a href="demo-business.html" target="_blank" class="px-8 py-3 border border-stone-300 text-stone-300 rounded-full hover:bg-stone-300 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80" alt="Naturel" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-green-400 font-heading text-2xl font-bold mb-3 tracking-widest">NATUREL HOME</span>
+            <a href="demo-business-1.html" target="_blank" class="px-8 py-3 border border-green-400 text-green-400 rounded-full hover:bg-green-400 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=600&q=80" alt="Jewelry" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-yellow-200 font-heading text-2xl font-bold mb-3 tracking-widest">AURORA</span>
+            <a href="demo-jewelry.html" target="_blank" class="px-8 py-3 border border-yellow-200 text-yellow-200 rounded-full hover:bg-yellow-200 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+        
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&q=80" alt="Kids" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-cyan-400 font-heading text-2xl font-bold mb-3 tracking-widest">LITTLE WONDERS</span>
+            <a href="demo-kids.html" target="_blank" class="px-8 py-3 border border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80" alt="Horizontal" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-neon font-heading text-2xl font-bold mb-3 tracking-widest">HORIZON</span>
+            <a href="demo-horizon.html" target="_blank" class="px-8 py-3 border border-neon text-neon rounded-full hover:bg-neon hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1550614000-4b9519e02a15?w=600&q=80" alt="Vertical" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-purple-400 font-heading text-2xl font-bold mb-3 tracking-widest">VERTEX</span>
+            <a href="demo-vertex.html" target="_blank" class="px-8 py-3 border border-purple-400 text-purple-400 rounded-full hover:bg-purple-400 hover:text-white transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+        
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Fitness" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-green-500 font-heading text-2xl font-bold mb-3 tracking-widest">IRON CLAD</span>
+            <a href="demo-starter.html" target="_blank" class="px-8 py-3 border border-green-500 text-green-500 rounded-full hover:bg-green-500 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-pink-300 font-heading text-2xl font-bold mb-3 tracking-widest">VELVET</span>
+            <a href="demo-event.html" target="_blank" class="px-8 py-3 border border-pink-300 text-pink-300 rounded-full hover:bg-pink-300 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+        
+         <div class="swiper-slide group cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df4?w=600&q=80" alt="Baby" />
+          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-center items-center backdrop-blur-sm">
+            <span class="text-orange-300 font-heading text-2xl font-bold mb-3 tracking-widest">LITTLE BLOOM</span>
+            <a href="demo-event-2.html" target="_blank" class="px-8 py-3 border border-orange-300 text-orange-300 rounded-full hover:bg-orange-300 hover:text-black transition font-bold text-[10px] tracking-[0.2em]">VIEW DEMO</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="text-center mt-12">
+       <p class="text-[9px] text-gray-600 uppercase tracking-[0.3em] flex items-center justify-center gap-3">
+        <i class="fa-solid fa-arrow-left"></i> Drag to Explore <i class="fa-solid fa-arrow-right"></i>
+      </p>
+    </div>
+  </section>
+
+  <section id="pricing" class="max-w-7xl mx-auto px-6 py-32 relative z-10">
+    <div class="text-center mb-20 reveal">
+      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 tracking-tight">One-Time Investment</h2>
+      <p class="text-gray-400 font-light">Own your platform. No monthly fees to VitrinX.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 items-start">
+      <div class="glass-card p-8 rounded-[32px] flex flex-col opacity-80 hover:opacity-100 transition duration-500 reveal delay-100">
+        <div class="text-gray-500 font-bold tracking-[0.2em] text-[10px] mb-6">STARTER</div>
+        <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$149</span></div>
+        <div class="text-xs text-gray-500 mb-10 border-b border-white/5 pb-6">Entry level presence</div>
+
+        <ul class="space-y-5 mb-10 text-sm text-gray-400 flex-1 font-light">
+          <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Etsy Sync</li>
+          <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Hosting Included</li>
+          <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Domain Connect</li>
+        </ul>
+        <a href="#showcase" class="block w-full text-center py-4 rounded-xl border border-white/10 hover:bg-white hover:text-black transition font-bold text-xs uppercase tracking-widest">Browse Themes</a>
+      </div>
+
+      <div class="p-[1px] rounded-[32px] bg-gradient-to-b from-neon to-emerald-900/50 shadow-[0_0_80px_rgba(0,255,157,0.1)] transform md:-translate-y-6 relative z-10 reveal delay-200">
+        <div class="bg-black/90 backdrop-blur-xl h-full w-full rounded-[31px] p-8 flex flex-col relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-neon text-black text-[9px] font-bold px-4 py-2 rounded-bl-xl tracking-widest">BEST VALUE</div>
+          <div class="text-neon font-bold tracking-[0.2em] text-[10px] mb-6">BUSINESS</div>
+          <div class="flex items-baseline gap-1 mb-2"><span class="text-5xl font-heading font-bold text-white">$299</span></div>
+          <div class="text-xs text-gray-400 mb-10 border-b border-white/10 pb-6">For growing brands</div>
+          <ul class="space-y-5 mb-10 text-sm text-white flex-1 font-medium">
+            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Daily Auto-Sync</li>
+            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Blog & About</li>
+            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Custom Branding</li>
+            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <strong>30 Days</strong> Support</li>
+          </ul>
+          <a href="#showcase" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold text-xs uppercase tracking-widest shadow-lg shadow-neon/20">Start Now</a>
+        </div>
+      </div>
+
+      <div class="glass-card p-8 rounded-[32px] border-purple/30 hover:border-purple/60 transition duration-500 reveal delay-300">
+        <div class="text-purple-400 font-bold tracking-[0.2em] text-[10px] mb-6">ELITE</div>
+        <div class="flex items-baseline gap-1 mb-2"><span class="text-4xl font-heading font-bold text-white">$599</span></div>
+        <div class="text-xs text-gray-500 mb-10 border-b border-white/5 pb-6">Full automation</div>
+        <ul class="space-y-5 mb-10 text-sm text-gray-300 flex-1 font-light">
+          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> Real-time Sync</li>
+          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> Neon / Dark UI</li>
+          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> Multi-Language</li>
+          <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <strong>90 Days</strong> Support</li>
+        </ul>
+        <a href="#showcase" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold text-xs uppercase tracking-widest">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-24 border-t border-white/5 bg-white/[0.02]">
+    <div class="max-w-3xl mx-auto px-6 reveal">
+      <h2 class="font-heading text-3xl font-bold mb-12 text-center tracking-tight">FAQ</h2>
+      <div class="space-y-4">
+        <details class="glass-card rounded-2xl p-6 group">
+          <summary class="font-bold flex justify-between items-center text-sm">Do I upload products manually? <i class="fa-solid fa-plus text-xs opacity-50 transition-transform group-open:rotate-45"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm leading-relaxed font-light pl-4 border-l border-neon/30">No. We connect via Etsy API. All data is fetched automatically.</p>
+        </details>
+        <details class="glass-card rounded-2xl p-6 group border-neon/20">
+          <summary class="font-bold flex justify-between items-center text-neon text-sm">Etsy approval process? <i class="fa-solid fa-plus text-xs opacity-50 transition-transform group-open:rotate-45"></i></summary>
+          <p class="mt-4 text-gray-300 text-sm leading-relaxed font-light pl-4 border-l border-neon/50">Takes <strong>2–3 days</strong>. We handle the technical side.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 bg-black pt-20 pb-10 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
+      <div class="col-span-2">
+        <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+          <span class="font-heading text-2xl font-bold text-white tracking-tight">VitrinX</span>
+        </div>
+        <p class="text-gray-500 text-xs leading-relaxed max-w-sm mx-auto md:mx-0 mb-8 font-light">
+          We turn Etsy sellers into brand owners.<br>Verified API-based architecture.
         </p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-up" style="animation-delay: 0.3s">
-            <a href="#demos" class="bg-brand text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-brand/90 transition shadow-lg shadow-brand/25">
-                View All Demos
-            </a>
-            <a href="#how-it-works" class="glass text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition">
-                How It Works
-            </a>
-        </div>
-    </header>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-6 tracking-widest text-[10px] uppercase">Contact</h4>
+        <ul class="space-y-4 text-xs text-gray-400 font-light">
+          <li class="flex items-center justify-center md:justify-start gap-3"><i class="fa-brands fa-whatsapp text-[#25D366]"></i> <a href="https://wa.me/905419787726" class="hover:text-white transition">+90 (541) 978 77 26</a></li>
+          <li class="flex items-center justify-center md:justify-start gap-3"><i class="fa-solid fa-envelope text-neon"></i> <span>support@vitrinx.com</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-6 tracking-widest text-[10px] uppercase">Legal</h4>
+        <ul class="space-y-4 text-xs text-gray-400 font-light">
+          <li><a href="#" class="hover:text-neon transition">Privacy</a></li>
+          <li><a href="#" class="hover:text-neon transition">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-white/5 pt-8 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p class="text-gray-600 text-[10px] mb-2">&copy; 2025 VitrinX. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <section id="demos" class="py-20 px-6 relative z-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-12 border-b border-white/10 pb-4">
-                <div>
-                    <h2 class="font-head text-3xl font-bold">Choose Your Aesthetic</h2>
-                    <p class="text-slate-400 mt-2">10+ Premium templates crafted for specific niches.</p>
-                </div>
-                <div class="hidden md:flex gap-2">
-                    <button class="px-4 py-2 rounded-lg bg-white/10 text-white text-sm font-bold">All</button>
-                    <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-slate-400 text-sm">Fashion</button>
-                    <button class="px-4 py-2 rounded-lg hover:bg-white/5 text-slate-400 text-sm">Home</button>
-                </div>
-            </div>
+  <a href="https://wa.me/905419787726" target="_blank"
+     class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-[0_0_30px_rgba(37,211,102,0.4)] transition hover:scale-110 hover:-translate-y-1">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <a href="demo-ultra.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Streetwear">
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Project X</h3>
-                            <span class="text-xs font-bold bg-brand/20 text-brand px-2 py-1 rounded">Streetwear</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">High-energy, brutalist design for modern clothing brands.</p>
-                    </div>
-                </a>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    /* SCROLL REVEAL LOGIC */
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-                <a href="demo-art.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Art">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">The Gallery</h3>
-                            <span class="text-xs font-bold bg-purple-500/20 text-purple-400 px-2 py-1 rounded">Art & Prints</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Museum-quality minimalist layout for artists and photographers.</p>
-                    </div>
-                </a>
+    /* SWIPER */
+    var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto", loop: true,
+      speed: 1000,
+      coverflowEffect: { rotate: 0, stretch: 0, depth: 150, modifier: 1, slideShadows: false },
+      autoplay: { delay: 3000, disableOnInteraction: false }
+    });
 
-                <a href="demo-fashion-2.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Luxury">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Atelier Noir</h3>
-                            <span class="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded">Luxury</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Editorial style design with parallax effects for high-end fashion.</p>
-                    </div>
-                </a>
-
-                <a href="demo-jewelry.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Jewelry">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Aurora</h3>
-                            <span class="text-xs font-bold bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded">Jewelry</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Elegant, macro-focused design with gold accents and smooth reveals.</p>
-                    </div>
-                </a>
-
-                <a href="demo-business-1.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Furniture">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Naturel</h3>
-                            <span class="text-xs font-bold bg-green-500/20 text-green-400 px-2 py-1 rounded">Home Decor</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Organic textures and earthy tones for furniture and handmade goods.</p>
-                    </div>
-                </a>
-
-                 <a href="demo-starter.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Fitness">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Iron Clad</h3>
-                            <span class="text-xs font-bold bg-red-500/20 text-red-400 px-2 py-1 rounded">Digital</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Vertical snap-scroll layout for fitness coaches and digital creators.</p>
-                    </div>
-                </a>
-                
-                <a href="demo-event.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Wedding">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Velvet</h3>
-                            <span class="text-xs font-bold bg-pink-500/20 text-pink-400 px-2 py-1 rounded">Weddings</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Interactive digital invitation with envelope reveal and timeline.</p>
-                    </div>
-                </a>
-
-                <a href="demo-kids.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Kids">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Little Wonders</h3>
-                            <span class="text-xs font-bold bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded">Kids</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Playful, colorful, and animated design for toy stores and nurseries.</p>
-                    </div>
-                </a>
-                
-                <a href="demo-event-2.html" target="_blank" class="demo-card group block bg-card rounded-2xl overflow-hidden border border-white/5 relative">
-                    <div class="aspect-video bg-black relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df4?w=800&q=80" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-700" alt="Baby">
-                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                            <span class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">Live Preview</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-head text-xl font-bold group-hover:text-brand transition">Little Bloom</h3>
-                            <span class="text-xs font-bold bg-orange-500/20 text-orange-400 px-2 py-1 rounded">Events</span>
-                        </div>
-                        <p class="text-slate-400 text-sm">Boho style baby shower and birthday invitation with scrapbook look.</p>
-                    </div>
-                </a>
-
-            </div>
-            
-            <div class="mt-12 text-center">
-                <a href="https://github.com" target="_blank" class="inline-flex items-center gap-2 text-slate-400 hover:text-white transition">
-                    <i class="fa-brands fa-github"></i> View Source Code
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-white/5 bg-darker py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center gap-2 mb-4 md:mb-0">
-                <div class="w-6 h-6 bg-brand rounded flex items-center justify-center text-white text-xs font-bold">V</div>
-                <span class="font-head font-bold text-lg">VITRINX</span>
-            </div>
-            <p class="text-slate-500 text-sm">© 2025 VitrinX. All rights reserved.</p>
-            <div class="flex gap-4 mt-4 md:mt-0 text-slate-400">
-                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-etsy"></i></a>
-            </div>
-        </div>
-    </footer>
-
+    /* SIMPLE LANG TOGGLE */
+    function toggleLanguage() {
+      const current = document.getElementById('current-lang');
+      if(current.innerText === 'EN') {
+         current.innerText = 'TR';
+         // Basit çeviri mantığı eklenebilir
+      } else {
+         current.innerText = 'EN';
+      }
+    }
+  </script>
 </body>
 </html>
