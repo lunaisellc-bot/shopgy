@@ -12,9 +12,17 @@
   <meta property="og:type" content="website" />
 
   <script>
+    // 1. Tarayıcı hafızasını kapat
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
+    
+    // 2. URL'deki #pricing gibi etiketleri temizle (Sessizce)
+    if (window.location.hash) {
+        window.history.replaceState(null, null, window.location.pathname);
+    }
+
+    // 3. Sayfa yüklenmeden hemen önce tepeye zorla
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
     }
@@ -397,6 +405,14 @@
         </a>
       </div>
     </div>
+    
+    <div class="mt-12 text-center relative z-10">
+        <a href="portfolio.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/10 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-neon hover:text-black hover:scale-105 transition-all duration-300 group">
+            View Full Portfolio
+            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </a>
+    </div>
+
   </section>
 
   <section id="pricing" class="py-32 relative z-10">
@@ -506,6 +522,13 @@
   </a>
 
   <script>
+    // 4. Force scroll on load/reload
+    window.onload = function() {
+       setTimeout(function() {
+          window.scrollTo(0,0);
+       }, 10);
+    }
+    
     /* Reveal Animation */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
