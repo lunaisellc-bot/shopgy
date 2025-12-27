@@ -1,117 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theme Portfolio | VitrinX</title>
+    <title>VitrinX Showcase | Premium Themes</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
-                    colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505' }
+                    fontFamily: {
+                        'head': ['Space Grotesk', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon': '#00ff9d',
+                        'purple': '#bd00ff',
+                        'dark': '#050505',
+                        'card-bg': '#0F1115'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
                 }
             }
         }
     </script>
-    <style>body { background-color: #050505; color: white; }</style>
-</head>
-<body class="antialiased font-sans">
+    <style>
+        body { background-color: #050505; color: white; }
+        
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2 hover:text-neon transition">
-                <i class="fa-solid fa-arrow-left"></i> <span class="font-bold">Back to Home</span>
+        .filter-btn {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .filter-btn.active {
+            color: #00ff9d;
+            background: rgba(0, 255, 157, 0.1);
+        }
+        .filter-btn.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 4px; border-radius: 50%; background: #00ff9d;
+        }
+
+        .portfolio-card {
+            background: #0F1115;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 157, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+        .portfolio-card:hover .card-img {
+            transform: scale(1.05);
+            opacity: 0.4;
+        }
+        .portfolio-card:hover .view-btn {
+            opacity: 1; transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-neon selection:text-black">
+
+    <nav class="fixed w-full z-50 glass-nav h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-neon group-hover:text-black transition duration-300">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <span class="font-head font-bold text-sm text-gray-400 group-hover:text-white transition">Back to Home</span>
             </a>
-            <span class="font-heading font-bold text-xl">Theme<span class="text-neon">Gallery</span></span>
+            <div class="font-head text-xl font-bold tracking-tight">VitrinX <span class="text-neon">Showcase</span></div>
+            <a href="https://wa.me/905419787726" class="hidden md:block bg-neon text-black px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white transition">
+                Get Started
+            </a>
         </div>
     </nav>
 
-    <header class="pt-32 pb-12 text-center px-6">
-        <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6">Choose Your <span class="text-neon">Identity</span></h1>
-        <p class="text-gray-400 max-w-2xl mx-auto">These are not just templates. They are high-conversion retail systems. Choose the one that fits your brand soul. We handle the rest.</p>
+    <header class="pt-32 pb-12 px-6 text-center">
+        <h1 class="font-head text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+            Designed for <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-purple">Impact.</span>
+        </h1>
+        <p class="text-gray-400 max-w-xl mx-auto mb-10 text-sm md:text-base animate-fade-in" style="animation-delay: 0.1s">
+            Explore our collection of high-conversion templates. From e-commerce giants to intimate events.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-2 md:gap-4 animate-fade-in" style="animation-delay: 0.2s">
+            <button onclick="filterSelection('all')" class="filter-btn active px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300">All</button>
+            <button onclick="filterSelection('commerce')" class="filter-btn px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300">E-Commerce</button>
+            <button onclick="filterSelection('event')" class="filter-btn px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300">Events & Personal</button>
+            <button onclick="filterSelection('creative')" class="filter-btn px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300">Creative</button>
+        </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 pb-24">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section class="max-w-7xl mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Streetwear">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-ultra.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Project X</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">FASHION</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Brutalist aesthetic for streetwear brands.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Luxury">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-fashion2.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Atelier Noir</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">LUXURY</span>
+                    </div>
+                    <p class="text-xs text-gray-500">High-end editorial layout with parallax.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item event">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Wedding">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-event.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-pink-400 hover:text-white hover:scale-105">
+                            View Invitation
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6 border-t border-pink-500/20 bg-pink-500/5">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-pink-300 group-hover:text-white transition">Velvet</h3>
+                        <span class="text-[10px] font-bold border border-pink-500/30 text-pink-400 px-2 py-1 rounded">WEDDING</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Interactive digital invitation with RSVP.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Jewelry">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-jewelry.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-yellow-400 hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-yellow-400 transition">Aurora</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">JEWELRY</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Macro photography focus for detailed items.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item event">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df4?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Baby">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="event-2.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-orange-400 hover:text-white hover:scale-105">
+                            View Invitation
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6 border-t border-orange-500/20 bg-orange-500/5">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-orange-300 group-hover:text-white transition">Little Bloom</h3>
+                        <span class="text-[10px] font-bold border border-orange-500/30 text-orange-400 px-2 py-1 rounded">BABY SHOWER</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Boho style animated invitation & memory book.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Art">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-art.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">The Gallery</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">ART</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Museum style minimalism for prints.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Home">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-business-2.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Naturel Home</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">DECOR</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Organic and earthy tones for furniture.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item creative commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Fitness">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-starter.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Iron Clad</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">DIGITAL</span>
+                    </div>
+                    <p class="text-xs text-gray-500">For selling courses and PDF plans.</p>
+                </div>
+            </div>
             
-            <div class="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-neon transition duration-500">
-                <div class="h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Kids">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-kids.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-cyan-400 hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
                 </div>
                 <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-heading text-2xl font-bold text-white">Ultra Luxe</h3>
-                        <span class="px-2 py-1 bg-white/10 text-xs rounded text-gray-300">Jewelry & Gold</span>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-cyan-400 transition">Little Wonders</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">KIDS</span>
                     </div>
-                    <p class="text-gray-400 text-sm mb-6">Dark mode aesthetics with gold accents. Perfect for high-ticket items.</p>
-                    <a href="demo-ultra.html" target="_blank" class="block w-full text-center py-3 bg-neon text-black font-bold rounded-lg hover:bg-white transition">Live Preview <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    <p class="text-xs text-gray-500">Playful and colorful design for toys.</p>
                 </div>
             </div>
 
-            <div class="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-red-500 transition duration-500">
-                <div class="h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1523396864712-ecc4a4394eeb?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            <div class="portfolio-card rounded-2xl group filter-item creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Creator">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-starter-1.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-purple-400 hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
                 </div>
                 <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-heading text-2xl font-bold text-white">Streetwear</h3>
-                        <span class="px-2 py-1 bg-white/10 text-xs rounded text-gray-300">Clothing</span>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-purple-400 transition">Nexus</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">CREATOR</span>
                     </div>
-                    <p class="text-gray-400 text-sm mb-6">Bold typography and large imagery. Designed for fashion brands.</p>
-                    <a href="demo-fashion.html" target="_blank" class="block w-full text-center py-3 bg-white text-black font-bold rounded-lg hover:bg-red-500 hover:text-white transition">Live Preview <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    <p class="text-xs text-gray-500">Link-in-bio style portfolio for creators.</p>
+                </div>
+            </div>
+            
+             <div class="portfolio-card rounded-2xl group filter-item creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Horizontal">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-horizon.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Horizon</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">CONCEPT</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Horizontal scrolling cinematic experience.</p>
                 </div>
             </div>
 
-            <div class="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-blue-400 transition duration-500">
-                <div class="h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+             <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1550614000-4b9519e02a15?w=800&q=80" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Vertical">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-vertex.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-purple-400 hover:scale-105">
+                            View Demo
+                        </a>
+                    </div>
                 </div>
                 <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-heading text-2xl font-bold text-white">Nordic Home</h3>
-                        <span class="px-2 py-1 bg-white/10 text-xs rounded text-gray-300">Furniture</span>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-head text-lg font-bold text-white group-hover:text-purple-400 transition">Vertex</h3>
+                        <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">MOBILE</span>
                     </div>
-                    <p class="text-gray-400 text-sm mb-6">Clean, minimalist, and white-space dominant. Best for home decor.</p>
-                    <a href="demo-business.html" target="_blank" class="block w-full text-center py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-white hover:text-black transition">Live Preview <i class="fa-solid fa-arrow-right ml-2"></i></a>
-                </div>
-            </div>
-             <div class="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-yellow-400 transition duration-500">
-                <div class="h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1545989253-02cc26577f88?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-heading text-2xl font-bold text-white">Art Gallery</h3>
-                        <span class="px-2 py-1 bg-white/10 text-xs rounded text-gray-300">Prints & Art</span>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-6">Gallery style layout to showcase artwork and posters.</p>
-                    <a href="demo-art.html" target="_blank" class="block w-full text-center py-3 bg-yellow-400 text-black font-bold rounded-lg hover:bg-white hover:text-black transition">Live Preview <i class="fa-solid fa-arrow-right ml-2"></i></a>
-                </div>
-            </div>
-
-             <div class="group relative bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400 transition duration-500">
-                <div class="h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1555421689-49263307f3dd?w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-heading text-2xl font-bold text-white">Digital Pro</h3>
-                        <span class="px-2 py-1 bg-white/10 text-xs rounded text-gray-300">Digital Goods</span>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-6">Optimized for software, planners, and digital downloads.</p>
-                    <a href="demo-starter.html" target="_blank" class="block w-full text-center py-3 bg-purple-500 text-white font-bold rounded-lg hover:bg-white hover:text-black transition">Live Preview <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    <p class="text-xs text-gray-500">Vertical snap-scroll for mobile-first brands.</p>
                 </div>
             </div>
 
         </div>
     </section>
-    
-    <footer class="border-t border-white/10 py-8 text-center text-gray-600 text-xs">
-        &copy; 2025 VitrinX. A brand of Lunaise LLC.
+
+    <footer class="border-t border-white/10 py-10 text-center">
+        <p class="text-gray-600 text-xs uppercase tracking-widest mb-4">Ready to launch?</p>
+        <a href="index.html#pricing" class="inline-block bg-white/5 border border-white/10 px-8 py-3 rounded-full text-sm font-bold hover:bg-neon hover:text-black transition">
+            See Pricing Packages
+        </a>
     </footer>
+
+    <script>
+        function filterSelection(category) {
+            // Button styles
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtering logic
+            const items = document.querySelectorAll('.filter-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                    item.classList.add('animate-fade-in');
+                } else if (item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    item.classList.add('animate-fade-in');
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('animate-fade-in');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
