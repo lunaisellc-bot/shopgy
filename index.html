@@ -3,19 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinX | Build Your Brand Beyond Etsy</title>
+  <title>VitrinX | Enterprise Grade Etsy Solutions</title>
 
-  <meta name="description" content="Turn your Etsy shop into a standalone USA-based brand website. No monthly fees." />
+  <meta name="description" content="Turn your Etsy shop into a standalone USA-based brand website using official Etsy Open API. No monthly fees." />
   
   <script>
-    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-    if (window.location.hash) { window.history.replaceState(null, null, window.location.pathname); }
-    window.onbeforeunload = function () { window.scrollTo(0, 0); }
+    // 1. Tarayıcı hafızasını kapat (Scroll restoration)
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    
+    // 2. URL'deki #pricing gibi etiketleri temizle
+    if (window.location.hash) {
+        window.history.replaceState(null, null, window.location.pathname);
+    }
+
+    // 3. Sayfa yüklenmeden hemen önce tepeye zorla
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
@@ -35,6 +47,7 @@
           },
           animation: {
             'float': 'float 8s ease-in-out infinite',
+            'bounce-slow': 'bounce 2s infinite',
           },
           keyframes: {
             float: {
@@ -55,8 +68,12 @@
       -webkit-font-smoothing: antialiased;
       scroll-padding-top: 100px;
     }
+
+    /* REVEAL ON SCROLL */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* GLASSMOPHISM CARD */
     .glass {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08);
@@ -64,30 +81,34 @@
     }
     .glass:hover { border-color: rgba(0, 255, 157, 0.3); background: rgba(255, 255, 255, 0.05); transform: translateY(-5px); }
     
-    /* MARQUEE */
+    /* INFINITE MARQUEE (SLIDER) */
     .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
     .marquee-container::before, .marquee-container::after { content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none; }
     .marquee-container::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
     .marquee-container::after { right: 0; background: linear-gradient(to left, #050505, transparent); }
+    
     .marquee-content { display: inline-flex; gap: 24px; }
     .scroll-left { animation: scrollLeft 60s linear infinite; }
     .scroll-right { animation: scrollRight 65s linear infinite; }
     .hover\:pause:hover { animation-play-state: paused; }
+    
     @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
-    /* CARDS */
+    /* THEME CARDS */
     .theme-card { width: 280px; height: 380px; border-radius: 20px; overflow: hidden; position: relative; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
     .theme-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: grayscale(100%); }
     .theme-card:hover { transform: scale(1.05); border-color: rgba(0, 255, 157, 0.5); z-index: 10; box-shadow: 0 0 30px rgba(0,255,157,0.1); }
     .theme-card:hover img { transform: scale(1.1); filter: grayscale(0%); }
+    
     .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; alignItems: center; justify-content: center; opacity: 0; transition: opacity 0.3s; gap: 15px; }
     .theme-card:hover .overlay { opacity: 1; }
+    
     .tag { font-size: 10px; font-weight: bold; letter-spacing: 0.2em; padding: 5px 10px; border: 1px solid; border-radius: 5px; transform: translateY(20px); transition: transform 0.4s; }
     .btn-view { font-size: 12px; font-weight: bold; padding: 10px 25px; border-radius: 50px; cursor: pointer; transform: translateY(20px); transition: transform 0.4s 0.1s; }
     .theme-card:hover .tag, .theme-card:hover .btn-view { transform: translateY(0); }
     
-    /* FAQ */
+    /* FAQ ANIMATION */
     details > summary { list-style: none; cursor: pointer; }
     details > summary::-webkit-details-marker { display: none; }
     details[open] summary ~ * { animation: sweep .3s ease-out; }
@@ -129,28 +150,38 @@
   </nav>
 
   <header class="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4 pt-10">
+    
     <div class="mb-8 animate-float">
-      <div class="px-4 py-2 rounded-full border border-neon/20 bg-neon/5 text-neon text-[10px] font-bold uppercase tracking-[0.3em] flex items-center gap-2 backdrop-blur-md">
-        <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span>
-        <span data-i18n="hero_badge">NO MONTHLY FEES. LIFETIME OWNERSHIP.</span>
+      <div class="px-4 py-2 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 backdrop-blur-md">
+        <i class="fa-solid fa-code-branch"></i>
+        <span data-i18n="hero_badge">POWERED BY ETSY OPEN API V3</span>
       </div>
     </div>
 
     <h1 class="reveal font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 tracking-tighter" data-i18n="hero_title">
-      From Etsy Seller <br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">To Brand Owner.</span>
+      Turn Your Etsy Shop <br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">Into Your Own Website.</span>
     </h1>
 
-    <p class="reveal text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed delay-100" data-i18n="hero_sub">
-      Stop renting your customers. We build you a <strong>flagship .com website</strong> that syncs with your Etsy shop or local inventory.
-    </p>
+    <div class="reveal max-w-2xl mx-auto mb-10 delay-100">
+        <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-6" data-i18n="hero_sub">
+            We use the official <strong>Etsy Open API</strong> to fetch your inventory, photos, and descriptions securely. 
+            No manual uploads. Real-time data sync.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-database text-neon"></i> <span data-i18n="feat_1">API Data Fetch</span></span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-rotate text-neon"></i> <span data-i18n="feat_2">Inventory Sync</span></span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-neon"></i> <span data-i18n="feat_3">OAuth 2.0 Security</span></span>
+        </div>
+    </div>
 
     <div class="reveal flex flex-col sm:flex-row gap-5 delay-200">
       <a href="portfolio.html" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105 shadow-[0_0_30px_rgba(0,255,157,0.3)]">
-        <span class="relative flex items-center gap-2 tracking-wide"><i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_explore">Explore Themes</span></span>
+        <span class="relative flex items-center gap-2 tracking-wide"><i class="fa-solid fa-plug"></i> <span data-i18n="btn_explore">Connect Shop</span></span>
       </a>
       <a href="#how-it-works" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center gap-2">
-        <span data-i18n="btn_how">How It Works?</span>
+        <span data-i18n="btn_how">View API Logic</span>
       </a>
     </div>
     
@@ -170,7 +201,7 @@
         <div class="glass p-8 rounded-2xl text-left hover:border-red-500/50 transition duration-500 group">
           <i class="fa-solid fa-users-slash text-3xl text-gray-600 mb-6 group-hover:text-red-500 transition"></i>
           <h3 class="text-xl font-bold mb-3" data-i18n="prob_1_title">You Don't Own The Customer</h3>
-          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_1_desc">Etsy owns the email list. Etsy owns the traffic. If they change the algorithm, your business disappears.</p>
+          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_1_desc">Etsy owns the email list and traffic. If they change the algorithm, your business disappears.</p>
         </div>
         <div class="glass p-8 rounded-2xl text-left hover:border-yellow-500/50 transition duration-500 group">
           <i class="fa-solid fa-percent text-3xl text-gray-600 mb-6 group-hover:text-yellow-500 transition"></i>
@@ -196,18 +227,18 @@
       <div class="grid md:grid-cols-3 gap-8 text-center reveal delay-100">
         <div class="relative">
           <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl border border-white/10 text-white">1</div>
-          <h3 class="font-bold text-lg mb-2" data-i18n="step_1_title">Connect</h3>
-          <p class="text-gray-500 text-sm px-6" data-i18n="step_1_desc">We sync with your Etsy API or Product List to fetch your items and photos.</p>
+          <h3 class="font-bold text-lg mb-2" data-i18n="step_1_title">Connect API</h3>
+          <p class="text-gray-500 text-sm px-6" data-i18n="step_1_desc">We authenticate with Etsy Open API to securely access your listing data.</p>
         </div>
         <div class="relative">
           <div class="w-16 h-16 bg-neon/10 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl border border-neon/30 text-neon shadow-[0_0_20px_rgba(0,255,157,0.2)]">2</div>
-          <h3 class="font-bold text-lg mb-2" data-i18n="step_2_title">Design</h3>
-          <p class="text-gray-500 text-sm px-6" data-i18n="step_2_desc">Choose a premium theme below. We customize it with your logo, colors, and brand story.</p>
+          <h3 class="font-bold text-lg mb-2" data-i18n="step_2_title">Render Theme</h3>
+          <p class="text-gray-500 text-sm px-6" data-i18n="step_2_desc">Your data is automatically injected into one of our premium templates.</p>
         </div>
         <div class="relative">
           <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl border border-white/10 text-white">3</div>
-          <h3 class="font-bold text-lg mb-2" data-i18n="step_3_title">Launch</h3>
-          <p class="text-gray-500 text-sm px-6" data-i18n="step_3_desc">We connect your domain (yourname.com). You are ready to sell to the world.</p>
+          <h3 class="font-bold text-lg mb-2" data-i18n="step_3_title">Deploy .COM</h3>
+          <p class="text-gray-500 text-sm px-6" data-i18n="step_3_desc">We launch your standalone site on a global CDN. Fast and secure.</p>
         </div>
       </div>
     </div>
@@ -261,7 +292,7 @@
           <div class="text-4xl font-heading font-bold text-white mb-2">$149</div>
           <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6" data-i18n="p_1_sub">Perfect for new shops</div>
           <ul class="space-y-4 mb-8 text-sm text-gray-400 flex-1">
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_1_f1">Product Sync</span></li>
+            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_1_f1">API Product Sync</span></li>
             <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_1_f2">Free Hosting</span></li>
             <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_1_f3">Domain Connection</span></li>
           </ul>
@@ -275,7 +306,7 @@
             <div class="text-5xl font-heading font-bold text-white mb-2">$299</div>
             <div class="text-xs text-gray-400 mb-8 border-b border-white/10 pb-6" data-i18n="p_2_sub">For growing brands</div>
             <ul class="space-y-4 mb-8 text-sm text-white flex-1 font-medium">
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f1">Daily Auto-Sync</span></li>
+              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f1">Daily API Calls</span></li>
               <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f2">Blog / About Pages</span></li>
               <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f3">Custom Branding</span></li>
               <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f4">30 Days Support</span></li>
@@ -289,7 +320,7 @@
           <div class="text-4xl font-heading font-bold text-white mb-2">$599</div>
           <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6" data-i18n="p_3_sub">Full automation & scale</div>
           <ul class="space-y-4 mb-8 text-sm text-gray-400 flex-1">
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f1">Real-time Sync</span></li>
+            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f1">Real-time Webhooks</span></li>
             <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f2">Multi-Language</span></li>
             <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f3">Custom Features</span></li>
             <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f4">90 Days VIP Support</span></li>
@@ -305,12 +336,12 @@
       <h2 class="font-heading text-3xl font-bold mb-10 text-center" data-i18n="faq_title">Common Questions</h2>
       <div class="space-y-4">
         <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_1_q">Do I need coding?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_1_a">No. We handle all the technical setup. You just provide us with your Etsy link or product photos.</p>
+          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_1_q">Is this safe for my Etsy account?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_1_a">Yes. We use Etsy Open API v3 with OAuth 2.0. We only read product data, we don't touch your wallet.</p>
         </details>
         <details class="glass rounded-xl p-6 group">
           <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_2_q">How do customers pay?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_2_a">The "Buy" button can redirect to your Etsy checkout (secure) OR to your WhatsApp for local orders.</p>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_2_a">The 'Buy' button can redirect to your Etsy checkout (secure) OR to your WhatsApp for local orders.</p>
         </details>
         <details class="glass rounded-xl p-6 group">
           <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_3_q">Is there a monthly fee?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
@@ -349,91 +380,143 @@
     </div>
   </footer>
 
-  <a href="sms:+13072059144" class="fixed bottom-6 right-6 z-50 bg-white hover:bg-neon hover:text-black text-black w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-[0_0_20px_rgba(255,255,255,0.3)] transition hover:scale-110 hover:-translate-y-1">
-    <i class="fa-solid fa-comment-dots"></i>
-  </a>
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4 items-center">
+      
+      <a href="sms:+13072059144" class="group relative bg-white hover:bg-gray-200 text-black w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-[0_0_20px_rgba(255,255,255,0.3)] transition hover:scale-110 animate-bounce" style="animation-delay: 0.1s;">
+        <i class="fa-solid fa-comment-sms"></i>
+        <span class="absolute right-12 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">US Support</span>
+      </a>
+
+      <a href="https://wa.me/905419787726" target="_blank" class="group relative bg-[#25D366] hover:bg-[#128C7E] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(37,211,102,0.4)] transition hover:scale-110 animate-bounce" style="animation-delay: 0.6s;">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="absolute right-14 bg-[#25D366] text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Canlı Destek</span>
+      </a>
+
+  </div>
 
   <script>
     const translations = {
       en: {
         nav_why: "Why Website?", nav_portfolio: "Portfolio", nav_how: "How it Works", nav_pricing: "Pricing", nav_cta: "Start Brand",
-        hero_badge: "NO MONTHLY FEES. LIFETIME OWNERSHIP.",
-        hero_title: "From Etsy Seller <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>To Brand Owner.</span>",
-        hero_sub: "Stop renting your customers. We build you a <strong>flagship .com website</strong> that syncs with your Etsy shop or local inventory.",
-        btn_explore: "Explore Themes", btn_how: "How It Works?",
+        
+        // HERO - ETSY DEVELOPER
+        hero_badge: "POWERED BY ETSY OPEN API V3",
+        hero_title: "Turn Your Etsy Shop <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Into Your Own Website.</span>",
+        hero_sub: "We use the official <strong>Etsy Open API</strong> to fetch your inventory, photos, and descriptions securely. No manual uploads. Real-time data sync.",
+        feat_1: "API Data Fetch",
+        feat_2: "Inventory Sync",
+        feat_3: "OAuth 2.0 Security",
+        btn_explore: "Connect Shop", 
+        btn_how: "View API Logic",
+
         us_company: "US Registered Company (Wyoming)",
+        
         prob_title: "Why Etsy isn't enough?",
         prob_1_title: "You Don't Own The Customer", prob_1_desc: "Etsy owns the email list and traffic. If they change the algorithm, your business disappears.",
         prob_2_title: "The 'Price War' Trap", prob_2_desc: "On Etsy, your product is shown next to 10 cheaper competitors. On your own site, you are the ONLY option.",
         prob_3_title: "Lack of Branding", prob_3_desc: "A standardized marketplace page looks like a hobby. A custom .com website looks like a Global Brand.",
+        
         how_title: "Done-For-You Setup", how_sub: "You don't touch code. We handle everything.",
-        step_1_title: "Connect", step_1_desc: "We sync with your Etsy API or Product List to fetch your items and photos.",
-        step_2_title: "Design", step_2_desc: "Choose a premium theme below. We customize it with your logo and colors.",
-        step_3_title: "Launch", step_3_desc: "We connect your domain (yourname.com). You are ready to sell to the world.",
+        step_1_title: "Connect API", step_1_desc: "We authenticate with Etsy Open API to securely access your listing data.",
+        step_2_title: "Render Theme", step_2_desc: "Your data is automatically injected into one of our premium templates.",
+        step_3_title: "Deploy .COM", step_3_desc: "We launch your standalone site on a global CDN. Fast and secure.",
+        
         show_title: "World Class Designs", show_sub: "Don't just build a website. Build a legacy.",
         btn_full_portfolio: "View Full Portfolio",
+        
         price_title: "One-Time Investment", price_sub: "Own your platform. No monthly subscriptions to us.",
         p_pop: "POPULAR", p_1_sub: "Perfect for new shops", p_2_sub: "For growing brands", p_3_sub: "Full automation & scale",
-        p_1_f1: "Product Sync", p_1_f2: "Free Hosting", p_1_f3: "Domain Connection",
-        p_2_f1: "Daily Auto-Sync", p_2_f2: "Blog / About Pages", p_2_f3: "Custom Branding", p_2_f4: "30 Days Support",
-        p_3_f1: "Real-time Sync", p_3_f2: "Multi-Language", p_3_f3: "Custom Features", p_3_f4: "90 Days VIP Support",
+        p_1_f1: "API Product Sync", p_1_f2: "Free Hosting", p_1_f3: "Domain Connection",
+        p_2_f1: "Daily API Calls", p_2_f2: "Blog / About Pages", p_2_f3: "Custom Branding", p_2_f4: "30 Days Support",
+        p_3_f1: "Real-time Webhooks", p_3_f2: "Multi-Language", p_3_f3: "Custom Features", p_3_f4: "90 Days VIP Support",
         btn_select: "Select Theme", btn_start: "Start Now", btn_contact: "Contact Us",
+        
         faq_title: "Common Questions",
-        faq_1_q: "Do I need coding?", faq_1_a: "No. We handle all the technical setup. You just provide us with your Etsy link or product photos.",
+        faq_1_q: "Is this safe for my Etsy account?", faq_1_a: "Yes. We use Etsy Open API v3 with OAuth 2.0. We only read product data, we don't touch your wallet.",
         faq_2_q: "How do customers pay?", faq_2_a: "The 'Buy' button can redirect to your Etsy checkout (secure) OR to your WhatsApp for local orders.",
         faq_3_q: "Is there a monthly fee?", faq_3_a: "No. Unlike Shopify or Wix, you pay us once for the setup. Hosting is free via Netlify/Vercel.",
+        
         footer_desc: "Premium web design agency for Etsy sellers and creative brands."
       },
       tr: {
         nav_why: "Neden Web Sitesi?", nav_portfolio: "Vitrin", nav_how: "Nasıl Çalışır?", nav_pricing: "Paketler", nav_cta: "Markanı Kur",
-        hero_badge: "AYLIK KİRA YOK. ÖMÜR BOYU SİZİN.",
-        hero_title: "Sadece Satıcı Olmayın. <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Marka Olun.</span>",
-        hero_sub: "Müşterilerinizi kiralamayın. Etsy mağazanızla veya yerel dükkanınızla entegre çalışan, <strong>size özel profesyonel bir site</strong> kuruyoruz.",
-        btn_explore: "Tasarımları Gör", btn_how: "Süreç Nasıl?",
+        
+        // HERO - TR
+        hero_badge: "ETSY OPEN API V3 ALTYAPISI",
+        hero_title: "Etsy Mağazanızı <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Kendi Sitenize Dönüştürün.</span>",
+        hero_sub: "Resmi <strong>Etsy Open API</strong> kullanarak ürünlerinizi, fotoğraflarınızı ve açıklamalarınızı güvenle çekiyoruz. Manuel işlem yok. Anlık veri senkronizasyonu.",
+        feat_1: "API Veri Çekimi",
+        feat_2: "Stok Senkronizasyonu",
+        feat_3: "OAuth 2.0 Güvenlik",
+        btn_explore: "Mağazayı Bağla", 
+        btn_how: "API Mantığını Gör",
+
         us_company: "ABD Tescilli Şirket (Wyoming)",
+        
         prob_title: "Neden Sadece Pazar Yeri Yetmez?",
         prob_1_title: "Müşteri Sizin Değil", prob_1_desc: "E-posta listesi ve trafik Etsy'ye ait. Algoritma değişirse işiniz bir gecede durabilir.",
         prob_2_title: "Fiyat Savaşı Tuzağı", prob_2_desc: "Pazar yerinde ürününüz 10 ucuz rakiple yan yana durur. Kendi sitenizde tek seçenek SİZSİNİZ.",
         prob_3_title: "Marka İmajı Eksikliği", prob_3_desc: "Standart bir satıcı profili 'hobi' gibi görünür. Özel bir .com sitesi ise 'Global Marka' gibi durur.",
+        
         how_title: "Anahtar Teslim Kurulum", how_sub: "Kodlama bilmenize gerek yok. Her şeyi biz hallediyoruz.",
-        step_1_title: "Bağlantı", step_1_desc: "Etsy mağazanızı veya ürün listenizi sisteme entegre edip görselleri çekiyoruz.",
-        step_2_title: "Tasarım", step_2_desc: "Aşağıdan bir tema seçin. Logonuz ve marka renklerinizle size özel hale getirelim.",
-        step_3_title: "Yayın", step_3_desc: "Alan adınızı (adiniz.com) bağlıyoruz. Artık tüm dünyaya (veya mahallenize) satışa hazırsınız.",
+        step_1_title: "API Bağlantısı", step_1_desc: "Etsy Open API üzerinden güvenli yetkilendirme ile verilerinize erişiyoruz.",
+        step_2_title: "Tasarım Enjeksiyonu", step_2_desc: "Verileriniz otomatik olarak seçtiğiniz premium temaya işlenir.",
+        step_3_title: "Yayına Alma", step_3_desc: "Siteniz global sunucularda (CDN) kendi alan adınızla yayına girer.",
+        
         show_title: "Dünya Klasmanında Tasarım", show_sub: "Sadece site kurmayın. Bir miras inşa edin.",
         btn_full_portfolio: "Tüm Vitrini İncele",
+        
         price_title: "Tek Seferlik Yatırım", price_sub: "Sitenin sahibi siz olun. Bize aylık aidat ödemeyin.",
         p_pop: "EN ÇOK SATAN", p_1_sub: "Yeni başlayanlar için", p_2_sub: "Büyüyen markalar için", p_3_sub: "Tam otomasyon",
-        p_1_f1: "Ürün Entegrasyonu", p_1_f2: "Ücretsiz Hosting", p_1_f3: "Alan Adı Bağlantısı",
-        p_2_f1: "Günlük Oto-Senkron", p_2_f2: "Blog / Hakkımızda", p_2_f3: "Özel Renk Tasarımı", p_2_f4: "30 Gün Destek",
-        p_3_f1: "Anlık Senkronizasyon", p_3_f2: "Çoklu Dil Desteği", p_3_f3: "Özel Özellikler", p_3_f4: "90 Gün VIP Destek",
+        p_1_f1: "API Ürün Entegrasyonu", p_1_f2: "Ücretsiz Hosting", p_1_f3: "Alan Adı Bağlantısı",
+        p_2_f1: "Günlük API Kontrolü", p_2_f2: "Blog / Hakkımızda", p_2_f3: "Özel Renk Tasarımı", p_2_f4: "30 Gün Destek",
+        p_3_f1: "Anlık Webhook (Canlı)", p_3_f2: "Çoklu Dil Desteği", p_3_f3: "Özel Özellikler", p_3_f4: "90 Gün VIP Destek",
         btn_select: "Paket Seç", btn_start: "Başla", btn_contact: "İletişime Geç",
+        
         faq_title: "Sıkça Sorulan Sorular",
-        faq_1_q: "Kodlama bilmem gerekiyor mu?", faq_1_a: "Hayır. Tüm teknik kurulumu biz yapıyoruz. Siz sadece ürün fotoğraflarını verin.",
+        faq_1_q: "Bu Etsy hesabım için güvenli mi?", faq_1_a: "Evet. OAuth 2.0 korumalı resmi Etsy Open API v3 kullanıyoruz. Sadece ürün verisini okuyoruz, cüzdanınıza erişemeyiz.",
         faq_2_q: "Ödeme nasıl alınıyor?", faq_2_a: "'Satın Al' butonu müşteriyi Etsy'ye (güvenli ödeme) veya yerel siparişler için WhatsApp hattınıza yönlendirir.",
         faq_3_q: "Aylık ücret var mı?", faq_3_a: "Hayır. Shopify veya Wix gibi her ay para ödemezsiniz. Tek sefer ödeyin, site ömür boyu sizin olsun.",
+        
         footer_desc: "Esnaflar ve Etsy satıcıları için premium dijital tasarım ajansı."
       }
     };
 
     let currentLang = localStorage.getItem('userLang') || 'en';
+
     function applyLang(lang) {
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if(translations[lang][key]) el.innerHTML = translations[lang][key];
       });
-      document.getElementById('lang-btn').innerText = lang === 'en' ? '🇹🇷 TR' : '🇺🇸 EN';
+      // Buton metnini güncelle
+      const btn = document.getElementById('lang-btn');
+      btn.innerText = lang === 'en' ? '🇹🇷 TR' : '🇺🇸 EN';
     }
+
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'tr' : 'en';
       localStorage.setItem('userLang', currentLang);
       applyLang(currentLang);
     }
+
+    // İlk açılışta uygula
     applyLang(currentLang);
 
+    /* Reveal Animation Observer */
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
     });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // Force top on load
+    window.onload = function() {
+       setTimeout(function() {
+          window.scrollTo(0,0);
+       }, 10);
+    }
   </script>
 </body>
 </html>
