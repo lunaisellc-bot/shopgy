@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLIVIA'S 1ST BIRTHDAY | You are invited!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'head': ['DM Serif Display', 'serif'],
+                        'body': ['Quicksand', 'sans-serif'],
+                        'hand': ['Homemade Apple', 'cursive'],
+                    },
+                    colors: {
+                        'terracotta': '#E07A5F',
+                        'sage': '#81B29A',
+                        'sand': '#F4F1DE',
+                        'blush': '#F2CC8F',
+                        'cream': '#FDFCF8'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'wiggle': 'wiggle 2s ease-in-out infinite',
+                        'drift': 'drift 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        drift: {
+                            '0%': { backgroundPosition: '0 0' },
+                            '100%': { backgroundPosition: '100% 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FDFCF8; color: #3D405B; overflow-x: hidden; }
+
+        /* CLOUD BACKGROUND */
+        .cloud-bg {
+            position: fixed; inset: 0; z-index: -1; opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 50 Q 25 25 40 50 T 70 50 T 100 50' stroke='%23F4F1DE' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            animation: drift 60s linear infinite;
+        }
+
+        /* WASHI TAPE EFFECT (Bant) */
+        .washi-tape {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+            width: 100px; height: 30px; background: rgba(224, 122, 95, 0.3);
+            mask-image: url("data:image/svg+xml,%3Csvg width='100' height='30' viewBox='0 0 100 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L100 0 L95 30 L5 30 Z' fill='black'/%3E%3C/svg%3E");
+            z-index: 10;
+        }
+
+        /* ORGANIC SHAPES */
+        .blob-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: border-radius 3s ease;
+        }
+        .blob-shape:hover {
+            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+        }
+
+        /* BALLOON ANIMATION */
+        .balloon {
+            position: fixed; bottom: -100px; z-index: 50; opacity: 0.8;
+            animation: flyUp 15s linear infinite;
+        }
+        @keyframes flyUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+        }
+        
+        /* CONFETTI BUTTON */
+        .confetti-btn:active { transform: scale(0.95); }
+    </style>
+</head>
+<body class="font-body selection:bg-sage selection:text-white">
+
+    <div class="cloud-bg"></div>
+
+    <div class="balloon text-4xl text-terracotta left-[10%]" style="animation-delay: 0s; font-size: 3rem;">🎈</div>
+    <div class="balloon text-4xl text-sage left-[25%]" style="animation-delay: 5s; font-size: 2rem;">🎈</div>
+    <div class="balloon text-4xl text-blush left-[80%]" style="animation-delay: 2s; font-size: 4rem;">🎈</div>
+    <div class="balloon text-4xl text-terracotta left-[60%]" style="animation-delay: 8s; font-size: 2.5rem;">🎈</div>
+
+    <div class="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm flex items-center gap-2 cursor-pointer border border-sand hover:scale-105 transition">
+        <div class="w-2 h-2 bg-terracotta rounded-full animate-pulse"></div>
+        <span class="text-xs font-bold text-terracotta uppercase tracking-wider">Music On</span>
+    </div>
+
+    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+        <div class="absolute top-10 left-10 text-6xl opacity-20 animate-wiggle">🌈</div>
+        <div class="absolute bottom-20 right-10 text-6xl opacity-20 animate-float">☁️</div>
+
+        <div class="relative z-10 animate-float">
+            <span class="font-hand text-3xl text-sage block mb-4 rotate-[-5deg]">Our little sunshine is turning</span>
+            <h1 class="font-head text-8xl md:text-[10rem] text-terracotta leading-none mb-2">
+                ONE
+            </h1>
+            <h2 class="font-head text-4xl md:text-6xl text-3D405B">Olivia Grace</h2>
+        </div>
+
+        <div class="mt-8 flex flex-col items-center gap-2">
+            <span class="bg-sand text-terracotta px-6 py-2 rounded-full font-bold text-sm tracking-widest uppercase">
+                Saturday, July 15th
+            </span>
+            <span class="font-bold text-gray-400">@ 2:00 PM in the Afternoon</span>
+        </div>
+
+        <div class="mt-12 relative group">
+             <div class="absolute -inset-1 bg-gradient-to-r from-terracotta to-sage rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+            <a href="#rsvp" class="relative bg-white text-terracotta px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:text-sage transition flex items-center gap-2 confetti-btn">
+                <i class="fa-solid fa-cake-candles"></i> Join the Party
+            </a>
+        </div>
+        
+        <div class="absolute bottom-10 animate-bounce text-terracotta/50">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-head text-5xl text-terracotta mb-4">Growing Up So Fast</h2>
+                <p class="text-gray-500 font-hand text-xl">A year full of giggles and love</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="relative bg-white p-4 pb-16 shadow-lg rotate-[-2deg] hover:rotate-0 transition duration-300 transform hover:scale-105">
+                    <div class="washi-tape"></div>
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&q=80" class="w-full aspect-square object-cover grayscale-[20%]" alt="Baby">
+                    <div class="absolute bottom-4 left-0 w-full text-center font-hand text-2xl text-gray-600">
+                        Hello World
+                    </div>
+                </div>
+
+                <div class="relative bg-white p-4 pb-16 shadow-lg rotate-[3deg] hover:rotate-0 transition duration-300 transform hover:scale-105 md:-mt-10">
+                    <div class="washi-tape" style="background: rgba(129, 178, 154, 0.3);"></div>
+                    <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df4?w=600&q=80" class="w-full aspect-square object-cover grayscale-[20%]" alt="Baby Laughing">
+                    <div class="absolute bottom-4 left-0 w-full text-center font-hand text-2xl text-gray-600">
+                        First Giggle
+                    </div>
+                </div>
+
+                <div class="relative bg-white p-4 pb-16 shadow-lg rotate-[-1deg] hover:rotate-0 transition duration-300 transform hover:scale-105">
+                    <div class="washi-tape" style="background: rgba(242, 204, 143, 0.3);"></div>
+                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80" class="w-full aspect-square object-cover grayscale-[20%]" alt="Baby Steps">
+                    <div class="absolute bottom-4 left-0 w-full text-center font-hand text-2xl text-gray-600">
+                        On the move!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-sand/30 relative overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-sage/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-terracotta/20 rounded-full blur-3xl"></div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="font-head text-5xl text-3D405B mb-12">Party Details</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border-2 border-dashed border-terracotta/20 hover:border-terracotta transition group">
+                    <div class="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-location-dot text-2xl text-terracotta"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Where</h3>
+                    <p class="text-sm text-gray-500">
+                        The Garden House <br> 123 Maple Street <br> San Francisco
+                    </p>
+                    <a href="#" class="inline-block mt-4 text-xs font-bold text-terracotta border-b border-terracotta pb-1">See Map</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border-2 border-dashed border-sage/20 hover:border-sage transition group">
+                    <div class="w-16 h-16 bg-sage/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="fa-regular fa-clock text-2xl text-sage"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">When</h3>
+                    <p class="text-sm text-gray-500">
+                        July 15, 2025 <br> 2:00 PM - 5:00 PM <br> Cake Cutting at 3:30
+                    </p>
+                    <a href="#" class="inline-block mt-4 text-xs font-bold text-sage border-b border-sage pb-1">Add to Calendar</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border-2 border-dashed border-blush/20 hover:border-blush transition group">
+                    <div class="w-16 h-16 bg-blush/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-gift text-2xl text-blush"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Gifts</h3>
+                    <p class="text-sm text-gray-500">
+                        No gifts needed, your presence is enough! (But we have a registry just in case)
+                    </p>
+                    <a href="#" class="inline-block mt-4 text-xs font-bold text-blush border-b border-blush pb-1">View Registry</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <span class="text-5xl block mb-2">💌</span>
+            <h2 class="font-head text-4xl text-terracotta mb-4">A Note for the Future</h2>
+            <p class="text-gray-500 mb-8">
+                Leave a message, a wish, or a piece of advice for Olivia to read when she turns 18. We are creating a digital time capsule!
+            </p>
+
+            <form class="bg-sand/20 p-8 rounded-3xl border border-sand">
+                <textarea class="w-full h-32 bg-white rounded-xl p-4 border-none focus:ring-2 focus:ring-sage resize-none mb-4 font-hand text-xl text-gray-600" placeholder="Dear Olivia..."></textarea>
+                <input type="text" placeholder="From (Your Name)" class="w-full bg-white rounded-xl p-4 border-none focus:ring-2 focus:ring-sage mb-4">
+                <button class="w-full bg-sage text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-sage/80 transition shadow-lg">
+                    Seal in Capsule
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section id="rsvp" class="py-24 bg-terracotta text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-10 bg-white" style="clip-path: polygon(0 0, 100% 0, 50% 100%);"></div>
+        
+        <div class="max-w-xl mx-auto px-6 text-center relative z-10">
+            <h2 class="font-head text-5xl mb-6">Are you coming?</h2>
+            <p class="text-white/80 mb-8 text-lg">We need a head count for the cake! 🍰</p>
+
+            <form class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" placeholder="First Name" class="bg-white/10 border border-white/20 p-4 rounded-xl placeholder-white/60 text-white focus:outline-none focus:bg-white/20">
+                    <input type="text" placeholder="Last Name" class="bg-white/10 border border-white/20 p-4 rounded-xl placeholder-white/60 text-white focus:outline-none focus:bg-white/20">
+                </div>
+                
+                <div class="flex justify-center gap-4 py-2">
+                    <button type="button" class="flex-1 bg-white text-terracotta py-3 rounded-xl font-bold hover:bg-sand transition">Yes, can't wait!</button>
+                    <button type="button" class="flex-1 bg-transparent border-2 border-white/30 text-white py-3 rounded-xl font-bold hover:bg-white/10 transition">Sad to miss it</button>
+                </div>
+
+                <select class="w-full bg-white/10 border border-white/20 p-4 rounded-xl text-white focus:outline-none">
+                    <option class="text-gray-500">Number of Guests (Adults)</option>
+                    <option class="text-gray-500">1</option>
+                    <option class="text-gray-500">2</option>
+                    <option class="text-gray-500">3</option>
+                </select>
+                
+                <select class="w-full bg-white/10 border border-white/20 p-4 rounded-xl text-white focus:outline-none">
+                    <option class="text-gray-500">Number of Kids</option>
+                    <option class="text-gray-500">0</option>
+                    <option class="text-gray-500">1</option>
+                    <option class="text-gray-500">2</option>
+                </select>
+
+                <button class="w-full bg-sand text-terracotta py-4 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition transform mt-4">
+                    Send RSVP
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-white py-12 text-center">
+        <p class="font-hand text-3xl text-sage mb-2">Olivia's 1st Birthday</p>
+        <p class="text-xs text-gray-400 uppercase tracking-widest">Designed with ❤️ by VitrinX</p>
+    </footer>
+
+    <script>
+        document.querySelector('.confetti-btn').addEventListener('click', function(e) {
+            // Basit bir tıklama efekti
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
