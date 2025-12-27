@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cinzel:wght@400;600&family=Manrope:wght@200;300;400;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -20,10 +19,10 @@
                         'sans': ['Manrope', 'sans-serif']
                     },
                     colors: {
-                        'alabaster': '#F2F0EA', /* Kırık Beyaz Zemin */
-                        'charcoal': '#1A1A1A',  /* Kömür Siyahı Metin */
-                        'gold': '#D4AF37',      /* Altın Detaylar */
-                        'stone': '#E5E2DC'      /* Ara ton */
+                        'alabaster': '#F2F0EA',
+                        'charcoal': '#1A1A1A',
+                        'gold': '#D4AF37',
+                        'stone': '#E5E2DC'
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
@@ -31,62 +30,45 @@
                         'spin-slow': 'spin 12s linear infinite'
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        }
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* LUXURY TEXTURE overlay (Pahalı kağıt dokusu) */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             pointer-events: none; z-index: 50;
         }
-
-        /* CUSTOM SCROLLBAR */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #F2F0EA; }
         ::-webkit-scrollbar-thumb { background: #1A1A1A; }
-
-        /* REVEAL ANIMATION */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* MUSEUM FRAME EFFECT & GOLD GLOW (Güncellendi) */
+        /* MUSEUM FRAME EFFECT */
         .museum-frame {
             position: relative; background: #fff; padding: 12px;
-            /* Normal gölge */
             box-shadow: 0 15px 35px -5px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.03);
             transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .museum-frame:hover {
             transform: translateY(-10px) scale(1.02);
-            /* Hover'da Altın Parıltılı Gölge */
             box-shadow: 0 30px 60px -15px rgba(212, 175, 55, 0.3); 
             z-index: 10;
         }
-        /* İç gölge efekti */
         .museum-frame::after {
             content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.05); pointer-events: none; z-index: 2;
         }
         
-        /* IMAGE HOVER SCALE */
         .img-container { overflow: hidden; position: relative; width: 100%; height: 100%; }
         .img-container img { transition: transform 1.5s ease; width: 100%; height: 100%; object-fit: cover; }
         .museum-frame:hover .img-container img { transform: scale(1.1); }
-
-        /* MASONRY BREAK FIX */
-        .break-inside-avoid { break-inside: avoid; margin-bottom: 2rem; }
+        .break-inside-avoid { break-inside: avoid; margin-bottom: 3rem; }
     </style>
 </head>
 <body class="bg-alabaster text-charcoal font-sans overflow-x-hidden selection:bg-gold selection:text-white">
@@ -120,11 +102,8 @@
             <p class="font-sans font-light text-sm md:text-base max-w-md mx-auto leading-relaxed opacity-80 reveal delay-300">
                 A collection of quiet moments captured in ink and paper. <br>Transform your walls into windows.
             </p>
-            
             <div class="mt-12 reveal delay-500">
-                <a href="#collection" class="inline-block border border-white/30 px-8 py-4 text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-charcoal transition duration-500 ease-out">
-                    Enter Exhibition
-                </a>
+                <a href="#collection" class="inline-block border border-white/30 px-8 py-4 text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-charcoal transition duration-500 ease-out">Enter Exhibition</a>
             </div>
         </div>
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white text-[10px] uppercase tracking-widest animate-bounce mix-blend-difference">Scroll</div>
@@ -136,7 +115,6 @@
             <span class="text-5xl font-serif text-charcoal/20 mx-8 italic">Limited Edition —</span>
             <span class="text-5xl font-serif text-charcoal/20 mx-8 italic">Museum Quality —</span>
             <span class="text-5xl font-serif text-charcoal/20 mx-8 italic">Archival Paper —</span>
-            <span class="text-5xl font-serif text-charcoal/20 mx-8 italic">Worldwide Shipping —</span>
         </div>
     </div>
 
@@ -150,20 +128,19 @@
                 <span class="text-charcoal border-b-2 border-gold cursor-pointer pb-1">All</span>
                 <span class="hover:text-charcoal cursor-pointer transition">Abstract</span>
                 <span class="hover:text-charcoal cursor-pointer transition">Photography</span>
-                <span class="hover:text-charcoal cursor-pointer transition">Sculpture</span>
             </div>
         </div>
 
-        <div class="columns-1 md:columns-2 lg:columns-3 gap-12 space-y-12">
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-12">
             
             <div class="break-inside-avoid group cursor-pointer reveal">
                 <div class="museum-frame mb-4">
-                    <div class="img-container aspect-[2/3]">
-                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&q=80" loading="lazy" alt="Abstract Fluid">
+                    <div class="img-container aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800&q=80" loading="lazy" alt="Abstract Art">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
-                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Ethereal Flow No.3</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Giclée Print</p></div>
+                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Midnight Layers</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Giclée Print</p></div>
                     <span class="font-sans font-light text-sm">$145</span>
                 </div>
             </div>
@@ -171,19 +148,19 @@
             <div class="break-inside-avoid group cursor-pointer reveal delay-100">
                 <div class="museum-frame mb-4">
                     <div class="img-container aspect-square">
-                        <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=800&q=80" loading="lazy" alt="Modern Sculpture">
+                        <img src="https://images.unsplash.com/photo-1555679427-1f6dfcce943b?w=800&q=80" loading="lazy" alt="Greek Sculpture">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
-                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">The Observer</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Ceramic Study</p></div>
+                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">The Observer</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Photography</p></div>
                     <span class="font-sans font-light text-sm">$280</span>
                 </div>
             </div>
 
             <div class="break-inside-avoid group cursor-pointer reveal delay-200">
                 <div class="museum-frame mb-4">
-                    <div class="img-container aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1505567745926-ba89000c2c5a?w=800&q=80" loading="lazy" alt="Minimal Architecture">
+                    <div class="img-container aspect-[2/3]">
+                        <img src="https://images.unsplash.com/photo-1481277542470-60561660ee39?w=800&q=80" loading="lazy" alt="Architecture">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
@@ -195,31 +172,31 @@
             <div class="break-inside-avoid group cursor-pointer reveal">
                 <div class="museum-frame mb-4">
                     <div class="img-container aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1621929747188-b202c7c9b997?w=800&q=80" loading="lazy" alt="Oil Painting">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb39279c0f?w=800&q=80" loading="lazy" alt="Oil Texture">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
-                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Coastal Morning</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Oil on Canvas Print</p></div>
+                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Coastal Morning</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Oil on Canvas</p></div>
                     <span class="font-sans font-light text-sm">$185</span>
                 </div>
             </div>
 
             <div class="break-inside-avoid group cursor-pointer reveal delay-100">
                 <div class="museum-frame mb-4">
-                    <div class="img-container aspect-[2/3]">
-                        <img src="https://images.unsplash.com/photo-1626178793926-22b28d30a6c7?w=800&q=80" loading="lazy" alt="Line Art Body">
+                    <div class="img-container aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80" loading="lazy" alt="Mountains">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
-                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Figure Study 04</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Minimal Sketch</p></div>
-                    <span class="font-sans font-light text-sm">$65</span>
+                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Night Sky</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Digital Art</p></div>
+                    <span class="font-sans font-light text-sm">$95</span>
                 </div>
             </div>
 
             <div class="break-inside-avoid group cursor-pointer reveal">
                 <div class="museum-frame mb-4">
                     <div class="img-container aspect-square">
-                        <img src="https://images.unsplash.com/photo-1596139801831-a81127703c7d?w=800&q=80" loading="lazy" alt="Textured White">
+                        <img src="https://images.unsplash.com/photo-1507643179173-617d65455131?w=800&q=80" loading="lazy" alt="White Texture">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
@@ -231,11 +208,11 @@
             <div class="break-inside-avoid group cursor-pointer reveal delay-100">
                 <div class="museum-frame mb-4">
                     <div class="img-container aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=800&q=80" loading="lazy" alt="Dark Texture">
+                        <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800&q=80" loading="lazy" alt="Renaissance Art">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
-                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Midnight Layers</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Canvas Print</p></div>
+                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">The Muse</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Classic Print</p></div>
                     <span class="font-sans font-light text-sm">$150</span>
                 </div>
             </div>
@@ -243,7 +220,7 @@
             <div class="break-inside-avoid group cursor-pointer reveal">
                 <div class="museum-frame mb-4">
                     <div class="img-container aspect-[16/9]">
-                        <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80" loading="lazy" alt="Desert Minimal">
+                        <img src="https://images.unsplash.com/photo-1516616422896-1c009d1872df?w=800&q=80" loading="lazy" alt="Desert">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
@@ -252,21 +229,21 @@
                 </div>
             </div>
 
-            <div class="break-inside-avoid group cursor-pointer reveal delay-200">
+             <div class="break-inside-avoid group cursor-pointer reveal delay-200">
                 <div class="museum-frame mb-4">
                     <div class="img-container aspect-square">
-                        <img src="https://images.unsplash.com/photo-1569172131007-9291785bb445?w=800&q=80" loading="lazy" alt="Colorful Abstract">
+                        <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&q=80" loading="lazy" alt="Line Art">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
-                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">Chromatic Dreams</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Limited Edition</p></div>
-                    <span class="font-sans font-light text-sm">$190</span>
+                    <div><h4 class="font-serif text-xl italic group-hover:text-gold transition">One Line</h4><p class="text-[10px] text-gray-400 uppercase tracking-widest">Ink Sketch</p></div>
+                    <span class="font-sans font-light text-sm">$80</span>
                 </div>
             </div>
              <div class="break-inside-avoid group cursor-pointer reveal">
                 <div class="museum-frame mb-4">
                     <div class="img-container aspect-[2/3]">
-                        <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" loading="lazy" alt="Bust Sculpture">
+                        <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=800&q=80" loading="lazy" alt="Bust">
                     </div>
                 </div>
                 <div class="flex justify-between items-start">
@@ -278,24 +255,17 @@
         </div>
 
         <div class="text-center mt-24 reveal">
-            <button class="border border-charcoal bg-transparent text-charcoal px-12 py-4 text-xs uppercase tracking-[0.3em] hover:bg-charcoal hover:text-white transition duration-500">
-                View All Works
-            </button>
+            <button class="border border-charcoal bg-transparent text-charcoal px-12 py-4 text-xs uppercase tracking-[0.3em] hover:bg-charcoal hover:text-white transition duration-500">View All Works</button>
         </div>
     </section>
 
     <section class="relative h-[80vh] w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 bg-fixed bg-center bg-cover" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop');"></div>
         <div class="absolute inset-0 bg-charcoal/50"></div>
-        
         <div class="relative z-10 bg-alabaster/95 backdrop-blur-md p-12 md:p-20 max-w-lg text-center shadow-2xl reveal border border-gold/20">
             <h3 class="font-display text-3xl md:text-4xl mb-6">Private Viewing</h3>
-            <p class="text-gray-600 font-light mb-8 leading-relaxed">
-                See how our curated pieces transform a space. Book a private consultation for your home or office.
-            </p>
-            <button class="bg-charcoal text-white px-10 py-4 text-xs uppercase tracking-[0.2em] hover:bg-gold transition duration-300">
-                Book Consultation
-            </button>
+            <p class="text-gray-600 font-light mb-8 leading-relaxed">See how our curated pieces transform a space. Book a private consultation.</p>
+            <button class="bg-charcoal text-white px-10 py-4 text-xs uppercase tracking-[0.2em] hover:bg-gold transition duration-300">Book Consultation</button>
         </div>
     </section>
 
@@ -303,45 +273,25 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-12">
             <div class="md:col-span-1">
                 <h4 class="font-display text-2xl mb-6 tracking-widest">THE GALLERY</h4>
-                <p class="text-xs text-gray-400 leading-loose font-sans">
-                    A curated space for the modern collector. <br>
-                    Connecting artists with connoisseurs worldwide.
-                </p>
+                <p class="text-xs text-gray-400 leading-loose font-sans">A curated space for the modern collector.</p>
             </div>
-            
             <div>
                 <h5 class="text-[10px] uppercase tracking-[0.2em] text-gold mb-6 font-bold">Collections</h5>
                 <ul class="text-sm font-light space-y-3 text-gray-300 font-sans">
                     <li><a href="#" class="hover:text-gold transition">Abstract Expressionism</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Minimalist Line</a></li>
                     <li><a href="#" class="hover:text-gold transition">Fine Art Photography</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Modern Sculpture</a></li>
                 </ul>
             </div>
-
             <div>
                 <h5 class="text-[10px] uppercase tracking-[0.2em] text-gold mb-6 font-bold">Support</h5>
                 <ul class="text-sm font-light space-y-3 text-gray-300 font-sans">
                     <li><a href="#" class="hover:text-gold transition">Global Shipping</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Framing Guide</a></li>
-                    <li><a href="#" class="hover:text-gold transition">Certificate of Authenticity</a></li>
                     <li><a href="#" class="hover:text-gold transition">Contact Curators</a></li>
                 </ul>
             </div>
-
-            <div>
-                <h5 class="text-[10px] uppercase tracking-[0.2em] text-gold mb-6 font-bold">Inquiries</h5>
-                <p class="text-xs text-gray-400 mb-4 font-light font-sans">For acquisition inquiries or press.</p>
-                <a href="mailto:info@thegallery.com" class="text-lg font-serif italic hover:text-gold transition">info@thegallery.com</a>
-            </div>
         </div>
-        
         <div class="flex flex-col md:flex-row justify-between items-center pt-8 text-[10px] text-gray-500 uppercase tracking-widest font-sans">
             <p>&copy; 2025 The Gallery. Powered by VitrinX Enterprise.</p>
-            <div class="flex gap-6 mt-4 md:mt-0">
-                <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-instagram text-lg"></i></a>
-                <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-pinterest text-lg"></i></a>
-            </div>
         </div>
     </footer>
 
@@ -350,9 +300,7 @@
              <svg viewBox="0 0 100 100" width="100" height="100">
               <path id="curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent"/>
               <text font-size="11.5" font-family="Manrope" font-weight="800" letter-spacing="3" fill="currentColor">
-                <textPath xlink:href="#curve" startOffset="0%">
-                  • VIEW COLLECTION • VIEW COLLECTION 
-                </textPath>
+                <textPath xlink:href="#curve" startOffset="0%">• VIEW COLLECTION • VIEW COLLECTION</textPath>
               </text>
             </svg>
             <i class="fa-solid fa-arrow-right-long absolute text-xl group-hover:-rotate-45 transition duration-500"></i>
@@ -360,7 +308,6 @@
     </div>
 
     <script>
-        // Scroll Reveal Animation Script
         document.addEventListener('DOMContentLoaded', () => {
             const reveals = document.querySelectorAll('.reveal');
             const revealOnScroll = () => {
@@ -368,21 +315,17 @@
                 const elementVisible = 50;
                 reveals.forEach((reveal) => {
                     const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                    }
+                    if (elementTop < windowHeight - elementVisible) reveal.classList.add('active');
                 });
             };
             window.addEventListener('scroll', revealOnScroll);
             revealOnScroll(); 
             
-            // Navbar Transition
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    navbar.classList.add('backdrop-blur-xl', 'bg-alabaster/90', 'shadow-sm', 'py-4');
+                    navbar.classList.add('backdrop-blur-xl', 'bg-alabaster/90', 'shadow-sm', 'py-4', 'text-charcoal');
                     navbar.classList.remove('py-6', 'mix-blend-difference', 'text-white/90');
-                    navbar.classList.add('text-charcoal');
                 } else {
                     navbar.classList.remove('backdrop-blur-xl', 'bg-alabaster/90', 'shadow-sm', 'py-4', 'text-charcoal');
                     navbar.classList.add('py-6', 'mix-blend-difference', 'text-white/90');
