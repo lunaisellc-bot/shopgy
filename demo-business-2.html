@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMA | Mindful Living</title>
+    <title>LUMA | The Art of Living</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -14,22 +14,23 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'head': ['Tenor Sans', 'sans-serif'],
-                        'body': ['Urbanist', 'sans-serif'],
+                        'serif': ['Cormorant Garamond', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif'],
                     },
                     colors: {
-                        'clay': '#E6E2DD',
-                        'sage': '#8DA399',
-                        'charcoal': '#2D2D2D',
-                        'sand': '#F5F5F0'
+                        'stone-light': '#F2F0EB', /* Sıcak taş rengi */
+                        'stone-dark': '#1C1B1A',  /* Koyu füme */
+                        'olive': '#5F6F52',       /* Soluk zeytin */
+                        'clay': '#C7B198'         /* Kil tonu */
                     },
                     animation: {
-                        'fade-up': 'fadeUp 1s ease-out forwards',
+                        'ken-burns': 'kenBurns 20s ease-out infinite alternate',
+                        'spin-slow': 'spin 15s linear infinite'
                     },
                     keyframes: {
-                        fadeUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        kenBurns: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.15)' }
                         }
                     }
                 }
@@ -37,260 +38,376 @@
         }
     </script>
     <style>
-        body { background-color: #F5F5F0; color: #2D2D2D; }
-        
-        /* SOFT SHADOWS */
-        .soft-card {
-            transition: all 0.4s ease;
-        }
-        .soft-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+        /* BASE SETTINGS */
+        body { background-color: #F2F0EB; color: #1C1B1A; cursor: none; overflow-x: hidden; }
+
+        /* NOISE TEXTURE (Organic Luxury Feel) */
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 90;
         }
 
-        /* IMAGE HOVER */
-        .img-wrap { overflow: hidden; }
-        .img-wrap img { transition: transform 0.7s ease; }
-        .group:hover .img-wrap img { transform: scale(1.05); }
+        /* CUSTOM CURSOR */
+        .cursor-dot { width: 6px; height: 6px; background: #1C1B1A; position: fixed; border-radius: 50%; z-index: 9999; pointer-events: none; transition: transform 0.1s; }
+        .cursor-circle { width: 40px; height: 40px; border: 1px solid #1C1B1A; position: fixed; border-radius: 50%; z-index: 9998; pointer-events: none; transition: all 0.2s ease-out; transform: translate(-50%, -50%); opacity: 0.5; }
+        body.hovering .cursor-circle { width: 60px; height: 60px; background: rgba(28, 27, 26, 0.05); border-color: transparent; }
 
-        /* BUTTON UNDERLINE */
-        .btn-link { position: relative; }
-        .btn-link::after {
-            content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 1px; background: currentColor; transition: width 0.3s;
-        }
-        .btn-link:hover::after { width: 100%; }
+        /* PRELOADER */
+        #preloader { position: fixed; inset: 0; background: #F2F0EB; z-index: 10000; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out; }
+        .loading-text { overflow: hidden; }
+        .loading-text span { display: block; transform: translateY(100%); animation: textReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards; }
+        @keyframes textReveal { to { transform: translateY(0); } }
 
-        /* CUSTOM SCROLLBAR */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #8DA399; border-radius: 3px; }
+        /* TEXT REVEAL ANIMATION */
+        .reveal-text { overflow: hidden; display: block; }
+        .reveal-text span { display: block; transform: translateY(100%); transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .reveal.active .reveal-text span { transform: translateY(0); }
+
+        /* IMAGE REVEAL ANIMATION */
+        .reveal-img-wrap { overflow: hidden; position: relative; }
+        .reveal-img-wrap::after { content: ''; position: absolute; inset: 0; background: #F2F0EB; transform: translateY(0); transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1); z-index: 2; }
+        .reveal.active .reveal-img-wrap::after { transform: translateY(-100%); }
+        .reveal-img { transform: scale(1.3); transition: transform 1.5s ease-out; }
+        .reveal.active .reveal-img { transform: scale(1); }
+
+        /* MAGNETIC BUTTON */
+        .btn-magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-block; }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #1C1B1A; }
     </style>
 </head>
-<body class="font-body antialiased selection:bg-sage selection:text-white">
+<body class="font-sans antialiased selection:bg-olive selection:text-white">
 
-    <div class="bg-sage text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
-        Spring Sale: 20% Off All Ceramics • Use Code: LUMA20
+    <div class="noise"></div>
+
+    <div id="preloader">
+        <div class="text-center">
+            <h1 class="font-serif text-5xl italic loading-text"><span>Luma.</span></h1>
+            <p class="font-sans text-[10px] uppercase tracking-[0.4em] mt-2 loading-text"><span style="animation-delay: 0.2s">Mindful Living</span></p>
+        </div>
     </div>
 
-    <nav class="sticky top-0 z-50 bg-[#F5F5F0]/80 backdrop-blur-md border-b border-gray-200/50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <button class="md:hidden text-2xl"><i class="fa-solid fa-bars font-thin"></i></button>
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-circle hidden md:block"></div>
 
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-                <a href="#shop" class="hover:text-sage transition">Shop</a>
-                <a href="#collections" class="hover:text-sage transition">Collections</a>
-                <a href="#about" class="hover:text-sage transition">Our Story</a>
-            </div>
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center transition-all duration-300" id="navbar">
+        <div class="hidden md:flex gap-12 text-[11px] font-medium uppercase tracking-[0.2em] text-stone-dark">
+            <a href="#shop" class="hoverable hover:text-olive transition">Collection</a>
+            <a href="#story" class="hoverable hover:text-olive transition">Atelier</a>
+        </div>
+        
+        <a href="#" class="font-serif text-3xl font-bold tracking-widest absolute left-1/2 -translate-x-1/2 hoverable">LUMA</a>
 
-            <a href="#" class="font-head text-3xl tracking-widest absolute left-1/2 -translate-x-1/2">LUMA</a>
-
-            <div class="flex items-center gap-6 text-gray-600">
-                <a href="#" class="hover:text-sage transition"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="#" class="hover:text-sage transition relative">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="absolute -top-1 -right-2 bg-sage text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
-                </a>
-            </div>
+        <div class="flex items-center gap-8 text-stone-dark">
+            <a href="#" class="hoverable text-xs font-bold uppercase tracking-widest hidden md:block">Login</a>
+            <a href="#" class="hoverable relative">
+                <span class="text-xs font-bold uppercase tracking-widest">Cart</span>
+                <span class="absolute -top-2 -right-3 bg-stone-dark text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+            </a>
         </div>
     </nav>
 
-    <header class="relative w-full h-[85vh] grid md:grid-cols-2">
-        <div class="flex flex-col justify-center px-10 md:px-24 bg-clay/20 order-2 md:order-1">
-            <span class="text-sage font-bold tracking-[0.2em] text-xs uppercase mb-4 animate-fade-up">Handcrafted & Sustainable</span>
-            <h1 class="font-head text-5xl md:text-7xl mb-6 leading-tight animate-fade-up" style="animation-delay: 0.1s;">
-                Bring Nature <br> <span class="italic text-gray-500">Home.</span>
-            </h1>
-            <p class="text-gray-600 mb-10 max-w-md leading-relaxed animate-fade-up" style="animation-delay: 0.2s;">
-                Discover our curated collection of artisan ceramics, organic textiles, and mindful home decor designed to elevate your sanctuary.
+    <header class="relative w-full h-screen overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2500&auto=format&fit=crop" class="w-full h-full object-cover animate-ken-burns opacity-90" alt="Interior">
+            <div class="absolute inset-0 bg-stone-light/10"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 mt-10">
+            <p class="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] mb-6 text-stone-dark/80 reveal active">
+                <span class="reveal-text"><span>Curated for Sanctuary</span></span>
             </p>
-            <div class="flex gap-4 animate-fade-up" style="animation-delay: 0.3s;">
-                <a href="#shop" class="bg-charcoal text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-sage transition">Shop Now</a>
-                <a href="#collections" class="border border-charcoal px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-charcoal hover:text-white transition">Explore</a>
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl text-stone-dark leading-[0.9] mb-8 reveal active delay-100">
+                <span class="reveal-text"><span>The Art</span></span>
+                <span class="reveal-text"><span class="italic text-olive">of Living.</span></span>
+            </h1>
+            
+            <div class="mt-12 reveal active delay-200">
+                <a href="#shop" class="hoverable btn-magnetic group relative inline-flex items-center justify-center px-10 py-5 overflow-hidden font-sans font-medium tracking-[0.2em] text-white bg-stone-dark rounded-full transition duration-300 ease-out shadow-2xl">
+                    <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-700 via-gray-900 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+                    <span class="relative text-[10px] uppercase">Explore Collection</span>
+                </a>
             </div>
         </div>
-        
-        <div class="relative h-full overflow-hidden order-1 md:order-2">
-            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover hover:scale-105 transition duration-[2s]" alt="Minimalist Interior">
-             <div class="absolute bottom-10 right-10 bg-white/80 backdrop-blur px-6 py-4 hidden md:block">
-                <p class="font-head text-xl">The Sunday Chair</p>
-                <p class="text-xs text-gray-500">$450.00</p>
-            </div>
+
+        <div class="absolute bottom-10 left-10 hidden md:block">
+            <div class="w-px h-20 bg-stone-dark/20 mx-auto mb-4"></div>
+            <span class="text-[9px] uppercase tracking-widest vertical-text text-stone-dark/50">Scroll</span>
         </div>
     </header>
 
-    <section id="collections" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="font-head text-4xl mb-3">Curated Spaces</h2>
-            <div class="w-12 h-0.5 bg-sage mx-auto"></div>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <a href="#" class="group block relative overflow-hidden h-[500px] soft-card">
-                <div class="img-wrap h-full w-full">
-                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" class="w-full h-full object-cover" alt="Kitchen">
-                </div>
-                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
-                <div class="absolute bottom-8 left-8 text-white">
-                    <h3 class="font-head text-3xl mb-1">Kitchen & Dining</h3>
-                    <span class="text-xs uppercase tracking-widest btn-link">View Collection</span>
-                </div>
-            </a>
-
-            <a href="#" class="group block relative overflow-hidden h-[500px] soft-card mt-0 md:-mt-12">
-                <div class="img-wrap h-full w-full">
-                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80" class="w-full h-full object-cover" alt="Living">
-                </div>
-                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
-                <div class="absolute bottom-8 left-8 text-white">
-                    <h3 class="font-head text-3xl mb-1">Living Room</h3>
-                    <span class="text-xs uppercase tracking-widest btn-link">View Collection</span>
-                </div>
-            </a>
-
-            <a href="#" class="group block relative overflow-hidden h-[500px] soft-card">
-                <div class="img-wrap h-full w-full">
-                    <img src="https://images.unsplash.com/photo-1540932296774-3ed466067aa2?w=800&q=80" class="w-full h-full object-cover" alt="Decor">
-                </div>
-                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
-                <div class="absolute bottom-8 left-8 text-white">
-                    <h3 class="font-head text-3xl mb-1">Objects & Decor</h3>
-                    <span class="text-xs uppercase tracking-widest btn-link">View Collection</span>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section id="shop" class="bg-white py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-end mb-12">
-                <h2 class="font-head text-3xl">New Arrivals</h2>
-                <a href="#" class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-sage btn-link">Shop All</a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-                <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
-                        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Vase">
-                        <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
-                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
-                        </div>
-                        <span class="absolute top-3 left-3 bg-sage text-white text-[10px] px-2 py-1 uppercase tracking-widest">New</span>
-                    </div>
-                    <h3 class="font-head text-lg text-gray-800">Ceramic Curve Vase</h3>
-                    <span class="text-gray-500 text-sm">$45.00</span>
-                </div>
-
-                <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
-                        <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Candle">
-                         <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
-                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
-                        </div>
-                    </div>
-                    <h3 class="font-head text-lg text-gray-800">Sandalwood Soy Candle</h3>
-                    <span class="text-gray-500 text-sm">$28.00</span>
-                </div>
-
-                <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
-                        <img src="https://images.unsplash.com/photo-1589982366601-e6e246944061?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Throw">
-                         <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
-                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
-                        </div>
-                    </div>
-                    <h3 class="font-head text-lg text-gray-800">Organic Cotton Throw</h3>
-                    <span class="text-gray-500 text-sm">$85.00</span>
-                </div>
-
-                <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5]">
-                        <img src="https://images.unsplash.com/photo-1579539243301-a1871e0696eb?w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Plant Pot">
-                         <div class="absolute bottom-4 left-0 right-0 text-center translate-y-full group-hover:translate-y-0 transition duration-300">
-                            <button class="bg-white text-charcoal px-6 py-2 text-xs font-bold uppercase tracking-widest shadow-lg hover:bg-sage hover:text-white transition">Add to Cart</button>
-                        </div>
-                        <span class="absolute top-3 left-3 bg-clay text-charcoal text-[10px] px-2 py-1 uppercase tracking-widest">Low Stock</span>
-                    </div>
-                    <h3 class="font-head text-lg text-gray-800">Terracotta Planter</h3>
-                    <span class="text-gray-500 text-sm">$32.00</span>
-                </div>
+    <section class="py-32 px-6 md:px-24 bg-stone-light">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <p class="font-serif text-3xl md:text-5xl leading-relaxed text-stone-dark">
+                "We believe that a home is not just a place, but a feeling. 
+                <span class="italic text-olive">A quiet dialogue</span> between space and soul, crafted through texture, light, and form."
+            </p>
+            <div class="mt-12 flex justify-center gap-4">
+                <div class="w-2 h-2 rounded-full bg-olive"></div>
+                <div class="w-2 h-2 rounded-full bg-stone-dark/20"></div>
+                <div class="w-2 h-2 rounded-full bg-stone-dark/20"></div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-clay/30">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <i class="fa-solid fa-quote-left text-4xl text-sage mb-8 opacity-50"></i>
-            <h2 class="font-head text-3xl md:text-4xl leading-relaxed mb-8">
-                "Luma has completely transformed my living space. The quality of the ceramics is unmatched, and I love knowing everything is ethically sourced."
-            </h2>
-            <div class="flex items-center justify-center gap-4">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" class="w-12 h-12 rounded-full object-cover" alt="User">
-                <div class="text-left">
-                    <p class="font-bold text-sm">Elena Miles</p>
-                    <p class="text-xs text-gray-500 uppercase tracking-widest">Verified Buyer</p>
-                </div>
+    <section id="shop" class="px-6 md:px-12 py-12">
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-32 reveal">
+            <div class="reveal-img-wrap h-[600px] w-full">
+                <img src="https://images.unsplash.com/photo-1595379624898-d45a953a9928?w=900&q=80" class="w-full h-full object-cover reveal-img" alt="Ceramics">
             </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 text-center">
-        <h2 class="font-head text-3xl mb-4">Join Our Community</h2>
-        <p class="text-gray-500 mb-8 max-w-md mx-auto">Receive 10% off your first order, plus design tips and early access to new collections.</p>
-        <form class="max-w-md mx-auto flex gap-0 border-b border-charcoal pb-1">
-            <input type="email" placeholder="Your email address" class="w-full bg-transparent outline-none placeholder-gray-400 text-sm">
-            <button class="text-xs font-bold uppercase tracking-widest hover:text-sage transition">Subscribe</button>
-        </form>
-    </section>
-
-    <footer class="bg-charcoal text-white pt-20 pb-10 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div class="col-span-1 md:col-span-1">
-                <a href="#" class="font-head text-3xl tracking-widest mb-6 block">LUMA</a>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Mindfully curated goods for the modern home. 
-                    Based in Stockholm, shipping worldwide.
+            <div class="md:pl-12">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-olive mb-4 block">01 / Handcrafted</span>
+                <h2 class="font-serif text-5xl md:text-6xl mb-6">Ceramics & <br> <span class="italic">Clay</span></h2>
+                <p class="text-stone-dark/60 text-sm leading-loose mb-10 max-w-md">
+                    Imperfect shapes formed by human hands. Our ceramic collection celebrates the wabi-sabi philosophy—finding beauty in the natural and incomplete.
                 </p>
+                <a href="#" class="hoverable inline-block border-b border-stone-dark pb-1 text-xs font-bold uppercase tracking-widest hover:text-olive hover:border-olive transition">View Ceramics</a>
             </div>
-            
-            <div>
-                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-clay">Shop</h4>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">All Products</a></li>
-                    <li><a href="#" class="hover:text-white transition">New Arrivals</a></li>
-                    <li><a href="#" class="hover:text-white transition">Sustainability</a></li>
-                </ul>
-            </div>
+        </div>
 
-            <div>
-                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-clay">Help</h4>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">Shipping & Returns</a></li>
-                    <li><a href="#" class="hover:text-white transition">Care Instructions</a></li>
-                    <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
-                </ul>
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-32 reveal">
+            <div class="md:pr-12 md:text-right order-2 md:order-1">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-olive mb-4 block">02 / Comfort</span>
+                <h2 class="font-serif text-5xl md:text-6xl mb-6">Organic <br> <span class="italic">Textiles</span></h2>
+                <p class="text-stone-dark/60 text-sm leading-loose mb-10 max-w-md ml-auto">
+                    Ethically sourced linen and cotton. Soft textures that invite you to slow down and breathe. Designed for longevity and timeless comfort.
+                </p>
+                <a href="#" class="hoverable inline-block border-b border-stone-dark pb-1 text-xs font-bold uppercase tracking-widest hover:text-olive hover:border-olive transition">View Textiles</a>
             </div>
-
-            <div>
-                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-clay">Follow</h4>
-                <div class="flex gap-4 text-xl text-gray-400">
-                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-pinterest"></i></a>
-                </div>
+            <div class="reveal-img-wrap h-[600px] w-full order-1 md:order-2">
+                <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=900&q=80" class="w-full h-full object-cover reveal-img" alt="Textiles">
             </div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-xs text-gray-500 uppercase tracking-widest">
-            <p>&copy; 2025 LUMA HOME. POWERED BY VITRINX.</p>
-            <div class="flex gap-4 mt-4 md:mt-0">
-                <i class="fa-brands fa-cc-visa text-lg"></i>
-                <i class="fa-brands fa-cc-mastercard text-lg"></i>
-                <i class="fa-brands fa-cc-paypal text-lg"></i>
+        <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+            <div class="reveal-img-wrap h-[600px] w-full">
+                <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=900&q=80" class="w-full h-full object-cover reveal-img" alt="Lighting">
+            </div>
+            <div class="md:pl-12">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-olive mb-4 block">03 / Ambiance</span>
+                <h2 class="font-serif text-5xl md:text-6xl mb-6">Sculptural <br> <span class="italic">Lighting</span></h2>
+                <p class="text-stone-dark/60 text-sm leading-loose mb-10 max-w-md">
+                    Light shapes the mood. Our lamps are designed as sculptures first, light sources second. Bringing warmth to every corner.
+                </p>
+                <a href="#" class="hoverable inline-block border-b border-stone-dark pb-1 text-xs font-bold uppercase tracking-widest hover:text-olive hover:border-olive transition">View Lighting</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-[1600px] mx-auto px-6">
+            <div class="flex justify-between items-end mb-16 reveal">
+                <h3 class="font-serif text-4xl">Weekly Selection</h3>
+                <a href="#" class="hoverable text-[10px] font-bold uppercase tracking-widest border-b border-gray-300 pb-1">Shop All</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="group cursor-pointer reveal hoverable">
+                    <div class="bg-[#FAFAFA] aspect-[3/4] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Product">
+                         <div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <button class="bg-stone-dark text-white px-6 py-3 text-[10px] uppercase tracking-widest font-bold rounded-full">Add to Cart</button>
+                         </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                         <div>
+                             <h4 class="font-serif text-lg">Stoneware Vase</h4>
+                             <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Matte White</p>
+                         </div>
+                         <span class="font-sans text-sm font-medium">$55</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer reveal delay-100 hoverable">
+                    <div class="bg-[#FAFAFA] aspect-[3/4] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Product">
+                        <div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <button class="bg-stone-dark text-white px-6 py-3 text-[10px] uppercase tracking-widest font-bold rounded-full">Add to Cart</button>
+                         </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                         <div>
+                             <h4 class="font-serif text-lg">Lounge Chair</h4>
+                             <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Oak & Linen</p>
+                         </div>
+                         <span class="font-sans text-sm font-medium">$420</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer reveal delay-200 hoverable">
+                    <div class="bg-[#FAFAFA] aspect-[3/4] overflow-hidden mb-4 relative">
+                         <span class="absolute top-3 left-3 bg-olive text-white text-[9px] px-2 py-1 uppercase tracking-widest z-10">New</span>
+                        <img src="https://images.unsplash.com/photo-1540932296774-3ed466067aa2?w=600&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Product">
+                        <div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <button class="bg-stone-dark text-white px-6 py-3 text-[10px] uppercase tracking-widest font-bold rounded-full">Add to Cart</button>
+                         </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                         <div>
+                             <h4 class="font-serif text-lg">Table Lamp</h4>
+                             <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Brass Finish</p>
+                         </div>
+                         <span class="font-sans text-sm font-medium">$180</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer reveal delay-300 hoverable">
+                    <div class="bg-[#FAFAFA] aspect-[3/4] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1512914890251-2f96a9b9ece2?w=600&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Product">
+                        <div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <button class="bg-stone-dark text-white px-6 py-3 text-[10px] uppercase tracking-widest font-bold rounded-full">Add to Cart</button>
+                         </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                         <div>
+                             <h4 class="font-serif text-lg">Wool Throw</h4>
+                             <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Herringbone</p>
+                         </div>
+                         <span class="font-sans text-sm font-medium">$95</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="story" class="py-32 px-6 bg-stone-dark text-stone-light relative overflow-hidden">
+        <div class="absolute right-0 top-0 h-full w-1/3 bg-olive/10 hidden md:block"></div>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
+            <div class="reveal">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-olive mb-6 block">The Atelier</span>
+                <h2 class="font-serif text-5xl md:text-7xl mb-8 leading-tight">Crafted with <br> <span class="italic text-gray-400">Intention.</span></h2>
+                <p class="text-gray-400 text-sm leading-loose mb-10 max-w-md">
+                    We work directly with artisans in Portugal and Japan to bring you pieces that tell a story. No mass production. Just honest materials and slow design.
+                </p>
+                <a href="#" class="hoverable bg-stone-light text-stone-dark px-10 py-4 text-xs font-bold uppercase tracking-widest rounded-full hover:bg-olive hover:text-white transition">Read Journal</a>
+            </div>
+            <div class="reveal-img-wrap h-[500px] w-full">
+                <img src="https://images.unsplash.com/photo-1459749411177-d4a428c3e8cb?w=900&q=80" class="w-full h-full object-cover reveal-img" alt="Workshop">
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone-light pt-24 pb-10 px-6 border-t border-stone-dark/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div class="col-span-1 md:col-span-1">
+                <a href="#" class="font-serif text-4xl font-bold tracking-widest mb-6 block hoverable">LUMA</a>
+                <p class="text-[11px] text-stone-dark/60 leading-relaxed max-w-xs font-sans">
+                    Elevating everyday rituals through design. <br>
+                    Est. 2025 • Stockholm
+                </p>
+            </div>
+            
+            <div class="font-sans">
+                <h4 class="font-bold text-[10px] uppercase tracking-[0.2em] mb-8 text-olive">Explore</h4>
+                <ul class="space-y-4 text-xs text-stone-dark/70 font-medium">
+                    <li><a href="#" class="hover:text-olive transition hoverable">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-olive transition hoverable">Best Sellers</a></li>
+                    <li><a href="#" class="hover:text-olive transition hoverable">Gift Guide</a></li>
+                </ul>
+            </div>
+
+            <div class="font-sans">
+                <h4 class="font-bold text-[10px] uppercase tracking-[0.2em] mb-8 text-olive">Company</h4>
+                <ul class="space-y-4 text-xs text-stone-dark/70 font-medium">
+                    <li><a href="#" class="hover:text-olive transition hoverable">Our Story</a></li>
+                    <li><a href="#" class="hover:text-olive transition hoverable">Sustainability</a></li>
+                    <li><a href="#" class="hover:text-olive transition hoverable">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="font-sans">
+                <h4 class="font-bold text-[10px] uppercase tracking-[0.2em] mb-8 text-olive">Newsletter</h4>
+                <p class="text-xs text-stone-dark/60 mb-4">Timeless inspiration for your inbox.</p>
+                <form class="flex border-b border-stone-dark/20 pb-2">
+                    <input type="email" placeholder="EMAIL ADDRESS" class="w-full bg-transparent outline-none text-xs placeholder-stone-dark/30 hoverable">
+                    <button class="text-xs font-bold uppercase tracking-widest hover:text-olive hoverable">Join</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t border-stone-dark/5 text-[10px] text-stone-dark/40 uppercase tracking-widest font-sans">
+            <p>&copy; 2025 LUMA LIVING. POWERED BY VITRINX.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-olive transition hoverable">Inst</a>
+                <a href="#" class="hover:text-olive transition hoverable">Fb</a>
+                <a href="#" class="hover:text-olive transition hoverable">Pin</a>
             </div>
         </div>
     </footer>
-    
-    <a href="https://wa.me/905419787726" class="fixed bottom-6 right-6 z-50 bg-sage hover:bg-charcoal text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300">
-        <i class="fa-brands fa-whatsapp text-2xl"></i>
+
+    <a href="https://wa.me/905419787726" class="fixed bottom-8 right-8 z-50 hoverable group">
+        <div class="relative bg-stone-dark text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform group-hover:scale-110 group-hover:bg-olive">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </div>
     </a>
 
+    <script>
+        // PRELOADER
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(() => { preloader.style.display = 'none'; }, 800);
+            }, 1800);
+        });
+
+        // CUSTOM CURSOR
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorCircle = document.querySelector('.cursor-circle');
+        const hoverables = document.querySelectorAll('.hoverable');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorCircle.style.left = `${posX}px`;
+            cursorCircle.style.top = `${posY}px`;
+        });
+
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // MAGNETIC BUTTON EFFECT
+        const btns = document.querySelectorAll('.btn-magnetic');
+        btns.forEach(btn => {
+            btn.addEventListener('mousemove', function(e) {
+                const pos = btn.getBoundingClientRect();
+                const x = e.clientX - pos.left - pos.width / 2;
+                const y = e.clientY - pos.top - pos.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            btn.addEventListener('mouseleave', function() {
+                btn.style.transform = 'translate(0px, 0px)';
+            });
+        });
+
+        // SCROLL REVEAL
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        // NAVBAR SCROLL
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-[#F2F0EB]/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-[#F2F0EB]/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
 </body>
 </html>
