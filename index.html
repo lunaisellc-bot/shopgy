@@ -70,8 +70,11 @@
     .theme-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: grayscale(100%); }
     .theme-card:hover { transform: scale(1.05); border-color: rgba(0, 255, 157, 0.5); z-index: 10; box-shadow: 0 0 30px rgba(0,255,157,0.1); }
     .theme-card:hover img { transform: scale(1.1); filter: grayscale(0%); }
-    .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; alignItems: center; justify-content: center; opacity: 0; transition: opacity 0.3s; gap: 15px; }
+
+    /* FIX: align-items (was alignItems) */
+    .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; gap: 15px; }
     .theme-card:hover .overlay { opacity: 1; }
+
     .tag { font-size: 10px; font-weight: bold; letter-spacing: 0.2em; padding: 5px 10px; border: 1px solid; border-radius: 5px; transform: translateY(20px); transition: transform 0.4s; }
     .btn-view { font-size: 12px; font-weight: bold; padding: 10px 25px; border-radius: 50px; cursor: pointer; transform: translateY(20px); transition: transform 0.4s 0.1s; }
     .theme-card:hover .tag, .theme-card:hover .btn-view { transform: translateY(0); }
@@ -250,6 +253,7 @@
     </div>
   </section>
 
+  <!-- SLIDER SECTION (UPDATED TO LOCAL IMAGES) -->
   <section class="py-24 bg-[#050505] relative overflow-hidden border-y border-white/5">
     <div class="text-center mb-16 reveal relative z-10 px-6">
       <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" data-i18n="show_title">World Class Designs</h2>
@@ -258,22 +262,107 @@
 
     <div class="marquee-container mb-8">
       <div class="marquee-content scroll-left hover:pause">
-        <a href="demo-ultra.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&q=80"><div class="overlay"><span class="tag border-red-500 text-red-500">PROJECT X</span><span class="btn-view bg-red-500 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-art.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=600&q=80"><div class="overlay"><span class="tag border-yellow-400 text-yellow-400">GALLERY</span><span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-fashion2.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80"><div class="overlay"><span class="tag border-white text-white">ATELIER</span><span class="btn-view bg-white text-black">VIEW DEMO</span></div></a>
-        <a href="demo-business.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"><div class="overlay"><span class="tag border-stone-300 text-stone-300">LUMA</span><span class="btn-view bg-stone-300 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-ultra.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&q=80"><div class="overlay"><span class="tag border-red-500 text-red-500">PROJECT X</span><span class="btn-view bg-red-500 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-art.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=600&q=80"><div class="overlay"><span class="tag border-yellow-400 text-yellow-400">GALLERY</span><span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span></div></a>
+        <a href="demo-ultra.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-ultra.jpg.png" alt="Project X" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-red-500 text-red-500">PROJECT X</span>
+            <span class="btn-view bg-red-500 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-art.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-art.jpg.png" alt="Gallery" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-yellow-400 text-yellow-400">GALLERY</span>
+            <span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-fashion2.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-fashion2.jpg.png" alt="Atelier" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-white text-white">ATELIER</span>
+            <span class="btn-view bg-white text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-business.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-business.jpg.png" alt="Luma" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-stone-300 text-stone-300">LUMA</span>
+            <span class="btn-view bg-stone-300 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <!-- repeat for seamless loop -->
+        <a href="demo-ultra.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-ultra.jpg.png" alt="Project X" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-red-500 text-red-500">PROJECT X</span>
+            <span class="btn-view bg-red-500 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-art.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-art.jpg.png" alt="Gallery" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-yellow-400 text-yellow-400">GALLERY</span>
+            <span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span>
+          </div>
+        </a>
       </div>
     </div>
+
     <div class="marquee-container">
       <div class="marquee-content scroll-right hover:pause">
-        <a href="demo-business-2.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80"><div class="overlay"><span class="tag border-green-400 text-green-400">NATUREL</span><span class="btn-view bg-green-400 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-jewelry.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=600&q=80"><div class="overlay"><span class="tag border-yellow-200 text-yellow-200">AURORA</span><span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-event.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80"><div class="overlay"><span class="tag border-pink-300 text-pink-300">VELVET</span><span class="btn-view bg-pink-300 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-starter.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80"><div class="overlay"><span class="tag border-green-500 text-green-500">IRON</span><span class="btn-view bg-green-500 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-business-2.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80"><div class="overlay"><span class="tag border-green-400 text-green-400">NATUREL</span><span class="btn-view bg-green-400 text-black">VIEW DEMO</span></div></a>
-        <a href="demo-jewelry.html" target="_blank" class="theme-card group"><img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=600&q=80"><div class="overlay"><span class="tag border-yellow-200 text-yellow-200">AURORA</span><span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span></div></a>
+        <a href="demo-business-2.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-business-2.jpg.png" alt="Naturel" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-green-400 text-green-400">NATUREL</span>
+            <span class="btn-view bg-green-400 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-jewelry.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-jewelry.jpg.png" alt="Aurora" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-yellow-200 text-yellow-200">AURORA</span>
+            <span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-event.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-event.jpg.png" alt="Velvet" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-pink-300 text-pink-300">VELVET</span>
+            <span class="btn-view bg-pink-300 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-starter.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-starter.jpg.png" alt="Iron" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-green-500 text-green-500">IRON</span>
+            <span class="btn-view bg-green-500 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <!-- repeat for seamless loop -->
+        <a href="demo-business-2.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-business-2.jpg.png" alt="Naturel" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-green-400 text-green-400">NATUREL</span>
+            <span class="btn-view bg-green-400 text-black">VIEW DEMO</span>
+          </div>
+        </a>
+
+        <a href="demo-jewelry.html" target="_blank" class="theme-card group">
+          <img src="assets/img/preview-jewelry.jpg.png" alt="Aurora" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-yellow-200 text-yellow-200">AURORA</span>
+            <span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span>
+          </div>
+        </a>
       </div>
     </div>
     
@@ -387,7 +476,6 @@
   </footer>
 
   <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4 items-center">
-      
       <a href="sms:+13072059144" class="group relative bg-white hover:bg-gray-200 text-black w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-[0_0_20px_rgba(255,255,255,0.3)] transition hover:scale-110 animate-bounce" style="animation-delay: 0.1s;">
         <i class="fa-solid fa-comment-sms"></i>
         <span class="absolute right-12 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">US Support</span>
@@ -397,15 +485,12 @@
         <i class="fa-brands fa-whatsapp"></i>
         <span class="absolute right-14 bg-[#25D366] text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Canlı Destek</span>
       </a>
-
   </div>
 
   <script>
     const translations = {
       en: {
         nav_tech: "Integration Tech", nav_portfolio: "Portfolio", nav_how: "Process", nav_pricing: "Pricing", nav_cta: "Sync Shop",
-        
-        // HERO - UPDATED (TRUST FOCUSED)
         hero_badge: "OFFICIAL API SYNC",
         hero_title: "Turn Your Etsy Shop <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Into Your Own Professional Website.</span>",
         hero_sub: "Automatically synced via the official <strong>Etsy Open API</strong>. Your products stay on Etsy — payments and checkout always remain on Etsy.",
@@ -414,46 +499,35 @@
         feat_3: "100% Safe",
         btn_explore: "Start Syncing", 
         btn_how: "View Examples",
-
         us_company: "Registered in Wyoming, USA",
-
-        // NEW TECH SPECS
         spec_1_t: "High-Res Media", spec_1_d: "4K Photo Sync",
         spec_2_t: "Smart Pricing", spec_2_d: "Auto Currency Convert",
         spec_3_t: "Descriptions", spec_3_d: "HTML Formatting Kept",
         spec_4_t: "SEO Tags", spec_4_d: "Keywords Preserved",
-        
         prob_title: "The 'Sync' Advantage",
         prob_1_title: "One Dashboard", prob_1_desc: "Stop uploading products twice. Add a product to Etsy, and it magically appears on your website instantly.",
         prob_2_title: "Inventory Guard", prob_2_desc: "Sold an item on Etsy? Our system detects the stock change and updates your website to prevent overselling.",
         prob_3_title: "Brand Independence", prob_3_desc: "While using Etsy's data, you build your own SEO ranking on Google with your own .com domain.",
-        
         how_title: "API Driven Setup", how_sub: "Complex code on the backend. One click for you.",
         step_1_title: "1. Handshake", step_1_desc: "We securely authenticate with your shop using OAuth 2.0. No password sharing required.",
         step_2_title: "2. Bulk Fetch", step_2_desc: "Our engine downloads 100+ listings, variations, and high-res images in under 60 seconds.",
         step_3_title: "3. Live Broadcast", step_3_desc: "We deploy your new brand website. Future changes on Etsy reflect automatically.",
-        
         show_title: "World Class Designs", show_sub: "Your data + Our code = Magic.",
         btn_full_portfolio: "View Full Portfolio",
-        
         price_title: "One-Time Integration", price_sub: "Own your platform. No monthly subscriptions to us.",
         p_pop: "POPULAR", p_1_sub: "Standard Sync", p_2_sub: "Enhanced Sync", p_3_sub: "Real-Time Sync",
         p_1_f1: "100 Products Sync", p_1_f2: "Images & Prices Import", p_1_f3: "Domain Connection",
         p_2_f1: "500 Products Sync", p_2_f2: "Variant/SKU Mapping", p_2_f3: "Daily Auto-Update", p_2_f4: "30 Days Support",
         p_3_f1: "Unlimited Products", p_3_f2: "Real-time Webhooks", p_3_f3: "SEO Meta Tag Sync", p_3_f4: "90 Days VIP Support",
         btn_select: "Select Theme", btn_start: "Start Now", btn_contact: "Contact Us",
-        
         faq_title: "Technical FAQ",
         faq_1_q: "How often does it sync with Etsy?", faq_1_a: "Depends on the plan. Business plan checks daily. Elite plan uses 'Webhooks' which triggers an update the second you change something on Etsy.",
         faq_2_q: "Do my Etsy reviews transfer?", faq_2_a: "We can embed your Etsy star rating badge to build trust, but we don't copy individual user review texts due to privacy policies.",
         faq_3_q: "What if I delete a product on Etsy?", faq_3_a: "The system will automatically archive it on your website during the next sync cycle, so you don't sell an item you don't have.",
-        
         footer_desc: "Etsy API Integration Partners & Web Design Agency."
       },
       tr: {
         nav_tech: "Teknoloji", nav_portfolio: "Vitrin", nav_how: "Süreç", nav_pricing: "Paketler", nav_cta: "Mağazayı Bağla",
-        
-        // HERO - TR (TRUST FOCUSED)
         hero_badge: "RESMİ API SENKRONİZASYONU",
         hero_title: "Etsy Mağazanızı <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Kendi Profesyonel Sitenize Dönüştürün.</span>",
         hero_sub: "Resmi <strong>Etsy Open API</strong> ile otomatik senkronize edilir. Ürünleriniz Etsy'de kalır — ödeme ve sipariş işlemleri daima Etsy üzerinden gerçekleşir.",
@@ -462,40 +536,31 @@
         feat_3: "%100 Güvenli",
         btn_explore: "Senkronizasyonu Başlat", 
         btn_how: "Örnekleri Gör",
-
         us_company: "ABD Tescilli Şirket (Wyoming)",
-
-        // NEW TECH SPECS TR
         spec_1_t: "Yüksek Çözünürlük", spec_1_d: "4K Fotoğraf Aktarımı",
         spec_2_t: "Akıllı Fiyat", spec_2_d: "Otomatik Kur Dönüşümü",
         spec_3_t: "Açıklamalar", spec_3_d: "HTML Formatı Korunur",
         spec_4_t: "SEO Etiketleri", spec_4_d: "Anahtar Kelimeler Gelir",
-        
         prob_title: "'Senkronizasyon' Avantajı",
         prob_1_title: "Tek Yönetim Paneli", prob_1_desc: "İki kere ürün yüklemeye son. Etsy'ye bir ürün ekleyin, anında kendi sitenizde de görünsün.",
         prob_2_title: "Stok Koruyucu", prob_2_desc: "Etsy'de satış mı oldu? Sistemimiz stok değişimini algılar ve sitenizdeki adedi düşürür. Yok satmayı önler.",
         prob_3_title: "Marka Bağımsızlığı", prob_3_desc: "Etsy verilerini kullanırken, kendi .com alan adınızla Google'da kendi SEO sıralamanızı yükseltin.",
-        
         how_title: "API Tabanlı Kurulum", how_sub: "Arka planda karmaşık kodlar, sizin için tek tık.",
         step_1_title: "1. El Sıkışma", step_1_desc: "OAuth 2.0 protokolü ile mağazanızla güvenli bağlantı kuruyoruz. Şifre paylaşımı yok.",
         step_2_title: "2. Toplu Veri Alımı", step_2_desc: "Motorumuz 100+ ilanı, varyasyonları ve HD fotoğrafları 60 saniyenin altında indirir.",
         step_3_title: "3. Canlı Yayın", step_3_desc: "Yeni marka sitenizi yayına alıyoruz. Etsy'de yapacağınız değişiklikler otomatik yansır.",
-        
         show_title: "Dünya Klasmanında Tasarım", show_sub: "Sizin veriniz + Bizim kodumuz = Büyü.",
         btn_full_portfolio: "Tüm Vitrini İncele",
-        
         price_title: "Tek Seferlik Entegrasyon", price_sub: "Sitenin sahibi siz olun. Aylık aidat yok.",
         p_pop: "EN ÇOK SATAN", p_1_sub: "Standart Senkronizasyon", p_2_sub: "Gelişmiş Senkronizasyon", p_3_sub: "Canlı Senkronizasyon",
         p_1_f1: "100 Ürün Aktarımı", p_1_f2: "Resim ve Fiyat İçe Aktarma", p_1_f3: "Alan Adı Bağlantısı",
         p_2_f1: "500 Ürün Aktarımı", p_2_f2: "Varyasyon/SKU Eşleme", p_2_f3: "Günlük Otomatik Kontrol", p_2_f4: "30 Gün Destek",
         p_3_f1: "Sınırsız Ürün", p_3_f2: "Anlık Webhook (Canlı)", p_3_f3: "SEO Meta Tag Aktarımı", p_3_f4: "90 Gün VIP Destek",
         btn_select: "Paket Seç", btn_start: "Başla", btn_contact: "İletişime Geç",
-        
         faq_title: "Teknik SSS",
         faq_1_q: "Ne sıklıkla senkronize oluyor?", faq_1_a: "Pakete göre değişir. Business paket günde bir kez tarar. Elite paket 'Webhook' kullanır, Etsy'de değişiklik yaptığınız saniye siteniz güncellenir.",
         faq_2_q: "Etsy yorumlarım geliyor mu?", faq_2_a: "Güven oluşturmak için Etsy yıldız puanınızı (rozet olarak) çekebiliriz, ancak gizlilik kuralları gereği müşteri yorum metinlerini kopyalamıyoruz.",
         faq_3_q: "Etsy'den ürün silersem ne olur?", faq_3_a: "Sistem bir sonraki taramada bu ürünün silindiğini fark eder ve sitenizden otomatik olarak arşive kaldırır.",
-        
         footer_desc: "Etsy API Entegrasyon Partneri ve Tasarım Ajansı."
       }
     };
@@ -532,6 +597,7 @@
        }, 10);
     }
   </script>
+
   <div id="cookie-banner" class="fixed bottom-4 right-4 max-w-sm w-[calc(100%-2rem)] z-[60] transform translate-y-full transition-transform duration-500 hidden">
     <div class="glass border border-white/10 p-6 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)]">
       <div class="flex items-start gap-4">
@@ -558,32 +624,24 @@
   </div>
 
   <script>
-    // Cookie Logic
     const banner = document.getElementById('cookie-banner');
-    
-    // 1. Check if user already chose
     if (!localStorage.getItem('cookieConsent')) {
-        // Show banner after 2 seconds delay for better UX
         banner.classList.remove('hidden');
         setTimeout(() => {
             banner.classList.remove('translate-y-full');
         }, 2000);
     }
 
-    // 2. Accept Action
     function acceptCookies() {
         localStorage.setItem('cookieConsent', 'accepted');
         hideBanner();
-        // Here you would enable Google Analytics etc.
     }
 
-    // 3. Decline Action
     function declineCookies() {
         localStorage.setItem('cookieConsent', 'declined');
         hideBanner();
     }
 
-    // 4. Hide Animation
     function hideBanner() {
         banner.classList.add('translate-y-full');
         setTimeout(() => {
@@ -591,5 +649,6 @@
         }, 500);
     }
   </script>
+
 </body>
 </html>
