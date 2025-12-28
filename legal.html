@@ -1,49 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Documents | VitrinX</title>
+    <title>Legal & Compliance | VitrinY</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>body { background-color: #050505; color: #ccc; font-family: 'Inter', sans-serif; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'head': ['Space Grotesk', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon': '#00ff9d',
+                        'dark': '#050505',
+                        'surface': '#0F1115'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #e5e5e5; }
+        .legal-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: white; margin-top: 2rem; margin-bottom: 1rem; border-left: 3px solid #00ff9d; padding-left: 1rem; }
+        .legal-content p { margin-bottom: 1rem; line-height: 1.7; color: #a1a1aa; font-size: 0.9rem; }
+        .legal-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #a1a1aa; }
+        .glass-nav { background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
 </head>
-<body class="antialiased">
+<body class="font-body selection:bg-neon selection:text-black">
 
-    <div class="max-w-4xl mx-auto px-6 py-12">
-        <a href="index.html" class="text-sm text-gray-500 hover:text-white mb-8 inline-block">&larr; Back to Home</a>
+    <nav class="fixed w-full z-50 glass-nav h-20 flex items-center">
+        <div class="max-w-4xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-neon group-hover:text-black transition duration-300">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <span class="font-head font-bold text-sm text-gray-400 group-hover:text-white transition">Back to VitrinY</span>
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-20 px-6 text-center bg-gradient-to-b from-surface to-dark border-b border-white/5">
+        <h1 class="font-head text-4xl md:text-5xl font-bold mb-4">Legal Center</h1>
+        <p class="text-gray-500 text-sm">Transparency is our core value.</p>
+        <div class="flex justify-center gap-4 mt-8 text-xs font-bold uppercase tracking-widest">
+            <a href="#privacy" class="px-4 py-2 bg-white/5 rounded-full hover:bg-neon hover:text-black transition">Privacy Policy</a>
+            <a href="#terms" class="px-4 py-2 bg-white/5 rounded-full hover:bg-neon hover:text-black transition">Terms of Service</a>
+            <a href="#etsy" class="px-4 py-2 bg-white/5 rounded-full hover:bg-neon hover:text-black transition">Etsy Disclaimer</a>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 py-20 legal-content">
         
-        <h1 class="text-3xl font-bold text-white mb-2">Legal Documents</h1>
-        <p class="text-gray-500 mb-12">Last Updated: January 1, 2025 | Operator: Lunaise LLC (Sheridan, WY)</p>
+        <section id="privacy" class="mb-20">
+            <div class="flex items-center gap-3 mb-6">
+                <i class="fa-solid fa-shield-halved text-neon text-2xl"></i>
+                <h1 class="text-3xl font-head font-bold text-white m-0 border-none p-0">Privacy Policy</h1>
+            </div>
+            <p>Last Updated: December 28, 2025</p>
 
-        <div class="space-y-12">
-            
-            <section id="terms" class="border-b border-white/10 pb-12">
-                <h2 class="text-xl font-bold text-white mb-4">1. Terms of Service</h2>
-                <p class="mb-4">By purchasing a VitrinX package, you agree that we act as a developer agency to build a website that connects to your Etsy shop.</p>
-                <p>We do not own your data. You are responsible for your own Etsy account compliance. We are not liable for any changes in Etsy's API policies.</p>
-            </section>
+            <h2>1. Data Collection</h2>
+            <p>At VitrinY, we respect your privacy. We collect only the data necessary to provide our services:</p>
+            <ul>
+                <li><strong>Account Information:</strong> Name, email address, and phone number (if provided).</li>
+                <li><strong>Etsy Shop Data:</strong> Through the official Etsy Open API, we access public listing data (titles, prices, images, descriptions) to construct your website. We do NOT access your payment credentials or private messages.</li>
+            </ul>
 
-            <section id="refund" class="border-b border-white/10 pb-12">
-                <h2 class="text-xl font-bold text-white mb-4">2. Refund Policy</h2>
-                <p class="mb-4">Since this is a digital service involving manual setup and server configuration:</p>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>Full Refund: Available within 24 hours of purchase if no work has started.</li>
-                    <li>Partial Refund: If we fail to deliver the website within 7 business days.</li>
-                    <li>No Refund: Once the website is live and the domain is connected.</li>
-                </ul>
-            </section>
+            <h2>2. How We Use Your Data</h2>
+            <p>Your data is used solely to generate and host your standalone website. We do not sell your customer lists or shop data to third parties.</p>
 
-            <section id="privacy">
-                <h2 class="text-xl font-bold text-white mb-4">3. Privacy Policy</h2>
-                <p>We respect your privacy. We only collect data necessary to set up your website (Shop Name, Email). We do not sell your data to third parties.</p>
-            </section>
+            <h2>3. Data Storage</h2>
+            <p>Your website is hosted on secure global CDNs (e.g., Netlify/Vercel). We use industry-standard encryption (SSL) to protect data in transit.</p>
+        </section>
 
-        </div>
+        <hr class="border-white/10 my-10">
 
-        <div class="mt-12 pt-12 border-t border-white/10 text-center text-xs text-gray-600">
-            Lunaise LLC. Sheridan, Wyoming, USA.
-        </div>
-    </div>
+        <section id="terms" class="mb-20">
+            <div class="flex items-center gap-3 mb-6">
+                <i class="fa-solid fa-gavel text-neon text-2xl"></i>
+                <h1 class="text-3xl font-head font-bold text-white m-0 border-none p-0">Terms of Service</h1>
+            </div>
+
+            <h2>1. Services</h2>
+            <p>VitrinY provides a service that converts Etsy shop listings into a standalone website. This is a one-time setup service. Hosting is provided via third-party providers.</p>
+
+            <h2>2. Payments & Refunds</h2>
+            <p>Since our products are digital setup services involving manual configuration and server deployment, <strong>all sales are final</strong>. We do not offer refunds once the domain deployment process has begun.</p>
+
+            <h2>3. User Responsibilities</h2>
+            <p>You are responsible for maintaining your Etsy shop. Since our system syncs with Etsy, if your Etsy shop is suspended, your VitrinY website may stop updating new products (though existing products will remain visible).</p>
+        </section>
+
+        <hr class="border-white/10 my-10">
+
+        <section id="etsy" class="bg-white/5 p-8 rounded-2xl border border-neon/20">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fa-brands fa-etsy text-orange-500 text-2xl"></i>
+                <h1 class="text-2xl font-head font-bold text-white m-0 border-none p-0">Etsy API Disclaimer</h1>
+            </div>
+            <p class="text-white text-sm">
+                The term 'Etsy' is a trademark of Etsy, Inc. This application uses the Etsy API but is not endorsed or certified by Etsy, Inc.
+            </p>
+            <p class="mb-0">
+                VitrinY is an independent third-party tool developed to help sellers expand their brand visibility. All Etsy logos and trademarks displayed on this site are property of their respective owners.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-white/10 py-10 text-center text-gray-600 text-xs">
+        &copy; 2025 VitrinY / Lunaise LLC. All rights reserved.<br>
+        Sheridan, Wyoming, USA.
+    </footer>
+
 </body>
 </html>
