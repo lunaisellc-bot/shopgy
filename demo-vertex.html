@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertex | Vertical Snap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* SNAP SCROLL AYARLARI */
+        html { scroll-snap-type: y mandatory; }
+        body { margin: 0; background: #000; color: white; font-family: 'Roboto', sans-serif; }
+        
+        section {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end; /* İçerik altta */
+            padding-bottom: 50px;
+        }
+
+        .bg-img {
+            position: absolute; inset: 0; w-full; h-full; object-fit: cover; z-index: -1;
+            transition: transform 10s ease;
+        }
+        section:hover .bg-img { transform: scale(1.1); }
+        .gradient-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            z-index: 0;
+        }
+        
+        /* Floating Nav */
+        .vertex-nav {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            padding: 10px 20px; border-radius: 50px; z-index: 100;
+            display: flex; gap: 20px; border: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <a href="portfolio.html" class="fixed top-6 right-6 z-50 bg-black/50 w-10 h-10 rounded-full flex items-center justify-center text-white border border-white/20 hover:bg-red-500 transition">
+        <i class="fa-solid fa-xmark"></i>
+    </a>
+
+    <div class="vertex-nav">
+        <a href="#" class="text-white hover:text-purple-400"><i class="fa-solid fa-house"></i></a>
+        <a href="#" class="text-white hover:text-purple-400"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <div class="w-px h-6 bg-white/20"></div>
+        <a href="index.html#pricing" class="text-purple-400 font-bold text-xs flex items-center">GET THEME</a>
+    </div>
+
+    <section>
+        <img src="https://images.unsplash.com/photo-1550614000-4b9519e02a15?w=800&q=80" class="bg-img" alt="Fashion">
+        <div class="gradient-overlay"></div>
+        <div class="relative z-10 px-6 w-full mb-12">
+            <span class="bg-purple-600 text-white text-[10px] font-bold px-2 py-1 rounded mb-2 inline-block">NEW DROP</span>
+            <h1 class="font-[Oswald] text-6xl uppercase leading-none mb-2">Street<br>Vision</h1>
+            <p class="text-gray-300 text-sm mb-6 max-w-xs">The new collection is here. Swipe up to explore looks.</p>
+            <div class="animate-bounce text-center">
+                <i class="fa-solid fa-chevron-down text-2xl text-white/50"></i>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" class="bg-img" alt="Decor">
+        <div class="gradient-overlay"></div>
+        <div class="relative z-10 px-6 w-full mb-12">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <h2 class="font-[Oswald] text-4xl mb-1">Minimal Vase</h2>
+                    <p class="text-gray-300 text-xs">Ceramic / Handmade</p>
+                </div>
+                <div class="text-2xl font-[Oswald]">$45</div>
+            </div>
+            <button class="w-full bg-white text-black font-bold py-4 rounded-xl uppercase tracking-widest hover:bg-purple-500 hover:text-white transition">
+                Add to Cart
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <img src="https://images.unsplash.com/photo-1573408301185-a1d31e66754a?w=800&q=80" class="bg-img" alt="Jewelry">
+        <div class="gradient-overlay"></div>
+        <div class="relative z-10 px-6 w-full mb-12">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <h2 class="font-[Oswald] text-4xl mb-1">Gold Layer</h2>
+                    <p class="text-gray-300 text-xs">18K Gold / Necklace</p>
+                </div>
+                <div class="text-2xl font-[Oswald]">$120</div>
+            </div>
+            <button class="w-full bg-white text-black font-bold py-4 rounded-xl uppercase tracking-widest hover:bg-purple-500 hover:text-white transition">
+                Add to Cart
+            </button>
+        </div>
+    </section>
+
+</body>
+</html>
