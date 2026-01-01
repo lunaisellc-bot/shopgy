@@ -122,8 +122,7 @@
   <div class="texture-overlay"></div>
 
   <!-- AUDIO (Gerçek Müzik)
-       PROD ÖNERİ: bunu local taşı: assets/audio/at-last.mp3
-       ve src'i buna çevir: src="assets/audio/at-last.mp3" -->
+       PROD ÖNERİ: bunu local taşı: assets/audio/invitation-theme.mp3 -->
   <audio id="bg-audio" preload="none">
     <source src="assets/audio/invitation-theme.mp3" type="audio/mpeg">
   </audio>
@@ -144,7 +143,7 @@
       <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
     </div>
     <span class="text-[10px] font-sans font-bold uppercase tracking-widest text-charcoal truncate">
-      "Written in the Stars
+      "Written in the Stars"
     </span>
     <i id="music-icon" class="fa-solid fa-volume-high text-gold text-xs ml-2"></i>
   </div>
@@ -171,7 +170,7 @@
 
     <!-- Event date (Countdown bunu baz alır) -->
     <h2 class="text-4xl md:text-6xl text-charcoal mb-4">
-      <span id="event-date-label">September 15, 2025</span>
+      <span id="event-date-label">May 25, 2026</span>
     </h2>
     <p class="font-sans text-sm text-gray-500 uppercase tracking-widest mb-12">Lake Como, Italy</p>
 
@@ -250,7 +249,7 @@
 
   <section class="py-32 bg-white relative">
     <div class="max-w-4xl mx-auto px-6 text-center reveal">
-      <span class="text-gold font-sans text-xs tracking-[0.3em] uppercase block mb-3">September 15th</span>
+      <span class="text-gold font-sans text-xs tracking-[0.3em] uppercase block mb-3">May 25th</span>
       <h2 class="font-serif text-5xl mb-16">The Wedding Day</h2>
 
       <div class="grid md:grid-cols-3 gap-8">
@@ -329,7 +328,7 @@
         </div>
 
         <h2 class="font-serif text-4xl mb-2">Will you join us?</h2>
-        <p class="font-sans text-xs text-gray-400 uppercase tracking-widest mb-8">Please respond by August 1, 2025</p>
+        <p class="font-sans text-xs text-gray-400 uppercase tracking-widest mb-8">Please respond by April 25, 2026</p>
 
         <!-- FORM: Formspree endpoint ile çalışır -->
         <form id="rsvp-form"
@@ -404,10 +403,10 @@
     /* =========================
        SETTINGS (Customize)
        ========================= */
-    // Event date/time (local). İstersen timezone setleyelim.
-    const EVENT_DATETIME_ISO = "2025-09-15T16:00:00"; // 4:00 PM local time example
+    // Event date/time (local)
+    const EVENT_DATETIME_ISO = "2026-05-25T16:00:00"; // May 25, 2026 @ 4:00 PM local time
 
-    // Music file path (local önerilir)
+    // Music file element
     const AUDIO_EL = document.getElementById('bg-audio');
 
     /* =========================
@@ -471,7 +470,7 @@
     setMusicUI(false);
 
     /* =========================
-       LIVE COUNTDOWN
+       LIVE COUNTDOWN (FIXED)
        ========================= */
     const elDays = document.getElementById('cd-days');
     const elHours = document.getElementById('cd-hours');
@@ -481,17 +480,32 @@
 
     function pad2(n) { return String(n).padStart(2, '0'); }
 
+    function setAllZero(showDone = true) {
+      if (!elDays || !elHours || !elMinutes || !elSeconds) return;
+      elDays.textContent = "0";
+      elHours.textContent = "00";
+      elMinutes.textContent = "00";
+      elSeconds.textContent = "00";
+      if (elDone) elDone.classList.toggle('hidden', showDone ? false : true);
+    }
+
     function updateCountdown() {
+      if (!elDays || !elHours || !elMinutes || !elSeconds) return;
+
       const eventTime = new Date(EVENT_DATETIME_ISO).getTime();
+
+      // Invalid Date koruması
+      if (Number.isNaN(eventTime)) {
+        console.error("Countdown date is invalid:", EVENT_DATETIME_ISO);
+        setAllZero(false); // tarih hatalıysa "Today is the day" göstermeyelim
+        return;
+      }
+
       const now = Date.now();
       const diff = eventTime - now;
 
       if (diff <= 0) {
-        elDays.textContent = "0";
-        elHours.textContent = "00";
-        elMinutes.textContent = "00";
-        elSeconds.textContent = "00";
-        if (elDone) elDone.classList.remove('hidden');
+        setAllZero(true);
         return;
       }
 
@@ -558,7 +572,6 @@
         showMsg(rsvpSuccess, false);
         showMsg(rsvpError, false);
 
-        // Basic client-side validation
         const formData = new FormData(rsvpForm);
         if (!formData.get('names') || !formData.get('attendance')) {
           showMsg(rsvpError, true);
@@ -567,7 +580,6 @@
 
         const action = rsvpForm.getAttribute('action');
         if (!action || action.includes("YOUR_FORMSPREE_ID")) {
-          // Endpoint eklenmemişse hata göster
           showMsg(rsvpError, true);
           return;
         }
