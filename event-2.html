@@ -1,549 +1,373 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Doğum Günü Davetiyesi | Website Invitation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIP BIRTHDAY INVITATION</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <style>
-    :root{
-      --bg:#fbf7f2;
-      --ink:#1a1a1a;
-      --muted:#6b6b6b;
-      --card:#ffffffcc;
-      --line:#00000014;
-      --radius:18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
-      --max: 980px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--ink);
-      background: radial-gradient(1200px 600px at 50% 0%, #ffffff 0%, var(--bg) 55%, #f6efe7 100%);
-      line-height:1.45;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:10px 0;
-    }
-    .badge{
-      font-size:12px; letter-spacing:.12em; text-transform:uppercase;
-      color:var(--muted);
-    }
-    .btn{
-      appearance:none; border:1px solid var(--line);
-      background:#fff; padding:10px 12px; border-radius:999px;
-      cursor:pointer; box-shadow: 0 6px 16px rgba(0,0,0,.05);
-      display:inline-flex; align-items:center; gap:8px;
-      font-weight:600;
-    }
-    .btn:active{transform:translateY(1px)}
-    .hero{
-      position:relative;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      background: linear-gradient(180deg, #ffffffcc, #ffffff80);
-    }
-    .heroInner{
-      padding:42px 26px;
-      display:grid;
-      gap:18px;
-    }
-    .h1{
-      margin:0;
-      font-size:44px;
-      letter-spacing:-.02em;
-    }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:16px;
-      max-width:62ch;
-    }
-    .ctaRow{display:flex; gap:10px; flex-wrap:wrap}
-    .cards{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:14px;
-    }
-    .card{
-      grid-column: span 12;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      padding:18px;
-    }
-    @media (min-width: 820px){
-      .card.half{grid-column: span 6;}
-    }
-    .card h2{
-      margin:0 0 10px 0;
-      font-size:18px;
-      letter-spacing:-.01em;
-    }
-    .muted{color:var(--muted)}
-    .countGrid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:10px;
-      margin-top:10px;
-    }
-    .pill{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      background:#fff;
-      text-align:center;
-    }
-    .pill strong{font-size:22px; display:block}
-    .row{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-    }
-    .kv{
-      display:grid;
-      grid-template-columns: 120px 1fr;
-      gap:10px;
-      padding:10px 0;
-      border-bottom:1px solid var(--line);
-    }
-    .kv:last-child{border-bottom:none}
-    iframe{width:100%; border:0; border-radius:14px; min-height:320px}
-    form{
-      display:grid;
-      gap:10px;
-      margin-top:10px;
-    }
-    input, select, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:#fff;
-      font-size:14px;
-      outline:none;
-    }
-    textarea{min-height:90px; resize:vertical}
-    .fineprint{font-size:12px; color:var(--muted); margin-top:8px}
-    .gridGallery{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:10px;
-      margin-top:10px;
-    }
-    @media (min-width: 720px){
-      .gridGallery{grid-template-columns: repeat(3, 1fr);}
-    }
-    .thumb{
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#fff;
-      cursor:pointer;
-      box-shadow: 0 8px 18px rgba(0,0,0,.06);
-      aspect-ratio: 1 / 1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .lightbox{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.65);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      z-index:50;
-    }
-    .lightbox.open{display:flex}
-    .lightboxContent{
-      max-width:min(980px, 96vw);
-      max-height: 90vh;
-      border-radius:18px;
-      overflow:hidden;
-      background:#111;
-      box-shadow: 0 30px 80px rgba(0,0,0,.5);
-      position:relative;
-    }
-    .lightboxContent img{
-      width:100%;
-      height:auto;
-      display:block;
-      max-height:90vh;
-      object-fit:contain;
-      background:#111;
-    }
-    .x{
-      position:absolute;
-      top:10px; right:10px;
-      background:#ffffff14;
-      border:1px solid #ffffff22;
-      color:#fff;
-      padding:8px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:700;
-    }
-    .footer{
-      margin:24px 0 8px;
-      text-align:center;
-      color:var(--muted);
-      font-size:12px;
-    }
-    .videoBg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:.12;
-      filter: blur(0px) saturate(.9);
-      pointer-events:none;
-    }
-    .heroOverlay{
-      position:absolute; inset:0;
-      background: radial-gradient(900px 420px at 40% 10%, rgba(255,255,255,.85), rgba(255,255,255,.28));
-      pointer-events:none;
-    }
-  </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'luxury': ['Cinzel', 'serif'],
+                        'modern': ['Raleway', 'sans-serif'],
+                    },
+                    colors: {
+                        'midnight': '#0F172A',
+                        'gold': '#C5A059',
+                        'gold-light': '#E5C580',
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(135deg, #C5A059 0%, #E5C580 50%, #C5A059 100%)',
+                        'dark-gradient': 'radial-gradient(circle at center, #1E293B 0%, #0F172A 100%)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-gold': 'pulseGold 2s infinite',
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+                        pulseGold: { '0%, 100%': { boxShadow: '0 0 0 0 rgba(197, 160, 89, 0.7)' }, '70%': { boxShadow: '0 0 0 20px rgba(197, 160, 89, 0)' } },
+                        slideUp: { '0%': { transform: 'translateY(100px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0F172A; color: #E2E8F0; overflow-x: hidden; }
+        
+        /* ALTIN METİN EFEKTİ */
+        .text-gold-gradient {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* GİRİŞ EKRANI (ENVELOPE) */
+        #entrance-screen {
+            position: fixed; inset: 0; z-index: 100;
+            background: #000;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .envelope-hidden { transform: translateY(-100%); }
+
+        /* YILDIZLAR */
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--duration) infinite; opacity: 0.5; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1); } }
+    </style>
 </head>
 
-<body>
-  <div class="wrap">
+<body class="font-modern">
 
-    <div class="topbar">
-      <div class="badge" id="topBadge">NOT A PDF · A REAL WEBSITE INVITATION</div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap">
-        <button class="btn" id="musicBtn" type="button" aria-label="Müziği Aç/Kapat">
-          <span id="musicIcon">▶</span>
-          <span id="musicText">Müziği Aç</span>
+    <div id="entrance-screen">
+        <div class="text-center relative px-6">
+            <div class="absolute inset-0 bg-gold/10 blur-3xl rounded-full animate-pulse"></div>
+            
+            <h2 class="font-luxury text-gold-light text-2xl md:text-3xl mb-2 tracking-[0.3em]">YOU ARE INVITED</h2>
+            <p class="text-gray-400 text-sm mb-10 tracking-widest uppercase">To a Special Celebration</p>
+            
+            <button id="open-btn" class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-gold via-white to-gold rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-gold"></div>
+                <div class="relative px-12 py-5 bg-black rounded-full leading-none flex items-center">
+                    <span class="text-gold-light font-bold tracking-widest group-hover:text-white transition duration-200">OPEN INVITATION</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div id="main-content" class="relative min-h-screen bg-dark-gradient overflow-hidden">
+        
+        <div id="stars-container"></div>
+
+        <audio id="bgMusic" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_2733979727.mp3" type="audio/mpeg">
+        </audio>
+        <button id="music-btn" class="fixed bottom-6 right-6 z-50 bg-gold/20 backdrop-blur-md border border-gold/50 text-gold p-4 rounded-full shadow-lg hover:bg-gold hover:text-midnight transition animate-bounce-slow">
+            <i class="fa-solid fa-music"></i>
         </button>
 
-        <button class="btn" id="copyBtn" type="button" aria-label="Linki Kopyala">
-          🔗 Linki Kopyala
-        </button>
-      </div>
+        <div class="max-w-2xl mx-auto pt-20 pb-20 px-6 relative z-10">
+            
+            <div class="text-center mb-16 opacity-0" id="anim-header">
+                <p class="text-gold tracking-[0.5em] text-sm mb-4 uppercase">Join us for the 1st Birthday of</p>
+                <h1 class="font-luxury text-7xl md:text-9xl text-gold-gradient mb-4 drop-shadow-2xl">
+                    SOPHIA
+                </h1>
+                <div class="w-24 h-1 bg-gold-gradient mx-auto rounded-full mb-6"></div>
+                <p class="text-white/80 text-xl font-light italic">"A magical evening under the stars"</p>
+            </div>
+
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-gold/30 shadow-[0_0_50px_rgba(197,160,89,0.2)] mb-16 opacity-0" id="anim-video">
+                <div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent pointer-events-none z-10"></div>
+                <iframe class="w-full h-full object-cover" 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=DEMO&controls=0&rel=0&autoplay=1&mute=1" 
+                        title="Birthday Film" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 opacity-0" id="anim-details">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl text-center hover:border-gold/50 transition duration-500 group">
+                    <i class="fa-regular fa-clock text-4xl text-gold mb-4 group-hover:scale-110 transition"></i>
+                    <h3 class="font-luxury text-2xl text-white mb-2">When</h3>
+                    <p class="text-gray-300">Saturday, Oct 25th</p>
+                    <p class="text-gold font-bold">5:00 PM - 9:00 PM</p>
+                    <a href="https://calendar.google.com/calendar" target="_blank" class="inline-block mt-4 text-xs border border-gold/30 px-3 py-1 rounded text-gold hover:bg-gold hover:text-midnight transition">Add to Calendar</a>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl text-center hover:border-gold/50 transition duration-500 group">
+                    <i class="fa-solid fa-location-dot text-4xl text-gold mb-4 group-hover:scale-110 transition"></i>
+                    <h3 class="font-luxury text-2xl text-white mb-2">Where</h3>
+                    <p class="text-gray-300">The Grand Ballroom</p>
+                    <p class="text-gold font-bold">Luxury Hotel, NY</p>
+                    <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-xs border border-gold/30 px-3 py-1 rounded text-gold hover:bg-gold hover:text-midnight transition">View Map</a>
+                </div>
+            </div>
+
+            <div class="text-center mb-20 opacity-0" id="anim-countdown">
+                <h3 class="font-luxury text-2xl text-white mb-6">Countdown to Party</h3>
+                <div class="flex justify-center gap-4 md:gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl md:text-6xl font-luxury text-gold" id="days">00</div>
+                        <div class="text-xs uppercase tracking-widest text-gray-500">Days</div>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-luxury text-gray-600">:</div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-6xl font-luxury text-gold" id="hours">00</div>
+                        <div class="text-xs uppercase tracking-widest text-gray-500">Hours</div>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-luxury text-gray-600">:</div>
+                    <div class="text-center">
+                        <div class="text-4xl md:text-6xl font-luxury text-gold" id="minutes">00</div>
+                        <div class="text-xs uppercase tracking-widest text-gray-500">Mins</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative opacity-0" id="anim-rsvp">
+                <div class="absolute top-1/2 -left-3 w-6 h-6 bg-[#0F172A] rounded-full z-20"></div>
+                <div class="absolute top-1/2 -right-3 w-6 h-6 bg-[#0F172A] rounded-full z-20"></div>
+
+                <div class="bg-gradient-to-br from-gray-800 to-black border border-gold/40 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl">
+                    <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #C5A059 10px, #C5A059 11px);"></div>
+                    
+                    <div class="relative z-10 text-center">
+                        <h2 class="font-luxury text-4xl text-white mb-2">VIP PASS</h2>
+                        <p class="text-gold mb-8 uppercase tracking-widest text-sm">Please Confirm Your Attendance</p>
+
+                        <div id="success-msg" class="hidden py-10">
+                            <i class="fa-solid fa-check-circle text-5xl text-green-500 mb-4"></i>
+                            <h3 class="text-2xl text-white font-luxury">You are on the list!</h3>
+                            <p class="text-gray-400 mt-2">See you at the party.</p>
+                        </div>
+
+                        <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-5 text-left max-w-md mx-auto">
+                            
+                            <div>
+                                <input type="text" name="name" required placeholder="Guest Name(s)" 
+                                    class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold transition">
+                            </div>
+
+                            <div class="flex gap-4">
+                                <label class="flex-1 cursor-pointer">
+                                    <input type="radio" name="attendance" value="Attending" class="peer hidden" checked>
+                                    <div class="py-3 text-center border border-white/20 rounded-lg text-gray-400 peer-checked:bg-gold peer-checked:text-black peer-checked:border-gold transition font-bold">
+                                        Attending
+                                    </div>
+                                </label>
+                                <label class="flex-1 cursor-pointer">
+                                    <input type="radio" name="attendance" value="Regretfully Decline" class="peer hidden">
+                                    <div class="py-3 text-center border border-white/20 rounded-lg text-gray-400 peer-checked:bg-red-900/50 peer-checked:text-white peer-checked:border-red-500 transition font-bold">
+                                        Decline
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div id="guest-count-wrapper">
+                                <select name="guests" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold transition">
+                                    <option value="1" class="bg-gray-900">1 Guest</option>
+                                    <option value="2" class="bg-gray-900">2 Guests</option>
+                                    <option value="3" class="bg-gray-900">3 Guests</option>
+                                    <option value="4" class="bg-gray-900">4 Guests</option>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="_subject" value="New VIP RSVP" />
+                            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+                            <button type="submit" id="submit-btn" class="w-full bg-gold hover:bg-white hover:text-black text-black font-bold py-4 rounded-lg shadow-[0_0_20px_rgba(197,160,89,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transition duration-300 uppercase tracking-widest mt-4">
+                                Secure My Spot
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="text-center py-8 border-t border-white/5">
+            <p class="font-luxury text-gold text-lg">Sophia</p>
+            <p class="text-xs text-gray-600 mt-2">© 2025 Luxury Invitations</p>
+        </footer>
+
     </div>
 
-    <section class="hero">
-      <!-- Opsiyonel arka plan video -->
-      <video id="bgVideo" class="videoBg" playsinline muted loop preload="metadata">
-        <!-- İstersen: assets/bg.mp4 -->
-        <source src="assets/bg.mp4" type="video/mp4" />
-      </video>
-      <div class="heroOverlay"></div>
+    <script>
+        // --- 1. ENTRANCE ANIMATION & CONFETTI ---
+        const openBtn = document.getElementById('open-btn');
+        const entranceScreen = document.getElementById('entrance-screen');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('music-btn');
+        let musicPlaying = false;
 
-      <div class="heroInner">
-        <p class="badge" id="heroSmall">BIRTHDAY WEBSITE INVITATION</p>
-        <h1 class="h1" id="heroTitle">Mina 1 Yaşında</h1>
-        <p class="sub" id="heroSubtitle">Bu özel günü birlikte kutlayalım. Davetiyeniz bir PDF değil; gerçek bir web sayfası.</p>
+        openBtn.addEventListener('click', () => {
+            // 1. Zarfı yukarı kaydır
+            entranceScreen.classList.add('envelope-hidden');
+            
+            // 2. Müzik Başlat (Kullanıcı etkileşimi olduğu için izin verilir)
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+            }).catch(e => console.log("Otomatik oynatma engellendi"));
 
-        <div class="ctaRow">
-          <a class="btn" href="#rsvp">RSVP Gönder</a>
-          <a class="btn" href="#details">Detayları Gör</a>
-          <a class="btn" href="#gallery">Fotoğraf Albümü</a>
-        </div>
-      </div>
-    </section>
+            // 3. Konfeti Patlat (Lux Gold Renklerde)
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
 
-    <div class="cards">
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#C5A059', '#E5C580', '#FFFFFF'] // Altın ve Beyaz
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#C5A059', '#E5C580', '#FFFFFF']
+                });
 
-      <!-- COUNTDOWN -->
-      <section class="card half" id="countdown">
-        <h2>Geri Sayım</h2>
-        <div class="muted">Partiye kalan süre:</div>
-        <div class="countGrid" aria-live="polite">
-          <div class="pill"><strong id="d">—</strong><span class="muted">Gün</span></div>
-          <div class="pill"><strong id="h">—</strong><span class="muted">Saat</span></div>
-          <div class="pill"><strong id="m">—</strong><span class="muted">Dakika</span></div>
-          <div class="pill"><strong id="s">—</strong><span class="muted">Saniye</span></div>
-        </div>
-      </section>
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
 
-      <!-- DETAILS -->
-      <section class="card half" id="details">
-        <h2>Etkinlik Detayları</h2>
-
-        <div class="row">
-          <div class="kv"><div class="muted">Tarih</div><div id="dateText">—</div></div>
-          <div class="kv"><div class="muted">Saat</div><div id="timeText">—</div></div>
-          <div class="kv"><div class="muted">Konum</div><div id="placeText">—</div></div>
-          <div class="kv"><div class="muted">Not</div><div id="noteText" class="muted">İsterseniz hediye yerine fotoğraf köşemize küçük bir not bırakın.</div></div>
-        </div>
-
-        <p class="fineprint" id="timezoneHint"></p>
-      </section>
-
-      <!-- MAP -->
-      <section class="card half" id="map">
-        <h2>Harita</h2>
-        <p class="muted" style="margin:0 0 10px 0">Tek tıkla yol tarifi alabilirsiniz.</p>
-        <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <p class="fineprint"><a id="mapLink" href="#" target="_blank" rel="noopener">Google Maps’te aç</a></p>
-      </section>
-
-      <!-- RSVP -->
-      <section class="card half" id="rsvp">
-        <h2>RSVP</h2>
-        <p class="muted" style="margin:0">Katılım durumunuzu belirtirseniz çok seviniriz.</p>
-
-        <!-- Formspree örneği: action'ı değiştir -->
-        <form id="rsvpForm" method="POST">
-          <input name="name" placeholder="Ad Soyad" required />
-          <select name="status" required>
-            <option value="" selected disabled>Katılım Durumu</option>
-            <option value="attending">Geleceğim</option>
-            <option value="not_attending">Gelemeyeceğim</option>
-          </select>
-          <input name="guests" type="number" min="1" max="10" placeholder="Kişi sayısı (örn: 2)" />
-          <textarea name="message" placeholder="İsterseniz kısa bir not bırakın..."></textarea>
-
-          <button class="btn" type="submit">RSVP Gönder</button>
-          <div class="fineprint" id="rsvpStatus"></div>
-        </form>
-
-        <div class="fineprint">
-          Not: Standard paket için RSVP kayıtları, Formspree veya Google Form üzerinden toplanır.
-        </div>
-      </section>
-
-      <!-- GALLERY -->
-      <section class="card" id="gallery">
-        <h2>Fotoğraf Albümü</h2>
-        <p class="muted" style="margin:0">Anılarımızdan küçük bir seçki.</p>
-
-        <div class="gridGallery" id="galleryGrid"></div>
-        <p class="fineprint">Premium’da: daha büyük galeri, kategori, video klip bölümü ve özel animasyonlar eklenebilir.</p>
-      </section>
-
-      <!-- OPTIONAL VIDEO MOMENT -->
-      <section class="card" id="moment">
-        <h2>Video (Opsiyonel)</h2>
-        <p class="muted" style="margin:0 0 10px 0">İsterseniz 10–20 saniyelik kısa bir “moment” videosu eklenebilir.</p>
-        <video controls playsinline preload="metadata" style="width:100%; border-radius:14px; border:1px solid var(--line); background:#000">
-          <source src="assets/moment.mp4" type="video/mp4" />
-          Tarayıcınız video oynatmayı desteklemiyor.
-        </video>
-      </section>
-
-    </div>
-
-    <div class="footer">
-      One-time purchase · No subscription · Not a PDF · Delivered as a shareable link
-    </div>
-  </div>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotoğraf görüntüleyici">
-    <div class="lightboxContent">
-      <button class="x" id="closeLb" type="button" aria-label="Kapat">✕</button>
-      <img id="lbImg" alt="Fotoğraf" />
-    </div>
-  </div>
-
-  <!-- MUSIC (autoplay yok, butonla başlar) -->
-  <audio id="bgMusic" preload="metadata" loop>
-    <source src="assets/music.mp3" type="audio/mpeg" />
-  </audio>
-
-  <script>
-    // =========================
-    // CONFIG: müşteri bazlı sadece burayı değiştirmen yeter
-    // =========================
-    const CONFIG = {
-      eventTitle: "Mina 1 Yaşında",
-      heroSubtitle: "Bu özel günü birlikte kutlayalım. Davetiyeniz bir PDF değil; gerçek bir web sayfası.",
-      // Istanbul timezone örneği: ISO +03:00 ile
-      eventDateISO: "2026-02-15T15:00:00+03:00",
-      dateText: "15 Şubat 2026, Pazar",
-      timeText: "15:00 – 18:00",
-      placeText: "Kadıköy, İstanbul",
-      noteText: "Hediye yerine güzel bir anı notu bırakabilirsiniz.",
-      // Google Maps embed: en pratik yöntem: place search embed linki
-      mapEmbedUrl: "https://www.google.com/maps?q=Kad%C4%B1k%C3%B6y%20%C4%B0stanbul&output=embed",
-      mapOpenUrl: "https://www.google.com/maps?q=Kad%C4%B1k%C3%B6y%20%C4%B0stanbul",
-      // RSVP endpoint: Formspree örneği (kendi form url’in ile değiştir)
-      rsvpActionUrl: "https://formspree.io/f/XXXXXXXX",
-      // Galeri (örnek görseller)
-      galleryImages: [
-        "assets/gallery/1.jpg",
-        "assets/gallery/2.jpg",
-        "assets/gallery/3.jpg",
-        "assets/gallery/4.jpg",
-        "assets/gallery/5.jpg",
-        "assets/gallery/6.jpg",
-      ],
-      // Arka plan video opsiyon: dosya yoksa video elementini gizleriz
-      bgVideoSrc: "assets/bg.mp4"
-    };
-
-    // =========================
-    // INIT
-    // =========================
-    const $ = (id) => document.getElementById(id);
-
-    $("heroTitle").textContent = CONFIG.eventTitle;
-    $("heroSubtitle").textContent = CONFIG.heroSubtitle;
-
-    $("dateText").textContent = CONFIG.dateText;
-    $("timeText").textContent = CONFIG.timeText;
-    $("placeText").textContent = CONFIG.placeText;
-    $("noteText").textContent = CONFIG.noteText;
-
-    $("mapFrame").src = CONFIG.mapEmbedUrl;
-    $("mapLink").href = CONFIG.mapOpenUrl;
-
-    // RSVP action
-    const rsvpForm = $("rsvpForm");
-    rsvpForm.action = CONFIG.rsvpActionUrl;
-
-    // Timezone hint
-    const dt = new Date(CONFIG.eventDateISO);
-    $("timezoneHint").textContent = "Saat bilgisi yerel saat dilimine göre gösterilir. (Örnek: Europe/Istanbul)";
-
-    // Background video handling
-    const bgVideo = $("bgVideo");
-    if (CONFIG.bgVideoSrc && CONFIG.bgVideoSrc.trim().length > 0) {
-      const srcEl = bgVideo.querySelector("source");
-      srcEl.src = CONFIG.bgVideoSrc;
-      bgVideo.load();
-      // Video autoplay genelde muted olunca çalışır; olmazsa sorun değil.
-      bgVideo.play().catch(()=>{ /* sessizce geç */ });
-    } else {
-      bgVideo.style.display = "none";
-    }
-
-    // =========================
-    // COUNTDOWN
-    // =========================
-    const target = new Date(CONFIG.eventDateISO).getTime();
-    function tick(){
-      const now = Date.now();
-      let diff = Math.max(0, target - now);
-
-      const sec = Math.floor(diff / 1000);
-      const days = Math.floor(sec / 86400);
-      const hours = Math.floor((sec % 86400) / 3600);
-      const mins = Math.floor((sec % 3600) / 60);
-      const secs = sec % 60;
-
-      $("d").textContent = String(days);
-      $("h").textContent = String(hours).padStart(2,"0");
-      $("m").textContent = String(mins).padStart(2,"0");
-      $("s").textContent = String(secs).padStart(2,"0");
-    }
-    tick();
-    setInterval(tick, 1000);
-
-    // =========================
-    // MUSIC TOGGLE (user gesture required)
-    // =========================
-    const music = $("bgMusic");
-    const musicBtn = $("musicBtn");
-    let musicOn = false;
-
-    async function toggleMusic(){
-      if (!musicOn){
-        try{
-          await music.play();
-          musicOn = true;
-          $("musicIcon").textContent = "❚❚";
-          $("musicText").textContent = "Müziği Kapat";
-        }catch(e){
-          alert("Müzik başlatılamadı. Lütfen tekrar deneyin.");
-        }
-      } else {
-        music.pause();
-        musicOn = false;
-        $("musicIcon").textContent = "▶";
-        $("musicText").textContent = "Müziği Aç";
-      }
-    }
-    musicBtn.addEventListener("click", toggleMusic);
-
-    // =========================
-    // COPY LINK
-    // =========================
-    $("copyBtn").addEventListener("click", async () => {
-      try{
-        await navigator.clipboard.writeText(location.href);
-        $("copyBtn").textContent = "✅ Kopyalandı";
-        setTimeout(()=> $("copyBtn").textContent = "🔗 Linki Kopyala", 1600);
-      }catch(e){
-        prompt("Kopyalayın:", location.href);
-      }
-    });
-
-    // =========================
-    // RSVP SUBMIT (AJAX)
-    // =========================
-    const statusEl = $("rsvpStatus");
-    rsvpForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      statusEl.textContent = "Gönderiliyor...";
-
-      const formData = new FormData(rsvpForm);
-      try{
-        const res = await fetch(rsvpForm.action, {
-          method: "POST",
-          body: formData,
-          headers: { "Accept": "application/json" }
+            // 4. İçerik Animasyonlarını Tetikle (Sırasıyla)
+            setTimeout(() => document.getElementById('anim-header').classList.add('animate-slide-up'), 500);
+            setTimeout(() => document.getElementById('anim-video').classList.add('animate-slide-up'), 800);
+            setTimeout(() => document.getElementById('anim-details').classList.add('animate-slide-up'), 1100);
+            setTimeout(() => document.getElementById('anim-countdown').classList.add('animate-slide-up'), 1400);
+            setTimeout(() => document.getElementById('anim-rsvp').classList.add('animate-slide-up'), 1700);
         });
 
-        if (res.ok){
-          statusEl.textContent = "Teşekkürler. RSVP alındı.";
-          rsvpForm.reset();
-        } else {
-          statusEl.textContent = "Gönderim başarısız. Lütfen tekrar deneyin.";
+        // --- 2. STAR BACKGROUND GENERATOR ---
+        const starsContainer = document.getElementById('stars-container');
+        for(let i=0; i<50; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const size = Math.random() * 3;
+            const duration = Math.random() * 3 + 2;
+            
+            star.style.left = x + '%';
+            star.style.top = y + '%';
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.setProperty('--duration', duration + 's');
+            
+            starsContainer.appendChild(star);
         }
-      }catch(err){
-        statusEl.textContent = "Bağlantı hatası. Lütfen tekrar deneyin.";
-      }
-    });
 
-    // =========================
-    // GALLERY + LIGHTBOX
-    // =========================
-    const grid = $("galleryGrid");
-    CONFIG.galleryImages.forEach((src) => {
-      const div = document.createElement("div");
-      div.className = "thumb";
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = "Galeri";
-      div.appendChild(img);
-      div.addEventListener("click", () => openLb(src));
-      grid.appendChild(div);
-    });
+        // --- 3. MUSIC TOGGLE ---
+        musicBtn.addEventListener('click', () => {
+            if(musicPlaying) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                musicBtn.classList.remove('animate-bounce-slow');
+            } else {
+                bgMusic.play();
+                musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+                musicBtn.classList.add('animate-bounce-slow');
+            }
+            musicPlaying = !musicPlaying;
+        });
 
-    const lb = $("lightbox");
-    const lbImg = $("lbImg");
-    function openLb(src){
-      lbImg.src = src;
-      lb.classList.add("open");
-    }
-    function closeLb(){
-      lb.classList.remove("open");
-      lbImg.src = "";
-    }
-    $("closeLb").addEventListener("click", closeLb);
-    lb.addEventListener("click", (e)=> { if (e.target === lb) closeLb(); });
-    document.addEventListener("keydown", (e)=> { if (e.key === "Escape") closeLb(); });
-  </script>
+        // --- 4. COUNTDOWN TIMER ---
+        const targetDate = new Date("2025-10-25T17:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) return;
+
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
+
+        // --- 5. RSVP FORM LOGIC ---
+        const rsvpForm = document.getElementById('rsvpForm');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMsg = document.getElementById('success-msg');
+        const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+        const guestWrapper = document.getElementById('guest-count-wrapper');
+
+        // Gelemiyorum derse kişi sayısını gizle
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if(e.target.value === 'Regretfully Decline') {
+                    guestWrapper.style.display = 'none';
+                } else {
+                    guestWrapper.style.display = 'block';
+                }
+            });
+        });
+
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "PROCESSING...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(rsvpForm.action, {
+                    method: rsvpForm.method,
+                    body: new FormData(rsvpForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    rsvpForm.classList.add('hidden');
+                    successMsg.classList.remove('hidden');
+                    // Başarı konfetisi
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#C5A059', '#FFFFFF'] });
+                } else {
+                    alert("Error sending RSVP. Please try again.");
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                }
+            } catch {
+                alert("Network error.");
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>
+
