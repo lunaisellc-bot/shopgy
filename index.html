@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY | Global Digital Agency</title>
-  <meta name="description" content="Etsy integrations, premium wedding websites, and corporate design solutions." />
+  <title>VitrinY | Global Creative Agency</title>
+  <meta name="description" content="Premium Etsy solutions, digital invitations for weddings & VIP events, corporate web design." />
   
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
@@ -16,23 +15,19 @@
       theme: {
         extend: {
           fontFamily: {
-            heading: ['Space Grotesk', 'sans-serif'],
-            sans: ['Inter', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif'],
             serif: ['Playfair Display', 'serif']
           },
           colors: {
-            neon: '#00ff9d',
-            purple: '#bd00ff',
-            dark: '#050505',
-            surface: '#0F1115'
+            neon: '#00DC82',
+            purple: '#7B61FF',
+            gold: '#FFD700',
+            dark: '#02040a',
+            surface: '#0c0e14'
           },
-          animation: {
-            'float': 'float 8s ease-in-out infinite',
-            'fade-in-up': 'fadeInUp 1s ease-out forwards',
-          },
-          keyframes: {
-            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
-            fadeInUp: { '0%': { opacity: 0, transform: 'translateY(40px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } }
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'hero-glow': 'conic-gradient(from 90deg at 50% 50%, #000000 0%, #1a1a1a 50%, #000000 100%)',
           }
         }
       }
@@ -40,191 +35,377 @@
   </script>
 
   <style>
-    html, body { background-color: #050505; color: white; -webkit-font-smoothing: antialiased; }
-    .bg-noise { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); }
-    .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
+    body { background-color: #02040a; color: white; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #02040a; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00DC82; }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    .text-glow { text-shadow: 0 0 20px rgba(0, 220, 130, 0.3); }
+    .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.2); }
+    
+    /* Typewriter Cursor */
+    .typing-cursor::after { content: '|'; animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* Marquee */
+    .marquee-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   </style>
 </head>
 
-<body class="font-sans bg-noise">
+<body class="font-sans selection:bg-neon selection:text-black">
 
-  <nav class="fixed w-full z-50 top-0 bg-dark/80 backdrop-blur-xl border-b border-white/5">
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-purple/10 rounded-full blur-[120px] mix-blend-screen animate-pulse" style="animation-duration: 4s;"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-neon/5 rounded-full blur-[120px] mix-blend-screen animate-pulse" style="animation-duration: 7s;"></div>
+  </div>
+
+  <nav class="fixed w-full z-50 top-0 bg-dark/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-      <a href="#" class="flex items-center gap-2 group">
-        <div class="w-10 h-10 bg-gradient-to-br from-neon to-emerald-900 rounded-lg flex items-center justify-center text-black font-bold text-xl">V</div>
-        <span class="font-heading text-lg font-bold tracking-tight">VitrinY</span>
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-white text-black rounded-xl flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(255,255,255,0.3)] group-hover:rotate-12 transition">V</div>
+        <span class="text-xl font-bold tracking-tight">VitrinY</span>
       </a>
 
-      <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-400">
-        <a href="#etsy-section" class="hover:text-neon transition" data-i18n="nav_etsy">E-Commerce</a>
-        <a href="#wedding-section" class="hover:text-purple-400 transition" data-i18n="nav_wedding">Events</a>
-        <a href="#corporate-section" class="hover:text-blue-400 transition" data-i18n="nav_corp">Corporate</a>
-        <a href="#blog" class="hover:text-white transition">Blog</a>
+      <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+        <a href="#services" class="hover:text-neon transition" data-i18n="nav_solutions">Solutions</a>
+        <a href="#stats" class="hover:text-white transition" data-i18n="nav_ref">References</a>
+        <a href="#blog" class="hover:text-white transition" data-i18n="nav_blog">Insights</a>
       </div>
 
       <div class="flex items-center gap-4">
-        <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-500 border border-white/10 px-3 py-2 rounded hover:text-white transition">EN</button>
-        
-        <a href="https://wa.me/905419787726" class="hidden sm:flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:scale-105">
-            <span data-i18n="nav_cta">Get Quote</span>
+        <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-2 rounded-lg hover:text-white hover:border-white/30 transition">EN</button>
+        <a href="https://wa.me/905419787726" class="bg-white text-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:scale-105 shadow-lg shadow-white/10" data-i18n="nav_talk">
+          Let's Talk
         </a>
       </div>
     </div>
   </nav>
 
-  <header class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden text-center">
-    <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-purple/20 blur-[150px] rounded-full animate-float"></div>
-    <div class="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-neon/10 blur-[150px] rounded-full animate-float" style="animation-delay: 2s"></div>
-    
-    <div class="max-w-5xl mx-auto relative z-10">
-        <div class="inline-block mb-6 animate-fade-in-up">
-            <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase" data-i18n="hero_badge">
-                Aesthetics · Tech · Strategy
-            </span>
-        </div>
-        
-        <h1 class="font-heading text-6xl md:text-8xl font-bold leading-[0.9] mb-8 tracking-tighter animate-fade-in-up" style="animation-delay: 0.2s">
-            <span data-i18n="hero_t1">No Place for Average</span> <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple" data-i18n="hero_t2">In The Digital World.</span>
-        </h1>
+  <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+    <div class="mb-6 reveal">
+        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+            Beyond Typical Agencies
+        </span>
+    </div>
 
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up" style="animation-delay: 0.4s" data-i18n="hero_sub">
-            VitrinY doesn't just give you a website. We design an identity, a working sales machine, and an unforgettable experience.
-        </p>
+    <h1 class="text-5xl md:text-8xl font-extrabold mb-8 tracking-tighter leading-[1.1] reveal" style="transition-delay: 100ms;">
+        <span data-i18n="hero_we_build">We Build</span> <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple typing-cursor" id="typing-text">Digital Empires</span>
+    </h1>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up" style="animation-delay: 0.6s">
-            <a href="#etsy-section" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:scale-105 transition flex items-center justify-center gap-3">
-                <i class="fa-solid fa-shop"></i> <span data-i18n="btn_seller">I'm a Seller</span>
-            </a>
-            <a href="#wedding-section" class="px-8 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-500 transition flex items-center justify-center gap-3">
-                <i class="fa-solid fa-heart"></i> <span data-i18n="btn_wedding">I'm Getting Married</span>
-            </a>
-        </div>
+    <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-light reveal" style="transition-delay: 200ms;" data-i18n="hero_sub">
+        Whether you are an Etsy seller, a couple in love, or a visionary brand. 
+        We turn your story into a high-end digital experience.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 reveal" style="transition-delay: 300ms;">
+        <a href="#services" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(0,220,130,0.4)] flex items-center justify-center gap-2">
+            <i class="fa-solid fa-bolt"></i> <span data-i18n="btn_explore">Explore Solutions</span>
+        </a>
+        <a href="portfolio.html" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center justify-center gap-2">
+            <span data-i18n="btn_portfolio">View Portfolio</span>
+        </a>
+    </div>
+
+    <div class="absolute bottom-10 animate-bounce text-gray-600">
+        <i class="fa-solid fa-arrow-down-long"></i>
     </div>
   </header>
 
-  <section id="etsy-section" class="py-32 border-t border-white/5 relative bg-gradient-to-b from-dark to-[#0a110f]">
-      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          <div class="order-2 lg:order-1 reveal">
-              <span class="text-neon font-bold tracking-widest text-xs uppercase mb-4 block" data-i18n="etsy_badge">E-Commerce Revolution</span>
-              <h2 class="font-heading text-4xl md:text-6xl font-bold leading-tight mb-6" data-i18n="etsy_title">
-                  Turn Your Etsy Shop <br> Into an Empire.
-              </h2>
-              <p class="text-gray-400 text-lg mb-8 leading-relaxed" data-i18n="etsy_desc">
-                  Don't get stuck in a marketplace. With our official API integration, we pull your products, reviews, and photos to build your own commission-free professional brand site.
-              </p>
-              <a href="etsy.html" class="px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-neon transition inline-flex items-center gap-2">
-                  <span data-i18n="btn_examine">Examine System</span> <i class="fa-solid fa-arrow-right"></i>
-              </a>
-          </div>
-          <div class="order-1 lg:order-2 relative reveal delay-200">
-              <img src="assets/img/preview-art.jpg.png" class="rounded-2xl border border-white/10 shadow-2xl shadow-neon/10 w-full">
-          </div>
-      </div>
-  </section>
+  <div class="w-full border-y border-white/5 bg-white/[0.02] py-6 overflow-hidden relative z-10">
+    <div class="marquee-track flex gap-16 items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-etsy text-3xl"></i> Etsy Partner</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-google text-3xl"></i> Google Cloud</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-aws text-3xl"></i> AWS</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-stripe text-3xl"></i> Stripe</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-meta text-3xl"></i> Meta Ads</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-spotify text-3xl"></i> Spotify API</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-etsy text-3xl"></i> Etsy Partner</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-google text-3xl"></i> Google Cloud</span>
+        <span class="text-xl font-bold flex items-center gap-2"><i class="fa-brands fa-aws text-3xl"></i> AWS</span>
+    </div>
+  </div>
 
-  <section id="wedding-section" class="py-32 border-t border-white/5 relative bg-[#0F0510]">
-      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          <div class="reveal relative">
-             <div class="rounded-full overflow-hidden border border-purple-500/20 shadow-2xl shadow-purple-500/10 aspect-square max-w-md mx-auto relative group">
-                  <img src="assets/img/preview-ultra.jpg.png" class="w-full h-full object-cover transition duration-1000 grayscale group-hover:grayscale-0">
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <a href="digital-invitation.html" class="w-20 h-20 bg-white text-black rounded-full flex items-center justify-center text-2xl hover:scale-110 transition"><i class="fa-solid fa-play"></i></a>
+  <section id="services" class="py-32 max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 reveal">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="serv_title">Choose Your Path</h2>
+          <p class="text-gray-500" data-i18n="serv_sub">We craft dedicated solutions for different needs.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+          
+          <div class="md:col-span-2 relative group overflow-hidden rounded-3xl bg-surface border border-white/10 card-hover reveal">
+              <div class="absolute inset-0 bg-gradient-to-br from-neon/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+              <div class="p-10 relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                      <div class="w-12 h-12 bg-neon/10 text-neon rounded-xl flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-store"></i></div>
+                      <h3 class="text-3xl font-bold mb-2 text-white" data-i18n="card_etsy_t">Etsy Sellers</h3>
+                      <p class="text-gray-400 max-w-md" data-i18n="card_etsy_d">Don't just sell, build a brand. Sync your Etsy inventory to your own domain. 0% Commission fees.</p>
+                  </div>
+                  <div class="mt-8">
+                      <a href="etsy.html" class="inline-flex items-center gap-2 text-sm font-bold text-neon uppercase tracking-widest hover:text-white transition">
+                          <span data-i18n="btn_details">View System</span> <i class="fa-solid fa-arrow-right"></i>
+                      </a>
                   </div>
               </div>
+              <img src="assets/img/preview-art.jpg.png" class="absolute right-[-20px] bottom-[-20px] w-1/2 rounded-tl-3xl shadow-2xl transition duration-500 group-hover:scale-105 group-hover:-translate-x-2 opacity-80" alt="Etsy">
           </div>
-          <div class="reveal delay-200 text-center lg:text-left">
-              <span class="text-purple-400 font-bold tracking-widest text-xs uppercase mb-4 block" data-i18n="wed_badge">Exclusive Events</span>
-              <h2 class="font-serif italic text-4xl md:text-6xl font-bold leading-tight mb-6" data-i18n="wed_title">
-                  Forget Paper. <br> Live Your Story.
-              </h2>
-              <p class="text-gray-400 text-lg mb-8 leading-relaxed font-serif" data-i18n="wed_desc">
-                  Your wedding cannot be just a PDF. We design a special website with music, animation, photo gallery, time capsule, and RSVP forms.
-              </p>
-              <a href="digital-invitation.html" class="px-8 py-4 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition inline-flex items-center gap-2 shadow-lg shadow-purple-900/40">
-                  <span data-i18n="btn_details">View All Features</span> <i class="fa-solid fa-arrow-right"></i>
-              </a>
+
+          <div class="relative group overflow-hidden rounded-3xl bg-[#1a0520] border border-white/10 card-hover reveal transition-delay-100">
+              <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+              <div class="p-8 relative z-10">
+                  <div class="w-12 h-12 bg-purple/20 text-purple rounded-xl flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-rings-wedding"></i></div>
+                  <h3 class="text-2xl font-serif italic mb-2 text-white" data-i18n="card_wed_t">Weddings</h3>
+                  <p class="text-gray-400 text-sm mb-6" data-i18n="card_wed_d">Elegant websites with RSVP & Music.</p>
+                  <a href="digital-invitation.html" class="px-6 py-3 bg-purple text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition" data-i18n="btn_view">View</a>
+              </div>
+          </div>
+
+          <div class="relative group overflow-hidden rounded-3xl bg-surface border border-white/10 card-hover reveal transition-delay-200">
+              <div class="absolute top-0 right-0 p-20 bg-gold/10 blur-[60px]"></div>
+              <div class="p-8 relative z-10">
+                  <div class="w-12 h-12 bg-gold/10 text-gold rounded-xl flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-martini-glass-citrus"></i></div>
+                  <h3 class="text-2xl font-bold mb-2 text-white" data-i18n="card_vip_t">VIP & Party</h3>
+                  <p class="text-gray-400 text-sm mb-6" data-i18n="card_vip_d">Not just for kids. Password protected invites for private adult parties, launches & galas.</p>
+                  <a href="digital-invitation.html" class="text-gold border-b border-gold text-xs font-bold uppercase tracking-widest hover:text-white transition" data-i18n="btn_explore">Explore</a>
+              </div>
+          </div>
+
+          <div class="md:col-span-2 relative group overflow-hidden rounded-3xl bg-surface border border-white/10 card-hover reveal transition-delay-300">
+             <div class="absolute inset-0 bg-gradient-to-tl from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+              <div class="p-10 relative z-10 grid md:grid-cols-2 gap-8 items-center h-full">
+                  <div>
+                      <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-building"></i></div>
+                      <h3 class="text-3xl font-bold mb-2 text-white" data-i18n="card_corp_t">Corporate Identity</h3>
+                      <p class="text-gray-400 mb-6" data-i18n="card_corp_d">Premium websites for Architects, Lawyers, and Furniture Brands. Catalog mode included.</p>
+                      <a href="demo-business.html" class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 uppercase tracking-widest hover:text-white transition">
+                          <span data-i18n="btn_demo">View Corporate Demo</span> <i class="fa-solid fa-arrow-right"></i>
+                      </a>
+                  </div>
+                  <img src="assets/img/preview-business.jpg.png" class="rounded-xl shadow-2xl border border-white/10 rotate-3 group-hover:rotate-0 transition duration-500" alt="Corporate">
+              </div>
           </div>
       </div>
   </section>
 
-  <section id="corporate-section" class="py-32 border-t border-white/5 bg-dark">
-      <div class="max-w-7xl mx-auto px-6 text-center reveal">
-          <span class="text-blue-400 font-bold tracking-widest text-xs uppercase mb-4 block" data-i18n="corp_badge">Industrial & Corporate</span>
-          <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6" data-i18n="corp_title">Digital HQ for Your Business</h2>
-          <p class="text-gray-400 max-w-2xl mx-auto mb-12" data-i18n="corp_desc">Furniture, Construction, Architecture. When a client visits your site, they must say "This company knows their business".</p>
-          <a href="demo-business.html" class="text-blue-400 font-bold border-b border-blue-400 pb-1 hover:text-white transition" data-i18n="btn_demo">View Corporate Demo</a>
+  <section id="stats" class="py-24 bg-dark border-y border-white/5 relative">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          <div class="reveal">
+              <div class="text-5xl font-bold text-white mb-2 counter" data-target="15000">0</div>
+              <div class="text-xs text-gray-500 uppercase tracking-widest" data-i18n="stat_1">Products Synced</div>
+          </div>
+          <div class="reveal transition-delay-100">
+              <div class="text-5xl font-bold text-neon mb-2 counter" data-target="99">0%</div>
+              <div class="text-xs text-gray-500 uppercase tracking-widest" data-i18n="stat_2">Uptime</div>
+          </div>
+          <div class="reveal transition-delay-200">
+              <div class="text-5xl font-bold text-white mb-2 counter" data-target="480">0</div>
+              <div class="text-xs text-gray-500 uppercase tracking-widest" data-i18n="stat_3">Happy Clients</div>
+          </div>
+          <div class="reveal transition-delay-300">
+              <div class="text-5xl font-bold text-purple mb-2 counter" data-target="5">0</div>
+              <div class="text-xs text-gray-500 uppercase tracking-widest" data-i18n="stat_4">Global Offices</div>
+          </div>
       </div>
   </section>
 
-  <footer class="bg-black py-16 border-t border-white/10 text-center text-xs text-gray-600">
-      <p>&copy; 2025 VitrinY LLC. All rights reserved.</p>
+  <section id="blog" class="py-32 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end reveal">
+          <div>
+              <h2 class="text-4xl font-bold mb-2" data-i18n="blog_title">Insights</h2>
+              <p class="text-gray-500" data-i18n="blog_sub">Strategy, Design & Mindset.</p>
+          </div>
+          <div class="flex gap-2">
+              <button class="w-10 h-10 rounded-full border border-white/10 hover:bg-white hover:text-black transition flex items-center justify-center"><i class="fa-solid fa-chevron-left"></i></button>
+              <button class="w-10 h-10 rounded-full border border-white/10 hover:bg-white hover:text-black transition flex items-center justify-center"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+      </div>
+
+      <div class="flex gap-6 overflow-x-auto px-6 pb-12 snap-x snap-mandatory max-w-[100vw] scrollbar-hide">
+          
+          <a href="blog-trends.html" class="min-w-[300px] md:min-w-[400px] snap-center group relative rounded-2xl overflow-hidden aspect-[4/3] reveal">
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60">
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 p-8">
+                  <span class="text-[10px] bg-neon text-black px-2 py-1 rounded font-bold uppercase mb-3 inline-block">TRENDS</span>
+                  <h3 class="text-2xl font-bold leading-tight group-hover:text-neon transition">2026 E-Commerce Vision</h3>
+              </div>
+          </a>
+
+          <a href="blog-mindset.html" class="min-w-[300px] md:min-w-[400px] snap-center group relative rounded-2xl overflow-hidden aspect-[4/3] reveal transition-delay-100">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <div class="absolute bottom-0 p-8">
+                <span class="text-[10px] bg-purple text-white px-2 py-1 rounded font-bold uppercase mb-3 inline-block">MINDSET</span>
+                <h3 class="text-2xl font-bold leading-tight group-hover:text-purple transition">Entrepreneur Psychology</h3>
+            </div>
+        </a>
+
+        <a href="blog-strategy.html" class="min-w-[300px] md:min-w-[400px] snap-center group relative rounded-2xl overflow-hidden aspect-[4/3] reveal transition-delay-200">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <div class="absolute bottom-0 p-8">
+                <span class="text-[10px] bg-blue-500 text-white px-2 py-1 rounded font-bold uppercase mb-3 inline-block">STRATEGY</span>
+                <h3 class="text-2xl font-bold leading-tight group-hover:text-blue-400 transition">High Conversion Design</h3>
+            </div>
+        </a>
+      </div>
+  </section>
+
+  <footer class="bg-surface border-t border-white/5 pt-20 pb-10">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16 text-sm text-gray-500">
+          <div class="col-span-1 md:col-span-2">
+              <h3 class="text-2xl font-bold text-white mb-6">VitrinY</h3>
+              <p class="max-w-xs mb-6" data-i18n="footer_desc">Wyoming based digital agency. We combine art with code to build sustainable online businesses.</p>
+              <div class="flex gap-4">
+                  <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram text-xl"></i></a>
+                  <a href="#" class="hover:text-white"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                  <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter text-xl"></i></a>
+              </div>
+          </div>
+          <div>
+              <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-xs">Menu</h4>
+              <ul class="space-y-3">
+                  <li><a href="etsy.html" class="hover:text-neon transition">Etsy Integration</a></li>
+                  <li><a href="digital-invitation.html" class="hover:text-purple transition">Digital Events</a></li>
+                  <li><a href="portfolio.html" class="hover:text-white transition">Portfolio</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-xs">Legal</h4>
+              <ul class="space-y-3">
+                  <li><a href="legal.html" class="hover:text-white transition">Privacy Policy</a></li>
+                  <li><a href="legal.html" class="hover:text-white transition">Terms of Service</a></li>
+                  <li><a href="mailto:support@vitriny.com" class="hover:text-white transition">Contact Support</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="text-center text-xs text-gray-700 border-t border-white/5 pt-8">
+          &copy; 2025 VitrinY LLC. All rights reserved.
+      </div>
   </footer>
 
   <script>
+    // 1. SCROLL REVEAL
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 2. COUNTER ANIMATION
+    const counters = document.querySelectorAll('.counter');
+    let counted = false;
+    
+    const countObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !counted) {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; 
+                const increment = target / (duration / 16);
+                let current = 0;
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current) + (counter.innerText.includes('%') ? '%' : '+');
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target + (counter.innerText.includes('%') ? '%' : '+');
+                    }
+                };
+                updateCount();
+            });
+            counted = true;
+        }
+    });
+    if(document.querySelector('#stats')) countObserver.observe(document.querySelector('#stats'));
+
+    // 3. TYPEWRITER EFFECT
+    const typingElement = document.getElementById('typing-text');
+    const words = ["Digital Empires", "Love Stories", "Global Brands"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function typeEffect() {
+        const currentWord = words[wordIndex];
+        if (isDeleting) {
+            typingElement.textContent = currentWord.substring(0, charIndex--);
+        } else {
+            typingElement.textContent = currentWord.substring(0, charIndex++);
+        }
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            setTimeout(() => isDeleting = true, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+        }
+        setTimeout(typeEffect, isDeleting ? 100 : 200);
+    }
+    typeEffect();
+
+    // 4. BILINGUAL SYSTEM
     const translations = {
       en: {
-        nav_etsy: "E-Commerce", nav_wedding: "Events", nav_corp: "Corporate", nav_cta: "Get Quote",
-        hero_badge: "Aesthetics · Tech · Strategy",
-        hero_t1: "No Place for Average", hero_t2: "In The Digital World.",
-        hero_sub: "VitrinY doesn't just give you a website. We design an identity, a working sales machine, and an unforgettable experience.",
-        btn_seller: "I'm a Seller", btn_wedding: "I'm Getting Married",
-        etsy_badge: "E-Commerce Revolution", etsy_title: "Turn Your Etsy Shop <br> Into an Empire.",
-        etsy_desc: "Don't get stuck in a marketplace. With our official API integration, we pull your products, reviews, and photos to build your own commission-free professional brand site.",
-        btn_examine: "Examine System",
-        wed_badge: "Exclusive Events", wed_title: "Forget Paper. <br> Live Your Story.",
-        wed_desc: "Your wedding cannot be just a PDF. We design a special website with music, animation, photo gallery, time capsule, and RSVP forms.",
-        btn_details: "View All Features",
-        corp_badge: "Industrial & Corporate", corp_title: "Digital HQ for Your Business",
-        corp_desc: "Furniture, Construction, Architecture. When a client visits your site, they must say 'This company knows their business'.",
-        btn_demo: "View Corporate Demo"
+        nav_solutions: "Solutions", nav_ref: "References", nav_blog: "Insights", nav_talk: "Let's Talk",
+        hero_we_build: "We Build", hero_sub: "Whether you are an Etsy seller, a couple in love, or a visionary brand. We turn your story into a high-end digital experience.",
+        btn_explore: "Explore Solutions", btn_portfolio: "View Portfolio",
+        serv_title: "Choose Your Path", serv_sub: "We craft dedicated solutions for different needs.",
+        card_etsy_t: "Etsy Sellers", card_etsy_d: "Don't just sell, build a brand. Sync your Etsy inventory to your own domain. 0% Commission fees.", btn_details: "View System",
+        card_wed_t: "Weddings", card_wed_d: "Elegant websites with RSVP & Music.", btn_view: "View",
+        card_vip_t: "VIP & Party", card_vip_d: "Not just for kids. Password protected invites for private adult parties, launches & galas.", btn_explore: "Explore",
+        card_corp_t: "Corporate Identity", card_corp_d: "Premium websites for Architects, Lawyers, and Furniture Brands. Catalog mode included.", btn_demo: "View Corporate Demo",
+        stat_1: "Products Synced", stat_2: "Uptime", stat_3: "Happy Clients", stat_4: "Global Offices",
+        blog_title: "Insights", blog_sub: "Strategy, Design & Mindset.",
+        footer_desc: "Wyoming based digital agency. We combine art with code to build sustainable online businesses."
       },
       tr: {
-        nav_etsy: "E-Ticaret", nav_wedding: "Davetiye", nav_corp: "Kurumsal", nav_cta: "Teklif Al",
-        hero_badge: "Estetik · Teknoloji · Strateji",
-        hero_t1: "Dijital Dünyada", hero_t2: "Sıradanlığa Yer Yok.",
-        hero_sub: "VitrinY size sadece bir site yapmaz. Size bir kimlik, çalışan bir satış makinesi ve unutulmaz bir deneyim tasarlar.",
-        btn_seller: "Satıcıyım", btn_wedding: "Evleniyorum",
-        etsy_badge: "E-Ticaret Devrimi", etsy_title: "Etsy Mağazanızı <br> İmparatorluğa Dönüştürün.",
-        etsy_desc: "Sadece bir pazar yerinde sıkışıp kalmayın. Resmi API entegrasyonumuz ile ürünlerinizi çekiyor; size ait, komisyonsuz, profesyonel bir marka sitesi kuruyoruz.",
-        btn_examine: "Sistemi İncele",
-        wed_badge: "Özel Davetiyeler", wed_title: "Kağıtları Unutun. <br> Hikayenizi Yaşatın.",
-        wed_desc: "Düğününüz sıradan bir PDF olamaz. Müzikli, animasyonlu, fotoğraf galerili, zaman kapsüllü ve LCV formlu özel bir web sitesi tasarlıyoruz.",
-        btn_details: "Tüm Özellikleri Gör",
-        corp_badge: "Endüstriyel & Kurumsal", corp_title: "İşletmenizin Dijital Genel Merkezi",
-        corp_desc: "Mobilya, İnşaat, Mimarlık. Müşteriniz sitenize girdiğinde 'Bu firma işini biliyor' demeli. Katalog modu ve galeri odaklı yapılar.",
-        btn_demo: "Kurumsal Demoyu Gör"
+        nav_solutions: "Çözümler", nav_ref: "Referanslar", nav_blog: "İçgörüler", nav_talk: "Projeye Başla",
+        hero_we_build: "Biz İnşa Ediyoruz:", hero_sub: "İster Etsy satıcısı olun, ister evlenecek bir çift, ister vizyoner bir marka. Hikayenizi üst düzey bir dijital deneyime dönüştürüyoruz.",
+        btn_explore: "Hizmetleri Keşfet", btn_portfolio: "Portfolyo Gör",
+        serv_title: "Yolunu Seç", serv_sub: "Farklı ihtiyaçlar için özelleştirilmiş çözümler üretiyoruz.",
+        card_etsy_t: "Etsy Satıcıları", card_etsy_d: "Sadece satmayın, marka olun. Etsy envanterinizi kendi alan adınıza taşıyın. %0 Komisyon.", btn_details: "Sistemi İncele",
+        card_wed_t: "Düğün", card_wed_d: "Müzikli ve LCV özellikli zarif siteler.", btn_view: "İncele",
+        card_vip_t: "VIP & Parti", card_vip_d: "Sadece çocuklar için değil. Yetişkin partileri, lansmanlar ve galalar için şifre korumalı özel davetiyeler.", btn_explore: "Keşfet",
+        card_corp_t: "Kurumsal Kimlik", card_corp_d: "Mimarlar, Avukatlar ve Mobilya Markaları için premium siteler. Katalog modu dahil.", btn_demo: "Kurumsal Demo",
+        stat_1: "Ürün Eşleşti", stat_2: "Çalışma Süresi", stat_3: "Mutlu Müşteri", stat_4: "Global Ofis",
+        blog_title: "Blog & İçgörü", blog_sub: "Strateji, Tasarım ve Zihniyet.",
+        footer_desc: "Wyoming merkezli dijital ajans. Sürdürülebilir online işler kurmak için sanatı kodla birleştiriyoruz."
       }
     };
 
-    // Detect Language
     let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
     
     function applyLang() {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[currentLang][key]) {
-                el.innerHTML = translations[currentLang][key];
-            }
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
         });
         document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+        
+        // Update Typewriter words based on lang
+        // Note: Simple restart logic requires clearing timeout, keeping it simple here.
     }
 
     function toggleLang() {
         currentLang = currentLang === 'en' ? 'tr' : 'en';
         localStorage.setItem('lang', currentLang);
         applyLang();
+        location.reload(); // Reload to refresh typewriter text cleanly
     }
 
-    // Init
     applyLang();
-
-    // Scroll Reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+
 </body>
 </html>
