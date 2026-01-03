@@ -58,7 +58,7 @@
     .panel-strong{ background: var(--panel2); }
     .soft-line{ border-color: var(--line); }
 
-    /* GOLD SHINE (kept for VIP; looks OK on other themes too) */
+    /* GOLD SHINE */
     .text-gold-shine {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -75,6 +75,7 @@
       position: fixed; inset: 0; z-index: 110; background: #000;
       display: flex; align-items: center; justify-content: center;
       transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
     }
     .envelope-hidden { transform: translateY(-100%); }
 
@@ -438,7 +439,7 @@
       <div class="space-y-4">
         <details class="group panel border soft-line rounded-lg overflow-hidden">
           <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-car-side mr-2 accent-text/70"></i>Parking / Arrival</span>
+            <span><i class="fa-solid fa-car-side mr-2" style="color: color-mix(in srgb, var(--accent) 70%, transparent);"></i>Parking / Arrival</span>
             <span class="accent-text group-open:rotate-180 transition">+</span>
           </summary>
           <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="parkingInfo"></div>
@@ -446,7 +447,7 @@
 
         <details class="group panel border soft-line rounded-lg overflow-hidden">
           <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-phone mr-2 accent-text/70"></i>Contact</span>
+            <span><i class="fa-solid fa-phone mr-2" style="color: color-mix(in srgb, var(--accent) 70%, transparent);"></i>Contact</span>
             <span class="accent-text group-open:rotate-180 transition">+</span>
           </summary>
           <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="contactInfo"></div>
@@ -454,7 +455,7 @@
 
         <details class="group panel border soft-line rounded-lg overflow-hidden">
           <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-circle-info mr-2 accent-text/70"></i>Notes / Policy</span>
+            <span><i class="fa-solid fa-circle-info mr-2" style="color: color-mix(in srgb, var(--accent) 70%, transparent);"></i>Notes / Policy</span>
             <span class="accent-text group-open:rotate-180 transition">+</span>
           </summary>
           <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="policyInfo"></div>
@@ -469,7 +470,9 @@
       <div class="text-center mb-12">
         <h2 class="font-luxury text-3xl text-gold-shine">The Evening Program</h2>
       </div>
-      <div class="relative border-l accent-border ml-6 md:ml-1/2 md:translate-x-[-1px]" id="timeline"></div>
+
+      <!-- FIX: Tailwind CDN friendly line -->
+      <div class="relative border-l accent-border ml-6" id="timeline"></div>
     </section>
 
     <!-- =======================
@@ -500,7 +503,7 @@
           </a>
 
           <p class="text-[11px] mt-5" style="color: var(--muted); line-height:1.6;">
-            Standard: upload is handled via Google Drive / Dropbox link (stable + no app needed).  
+            Standard: upload is handled via Google Drive / Dropbox link (stable + no app needed).<br/>
             Premium: in-page upload + auto-gallery requires backend.
           </p>
         </div>
@@ -574,7 +577,6 @@
 
         <!-- RSVP form -->
         <form id="rsvpForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-5">
-
           <div>
             <input type="text" name="name" required placeholder="Guest Name(s)"
               class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
@@ -592,7 +594,6 @@
           </div>
 
           <div id="extra-fields" class="space-y-5">
-
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <label class="text-xs uppercase tracking-widest" style="color: var(--muted);">Adults</label>
@@ -641,7 +642,6 @@
                 class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm"
                 rows="3"></textarea>
             </div>
-
           </div>
 
           <button type="submit" id="submit-btn"
@@ -650,7 +650,7 @@
           </button>
 
           <p class="text-gray-600 text-[11px] leading-relaxed">
-            Standard: RSVP is collected via your chosen endpoint (Formspree/Google Form).  
+            Standard: RSVP is collected via your chosen endpoint (Formspree/Google Form).<br/>
             Premium: backend confirmations + live guestbook + photo upload + analytics report.
           </p>
         </form>
@@ -775,10 +775,10 @@
     ========================== */
     const CONFIG = {
       // Security
-      accessPin: "2580",     // VIP PIN (client-side gate)
-      adminPin: "9999",      // Admin exports (client-side)
+      accessPin: "2580",
+      adminPin: "9999",
 
-      // Theme: vip | ivory | floral | boho
+      // Theme
       theme: "vip",
 
       // Entrance
@@ -792,7 +792,7 @@
       celebrantName: "SOPHIA",
       heroQuote: "\"A Night of Elegance & Memories\"",
 
-      // Event datetime (include timezone offset)
+      // Event datetime
       eventStartISO: "2026-10-25T19:00:00-04:00",
       eventEndISO:   "2026-10-26T01:00:00-04:00",
 
@@ -820,7 +820,7 @@
       rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
       successText: "See you on the dance floor.",
 
-      // Guestbook (Standard endpoint)
+      // Guestbook
       guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
 
       // Media (LOCAL)
@@ -829,7 +829,7 @@
       momentVideoSrc: "assets/moment.mp4",
       musicSrc: "assets/music.mp3",
 
-      // Gallery images (local recommended)
+      // Gallery images
       galleryImages: [
         "assets/gallery/1.jpg",
         "assets/gallery/2.jpg",
@@ -837,7 +837,7 @@
         "assets/gallery/4.jpg",
       ],
 
-      // Photo upload link (Drive/Dropbox)
+      // Photo upload link
       photoUploadUrl: "https://drive.google.com/",
 
       // Map embed
@@ -850,7 +850,7 @@
         { time: "22:00", title: "Cake & Toast", note: "Let the party begin!" },
       ],
 
-      // Analytics (optional): paste Cloudflare Web Analytics snippet here if desired
+      // Analytics
       enableAnalytics: false,
       analyticsEmbedHtml: ""
     };
@@ -869,7 +869,8 @@
     const LS = {
       rsvpKey: "vipInvite_rsvp",
       guestbookKey: "vipInvite_guestbook",
-      unlockKey: "vipInvite_unlocked"
+      unlockSessionKey: "vipInvite_unlocked_session",
+      unlockDeviceKey: "vipInvite_unlocked_device"
     };
 
     function setRootVar(name, val){ document.documentElement.style.setProperty(name, val); }
@@ -997,6 +998,20 @@ END:VCALENDAR`;
       setTimeout(()=>URL.revokeObjectURL(a.href), 1200);
     }
 
+    function escapeHtml(s){
+      return String(s ?? "").replace(/[&<>"']/g, (c)=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[c]));
+    }
+
+    function revealAll(){
+      document.querySelectorAll(".reveal").forEach(el=>{
+        el.classList.add("active");
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+    }
+
     /* =========================
        Theme apply
     ========================== */
@@ -1008,25 +1023,22 @@ END:VCALENDAR`;
       setRootVar("--accent", t.accent);
       setRootVar("--accent2", t.accent2);
 
-      // adjust texture visibility
-      document.querySelector(".texture").style.display = t.texture ? "block" : "none";
+      const texture = document.querySelector(".texture");
+      if(texture) texture.style.display = t.texture ? "block" : "none";
 
-      // small contrast fix for light themes
+      // Contrast management (important for structure)
       if(themeKey === "ivory" || themeKey === "floral"){
+        document.body.style.backgroundColor = t.bg;
         document.body.style.color = "rgba(0,0,0,.86)";
-        document.body.style.backgroundColor = t.bg;
       } else {
-        document.body.style.color = "rgba(255,255,255,.92)";
         document.body.style.backgroundColor = t.bg;
+        document.body.style.color = "rgba(255,255,255,.92)";
       }
     }
 
-    /* =========================
-       Apply CONFIG to UI
-    ========================== */
     applyTheme(CONFIG.theme);
 
-    // Entrance theme selector (preview only)
+    // Entrance theme selector preview
     document.querySelectorAll(".themeBtn").forEach(btn=>{
       btn.addEventListener("click", ()=>{
         const k = btn.getAttribute("data-theme");
@@ -1034,6 +1046,9 @@ END:VCALENDAR`;
       });
     });
 
+    /* =========================
+       Apply CONFIG to UI
+    ========================== */
     safeSetText("monogram", CONFIG.monogram);
     safeSetText("privateLabel", CONFIG.entranceTitle);
     safeSetText("clickLabel", CONFIG.entranceSubtitle);
@@ -1067,8 +1082,11 @@ END:VCALENDAR`;
 
     $("uploadLink").href = CONFIG.photoUploadUrl || "#";
 
-    // Media sources (local)
+    /* =========================
+       Media sources (local)
+    ========================== */
     const musicEl = $("bgMusic");
+    const musicBtn = $("music-btn");
     const musicSource = musicEl.querySelector("source");
     musicSource.src = CONFIG.musicSrc;
     musicEl.load();
@@ -1077,7 +1095,7 @@ END:VCALENDAR`;
     if(CONFIG.enableBgVideo && CONFIG.bgVideoSrc){
       bgVideo.querySelector("source").src = CONFIG.bgVideoSrc;
       bgVideo.load();
-      bgVideo.play().catch(()=>{ /* ignore */ });
+      bgVideo.play().catch(()=>{});
       bgVideo.addEventListener("error", ()=>{ bgVideo.style.display="none"; });
     } else {
       bgVideo.style.display = "none";
@@ -1094,11 +1112,11 @@ END:VCALENDAR`;
     }
 
     // Hide music button if missing
-    musicEl.addEventListener("error", ()=>{
-      $("music-btn").style.display = "none";
-    });
+    musicEl.addEventListener("error", ()=>{ musicBtn.style.display = "none"; });
 
-    // Map links
+    /* =========================
+       Map + Calendar
+    ========================== */
     const gLink = buildGoogleMapsLink(CONFIG.venueQuery);
     const aLink = buildAppleMapsLink(CONFIG.venueQuery);
     const wLink = buildWazeLink(CONFIG.venueQuery);
@@ -1110,10 +1128,8 @@ END:VCALENDAR`;
     $("map-apple-2").href = aLink;
     $("map-waze-2").href = wLink;
 
-    // Map embed
     $("mapFrame").src = CONFIG.mapEmbedUrl;
 
-    // Calendar links
     const calTitle = `${CONFIG.celebrantName} · VIP Celebration`;
     const gcal = buildGoogleCalendarLink({
       title: calTitle,
@@ -1137,7 +1153,9 @@ END:VCALENDAR`;
     $("ics-btn").addEventListener("click", icsHandler);
     $("successIcs").addEventListener("click", icsHandler);
 
-    // Timeline render
+    /* =========================
+       Timeline render
+    ========================== */
     const timeline = $("timeline");
     timeline.innerHTML = "";
     CONFIG.timeline.forEach(item => {
@@ -1146,14 +1164,16 @@ END:VCALENDAR`;
       block.innerHTML = `
         <div class="absolute -left-[41px] w-5 h-5 rounded-full border-4 shadow-[0_0_10px_rgba(0,0,0,.2)]"
              style="background: var(--accent); border-color: var(--bg); box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 75%, transparent);"></div>
-        <span class="accent-text font-bold text-sm tracking-widest">${item.time}</span>
-        <h4 class="font-luxury text-xl mt-1" style="color: var(--text);">${item.title}</h4>
-        <p class="text-gray-500 text-sm italic">${item.note || ""}</p>
+        <span class="accent-text font-bold text-sm tracking-widest">${escapeHtml(item.time)}</span>
+        <h4 class="font-luxury text-xl mt-1" style="color: var(--text);">${escapeHtml(item.title)}</h4>
+        <p class="text-gray-500 text-sm italic">${escapeHtml(item.note || "")}</p>
       `;
       timeline.appendChild(block);
     });
 
-    // Gallery render
+    /* =========================
+       Gallery render
+    ========================== */
     const galleryRow = $("galleryRow");
     galleryRow.innerHTML = "";
     CONFIG.galleryImages.forEach(src => {
@@ -1172,7 +1192,8 @@ END:VCALENDAR`;
     }
 
     /* =========================
-       PIN Gate logic
+       PIN Gate logic (FIXED)
+       - session + remember device localStorage
     ========================== */
     const pinScreen = $("pin-screen");
     const pinInput = $("pinInput");
@@ -1189,9 +1210,10 @@ END:VCALENDAR`;
       pinScreen.classList.remove("active");
     }
 
-    // Use session unlock if remembered
-    const unlocked = sessionStorage.getItem(LS.unlockKey) === "1";
-    if(!unlocked){
+    const unlockedSession = sessionStorage.getItem(LS.unlockSessionKey) === "1";
+    const unlockedDevice  = localStorage.getItem(LS.unlockDeviceKey) === "1";
+
+    if(!unlockedSession && !unlockedDevice){
       showPinGate();
     }
 
@@ -1201,8 +1223,10 @@ END:VCALENDAR`;
         pinError.classList.add("hidden");
         pinBox.classList.remove("shake");
         hidePinGate();
+
+        sessionStorage.setItem(LS.unlockSessionKey, "1");
         if(rememberDevice.checked){
-          sessionStorage.setItem(LS.unlockKey, "1");
+          localStorage.setItem(LS.unlockDeviceKey, "1");
         }
       } else {
         pinError.classList.remove("hidden");
@@ -1215,11 +1239,11 @@ END:VCALENDAR`;
     pinInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryUnlock(); });
 
     /* =========================
-       Entrance + music start
+       Entrance + music start (FIXED)
+       - reveal failsafe (blank page fix)
     ========================== */
     const openBtn = $("open-btn");
     const entrance = $("entrance-screen");
-    const musicBtn = $("music-btn");
 
     let musicPlaying = false;
     function setMusicUI(on){
@@ -1241,6 +1265,12 @@ END:VCALENDAR`;
       musicEl.play()
         .then(() => { musicPlaying = true; setMusicUI(true); })
         .catch(() => { musicPlaying = false; setMusicUI(false); });
+
+      // ✅ Critical: force reveal after opening
+      setTimeout(()=> {
+        revealAll();
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }, 220);
     });
 
     musicBtn.addEventListener("click", () => {
@@ -1267,7 +1297,7 @@ END:VCALENDAR`;
           await navigator.clipboard.writeText(link);
           return true;
         }
-      } catch { /* ignore */ }
+      } catch {}
       return false;
     }
 
@@ -1286,12 +1316,37 @@ END:VCALENDAR`;
     $("a2hsClose").addEventListener("click", ()=> $("a2hs").style.display="none");
 
     /* =========================
-       Reveal on scroll
+       Reveal on scroll (SAFE)
     ========================== */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    (function initReveal(){
+      const els = document.querySelectorAll(".reveal");
+      if(!els.length) return;
+
+      // Fallback: if no IntersectionObserver, reveal all
+      if(!("IntersectionObserver" in window)){
+        revealAll();
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      els.forEach(el => observer.observe(el));
+
+      // extra failsafe: reveal those already in viewport
+      setTimeout(()=>{
+        els.forEach(el=>{
+          const r = el.getBoundingClientRect();
+          if(r.top < window.innerHeight * 1.05) el.classList.add("active");
+        });
+      }, 180);
+    })();
 
     /* =========================
        Countdown + status switch
@@ -1367,7 +1422,6 @@ END:VCALENDAR`;
       submitBtn.innerText = "SENDING...";
       submitBtn.disabled = true;
 
-      // local save snapshot
       const fd = new FormData(rsvpForm);
       const localEntry = {
         ts: new Date().toISOString(),
@@ -1389,7 +1443,6 @@ END:VCALENDAR`;
         });
 
         if(res.ok) {
-          // store locally for admin export
           const list = loadJSON(LS.rsvpKey, []);
           list.unshift(localEntry);
           saveJSON(LS.rsvpKey, list);
@@ -1442,12 +1495,6 @@ END:VCALENDAR`;
       });
     }
 
-    function escapeHtml(s){
-      return String(s ?? "").replace(/[&<>"']/g, (c)=>({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-      }[c]));
-    }
-
     renderGuestbook();
 
     guestbookForm.addEventListener("submit", async (e)=>{
@@ -1471,7 +1518,6 @@ END:VCALENDAR`;
         });
 
         if(res.ok){
-          // local preview store
           const list = loadJSON(LS.guestbookKey, []);
           list.unshift(localMsg);
           saveJSON(LS.guestbookKey, list);
@@ -1532,7 +1578,7 @@ END:VCALENDAR`;
         const row = document.createElement("div");
         row.className = "border-b border-white/10 pb-2";
         row.innerHTML = `<div><span class="accent-text font-semibold">${escapeHtml(x.name)}</span> <span class="text-white/50">${x.city ? "· " + escapeHtml(x.city) : ""}</span></div>
-                         <div class="text-white/60 text-[11px] line-clamp-2">${escapeHtml(x.message)}</div>`;
+                         <div class="text-white/60 text-[11px]">${escapeHtml(x.message)}</div>`;
         guestbookLocalList.appendChild(row);
       });
     }
@@ -1577,6 +1623,18 @@ END:VCALENDAR`;
       const csv = toCSV(gb);
       downloadText("guestbook_export.csv", csv, "text/csv;charset=utf-8");
     });
+
+    /* =========================
+       Final failsafe:
+       If user already scrolled/loaded and reveal didn't trigger, activate near-viewport
+    ========================== */
+    setTimeout(()=>{
+      document.querySelectorAll(".reveal").forEach(el=>{
+        const r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight * 1.1) el.classList.add("active");
+      });
+    }, 600);
+
   </script>
 </body>
 </html>
