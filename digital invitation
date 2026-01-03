@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinY Events | Dijital Davetiye & Etkinlik Siteleri</title>
+  <meta name="description" content="Kişiye özel müzikli, geri sayımlı ve LCV özellikli dijital davetiyeler." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] },
+          colors: { gold: '#D4AF37', dark: '#0a0a0a' },
+          animation: { 'fade-up': 'fadeUp 1s ease-out forwards' },
+          keyframes: { fadeUp: { '0%': { opacity: 0, transform: 'translateY(20px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } } }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #050505; color: white; }
+    .gold-text { background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .glass { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+  </style>
+</head>
+
+<body class="font-sans">
+
+  <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2 text-gold font-serif text-xl italic"><i class="fa-solid fa-arrow-left text-sm"></i> VitrinY Events</a>
+      <a href="#packages" class="bg-white text-black px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold transition">Sipariş Ver</a>
+    </div>
+  </nav>
+
+  <header class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent"></div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto animate-fade-up">
+        <div class="text-gold text-sm tracking-[0.3em] uppercase mb-4">Yeni Nesil Davetiye</div>
+        <h1 class="font-serif text-5xl md:text-7xl mb-6 leading-tight">
+            Hikayeniz Bir Kağıda <br> Sığmayacak Kadar Özel.
+        </h1>
+        <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto font-light">
+            Müzikli, videolu, konum özellikli ve LCV takipli kişisel web sitenizle konuklarınızı büyüleyin. 
+            Kağıt israfına son, teknolojiye merhaba.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="demo-event.html" class="px-8 py-4 bg-gold text-black font-serif italic text-lg rounded-full hover:bg-white transition">Örnek Siteyi İncele</a>
+        </div>
+    </div>
+  </header>
+
+  <section class="py-24 bg-dark">
+      <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-16">
+              <h2 class="font-serif text-4xl text-white mb-4">Sadece Bir Davetiye Değil</h2>
+              <p class="text-gray-500">Tam teşekküllü bir etkinlik yönetim platformu.</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+              <div class="glass p-8 rounded-2xl text-center group hover:border-gold/50 transition">
+                  <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-2xl text-gold mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-music"></i></div>
+                  <h3 class="text-xl font-serif text-white mb-3">Arka Plan Müziği</h3>
+                  <p class="text-gray-400 text-sm">Sizin şarkınız çalsın. Davetiye açıldığı anda seçtiğiniz müzik (Spotify/MP3) otomatik başlar.</p>
+              </div>
+              <div class="glass p-8 rounded-2xl text-center group hover:border-gold/50 transition">
+                <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-2xl text-gold mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-images"></i></div>
+                <h3 class="text-xl font-serif text-white mb-3">Galeri & Video</h3>
+                <p class="text-gray-400 text-sm">Save the Date fotoğraflarınız veya evlilik teklifi videonuz yüksek kalitede sergilenir.</p>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center group hover:border-gold/50 transition">
+                <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-2xl text-gold mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-hourglass-half"></i></div>
+                <h3 class="text-xl font-serif text-white mb-3">Geri Sayım & Kapsül</h3>
+                <p class="text-gray-400 text-sm">Büyük güne kalan saniyeler. Ayrıca konuklar geleceğe not (Zaman Kapsülü) bırakabilir.</p>
+            </div>
+             <div class="glass p-8 rounded-2xl text-center group hover:border-gold/50 transition">
+                <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-2xl text-gold mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-location-dot"></i></div>
+                <h3 class="text-xl font-serif text-white mb-3">Akıllı Navigasyon</h3>
+                <p class="text-gray-400 text-sm">"Konumu bulamadım" derdine son. Tek tuşla Google Maps veya Yandex Navigasyon açılır.</p>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center group hover:border-gold/50 transition">
+                <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-2xl text-gold mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-clipboard-check"></i></div>
+                <h3 class="text-xl font-serif text-white mb-3">LCV Sistemi</h3>
+                <p class="text-gray-400 text-sm">Kim geliyor? Kaç kişi? Alerjisi var mı? Hepsini panelden raporlayın. Excel ile uğraşmayın.</p>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center group hover:border-gold/50 transition">
+                <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-2xl text-gold mb-6 group-hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></div>
+                <h3 class="text-xl font-serif text-white mb-3">Kolay Paylaşım</h3>
+                <p class="text-gray-400 text-sm">Linkinizi (örn: aysevemehmet.com) WhatsApp, Instagram veya SMS ile herkese tek tıkla gönderin.</p>
+            </div>
+          </div>
+      </div>
+  </section>
+
+  <section id="packages" class="py-24 border-t border-white/5">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="font-serif text-4xl text-center text-white mb-16">Paket Seçenekleri</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass p-8 rounded-3xl border border-white/10 hover:border-white/30 transition">
+                <div class="text-gold text-xs tracking-widest uppercase font-bold mb-4">STANDART</div>
+                <div class="text-4xl font-serif mb-6">$59</div>
+                <ul class="space-y-4 text-sm text-gray-400 mb-8">
+                    <li><i class="fa-solid fa-check text-gold mr-2"></i> Tek Sayfa Tasarım</li>
+                    <li><i class="fa-solid fa-check text-gold mr-2"></i> Konum & Takvim</li>
+                    <li><i class="fa-solid fa-check text-gold mr-2"></i> Geri Sayım Sayacı</li>
+                    <li><i class="fa-solid fa-check text-gold mr-2"></i> 3 Ay Yayında Kalma</li>
+                </ul>
+                <a href="https://wa.me/905419787726" class="block text-center py-4 rounded-full border border-white/20 hover:bg-white hover:text-black transition uppercase text-xs font-bold tracking-widest">Seç</a>
+            </div>
+            <div class="p-[1px] bg-gradient-to-b from-gold to-transparent rounded-3xl">
+                <div class="bg-dark h-full rounded-[23px] p-8">
+                    <div class="text-gold text-xs tracking-widest uppercase font-bold mb-4">PREMIUM (FULL)</div>
+                    <div class="text-4xl font-serif mb-6">$99</div>
+                    <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                        <li><i class="fa-solid fa-check text-gold mr-2"></i> <strong>Arka Plan Müziği</strong></li>
+                        <li><i class="fa-solid fa-check text-gold mr-2"></i> <strong>Video & Foto Galeri</strong></li>
+                        <li><i class="fa-solid fa-check text-gold mr-2"></i> <strong>LCV Formu & Yönetim Paneli</strong></li>
+                        <li><i class="fa-solid fa-check text-gold mr-2"></i> <strong>Özel Alan Adı (.com)</strong></li>
+                        <li><i class="fa-solid fa-check text-gold mr-2"></i> 1 Yıl Yayında Kalma (Anı Sitesi)</li>
+                    </ul>
+                    <a href="https://wa.me/905419787726" class="block text-center py-4 rounded-full bg-gold text-black hover:bg-white transition uppercase text-xs font-bold tracking-widest">Sipariş Ver</a>
+                </div>
+            </div>
+        </div>
+      </div>
+  </section>
+
+  <footer class="py-10 text-center text-xs text-gray-600 border-t border-white/5 bg-black">
+    <p>&copy; 2025 VitrinY Events. Tüm hakları saklıdır.</p>
+  </footer>
+
+</body>
+</html>
