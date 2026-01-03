@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPGY | Digital Dominance</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #ededed;
+            --accent-color: #3b3b3b; /* Koyu gri detaylar */
+            --highlight: #ffffff;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            cursor: none; /* Özel cursor kullanacağız */
+        }
+
+        /* CUSTOM CURSOR */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        .cursor.hovered {
+            background-color: #fff;
+            width: 50px;
+            height: 50px;
+            border-color: transparent;
+            mix-blend-mode: exclusion;
+        }
+
+        /* TYPOGRAPHY UTILS */
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+        
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* LOADER */
+        .loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: #fff; transition: var(--transition);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Background Animated Gradient Mesh */
+        .hero-bg {
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 50%);
+            opacity: 0.4;
+            animation: rotateBg 20s linear infinite;
+            z-index: -1;
+        }
+        @keyframes rotateBg { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .hero h1 {
+            font-size: 12vw;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.7);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 span {
+            display: block;
+            color: #fff;
+            -webkit-text-stroke: 0;
+            transform: translateY(100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .hero p {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            max-width: 400px;
+            color: #888;
+            font-weight: 300;
+            opacity: 0; /* JS ile açılacak */
+        }
+
+        /* MANIFESTO SECTION */
+        .manifesto {
+            padding: 10rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        .manifesto-text {
+            font-size: 3.5rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 1200px;
+            text-align: center;
+            color: #333; /* Default dark */
+        }
+        .highlight-word {
+            color: #fff; /* Scroll ile parlayacak */
+            transition: color 0.3s ease;
+        }
+
+        /* SERVICES (THE ARSENAL) */
+        .services {
+            padding: 5rem 2rem;
+        }
+        .section-header {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #555;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #222;
+            padding-bottom: 1rem;
+            display: flex; justify-content: space-between;
+        }
+
+        .service-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-item {
+            border-top: 1px solid #222;
+            padding: 4rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: var(--transition);
+            position: relative;
+        }
+        .service-item:last-child { border-bottom: 1px solid #222; }
+        
+        .service-item:hover {
+            background-color: #111;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .s-count { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: #444; margin-right: 2rem; }
+        .s-title { font-size: 4rem; font-weight: 700; color: #fff; }
+        .s-desc { max-width: 300px; color: #888; text-align: right; opacity: 0; transform: translateY(20px); transition: var(--transition); }
+        
+        .service-item:hover .s-desc { opacity: 1; transform: translateY(0); }
+        .service-item:hover .s-title { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.2); }
+
+        /* SHOWCASE (MIHRAP MOBILYA & OTHERS) */
+        .showcase {
+            padding: 10rem 2rem;
+            position: relative;
+        }
+        .project-card {
+            width: 100%;
+            height: 80vh;
+            background-color: #111;
+            margin-bottom: 5rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-img {
+            width: 110%;
+            height: 110%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            transition: opacity 0.5s;
+        }
+        /* Placeholder gradients for images */
+        .img-mihrap { background: linear-gradient(45deg, #1e1e1e, #3a3a3a); } /* Mobilya hissi */
+        .img-etsy { background: linear-gradient(45deg, #0f0f0f, #2b2b2b); }
+        
+        .project-info {
+            position: absolute;
+            bottom: 3rem; left: 3rem;
+            z-index: 2;
+        }
+        .p-title { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .p-cat { font-size: 1rem; text-transform: uppercase; color: #888; }
+
+        /* CTA / FOOTER */
+        .cta {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        .cta h2 {
+            font-size: 6vw;
+            margin-bottom: 2rem;
+        }
+        .btn-main {
+            padding: 1.5rem 4rem;
+            border: 1px solid #fff;
+            background: transparent;
+            color: #fff;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-main::before {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 0; height: 100%;
+            background: #fff;
+            z-index: -1;
+            transition: var(--transition);
+        }
+        .btn-main:hover { color: #000; }
+        .btn-main:hover::before { width: 100%; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 18vw; }
+            .service-item { flex-direction: column; padding: 2rem 0; }
+            .s-title { font-size: 2.5rem; }
+            .s-desc { text-align: left; opacity: 1; transform: none; margin-top: 1rem; }
+            .manifesto-text { font-size: 2rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="cursor"></div>
+
+    <div class="loader">
+        <span class="counter">0%</span>
+    </div>
+
+    <nav>
+        <div class="logo">SHOPGY.</div>
+        <div class="nav-links">
+            <a href="#" class="hover-trigger">Work</a>
+            <a href="#" class="hover-trigger">Services</a>
+            <a href="#" class="hover-trigger">Studio</a>
+            <a href="#" class="hover-trigger">Contact</a>
+        </div>
+    </nav>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <section class="hero">
+                <div class="hero-bg"></div>
+                <h1>
+                    NOISE <br> <span>SIGNAL</span>
+                </h1>
+                <p>We don't just build websites. We engineer digital dominance for ambitious brands.</p>
+            </section>
+
+            <section class="manifesto">
+                <div class="manifesto-text">
+                    In a world of <span class="word">average</span>, being <span class="word">good</span> is an insult. 
+                    We create <span class="word">digital</span> <span class="word">monuments</span> that 
+                    <span class="word">stop</span> the scroll and <span class="word">start</span> the legacy.
+                </div>
+            </section>
+
+            <section class="services">
+                <div class="section-header">
+                    <span>Our Arsenal</span>
+                    <span>(03)</span>
+                </div>
+
+                <div class="service-list">
+                    <div class="service-item hover-trigger">
+                        <span class="s-count">01</span>
+                        <h3 class="s-title">Digital HQ</h3>
+                        <p class="s-desc">High-end corporate websites that establish immediate authority. For those who lead.</p>
+                    </div>
+                    
+                    <div class="service-item hover-trigger">
+                        <span class="s-count">02</span>
+                        <h3 class="s-title">Global Sales Engine</h3>
+                        <p class="s-desc">Seamless Etsy integrations & E-commerce ecosystems. Turn visitors into loyal customers.</p>
+                    </div>
+
+                    <div class="service-item hover-trigger">
+                        <span class="s-count">03</span>
+                        <h3 class="s-title">Digital Legacy</h3>
+                        <p class="s-desc">Bespoke, single-page masterpieces for events and personal branding.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="showcase">
+                <div class="section-header">
+                    <span>Selected Works</span>
+                    <span>(Ref)</span>
+                </div>
+
+                <div class="project-card hover-trigger">
+                    <div class="project-img img-mihrap"></div>
+                    <div class="project-info">
+                        <h3 class="p-title">Mihrap Furniture</h3>
+                        <p class="p-cat">E-Commerce & Brand Identity</p>
+                    </div>
+                </div>
+
+                <div class="project-card hover-trigger">
+                    <div class="project-img img-etsy"></div>
+                    <div class="project-info">
+                        <h3 class="p-title">Zayn Collective</h3>
+                        <p class="p-cat">Etsy Integration & Strategy</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta">
+                <h2>READY TO <br> DOMINATE?</h2>
+                <button class="btn-main hover-trigger">Start Project</button>
+            </section>
+
+            <footer style="padding: 2rem; text-align: center; color: #444; font-size: 0.8rem; text-transform: uppercase;">
+                &copy; 2026 Shopgy Digital Studio. All Rights Reserved.
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script>
+        // 1. INITIALIZE LENIS (Smooth Scrolling)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // GSAP ScrollTrigger Entegrasyonu
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 2. LOADER ANIMATION
+        const tlLoader = gsap.timeline();
+        
+        tlLoader.to(".counter", {
+            duration: 1.5,
+            opacity: 0,
+            delay: 1
+        })
+        .to(".loader", {
+            duration: 1,
+            height: 0,
+            ease: "power4.inOut"
+        })
+        .from(".hero h1 span", {
+            y: "100%",
+            duration: 1.2,
+            ease: "power4.out",
+            stagger: 0.1
+        }, "-=0.5")
+        .to(".hero p", {
+            opacity: 1,
+            duration: 1
+        }, "-=0.5");
+
+        // 3. MANIFESTO TEXT REVEAL (Scroll ettikçe parlayan yazı)
+        const words = document.querySelectorAll(".word");
+        
+        words.forEach(word => {
+            gsap.to(word, {
+                color: "#ffffff",
+                scrollTrigger: {
+                    trigger: word,
+                    start: "top 80%",
+                    end: "top 40%",
+                    scrub: true,
+                    // markers: true // Test için açılabilir
+                }
+            });
+        });
+
+        // 4. PARALLAX EFFECTS FOR IMAGES
+        gsap.utils.toArray('.project-card').forEach(card => {
+            let img = card.querySelector('.project-img');
+            gsap.to(img, {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        // 5. CUSTOM CURSOR LOGIC
+        const cursor = document.querySelector('.cursor');
+        const hoverTriggers = document.querySelectorAll('.hover-trigger');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverTriggers.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('hovered');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hovered');
+            });
+        });
+
+    </script>
+</body>
+</html>
