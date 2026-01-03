@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SOPHIA'S 1ST BIRTHDAY | Sunny Days</title>
+    <title>YOU'RE INVITED | The Golden Celebration</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <meta name="description" content="You are invited to a groovy birthday party!" />
-    <meta property="og:title" content="Sophia's 1st Birthday" />
+    <meta name="description" content="Join us for an exclusive birthday celebration." />
+    <meta property="og:title" content="Birthday Invitation" />
     <meta property="og:type" content="website" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -20,25 +19,23 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'retro': ['Chewy', 'cursive'],
-                        'body': ['Poppins', 'sans-serif'],
+                        'heading': ['Playfair Display', 'serif'],
+                        'body': ['Montserrat', 'sans-serif'],
                     },
                     colors: {
-                        'cream': '#FFF8E7',
-                        'terracotta': '#E07A5F',
-                        'mustard': '#F2CC8F',
-                        'sage': '#81B29A',
-                        'charcoal': '#3D405B'
+                        'champagne': '#D4AF37', /* Altın dokunuş */
+                        'charcoal': '#2C2C2C',
+                        'cream': '#FAFAF5',
+                        'soft-gray': '#F5F5F0'
                     },
                     animation: {
-                        'spin-slow': 'spin 12s linear infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'fade-up': 'fadeUp 1s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
-                        wiggle: {
-                            '0%, 100%': { transform: 'rotate(-3deg)' },
-                            '50%': { transform: 'rotate(3deg)' },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -47,283 +44,210 @@
     </script>
 
     <style>
-        body { background-color: #FFF8E7; color: #3D405B; scroll-behavior: smooth; }
-        
-        /* Arka Plan Deseni */
-        .pattern-bg {
-            background-image: radial-gradient(#F2CC8F 20%, transparent 20%), radial-gradient(#E07A5F 20%, transparent 20%);
-            background-color: #FFF8E7;
-            background-position: 0 0, 25px 25px;
-            background-size: 50px 50px;
-            opacity: 0.15;
+        body { background-color: #FAFAF5; color: #2C2C2C; }
+        .gold-accent { background: linear-gradient(45deg, #D4AF37, #F2D06B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* Müzik Player Butonu */
+        .music-fab {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 50;
+            width: 3.5rem; height: 3.5rem;
+            background: #D4AF37; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); cursor: pointer; transition: all 0.3s ease;
         }
-
-        /* Scrollbar Gizleme (Galeri İçin) */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Form Select İkonu */
-        .custom-select {
-            -webkit-appearance: none; appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233D405B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;
-        }
+        .music-fab:hover { transform: scale(1.1); background: #C19B25; }
+        .music-fab.playing { animation: pulse-slow 2s infinite; }
     </style>
 </head>
 
-<body class="font-body antialiased selection:bg-terracotta selection:text-white">
+<body class="font-body antialiased">
 
-    <div class="fixed inset-0 pattern-bg z-0 pointer-events-none"></div>
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Tarayıcınız ses elementini desteklemiyor.
+    </audio>
 
-    <main class="relative z-10 max-w-2xl mx-auto bg-white/80 backdrop-blur-sm min-h-screen shadow-2xl border-x-4 border-mustard">
+    <button id="musicToggle" class="music-fab" aria-label="Toggle Music">
+        <i class="fa-solid fa-music text-xl" id="musicIcon"></i>
+    </button>
+
+    <main class="max-w-3xl mx-auto bg-white shadow-2xl overflow-hidden my-0 md:my-10 md:rounded-[3rem]">
         
-        <header class="text-center pt-16 pb-10 px-6 relative overflow-hidden">
-            <div class="absolute top-4 left-4 text-4xl animate-spin-slow">☀️</div>
-            <div class="absolute top-10 right-6 text-3xl animate-bounce-slow text-terracotta">🎈</div>
-
-            <p class="font-bold tracking-widest text-terracotta uppercase mb-4">You Are Invited To</p>
-            
-            <h1 class="font-retro text-7xl md:text-8xl text-mustard drop-shadow-lg leading-none transform -rotate-2 mb-4">
-                SOPHIA'S
-                <span class="block text-terracotta transform rotate-3">BIRTHDAY!</span>
-            </h1>
-
-            <div class="mt-8 relative inline-block">
-                <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&q=80" 
-                     class="w-64 h-64 object-cover rounded-full border-8 border-sage shadow-xl mx-auto rotate-2 hover:rotate-0 transition duration-500" 
-                     alt="Birthday Kid">
-                <div class="absolute -bottom-4 -right-4 bg-white px-4 py-2 rounded-full font-retro text-2xl shadow-lg border-2 border-terracotta transform rotate-6">
-                    She is Turning 1!
-                </div>
+        <div class="relative h-[60vh] md:h-[70vh] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=2164&auto=format&fit=crop" 
+                 class="w-full h-full object-cover" 
+                 alt="Celebration">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="absolute bottom-0 left-0 w-full p-10 text-center text-white bg-gradient-to-t from-black/60 to-transparent">
+                <p class="uppercase tracking-[0.3em]text-sm mb-4 animate-fade-up" style="animation-delay: 0.2s;">Join us in celebrating</p>
+                <h1 class="font-heading text-6xl md:text-8xl mb-2 animate-fade-up text-champagne drop-shadow-lg" style="animation-delay: 0.4s;">
+                    Sophia
+                </h1>
+                <p class="font-heading text-2xl italic animate-fade-up" style="animation-delay: 0.6s;">is turning One</p>
             </div>
-        </header>
+        </div>
 
-        <section class="py-4 px-6">
-            <div class="bg-sage/20 rounded-3xl p-6 border-2 border-sage text-center">
-                <h3 class="font-retro text-2xl text-sage mb-4">Let the Countdown Begin!</h3>
-                <div class="flex justify-center gap-4 text-charcoal">
-                    <div class="bg-white p-3 rounded-xl w-20 shadow-sm">
-                        <span id="days" class="block font-bold text-3xl text-terracotta">00</span>
-                        <span class="text-xs font-bold uppercase">Days</span>
-                    </div>
-                    <div class="bg-white p-3 rounded-xl w-20 shadow-sm">
-                        <span id="hours" class="block font-bold text-3xl text-terracotta">00</span>
-                        <span class="text-xs font-bold uppercase">Hours</span>
-                    </div>
-                    <div class="bg-white p-3 rounded-xl w-20 shadow-sm">
-                        <span id="minutes" class="block font-bold text-3xl text-terracotta">00</span>
-                        <span class="text-xs font-bold uppercase">Mins</span>
-                    </div>
-                </div>
+        <section class="py-16 px-8 text-center bg-cream">
+            <h2 class="font-heading text-4xl mb-6">A Special Invitation</h2>
+            <p class="text-charcoal/70 leading-relaxed max-w-xl mx-auto mb-12">
+                We are thrilled to invite you to a very special milestone celebration. 
+                Watch the video below for a special message!
+            </p>
+
+            <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white max-w-2xl mx-auto aspect-video">
+                <iframe class="absolute top-0 left-0 w-full h-full" 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=Bu_video_id_buraya&controls=0&rel=0" 
+                        title="Birthday Video" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                </iframe>
             </div>
         </section>
 
-        <section class="py-8 px-6">
-            <div class="bg-white rounded-[2.5rem] p-8 shadow-lg border-2 border-mustard text-center space-y-8">
-                
-                <div class="group">
-                    <div class="inline-flex items-center justify-center w-14 h-14 bg-mustard/20 rounded-full mb-2 group-hover:scale-110 transition">
-                        <i class="fa-regular fa-calendar text-2xl text-terracotta"></i>
-                    </div>
-                    <h3 class="font-retro text-2xl">Saturday, October 25</h3>
-                    <p class="text-charcoal/70 font-bold">2:00 PM - 5:00 PM</p>
-                    
-                    <div class="mt-3">
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sophia's+1st+Birthday&dates=20251025T140000Z/20251025T170000Z&details=Join+us+for+cake+and+fun!&location=Central+City+Park" 
-                           target="_blank"
-                           class="inline-flex items-center gap-2 text-xs font-bold text-sage bg-sage/10 px-4 py-2 rounded-full hover:bg-sage hover:text-white transition">
-                           <i class="fa-regular fa-calendar-plus"></i> Add to Google Calendar
-                        </a>
-                    </div>
-                </div>
+        <section class="py-16 px-8 bg-white text-center">
+             <div class="inline-block border-b-2 border-champagne pb-2 mb-10">
+                 <h2 class="font-heading text-3xl text-charcoal">The Details</h2>
+             </div>
 
-                <hr class="border-dashed border-gray-200 w-1/2 mx-auto">
-
-                <div class="group">
-                    <div class="inline-flex items-center justify-center w-14 h-14 bg-sage/20 rounded-full mb-2 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-location-dot text-2xl text-sage"></i>
-                    </div>
-                    <h3 class="font-retro text-2xl">Central City Park</h3>
-                    <p class="text-charcoal/70 font-bold">Picnic Area B, San Diego, CA</p>
-                    <a href="https://maps.google.com" target="_blank" class="inline-block mt-3 text-sm font-bold text-terracotta underline hover:text-mustard">
-                        View on Map ↗
+             <div class="grid md:grid-cols-3 gap-10 max-w-3xl mx-auto">
+                 <div class="space-y-3">
+                     <i class="fa-regular fa-calendar text-3xl text-champagne"></i>
+                     <h3 class="font-heading text-xl">Saturday, Oct 25</h3>
+                     <p class="text-charcoal/70">2:00 PM - 5:00 PM</p>
+                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sophia's+Birthday+Celebration&dates=20251025T140000Z/20251025T170000Z&details=We+can't+wait+to+celebrate!&location=The+Grand+Hotel,+City+Center" 
+                        target="_blank"
+                        class="inline-block text-xs font-bold text-champagne border border-champagne px-4 py-2 rounded-full hover:bg-champagne hover:text-white transition">
+                        + Add to Calendar
+                     </a>
+                 </div>
+                 
+                 <div class="space-y-3">
+                    <i class="fa-solid fa-location-dot text-3xl text-champagne"></i>
+                    <h3 class="font-heading text-xl">The Grand Venue</h3>
+                    <p class="text-charcoal/70">123 Luxury Ave, City Center</p>
+                    <a href="https://goo.gl/maps/YourMapLinkHere" 
+                       target="_blank"
+                       class="inline-block text-sm underline text-champagne hover:text-charcoal transition">
+                       View Map
                     </a>
                 </div>
-            </div>
-        </section>
 
-        <section class="py-8 px-6 overflow-hidden">
-            <div class="text-center mb-6">
-                <h3 class="font-retro text-4xl text-mustard drop-shadow-md transform -rotate-1">Look How I've Grown!</h3>
-            </div>
-            
-            <div class="flex overflow-x-auto gap-6 pb-8 px-4 snap-x hide-scrollbar">
-                <div class="flex-shrink-0 snap-center transform rotate-2 hover:rotate-0 transition duration-300">
-                    <div class="bg-white p-3 pb-8 shadow-lg w-48 border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80" class="w-full h-40 object-cover bg-gray-100" alt="Baby">
-                        <p class="font-retro text-xl text-center mt-2 text-charcoal">Newborn</p>
-                    </div>
+                 <div class="space-y-3">
+                    <i class="fa-solid fa-champagne-glasses text-3xl text-champagne"></i>
+                    <h3 class="font-heading text-xl">Attire</h3>
+                    <p class="text-charcoal/70">Smart Casual / Chic. Let's celebrate in style!</p>
                 </div>
-                <div class="flex-shrink-0 snap-center transform -rotate-2 hover:rotate-0 transition duration-300">
-                    <div class="bg-white p-3 pb-8 shadow-lg w-48 border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&q=80" class="w-full h-40 object-cover bg-gray-100" alt="Baby">
-                        <p class="font-retro text-xl text-center mt-2 text-charcoal">6 Months</p>
-                    </div>
+             </div>
+        </section>
+
+        <section id="rsvp" class="py-20 px-8 bg-soft-gray relative overflow-hidden">
+            <div class="max-w-xl mx-auto text-center relative z-10">
+                <h2 class="font-heading text-4xl mb-4">R.S.V.P</h2>
+                <p class="text-charcoal/70 mb-10">Kindly respond by October 10th so we can finalize arrangements.</p>
+
+                <div id="rsvp-success" class="hidden py-10 bg-white rounded-3xl shadow-lg animate-fade-up">
+                    <i class="fa-regular fa-circle-check text-5xl text-champagne mb-4"></i>
+                    <h3 class="font-heading text-2xl mb-2">Wonderful!</h3>
+                    <p class="text-charcoal/70">Your response has been received.</p>
                 </div>
-                <div class="flex-shrink-0 snap-center transform rotate-1 hover:rotate-0 transition duration-300">
-                    <div class="bg-white p-3 pb-8 shadow-lg w-48 border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1522771753035-1a5b6562f3bd?w=400&q=80" class="w-full h-40 object-cover bg-gray-100" alt="Baby">
-                        <p class="font-retro text-xl text-center mt-2 text-charcoal">1 Year!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="py-4 px-6 text-center">
-            <h3 class="font-retro text-2xl mb-4 text-charcoal">Gift Ideas</h3>
-            <p class="text-sm font-bold text-charcoal/60 mb-4 px-4">Your presence is the best present! But if you wish to bring a gift, here is a list.</p>
-            <a href="#" class="inline-flex items-center gap-2 bg-white border-2 border-charcoal/10 px-6 py-3 rounded-full font-bold hover:bg-mustard hover:border-mustard hover:text-white transition group">
-                <i class="fa-solid fa-gift group-hover:animate-wiggle"></i> See Gift Registry
-            </a>
-        </section>
-
-        <section class="py-12 px-6">
-            <h3 class="font-retro text-3xl text-center text-terracotta mb-6">Party Q&A</h3>
-            <div class="space-y-4 max-w-lg mx-auto">
-                <details class="bg-white rounded-2xl border-2 border-sage/50 open:border-sage shadow-sm group">
-                    <summary class="font-bold text-charcoal p-4 cursor-pointer list-none flex justify-between items-center">
-                        <span>Can siblings come?</span>
-                        <span class="text-sage group-open:rotate-180 transition transform">▼</span>
-                    </summary>
-                    <div class="px-4 pb-4 text-sm text-charcoal/70 font-medium">
-                        Absolutely! The more the merrier. There will be activities for older kids too.
-                    </div>
-                </details>
-
-                <details class="bg-white rounded-2xl border-2 border-sage/50 open:border-sage shadow-sm group">
-                    <summary class="font-bold text-charcoal p-4 cursor-pointer list-none flex justify-between items-center">
-                        <span>Is there parking?</span>
-                        <span class="text-sage group-open:rotate-180 transition transform">▼</span>
-                    </summary>
-                    <div class="px-4 pb-4 text-sm text-charcoal/70 font-medium">
-                        Yes, free parking is available at the North Entrance of the park.
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <section id="rsvp" class="py-8 px-6 pb-20">
-            <div class="bg-terracotta rounded-[2.5rem] p-8 md:p-10 shadow-xl relative overflow-hidden text-white">
-                <div class="absolute -top-6 -left-6 w-24 h-24 bg-mustard rounded-full opacity-50"></div>
-                <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-sage rounded-full opacity-50"></div>
-
-                <div class="relative z-10">
-                    <div class="text-center mb-8">
-                        <h2 class="font-retro text-5xl mb-2">RSVP</h2>
-                        <p class="font-bold opacity-90">Please let us know by Oct 10th</p>
+                <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-6 bg-white p-8 md:p-10 rounded-[2rem] shadow-xl text-left">
+                    
+                    <div>
+                        <label class="block text-sm font-bold uppercase tracking-wider mb-2 text-charcoal/60">Full Name(s)</label>
+                        <input type="text" name="name" required class="w-full border-b-2 border-gray-200 bg-transparent py-3 text-charcoal focus:outline-none focus:border-champagne transition" placeholder="e.g. John & Jane Doe">
                     </div>
 
-                    <div id="rsvp-success" class="hidden text-center py-8">
-                        <div class="text-6xl mb-4 animate-bounce">💌</div>
-                        <h3 class="font-retro text-3xl mb-2">Message Sent!</h3>
-                        <p class="font-bold">Thank you for letting us know.</p>
-                        <button onclick="location.reload()" class="mt-6 text-sm underline hover:text-mustard font-bold">Submit another</button>
+                    <div>
+                         <label class="block text-sm font-bold uppercase tracking-wider mb-4 text-charcoal/60 text-center">Will you be attending?</label>
+                         <div class="grid grid-cols-2 gap-4">
+                             <button type="button" id="btn-attending" class="py-4 border-2 border-charcoal/10 rounded-xl font-bold text-charcoal/60 hover:border-champagne hover:text-champagne transition">
+                                 Joyfully Accept
+                             </button>
+                             <button type="button" id="btn-decline" class="py-4 border-2 border-charcoal/10 rounded-xl font-bold text-charcoal/60 hover:border-charcoal hover:text-charcoal transition">
+                                 Regretfully Decline
+                             </button>
+                             <input type="hidden" name="attendance" id="attendance-input">
+                         </div>
                     </div>
 
-                    <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-4">
-                        
+                    <div id="extra-details" class="hidden space-y-6 animate-fade-up">
                         <div>
-                            <label class="block font-retro text-xl mb-1 ml-2">Your Name</label>
-                            <input type="text" name="name" required class="w-full bg-white text-charcoal px-6 py-4 rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-mustard" placeholder="Jane Doe">
+                            <label class="block text-sm font-bold uppercase tracking-wider mb-2 text-charcoal/60">Number of Guests</label>
+                             <select name="guests" class="w-full border-b-2 border-gray-200 bg-transparent py-3 text-charcoal focus:outline-none focus:border-champagne transition cursor-pointer">
+                                 <option value="1">1 Guest</option>
+                                 <option value="2">2 Guests</option>
+                                 <option value="3">3 Guests</option>
+                                 <option value="4">4 Guests</option>
+                             </select>
                         </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <button type="button" id="btn-coming" class="bg-white/20 border-2 border-white text-white py-4 rounded-2xl font-bold hover:bg-white/30 transition">
-                                I'm Coming! 😎
-                            </button>
-                            <button type="button" id="btn-not-coming" class="bg-white/20 border-2 border-white text-white py-4 rounded-2xl font-bold hover:bg-white/30 transition">
-                                Can't Make it 😢
-                            </button>
-                            <input type="hidden" name="attendance" id="attendance-input">
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-wider mb-2 text-charcoal/60">Dietary Requirements</label>
+                            <input type="text" name="diet" class="w-full border-b-2 border-gray-200 bg-transparent py-3 text-charcoal focus:outline-none focus:border-champagne transition" placeholder="Any allergies?">
                         </div>
+                    </div>
 
-                        <div id="extra-details" class="hidden space-y-4">
-                            <div>
-                                <label class="block font-retro text-xl mb-1 ml-2">Total Guests</label>
-                                <select name="guests" class="custom-select w-full bg-white text-charcoal px-6 py-4 rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-mustard">
-                                    <option value="1">Just Me</option>
-                                    <option value="2">2 People</option>
-                                    <option value="3">3 People</option>
-                                    <option value="4">4 People</option>
-                                    <option value="5">5 People</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block font-retro text-xl mb-1 ml-2">Dietary Notes</label>
-                                <input type="text" name="diet" class="w-full bg-white text-charcoal px-6 py-4 rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-mustard" placeholder="e.g. Vegetarian, Nut Allergy">
-                            </div>
-                        </div>
+                    <input type="hidden" name="_subject" value="Luxe Birthday RSVP" />
+                    <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
 
-                        <input type="hidden" name="_subject" value="Birthday RSVP Response" />
-                        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-
-                        <button type="submit" id="submit-btn" class="w-full bg-mustard text-charcoal font-retro text-2xl py-4 rounded-2xl shadow-lg hover:scale-105 transition transform mt-4">
-                            Send RSVP
-                        </button>
-                    </form>
-                </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-champagne text-white font-bold uppercase tracking-widest py-5 rounded-xl shadow-md hover:bg-charcoal transition duration-300 mt-8">
+                        Confirm Response
+                    </button>
+                </form>
             </div>
         </section>
 
-        <footer class="text-center py-10 px-6 opacity-60">
-            <p class="font-retro text-xl text-charcoal">Can't wait to celebrate!</p>
-            <p class="text-xs font-bold mt-2">© 2025 Template by ZaynCollective</p>
+        <footer class="text-center py-12 bg-white">
+            <p class="font-heading text-2xl text-champagne mb-4">Sophia</p>
+            <p class="text-xs font-bold text-charcoal/40 uppercase tracking-widest">© 2025 The Golden Celebration</p>
         </footer>
 
     </main>
 
     <script>
-        // --- COUNTDOWN TIMER ---
-        const targetDate = new Date("2025-10-25T14:00:00").getTime();
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("days").innerText = "0";
-                return;
-            }
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-        }, 1000);
+        // --- MUSIC PLAYER LOGIC ---
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
 
-        // --- RSVP LOGIC ---
-        const btnComing = document.getElementById('btn-coming');
-        const btnNotComing = document.getElementById('btn-not-coming');
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-music');
+                musicToggle.classList.remove('playing');
+            } else {
+                bgMusic.play();
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-pause');
+                musicToggle.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // --- RSVP LOGIC (ELEGANT STYLE) ---
+        const btnAttending = document.getElementById('btn-attending');
+        const btnDecline = document.getElementById('btn-decline');
         const attendanceInput = document.getElementById('attendance-input');
         const extraDetails = document.getElementById('extra-details');
         const form = document.getElementById('rsvpForm');
         const successMsg = document.getElementById('rsvp-success');
         const submitBtn = document.getElementById('submit-btn');
 
-        const selectedClass = "bg-white text-terracotta scale-105 shadow-md border-transparent";
-        const defaultClass = "bg-white/20 border-2 border-white text-white hover:bg-white/30";
+        const activeStyle = "bg-champagne text-white border-champagne shadow-md";
+        const inactiveStyle = "border-charcoal/10 text-charcoal/60 hover:border-champagne hover:text-champagne";
 
-        btnComing.addEventListener('click', () => {
-            attendanceInput.value = "Coming";
-            btnComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${selectedClass}`;
-            btnNotComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${defaultClass}`;
+        btnAttending.addEventListener('click', () => {
+            attendanceInput.value = "Accepts";
+            btnAttending.className = `py-4 border-2 rounded-xl font-bold transition ${activeStyle}`;
+            btnDecline.className = `py-4 border-2 rounded-xl font-bold transition ${inactiveStyle}`;
             extraDetails.classList.remove('hidden');
         });
 
-        btnNotComing.addEventListener('click', () => {
-            attendanceInput.value = "Not Coming";
-            btnNotComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${selectedClass}`;
-            btnComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${defaultClass}`;
+        btnDecline.addEventListener('click', () => {
+            attendanceInput.value = "Declines";
+            btnDecline.className = `py-4 border-2 rounded-xl font-bold transition bg-charcoal text-white border-charcoal shadow-md`;
+            btnAttending.className = `py-4 border-2 rounded-xl font-bold transition ${inactiveStyle}`;
             extraDetails.classList.add('hidden');
         });
 
@@ -331,11 +255,11 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             if (!attendanceInput.value) {
-                alert("Please select if you are coming or not! 😊");
+                alert("Please select whether you will attend.");
                 return;
             }
             const originalText = submitBtn.innerText;
-            submitBtn.innerText = "Sending...";
+            submitBtn.innerText = "Processing...";
             submitBtn.disabled = true;
 
             try {
@@ -348,7 +272,7 @@
                     form.classList.add('hidden');
                     successMsg.classList.remove('hidden');
                 } else {
-                    alert("Oops! Something went wrong.");
+                    alert("Something went wrong. Please try again.");
                     submitBtn.innerText = originalText;
                     submitBtn.disabled = false;
                 }
@@ -361,3 +285,4 @@
     </script>
 </body>
 </html>
+
