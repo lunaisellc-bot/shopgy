@@ -1,508 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LITTLE WONDERS | Organic Play</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LITTLE WONDERS | Organic Play</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <meta name="description" content="Sustainable, organic toys and essentials that spark imagination." />
-    <meta property="og:title" content="Little Wonders | Organic Play" />
-    <meta property="og:type" content="website" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'head': ['Fredoka', 'sans-serif'],
-                        'body': ['Quicksand', 'sans-serif'],
-                    },
-                    colors: {
-                        'marshmallow': '#FFF5F5',
-                        'sky': '#E0F7FA',
-                        'sunshine': '#FFF9C4',
-                        'mint': '#E0F2F1',
-                        'berry': '#FFCDD2',
-                        'charcoal': '#455A64',
-                        'rsvp-orange': '#E07A5F',
-                        'rsvp-yellow': '#F2CC8F'
-                    },
-                    animation: {
-                        'bounce-slow': 'bounce 3s infinite',
-                        'wiggle': 'wiggle 1s ease-in-out infinite',
-                        'float': 'float 6s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        wiggle: {
-                            '0%, 100%': { transform: 'rotate(-3deg)' },
-                            '50%': { transform: 'rotate(3deg)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'head': ['Fredoka', 'sans-serif'],
+            'body': ['Quicksand', 'sans-serif'],
+          },
+          colors: {
+            'marshmallow': '#FFF5F5',
+            'sky': '#E0F7FA',
+            'sunshine': '#FFF9C4',
+            'mint': '#E0F2F1',
+            'berry': '#FFCDD2',
+            'charcoal': '#455A64',
+            'rsvp-orange': '#E07A5F',
+            'rsvp-yellow': '#F2CC8F'
+          },
+          animation: {
+            'bounce-slow': 'bounce 3s infinite',
+            'float': 'float 6s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
             }
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <style>
-        body { background-color: #FFF5F5; color: #455A64; }
-        
-        /* Sticky nav anchor offset */
-        section { scroll-margin-top: 96px; }
-
-        /* WAVE DIVIDER */
-        .wave-bottom { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; }
-        .wave-bottom svg { position: relative; display: block; width: calc(100% + 1.3px); height: 150px; }
-        .wave-top { position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg); }
-
-        /* CARD HOVER */
-        .play-card { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .play-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-
-        /* BUTTONS */
-        .btn-soft { border-radius: 50px; transition: all 0.3s ease; }
-        .btn-soft:hover { transform: scale(1.05); }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FFF5F5; }
-        ::-webkit-scrollbar-thumb { background: #FFCDD2; border-radius: 10px; }
-
-        /* DOODLES BACKGROUND */
-        .doodles {
-            background-image: radial-gradient(#FFCDD2 2px, transparent 2px), radial-gradient(#E0F7FA 2px, transparent 2px);
-            background-size: 50px 50px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.5;
-        }
-        
-        /* MOBILE MENU TRANSITION */
-        #mobile-menu { transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; }
-        .mobile-menu-hidden { max-height: 0; opacity: 0; overflow: hidden; }
-        .mobile-menu-visible { max-height: 400px; opacity: 1; }
-
-        /* RSVP SELECT ICON */
-        .rsvp-select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1em;
-        }
-    </style>
+  <style>
+    body { background-color: #FFF5F5; color: #455A64; scroll-behavior: smooth; }
+    section { scroll-margin-top: 100px; }
+    
+    /* Dalga Efektleri */
+    .wave-bottom svg { display: block; width: calc(100% + 1.3px); height: 150px; }
+    .wave-top { transform: rotate(180deg); }
+    
+    /* Kart Efektleri */
+    .play-card { transition: all 0.3s ease; }
+    .play-card:hover { transform: translateY(-10px); }
+    
+    /* Arka Plan Desen */
+    .doodles { 
+      background-image: radial-gradient(#FFCDD2 2px, transparent 2px), radial-gradient(#E0F7FA 2px, transparent 2px); 
+      background-size: 50px 50px; 
+      opacity: 0.5; 
+    }
+    
+    /* Mobil Menü Animasyonu */
+    #mobile-menu { transition: all 0.3s ease-in-out; overflow: hidden; }
+    .mobile-menu-hidden { max-height: 0; opacity: 0; }
+    .mobile-menu-visible { max-height: 400px; opacity: 1; }
+    
+    /* Form Dropdown Oku Gizleme */
+    .rsvp-select { 
+      -webkit-appearance: none; 
+      appearance: none; 
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+      background-repeat: no-repeat; 
+      background-position: right 1rem center; 
+      background-size: 1.2em; 
+    }
+  </style>
 </head>
 
 <body class="font-body selection:bg-berry selection:text-white">
 
-    <div class="bg-berry text-white text-center py-2 text-sm font-bold tracking-wide">
-        🌈 Free Shipping on Orders Over $50! Use Code: HAPPY 🌈
+  <div class="bg-berry text-white text-center py-2 text-sm font-bold tracking-wide">
+    🌈 Free Shipping on Orders Over $50! Use Code: HAPPY 🌈
+  </div>
+
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-berry/20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
+      <a href="#" class="font-head text-3xl font-bold text-berry flex items-center gap-2">
+        <i class="fa-solid fa-shapes text-sky animate-bounce-slow"></i> Little Wonders
+      </a>
+
+      <div class="hidden md:flex gap-6 font-bold text-charcoal/80">
+        <a href="#shop" class="hover:text-berry transition">Toys</a>
+        <a href="#clothing" class="hover:text-berry transition">Clothing</a>
+        <a href="#capsule" class="hover:text-berry transition">Time Capsule</a>
+        <a href="#rsvp" class="text-rsvp-orange hover:text-rsvp-yellow transition border-b-2 border-transparent hover:border-rsvp-orange">Party RSVP</a>
+        <a href="#about" class="hover:text-berry transition">Our Story</a>
+      </div>
+
+      <div class="flex items-center gap-5 text-charcoal">
+        <button class="hover:text-berry text-xl"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="hover:text-berry text-xl relative">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span class="absolute -top-2 -right-2 bg-sky text-charcoal text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">2</span>
+        </button>
+        <button id="mobile-menu-btn" class="md:hidden text-2xl hover:text-berry"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-berry/20">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
-            
-            <a href="#" class="font-head text-3xl font-bold text-berry flex items-center gap-2">
-                <i class="fa-solid fa-shapes text-sky animate-bounce-slow"></i> Little Wonders
-            </a>
-
-            <div class="hidden md:flex gap-6 font-bold text-charcoal/80">
-                <a href="#shop" class="hover:text-berry transition">Toys</a>
-                <a href="#clothing" class="hover:text-berry transition">Clothing</a>
-                <a href="#nursery" class="hover:text-berry transition">Nursery</a>
-                <a href="#capsule" class="hover:text-berry transition">Time Capsule</a>
-                <a href="#rsvp" class="hover:text-berry transition text-rsvp-orange">Parti RSVP</a>
-                <a href="#about" class="hover:text-berry transition">Our Story</a>
-            </div>
-
-            <div class="flex items-center gap-6 text-charcoal">
-                <button type="button" data-open-modal="demoModal" class="hover:text-berry transition text-xl" aria-label="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <button type="button" data-open-modal="demoModal" class="hover:text-berry transition text-xl relative" aria-label="Cart">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <span class="absolute -top-2 -right-2 bg-sky text-charcoal text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">2</span>
-                </button>
-                
-                <button id="mobile-menu-btn" class="md:hidden text-2xl hover:text-berry transition">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="mobile-menu-hidden bg-white border-t border-berry/10 md:hidden shadow-lg">
-            <div class="flex flex-col p-6 font-bold text-charcoal space-y-4 text-center">
-                <a href="#shop" class="mobile-link hover:text-berry">Toys</a>
-                <a href="#clothing" class="mobile-link hover:text-berry">Clothing</a>
-                <a href="#nursery" class="mobile-link hover:text-berry">Nursery</a>
-                <a href="#capsule" class="mobile-link hover:text-berry">Time Capsule</a>
-                <a href="#rsvp" class="mobile-link hover:text-rsvp-orange">Parti RSVP</a>
-                <a href="#about" class="mobile-link hover:text-berry">Our Story</a>
-            </div>
-        </div>
-    </nav>
-
-    <div id="demoModal" class="fixed inset-0 z-[999] hidden">
-        <div id="demoBackdrop" class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm"></div>
-        <div class="relative max-w-lg mx-auto mt-24 bg-white rounded-[2rem] shadow-2xl border border-berry/20 p-8 m-4">
-            <div class="flex items-start justify-between gap-4">
-                <div>
-                    <h3 class="font-head text-2xl text-charcoal">Demo UI</h3>
-                    <p class="mt-2 text-charcoal/70 font-bold">
-                        Search, cart, and add buttons are demo placeholders.
-                    </p>
-                </div>
-                <button type="button" data-close-modal="demoModal" class="text-charcoal/60 hover:text-berry text-xl" aria-label="Close">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                <a href="#shop" data-close-modal="demoModal" class="btn-soft bg-berry text-white px-6 py-3 font-bold shadow-lg shadow-berry/20 text-center">
-                    Continue Shopping
-                </a>
-                <button type="button" data-close-modal="demoModal" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-6 py-3 font-bold hover:bg-sky hover:border-sky">
-                    Close
-                </button>
-            </div>
-        </div>
+    <div id="mobile-menu" class="mobile-menu-hidden bg-white border-t border-berry/10 md:hidden shadow-lg">
+      <div class="flex flex-col p-6 font-bold text-charcoal space-y-4 text-center">
+        <a href="#shop" class="mobile-link">Toys</a>
+        <a href="#clothing" class="mobile-link">Clothing</a>
+        <a href="#capsule" class="mobile-link">Time Capsule</a>
+        <a href="#rsvp" class="mobile-link text-rsvp-orange">Party RSVP</a>
+      </div>
     </div>
+  </nav>
 
-    <header class="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-marshmallow">
-        <div class="absolute inset-0 doodles"></div>
+  <header class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-marshmallow">
+    <div class="absolute inset-0 doodles"></div>
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="text-center md:text-left order-2 md:order-1">
+        <span class="bg-sky text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6">Montessori Inspired</span>
+        <h1 class="font-head text-5xl md:text-7xl text-charcoal mb-6 leading-tight">Playtime Reimagined.</h1>
+        <p class="text-lg text-charcoal/70 mb-8 font-bold">Sustainable, organic, and beautifully crafted toys that spark imagination.</p>
+        <a href="#shop" class="inline-block bg-berry text-white px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition">Shop Collection</a>
+      </div>
+      <div class="relative order-1 md:order-2 animate-float">
+        <div class="absolute inset-0 bg-sunshine rounded-full blur-3xl opacity-30 transform scale-90"></div>
+        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" class="relative rounded-[3rem] shadow-2xl border-8 border-white" alt="Kid">
+      </div>
+    </div>
+    <div class="wave-bottom absolute bottom-0 w-full"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#FFFFFF"></path></svg></div>
+  </header>
 
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10 pt-10 md:pt-0">
-            <div class="text-center md:text-left order-2 md:order-1">
-                <span class="bg-sky text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6">Montessori Inspired</span>
-                <h1 class="font-head text-5xl md:text-7xl text-charcoal mb-6 leading-tight">
-                    Playtime Reimagined.
-                </h1>
-                <p class="text-lg text-charcoal/70 mb-8 leading-relaxed font-bold">
-                    Sustainable, organic, and beautifully crafted toys that spark imagination and joy.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#shop" class="btn-soft bg-berry text-white px-8 py-4 font-bold shadow-lg shadow-berry/30">Shop Collection</a>
-                    <a href="#about" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-8 py-4 font-bold hover:bg-sky hover:border-sky">Our Story</a>
-                </div>
-            </div>
-
-            <div class="relative order-1 md:order-2 animate-float">
-                <div class="absolute inset-0 bg-sunshine rounded-full blur-3xl opacity-30 transform scale-90"></div>
-                <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" 
-                     class="relative rounded-[3rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-500 border-8 border-white"
-                     alt="Happy Kid">
-                
-                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce-slow">
-                    <div class="bg-mint p-2 rounded-full text-2xl">🌱</div>
-                    <div>
-                        <p class="font-bold text-sm text-charcoal">100% Organic</p>
-                        <p class="text-xs text-charcoal/50 font-bold">Cotton & Wood</p>
-                    </div>
-                </div>
-            </div>
+  <section id="shop" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16"><h2 class="font-head text-4xl text-charcoal mb-4">New Arrivals 🚀</h2><div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div></div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-berry">
+          <div class="relative bg-marshmallow rounded-2xl overflow-hidden mb-4 h-64">
+            <span class="absolute top-3 left-3 bg-sunshine text-charcoal text-xs font-bold px-3 py-1 rounded-full z-10">Bestseller</span>
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Rainbow Stacker</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Wooden</span><span class="font-bold text-berry text-xl">$24.00</span></div>
         </div>
-
-        <div class="wave-bottom">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#FFFFFF"></path>
-            </svg>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sky">
+          <div class="relative bg-sky/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Cuddly Bear</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Plush</span><span class="font-bold text-berry text-xl">$18.50</span></div>
         </div>
-    </header>
-
-    <section id="shop" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="font-head text-4xl text-charcoal mb-4">Shop by Category</h2>
-                <div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <a href="#shop" class="play-card bg-sky/30 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10v10H7V7Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M4 10h3M17 10h3M4 14h3M17 14h3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/><path d="M10 4v3M14 4v3M10 17v3M14 17v3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Wooden Toys</h3>
-                </a>
-
-                <a href="#clothing" class="play-card bg-berry/20 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6 12 4l4 2 3 3-2 2v9H7v-9L5 9l3-3Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M9 8c1.5 1.3 4.5 1.3 6 0" stroke="#455A64" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Soft Clothing</h3>
-                </a>
-
-                <a href="#nursery" class="play-card bg-sunshine/40 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v14l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M9 8h6M9 12h6" stroke="#455A64" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Story Books</h3>
-                </a>
-
-                <a href="#nursery" class="play-card bg-mint/50 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10 12 4l8 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M9 22v-8h6v8" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/></svg>
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Room Decor</h3>
-                </a>
-            </div>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-mint">
+          <div class="relative bg-mint/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Shape Sorter</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Educational</span><span class="font-bold text-berry text-xl">$32.00</span></div>
         </div>
-    </section>
-
-    <section class="py-24 bg-mint/20 relative">
-        <div class="wave-top">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#FFFFFF"></path>
-            </svg>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sunshine">
+          <div class="relative bg-sunshine/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Activity Cube</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Sensory</span><span class="font-bold text-berry text-xl">$45.00</span></div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="max-w-7xl mx-auto px-6 mt-12">
-            <div class="flex justify-between items-end mb-12">
-                <h2 class="font-head text-4xl text-charcoal">New Arrivals 🚀</h2>
-                <a href="#shop" class="text-berry font-bold hover:underline">View All</a>
-            </div>
+  <section id="capsule" class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto bg-marshmallow rounded-[3rem] p-10 md:p-14 shadow-xl border border-berry/20 relative z-10">
+      <div class="text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-sm border border-charcoal/10 text-2xl mb-6">💌</div>
+        <h2 class="font-head text-4xl md:text-5xl text-charcoal mb-4">A Note for the Future</h2>
+        <p class="text-charcoal/70 text-lg font-bold max-w-2xl mx-auto">Leave a message, a wish, or a piece of advice to be opened later.</p>
+      </div>
+      
+      <div class="mt-10 bg-white rounded-[2.5rem] p-6 md:p-8 border border-charcoal/10 shadow-sm">
+        <form id="capsuleForm" action="https://formspree.io/f/mykzpvzg" method="POST" class="space-y-4">
+          <textarea name="message" required rows="5" placeholder="Dear Olivia..." class="w-full px-6 py-5 rounded-[2rem] bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"></textarea>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="from" required placeholder="From (Your Name)" class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"/>
+            <input type="email" name="reply_to" placeholder="Your Email (optional)" class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"/>
+          </div>
+          <input type="hidden" name="_subject" value="New Time Capsule Note" />
+          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+          
+          <button type="submit" class="w-full btn-soft bg-mint text-charcoal px-8 py-5 font-bold shadow-lg shadow-mint/30 hover:opacity-95 text-lg">
+            SEAL IN CAPSULE
+          </button>
+          <p id="capsule-status" class="text-center text-sm font-bold text-charcoal/70 pt-2"></p>
+        </form>
+      </div>
+    </div>
+  </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-berry">
-                    <div class="relative bg-marshmallow rounded-2xl overflow-hidden mb-4 h-64">
-                        <span class="absolute top-3 left-3 bg-sunshine text-charcoal text-xs font-bold px-3 py-1 rounded-full z-10">Bestseller</span>
-                        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Toy">
-                        <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-berry hover:text-white transition text-charcoal">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                    <h3 class="font-head text-lg text-charcoal mb-1">Rainbow Stacker</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 text-sm font-bold">Wooden</span>
-                        <span class="font-bold text-berry text-xl">$24.00</span>
-                    </div>
-                </div>
-                <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sunshine">
-                    <div class="relative bg-sunshine/20 rounded-2xl overflow-hidden mb-4 h-64">
-                        <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
-                        <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sunshine hover:text-charcoal transition text-charcoal">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                    <h3 class="font-head text-lg text-charcoal mb-1">Activity Cube</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 text-sm font-bold">Sensory</span>
-                        <span class="font-bold text-berry text-xl">$45.00</span>
-                    </div>
-                </div>
-            </div>
+  <section id="rsvp" class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto bg-rsvp-orange rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden text-white z-10">
+      <div class="absolute top-6 right-8 text-white/40 text-6xl rotate-12 animate-float">🎈</div>
+      
+      <div id="rsvp-success-message" class="hidden text-center py-10 animate-pulse">
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white text-4xl mb-6 shadow-lg text-rsvp-orange">🎉</div>
+        <h2 class="font-head text-4xl mb-4">Awesome!</h2>
+        <p class="text-white/90 text-xl font-bold">Your RSVP has been sent successfully.</p>
+        <button onclick="location.reload()" class="mt-8 text-white underline hover:text-rsvp-yellow font-bold">Add Another Guest</button>
+      </div>
+
+      <div id="rsvp-form-content">
+        <div class="text-center mb-8">
+          <h2 class="font-head text-5xl mb-2">Are you coming?</h2>
+          <p class="text-white/80 font-bold">We need a head count for the cake! 🍰</p>
         </div>
-    </section>
-
-    <section id="capsule" class="py-24 px-6 bg-white relative overflow-hidden">
-        <div class="max-w-4xl mx-auto bg-marshmallow rounded-[3rem] p-10 md:p-14 shadow-xl border border-berry/20 relative">
-            <div class="text-center">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-sm border border-charcoal/10 text-2xl mb-6">
-                    💌
-                </div>
-                <h2 class="font-head text-4xl md:text-5xl text-charcoal mb-4">A Note for the Future</h2>
-                <p class="text-charcoal/70 text-lg font-bold max-w-2xl mx-auto">
-                    Leave a message, a wish, or a piece of advice to be opened later. We are creating a digital time capsule!
-                </p>
-            </div>
-
-            <div class="mt-10 bg-white rounded-[2.5rem] p-6 md:p-8 border border-charcoal/10 shadow-sm">
-                
-                <form id="capsuleForm" action="https://formspree.io/f/mykzpvzg" method="POST" class="space-y-4">
-                    <textarea name="message" required rows="5" placeholder="Dear Olivia..." class="w-full px-6 py-5 rounded-[2rem] bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"></textarea>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="from" required placeholder="From (Your Name)" class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40" />
-                        <input type="email" name="reply_to" placeholder="Your Email (optional)" class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40" />
-                    </div>
-                    
-                    <input type="hidden" name="source" value="Little Wonders - Time Capsule" />
-                    <input type="hidden" name="_subject" value="New Time Capsule Note" />
-                    <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-
-                    <button type="submit" class="w-full btn-soft bg-mint text-charcoal px-8 py-5 font-bold shadow-lg shadow-mint/30 hover:opacity-95">
-                        SEAL IN CAPSULE
-                    </button>
-                    
-                    <p id="capsule-status" class="text-center text-sm font-bold text-charcoal/70"></p>
-                </form>
-            </div>
-
-            <div class="absolute -top-10 -left-10 w-28 h-28 bg-sky rounded-full blur-2xl opacity-40 animate-float"></div>
-            <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-berry rounded-full blur-2xl opacity-30 animate-bounce-slow"></div>
-        </div>
-    </section>
-
-    <section id="rsvp" class="py-24 px-6 bg-white relative overflow-hidden">
-        <div class="max-w-4xl mx-auto bg-rsvp-orange rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden text-white">
-            
-            <div class="absolute top-6 right-8 text-white/40 text-6xl rotate-12 animate-float">🎈</div>
-
-            <div id="rsvp-success-message" class="hidden text-center py-10 animate-pulse">
-                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white text-4xl mb-6 shadow-lg text-rsvp-orange">🎉</div>
-                <h2 class="font-head text-4xl mb-4">Harika!</h2>
-                <p class="text-white/90 text-xl font-bold">Kaydınız başarıyla oluşturulmuştur.</p>
-                <button onclick="location.reload()" class="mt-8 text-white underline hover:text-rsvp-yellow font-bold">Yeni Kayıt Ekle</button>
-            </div>
-
-            <div id="rsvp-form-content">
-                <div class="text-center mb-8">
-                    <h2 class="font-head text-5xl mb-2">Are you coming?</h2>
-                    <p class="text-white/80 font-bold flex items-center justify-center gap-2">We need a head count for the cake! 🍰</p>
-                </div>
-
-                <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" name="name" required placeholder="Name" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
-                        <input type="text" name="surname" required placeholder="Surname" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
-                    </div>
-
-                    <div>
-                        <input type="email" name="email" required placeholder="Email Address" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                        <input type="hidden" id="attendance-input" name="attendance" value="yes">
-                        <button type="button" id="btn-yes" class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 shadow-md transform scale-105 bg-white text-rsvp-orange">Yes, can't wait! 😍</button>
-                        <button type="button" id="btn-no" class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 border-2 border-white/40 text-white hover:bg-white/10">Sad to miss it 😢</button>
-                    </div>
-
-                    <div id="guest-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 transition-opacity duration-300">
-                        <div class="relative">
-                            <select name="adults" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
-                                <option value="1" selected class="text-charcoal">1 Adult</option>
-                                <option value="2" class="text-charcoal">2 Adults</option>
-                                <option value="3" class="text-charcoal">3 Adults</option>
-                                <option value="4" class="text-charcoal">4 Adults</option>
-                                <option value="5" class="text-charcoal">5 Adults</option>
-                            </select>
-                        </div>
-                        <div class="relative">
-                            <select name="children" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
-                                <option value="0" selected class="text-charcoal">No Children</option>
-                                <option value="1" class="text-charcoal">1 Child</option>
-                                <option value="2" class="text-charcoal">2 Children</option>
-                                <option value="3" class="text-charcoal">3 Children</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <input type="hidden" name="_subject" value="New Party RSVP!" />
-                    <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-
-                    <button type="submit" class="w-full bg-rsvp-yellow hover:bg-white text-charcoal text-xl font-head font-bold rounded-2xl py-4 mt-4 shadow-lg transform hover:-translate-y-1 transition duration-300">
-                        Send RSVP
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section id="clothing" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-12">
-                <div>
-                    <h2 class="font-head text-4xl text-charcoal">Soft Clothing</h2>
-                    <p class="mt-3 text-charcoal/70 text-lg font-bold max-w-2xl">Gentle essentials made for everyday comfort.</p>
-                </div>
-                <a href="#shop" class="text-berry font-bold hover:underline">Browse All</a>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="play-card bg-berry/10 rounded-3xl p-8 border-2 border-transparent hover:border-berry">
-                    <div class="flex items-center gap-4 mb-4"><div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl">🧸</div><h3 class="font-head text-2xl text-charcoal">Everyday Sets</h3></div>
-                    <p class="text-charcoal/70 font-bold leading-relaxed">Mix-and-match basics designed for play.</p>
-                    <div class="mt-6 flex gap-3">
-                        <a href="#shop" class="btn-soft bg-berry text-white px-6 py-3 font-bold shadow-lg shadow-berry/20">Shop Sets</a>
-                    </div>
-                </div>
-                <div class="play-card bg-sky/20 rounded-3xl p-8 border-2 border-transparent hover:border-sky">
-                    <div class="flex items-center gap-4 mb-4"><div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl">☁️</div><h3 class="font-head text-2xl text-charcoal">Cozy Layers</h3></div>
-                    <p class="text-charcoal/70 font-bold leading-relaxed">Soft knits and layers to keep little ones warm.</p>
-                    <div class="mt-6 flex gap-3">
-                        <a href="#shop" class="btn-soft bg-sky text-charcoal px-6 py-3 font-bold shadow-lg shadow-sky/20">Shop Layers</a>
-                    </div>
-                </div>
-                <div class="play-card bg-mint/30 rounded-3xl p-8 border-2 border-transparent hover:border-mint">
-                    <div class="flex items-center gap-4 mb-4"><div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl">🌿</div><h3 class="font-head text-2xl text-charcoal">Organic Favorites</h3></div>
-                    <p class="text-charcoal/70 font-bold leading-relaxed">Skin-friendly, planet-kind picks.</p>
-                    <div class="mt-6 flex gap-3">
-                        <a href="#shop" class="btn-soft bg-mint text-charcoal px-6 py-3 font-bold shadow-lg shadow-mint/20">Shop Organic</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 bg-white relative overflow-hidden">
-        <div class="max-w-3xl mx-auto bg-sky/30 rounded-[3rem] p-12 text-center relative z-10">
-            <h2 class="font-head text-3xl md:text-5xl text-charcoal mb-6">Join the Fun Club! 🎈</h2>
-            <p class="text-charcoal/70 mb-8 text-lg font-bold">Sign up for exclusive offers, fun activities, and new product drops.</p>
-
-            <form id="newsletterForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-                <input type="email" name="email" required autocomplete="email" placeholder="Parent's Email Address" class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body font-bold" />
-                <input type="hidden" name="source" value="Little Wonders - Fun Club" />
-                <input type="hidden" name="_subject" value="New Fun Club Subscriber" />
-                <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-                <button type="submit" class="bg-berry text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition">Subscribe</button>
-            </form>
-            <p id="form-status" class="mt-4 text-sm font-bold text-charcoal/70"></p>
-        </div>
-        <div class="absolute top-10 left-10 w-20 h-20 bg-sunshine rounded-full blur-xl opacity-50 animate-bounce-slow"></div>
-        <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
-    </section>
-
-    <footer class="bg-charcoal text-white pt-20 pb-10 px-6 rounded-t-[3rem]">
-        <div class="max-w-7xl mx-auto text-center">
-            <p>&copy; 2025 LITTLE WONDERS. POWERED BY ZAYNCOLLECTIVE.</p>
-        </div>
-    </footer>
-
-    <script>
-        // --- GENERIC MODAL LOGIC ---
-        const openButtons = document.querySelectorAll('[data-open-modal]');
-        const closeButtons = document.querySelectorAll('[data-close-modal]');
-
-        function openModal(id) {
-            const el = document.getElementById(id);
-            if (!el) return;
-            el.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(id) {
-            const el = document.getElementById(id);
-            if (!el) return;
-            el.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        openButtons.forEach(btn => {
-            btn.addEventListener('click', () => openModal(btn.getAttribute('data-open-modal')));
-        });
-
-        closeButtons.forEach(btn => {
-            btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close-modal')));
-        });
-
-        // Close demo modal by clicking backdrop + ESC
-        const demoModal = document.getElementById('demoModal');
-        const demoBackdrop = document.getElementById('demoBackdrop');
         
-        if (demoModal) {
-            if (demoBackdrop) demoBackdrop.addEventListener('click', () => closeModal('demoModal'));
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !demoModal.classList.contains('hidden')) closeModal('demoModal');
-            });
-        }
+        <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="name" required placeholder="Name" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+            <input type="text" name="surname" required placeholder="Surname" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+          </div>
+          
+          <input type="email" name="email" required placeholder="Email Address" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <input type="hidden" id="attendance-input" name="attendance" value="yes">
+            
+            <button type="button" id="btn-yes" class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 shadow-md transform scale-105 bg-white text-rsvp-orange">
+              Yes, can't wait! 😍
+            </button>
+            <button type="button" id="btn-no" class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 border-2 border-white/40 text-white hover:bg-white/10">
+              Sad to miss it 😢
+            </button>
+          </div>
 
-        // --- MOBILE MENU LOGIC ---
+          <div id="guest-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 transition-opacity duration-300">
+            <div class="relative">
+              <select name="adults" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
+                <option value="1" class="text-charcoal" selected>1 Adult</option>
+                <option value="2" class="text-charcoal">2 Adults</option>
+                <option value="3" class="text-charcoal">3 Adults</option>
+                <option value="4" class="text-charcoal">4 Adults</option>
+                <option value="5" class="text-charcoal">5 Adults</option>
+                <option value="6" class="text-charcoal">6 Adults</option>
+                <option value="7" class="text-charcoal">7 Adults</option>
+                <option value="8" class="text-charcoal">8 Adults</option>
+                <option value="9" class="text-charcoal">9 Adults</option>
+                <option value="10" class="text-charcoal">10 Adults</option>
+              </select>
+            </div>
+            <div class="relative">
+              <select name="children" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
+                <option value="0" class="text-charcoal" selected>No Children</option>
+                <option value="1" class="text-charcoal">1 Child</option>
+                <option value="2" class="text-charcoal">2 Children</option>
+                <option value="3" class="text-charcoal">3 Children</option>
+                <option value="4" class="text-charcoal">4 Children</option>
+                <option value="5" class="text-charcoal">5 Children</option>
+                <option value="6" class="text-charcoal">6 Children</option>
+                <option value="7" class="text-charcoal">7 Children</option>
+                <option value="8" class="text-charcoal">8 Children</option>
+                <option value="9" class="text-charcoal">9 Children</option>
+                <option value="10" class="text-charcoal">10 Children</option>
+              </select>
+            </div>
+          </div>
+
+          <input type="hidden" name="_subject" value="New Party RSVP!" />
+          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <button type="submit" class="w-full bg-rsvp-yellow hover:bg-white text-charcoal text-xl font-head font-bold rounded-2xl py-4 mt-4 shadow-lg transform hover:-translate-y-1 transition duration-300">
+            Send RSVP
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-3xl mx-auto bg-sky/30 rounded-[3rem] p-12 text-center relative z-10">
+      <h2 class="font-head text-3xl md:text-5xl text-charcoal mb-6">Join the Fun Club! 🎈</h2>
+      <p class="text-charcoal/70 mb-8 text-lg font-bold">Sign up for exclusive offers, fun activities, and new product drops.</p>
+      
+      <form id="newsletterForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+        <input type="email" name="email" required autocomplete="email" placeholder="Parent's Email Address" class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body font-bold" />
+        <input type="hidden" name="source" value="Little Wonders - Fun Club" />
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+        <button type="submit" class="bg-berry text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition">Subscribe</button>
+      </form>
+      <p id="form-status" class="mt-4 text-sm font-bold text-charcoal/70"></p>
+    </div>
+    <div class="absolute top-10 left-10 w-20 h-20 bg-sunshine rounded-full blur-xl opacity-50 animate-bounce-slow"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
+  </section>
+
+  <footer class="bg-charcoal text-white pt-20 pb-10 px-6 rounded-t-[3rem]">
+    <div class="max-w-7xl mx-auto text-center">
+      <a href="#" class="font-head text-3xl font-bold text-sunshine inline-block mb-6"><i class="fa-solid fa-shapes"></i> Little Wonders</a>
+      <p class="text-white/70 leading-relaxed font-bold mb-8">Making childhood magical.</p>
+      <div class="border-t border-white/10 pt-8 text-white/50 text-sm font-bold"><p>&copy; 2025 LITTLE WONDERS. POWERED BY ZAYNCOLLECTIVE.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    // Sayfa Tamamen Yüklendiğinde Çalıştır
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Script başlatıldı - Little Wonders");
+
+        // --- MOBİL MENÜ ---
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -526,51 +333,19 @@
             });
         }
 
-        // --- NEWSLETTER FORM SUBMIT ---
-        const newsletterForm = document.getElementById('newsletterForm');
-        const newsletterStatus = document.getElementById('form-status');
-
-        if (newsletterForm && newsletterStatus) {
-            newsletterForm.addEventListener("submit", async (e) => {
-                e.preventDefault();
-                newsletterStatus.textContent = "Sending...";
-                
-                const btn = newsletterForm.querySelector('button[type="submit"]');
-                if (btn) btn.disabled = true;
-
-                try {
-                    const data = new FormData(newsletterForm);
-                    const res = await fetch(newsletterForm.action, {
-                        method: newsletterForm.method,
-                        body: data,
-                        headers: { "Accept": "application/json" }
-                    });
-                    
-                    if (res.ok) {
-                        newsletterForm.reset();
-                        newsletterStatus.textContent = "You're in! Welcome to the Fun Club.";
-                    } else {
-                        newsletterStatus.textContent = "Oops—please try again.";
-                    }
-                } catch (err) {
-                    newsletterStatus.textContent = "Network error.";
-                } finally {
-                    if (btn) btn.disabled = false;
-                }
-            });
-        }
-
-        // --- TIME CAPSULE FORM SUBMIT ---
+        // --- ZAMAN KAPSÜLÜ FORMU ---
         const capsuleForm = document.getElementById('capsuleForm');
         const capsuleStatus = document.getElementById('capsule-status');
 
-        if (capsuleForm && capsuleStatus) {
+        if (capsuleForm) {
             capsuleForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
-                capsuleStatus.textContent = "Sealing...";
-                
                 const btn = capsuleForm.querySelector('button[type="submit"]');
-                if (btn) btn.disabled = true;
+                const originalText = btn.innerText;
+                
+                btn.disabled = true;
+                btn.innerText = "Sealing...";
+                capsuleStatus.textContent = "Sending to the future...";
 
                 try {
                     const data = new FormData(capsuleForm);
@@ -582,27 +357,32 @@
                     
                     if (res.ok) {
                         capsuleForm.reset();
-                        capsuleStatus.textContent = "Sealed. Thank you!";
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                        capsuleStatus.textContent = "Sealed! Thank you.";
+                        capsuleStatus.className = "text-center text-sm font-bold text-green-600 pt-2";
                     } else {
-                        capsuleStatus.textContent = "Oops—please try again.";
+                        throw new Error("Formspree hatası");
                     }
                 } catch (err) {
-                    capsuleStatus.textContent = "Network error.";
-                } finally {
-                    if (btn) btn.disabled = false;
+                    capsuleStatus.textContent = "Oops! Something went wrong.";
+                    capsuleStatus.className = "text-center text-sm font-bold text-red-500 pt-2";
+                    btn.disabled = false;
+                    btn.innerText = originalText;
                 }
             });
         }
 
-        // --- RSVP FORM LOGIC & SUBMIT ---
+        // --- RSVP (DAVET) FORMU ---
         const btnYes = document.getElementById('btn-yes');
         const btnNo = document.getElementById('btn-no');
         const attendanceInput = document.getElementById('attendance-input');
         const guestOptions = document.getElementById('guest-options');
         const rsvpForm = document.getElementById('rsvpForm');
-        const rsvpFormContent = document.getElementById('rsvp-form-content');
-        const rsvpSuccessMessage = document.getElementById('rsvp-success-message');
+        const rsvpContent = document.getElementById('rsvp-form-content');
+        const rsvpSuccess = document.getElementById('rsvp-success-message');
 
+        // Stil Sınıfları
         const activeClass = "bg-white text-rsvp-orange shadow-md transform scale-105 border-transparent";
         const inactiveClass = "bg-transparent text-white border-2 border-white/40 hover:bg-white/10";
 
@@ -625,11 +405,11 @@
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', async (e) => {
                 e.preventDefault(); 
-                const submitBtn = rsvpForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerText;
+                const btn = rsvpForm.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
                 
-                submitBtn.disabled = true;
-                submitBtn.innerText = "Sending...";
+                btn.disabled = true;
+                btn.innerText = "Sending...";
 
                 try {
                     const data = new FormData(rsvpForm);
@@ -640,22 +420,59 @@
                     });
 
                     if (response.ok) {
-                        rsvpFormContent.style.display = 'none';
-                        rsvpSuccessMessage.classList.remove('hidden');
+                        rsvpContent.style.display = 'none';
+                        rsvpSuccess.classList.remove('hidden');
                         rsvpForm.reset();
                     } else {
-                        alert("Bir sorun oluştu. Lütfen tekrar deneyin.");
-                        submitBtn.disabled = false;
-                        submitBtn.innerText = originalText;
+                        alert("There was a problem sending your RSVP. Please try again.");
+                        btn.disabled = false;
+                        btn.innerText = originalText;
                     }
                 } catch (error) {
-                    alert("Bağlantı hatası!");
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = originalText;
+                    alert("Connection error! Please check your internet.");
+                    console.error('Hata:', error);
+                    btn.disabled = false;
+                    btn.innerText = originalText;
                 }
             });
         }
-    </script>
+
+        // --- NEWSLETTER FORMU ---
+        const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterStatus = document.getElementById('form-status');
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const btn = newsletterForm.querySelector('button[type="submit"]');
+                newsletterStatus.textContent = "Sending...";
+                btn.disabled = true;
+
+                try {
+                    const data = new FormData(newsletterForm);
+                    const res = await fetch(newsletterForm.action, {
+                        method: newsletterForm.method,
+                        body: data,
+                        headers: { "Accept": "application/json" }
+                    });
+                    
+                    if (res.ok) {
+                        newsletterForm.reset();
+                        newsletterStatus.textContent = "Welcome to the club! 🎈";
+                        newsletterStatus.className = "mt-4 text-sm font-bold text-green-600";
+                        setTimeout(() => { btn.disabled = false; }, 2000);
+                    } else {
+                        throw new Error("Form hatası");
+                    }
+                } catch (err) {
+                    newsletterStatus.textContent = "Network error. Try again.";
+                    newsletterStatus.className = "mt-4 text-sm font-bold text-red-500";
+                    btn.disabled = false;
+                }
+            });
+        }
+    });
+  </script>
 
 </body>
 </html>
