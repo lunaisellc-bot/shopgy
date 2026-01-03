@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olivia is Turning One! | Birthday Invitation</title>
+    <title>Olivia's 1st Birthday | A Magical Celebration</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito:wght@400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -18,15 +18,35 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'head': ['Fredoka', 'sans-serif'], // Başlık Fontu
-                        'body': ['Nunito', 'sans-serif'],  // Yazı Fontu
+                        'head': ['Fredoka', 'sans-serif'],
+                        'body': ['Nunito', 'sans-serif'],
+                        'script': ['Dancing Script', 'cursive'], // Yeni el yazısı fontu
                     },
                     colors: {
-                        'boho-bg': '#FFF9F5',      // Krem zemin
-                        'boho-primary': '#E07A5F', // Kiremit rengi (Ana renk)
-                        'boho-secondary': '#81B29A', // Adaçayı yeşili (Detaylar)
-                        'boho-accent': '#F2CC8F',  // Hardal sarısı (Vurgular)
-                        'boho-text': '#3D405B',    // Koyu gri (Yazılar)
+                        'boho-bg': '#FFF9F5',      
+                        'boho-cream': '#FDF6E3',
+                        'boho-primary': '#E07A5F', // Kiremit
+                        'boho-secondary': '#81B29A', // Adaçayı
+                        'boho-accent': '#F2CC8F',  // Hardal
+                        'boho-text': '#3D405B',    
+                        'boho-rose': '#EAB8B2',    // Yumuşak Pembe (Yeni)
+                    },
+                    boxShadow: {
+                        'soft-xl': '0 20px 25px -5px rgba(224, 122, 95, 0.1), 0 8px 10px -6px rgba(224, 122, 95, 0.05)',
+                        'glow': '0 0 15px rgba(242, 204, 143, 0.5)',
+                    },
+                    animation: {
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'float-medium': 'float 6s ease-in-out infinite',
+                        'float-fast': 'float 4s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        }
                     },
                     backgroundImage: {
                         'paper-texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')"
@@ -41,171 +61,245 @@
             background-color: #FFF9F5;
             color: #3D405B;
             font-family: 'Nunito', sans-serif;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
         h1, h2, h3, .font-head { font-family: 'Fredoka', sans-serif; }
 
-        /* Fotoğraf Çerçevesi Efekti */
+        /* Yüzen Arka Plan Elemanları */
+        .floating-elements {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .floater { position: absolute; opacity: 0.6; filter: blur(1px); }
+
+        /* Dalgalı Geçişler */
+        .wave-divider {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+
+        /* Fotoğraf Çerçevesi */
         .photo-frame {
             background: white;
-            padding: 10px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transform: rotate(-2deg);
-            transition: transform 0.3s ease;
+            padding: 12px;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg) scale(1);
+            transition: all 0.4s ease-out;
+            position: relative;
         }
-        .photo-frame:hover { transform: rotate(0deg) scale(1.02); }
-        .photo-frame.reverse { transform: rotate(2deg); }
-        .photo-frame.reverse:hover { transform: rotate(0deg) scale(1.02); }
+        .photo-frame::after { /* Parıltı efekti */
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .photo-frame:hover { transform: rotate(0deg) scale(1.05); box-shadow: 0 20px 30px -10px rgba(224, 122, 95, 0.2); }
+        .photo-frame:hover::after { opacity: 1; }
 
-        /* Form Elemanları */
+        /* Özel Input */
         .custom-input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 1rem;
-            border: 2px solid #F2CC8F;
-            background-color: white;
-            outline: none;
-            transition: all 0.3s;
+            width: 100%; padding: 14px 20px;
+            border-radius: 1.5rem; border: 2px solid #F2CC8F;
+            background-color: white/90; backdrop-filter: blur(5px);
+            outline: none; transition: all 0.3s;
+            font-weight: 700; color: #3D405B;
         }
-        .custom-input:focus { border-color: #E07A5F; box-shadow: 0 0 0 4px rgba(224, 122, 95, 0.1); }
+        .custom-input:focus { border-color: #E07A5F; box-shadow: 0 0 0 5px rgba(224, 122, 95, 0.15); background-color: white; }
 
         /* Mobil Menü */
-        #mobile-menu { transition: max-height 0.3s ease-out; overflow: hidden; max-height: 0; }
-        #mobile-menu.open { max-height: 300px; }
+        #mobile-menu { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; opacity: 0; }
+        #mobile-menu.open { max-height: 400px; opacity: 1; }
     </style>
 </head>
-<body class="bg-paper-texture">
+<body class="bg-paper-texture relative">
 
-    <nav class="fixed w-full z-50 bg-boho-bg/90 backdrop-blur-sm shadow-sm">
+    <div class="floating-elements">
+        <i class="fa-solid fa-balloon text-boho-rose/30 text-7xl floater animate-float-slow" style="top: 10%; left: 5%;"></i>
+        <i class="fa-solid fa-balloon text-boho-accent/30 text-6xl floater animate-float-medium" style="top: 30%; right: 10%; animation-delay: 1s;"></i>
+        <i class="fa-solid fa-balloon text-boho-primary/20 text-8xl floater animate-float-slow" style="bottom: 15%; left: 15%; animation-delay: 2s;"></i>
+        <i class="fa-solid fa-seedling text-boho-secondary/20 text-5xl floater animate-float-fast animate-spin-slow" style="top: 20%; right: 25%;"></i>
+        <i class="fa-brands fa-pagelines text-boho-rose/30 text-6xl floater animate-float-medium" style="bottom: 40%; left: -2%;"></i>
+        <i class="fa-solid fa-star text-boho-accent/40 text-4xl floater animate-pulse-slow" style="top: 5%; right: 5%;"></i>
+        <i class="fa-solid fa-star text-boho-accent/30 text-3xl floater animate-pulse-slow" style="bottom: 10%; right: 20%; animation-delay: 1.5s;"></i>
+    </div>
+
+    <nav class="fixed w-full z-50 bg-white/70 backdrop-blur-md shadow-sm border-b border-white/50">
         <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-head font-bold text-boho-primary tracking-wide">
-                <i class="fa-solid fa-cake-candles text-boho-secondary mr-2"></i> Olivia's 1st
+            <a href="#" class="text-2xl font-head font-bold text-boho-primary tracking-wide flex items-center gap-2">
+                <span class="text-3xl animate-bounce-slow">🧁</span> Olivia's 1st
             </a>
             
-            <div class="hidden md:flex gap-8 font-bold text-boho-text">
-                <a href="#details" class="hover:text-boho-primary transition">Details</a>
-                <a href="#gallery" class="hover:text-boho-primary transition">Memories</a>
-                <a href="#capsule" class="hover:text-boho-primary transition">Time Capsule</a>
-                <a href="#rsvp" class="px-5 py-2 bg-boho-primary text-white rounded-full hover:bg-boho-text transition shadow-md">RSVP Now</a>
+            <div class="hidden md:flex gap-8 font-bold text-boho-text/80 items-center">
+                <a href="#details" class="hover:text-boho-primary transition relative group">Details<span class="absolute -bottom-1 left-0 w-0 h-1 bg-boho-primary transition-all group-hover:w-full rounded-full"></span></a>
+                <a href="#gallery" class="hover:text-boho-primary transition relative group">Memories<span class="absolute -bottom-1 left-0 w-0 h-1 bg-boho-secondary transition-all group-hover:w-full rounded-full"></span></a>
+                <a href="#capsule" class="hover:text-boho-primary transition relative group">Time Capsule<span class="absolute -bottom-1 left-0 w-0 h-1 bg-boho-accent transition-all group-hover:w-full rounded-full"></span></a>
+                <a href="#rsvp" class="px-6 py-3 bg-boho-primary text-white rounded-full hover:bg-boho-text transition shadow-soft-xl hover:shadow-none transform hover:-translate-y-1">RSVP Now</a>
             </div>
 
-            <button id="menu-btn" class="md:hidden text-2xl text-boho-primary">
-                <i class="fa-solid fa-bars"></i>
+            <button id="menu-btn" class="md:hidden text-3xl text-boho-primary hover:text-boho-text transition">
+                <i class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
 
-        <div id="mobile-menu" class="bg-white md:hidden shadow-lg">
-            <div class="flex flex-col p-6 space-y-4 font-bold text-center text-boho-text">
-                <a href="#details" class="menu-link">Details</a>
-                <a href="#gallery" class="menu-link">Memories</a>
-                <a href="#capsule" class="menu-link">Time Capsule</a>
-                <a href="#rsvp" class="menu-link text-boho-primary">RSVP Now</a>
+        <div id="mobile-menu" class="bg-white/95 md:hidden shadow-lg backdrop-blur-md border-t border-boho-accent/20">
+            <div class="flex flex-col p-8 space-y-6 font-bold text-center text-xl text-boho-text">
+                <a href="#details" class="menu-link hover:text-boho-primary transition">Details</a>
+                <a href="#gallery" class="menu-link hover:text-boho-secondary transition">Memories</a>
+                <a href="#capsule" class="menu-link hover:text-boho-accent transition">Time Capsule</a>
+                <a href="#rsvp" class="menu-link inline-block bg-boho-primary text-white px-6 py-3 rounded-full shadow-md">RSVP Now</a>
             </div>
         </div>
     </nav>
 
-    <header class="pt-32 pb-20 px-6 text-center relative overflow-hidden">
-        <div class="absolute top-20 left-10 text-boho-secondary/20 text-6xl animate-bounce-slow"><i class="fa-solid fa-cloud"></i></div>
-        <div class="absolute top-40 right-10 text-boho-accent/30 text-5xl animate-bounce-slow" style="animation-delay: 1s;"><i class="fa-solid fa-star"></i></div>
+    <header class="pt-40 pb-32 px-6 text-center relative z-10">
+        <div class="max-w-4xl mx-auto relative">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-boho-rose/20 via-boho-accent/20 to-boho-secondary/20 rounded-full blur-3xl -z-10 opacity-60 animate-pulse-slow"></div>
 
-        <div class="max-w-3xl mx-auto relative z-10">
-            <p class="font-head text-2xl text-boho-secondary mb-4 italic">Our little sunshine is turning...</p>
-            <h1 class="font-head text-8xl md:text-9xl text-boho-primary mb-2">ONE</h1>
-            <h2 class="font-head text-4xl md:text-6xl text-boho-text mb-8">Olivia Grace</h2>
+            <p class="font-script text-3xl md:text-4xl text-boho-secondary mb-4 transform -rotate-2">Our little sunshine is turning...</p>
             
-            <div class="inline-block bg-white px-8 py-4 rounded-2xl shadow-lg border-2 border-boho-accent transform rotate-1">
-                <p class="text-xl font-bold text-boho-text">
-                    <i class="fa-regular fa-calendar text-boho-primary mr-2"></i> Saturday, July 15th
-                </p>
-                <p class="text-lg text-boho-text/70">@ 2:00 PM in the Afternoon</p>
+            <h1 class="font-head text-[10rem] md:text-[12rem] leading-none text-boho-primary mb-2 animate-pulse-slow drop-shadow-sm relative inline-block">
+                ONE
+                <span class="absolute -top-4 -right-8 text-6xl text-boho-accent animate-bounce-slow">👑</span>
+            </h1>
+            
+            <h2 class="font-head text-5xl md:text-7xl text-boho-text mb-10">Olivia Grace</h2>
+            
+            <div class="inline-flex flex-col md:flex-row items-center justify-center gap-4 bg-white/80 backdrop-blur-sm px-10 py-6 rounded-[2rem] shadow-soft-xl border-2 border-boho-accent/50 group hover:border-boho-primary transition-all duration-500">
+                <div class="flex items-center gap-3">
+                    <i class="fa-regular fa-calendar text-4xl text-boho-primary group-hover:scale-110 transition"></i>
+                    <div class="text-left">
+                        <p class="text-xl font-bold text-boho-text">Saturday, July 15th</p>
+                        <p class="text-boho-text/70">2025</p>
+                    </div>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-boho-accent/50"></div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-regular fa-clock text-4xl text-boho-secondary group-hover:scale-110 transition"></i>
+                    <div class="text-left">
+                        <p class="text-xl font-bold text-boho-text">2:00 PM</p>
+                        <p class="text-boho-text/70">in the Afternoon</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-10">
-                <a href="#rsvp" class="inline-block bg-boho-primary text-white text-xl font-head font-bold px-10 py-4 rounded-full shadow-xl hover:bg-boho-text hover:scale-105 transition duration-300">
-                    Join the Party! 🎈
+            <div class="mt-16 relative z-20">
+                <a href="#rsvp" class="inline-block bg-boho-primary text-white text-2xl font-head font-bold px-12 py-5 rounded-full shadow-soft-xl hover:bg-boho-text hover:scale-110 hover:shadow-glow transition duration-300 relative overflow-hidden group">
+                    <span class="relative z-10 flex items-center gap-3">Join the Party! <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition"></i></span>
+                    <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition duration-700"></div>
                 </a>
             </div>
         </div>
+
+        <div class="wave-divider" style="color: #FFF9F5;">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+            </svg>
+        </div>
     </header>
 
-    <section id="details" class="py-20 px-6 bg-white">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="font-head text-5xl text-boho-text mb-4">Party Details</h2>
-                <div class="h-1 w-24 bg-boho-accent mx-auto rounded-full"></div>
+    <section id="details" class="py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20 relative">
+                <span class="font-script text-boho-secondary text-3xl absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">All the sweet details...</span>
+                <h2 class="font-head text-6xl text-boho-text mb-6 relative inline-block">
+                    Party Details
+                    <i class="fa-solid fa-sparkles text-boho-accent absolute -top-2 -right-8 animate-pulse-slow"></i>
+                </h2>
+                <div class="h-2 w-32 bg-gradient-to-r from-boho-primary to-boho-accent mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-8 rounded-[2rem] bg-boho-bg border border-boho-secondary/20 hover:shadow-lg transition">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-3xl text-boho-primary">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="group text-center p-10 rounded-[3rem] bg-white border-4 border-boho-cream hover:border-boho-primary/30 shadow-sm hover:shadow-soft-xl transition-all duration-500 transform hover:-translate-y-2">
+                    <div class="w-24 h-24 bg-boho-bg rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-5xl text-boho-primary group-hover:scale-110 transition components-bg-boho-primary/10">
                         <i class="fa-solid fa-map-location-dot"></i>
                     </div>
-                    <h3 class="font-head text-2xl mb-2 text-boho-text">Where</h3>
-                    <p class="text-boho-text/80 font-bold">The Garden House</p>
-                    <p class="text-boho-text/70">123 Maple Street, San Francisco</p>
-                    <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-boho-primary font-bold underline">See Map</a>
+                    <h3 class="font-head text-3xl mb-3 text-boho-text">Where</h3>
+                    <p class="text-boho-text/90 font-bold text-xl">The Garden House</p>
+                    <p class="text-boho-text/70 mb-6">123 Maple Street, SF</p>
+                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 text-boho-primary font-bold underline hover:text-boho-text transition">
+                        See Map <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </a>
                 </div>
 
-                <div class="text-center p-8 rounded-[2rem] bg-boho-bg border border-boho-secondary/20 hover:shadow-lg transition">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-3xl text-boho-secondary">
+                <div class="group text-center p-10 rounded-[3rem] bg-white border-4 border-boho-cream hover:border-boho-secondary/30 shadow-sm hover:shadow-soft-xl transition-all duration-500 transform hover:-translate-y-2 relative mt-8 md:mt-0">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-boho-secondary text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">Don't be late!</div>
+                    <div class="w-24 h-24 bg-boho-bg rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-5xl text-boho-secondary group-hover:scale-110 transition">
                         <i class="fa-regular fa-clock"></i>
                     </div>
-                    <h3 class="font-head text-2xl mb-2 text-boho-text">When</h3>
-                    <p class="text-boho-text/80 font-bold">July 15, 2025</p>
+                    <h3 class="font-head text-3xl mb-3 text-boho-text">When</h3>
+                    <p class="text-boho-text/90 font-bold text-xl">July 15, 2025</p>
                     <p class="text-boho-text/70">2:00 PM - 5:00 PM</p>
-                    <p class="text-sm text-boho-primary mt-2 font-bold">Cake Cutting at 3:30!</p>
+                    <p class="text-boho-primary mt-4 font-bold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cake-candles"></i> Cake at 3:30!
+                    </p>
                 </div>
 
-                <div class="text-center p-8 rounded-[2rem] bg-boho-bg border border-boho-secondary/20 hover:shadow-lg transition">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-3xl text-boho-accent">
+                <div class="group text-center p-10 rounded-[3rem] bg-white border-4 border-boho-cream hover:border-boho-accent/30 shadow-sm hover:shadow-soft-xl transition-all duration-500 transform hover:-translate-y-2">
+                    <div class="w-24 h-24 bg-boho-bg rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-5xl text-boho-accent group-hover:scale-110 transition">
                         <i class="fa-solid fa-gift"></i>
                     </div>
-                    <h3 class="font-head text-2xl mb-2 text-boho-text">Gifts</h3>
-                    <p class="text-boho-text/70 text-sm leading-relaxed">
-                        No gifts needed, your presence is enough! (But we have a registry just in case 😉)
+                    <h3 class="font-head text-3xl mb-3 text-boho-text">Gifts</h3>
+                    <p class="text-boho-text/70 text-lg leading-relaxed mb-6 font-medium">
+                        Your presence is the best present! (Registry linked below if you insist 😉)
                     </p>
-                    <a href="#" class="inline-block mt-4 px-6 py-2 bg-white border-2 border-boho-accent rounded-full text-boho-text font-bold text-sm hover:bg-boho-accent hover:text-white transition">View Registry</a>
+                    <a href="#" class="inline-block px-8 py-3 bg-boho-accent/20 text-boho-text font-bold rounded-full hover:bg-boho-accent hover:text-white transition">View Registry</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="gallery" class="py-20 px-6 overflow-hidden">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="font-head text-5xl text-boho-text mb-2">Growing Up So Fast</h2>
-            <p class="text-boho-text/60 mb-12 font-bold">A year full of giggles and love.</p>
+    <section id="gallery" class="py-24 px-6 relative z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="font-head text-5xl md:text-6xl text-boho-text mb-4">Growing Up So Fast</h2>
+            <p class="text-boho-text/70 mb-16 font-bold text-xl font-script text-boho-primary">A magical year full of love & giggles.</p>
 
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
-                <div class="photo-frame max-w-xs">
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80" alt="Baby" class="rounded-sm">
-                    <p class="font-head text-xl mt-2 text-boho-primary">Hello World</p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-16 px-8">
+                <div class="photo-frame max-w-sm md:hover:-translate-y-4 z-20">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80" alt="Baby" class="rounded-lg filter sepia-[0.2]">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-3 rounded-full shadow-md text-3xl text-boho-primary">🌟</div>
                 </div>
-                <div class="photo-frame reverse max-w-xs z-10">
-                    <img src="https://images.unsplash.com/photo-1522771753035-1a5b6519f62d?w=500&q=80" alt="Baby" class="rounded-sm">
-                    <p class="font-head text-xl mt-2 text-boho-secondary">First Giggle</p>
+                <div class="photo-frame max-w-md md:scale-110 z-30 md:hover:-translate-y-4" style="transform: rotate(3deg) scale(1.1);">
+                    <img src="https://images.unsplash.com/photo-1522771753035-1a5b6519f62d?w=600&q=80" alt="Baby" class="rounded-lg filter sepia-[0.2]">
+                    <p class="font-script text-3xl mt-4 text-boho-secondary absolute bottom-4 left-4 bg-white/80 px-4 py-1 rounded-full">First Smiles</p>
                 </div>
-                <div class="photo-frame max-w-xs">
-                    <img src="https://images.unsplash.com/photo-1505932598379-37397b9f2732?w=500&q=80" alt="Baby" class="rounded-sm">
-                    <p class="font-head text-xl mt-2 text-boho-text">On the move!</p>
+                <div class="photo-frame max-w-sm md:hover:-translate-y-4 z-20" style="transform: rotate(-4deg);">
+                    <img src="https://images.unsplash.com/photo-1505932598379-37397b9f2732?w=500&q=80" alt="Baby" class="rounded-lg filter sepia-[0.2]">
+                    <div class="absolute -top-6 -left-6 bg-white p-3 rounded-full shadow-md text-3xl text-boho-accent">🧸</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="capsule" class="py-20 px-6 bg-white">
-        <div class="max-w-2xl mx-auto bg-boho-bg rounded-[3rem] p-8 md:p-12 shadow-xl border-4 border-white text-center">
-            <div class="text-5xl mb-4">💌</div>
-            <h2 class="font-head text-4xl text-boho-text mb-4">A Note for the Future</h2>
-            <p class="text-boho-text/70 mb-8 font-bold">
-                Leave a message, a wish, or a piece of advice for Olivia to read when she turns 18. We are creating a digital time capsule!
+    <section id="capsule" class="py-24 px-6 bg-gradient-to-b from-transparent to-white relative z-10">
+        <div class="max-w-3xl mx-auto bg-boho-bg rounded-[4rem] p-10 md:p-16 shadow-soft-xl border-8 border-white text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-boho-primary via-boho-accent to-boho-secondary"></div>
+            
+            <div class="inline-block p-6 bg-white rounded-full shadow-md mb-8 animate-bounce-slow">
+                <i class="fa-solid fa-envelope-open-text text-6xl text-boho-primary"></i>
+            </div>
+            <h2 class="font-head text-4xl md:text-5xl text-boho-text mb-6">A Note for the Future 💌</h2>
+            <p class="text-boho-text/70 mb-10 font-bold text-lg leading-relaxed">
+                Leave a message, a wish, or advice for Olivia to read when she turns 18. We are creating a digital time capsule she'll cherish forever!
             </p>
 
-            <form id="capsuleForm" action="https://formspree.io/f/mykzpvzg" method="POST" class="space-y-4 text-left">
-                <div>
-                    <textarea name="message" rows="4" required class="custom-input" placeholder="Dear Olivia, I hope you..."></textarea>
+            <form id="capsuleForm" action="https://formspree.io/f/mykzpvzg" method="POST" class="space-y-6 text-left">
+                <div class="relative">
+                    <textarea name="message" rows="5" required class="custom-input resize-none" placeholder="Dear Olivia, I hope you..."></textarea>
+                    <i class="fa-solid fa-pen-fancy absolute top-4 right-4 text-boho-accent/50 text-xl"></i>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <input type="text" name="from" required class="custom-input" placeholder="From (Your Name)">
                     <input type="email" name="email" class="custom-input" placeholder="Your Email (Optional)">
                 </div>
@@ -213,94 +307,109 @@
                 <input type="hidden" name="_subject" value="New Time Capsule Message!">
                 <input type="text" name="_gotcha" style="display:none">
 
-                <button type="submit" class="w-full bg-boho-secondary text-white py-4 rounded-xl font-head font-bold text-xl hover:bg-boho-text transition shadow-lg">
-                    SEAL IN CAPSULE
+                <button type="submit" class="w-full bg-gradient-to-r from-boho-secondary to-boho-primary text-white py-5 rounded-2xl font-head font-bold text-2xl hover:shadow-glow hover:scale-[1.02] transition-all shadow-lg relative overflow-hidden group">
+                    <span class="relative z-10">SEAL IN CAPSULE <i class="fa-solid fa-lock ml-2"></i></span>
+                    <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition duration-700"></div>
                 </button>
-                <p id="capsule-status" class="text-center text-sm font-bold mt-2"></p>
+                <p id="capsule-status" class="text-center text-lg font-bold mt-4"></p>
             </form>
         </div>
     </section>
 
-    <section id="rsvp" class="py-24 px-6 bg-boho-primary relative overflow-hidden">
-        <div class="absolute top-10 left-10 text-white/20 text-6xl animate-bounce-slow">🎈</div>
-        <div class="absolute bottom-10 right-10 text-white/20 text-6xl animate-bounce-slow" style="animation-delay: 1.5s;">🎈</div>
+    <section id="rsvp" class="py-32 px-6 bg-boho-primary relative overflow-hidden z-10">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="absolute top-20 left-20 text-white/20 text-7xl animate-float-slow">🎈</div>
+        <div class="absolute bottom-20 right-20 text-white/20 text-8xl animate-float-medium" style="animation-delay: 1s;">🎉</div>
+        <div class="absolute top-40 right-1/3 text-white/20 text-5xl animate-spin-slow">🌸</div>
 
-        <div class="max-w-xl mx-auto relative z-10">
-            <div class="text-center text-white mb-10">
-                <h2 class="font-head text-5xl mb-2">Are you coming?</h2>
-                <p class="text-white/90 text-lg font-bold">We need a head count for the cake! 🍰</p>
+        <div class="wave-divider" style="top: -1px; bottom: auto; transform: rotate(0deg); color: #FFF9F5;">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+            </svg>
+        </div>
+
+        <div class="max-w-2xl mx-auto relative z-10 text-center">
+            <span class="font-script text-white/80 text-3xl mb-2 block">Ready to party?</span>
+            <h2 class="font-head text-6xl md:text-7xl text-white mb-6 drop-shadow-md">Are you coming?</h2>
+            <p class="text-white/90 text-xl font-bold mb-12 bg-white/10 inline-block px-8 py-3 rounded-full backdrop-blur-sm">We need a head count for the cake! 🍰</p>
+
+            <div id="rsvp-success" class="hidden bg-white/95 backdrop-blur-md rounded-[3rem] p-12 text-center shadow-2xl animate-bounce-slow border-4 border-boho-accent">
+                <div class="text-7xl mb-6">🥳</div>
+                <h3 class="font-head text-4xl text-boho-primary mb-4">Yay! Awesome!</h3>
+                <p class="text-boho-text font-bold text-xl mb-8">Your RSVP has been sent. We can't wait to celebrate with you!</p>
+                <button onclick="location.reload()" class="text-boho-secondary font-bold text-lg underline hover:text-boho-primary transition">Add another guest</button>
             </div>
 
-            <div id="rsvp-success" class="hidden bg-white rounded-[2rem] p-10 text-center shadow-2xl">
-                <div class="text-6xl mb-4">🎉</div>
-                <h3 class="font-head text-3xl text-boho-primary mb-2">Awesome!</h3>
-                <p class="text-boho-text font-bold mb-6">Your RSVP has been sent. Can't wait to see you!</p>
-                <button onclick="location.reload()" class="text-boho-secondary font-bold underline hover:text-boho-primary">Add another guest</button>
-            </div>
-
-            <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-4">
+            <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-6 bg-white/10 p-8 md:p-12 rounded-[3rem] backdrop-blur-md border border-white/30 shadow-2xl text-left">
                 
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="text" name="name" required placeholder="Name" class="w-full px-6 py-4 rounded-full border-none focus:ring-2 focus:ring-boho-accent text-boho-text font-bold">
-                    <input type="text" name="surname" required placeholder="Surname" class="w-full px-6 py-4 rounded-full border-none focus:ring-2 focus:ring-boho-accent text-boho-text font-bold">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <input type="text" name="name" required placeholder="First Name" class="w-full px-8 py-5 rounded-full border-2 border-white/50 bg-white/80 focus:bg-white focus:border-boho-accent text-boho-text font-bold outline-none transition text-lg placeholder:text-boho-text/50">
+                        <i class="fa-regular fa-user absolute top-1/2 -translate-y-1/2 right-6 text-boho-primary/50"></i>
+                    </div>
+                    <div class="relative">
+                        <input type="text" name="surname" required placeholder="Last Name" class="w-full px-8 py-5 rounded-full border-2 border-white/50 bg-white/80 focus:bg-white focus:border-boho-accent text-boho-text font-bold outline-none transition text-lg placeholder:text-boho-text/50">
+                    </div>
                 </div>
 
-                <input type="email" name="email" required placeholder="Email Address" class="w-full px-6 py-4 rounded-full border-none focus:ring-2 focus:ring-boho-accent text-boho-text font-bold">
+                <div class="relative">
+                    <input type="email" name="email" required placeholder="Email Address" class="w-full px-8 py-5 rounded-full border-2 border-white/50 bg-white/80 focus:bg-white focus:border-boho-accent text-boho-text font-bold outline-none transition text-lg placeholder:text-boho-text/50">
+                    <i class="fa-regular fa-envelope absolute top-1/2 -translate-y-1/2 right-6 text-boho-primary/50"></i>
+                </div>
 
-                <div class="flex gap-4 pt-2">
-                    <button type="button" id="btn-yes" class="flex-1 py-4 rounded-2xl font-bold bg-white text-boho-primary shadow-lg transform scale-105 transition">
-                        Yes, can't wait! 😍
+                <div class="flex flex-col md:flex-row gap-4 pt-4">
+                    <button type="button" id="btn-yes" class="flex-1 py-5 rounded-2xl font-bold text-xl bg-white text-boho-primary shadow-lg transform scale-105 transition flex items-center justify-center gap-3 hover:shadow-glow">
+                        <i class="fa-solid fa-circle-check"></i> Yes, can't wait! 😍
                     </button>
-                    <button type="button" id="btn-no" class="flex-1 py-4 rounded-2xl font-bold bg-black/20 text-white hover:bg-white/20 transition">
-                        Sad to miss it 😢
+                    <button type="button" id="btn-no" class="flex-1 py-5 rounded-2xl font-bold text-xl bg-black/20 text-white/80 hover:bg-white/20 transition flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-circle-xmark"></i> Sad to miss it 😢
                     </button>
                     <input type="hidden" name="attendance" id="attendance-input" value="yes">
                 </div>
 
-                <div id="guest-details" class="space-y-4 transition-all duration-300">
-                    <div class="grid grid-cols-2 gap-4">
-                        <select name="adults" class="w-full px-6 py-4 rounded-full border-none text-boho-text font-bold cursor-pointer">
-                            <option value="1">1 Adult</option>
-                            <option value="2">2 Adults</option>
-                            <option value="3">3 Adults</option>
-                            <option value="4">4 Adults</option>
-                            <option value="5">5 Adults</option>
-                            <option value="6">6 Adults</option>
-                            <option value="7">7 Adults</option>
-                            <option value="8">8 Adults</option>
-                            <option value="9">9 Adults</option>
-                            <option value="10">10 Adults</option>
-                        </select>
+                <div id="guest-details" class="space-y-6 transition-all duration-500 overflow-hidden">
+                    <p class="text-white text-center font-bold text-lg divider flex items-center gap-4 before:h-px before:bg-white/30 before:flex-1 after:h-px after:bg-white/30 after:flex-1">Who is joining you?</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="relative">
+                            <select name="adults" class="w-full px-8 py-5 rounded-full border-2 border-white/50 bg-white/80 focus:bg-white text-boho-text font-bold outline-none cursor-pointer appearance-none text-lg">
+                                <option value="1">1 Adult</option><option value="2">2 Adults</option><option value="3">3 Adults</option><option value="4">4 Adults</option><option value="5">5 Adults</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute top-1/2 -translate-y-1/2 right-6 text-boho-primary"></i>
+                        </div>
                         
-                        <select name="children" class="w-full px-6 py-4 rounded-full border-none text-boho-text font-bold cursor-pointer">
-                            <option value="0">No Kids</option>
-                            <option value="1">1 Kid</option>
-                            <option value="2">2 Kids</option>
-                            <option value="3">3 Kids</option>
-                            <option value="4">4 Kids</option>
-                            <option value="5">5 Kids</option>
-                            <option value="6">6 Kids</option>
-                            <option value="7">7 Kids</option>
-                            <option value="8">8 Kids</option>
-                            <option value="9">9 Kids</option>
-                            <option value="10">10 Kids</option>
-                        </select>
+                        <div class="relative">
+                            <select name="children" class="w-full px-8 py-5 rounded-full border-2 border-white/50 bg-white/80 focus:bg-white text-boho-text font-bold outline-none cursor-pointer appearance-none text-lg">
+                                <option value="0">No Kids</option><option value="1">1 Kid</option><option value="2">2 Kids</option><option value="3">3 Kids</option><option value="4">4 Kids</option><option value="5">5 Kids</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down absolute top-1/2 -translate-y-1/2 right-6 text-boho-primary"></i>
+                        </div>
                     </div>
                 </div>
 
                 <input type="hidden" name="_subject" value="New Birthday RSVP!">
                 <input type="text" name="_gotcha" style="display:none">
 
-                <button type="submit" class="w-full bg-boho-accent text-boho-text py-4 rounded-full font-head font-bold text-xl hover:bg-white hover:text-boho-primary transition shadow-xl mt-4">
-                    SEND RSVP
+                <button type="submit" class="w-full bg-boho-accent text-boho-text py-6 rounded-full font-head font-bold text-2xl hover:bg-white hover:text-boho-primary transition shadow-soft-xl hover:shadow-glow mt-8 transform hover:-translate-y-1 active:scale-95 relative overflow-hidden group">
+                    <span class="relative z-10 flex items-center justify-center gap-3">SEND RSVP <i class="fa-solid fa-paper-plane group-hover:translate-x-2 transition"></i></span>
+                    <div class="absolute inset-0 bg-white/30 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition duration-700"></div>
                 </button>
             </form>
         </div>
     </section>
 
-    <footer class="bg-boho-text text-white py-12 text-center">
-        <p class="font-head text-2xl mb-4">Can't wait to celebrate with you!</p>
-        <p class="text-white/50 text-sm">&copy; 2025 Designed with ❤️ by ZaynCollective</p>
+    <footer class="bg-boho-text text-white py-16 text-center relative z-10">
+        <div class="wave-divider" style="top: -1px; bottom: auto; transform: rotate(0deg); color: #E07A5F;">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <h2 class="font-head text-4xl mb-6 animate-pulse-slow">Can't wait to celebrate! 💖</h2>
+        <div class="flex justify-center gap-6 mb-8 text-2xl">
+             <i class="fa-brands fa-instagram hover:text-boho-accent transition cursor-pointer"></i>
+             <i class="fa-brands fa-facebook hover:text-boho-accent transition cursor-pointer"></i>
+             <i class="fa-brands fa-pinterest hover:text-boho-accent transition cursor-pointer"></i>
+        </div>
+        <p class="text-white/50 text-sm font-bold">© 2025 • Made with magic by ZaynCollective</p>
     </footer>
 
     <script>
@@ -311,108 +420,94 @@
             const menu = document.getElementById('mobile-menu');
             const links = document.querySelectorAll('.menu-link');
 
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('open');
-            });
+            if(btn && menu) {
+                btn.addEventListener('click', () => { menu.classList.toggle('open'); });
+                links.forEach(link => { link.addEventListener('click', () => { menu.classList.remove('open'); }); });
+            }
 
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.remove('open');
-                });
-            });
-
-            // 2. RSVP BUTON MANTIĞI (Evet/Hayır)
+            // 2. RSVP BUTON MANTIĞI
             const btnYes = document.getElementById('btn-yes');
             const btnNo = document.getElementById('btn-no');
             const inputAttend = document.getElementById('attendance-input');
             const guestDetails = document.getElementById('guest-details');
 
             const activeClass = "bg-white text-boho-primary shadow-lg transform scale-105";
-            const inactiveClass = "bg-black/20 text-white hover:bg-white/20 transform scale-100";
+            const inactiveClass = "bg-black/20 text-white/80 hover:bg-white/20 transform scale-100";
 
-            btnYes.addEventListener('click', () => {
-                inputAttend.value = "yes";
-                btnYes.className = `flex-1 py-4 rounded-2xl font-bold transition ${activeClass}`;
-                btnNo.className = `flex-1 py-4 rounded-2xl font-bold transition ${inactiveClass}`;
-                guestDetails.style.opacity = "1";
-                guestDetails.style.pointerEvents = "auto";
-            });
+            if(btnYes && btnNo) {
+                btnYes.addEventListener('click', () => {
+                    inputAttend.value = "yes";
+                    btnYes.className = `flex-1 py-5 rounded-2xl font-bold text-xl transition flex items-center justify-center gap-3 ${activeClass}`;
+                    btnNo.className = `flex-1 py-5 rounded-2xl font-bold text-xl transition flex items-center justify-center gap-3 ${inactiveClass}`;
+                    guestDetails.style.maxHeight = "500px"; guestDetails.style.opacity = "1"; guestDetails.style.pointerEvents = "auto";
+                });
+                btnNo.addEventListener('click', () => {
+                    inputAttend.value = "no";
+                    btnNo.className = `flex-1 py-5 rounded-2xl font-bold text-xl transition flex items-center justify-center gap-3 ${activeClass}`;
+                    btnYes.className = `flex-1 py-5 rounded-2xl font-bold text-xl transition flex items-center justify-center gap-3 ${inactiveClass}`;
+                    guestDetails.style.maxHeight = "0"; guestDetails.style.opacity = "0"; guestDetails.style.pointerEvents = "none";
+                });
+            }
 
-            btnNo.addEventListener('click', () => {
-                inputAttend.value = "no";
-                btnNo.className = `flex-1 py-4 rounded-2xl font-bold transition ${activeClass}`;
-                btnYes.className = `flex-1 py-4 rounded-2xl font-bold transition ${inactiveClass}`;
-                guestDetails.style.opacity = "0.5";
-                guestDetails.style.pointerEvents = "none";
-            });
-
-            // 3. RSVP FORM GÖNDERME
+            // 3. RSVP FORM GÖNDERME & KONFETİ
             const rsvpForm = document.getElementById('rsvpForm');
             const rsvpSuccess = document.getElementById('rsvp-success');
             
-            rsvpForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const btn = rsvpForm.querySelector('button[type="submit"]');
-                const oldText = btn.innerText;
-                btn.innerText = "Sending...";
-                btn.disabled = true;
+            if(rsvpForm) {
+                rsvpForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const btn = rsvpForm.querySelector('button[type="submit"]');
+                    const btnTextSpan = btn.querySelector('span');
+                    const oldText = btnTextSpan.innerHTML;
+                    btnTextSpan.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin ml-2"></i>';
+                    btn.disabled = true;
 
-                try {
-                    const res = await fetch(rsvpForm.action, {
-                        method: 'POST',
-                        body: new FormData(rsvpForm),
-                        headers: {'Accept': 'application/json'}
-                    });
-                    
-                    if(res.ok) {
-                        rsvpForm.style.display = 'none';
-                        rsvpSuccess.classList.remove('hidden');
-                        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); // Konfeti patlat!
-                    } else {
-                        alert("Oops! Problem sending form.");
-                        btn.innerText = oldText;
-                        btn.disabled = false;
-                    }
-                } catch(err) {
-                    alert("Connection error.");
-                    btn.innerText = oldText;
-                    btn.disabled = false;
-                }
-            });
+                    try {
+                        const res = await fetch(rsvpForm.action, { method: 'POST', body: new FormData(rsvpForm), headers: {'Accept': 'application/json'} });
+                        if(res.ok) {
+                            rsvpForm.style.display = 'none'; rsvpSuccess.classList.remove('hidden');
+                            // Büyük Konfeti Patlaması!
+                            var duration = 3 * 1000; var animationEnd = Date.now() + duration; var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+                            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+                            var interval = setInterval(function() {
+                                var timeLeft = animationEnd - Date.now();
+                                if (timeLeft <= 0) { return clearInterval(interval); }
+                                var particleCount = 50 * (timeLeft / duration);
+                                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#E07A5F', '#81B29A', '#F2CC8F'] }));
+                                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#E07A5F', '#81B29A', '#F2CC8F'] }));
+                            }, 250);
+                        } else { alert("Oops! Problem sending form."); btnTextSpan.innerHTML = oldText; btn.disabled = false; }
+                    } catch(err) { alert("Connection error."); btnTextSpan.innerHTML = oldText; btn.disabled = false; }
+                });
+            }
 
             // 4. ZAMAN KAPSÜLÜ GÖNDERME
             const capsuleForm = document.getElementById('capsuleForm');
             const capsuleStatus = document.getElementById('capsule-status');
 
-            capsuleForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const btn = capsuleForm.querySelector('button[type="submit"]');
-                const oldText = btn.innerText;
-                btn.innerText = "Sealing...";
-                btn.disabled = true;
+            if(capsuleForm) {
+                capsuleForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const btn = capsuleForm.querySelector('button[type="submit"]');
+                    const btnTextSpan = btn.querySelector('span');
+                    const oldText = btnTextSpan.innerHTML;
+                    btnTextSpan.innerHTML = 'Sealing... <i class="fa-solid fa-spinner fa-spin ml-2"></i>';
+                    btn.disabled = true;
 
-                try {
-                    const res = await fetch(capsuleForm.action, {
-                        method: 'POST',
-                        body: new FormData(capsuleForm),
-                        headers: {'Accept': 'application/json'}
-                    });
-                    
-                    if(res.ok) {
-                        capsuleForm.reset();
-                        btn.innerText = oldText;
-                        btn.disabled = false;
-                        capsuleStatus.innerText = "Message sealed securely! Thank you.";
-                        capsuleStatus.className = "text-center text-sm font-bold mt-2 text-green-600";
-                    } else { throw new Error(); }
-                } catch(err) {
-                    capsuleStatus.innerText = "Error sealing message.";
-                    capsuleStatus.className = "text-center text-sm font-bold mt-2 text-red-500";
-                    btn.innerText = oldText;
-                    btn.disabled = false;
-                }
-            });
-
+                    try {
+                        const res = await fetch(capsuleForm.action, { method: 'POST', body: new FormData(capsuleForm), headers: {'Accept': 'application/json'} });
+                        if(res.ok) {
+                            capsuleForm.reset(); btnTextSpan.innerHTML = oldText; btn.disabled = false;
+                            capsuleStatus.innerHTML = 'Message sealed securely! Thank you. 💖';
+                            capsuleStatus.className = "text-center text-lg font-bold mt-4 text-green-600 animate-pulse";
+                        } else { throw new Error(); }
+                    } catch(err) {
+                        capsuleStatus.innerHTML = "Error sealing message. Please try again.";
+                        capsuleStatus.className = "text-center text-lg font-bold mt-4 text-red-500";
+                        btnTextSpan.innerHTML = oldText; btn.disabled = false;
+                    }
+                });
+            }
         });
     </script>
 </body>
