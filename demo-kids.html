@@ -1,310 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITTLE WONDERS | Organic Play</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LITTLE WONDERS | Organic Play</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'head': ['Fredoka', 'sans-serif'],
-                        'body': ['Quicksand', 'sans-serif'],
-                    },
-                    colors: {
-                        'marshmallow': '#FFF5F5',
-                        'sky': '#E0F7FA',
-                        'sunshine': '#FFF9C4',
-                        'mint': '#E0F2F1',
-                        'berry': '#FFCDD2',
-                        'charcoal': '#455A64'
-                    },
-                    animation: {
-                        'bounce-slow': 'bounce 3s infinite',
-                        'wiggle': 'wiggle 1s ease-in-out infinite',
-                        'float': 'float 6s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        wiggle: {
-                            '0%, 100%': { transform: 'rotate(-3deg)' },
-                            '50%': { transform: 'rotate(3deg)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'head': ['Fredoka', 'sans-serif'],
+            'body': ['Quicksand', 'sans-serif'],
+          },
+          colors: {
+            'marshmallow': '#FFF5F5',
+            'sky': '#E0F7FA',
+            'sunshine': '#FFF9C4',
+            'mint': '#E0F2F1',
+            'berry': '#FFCDD2',
+            'charcoal': '#455A64'
+          },
+          animation: {
+            'bounce-slow': 'bounce 3s infinite',
+            'wiggle': 'wiggle 1s ease-in-out infinite',
+            'float': 'float 6s ease-in-out infinite'
+          },
+          keyframes: {
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
             }
+          }
         }
-    </script>
-    <style>
-        body { background-color: #FFF5F5; color: #455A64; }
+      }
+    }
+  </script>
 
-        /* WAVE DIVIDER */
-        .wave-bottom {
-            position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0;
-        }
-        .wave-bottom svg {
-            position: relative; display: block; width: calc(100% + 1.3px); height: 150px;
-        }
-        .wave-top {
-            position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg);
-        }
+  <style>
+    body { background-color: #FFF5F5; color: #455A64; }
 
-        /* CARD HOVER */
-        .play-card { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .play-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+    /* WAVE DIVIDER */
+    .wave-bottom {
+      position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0;
+    }
+    .wave-bottom svg {
+      position: relative; display: block; width: calc(100% + 1.3px); height: 150px;
+    }
+    .wave-top {
+      position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg);
+    }
 
-        /* BUTTONS */
-        .btn-soft { border-radius: 50px; transition: all 0.3s ease; }
-        .btn-soft:hover { transform: scale(1.05); }
+    /* CARD HOVER */
+    .play-card { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .play-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
 
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FFF5F5; }
-        ::-webkit-scrollbar-thumb { background: #FFCDD2; border-radius: 10px; }
-        
-        /* DOODLES BACKGROUND */
-        .doodles {
-            background-image: radial-gradient(#FFCDD2 2px, transparent 2px), radial-gradient(#E0F7FA 2px, transparent 2px);
-            background-size: 50px 50px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.5;
-        }
-    </style>
+    /* BUTTONS */
+    .btn-soft { border-radius: 50px; transition: all 0.3s ease; }
+    .btn-soft:hover { transform: scale(1.05); }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FFF5F5; }
+    ::-webkit-scrollbar-thumb { background: #FFCDD2; border-radius: 10px; }
+
+    /* DOODLES BACKGROUND */
+    .doodles {
+      background-image: radial-gradient(#FFCDD2 2px, transparent 2px), radial-gradient(#E0F7FA 2px, transparent 2px);
+      background-size: 50px 50px;
+      background-position: 0 0, 25px 25px;
+      opacity: 0.5;
+    }
+  </style>
 </head>
+
 <body class="font-body selection:bg-berry selection:text-white">
 
-    <div class="bg-berry text-white text-center py-2 text-sm font-bold tracking-wide">
-        🌈 Free Shipping on Orders Over $50! Use Code: HAPPY 🌈
+  <div class="bg-berry text-white text-center py-2 text-sm font-bold tracking-wide">
+    🌈 Free Shipping on Orders Over $50! Use Code: HAPPY 🌈
+  </div>
+
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-berry/20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="hidden md:flex gap-6 font-bold text-charcoal/80">
+        <a href="#shop" class="hover:text-berry transition">Toys</a>
+        <a href="#clothing" class="hover:text-berry transition">Clothing</a>
+        <a href="#nursery" class="hover:text-berry transition">Nursery</a>
+        <a href="#about" class="hover:text-berry transition">Our Story</a>
+      </div>
+
+      <a href="#" class="font-head text-3xl font-bold text-berry flex items-center gap-2">
+        <i class="fa-solid fa-shapes text-sky animate-bounce-slow"></i> Little Wonders
+      </a>
+
+      <div class="flex items-center gap-6 text-charcoal">
+        <button type="button" data-open-modal="demoModal" class="hover:text-berry transition text-xl" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button type="button" data-open-modal="demoModal" class="hover:text-berry transition text-xl relative" aria-label="Cart">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span class="absolute -top-2 -right-2 bg-sky text-charcoal text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">2</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- DEMO MODAL (for search/cart placeholders) -->
+  <div id="demoModal" class="fixed inset-0 z-[999] hidden">
+    <div class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm"></div>
+    <div class="relative max-w-lg mx-auto mt-24 bg-white rounded-[2rem] shadow-2xl border border-berry/20 p-8">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 class="font-head text-2xl text-charcoal">Demo UI</h3>
+          <p class="mt-2 text-charcoal/70 font-bold">
+            Search & cart are placeholder elements in this demo layout.
+          </p>
+        </div>
+        <button type="button" data-close-modal="demoModal" class="text-charcoal/60 hover:text-berry text-xl" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a href="#shop" data-close-modal="demoModal" class="btn-soft bg-berry text-white px-6 py-3 font-bold shadow-lg shadow-berry/20 text-center">
+          Continue Shopping
+        </a>
+        <button type="button" data-close-modal="demoModal" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-6 py-3 font-bold hover:bg-sky hover:border-sky">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <header class="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-marshmallow">
+    <div class="absolute inset-0 doodles"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="text-center md:text-left order-2 md:order-1">
+        <span class="bg-sky text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6">Montessori Inspired</span>
+        <h1 class="font-head text-5xl md:text-7xl text-charcoal mb-6 leading-tight">
+          Playtime Reimagined.
+        </h1>
+        <p class="text-lg text-charcoal/70 mb-8 leading-relaxed">
+          Sustainable, organic, and beautifully crafted toys that spark imagination and joy. Safe for your little ones, kind to the planet.
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+          <a href="#shop" class="btn-soft bg-berry text-white px-8 py-4 font-bold shadow-lg shadow-berry/30">Shop Collection</a>
+          <a href="#about" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-8 py-4 font-bold hover:bg-sky hover:border-sky">Our Story</a>
+        </div>
+      </div>
+
+      <div class="relative order-1 md:order-2 animate-float">
+        <div class="absolute inset-0 bg-sunshine rounded-full blur-3xl opacity-30 transform scale-90"></div>
+        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop"
+             class="relative rounded-[3rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-500 border-8 border-white"
+             alt="Happy Kid">
+
+        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce-slow">
+          <div class="bg-mint p-2 rounded-full text-2xl">🌱</div>
+          <div>
+            <p class="font-bold text-sm text-charcoal">100% Organic</p>
+            <p class="text-xs text-charcoal/50">Cotton & Wood</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-berry/20">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="hidden md:flex gap-6 font-bold text-charcoal/80">
-                <a href="#shop" class="hover:text-berry transition">Toys</a>
-                <a href="#clothing" class="hover:text-berry transition">Clothing</a>
-                <a href="#nursery" class="hover:text-berry transition">Nursery</a>
-            </div>
+    <div class="wave-bottom">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#FFFFFF"></path>
+      </svg>
+    </div>
+  </header>
 
-            <a href="#" class="font-head text-3xl font-bold text-berry flex items-center gap-2">
-                <i class="fa-solid fa-shapes text-sky animate-bounce-slow"></i> Little Wonders
-            </a>
+  <!-- SHOP / CATEGORIES -->
+  <section id="shop" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-head text-4xl text-charcoal mb-4">Shop by Category</h2>
+        <div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div>
+      </div>
 
-            <div class="flex items-center gap-6 text-charcoal">
-                <a href="#" class="hover:text-berry transition text-xl"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="#" class="hover:text-berry transition text-xl relative">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <span class="absolute -top-2 -right-2 bg-sky text-charcoal text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">2</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+      <!-- Replaced external icon PNGs with inline SVGs to avoid licensing issues -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-    <header class="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-marshmallow">
-        <div class="absolute inset-0 doodles"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="text-center md:text-left order-2 md:order-1">
-                <span class="bg-sky text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6">Montessori Inspired</span>
-                <h1 class="font-head text-5xl md:text-7xl text-charcoal mb-6 leading-tight">
-                    Playtime Reimagined.
-                </h1>
-                <p class="text-lg text-charcoal/70 mb-8 leading-relaxed">
-                    Sustainable, organic, and beautifully crafted toys that spark imagination and joy. Safe for your little ones, kind to the planet.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#shop" class="btn-soft bg-berry text-white px-8 py-4 font-bold shadow-lg shadow-berry/30">Shop Collection</a>
-                    <a href="#about" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-8 py-4 font-bold hover:bg-sky hover:border-sky">Our Story</a>
-                </div>
-            </div>
-            
-            <div class="relative order-1 md:order-2 animate-float">
-                <div class="absolute inset-0 bg-sunshine rounded-full blur-3xl opacity-30 transform scale-90"></div>
-                <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" class="relative rounded-[3rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-500 border-8 border-white" alt="Happy Kid">
-                
-                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce-slow">
-                    <div class="bg-mint p-2 rounded-full text-2xl">🌱</div>
-                    <div>
-                        <p class="font-bold text-sm text-charcoal">100% Organic</p>
-                        <p class="text-xs text-charcoal/50">Cotton & Wood</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="wave-bottom">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#FFFFFF"></path>
+        <a href="#shop" class="play-card bg-sky/30 rounded-3xl p-6 text-center group">
+          <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 7h10v10H7V7Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M4 10h3M17 10h3M4 14h3M17 14h3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 4v3M14 4v3M10 17v3M14 17v3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
             </svg>
-        </div>
-    </header>
+          </div>
+          <h3 class="font-head text-xl text-charcoal">Wooden Toys</h3>
+        </a>
 
-    <section id="shop" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="font-head text-4xl text-charcoal mb-4">Shop by Category</h2>
-                <div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <a href="#" class="play-card bg-sky/30 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3082/3082060.png" width="60" alt="Toys">
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Wooden Toys</h3>
-                </a>
-                <a href="#" class="play-card bg-berry/20 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3082/3082008.png" width="60" alt="Clothes">
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Soft Clothing</h3>
-                </a>
-                <a href="#" class="play-card bg-sunshine/40 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3081/3081971.png" width="60" alt="Books">
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Story Books</h3>
-                </a>
-                <a href="#" class="play-card bg-mint/50 rounded-3xl p-6 text-center group">
-                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3081/3081962.png" width="60" alt="Decor">
-                    </div>
-                    <h3 class="font-head text-xl text-charcoal">Room Decor</h3>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-mint/20 relative">
-        <div class="wave-top">
-             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#FFFFFF"></path>
+        <a href="#clothing" class="play-card bg-berry/20 rounded-3xl p-6 text-center group">
+          <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M8 6 12 4l4 2 3 3-2 2v9H7v-9L5 9l3-3Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 8c1.5 1.3 4.5 1.3 6 0" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
             </svg>
+          </div>
+          <h3 class="font-head text-xl text-charcoal">Soft Clothing</h3>
+        </a>
+
+        <a href="#nursery" class="play-card bg-sunshine/40 rounded-3xl p-6 text-center group">
+          <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 4h10a2 2 0 0 1 2 2v14l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 8h6M9 12h6" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-head text-xl text-charcoal">Story Books</h3>
+        </a>
+
+        <a href="#nursery" class="play-card bg-mint/50 rounded-3xl p-6 text-center group">
+          <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 10 12 4l8 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 22v-8h6v8" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-head text-xl text-charcoal">Room Decor</h3>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="py-24 bg-mint/20 relative">
+    <div class="wave-top">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#FFFFFF"></path>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 mt-12">
+      <div class="flex justify-between items-end mb-12">
+        <h2 class="font-head text-4xl text-charcoal">New Arrivals 🚀</h2>
+        <a href="#shop" class="text-berry font-bold hover:underline">View All</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-berry">
+          <div class="relative bg-marshmallow rounded-2xl overflow-hidden mb-4 h-64">
+            <span class="absolute top-3 left-3 bg-sunshine text-charcoal text-xs font-bold px-3 py-1 rounded-full z-10">Bestseller</span>
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Toy">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-berry hover:text-white transition text-charcoal" aria-label="Add">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Rainbow Stacker</h3>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-400 text-sm">Wooden</span>
+            <span class="font-bold text-berry text-xl">$24.00</span>
+          </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 mt-12">
-            <div class="flex justify-between items-end mb-12">
-                <h2 class="font-head text-4xl text-charcoal">New Arrivals 🚀</h2>
-                <a href="#" class="text-berry font-bold hover:underline">View All</a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-berry">
-                    <div class="relative bg-marshmallow rounded-2xl overflow-hidden mb-4 h-64">
-                        <span class="absolute top-3 left-3 bg-sunshine text-charcoal text-xs font-bold px-3 py-1 rounded-full z-10">Bestseller</span>
-                        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Toy">
-                        <button class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-berry hover:text-white transition text-charcoal"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <h3 class="font-head text-lg text-charcoal mb-1">Rainbow Stacker</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 text-sm">Wooden</span>
-                        <span class="font-bold text-berry text-xl">$24.00</span>
-                    </div>
-                </div>
-
-                <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sky">
-                    <div class="relative bg-sky/20 rounded-2xl overflow-hidden mb-4 h-64">
-                        <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
-                        <button class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sky hover:text-charcoal transition text-charcoal"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <h3 class="font-head text-lg text-charcoal mb-1">Cuddly Bear</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 text-sm">Plush</span>
-                        <span class="font-bold text-berry text-xl">$18.50</span>
-                    </div>
-                </div>
-
-                <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-mint">
-                    <div class="relative bg-mint/20 rounded-2xl overflow-hidden mb-4 h-64">
-                        <span class="absolute top-3 left-3 bg-berry text-white text-xs font-bold px-3 py-1 rounded-full z-10">-20%</span>
-                        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
-                        <button class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-mint hover:text-charcoal transition text-charcoal"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <h3 class="font-head text-lg text-charcoal mb-1">Shape Sorter</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 text-sm">Educational</span>
-                        <span class="font-bold text-berry text-xl">$32.00</span>
-                    </div>
-                </div>
-
-                <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sunshine">
-                    <div class="relative bg-sunshine/20 rounded-2xl overflow-hidden mb-4 h-64">
-                        <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
-                        <button class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sunshine hover:text-charcoal transition text-charcoal"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <h3 class="font-head text-lg text-charcoal mb-1">Activity Cube</h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 text-sm">Sensory</span>
-                        <span class="font-bold text-berry text-xl">$45.00</span>
-                    </div>
-                </div>
-            </div>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sky">
+          <div class="relative bg-sky/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sky hover:text-charcoal transition text-charcoal" aria-label="Add">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Cuddly Bear</h3>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-400 text-sm">Plush</span>
+            <span class="font-bold text-berry text-xl">$18.50</span>
+          </div>
         </div>
-    </section>
 
-    <section class="py-24 px-6 bg-white relative overflow-hidden">
-        <div class="max-w-3xl mx-auto bg-sky/30 rounded-[3rem] p-12 text-center relative z-10">
-            <h2 class="font-head text-3xl md:text-5xl text-charcoal mb-6">Join the Fun Club! 🎈</h2>
-            <p class="text-charcoal/70 mb-8 text-lg">Sign up for exclusive offers, fun activities, and new product drops.</p>
-            <div class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-                <input type="email" placeholder="Parent's Email Address" class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body">
-                <button class="bg-berry text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition">Subscribe</button>
-            </div>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-mint">
+          <div class="relative bg-mint/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <span class="absolute top-3 left-3 bg-berry text-white text-xs font-bold px-3 py-1 rounded-full z-10">-20%</span>
+            <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-mint hover:text-charcoal transition text-charcoal" aria-label="Add">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Shape Sorter</h3>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-400 text-sm">Educational</span>
+            <span class="font-bold text-berry text-xl">$32.00</span>
+          </div>
         </div>
-        <div class="absolute top-10 left-10 w-20 h-20 bg-sunshine rounded-full blur-xl opacity-50 animate-bounce-slow"></div>
-        <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
-    </section>
 
-    <footer class="bg-charcoal text-white pt-20 pb-10 px-6 rounded-t-[3rem]">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div>
-                <a href="#" class="font-head text-3xl font-bold text-sunshine flex items-center gap-2 mb-6">
-                    <i class="fa-solid fa-shapes"></i> Little Wonders
-                </a>
-                <p class="text-white/70 leading-relaxed">
-                    Making childhood magical with sustainable, organic, and safe toys. Designed with love.
-                </p>
-            </div>
-            
-            <div>
-                <h4 class="font-head text-xl mb-6 text-sky">Shop</h4>
-                <ul class="space-y-3 text-white/80 font-bold">
-                    <li><a href="#" class="hover:text-sunshine transition">New Arrivals</a></li>
-                    <li><a href="#" class="hover:text-sunshine transition">Best Sellers</a></li>
-                    <li><a href="#" class="hover:text-sunshine transition">Gift Sets</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-head text-xl mb-6 text-mint">Help</h4>
-                <ul class="space-y-3 text-white/80 font-bold">
-                    <li><a href="#" class="hover:text-sunshine transition">Shipping & Returns</a></li>
-                    <li><a href="#" class="hover:text-sunshine transition">Safety Standards</a></li>
-                    <li><a href="#" class="hover:text-sunshine transition">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-head text-xl mb-6 text-berry">Follow Us</h4>
-                <div class="flex gap-4 text-2xl">
-                    <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-berry transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-sky transition"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-sunshine transition"><i class="fa-brands fa-pinterest"></i></a>
-                </div>
-            </div>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sunshine">
+          <div class="relative bg-sunshine/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sunshine hover:text-charcoal transition text-charcoal" aria-label="Add">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Activity Cube</h3>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-400 text-sm">Sensory</span>
+            <span class="font-bold text-berry text-xl">$45.00</span>
+          </div>
         </div>
-        
-        <div class="text-center pt-8 border-t border-white/10 text-white/50 text-sm font-bold">
-            <p>&copy; 2025 LITTLE WONDERS. POWERED BY VITRINX.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOTHING (added) -->
+  <section id="clothing" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-12">
+        <div>
+          <h2 class="font-head text-4xl text-charcoal">Soft Clothing</h2>
+          <p class="mt-3 text-charcoal/70 text-lg font-bold max-w-2xl">
+            Gentle essentials made for everyday comfort—breathable, cozy, and parent-approved.
+          </p>
         </div>
-    </footer>
+        <a href="#shop" class="text-berry font-bold hover:underline">Browse All Categories</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="play-card bg-berry/10 rounded-3xl p-8 border-2 border-transparent hover:border-berry">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl">🧸</div>
+            <h3 class="font-head text-2xl text-charcoal">Everyday Sets</h3>
+          </div>
+          <p class="text-charcoal/70 font-bold leading-relaxed">
+            Mix-and-match basics designed for play, naps, and everything in between.
+          </p>
+          <div class="mt-6 flex gap-3">
+            <a href="#shop" class="btn-soft bg-berry text-white px-6 py-3 font-bold shadow-lg shadow-berry/20">Shop Sets</a>
+            <button type="button" data-open-modal="demoModal" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-6 py-3 font-bold hover:bg-sky hover:border-sky">
+              Size Guide
+            </button>
+          </div>
+        </div>
+
+        <div class="play-card bg-sky/20 rounded-3xl p-8 border-2 border-transparent hover:border-sky">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl">☁️</div>
+            <h3 class="font-head text-2xl text-charcoal">Cozy Layers</h3>
+          </div>
+          <p class="text-charcoal/70 font-bold leading-relaxed">
+            Soft knits and layers to keep little ones warm without feeling bulky.
+          </p>
+          <div class="mt-6 flex gap-3">
+            <a href="#shop" class="btn-soft bg-sky text-charcoal px-6 py-3 font-bold shadow-lg shadow-sky/20">Shop Layers</a>
+            <button type="button" data-open-modal="demoModal" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-6 py-3 font-bold hover:bg-sky hover:border-sky">
+              Materials
+            </button>
+          </div>
+        </div>
+
+        <div class="play-card bg-mint/30 rounded-3xl p-8 border-2 border-transparent hover:border-mint">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-2xl">🌿</div>
+            <h3 class="font-head text-2xl text-charcoal">Organic Favorites</h3>
+          </div>
+          <p class="text-charcoal/70 font-bold leading-relaxed">
+            Skin-friendly, planet-kind picks—thoughtfully made for sensitive little explorers.
+          </p>
+          <div class="mt-6 flex gap-3">
+            <a href="#shop" class="btn-soft bg-mint text-charcoal px-6 py-3 font-bold shadow-lg shadow-mint/20">Shop Organic</a>
+            <button type="button" data-open-modal="demoModal" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-6 py-3 font-bold hover:bg-sky hover:border-sky">
+              Care Tips
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NURSERY (added) -->
+  <section id="nursery" class="py-24 bg-mint/20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-head text-4xl text-charcoal mb-4">Nursery Essentials</h2>
+        <div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div>
+        <p class="mt-6 text-charcoal/70 text-lg font-bold max-w-3xl mx-auto">
+          Calm, cozy, and curated pieces to make your little one’s space feel warm and magical.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="play-card bg-white rounded-3xl p-8 shadow-lg border-2 border-transparent hover:border-sunshine">
+          <div class="text-3xl mb-4">🛏️</div>
+          <h3 class="font-head text-2xl text-charcoal mb-3">Bedding & Blankets</h3>
+          <p class="text-charcoal/70 font-bold leading-relaxed">
+            Soft textures and soothing tones designed for comfort and gentle sleep routines.
+          </p>
+          <a href="#shop" class="inline-block mt-6 text-berry font-bold hover:underline">Explore</a>
+        </div>
+
+        <div class="play-card bg-white rounded-3xl p-8 shadow-lg border-2 border-transparent hover:border-berry">
+          <div class="text-3xl mb-4">🧺</div>
+          <h3 class="font-head text-2xl text-charcoal mb-3">Storage & Organizers</h3>
+          <p class="text-charcoal/70 font-bold leading-relaxed">
+            Beautifully simple storage to keep toys, books, and essentials in their happy place.
+          </p>
+          <a href="#shop" class="inline-block mt-6 text-berry font-bold hover:underline">Explore</a>
+        </div>
+
+        <div class="play-card bg-white rounded-3xl p-8 shadow-lg border-2 border-transparent hover:border-sky">
+          <div class="text-3xl mb-4">🖼️</div>
+          <h3 class="font-head text-2xl text-charcoal mb-3">Decor & Prints</h3>
+          <p class="text-charcoal/70 font-bold leading-relaxed">
+            Playful decor accents that spark imagination without overwhelming the space.
+          </p>
+          <a href="#shop" class="inline-block mt-6 text-berry font-bold hover:underline">Explore</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute top-10 left-10 w-20 h-20 bg-sunshine rounded-full blur-xl opacity-50 animate-bounce-slow"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
+  </section>
+
+  <!-- ABOUT (added) -->
+  <section id="about" class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="bg-sunshine text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6">
+          Our Story
+        </span>
+        <h2 class="font-head text-4xl md:text-5xl text-charcoal mb-6">
+          Made with love, designed to last.
+        </h2>
+        <p class="text-charcoal/70 text-lg font-bold leading-relaxed mb-6">
+          Little Wonders is built around mindful play—natural materials, safe finishes, and joyful design.
+          We choose pieces that feel good in tiny hands and look beautiful in your home.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-sky/30 rounded-3xl p-6">
+            <p class="font-head text-2xl">🌱</p>
+            <p class="mt-2 font-bold text-charcoal">Organic-first</p>
+            <p class="mt-1 text-charcoal/70 font-bold text-sm">Thoughtful materials & gentle essentials.</p>
+          </div>
+          <div class="bg-mint/30 rounded-3xl p-6">
+            <p class="font-head text-2xl">🧠</p>
+            <p class="mt-2 font-bold text-charcoal">Learning through play</p>
+            <p class="mt-1 text-charcoal/70 font-bold text-sm">Simple, engaging, Montessori-inspired.</p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="#shop" class="btn-soft bg-berry text-white px-8 py-4 font-bold shadow-lg shadow-berry/30 text-center">Shop Collection</a>
+          <button type="button" data-open-modal="demoModal" class="btn-soft bg-white text-charcoal border-2 border-charcoal/10 px-8 py-4 font-bold hover:bg-sky hover:border-sky">
+            Safety Standards
+          </button>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute inset-0 bg-sky rounded-full blur-3xl opacity-30 transform scale-90"></div>
+        <img
+          src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=1200&q=80"
+          class="relative rounded-[3rem] shadow-2xl border-8 border-white"
+          alt="Nursery"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER (Formspree integrated) -->
+  <section class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-3xl mx-auto bg-sky/30 rounded-[3rem] p-12 text-center relative z-10">
+      <h2 class="font-head text-3xl md:text-5xl text-charcoal mb-6">Join the Fun Club! 🎈</h2>
+      <p class="text-charcoal/70 mb-8 text-lg font-bold">
+        Sign up for exclusive offers, fun activities, and new product drops.
+      </p>
+
+      <form
+        action="https://formspree.io/f/xpqwlbvd"
+        method="POST"
+        class="flex flex-col md:flex-row gap-4 max-w-md mx-auto"
+      >
+        <input
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="Parent's Email Address"
+          class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body"
+        />
+
+        <input type="hidden" name="source" value="Little Wonders - Fun Club" />
+
+        <!-- Honeypot anti-spam -->
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+        <button
+          type="submit"
+          class="bg-berry text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition"
+        >
+          Subscribe
+        </button>
+      </form>
+
+      <p id="form-status" class="mt-4 text-sm font-bold text-charcoal/70"></p>
+      <p class="mt-2 text-xs text-charcoal/50 font-bold">We respect your inbox. No spam.</p>
+    </div>
+
+    <div class="absolute top-10 left-10 w-20 h-20 bg-sunshine rounded-full blur-xl opacity-50 animate-bounce-slow"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
+  </section>
+
+  <footer class="bg-charcoal text-white pt-20 pb-10 px-6 rounded-t-[3rem]">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div>
+        <a href="#" class="font-head text-3xl font-bold text-sunshine flex items-center gap-2 mb-6">
+          <i class="fa-solid fa-shapes"></i> Little Wonders
+        </a>
+        <p class="text-white/70 leading-relaxed font-bold">
+          Making childhood magical with sustainable, organic, and safe toys. Designed with love.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-head text-xl mb-6 text-sky">Shop</h4>
+        <ul class="space-y-3 text-white/80 font-bold">
+          <li><a href="#shop" class="hover:text-sunshine transition">New Arrivals</a></li>
+          <li><a href="#shop" class="hover:text-sunshine transition">Best Sellers</a></li>
+          <li><a href="#shop" class="hover:text-sunshine transition">Gift Sets</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-head text-xl mb-6 text-mint">Help</h4>
+        <ul class="space-y-3 text-white/80 font-bold">
+          <li><button type="button" data-open-modal="demoModal" class="hover:text-sunshine transition">Shipping & Returns</button></li>
+          <li><button type="button" data-open-modal="demoModal" class="hover:text-sunshine transition">Safety Standards</button></li>
+          <li><button type="button" data-open-modal="demoModal" class="hover:text-sunshine transition">Contact Us</button></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-head text-xl mb-6 text-berry">Follow Us</h4>
+        <div class="flex gap-4 text-2xl">
+          <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-berry transition" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-sky transition" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-sunshine transition" aria-label="Pinterest">
+            <i class="fa-brands fa-pinterest"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center pt-8 border-t border-white/10 text-white/50 text-sm font-bold">
+      <p>&copy; 2025 LITTLE WONDERS. POWERED BY VITRINX.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Modal open/close
+    const openButtons = document.querySelectorAll('[data-open-modal]');
+    const closeButtons = document.querySelectorAll('[data-close-modal]');
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.getAttribute('data-open-modal')));
+    });
+
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close-modal')));
+    });
+
+    // Close modal by clicking backdrop
+    const demoModal = document.getElementById('demoModal');
+    if (demoModal) {
+      demoModal.addEventListener('click', (e) => {
+        if (e.target === demoModal) closeModal('demoModal');
+      });
+      // Close modal with ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !demoModal.classList.contains('hidden')) closeModal('demoModal');
+      });
+    }
+
+    // Formspree submit (no refresh)
+    const form = document.querySelector('form[action="https://formspree.io/f/xpqwlbvd"]');
+    const statusEl = document.getElementById('form-status');
+
+    if (form && statusEl) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        statusEl.textContent = "Sending...";
+
+        try {
+          const data = new FormData(form);
+          const res = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { "Accept": "application/json" }
+          });
+
+          if (res.ok) {
+            form.reset();
+            statusEl.textContent = "You're in! Welcome to the Fun Club.";
+          } else {
+            statusEl.textContent = "Oops—please try again in a moment.";
+          }
+        } catch (err) {
+          statusEl.textContent = "Network error—please try again.";
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
