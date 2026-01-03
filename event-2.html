@@ -1,377 +1,1006 @@
 <!DOCTYPE html>
 <html lang="tr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>THE GRAND CELEBRATION | VIP Invite</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE GRAND CELEBRATION | VIP Invite</title>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'luxury': ['Cinzel', 'serif'],
-                        'elegant': ['Cormorant Garamond', 'serif'],
-                        'modern': ['Montserrat', 'sans-serif'],
-                    },
-                    colors: {
-                        'midnight': '#050505',
-                        'charcoal': '#1A1A1A',
-                        'gold': '#D4AF37',
-                        'gold-dim': '#8A7036',
-                    },
-                    backgroundImage: {
-                        'gold-gradient': 'linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)',
-                        'lux-gradient': 'radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
-                        'pulse-slow': 'pulse 3s infinite',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- QR Code (small lib) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'luxury': ['Cinzel', 'serif'],
+            'elegant': ['Cormorant Garamond', 'serif'],
+            'modern': ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            'midnight': '#050505',
+            'charcoal': '#1A1A1A',
+            'gold': '#D4AF37',
+            'gold-dim': '#8A7036',
+          },
+          backgroundImage: {
+            'gold-gradient': 'linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)',
+            'lux-gradient': 'radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)',
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 1s ease-out forwards',
+            'pulse-slow': 'pulse 3s infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             }
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <style>
-        body { background-color: #050505; color: #E5E5E5; overflow-x: hidden; }
-        
-        /* ALTIN METİN EFEKTİ */
-        .text-gold-shine {
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-            background-size: 200% auto; animation: shine 6s linear infinite;
-        }
-        @keyframes shine { to { background-position: 200% center; } }
+  <style>
+    body { background-color: #050505; color: #E5E5E5; overflow-x: hidden; }
 
-        /* SCROLL GİZLEME */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    /* ALTIN METİN EFEKTİ */
+    .text-gold-shine {
+      background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      background-size: 200% auto; animation: shine 6s linear infinite;
+    }
+    @keyframes shine { to { background-position: 200% center; } }
 
-        /* GİRİŞ EKRANI */
-        #entrance-screen { position: fixed; inset: 0; z-index: 100; background: #000; display: flex; align-items: center; justify-content: center; transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); }
-        .envelope-hidden { transform: translateY(-100%); }
+    /* SCROLL GİZLEME */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* GÖRÜNÜR OLMA ANİMASYONU (Scroll yapınca) */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
+    /* GİRİŞ EKRANI */
+    #entrance-screen {
+      position: fixed; inset: 0; z-index: 100; background: #000;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .envelope-hidden { transform: translateY(-100%); }
+
+    /* GÖRÜNÜR OLMA ANİMASYONU (Scroll yapınca) */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Video overlay */
+    .video-overlay {
+      position:absolute; inset:0;
+      background: radial-gradient(900px 420px at 50% 10%, rgba(212,175,55,.10), rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+  </style>
 </head>
 
 <body class="font-modern">
 
-    <div id="entrance-screen">
-        <div class="text-center relative px-6">
-            <div class="w-24 h-24 mx-auto mb-8 rounded-full border-2 border-gold/30 flex items-center justify-center relative">
-                <div class="absolute inset-0 bg-gold/10 rounded-full animate-ping"></div>
-                <span class="font-luxury text-4xl text-gold">S</span>
+  <!-- =======================
+       ENTRANCE SCREEN
+  ======================== -->
+  <div id="entrance-screen">
+    <div class="text-center relative px-6">
+      <div class="w-24 h-24 mx-auto mb-8 rounded-full border-2 border-gold/30 flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-gold/10 rounded-full animate-ping"></div>
+        <span class="font-luxury text-4xl text-gold" id="monogram">S</span>
+      </div>
+      <h2 class="font-luxury text-white text-xl tracking-[0.4em] mb-2" id="privateLabel">PRIVATE EVENT</h2>
+      <p class="text-gray-500 text-xs mb-10 tracking-widest uppercase" id="clickLabel">Click to Reveal Invitation</p>
+
+      <button id="open-btn"
+        class="group relative px-8 py-4 bg-transparent border border-gold/40 text-gold font-luxury tracking-widest hover:bg-gold hover:text-black transition duration-500">
+        OPEN ENVELOPE
+      </button>
+    </div>
+  </div>
+
+  <!-- =======================
+       MAIN CONTENT
+  ======================== -->
+  <div id="main-content" class="relative bg-lux-gradient min-h-screen">
+
+    <!-- subtle texture -->
+    <div class="fixed inset-0 pointer-events-none opacity-20"
+      style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+
+    <!-- LOCAL MUSIC (assets/music.mp3) -->
+    <audio id="bgMusic" loop preload="metadata">
+      <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music button -->
+    <button id="music-btn"
+      class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-gold/10 backdrop-blur border border-gold rounded-full text-gold flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:scale-110 transition"
+      aria-label="Müzik" aria-pressed="false" title="Music">
+      <i class="fa-solid fa-music"></i>
+    </button>
+
+    <!-- Quick actions (Share / RSVP / Map) -->
+    <div class="fixed bottom-6 left-6 z-50 hidden md:flex flex-col gap-3">
+      <button id="share-btn" class="px-4 py-3 bg-black/40 border border-white/10 rounded-full text-xs text-white/80 hover:text-white hover:border-gold/40 transition backdrop-blur">
+        <i class="fa-solid fa-link mr-2"></i> Share Link
+      </button>
+      <a href="#rsvp" class="px-4 py-3 bg-black/40 border border-white/10 rounded-full text-xs text-white/80 hover:text-white hover:border-gold/40 transition backdrop-blur">
+        <i class="fa-solid fa-pen-to-square mr-2"></i> RSVP
+      </a>
+      <a href="#map" class="px-4 py-3 bg-black/40 border border-white/10 rounded-full text-xs text-white/80 hover:text-white hover:border-gold/40 transition backdrop-blur">
+        <i class="fa-solid fa-location-dot mr-2"></i> Directions
+      </a>
+    </div>
+
+    <!-- =======================
+         HERO
+    ======================== -->
+    <header class="relative pt-24 pb-16 text-center px-4 overflow-hidden">
+
+      <!-- OPTIONAL LOCAL BG VIDEO (assets/bg.mp4). If missing, it will be hidden via JS. -->
+      <div class="absolute inset-0 -z-10">
+        <video id="bgVideo" class="w-full h-full object-cover opacity-20" playsinline muted loop preload="metadata">
+          <source src="assets/bg.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+      </div>
+
+      <p class="text-gold/80 tracking-[0.3em] text-xs uppercase mb-6 reveal" id="heroTop">
+        Join us for the 30th Birthday of
+      </p>
+
+      <h1 class="font-luxury text-6xl md:text-8xl text-gold-shine mb-6 drop-shadow-2xl reveal" id="heroName">
+        SOPHIA
+      </h1>
+
+      <div class="h-px w-32 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6 reveal"></div>
+
+      <p class="font-elegant text-2xl text-white/80 italic reveal" id="heroQuote">
+        "A Night of Elegance & Memories"
+      </p>
+
+      <!-- Event status -->
+      <div class="mt-8 reveal">
+        <span id="eventStatusBadge"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/30 text-xs text-white/80 backdrop-blur">
+          <i class="fa-regular fa-clock"></i>
+          <span id="eventStatusText">Counting down</span>
+        </span>
+      </div>
+
+      <!-- QR strip -->
+      <div class="max-w-4xl mx-auto mt-10 px-6 reveal">
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · RSVP</div>
+            <div class="mx-auto w-[120px] h-[120px] bg-black/30 rounded-lg border border-white/10 flex items-center justify-center" id="qr-rsvp">
+              <span class="text-gray-600 text-xs">Loading…</span>
             </div>
-            <h2 class="font-luxury text-white text-xl tracking-[0.4em] mb-2">PRIVATE EVENT</h2>
-            <p class="text-gray-500 text-xs mb-10 tracking-widest uppercase">Click to Reveal Invitation</p>
-            
-            <button id="open-btn" class="group relative px-8 py-4 bg-transparent border border-gold/40 text-gold font-luxury tracking-widest hover:bg-gold hover:text-black transition duration-500">
-                OPEN ENVELOPE
-            </button>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · Map</div>
+            <div class="mx-auto w-[120px] h-[120px] bg-black/30 rounded-lg border border-white/10 flex items-center justify-center" id="qr-map">
+              <span class="text-gray-600 text-xs">Loading…</span>
+            </div>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · Share</div>
+            <div class="mx-auto w-[120px] h-[120px] bg-black/30 rounded-lg border border-white/10 flex items-center justify-center" id="qr-share">
+              <span class="text-gray-600 text-xs">Loading…</span>
+            </div>
+          </div>
         </div>
-    </div>
 
-    <div id="main-content" class="relative bg-lux-gradient min-h-screen">
-        
-        <div class="fixed inset-0 pointer-events-none opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+        <p class="text-gray-500 text-[11px] mt-4">
+          QR codes are generated from this page’s links. In delivery, they will automatically point to the final private shareable link.
+        </p>
+      </div>
+    </header>
 
-        <audio id="bgMusic" loop> <source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_3490795777.mp3" type="audio/mpeg"> </audio>
-        <button id="music-btn" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-gold/10 backdrop-blur border border-gold rounded-full text-gold flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:scale-110 transition">
-            <i class="fa-solid fa-music"></i>
+    <!-- =======================
+         VIDEO MOMENT (LOCAL)
+    ======================== -->
+    <section class="max-w-4xl mx-auto px-6 mb-12">
+      <div class="relative aspect-video rounded-xl overflow-hidden border border-gold/20 shadow-2xl reveal group" id="momentWrap">
+        <div class="absolute inset-0 bg-gold/5 group-hover:bg-transparent transition duration-500 pointer-events-none z-10"></div>
+
+        <!-- LOCAL MOMENT VIDEO -->
+        <video id="momentVideo" class="w-full h-full object-cover" playsinline controls preload="metadata">
+          <source src="assets/moment.mp4" type="video/mp4">
+        </video>
+
+        <div class="absolute bottom-3 left-3 z-20 text-[11px] text-white/70 bg-black/40 px-3 py-2 rounded-full border border-white/10 backdrop-blur">
+          Optional “moment” video (assets/moment.mp4)
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         COUNTDOWN
+    ======================== -->
+    <section class="max-w-4xl mx-auto px-6 mb-24">
+      <div class="grid grid-cols-4 gap-4 text-center border-y border-white/10 py-8 reveal">
+        <div>
+          <span class="block font-luxury text-3xl md:text-5xl text-gold" id="days">00</span>
+          <span class="text-xs text-gray-500 uppercase tracking-widest">Days</span>
+        </div>
+        <div>
+          <span class="block font-luxury text-3xl md:text-5xl text-gold" id="hours">00</span>
+          <span class="text-xs text-gray-500 uppercase tracking-widest">Hrs</span>
+        </div>
+        <div>
+          <span class="block font-luxury text-3xl md:text-5xl text-gold" id="minutes">00</span>
+          <span class="text-xs text-gray-500 uppercase tracking-widest">Mins</span>
+        </div>
+        <div>
+          <span class="block font-luxury text-3xl md:text-5xl text-gold" id="seconds">00</span>
+          <span class="text-xs text-gray-500 uppercase tracking-widest">Secs</span>
+        </div>
+      </div>
+      <p class="text-center text-gray-600 text-xs mt-4" id="tzHint">Time shown in your local timezone.</p>
+
+      <!-- Calendar buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mt-6 reveal">
+        <button id="ics-btn" class="px-6 py-3 border border-gold/30 rounded-full text-xs text-gold/80 hover:text-white hover:border-gold transition">
+          <i class="fa-regular fa-calendar mr-2"></i> Download Calendar (.ics)
         </button>
+        <a id="gcal-link" target="_blank" rel="noopener"
+           class="px-6 py-3 border border-gold/30 rounded-full text-xs text-gold/80 hover:text-white hover:border-gold transition"
+           href="#">
+          <i class="fa-brands fa-google mr-2"></i> Add to Google Calendar
+        </a>
+      </div>
+    </section>
 
-        <header class="relative pt-24 pb-20 text-center px-4">
-            <p class="text-gold/80 tracking-[0.3em] text-xs uppercase mb-6 reveal">Join us for the 30th Birthday of</p>
-            <h1 class="font-luxury text-6xl md:text-8xl text-gold-shine mb-6 drop-shadow-2xl reveal">SOPHIA</h1>
-            <div class="h-px w-32 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6 reveal"></div>
-            <p class="font-elegant text-2xl text-white/80 italic reveal">"A Night of Elegance & Memories"</p>
-        </header>
+    <!-- =======================
+         DETAILS + DRESS CODE + REGISTRY
+    ======================== -->
+    <section class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 mb-24 reveal" id="details">
+      <div class="space-y-12 text-center md:text-right">
+        <div>
+          <i class="fa-regular fa-clock text-3xl text-gold mb-4"></i>
+          <h3 class="font-luxury text-2xl text-white mb-2">When</h3>
+          <p class="font-elegant text-xl text-gray-300" id="whenDate">Saturday, October 25th</p>
+          <p class="text-gold font-bold" id="whenTime">19:00 - Late</p>
+        </div>
 
-        <section class="max-w-4xl mx-auto px-6 mb-24">
-            <div class="relative aspect-video rounded-xl overflow-hidden border border-gold/20 shadow-2xl mb-12 reveal group">
-                <div class="absolute inset-0 bg-gold/5 group-hover:bg-transparent transition duration-500 pointer-events-none z-10"></div>
-                <iframe class="w-full h-full object-cover" 
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&rel=0&autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ" 
-                        frameborder="0" allow="autoplay; encrypted-media"></iframe>
+        <div>
+          <i class="fa-solid fa-location-dot text-3xl text-gold mb-4"></i>
+          <h3 class="font-luxury text-2xl text-white mb-2">Where</h3>
+          <p class="font-elegant text-xl text-gray-300" id="whereName">The Grand Ballroom</p>
+          <p class="text-gray-500 text-sm" id="whereAddress">123 Luxury Ave, Manhattan, NY</p>
+
+          <div class="flex flex-wrap justify-center md:justify-end gap-3 mt-4">
+            <a id="map-google" target="_blank" rel="noopener"
+               class="px-5 py-2 border border-white/10 rounded-full text-[11px] text-white/70 hover:text-white hover:border-gold/40 transition"
+               href="#">Google Maps</a>
+            <a id="map-apple" target="_blank" rel="noopener"
+               class="px-5 py-2 border border-white/10 rounded-full text-[11px] text-white/70 hover:text-white hover:border-gold/40 transition"
+               href="#">Apple Maps</a>
+            <a id="map-waze" target="_blank" rel="noopener"
+               class="px-5 py-2 border border-white/10 rounded-full text-[11px] text-white/70 hover:text-white hover:border-gold/40 transition"
+               href="#">Waze</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-12 text-center md:text-left border-t md:border-t-0 md:border-l border-white/10 pt-12 md:pt-0 md:pl-12">
+        <div>
+          <i class="fa-solid fa-vest text-3xl text-gold mb-4"></i>
+          <h3 class="font-luxury text-2xl text-white mb-2">Dress Code</h3>
+          <p class="font-elegant text-xl text-gray-300 mb-4" id="dressCode">Black Tie / Formal</p>
+
+          <div class="flex justify-center md:justify-start gap-4" id="palette">
+            <div class="w-8 h-8 rounded-full bg-black border border-white/20" title="Black"></div>
+            <div class="w-8 h-8 rounded-full bg-[#D4AF37]" title="Gold"></div>
+            <div class="w-8 h-8 rounded-full bg-[#1B2430]" title="Navy"></div>
+          </div>
+
+          <p class="text-xs text-gray-600 mt-2" id="paletteNote">Please stick to the palette.</p>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-gift text-3xl text-gold mb-4"></i>
+          <h3 class="font-luxury text-2xl text-white mb-2">Registry</h3>
+          <p class="text-gray-400 text-sm mb-4" id="registryNote">Your presence is the greatest gift.</p>
+          <a id="registryLink" href="#" target="_blank" rel="noopener"
+             class="px-6 py-2 border border-white/20 rounded-full text-xs hover:bg-white hover:text-black transition">
+            View Wishlist
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         GUEST GUIDE (Parking / Contact / Policies)
+    ======================== -->
+    <section class="max-w-2xl mx-auto px-6 mb-24 reveal">
+      <h2 class="font-luxury text-2xl text-gold mb-6 text-center">Guest Guide</h2>
+
+      <div class="space-y-4">
+        <details class="group bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
+            <span><i class="fa-solid fa-car-side mr-2 text-gold/70"></i>Parking / Arrival</span>
+            <span class="text-gold group-open:rotate-180 transition">+</span>
+          </summary>
+          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="parkingInfo"></div>
+        </details>
+
+        <details class="group bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
+            <span><i class="fa-solid fa-phone mr-2 text-gold/70"></i>Contact</span>
+            <span class="text-gold group-open:rotate-180 transition">+</span>
+          </summary>
+          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="contactInfo"></div>
+        </details>
+
+        <details class="group bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
+            <span><i class="fa-solid fa-circle-info mr-2 text-gold/70"></i>Notes / Policy</span>
+            <span class="text-gold group-open:rotate-180 transition">+</span>
+          </summary>
+          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="policyInfo"></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- =======================
+         PROGRAM TIMELINE
+    ======================== -->
+    <section class="max-w-3xl mx-auto px-6 mb-24 reveal">
+      <div class="text-center mb-12">
+        <h2 class="font-luxury text-3xl text-gold-shine">The Evening Program</h2>
+      </div>
+
+      <div class="relative border-l border-gold/20 ml-6 md:ml-1/2 md:translate-x-[-1px]" id="timeline"></div>
+    </section>
+
+    <!-- =======================
+         PHOTO ALBUM (carousel)
+    ======================== -->
+    <section class="mb-24 reveal" id="gallery">
+      <div class="text-center mb-8">
+        <h2 class="font-luxury text-3xl text-white">Through The Years</h2>
+        <p class="text-gray-500 text-xs mt-2" id="galleryNote">Swipe to view memories.</p>
+      </div>
+
+      <div class="flex overflow-x-auto gap-4 px-6 pb-8 snap-x hide-scrollbar" id="galleryRow"></div>
+    </section>
+
+    <!-- =======================
+         TRAVEL & STAY (optional)
+    ======================== -->
+    <section class="max-w-2xl mx-auto px-6 mb-24 reveal" id="travel">
+      <h2 class="font-luxury text-2xl text-gold mb-6 text-center">Travel & Stay</h2>
+
+      <div class="space-y-4" id="travelBlocks"></div>
+    </section>
+
+    <!-- =======================
+         MAP EMBED
+    ======================== -->
+    <section class="max-w-4xl mx-auto px-6 mb-24 reveal" id="map">
+      <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+        <div class="p-6 border-b border-white/10 flex items-center justify-between gap-3 flex-wrap">
+          <div>
+            <h2 class="font-luxury text-2xl text-white">Map</h2>
+            <p class="text-gray-500 text-xs mt-1" id="mapSub">Tap for directions.</p>
+          </div>
+          <div class="flex gap-2 flex-wrap">
+            <a id="map-google-2" target="_blank" rel="noopener"
+               class="px-5 py-2 border border-white/10 rounded-full text-[11px] text-white/70 hover:text-white hover:border-gold/40 transition"
+               href="#">Google</a>
+            <a id="map-apple-2" target="_blank" rel="noopener"
+               class="px-5 py-2 border border-white/10 rounded-full text-[11px] text-white/70 hover:text-white hover:border-gold/40 transition"
+               href="#">Apple</a>
+            <a id="map-waze-2" target="_blank" rel="noopener"
+               class="px-5 py-2 border border-white/10 rounded-full text-[11px] text-white/70 hover:text-white hover:border-gold/40 transition"
+               href="#">Waze</a>
+          </div>
+        </div>
+
+        <iframe id="mapFrame" class="w-full h-[420px]"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- =======================
+         RSVP
+    ======================== -->
+    <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
+      <div class="relative bg-charcoal border border-gold/30 p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-[#050505] rounded-b-full border-b border-gold/30"></div>
+
+        <div class="text-center mb-8">
+          <h2 class="font-luxury text-4xl text-white mb-2">R.S.V.P</h2>
+          <p class="text-gold-dim text-sm uppercase tracking-widest" id="rsvpDeadline">By October 10th</p>
+        </div>
+
+        <div id="success-msg" class="hidden text-center py-10">
+          <i class="fa-regular fa-circle-check text-5xl text-gold mb-4"></i>
+          <h3 class="text-white font-luxury text-xl">Confirmed!</h3>
+          <p class="text-gray-500 mt-2" id="successText">See you on the dance floor.</p>
+        </div>
+
+        <!-- Formspree or Google Form endpoint -->
+        <form id="rsvpForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-6">
+          <div>
+            <input type="text" name="name" required placeholder="Guest Name(s)"
+              class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition placeholder-gray-600">
+          </div>
+
+          <div class="flex gap-4">
+            <label class="flex-1 cursor-pointer">
+              <input type="radio" name="attendance" value="Attending" class="peer hidden" checked>
+              <div class="py-3 text-center border border-white/10 rounded text-gray-500 peer-checked:bg-gold peer-checked:text-black peer-checked:font-bold transition">Accept</div>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input type="radio" name="attendance" value="Decline" class="peer hidden">
+              <div class="py-3 text-center border border-white/10 rounded text-gray-500 peer-checked:bg-red-900/40 peer-checked:text-white peer-checked:border-red-800 transition">Decline</div>
+            </label>
+          </div>
+
+          <div id="extra-fields" class="space-y-6">
+            <div>
+              <select name="guests" class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition">
+                <option value="1" class="bg-charcoal">1 Guest</option>
+                <option value="2" class="bg-charcoal">2 Guests</option>
+                <option value="3" class="bg-charcoal">3 Guests</option>
+                <option value="4" class="bg-charcoal">4 Guests</option>
+              </select>
             </div>
 
-            <div class="grid grid-cols-4 gap-4 text-center border-y border-white/10 py-8 reveal">
-                <div><span class="block font-luxury text-3xl md:text-5xl text-gold" id="days">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Days</span></div>
-                <div><span class="block font-luxury text-3xl md:text-5xl text-gold" id="hours">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Hrs</span></div>
-                <div><span class="block font-luxury text-3xl md:text-5xl text-gold" id="minutes">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Mins</span></div>
-                <div><span class="block font-luxury text-3xl md:text-5xl text-gold" id="seconds">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Secs</span></div>
+            <div>
+              <input type="text" name="song_request" placeholder="🎵 Song Request for DJ (optional)"
+                class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition placeholder-gray-600 text-sm">
             </div>
-        </section>
+          </div>
 
-        <section class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 mb-24 reveal">
-            <div class="space-y-12 text-center md:text-right">
-                <div>
-                    <i class="fa-regular fa-clock text-3xl text-gold mb-4"></i>
-                    <h3 class="font-luxury text-2xl text-white mb-2">When</h3>
-                    <p class="font-elegant text-xl text-gray-300">Saturday, October 25th</p>
-                    <p class="text-gold font-bold">19:00 - Late</p>
-                    <a href="https://calendar.google.com/" target="_blank" class="inline-block mt-3 text-xs border-b border-gold/50 text-gold/80 hover:text-white pb-1">Add to Calendar</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-location-dot text-3xl text-gold mb-4"></i>
-                    <h3 class="font-luxury text-2xl text-white mb-2">Where</h3>
-                    <p class="font-elegant text-xl text-gray-300">The Grand Ballroom</p>
-                    <p class="text-gray-500 text-sm">123 Luxury Ave, Manhattan, NY</p>
-                    <a href="https://maps.google.com" target="_blank" class="inline-block mt-3 text-xs border-b border-gold/50 text-gold/80 hover:text-white pb-1">View Map</a>
-                </div>
-            </div>
+          <button type="submit" id="submit-btn"
+            class="w-full bg-gold hover:bg-white hover:text-black text-black font-luxury font-bold py-4 rounded shadow-[0_0_20px_rgba(212,175,55,0.4)] transition duration-500 mt-6">
+            CONFIRM
+          </button>
 
-            <div class="space-y-12 text-center md:text-left border-t md:border-t-0 md:border-l border-white/10 pt-12 md:pt-0 md:pl-12">
-                <div>
-                    <i class="fa-solid fa-vest text-3xl text-gold mb-4"></i>
-                    <h3 class="font-luxury text-2xl text-white mb-2">Dress Code</h3>
-                    <p class="font-elegant text-xl text-gray-300 mb-4">Black Tie / Formal</p>
-                    <div class="flex justify-center md:justify-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-black border border-white/20" title="Black"></div>
-                        <div class="w-8 h-8 rounded-full bg-[#D4AF37]" title="Gold"></div>
-                        <div class="w-8 h-8 rounded-full bg-[#1B2430]" title="Navy"></div>
-                    </div>
-                    <p class="text-xs text-gray-600 mt-2">Please stick to the palette.</p>
-                </div>
-                <div>
-                    <i class="fa-solid fa-gift text-3xl text-gold mb-4"></i>
-                    <h3 class="font-luxury text-2xl text-white mb-2">Registry</h3>
-                    <p class="text-gray-400 text-sm mb-4">Your presence is the greatest gift.</p>
-                    <a href="#" class="px-6 py-2 border border-white/20 rounded-full text-xs hover:bg-white hover:text-black transition">View Wishlist</a>
-                </div>
-            </div>
-        </section>
+          <p class="text-gray-600 text-[11px] leading-relaxed">
+            Standard delivery: RSVP responses are collected via the provided form endpoint (Formspree/Google Form).
+            Premium: custom backend + confirmations + guestbook + photo upload.
+          </p>
+        </form>
+      </div>
+    </section>
 
-        <section class="max-w-3xl mx-auto px-6 mb-24 reveal">
-            <div class="text-center mb-12">
-                <h2 class="font-luxury text-3xl text-gold-shine">The Evening Program</h2>
-            </div>
-            <div class="relative border-l border-gold/20 ml-6 md:ml-1/2 md:translate-x-[-1px]">
-                
-                <div class="mb-12 ml-8 relative">
-                    <div class="absolute -left-[41px] w-5 h-5 bg-gold rounded-full border-4 border-black shadow-[0_0_10px_#D4AF37]"></div>
-                    <span class="text-gold font-bold text-sm tracking-widest">19:00</span>
-                    <h4 class="font-luxury text-xl text-white mt-1">Welcome Cocktails</h4>
-                    <p class="text-gray-500 text-sm italic">Champagne & Jazz</p>
-                </div>
+    <footer class="text-center py-8 border-t border-white/5 text-gray-600 text-xs">
+      One-time purchase · No subscription · Not a PDF · Delivered as a private shareable link
+    </footer>
 
-                <div class="mb-12 ml-8 relative">
-                    <div class="absolute -left-[41px] w-5 h-5 bg-gold rounded-full border-4 border-black shadow-[0_0_10px_#D4AF37]"></div>
-                    <span class="text-gold font-bold text-sm tracking-widest">20:00</span>
-                    <h4 class="font-luxury text-xl text-white mt-1">Gala Dinner</h4>
-                    <p class="text-gray-500 text-sm italic">Three-course meal</p>
-                </div>
+  </div>
 
-                <div class="mb-12 ml-8 relative">
-                    <div class="absolute -left-[41px] w-5 h-5 bg-gold rounded-full border-4 border-black shadow-[0_0_10px_#D4AF37]"></div>
-                    <span class="text-gold font-bold text-sm tracking-widest">22:00</span>
-                    <h4 class="font-luxury text-xl text-white mt-1">Cake & Toast</h4>
-                    <p class="text-gray-500 text-sm italic">Let the party begin!</p>
-                </div>
-            </div>
-        </section>
+  <script>
+    /* =========================
+       0) CONFIG (EDIT ONLY THIS)
+    ========================== */
+    const CONFIG = {
+      languageHint: "en", // currently EN text; you can localize later if needed
 
-        <section class="mb-24 reveal">
-            <div class="text-center mb-8">
-                <h2 class="font-luxury text-3xl text-white">Through The Years</h2>
-            </div>
-            <div class="flex overflow-x-auto gap-4 px-6 pb-8 snap-x hide-scrollbar">
-                <div class="flex-shrink-0 snap-center w-64 aspect-[3/4] bg-white/5 p-2 border border-white/10 rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&q=80" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory">
-                </div>
-                <div class="flex-shrink-0 snap-center w-64 aspect-[3/4] bg-white/5 p-2 border border-white/10 rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1530103862676-de3c9da59af7?w=500&q=80" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory">
-                </div>
-                <div class="flex-shrink-0 snap-center w-64 aspect-[3/4] bg-white/5 p-2 border border-white/10 rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&q=80" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory">
-                </div>
-                <div class="flex-shrink-0 snap-center w-64 aspect-[3/4] bg-white/5 p-2 border border-white/10 rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1514525253440-b393452e8d26?w=500&q=80" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory">
-                </div>
-            </div>
-        </section>
+      // Entrance
+      monogram: "S",
+      entranceTitle: "PRIVATE EVENT",
+      entranceSubtitle: "Click to Reveal Invitation",
+      entranceButton: "OPEN ENVELOPE",
 
-        <section class="max-w-2xl mx-auto px-6 mb-24 reveal">
-            <h2 class="font-luxury text-2xl text-gold mb-6 text-center">Travel & Stay</h2>
-            <div class="space-y-4">
-                <details class="group bg-white/5 border border-white/10 rounded-lg overflow-hidden">
-                    <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-                        <span>Recommended Hotels</span>
-                        <span class="text-gold group-open:rotate-180 transition">+</span>
-                    </summary>
-                    <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed">
-                        <p class="mb-2"><strong class="text-white">The Ritz Carlton:</strong> Use code 'SOPHIA30' for 15% off.</p>
-                        <p><strong class="text-white">Marriott Downtown:</strong> A budget-friendly option 5 mins from venue.</p>
-                    </div>
-                </details>
-                <details class="group bg-white/5 border border-white/10 rounded-lg overflow-hidden">
-                    <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-                        <span>Parking Info</span>
-                        <span class="text-gold group-open:rotate-180 transition">+</span>
-                    </summary>
-                    <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed">
-                        Valet parking is available at the entrance for $20. Free street parking after 8 PM.
-                    </div>
-                </details>
-            </div>
-        </section>
+      // Hero
+      heroTop: "Join us for the 30th Birthday of",
+      celebrantName: "SOPHIA",
+      heroQuote: "\"A Night of Elegance & Memories\"",
 
-        <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
-            <div class="relative bg-charcoal border border-gold/30 p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-[#050505] rounded-b-full border-b border-gold/30"></div>
+      // Event datetime (IMPORTANT): include timezone offset
+      // Example: "2026-10-25T19:00:00-04:00" (NY)
+      // Example TR: "2026-10-25T19:00:00+03:00" (Istanbul)
+      eventStartISO: "2026-10-25T19:00:00-04:00",
+      eventEndISO:   "2026-10-26T01:00:00-04:00",
 
-                <div class="text-center mb-8">
-                    <h2 class="font-luxury text-4xl text-white mb-2">R.S.V.P</h2>
-                    <p class="text-gold-dim text-sm uppercase tracking-widest">By October 10th</p>
-                </div>
+      whenDateText: "Saturday, October 25th, 2026",
+      whenTimeText: "19:00 - Late",
 
-                <div id="success-msg" class="hidden text-center py-10">
-                    <i class="fa-regular fa-circle-check text-5xl text-gold mb-4"></i>
-                    <h3 class="text-white font-luxury text-xl">Confirmed!</h3>
-                    <p class="text-gray-500 mt-2">See you on the dance floor.</p>
-                </div>
+      // Venue
+      venueName: "The Grand Ballroom",
+      venueAddress: "123 Luxury Ave, Manhattan, NY",
+      // Best practice: also keep a query string for map URLs
+      venueQuery: "The Grand Ballroom, 123 Luxury Ave, Manhattan, NY",
 
-                <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-6">
-                    <div>
-                        <input type="text" name="name" required placeholder="Guest Name(s)" 
-                            class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition placeholder-gray-600">
-                    </div>
+      // Dress code / registry
+      dressCode: "Black Tie / Formal",
+      paletteNote: "Please stick to the palette.",
+      registryNote: "Your presence is the greatest gift.",
+      registryUrl: "#", // or a real wishlist link
 
-                    <div class="flex gap-4">
-                        <label class="flex-1 cursor-pointer">
-                            <input type="radio" name="attendance" value="Attending" class="peer hidden" checked>
-                            <div class="py-3 text-center border border-white/10 rounded text-gray-500 peer-checked:bg-gold peer-checked:text-black peer-checked:font-bold transition">Accept</div>
-                        </label>
-                        <label class="flex-1 cursor-pointer">
-                            <input type="radio" name="attendance" value="Decline" class="peer hidden">
-                            <div class="py-3 text-center border border-white/10 rounded text-gray-500 peer-checked:bg-red-900/40 peer-checked:text-white peer-checked:border-red-800 transition">Decline</div>
-                        </label>
-                    </div>
+      // Guest guide
+      parkingInfo: "Valet parking is available at the entrance. Please arrive 10–15 minutes early for a smooth entry.",
+      contactInfo: "For any questions: <span class='text-white'>+1 (000) 000-0000</span> (Host).",
+      policyInfo: "Kindly RSVP by the deadline. Venue is adults-only unless stated otherwise. Please respect the dress code.",
 
-                    <div id="extra-fields" class="space-y-6">
-                        <div>
-                            <select name="guests" class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition">
-                                <option value="1" class="bg-charcoal">1 Guest</option>
-                                <option value="2" class="bg-charcoal">2 Guests</option>
-                                <option value="3" class="bg-charcoal">3 Guests</option>
-                            </select>
-                        </div>
-                        <div>
-                            <input type="text" name="song_request" placeholder="🎵 Song Request for DJ" 
-                                class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition placeholder-gray-600 text-sm">
-                        </div>
-                    </div>
+      // RSVP
+      rsvpDeadlineText: "By October 10th",
+      rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
+      successText: "See you on the dance floor.",
 
-                    <button type="submit" id="submit-btn" class="w-full bg-gold hover:bg-white hover:text-black text-black font-luxury font-bold py-4 rounded shadow-[0_0_20px_rgba(212,175,55,0.4)] transition duration-500 mt-6">
-                        CONFIRM
-                    </button>
-                </form>
-            </div>
-        </section>
+      // Media (LOCAL)
+      enableBgVideo: true,
+      bgVideoSrc: "assets/bg.mp4",      // optional
+      momentVideoSrc: "assets/moment.mp4", // optional
+      musicSrc: "assets/music.mp3",
 
-        <footer class="text-center py-8 border-t border-white/5 text-gray-600 text-xs">
-            © 2025 Luxury Invitations
-        </footer>
+      // Map embed
+      // Use Google Maps embed query. This one uses q=...
+      mapEmbedUrl: "https://www.google.com/maps?q=" + encodeURIComponent("The Grand Ballroom, 123 Luxury Ave, Manhattan, NY") + "&output=embed",
 
-    </div>
+      // Timeline
+      timeline: [
+        { time: "19:00", title: "Welcome Cocktails", note: "Champagne & Jazz" },
+        { time: "20:00", title: "Gala Dinner", note: "Three-course meal" },
+        { time: "22:00", title: "Cake & Toast", note: "Let the party begin!" },
+      ],
 
-    <script>
-        // 1. Zarf Açma & Müzik Başlatma
-        const openBtn = document.getElementById('open-btn');
-        const entrance = document.getElementById('entrance-screen');
-        const bgMusic = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('music-btn');
-        let musicPlaying = false;
+      // Gallery images (can be local assets or external)
+      galleryImages: [
+        "assets/gallery/1.jpg",
+        "assets/gallery/2.jpg",
+        "assets/gallery/3.jpg",
+        "assets/gallery/4.jpg",
+      ],
 
-        openBtn.addEventListener('click', () => {
-            entrance.classList.add('envelope-hidden');
-            
-            // Konfeti Patlat
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#D4AF37', '#ffffff'] });
+      // Travel blocks (optional)
+      travelBlocks: [
+        {
+          title: "Recommended Hotels",
+          bodyHtml: "<p class='mb-2'><strong class='text-white'>The Ritz Carlton:</strong> Ask for a preferred rate.</p><p><strong class='text-white'>Marriott Downtown:</strong> 5 mins from the venue.</p>"
+        },
+        {
+          title: "Parking Info",
+          bodyHtml: "Valet available. Free street parking after 8 PM (subject to availability)."
+        }
+      ]
+    };
 
-            // Müzik Başlat
-            bgMusic.play().then(() => { musicPlaying = true; }).catch(e => console.log("Audio prevented"));
+    /* =========================
+       helpers
+    ========================== */
+    const $ = (id) => document.getElementById(id);
+
+    function safeSetText(id, text){ const el = $(id); if(el) el.textContent = text; }
+    function safeSetHTML(id, html){ const el = $(id); if(el) el.innerHTML = html; }
+    function fmt2(n){ return String(n).padStart(2,'0'); }
+
+    function buildGoogleMapsLink(query){
+      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query);
+    }
+    function buildAppleMapsLink(query){
+      return "https://maps.apple.com/?q=" + encodeURIComponent(query);
+    }
+    function buildWazeLink(query){
+      return "https://waze.com/ul?q=" + encodeURIComponent(query) + "&navigate=yes";
+    }
+
+    function buildGoogleCalendarLink({title, startISO, endISO, location, details}){
+      // Google expects YYYYMMDDTHHMMSSZ or with timezone; safest: use UTC "Z"
+      const start = new Date(startISO);
+      const end = new Date(endISO);
+      const toGCal = (d) => {
+        const yyyy = d.getUTCFullYear();
+        const mm = fmt2(d.getUTCMonth()+1);
+        const dd = fmt2(d.getUTCDate());
+        const hh = fmt2(d.getUTCHours());
+        const mi = fmt2(d.getUTCMinutes());
+        const ss = fmt2(d.getUTCSeconds());
+        return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
+      };
+      const dates = `${toGCal(start)}/${toGCal(end)}`;
+      const url = new URL("https://calendar.google.com/calendar/render");
+      url.searchParams.set("action","TEMPLATE");
+      url.searchParams.set("text", title);
+      url.searchParams.set("dates", dates);
+      url.searchParams.set("location", location);
+      url.searchParams.set("details", details || "");
+      return url.toString();
+    }
+
+    function downloadICS({title, startISO, endISO, location, description}){
+      const dtStamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + "Z";
+      const start = new Date(startISO);
+      const end = new Date(endISO);
+
+      const toICS = (d) => {
+        // UTC
+        const yyyy = d.getUTCFullYear();
+        const mm = fmt2(d.getUTCMonth()+1);
+        const dd = fmt2(d.getUTCDate());
+        const hh = fmt2(d.getUTCHours());
+        const mi = fmt2(d.getUTCMinutes());
+        const ss = fmt2(d.getUTCSeconds());
+        return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
+      };
+
+      const uid = `invite-${Math.random().toString(16).slice(2)}@invite`;
+      const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//VIP Invite//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:${uid}
+DTSTAMP:${dtStamp}
+DTSTART:${toICS(start)}
+DTEND:${toICS(end)}
+SUMMARY:${escapeICSText(title)}
+LOCATION:${escapeICSText(location)}
+DESCRIPTION:${escapeICSText(description || "")}
+END:VEVENT
+END:VCALENDAR`;
+
+      const blob = new Blob([ics], {type:"text/calendar;charset=utf-8"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `${title.replace(/[^\w]+/g,'_')}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(a.href), 1200);
+    }
+
+    function escapeICSText(s){
+      return String(s)
+        .replace(/\\/g,"\\\\")
+        .replace(/\n/g,"\\n")
+        .replace(/,/g,"\\,")
+        .replace(/;/g,"\\;");
+    }
+
+    function genQR(elId, text){
+      const el = $(elId);
+      if(!el) return;
+      el.innerHTML = "";
+      if(window.QRCode){
+        QRCode.toCanvas(text, { width: 120, margin: 1 }, (err, canvas) => {
+          if(err){
+            el.innerHTML = "<span class='text-gray-600 text-xs'>QR error</span>";
+            return;
+          }
+          canvas.style.borderRadius = "10px";
+          el.appendChild(canvas);
+        });
+      } else {
+        el.innerHTML = "<span class='text-gray-600 text-xs'>QR unavailable</span>";
+      }
+    }
+
+    /* =========================
+       1) APPLY CONFIG TO UI
+    ========================== */
+    safeSetText("monogram", CONFIG.monogram);
+    safeSetText("privateLabel", CONFIG.entranceTitle);
+    safeSetText("clickLabel", CONFIG.entranceSubtitle);
+    safeSetText("open-btn", CONFIG.entranceButton);
+
+    safeSetText("heroTop", CONFIG.heroTop);
+    safeSetText("heroName", CONFIG.celebrantName);
+    safeSetText("heroQuote", CONFIG.heroQuote);
+
+    safeSetText("whenDate", CONFIG.whenDateText);
+    safeSetText("whenTime", CONFIG.whenTimeText);
+
+    safeSetText("whereName", CONFIG.venueName);
+    safeSetText("whereAddress", CONFIG.venueAddress);
+
+    safeSetText("dressCode", CONFIG.dressCode);
+    safeSetText("paletteNote", CONFIG.paletteNote);
+    safeSetText("registryNote", CONFIG.registryNote);
+    $("registryLink").href = CONFIG.registryUrl || "#";
+
+    safeSetHTML("parkingInfo", CONFIG.parkingInfo);
+    safeSetHTML("contactInfo", CONFIG.contactInfo);
+    safeSetHTML("policyInfo", CONFIG.policyInfo);
+
+    safeSetText("rsvpDeadline", CONFIG.rsvpDeadlineText);
+    safeSetText("successText", CONFIG.successText);
+    $("rsvpForm").action = CONFIG.rsvpEndpoint;
+
+    // Media sources (local)
+    const musicEl = $("bgMusic");
+    const musicSource = musicEl.querySelector("source");
+    musicSource.src = CONFIG.musicSrc;
+    musicEl.load();
+
+    const bgVideo = $("bgVideo");
+    if(CONFIG.enableBgVideo && CONFIG.bgVideoSrc){
+      bgVideo.querySelector("source").src = CONFIG.bgVideoSrc;
+      bgVideo.load();
+      bgVideo.play().catch(()=>{ /* ignore */ });
+    } else {
+      bgVideo.style.display = "none";
+    }
+
+    const momentVideo = $("momentVideo");
+    if(CONFIG.momentVideoSrc){
+      momentVideo.querySelector("source").src = CONFIG.momentVideoSrc;
+      momentVideo.load();
+    } else {
+      $("momentWrap").style.display = "none";
+    }
+
+    // Map links
+    const gLink = buildGoogleMapsLink(CONFIG.venueQuery);
+    const aLink = buildAppleMapsLink(CONFIG.venueQuery);
+    const wLink = buildWazeLink(CONFIG.venueQuery);
+
+    $("map-google").href = gLink;
+    $("map-apple").href = aLink;
+    $("map-waze").href = wLink;
+
+    $("map-google-2").href = gLink;
+    $("map-apple-2").href = aLink;
+    $("map-waze-2").href = wLink;
+
+    // Map embed
+    $("mapFrame").src = CONFIG.mapEmbedUrl;
+
+    // Calendar links
+    const calTitle = `${CONFIG.celebrantName} · VIP Celebration`;
+    const gcal = buildGoogleCalendarLink({
+      title: calTitle,
+      startISO: CONFIG.eventStartISO,
+      endISO: CONFIG.eventEndISO,
+      location: `${CONFIG.venueName} — ${CONFIG.venueAddress}`,
+      details: "Invitation: " + (location.href || "")
+    });
+    $("gcal-link").href = gcal;
+
+    $("ics-btn").addEventListener("click", () => {
+      downloadICS({
+        title: calTitle,
+        startISO: CONFIG.eventStartISO,
+        endISO: CONFIG.eventEndISO,
+        location: `${CONFIG.venueName} — ${CONFIG.venueAddress}`,
+        description: `Dress Code: ${CONFIG.dressCode}\n\nDirections: ${gLink}\n\nRSVP: ${location.origin + location.pathname}#rsvp`
+      });
+    });
+
+    // Timeline render
+    const timeline = $("timeline");
+    timeline.innerHTML = "";
+    CONFIG.timeline.forEach(item => {
+      const block = document.createElement("div");
+      block.className = "mb-12 ml-8 relative";
+      block.innerHTML = `
+        <div class="absolute -left-[41px] w-5 h-5 bg-gold rounded-full border-4 border-black shadow-[0_0_10px_#D4AF37]"></div>
+        <span class="text-gold font-bold text-sm tracking-widest">${item.time}</span>
+        <h4 class="font-luxury text-xl text-white mt-1">${item.title}</h4>
+        <p class="text-gray-500 text-sm italic">${item.note || ""}</p>
+      `;
+      timeline.appendChild(block);
+    });
+
+    // Gallery render
+    const galleryRow = $("galleryRow");
+    galleryRow.innerHTML = "";
+    CONFIG.galleryImages.forEach(src => {
+      const card = document.createElement("div");
+      card.className = "flex-shrink-0 snap-center w-64 aspect-[3/4] bg-white/5 p-2 border border-white/10 rounded-lg";
+      card.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory">`;
+      galleryRow.appendChild(card);
+    });
+
+    // Travel blocks
+    const travelBlocks = $("travelBlocks");
+    travelBlocks.innerHTML = "";
+    (CONFIG.travelBlocks || []).forEach(b => {
+      const details = document.createElement("details");
+      details.className = "group bg-white/5 border border-white/10 rounded-lg overflow-hidden";
+      details.innerHTML = `
+        <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
+          <span>${b.title}</span>
+          <span class="text-gold group-open:rotate-180 transition">+</span>
+        </summary>
+        <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed">${b.bodyHtml || ""}</div>
+      `;
+      travelBlocks.appendChild(details);
+    });
+
+    /* =========================
+       2) ENTRANCE + MUSIC START
+    ========================== */
+    const openBtn = $("open-btn");
+    const entrance = $("entrance-screen");
+    const musicBtn = $("music-btn");
+
+    let musicPlaying = false;
+
+    function setMusicUI(on){
+      musicBtn.style.opacity = on ? "1" : "0.5";
+      musicBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      musicBtn.title = on ? "Music: On" : "Music: Off";
+    }
+    setMusicUI(false);
+
+    openBtn.addEventListener("click", () => {
+      entrance.classList.add("envelope-hidden");
+
+      confetti({
+        particleCount: 160, spread: 70, origin: { y: 0.6 },
+        colors: ['#D4AF37', '#ffffff']
+      });
+
+      // Start music (user gesture)
+      musicEl.play()
+        .then(() => { musicPlaying = true; setMusicUI(true); })
+        .catch(() => { musicPlaying = false; setMusicUI(false); });
+    });
+
+    musicBtn.addEventListener("click", () => {
+      if(musicPlaying){
+        musicEl.pause();
+        musicPlaying = false;
+        setMusicUI(false);
+      } else {
+        musicEl.play()
+          .then(() => { musicPlaying = true; setMusicUI(true); })
+          .catch(() => { musicPlaying = false; setMusicUI(false); });
+      }
+    });
+
+    /* =========================
+       3) SHARE BUTTON
+    ========================== */
+    $("share-btn").addEventListener("click", async () => {
+      const link = location.href;
+      try{
+        if(navigator.share){
+          await navigator.share({ title: calTitle, text: "VIP Invite", url: link });
+        } else {
+          await navigator.clipboard.writeText(link);
+          $("share-btn").innerHTML = "<i class='fa-solid fa-check mr-2'></i> Copied";
+          setTimeout(()=> $("share-btn").innerHTML = "<i class='fa-solid fa-link mr-2'></i> Share Link", 1400);
+        }
+      } catch {
+        // fallback
+        prompt("Copy link:", link);
+      }
+    });
+
+    /* =========================
+       4) REVEAL ON SCROLL
+    ========================== */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* =========================
+       5) COUNTDOWN + STATUS SWITCH
+    ========================== */
+    const targetDate = new Date(CONFIG.eventStartISO).getTime();
+    const endDate = new Date(CONFIG.eventEndISO).getTime();
+
+    function setStatus(text, iconClass){
+      const badge = $("eventStatusBadge");
+      const t = $("eventStatusText");
+      t.textContent = text;
+      badge.querySelector("i").className = iconClass;
+    }
+
+    function tick(){
+      const now = Date.now();
+      const dist = targetDate - now;
+
+      // Status logic
+      if(now < targetDate){
+        setStatus("Counting down", "fa-regular fa-clock");
+      } else if(now >= targetDate && now <= endDate){
+        setStatus("Tonight · Event in progress", "fa-solid fa-bolt");
+      } else {
+        setStatus("Thank you for coming", "fa-regular fa-heart");
+      }
+
+      if(dist <= 0){
+        // Freeze countdown at 00 and avoid negative
+        $("days").innerText = "00";
+        $("hours").innerText = "00";
+        $("minutes").innerText = "00";
+        $("seconds").innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(dist / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((dist % (1000 * 60)) / 1000);
+
+      $("days").innerText = String(days).padStart(2,"0");
+      $("hours").innerText = String(hours).padStart(2,"0");
+      $("minutes").innerText = String(minutes).padStart(2,"0");
+      $("seconds").innerText = String(seconds).padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // Timezone hint
+    $("tzHint").textContent = "Time shown in your local timezone. (" + Intl.DateTimeFormat().resolvedOptions().timeZone + ")";
+
+    /* =========================
+       6) RSVP LOGIC
+    ========================== */
+    const rsvpForm = $("rsvpForm");
+    const submitBtn = $("submit-btn");
+    const successMsg = $("success-msg");
+    const extraFields = $("extra-fields");
+    const radios = document.querySelectorAll('input[name="attendance"]');
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        extraFields.style.display = e.target.value === 'Decline' ? 'none' : 'block';
+      });
+    });
+
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.innerText = "SENDING...";
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(rsvpForm.action, {
+          method: 'POST',
+          body: new FormData(rsvpForm),
+          headers: { 'Accept': 'application/json' }
         });
 
-        musicBtn.addEventListener('click', () => {
-            if(musicPlaying) { bgMusic.pause(); musicBtn.style.opacity = "0.5"; } 
-            else { bgMusic.play(); musicBtn.style.opacity = "1"; }
-            musicPlaying = !musicPlaying;
-        });
+        if(res.ok) {
+          rsvpForm.classList.add('hidden');
+          successMsg.classList.remove('hidden');
 
-        // 2. Scroll Animations (Reveal)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add('active'); }
-            });
-        }, { threshold: 0.1 });
+          confetti({
+            particleCount: 120, spread: 60, origin: { y: 0.75 },
+            colors: ['#D4AF37', '#ffffff']
+          });
+        } else {
+          alert("Error. Try again.");
+          submitBtn.innerText = "CONFIRM";
+          submitBtn.disabled = false;
+        }
+      } catch {
+        alert("Connection Error");
+        submitBtn.innerText = "CONFIRM";
+        submitBtn.disabled = false;
+      }
+    });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    /* =========================
+       7) QR GENERATION
+    ========================== */
+    const pageLink = location.href;
+    const rsvpLink = pageLink.split("#")[0] + "#rsvp";
+    const mapLink = gLink;
 
-        // 3. Countdown Timer
-        const targetDate = new Date("2025-10-25T19:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const dist = targetDate - now;
-            if(dist < 0) return;
-            document.getElementById("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000);
-        }, 1000);
-
-        // 4. RSVP Logic
-        const rsvpForm = document.getElementById('rsvpForm');
-        const submitBtn = document.getElementById('submit-btn');
-        const successMsg = document.getElementById('success-msg');
-        const extraFields = document.getElementById('extra-fields');
-        const radios = document.querySelectorAll('input[name="attendance"]');
-
-        radios.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                extraFields.style.display = e.target.value === 'Decline' ? 'none' : 'block';
-            });
-        });
-
-        rsvpForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            submitBtn.innerText = "SENDING...";
-            submitBtn.disabled = true;
-            try {
-                const res = await fetch(rsvpForm.action, {
-                    method: 'POST', body: new FormData(rsvpForm), headers: {'Accept': 'application/json'}
-                });
-                if(res.ok) {
-                    rsvpForm.classList.add('hidden');
-                    successMsg.classList.remove('hidden');
-                    confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 }, colors: ['#D4AF37'] });
-                } else {
-                    alert("Error. Try again.");
-                    submitBtn.innerText = "CONFIRM";
-                    submitBtn.disabled = false;
-                }
-            } catch {
-                alert("Connection Error");
-                submitBtn.innerText = "CONFIRM";
-                submitBtn.disabled = false;
-            }
-        });
-    </script>
+    genQR("qr-rsvp", rsvpLink);
+    genQR("qr-map", mapLink);
+    genQR("qr-share", pageLink);
+  </script>
 </body>
 </html>
-
