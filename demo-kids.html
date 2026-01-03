@@ -29,7 +29,9 @@
             'sunshine': '#FFF9C4',
             'mint': '#E0F2F1',
             'berry': '#FFCDD2',
-            'charcoal': '#455A64'
+            'charcoal': '#455A64',
+            'rsvp-orange': '#E07A5F',
+            'rsvp-yellow': '#F2CC8F'
           },
           animation: {
             'bounce-slow': 'bounce 3s infinite',
@@ -87,6 +89,17 @@
     #mobile-menu { transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; }
     .mobile-menu-hidden { max-height: 0; opacity: 0; overflow: hidden; }
     .mobile-menu-visible { max-height: 400px; opacity: 1; }
+
+    /* RSVP FORM SELECT ICON FIX */
+    .rsvp-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+    }
   </style>
 </head>
 
@@ -108,6 +121,7 @@
         <a href="#clothing" class="hover:text-berry transition">Clothing</a>
         <a href="#nursery" class="hover:text-berry transition">Nursery</a>
         <a href="#capsule" class="hover:text-berry transition">Time Capsule</a>
+        <a href="#rsvp" class="hover:text-berry transition text-rsvp-orange">Parti RSVP</a>
         <a href="#about" class="hover:text-berry transition">Our Story</a>
       </div>
 
@@ -132,6 +146,7 @@
             <a href="#clothing" class="mobile-link hover:text-berry">Clothing</a>
             <a href="#nursery" class="mobile-link hover:text-berry">Nursery</a>
             <a href="#capsule" class="mobile-link hover:text-berry">Time Capsule</a>
+            <a href="#rsvp" class="mobile-link hover:text-rsvp-orange">Parti RSVP</a>
             <a href="#about" class="mobile-link hover:text-berry">Our Story</a>
         </div>
     </div>
@@ -385,6 +400,95 @@
     </div>
   </section>
 
+  <section id="rsvp" class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto bg-rsvp-orange rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden text-white">
+        
+        <div class="absolute top-6 right-8 text-white/40 text-6xl rotate-12 animate-float">🎈</div>
+
+        <div id="rsvp-success-message" class="hidden text-center py-10 animate-pulse">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white text-4xl mb-6 shadow-lg text-rsvp-orange">
+                🎉
+            </div>
+            <h2 class="font-head text-4xl mb-4">Harika!</h2>
+            <p class="text-white/90 text-xl font-bold">Kaydınız başarıyla oluşturulmuştur.</p>
+            <p class="text-white/70 mt-2 font-bold text-sm">Sizi aramızda görmek için sabırsızlanıyoruz.</p>
+            <button onclick="location.reload()" class="mt-8 text-white underline hover:text-rsvp-yellow font-bold">Yeni Kayıt Ekle</button>
+        </div>
+
+        <div id="rsvp-form-content">
+            <div class="text-center mb-8">
+                <h2 class="font-head text-5xl mb-2">Are you coming?</h2>
+                <p class="text-white/80 font-bold flex items-center justify-center gap-2">
+                    We need a head count for the cake! 🍰
+                </p>
+            </div>
+
+            <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-4">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="name" required placeholder="Name" 
+                           class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+                    
+                    <input type="text" name="surname" required placeholder="Surname" 
+                           class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+                </div>
+
+                <div>
+                    <input type="email" name="email" required placeholder="Email Address" 
+                           class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <input type="hidden" id="attendance-input" name="attendance" value="yes">
+
+                    <button type="button" id="btn-yes" 
+                            class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 shadow-md transform scale-105 bg-white text-rsvp-orange">
+                        Yes, can't wait! 😍
+                    </button>
+
+                    <button type="button" id="btn-no" 
+                            class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 border-2 border-white/40 text-white hover:bg-white/10">
+                        Sad to miss it 😢
+                    </button>
+                </div>
+
+                <div id="guest-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 transition-opacity duration-300">
+                    <div class="relative">
+                        <select name="adults" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
+                            <option value="" disabled class="text-charcoal">Adults</option>
+                            <option value="1" selected class="text-charcoal">1 Adult</option>
+                            <option value="2" class="text-charcoal">2 Adults</option>
+                            <option value="3" class="text-charcoal">3 Adults</option>
+                            <option value="4" class="text-charcoal">4 Adults</option>
+                            <option value="5" class="text-charcoal">5 Adults</option>
+                        </select>
+                    </div>
+
+                    <div class="relative">
+                        <select name="children" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
+                            <option value="" disabled class="text-charcoal">Children</option>
+                            <option value="0" selected class="text-charcoal">No Children</option>
+                            <option value="1" class="text-charcoal">1 Child</option>
+                            <option value="2" class="text-charcoal">2 Children</option>
+                            <option value="3" class="text-charcoal">3 Children</option>
+                            <option value="4" class="text-charcoal">4 Children</option>
+                            <option value="5" class="text-charcoal">5 Children</option>
+                        </select>
+                    </div>
+                </div>
+
+                <input type="hidden" name="_subject" value="New Party RSVP!" />
+                <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+                <button type="submit" 
+                        class="w-full bg-rsvp-yellow hover:bg-white text-charcoal text-xl font-head font-bold rounded-2xl py-4 mt-4 shadow-lg transform hover:-translate-y-1 transition duration-300">
+                    Send RSVP
+                </button>
+            </form>
+        </div>
+    </div>
+  </section>
+
   <section id="clothing" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-12">
@@ -548,7 +652,7 @@
 
       <form 
         id="newsletterForm"
-        action="https://formspree.io/f/xpqwlbvd"
+        action="https://formspree.io/f/BURAYA_NEWSLETTER_ID_YAZIN"
         method="POST"
         class="flex flex-col md:flex-row gap-4 max-w-md mx-auto"
       >
@@ -632,7 +736,7 @@
   </footer>
 
   <script>
-    // Modal open/close
+    // --- GENERIC MODAL LOGIC ---
     const openButtons = document.querySelectorAll('[data-open-modal]');
     const closeButtons = document.querySelectorAll('[data-close-modal]');
 
@@ -670,14 +774,13 @@
       });
     }
 
-    // MOBILE MENU LOGIC
+    // --- MOBILE MENU LOGIC ---
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
     if (mobileBtn && mobileMenu) {
         mobileBtn.addEventListener('click', () => {
-            // Toggle visibility classes
             if (mobileMenu.classList.contains('mobile-menu-hidden')) {
                 mobileMenu.classList.remove('mobile-menu-hidden');
                 mobileMenu.classList.add('mobile-menu-visible');
@@ -687,7 +790,6 @@
             }
         });
 
-        // Close menu when a link is clicked
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('mobile-menu-hidden');
@@ -696,7 +798,7 @@
         });
     }
 
-    // Newsletter Formspree submit (no refresh)
+    // --- NEWSLETTER FORM SUBMIT ---
     const newsletterForm = document.getElementById('newsletterForm');
     const newsletterStatus = document.getElementById('form-status');
 
@@ -730,7 +832,7 @@
       });
     }
 
-    // Time Capsule Formspree submit (no refresh)
+    // --- TIME CAPSULE FORM SUBMIT ---
     const capsuleForm = document.getElementById('capsuleForm');
     const capsuleStatus = document.getElementById('capsule-status');
 
@@ -762,6 +864,72 @@
           if (btn) btn.disabled = false;
         }
       });
+    }
+
+    // --- RSVP FORM LOGIC & SUBMIT ---
+    const btnYes = document.getElementById('btn-yes');
+    const btnNo = document.getElementById('btn-no');
+    const attendanceInput = document.getElementById('attendance-input');
+    const guestOptions = document.getElementById('guest-options');
+    const rsvpForm = document.getElementById('rsvpForm');
+    const rsvpFormContent = document.getElementById('rsvp-form-content');
+    const rsvpSuccessMessage = document.getElementById('rsvp-success-message');
+
+    // Stil sınıfları
+    const activeClass = "bg-white text-rsvp-orange shadow-md transform scale-105 border-transparent";
+    const inactiveClass = "bg-transparent text-white border-2 border-white/40 hover:bg-white/10";
+
+    if(btnYes && btnNo) {
+        // "Evet" Butonuna Tıklanınca
+        btnYes.addEventListener('click', () => {
+            attendanceInput.value = "yes";
+            btnYes.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${activeClass}`;
+            btnNo.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${inactiveClass}`;
+            guestOptions.classList.remove('opacity-50', 'pointer-events-none');
+        });
+
+        // "Hayır" Butonuna Tıklanınca
+        btnNo.addEventListener('click', () => {
+            attendanceInput.value = "no";
+            btnNo.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${activeClass}`;
+            btnYes.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${inactiveClass}`;
+            guestOptions.classList.add('opacity-50', 'pointer-events-none');
+        });
+    }
+
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Sending...";
+
+            try {
+                const data = new FormData(rsvpForm);
+                const response = await fetch(rsvpForm.action, {
+                    method: rsvpForm.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    rsvpFormContent.style.display = 'none';
+                    rsvpSuccessMessage.classList.remove('hidden');
+                    rsvpForm.reset();
+                } else {
+                    alert("Bir sorun oluştu. Lütfen tekrar deneyin.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalText;
+                }
+            } catch (error) {
+                alert("Bağlantı hatası! İnternetinizi kontrol edin.");
+                console.error('Hata:', error);
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+            }
+        });
     }
   </script>
 
