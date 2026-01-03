@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VitrinY | Etsy Entegrasyon Çözümleri</title>
-  <meta name="description" content="Etsy mağazanızı resmi API ile profesyonel bir web sitesine dönüştürün." />
+  <meta name="description" content="Etsy mağazanızı resmi API ile komisyonsuz, profesyonel bir web sitesine dönüştürün." />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -29,9 +29,13 @@
     .glass:hover { border-color: rgba(0, 255, 157, 0.3); transform: translateY(-5px); }
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
-    details > summary { list-style: none; cursor: pointer; }
-    details[open] summary ~ * { animation: sweep .3s ease-out; }
-    @keyframes sweep { 0% {opacity: 0; transform: translateY(-5px)} 100% {opacity: 1; transform: translateY(0)} }
+    
+    /* Checkmark List Style */
+    .check-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.9rem; color: #9ca3af; }
+    .check-list li i { color: #00ff9d; }
+
+    /* Comparison Table Highlighting */
+    .highlight-row:hover { background: rgba(255,255,255,0.03); }
   </style>
 </head>
 
@@ -44,9 +48,9 @@
         <span class="font-heading text-xl font-bold tracking-tight">VitrinY <span class="text-xs text-gray-500 font-normal">| Etsy Solutions</span></span>
       </a>
       <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-        <a href="#features" class="hover:text-neon">Özellikler</a>
-        <a href="#how-it-works" class="hover:text-white">Nasıl Çalışır?</a>
-        <a href="#pricing" class="hover:text-white">Fiyatlandırma</a>
+        <a href="#comparison" class="hover:text-neon">Neden VitrinY?</a>
+        <a href="#templates" class="hover:text-white">Tasarımlar</a>
+        <a href="#pricing" class="hover:text-white">Fiyatlar</a>
       </div>
       <a href="#pricing" class="bg-neon text-black px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white transition">Hemen Başla</a>
     </div>
@@ -61,145 +65,234 @@
     </div>
     
     <h1 class="font-heading text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
-      Etsy Mağazanızı <br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">Kendi Sitenize Dönüştürün.</span>
+      Etsy Komisyonlarına <br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">Sonsuza Dek Veda Edin.</span>
     </h1>
     
     <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-        Ürünleriniz, fotoğraflarınız ve fiyatlarınız Etsy'den otomatik çekilir. 
-        Stoklarınız her iki tarafta da senkronize kalır.
+        Mağazanızı kapatmanıza gerek yok. Ürünlerinizi Etsy'den otomatik çekip, kendi alan adınızda (sizinsiteniz.com) komisyonsuz satmanızı sağlıyoruz.
     </p>
 
     <div class="flex justify-center gap-4">
         <a href="#pricing" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(0,255,157,0.3)]">
-            Entegrasyonu Başlat
+            Kendi Siteni Kur
         </a>
-        <a href="demo-starter.html" target="_blank" class="px-8 py-4 border border-white/10 rounded-xl hover:bg-white/10 transition flex items-center gap-2">
-            <i class="fa-solid fa-eye"></i> Canlı Demo Gör
+        <a href="#templates" class="px-8 py-4 border border-white/10 rounded-xl hover:bg-white/10 transition flex items-center gap-2">
+            <i class="fa-solid fa-eye"></i> Örnekleri İncele
         </a>
+    </div>
+    
+    <div class="mt-16 opacity-50 grayscale hover:grayscale-0 transition duration-500">
+        <p class="text-[10px] uppercase tracking-widest mb-4 text-gray-600">Tam Uyumlu Çalıştığımız Platformlar</p>
+        <div class="flex justify-center gap-8 text-2xl text-gray-400">
+            <i class="fa-brands fa-google" title="Google Analytics & Shopping"></i>
+            <i class="fa-brands fa-meta" title="Facebook & Instagram Pixel"></i>
+            <i class="fa-brands fa-pinterest" title="Pinterest Tag"></i>
+            <i class="fa-brands fa-stripe" title="Stripe Payments"></i>
+            <i class="fa-brands fa-whatsapp" title="WhatsApp Chat"></i>
+        </div>
     </div>
   </header>
 
-  <section id="features" class="py-16 border-y border-white/5 bg-white/[0.02]">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
-        <div class="reveal">
-            <i class="fa-regular fa-images text-2xl text-neon mb-4"></i>
-            <h4 class="font-bold text-white">4K Görseller</h4>
-            <p class="text-[10px] text-gray-500 uppercase mt-1">Kayıpsız Aktarım</p>
+  <section id="comparison" class="py-24 bg-surface border-y border-white/5">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-heading text-3xl font-bold mb-4">Gerçek Bağımsızlık</h2>
+            <p class="text-gray-400">Neden sadece Etsy ile yetinmemelisiniz?</p>
         </div>
-        <div class="reveal delay-75">
-            <i class="fa-solid fa-tag text-2xl text-purple-400 mb-4"></i>
-            <h4 class="font-bold text-white">Akıllı Fiyat</h4>
-            <p class="text-[10px] text-gray-500 uppercase mt-1">Kur Dönüşümü</p>
-        </div>
-        <div class="reveal delay-100">
-            <i class="fa-solid fa-list-ul text-2xl text-blue-400 mb-4"></i>
-            <h4 class="font-bold text-white">Varyasyonlar</h4>
-            <p class="text-[10px] text-gray-500 uppercase mt-1">Renk & Beden</p>
-        </div>
-        <div class="reveal delay-150 border-none">
-            <i class="fa-solid fa-magnifying-glass text-2xl text-yellow-400 mb-4"></i>
-            <h4 class="font-bold text-white">SEO Dostu</h4>
-            <p class="text-[10px] text-gray-500 uppercase mt-1">Google İndeksleme</p>
+
+        <div class="overflow-x-auto rounded-2xl border border-white/10 reveal">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-white/5 text-xs uppercase tracking-widest text-gray-400 border-b border-white/10">
+                        <th class="p-6">Özellik</th>
+                        <th class="p-6 text-center w-1/4">Sadece Etsy</th>
+                        <th class="p-6 text-center w-1/4 bg-neon/10 text-neon font-bold">VitrinY Web Sitesi</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm">
+                    <tr class="border-b border-white/5 highlight-row">
+                        <td class="p-6 font-bold text-white">Listeleme Ücreti</td>
+                        <td class="p-6 text-center text-red-400">$0.20 / ürün</td>
+                        <td class="p-6 text-center text-neon font-bold">ÜCRETSİZ</td>
+                    </tr>
+                    <tr class="border-b border-white/5 highlight-row">
+                        <td class="p-6 font-bold text-white">İşlem Komisyonu</td>
+                        <td class="p-6 text-center text-red-400">%6.5 + Kesintiler</td>
+                        <td class="p-6 text-center text-neon font-bold">%0 (Sadece Banka)</td>
+                    </tr>
+                    <tr class="border-b border-white/5 highlight-row">
+                        <td class="p-6 font-bold text-white">Rakip Ürünler</td>
+                        <td class="p-6 text-center text-gray-400">Sayfanızda rakip reklamları var</td>
+                        <td class="p-6 text-center text-white">Sadece SİZİN ürünleriniz</td>
+                    </tr>
+                    <tr class="border-b border-white/5 highlight-row">
+                        <td class="p-6 font-bold text-white">Müşteri Verisi (Email)</td>
+                        <td class="p-6 text-center text-gray-400">Etsy vermez (Yasaklı)</td>
+                        <td class="p-6 text-center text-white">Tamamen size ait (Retargeting)</td>
+                    </tr>
+                     <tr class="highlight-row">
+                        <td class="p-6 font-bold text-white">Google SEO</td>
+                        <td class="p-6 text-center text-gray-400">Zor (Etsy domine eder)</td>
+                        <td class="p-6 text-center text-white">Kendi domaininizle 1. sıra</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
   </section>
 
-  <section class="py-24 bg-surface relative">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="font-heading text-3xl font-bold mb-16">Neden Entegrasyon?</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-2xl text-left hover:border-neon/50">
-          <div class="w-12 h-12 rounded-full bg-neon/10 flex items-center justify-center mb-6 text-neon"><i class="fa-solid fa-link"></i></div>
-          <h3 class="text-xl font-bold mb-3">Tek Merkezden Yönetim</h3>
-          <p class="text-gray-400 text-sm">İki ayrı site yönetmek yok. Etsy'ye ürün ekleyin, sitenize anında gelsin.</p>
+  <section id="templates" class="py-24 bg-black relative">
+     <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+            <div>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Sektörünüze Özel Temalar</h2>
+                <p class="text-gray-400 max-w-md">Etsy'deki ürünlerinizi bu tasarımlara giydiriyoruz. Kodlama yok, sürükle bırak yok. Biz yapıyoruz.</p>
+            </div>
+            <a href="portfolio.html" class="mt-4 md:mt-0 text-neon font-bold text-sm uppercase tracking-widest border-b border-neon pb-1">Tümünü Gör</a>
         </div>
-        <div class="glass p-8 rounded-2xl text-left hover:border-purple/50">
-          <div class="w-12 h-12 rounded-full bg-purple/10 flex items-center justify-center mb-6 text-purple-400"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3 class="text-xl font-bold mb-3">Stok Koruma (Inventory Guard)</h3>
-          <p class="text-gray-400 text-sm">Etsy'de satış olduğunda sitenizdeki stok düşer. Asla yok satmazsınız.</p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="group relative rounded-xl overflow-hidden border border-white/10 reveal">
+                <img src="assets/img/preview-art.jpg.png" alt="Etsy Starter" class="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                <div class="absolute bottom-6 left-6">
+                    <span class="text-[10px] bg-neon text-black px-2 py-1 rounded font-bold uppercase tracking-widest mb-2 inline-block">EN ÇOK SATAN</span>
+                    <h3 class="text-xl font-bold text-white">Starter Theme</h3>
+                    <p class="text-xs text-gray-400 mt-1">Takı ve Aksesuar için ideal.</p>
+                </div>
+                <a href="demo-starter.html" target="_blank" class="absolute top-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition transform translate-y-2 group-hover:translate-y-0"><i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="group relative rounded-xl overflow-hidden border border-white/10 reveal delay-100">
+                <img src="assets/img/preview-business.jpg.png" alt="Furniture" class="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                <div class="absolute bottom-6 left-6">
+                    <span class="text-[10px] bg-blue-400 text-black px-2 py-1 rounded font-bold uppercase tracking-widest mb-2 inline-block">MOBİLYA</span>
+                    <h3 class="text-xl font-bold text-white">Business Elite</h3>
+                    <p class="text-xs text-gray-400 mt-1">Büyük envanter ve galeri modu.</p>
+                </div>
+                <a href="demo-business-2.html" target="_blank" class="absolute top-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition transform translate-y-2 group-hover:translate-y-0"><i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="group relative rounded-xl overflow-hidden border border-white/10 reveal delay-200">
+                <img src="assets/img/preview-fashion2.jpg.png" alt="Fashion" class="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                <div class="absolute bottom-6 left-6">
+                    <span class="text-[10px] bg-purple-400 text-black px-2 py-1 rounded font-bold uppercase tracking-widest mb-2 inline-block">GİYİM</span>
+                    <h3 class="text-xl font-bold text-white">Atelier Mode</h3>
+                    <p class="text-xs text-gray-400 mt-1">Butikler için varyasyon odaklı.</p>
+                </div>
+                <a href="demo-fashion2.html" target="_blank" class="absolute top-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition transform translate-y-2 group-hover:translate-y-0"><i class="fa-solid fa-arrow-right"></i></a>
+            </div>
         </div>
-        <div class="glass p-8 rounded-2xl text-left hover:border-white/50">
-          <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 text-white"><i class="fa-brands fa-google"></i></div>
-          <h3 class="text-xl font-bold mb-3">Google'da Yükselin</h3>
-          <p class="text-gray-400 text-sm">Etsy içinde kaybolmayın. Kendi domaininiz (örn: markaniz.com) ile marka olun.</p>
-        </div>
-      </div>
-    </div>
+     </div>
   </section>
 
-  <section id="how-it-works" class="py-24 border-t border-white/5">
+  <section id="how-it-works" class="py-24 border-y border-white/5 bg-white/[0.02]">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <h2 class="font-heading text-3xl font-bold mb-4">3 Adımda Kurulum</h2>
-      <p class="text-gray-500 mb-16">Kodlama bilgisi gerekmez.</p>
+      <p class="text-gray-500 mb-16">Kodlama bilgisi gerekmez. Anahtarı teslim almanız yeterli.</p>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="relative">
-             <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/10 text-white"><i class="fa-solid fa-key"></i></div>
-             <h3 class="font-bold text-lg mb-2">1. Bağlantı</h3>
-             <p class="text-gray-500 text-sm px-4">OAuth 2.0 ile güvenli şekilde mağazanızı bağlıyoruz. Şifre paylaşımı yok.</p>
+        <div class="relative glass p-8 rounded-xl">
+             <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/10 text-white text-2xl"><i class="fa-solid fa-plug"></i></div>
+             <h3 class="font-bold text-lg mb-2">1. API Bağlantısı</h3>
+             <p class="text-gray-500 text-sm">VitrinY panelinden Etsy mağazanızı tek tıkla yetkilendirirsiniz. Güvenli OAuth 2.0 protokolü kullanırız.</p>
         </div>
-        <div class="relative">
-            <div class="w-16 h-16 bg-neon/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-neon/30 text-neon shadow-[0_0_20px_rgba(0,255,157,0.2)]"><i class="fa-solid fa-download"></i></div>
-            <h3 class="font-bold text-lg mb-2">2. Veri Çekme</h3>
-            <p class="text-gray-500 text-sm px-4">Sistemimiz tüm ürünleri, resimleri ve açıklamaları 60 saniyede indirir.</p>
+        <div class="relative glass p-8 rounded-xl border-neon/30 shadow-[0_0_20px_rgba(0,255,157,0.1)]">
+            <div class="w-16 h-16 bg-neon/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-neon/30 text-neon text-2xl"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+            <h3 class="font-bold text-lg mb-2">2. Akıllı Aktarım</h3>
+            <p class="text-gray-500 text-sm">1000+ ürün, yüksek çözünürlüklü fotoğraflar ve SEO açıklamaları 60 saniye içinde sitenize kopyalanır.</p>
        </div>
-       <div class="relative">
-            <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/10 text-white"><i class="fa-solid fa-rocket"></i></div>
-            <h3 class="font-bold text-lg mb-2">3. Yayına Al</h3>
-            <p class="text-gray-500 text-sm px-4">Alan adınızı bağlıyoruz ve siteniz satışa hazır hale geliyor.</p>
+       <div class="relative glass p-8 rounded-xl">
+            <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/10 text-white text-2xl"><i class="fa-solid fa-rocket"></i></div>
+            <h3 class="font-bold text-lg mb-2">3. Satışa Başla</h3>
+            <p class="text-gray-500 text-sm">Stripe, Shopier veya Wise ödeme altyapınızı bağlarız ve satışa başlarsınız.</p>
        </div>
       </div>
     </div>
   </section>
 
-  <section id="pricing" class="py-24 bg-surface relative z-10">
+  <section class="py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="font-heading text-3xl font-bold mb-12 text-center">Satıcılar Ne Diyor?</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="glass p-8 rounded-2xl relative">
+                <i class="fa-solid fa-quote-left text-4xl text-white/5 absolute top-6 left-6"></i>
+                <p class="text-gray-300 text-sm italic mb-6 relative z-10">"Etsy'de kesintilerden bıkmıştım. Kendi sitemi kurmak istiyordum ama Shopify çok pahalı geliyordu. VitrinY ile tek sefer ödedim ve ömür boyu benim oldu. Ürünleri tek tek yüklemekle uğraşmadım bile."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center font-bold text-white">S</div>
+                    <div>
+                        <div class="font-bold text-white text-sm">Selin K.</div>
+                        <div class="text-[10px] text-gray-500">Gümüş Takı Tasarımcısı</div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-8 rounded-2xl relative">
+                <i class="fa-solid fa-quote-left text-4xl text-white/5 absolute top-6 left-6"></i>
+                <p class="text-gray-300 text-sm italic mb-6 relative z-10">"Mobilya satıyorum ve Etsy'de kargo profillerini ayarlamak işkenceydi. VitrinY bana özel bir 'Nakliye Teklifi İste' butonu ekledi. Müşteriyle direkt WhatsApp'tan konuşup satışı kapatıyorum."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center font-bold text-white">M</div>
+                    <div>
+                        <div class="font-bold text-white text-sm">Mert Y.</div>
+                        <div class="text-[10px] text-gray-500">Ahşap Atölyesi Sahibi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="py-24 bg-black relative z-10 border-t border-white/5">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="font-heading text-4xl font-bold mb-4">Paket Seçenekleri</h2>
-        <p class="text-gray-400">Tek seferlik kurulum veya yıllık bakım. Seçim sizin.</p>
+        <h2 class="font-heading text-4xl font-bold mb-4">Yatırım Planları</h2>
+        <p class="text-gray-400">Aylık kira öder gibi ödemeyin. Siteniz sizin olsun.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <div class="glass p-8 rounded-3xl flex flex-col">
           <div class="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-4">BAŞLANGIÇ</div>
           <div class="text-4xl font-heading font-bold text-white mb-2">$149</div>
-          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6">Tek Seferlik Ödeme</div>
-          <ul class="space-y-4 mb-8 text-sm text-gray-400 flex-1">
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> 100 Ürüne Kadar</li>
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Temel Senkronizasyon</li>
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Domain Bağlama</li>
+          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6">Tek Seferlik Kurulum</div>
+          <ul class="check-list flex-1">
+            <li><i class="fa-solid fa-check"></i> 100 Ürüne Kadar Aktarım</li>
+            <li><i class="fa-solid fa-check"></i> Hazır Tema Kurulumu</li>
+            <li><i class="fa-solid fa-check"></i> Domain Bağlama</li>
+            <li><i class="fa-solid fa-check"></i> 1 Ay Teknik Destek</li>
           </ul>
-          <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl border border-white/10 hover:bg-white hover:text-black transition font-bold text-xs uppercase tracking-widest">Satın Al</a>
+          <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl border border-white/10 hover:bg-white hover:text-black transition font-bold text-xs uppercase tracking-widest mt-8">Satın Al</a>
         </div>
 
         <div class="p-[1px] rounded-3xl bg-gradient-to-b from-neon to-emerald-900 shadow-[0_0_60px_rgba(0,255,157,0.1)] relative transform md:-translate-y-4">
            <div class="bg-surface rounded-[23px] h-full w-full p-8 flex flex-col">
-            <div class="absolute top-0 right-0 bg-neon text-black text-[9px] font-bold px-4 py-2 rounded-bl-xl tracking-widest">POPÜLER</div>
+            <div class="absolute top-0 right-0 bg-neon text-black text-[9px] font-bold px-4 py-2 rounded-bl-xl tracking-widest">EN ÇOK TERCİH EDİLEN</div>
             <div class="text-[10px] font-bold tracking-[0.2em] text-neon mb-4">PROFESYONEL</div>
             <div class="text-5xl font-heading font-bold text-white mb-2">$299</div>
-            <div class="text-xs text-gray-400 mb-8 border-b border-white/10 pb-6">Tek Seferlik Ödeme</div>
-            <ul class="space-y-4 mb-8 text-sm text-white flex-1 font-medium">
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> 500 Ürüne Kadar</li>
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> Günlük Oto-Sync</li>
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> SEO Modülü</li>
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> 1 Yıl Destek</li>
+            <div class="text-xs text-gray-400 mb-8 border-b border-white/10 pb-6">Tek Seferlik Kurulum</div>
+            <ul class="check-list flex-1">
+              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> 1000 Ürüne Kadar</li>
+              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> <strong>Günlük Otomatik Stok Senkronizasyonu</strong></li>
+              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> Google Analytics & Pixel Kurulumu</li>
+              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> Çoklu Dil Desteği (TR/EN)</li>
+              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> 6 Ay Destek</li>
             </ul>
-            <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold text-xs uppercase tracking-widest shadow-lg">Şimdi Başla</a>
+            <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold text-xs uppercase tracking-widest shadow-lg mt-8">Hemen Başla</a>
            </div>
         </div>
 
         <div class="glass p-8 rounded-3xl flex flex-col border-purple/30">
-          <div class="text-[10px] font-bold tracking-[0.2em] text-purple-400 mb-4">ELITE</div>
+          <div class="text-[10px] font-bold tracking-[0.2em] text-purple-400 mb-4">ELITE AGENCY</div>
           <div class="text-4xl font-heading font-bold text-white mb-2">$599</div>
-          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6">Yıllık Bakım Dahil</div>
-          <ul class="space-y-4 mb-8 text-sm text-gray-400 flex-1">
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> Sınırsız Ürün</li>
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> Anlık (Real-time) Sync</li>
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> VIP Müşteri Temsilcisi</li>
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> Özel Tasarım Düzenleme</li>
+          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6">Yıllık Bakım Anlaşmalı</div>
+          <ul class="check-list flex-1">
+            <li><i class="fa-solid fa-check text-purple-400"></i> <strong>Sınırsız Ürün</strong></li>
+            <li><i class="fa-solid fa-check text-purple-400"></i> Anlık (Real-time) Webhook Sync</li>
+            <li><i class="fa-solid fa-check text-purple-400"></i> Özel Tasarım Kodlama</li>
+            <li><i class="fa-solid fa-check text-purple-400"></i> 7/24 VIP WhatsApp Desteği</li>
           </ul>
-          <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold text-xs uppercase tracking-widest">İletişime Geç</a>
+          <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold text-xs uppercase tracking-widest mt-8">Özel Teklif Al</a>
         </div>
       </div>
     </div>
@@ -207,26 +300,36 @@
 
   <section class="py-24 border-t border-white/5">
     <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-heading text-3xl font-bold mb-10 text-center">Teknik SSS</h2>
+      <h2 class="font-heading text-3xl font-bold mb-10 text-center">Merak Edilenler</h2>
       <div class="space-y-4">
         <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between">Ne sıklıkla senkronize oluyor? <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50">Pakete göre değişir. Standart pakette günde 1 kez, Elite pakette ise "Webhook" teknolojisi ile Etsy'de değişiklik yaptığınız an siteniz güncellenir.</p>
+          <summary class="font-bold text-sm flex justify-between">Domain (Alan Adı) fiyata dahil mi? <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50">Hayır, markaniz.com gibi alan adınızı siz satın alırsınız (GoDaddy veya Google Domains'den yıllık ~$15). Biz bağlantısını ücretsiz yaparız.</p>
         </details>
         <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between">Etsy yorumlarım geliyor mu? <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50">Evet, mağaza puanınızı ve yıldız rozetinizi sitenin altına "Güven Rozeti" olarak ekliyoruz.</p>
+          <summary class="font-bold text-sm flex justify-between">Ödemeleri nasıl alacağım? <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50">Shopier, Iyzico, Stripe veya Wise hesabınızı sitenize entegre ediyoruz. Para doğrudan sizin hesabınıza yatar, Etsy gibi bekletme süresi yoktur.</p>
         </details>
         <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between">Etsy'den ürün silersem ne olur? <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50">Sistemimiz silinen ürünü algılar ve sitenizden de otomatik olarak "Arşiv"e kaldırır. Böylece olmayan ürünü satmazsınız.</p>
+          <summary class="font-bold text-sm flex justify-between">Etsy'de indirim yaparsam siteme yansır mı? <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50">Evet! Fiyat değişiklikleri ve indirimler bir sonraki senkronizasyonda sitenize otomatik olarak yansır.</p>
         </details>
       </div>
     </div>
   </section>
+  
+  <section class="py-20 bg-gradient-to-t from-neon/10 to-transparent text-center">
+      <div class="max-w-2xl mx-auto px-6">
+          <h2 class="font-heading text-4xl font-bold mb-6">Maceraya Başlamaya Hazır Mısın?</h2>
+          <p class="text-gray-400 mb-8">Etsy sadece bir başlangıçtı. Şimdi kendi markanı yaratma zamanı.</p>
+          <a href="https://wa.me/905419787726" class="inline-block px-10 py-5 bg-white text-black font-bold rounded-full hover:bg-neon transition shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+              Ücretsiz Danışmanlık Al
+          </a>
+      </div>
+  </section>
 
-  <footer class="py-10 text-center text-xs text-gray-600 border-t border-white/5">
-    <p>&copy; 2025 VitrinY. Etsy, Etsy Inc.'in ticari markasıdır. Bu uygulama Etsy API kullanır ancak Etsy tarafından onaylanmış değildir.</p>
+  <footer class="py-10 text-center text-xs text-gray-600 border-t border-white/5 bg-black">
+    <p>&copy; 2025 VitrinY. Etsy, Etsy Inc.'in ticari markasıdır.</p>
   </footer>
 
   <script>
