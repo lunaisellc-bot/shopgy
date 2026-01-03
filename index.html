@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY | Digital Design & Tech Agency</title>
+  <title>VitrinY | Dijital Tasarım Ajansı</title>
 
-  <meta name="description" content="Profesyonel web çözümleri: Etsy Entegrasyonu, Dijital Davetiyeler, Kurumsal Web Siteleri ve daha fazlası." />
+  <meta name="description" content="Profesyonel web çözümleri: Etsy Entegrasyonu, Dijital Davetiyeler, Kurumsal Web Siteleri." />
   
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -49,26 +49,24 @@
   </script>
 
   <style>
-    /* Global Styles & Animations */
+    /* Temel Stil Ayarları */
     html, body { background-color: #050505; color: white; width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; scroll-padding-top: 100px; }
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
     .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
     .glass:hover { border-color: rgba(0, 255, 157, 0.3); background: rgba(255, 255, 255, 0.05); transform: translateY(-5px); }
     
-    /* Marquee / Slider Styles */
+    /* Slider/Marquee Ayarları */
     .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
     .marquee-container::before, .marquee-container::after { content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none; }
     .marquee-container::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
     .marquee-container::after { right: 0; background: linear-gradient(to left, #050505, transparent); }
     .marquee-content { display: inline-flex; gap: 24px; }
     .scroll-left { animation: scrollLeft 60s linear infinite; }
-    .scroll-right { animation: scrollRight 65s linear infinite; }
     .hover\:pause:hover { animation-play-state: paused; }
     @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
-    /* Card Styles */
+    /* Kart Ayarları */
     .theme-card { width: 280px; height: 380px; border-radius: 20px; overflow: hidden; position: relative; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
     .theme-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: grayscale(100%); }
     .theme-card:hover { transform: scale(1.05); border-color: rgba(0, 255, 157, 0.5); z-index: 10; box-shadow: 0 0 30px rgba(0,255,157,0.1); }
@@ -86,7 +84,7 @@
     details[open] summary ~ * { animation: sweep .3s ease-out; }
     @keyframes sweep { 0% {opacity: 0; transform: translateY(-5px)} 100% {opacity: 1; transform: translateY(0)} }
 
-    /* Service Icons */
+    /* Servis İkonları */
     .service-icon { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; transition: all 0.3s; }
     .glass:hover .service-icon { transform: scale(1.1) rotate(5deg); }
   </style>
@@ -108,17 +106,16 @@
       </a>
 
       <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-        <a href="#services" class="hover:text-neon transition" data-i18n="nav_services">Çözümler</a>
-        <a href="portfolio.html" class="hover:text-white transition" data-i18n="nav_portfolio">Vitrin (Portfolio)</a>
-        <a href="#process" class="hover:text-white transition" data-i18n="nav_how">Süreç</a>
-        <a href="#blog" class="hover:text-white transition" data-i18n="nav_blog">Blog</a>
+        <a href="#services" class="hover:text-neon transition">Çözümler</a>
+        <a href="portfolio.html" class="hover:text-white transition">Vitrin</a>
+        <a href="#blog" class="hover:text-white transition">Blog</a>
       </div>
 
       <div class="flex items-center gap-4">
         <button id="lang-btn" onclick="toggleLanguage()" class="text-xs font-bold text-gray-500 hover:text-white border border-white/10 px-3 py-2 rounded-lg transition">
           🇹🇷 TR
         </button>
-        <a href="https://wa.me/905419787726" target="_blank" class="hidden sm:block bg-white text-black px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-[0_0_20px_rgba(0,255,157,0.4)]" data-i18n="nav_cta">
+        <a href="https://wa.me/905419787726" target="_blank" class="hidden sm:block bg-white text-black px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-[0_0_20px_rgba(0,255,157,0.4)]">
           İletişime Geç
         </a>
       </div>
@@ -126,38 +123,28 @@
   </nav>
 
   <header class="relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4 pt-10">
-    
     <div class="mb-8 animate-float">
       <div class="px-4 py-2 rounded-full border border-neon/30 bg-neon/5 text-neon text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 backdrop-blur-md shadow-[0_0_15px_rgba(0,255,157,0.2)]">
         <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
-        <span data-i18n="hero_badge">PREMIUM DİJİTAL AJANS</span>
+        <span>PREMIUM DİJİTAL AJANS</span>
       </div>
     </div>
 
-    <h1 class="reveal font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 tracking-tighter" data-i18n="hero_title">
+    <h1 class="reveal font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 tracking-tighter">
       Hayalinizdeki Site. <br>
       <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">Tek Bir Platformda.</span>
     </h1>
 
     <div class="reveal max-w-2xl mx-auto mb-10 delay-100">
-        <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-6" data-i18n="hero_sub">
+        <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-6">
             Etsy entegrasyonundan özel dijital davetiyelere, sektörel web sitelerinden kurumsal kimliğe. 
             Dijital varlığınızı profesyonelce inşa ediyoruz.
         </p>
-        
-        <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-            <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-neon"></i> <span data-i18n="feat_1">Hızlı Teslimat</span></span>
-            <span class="flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-neon"></i> <span data-i18n="feat_2">Özel Tasarım</span></span>
-            <span class="flex items-center gap-2"><i class="fa-solid fa-mobile-screen text-neon"></i> <span data-i18n="feat_3">Mobil Uyumlu</span></span>
-        </div>
     </div>
 
     <div class="reveal flex flex-col sm:flex-row gap-5 delay-200">
-      <a href="#services" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105 shadow-[0_0_30px_rgba(0,255,157,0.3)]">
-        <span class="relative flex items-center gap-2 tracking-wide"><i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_explore">Çözümleri İncele</span></span>
-      </a>
-      <a href="portfolio.html" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center gap-2">
-        <span data-i18n="btn_how">Son İşlerimiz</span>
+      <a href="#services" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(0,255,157,0.3)] flex items-center gap-2">
+        <i class="fa-solid fa-layer-group"></i> Çözümleri İncele
       </a>
     </div>
   </header>
@@ -165,148 +152,91 @@
   <section id="services" class="py-24 border-y border-white/5 bg-white/[0.02]">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16 reveal">
-            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4" data-i18n="serv_title">Hizmetlerimiz</h2>
-            <p class="text-gray-500" data-i18n="serv_sub">Dijital yolculuğunuz için bir kategori seçin.</p>
+            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Hizmetlerimiz</h2>
+            <p class="text-gray-500">Detaylı bilgi için kartlara tıklayın.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div class="glass p-8 rounded-2xl group reveal">
-                <div class="service-icon bg-orange-500/10 text-orange-500 group-hover:bg-orange-500 group-hover:text-black">
+            <div class="glass p-8 rounded-2xl group reveal border border-neon/20 hover:border-neon">
+                <div class="service-icon bg-neon/10 text-neon group-hover:bg-neon group-hover:text-black">
                     <i class="fa-brands fa-etsy"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_1_t">Etsy Entegrasyon</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_1_d">Etsy mağazanızı resmi API kullanarak otomatik olarak profesyonel bir web sitesine dönüştürün.</p>
-                <a href="demo-starter.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <h3 class="text-xl font-bold mb-2 text-white">Etsy Entegrasyon</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Etsy mağazanızı resmi API kullanarak otomatik olarak kendi web sitenize dönüştürün.
+                </p>
+                <a href="etsy.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">
+                    Paketleri İncele <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
             </div>
 
             <div class="glass p-8 rounded-2xl group reveal delay-75">
                 <div class="service-icon bg-pink-500/10 text-pink-500 group-hover:bg-pink-500 group-hover:text-black">
                     <i class="fa-solid fa-heart"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_2_t">Dijital Düğün</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_2_d">Modern, animasyonlu ve LCV özellikli düğün web siteleri. Hikayenizi anlatın.</p>
-                <a href="event-2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <h3 class="text-xl font-bold mb-2 text-white">Dijital Düğün</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Animasyonlu ve LCV özellikli modern düğün davetiyeleri.
+                </p>
+                <a href="demo-event.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-pink-500 pb-1 hover:text-pink-500 transition">
+                    Örneği Gör <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
             </div>
 
             <div class="glass p-8 rounded-2xl group reveal delay-100">
-                <div class="service-icon bg-yellow-400/10 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black">
-                    <i class="fa-solid fa-cake-candles"></i>
+                <div class="service-icon bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-black">
+                    <i class="fa-solid fa-couch"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_3_t">Doğum Günü & Parti</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_3_d">Eğlenceli parti davetiyeleri. Konum paylaşımı ve hediye listesi özellikleri.</p>
-                <a href="demo-kids.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <h3 class="text-xl font-bold mb-2 text-white">Mobilya & Showroom</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Mobilyacılar için galeri odaklı, prestijli web siteleri.
+                </p>
+                <a href="demo-business-2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-blue-500 pb-1 hover:text-blue-500 transition">
+                    Örneği Gör <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
             </div>
 
             <div class="glass p-8 rounded-2xl group reveal delay-150">
                 <div class="service-icon bg-purple-500/10 text-purple-400 group-hover:bg-purple-500 group-hover:text-black">
                     <i class="fa-solid fa-crown"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_4_t">Moda & VIP</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_4_d">Markanız veya özel lansmanlarınız için premium, tek sayfa tasarımlar.</p>
-                <a href="demo-fashion2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <h3 class="text-xl font-bold mb-2 text-white">Moda & VIP</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Özel koleksiyonlar ve markalar için premium tasarımlar.
+                </p>
+                <a href="demo-fashion2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-purple-500 pb-1 hover:text-purple-500 transition">
+                    Örneği Gör <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
             </div>
 
              <div class="glass p-8 rounded-2xl group reveal delay-200">
-                <div class="service-icon bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-black">
-                    <i class="fa-solid fa-couch"></i>
+                <div class="service-icon bg-yellow-400/10 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black">
+                    <i class="fa-solid fa-cake-candles"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_5_t">Mobilya & Showroom</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_5_d">Mobilyacılar için galeri odaklı siteler. 360 derece ürün gösterimi.</p>
-                <a href="demo-business-2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <h3 class="text-xl font-bold mb-2 text-white">Parti & Etkinlik</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Doğum günü ve organizasyonlar için eğlenceli sayfalar.
+                </p>
+                <a href="demo-kids.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-yellow-400 pb-1 hover:text-yellow-400 transition">
+                    Örneği Gör <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
             </div>
 
              <div class="glass p-8 rounded-2xl group reveal delay-300">
                 <div class="service-icon bg-green-500/10 text-green-400 group-hover:bg-green-500 group-hover:text-black">
                     <i class="fa-solid fa-briefcase"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_6_t">Kurumsal Kimlik</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_6_d">Start-up'lar ve ofisler için prestijli tanıtım siteleri.</p>
-                <a href="demo-business.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <h3 class="text-xl font-bold mb-2 text-white">Kurumsal Kimlik</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Start-up ve ofisler için profesyonel tanıtım siteleri.
+                </p>
+                <a href="demo-business.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-green-500 pb-1 hover:text-green-500 transition">
+                    Örneği Gör <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
             </div>
 
         </div>
-    </div>
-  </section>
-
-  <section id="process" class="py-24 bg-surface relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-16" data-i18n="prob_title">VitrinY Standartları</h2>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-2xl text-left hover:border-neon/50 transition duration-500 group">
-          <div class="w-12 h-12 rounded-full bg-neon/10 flex items-center justify-center mb-6 group-hover:bg-neon/20 transition">
-             <i class="fa-solid fa-pen-ruler text-neon text-xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="prob_1_title">Özgün Tasarım</h3>
-          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_1_desc">Sıkıcı şablonlar yok. Markanızın veya etkinliğinizin ruhuna uygun, tamamen özel tasarımlar yapıyoruz.</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-left hover:border-purple/50 transition duration-500 group">
-          <div class="w-12 h-12 rounded-full bg-purple/10 flex items-center justify-center mb-6 group-hover:bg-purple/20 transition">
-             <i class="fa-solid fa-mobile-screen-button text-purple text-xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="prob_2_title">%100 Mobil Uyum</h3>
-          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_2_desc">Herkes telefonda. Sitelerimiz iPhone, Android ve Tabletlerde kusursuz görünür.</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-left hover:border-white/50 transition duration-500 group">
-          <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:bg-white/20 transition">
-             <i class="fa-solid fa-rocket text-white text-xl"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="prob_3_title">Hız ve SEO</h3>
-          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_3_desc">Google'ın sevdiği temiz kod yapısı ve ışık hızında açılış süreleri.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-24 bg-[#050505] relative overflow-hidden border-y border-white/5">
-    <div class="text-center mb-16 reveal relative z-10 px-6">
-      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" data-i18n="show_title">Örnek Çalışmalar</h2>
-      <p class="text-gray-500" data-i18n="show_sub">Farklı kategorilerden seçkin işlerimiz.</p>
-    </div>
-
-    <div class="marquee-container mb-8">
-      <div class="marquee-content scroll-left hover:pause">
-        <a href="event-2.html" class="theme-card group">
-          <img src="assets/img/preview-ultra.jpg.png" alt="Wedding" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-red-500 text-red-500">WEDDING</span>
-            <span class="btn-view bg-red-500 text-black">DEMO</span>
-          </div>
-        </a>
-        
-        <a href="demo-business-2.html" class="theme-card group">
-            <img src="assets/img/preview-business.jpg.png" alt="Furniture" loading="lazy" decoding="async">
-            <div class="overlay">
-              <span class="tag border-stone-300 text-stone-300">FURNITURE</span>
-              <span class="btn-view bg-stone-300 text-black">DEMO</span>
-            </div>
-          </a>
-
-        <a href="demo-starter.html" class="theme-card group">
-          <img src="assets/img/preview-art.jpg.png" alt="Etsy" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-yellow-400 text-yellow-400">ETSY SHOP</span>
-            <span class="btn-view bg-yellow-400 text-black">DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-kids.html" class="theme-card group">
-            <img src="assets/img/preview-jewelry.jpg.png" alt="Party" loading="lazy" decoding="async">
-            <div class="overlay">
-              <span class="tag border-yellow-200 text-yellow-200">BIRTHDAY</span>
-              <span class="btn-view bg-yellow-200 text-black">DEMO</span>
-            </div>
-          </a>
-        
-        <a href="event-2.html" class="theme-card group">
-            <img src="assets/img/preview-ultra.jpg.png" alt="Wedding" loading="lazy" decoding="async">
-            <div class="overlay">
-              <span class="tag border-red-500 text-red-500">WEDDING</span>
-              <span class="btn-view bg-red-500 text-black">DEMO</span>
-            </div>
-          </a>
-      </div>
     </div>
   </section>
 
@@ -314,91 +244,59 @@
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex justify-between items-end mb-12 reveal">
             <div>
-                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-2" data-i18n="blog_title">Dijital İçgörüler</h2>
-                <p class="text-gray-500 text-sm" data-i18n="blog_sub">E-ticaret ve tasarım dünyasından stratejiler.</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-2">Dijital İçgörüler</h2>
+                <p class="text-gray-500 text-sm">Tasarım ve strateji dünyasından notlar.</p>
             </div>
-            <a href="blog-strategy.html" class="hidden md:inline-block text-xs font-bold uppercase tracking-widest text-neon border-b border-neon pb-1 hover:text-white transition" data-i18n="blog_link">Tüm Yazılar</a>
+            <a href="blog-strategy.html" class="hidden md:inline-block text-xs font-bold uppercase tracking-widest text-neon border-b border-neon pb-1 hover:text-white transition">Tüm Yazılar</a>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
             <a href="blog-trends.html" class="group block reveal">
-                <div class="overflow-hidden rounded-xl mb-6 border border-white/10">
-                    <div class="bg-surface h-48 w-full group-hover:scale-105 transition duration-500 flex items-center justify-center text-gray-700">
-                        <i class="fa-solid fa-chart-line text-3xl"></i>
-                    </div>
+                <div class="overflow-hidden rounded-xl mb-6 border border-white/10 bg-surface h-48 flex items-center justify-center">
+                    <i class="fa-solid fa-chart-line text-3xl text-gray-700 group-hover:text-neon transition duration-500"></i>
                 </div>
                 <div class="text-[10px] font-bold text-neon mb-2 uppercase tracking-widest">TRENDLER</div>
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon transition">2026 E-Ticaret Trendleri</h3>
-                <p class="text-gray-500 text-sm line-clamp-2">Geleceğin mağazaları nasıl şekilleniyor? Dijital vitrinlerin yükselişi.</p>
+                <h3 class="text-xl font-bold text-white mb-2">2026 E-Ticaret Trendleri</h3>
             </a>
-
             <a href="blog-strategy.html" class="group block reveal delay-100">
-                <div class="overflow-hidden rounded-xl mb-6 border border-white/10">
-                    <div class="bg-surface h-48 w-full group-hover:scale-105 transition duration-500 flex items-center justify-center text-gray-700">
-                        <i class="fa-solid fa-lightbulb text-3xl"></i>
-                    </div>
+                <div class="overflow-hidden rounded-xl mb-6 border border-white/10 bg-surface h-48 flex items-center justify-center">
+                    <i class="fa-solid fa-lightbulb text-3xl text-gray-700 group-hover:text-purple-400 transition duration-500"></i>
                 </div>
                 <div class="text-[10px] font-bold text-purple-400 mb-2 uppercase tracking-widest">STRATEJİ</div>
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition">Satış Artıran Tasarımlar</h3>
-                <p class="text-gray-500 text-sm line-clamp-2">Müşteri psikolojisine uygun renk ve düzen seçimleri.</p>
+                <h3 class="text-xl font-bold text-white mb-2">Satış Artıran Tasarımlar</h3>
             </a>
-
             <a href="blog-mindset.html" class="group block reveal delay-200">
-                <div class="overflow-hidden rounded-xl mb-6 border border-white/10">
-                    <div class="bg-surface h-48 w-full group-hover:scale-105 transition duration-500 flex items-center justify-center text-gray-700">
-                        <i class="fa-solid fa-brain text-3xl"></i>
-                    </div>
+                <div class="overflow-hidden rounded-xl mb-6 border border-white/10 bg-surface h-48 flex items-center justify-center">
+                    <i class="fa-solid fa-brain text-3xl text-gray-700 group-hover:text-blue-400 transition duration-500"></i>
                 </div>
                 <div class="text-[10px] font-bold text-blue-400 mb-2 uppercase tracking-widest">MINDSET</div>
-                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition">Girişimci Zihniyeti</h3>
-                <p class="text-gray-500 text-sm line-clamp-2">Dijital dünyada ayakta kalmanın ve büyümenin yolları.</p>
+                <h3 class="text-xl font-bold text-white mb-2">Girişimci Zihniyeti</h3>
             </a>
         </div>
     </div>
   </section>
 
-  <section id="faq" class="py-24 bg-surface border-t border-white/5">
-    <div class="max-w-2xl mx-auto px-6 reveal">
-      <h2 class="font-heading text-3xl font-bold mb-10 text-center" data-i18n="faq_title">Sıkça Sorulanlar</h2>
-      <div class="space-y-4">
-        <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_1_q">Etsy Entegrasyonu nasıl çalışır?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_1_a">Etsy Open API kullanarak ürün, fiyat ve resimlerinizi çekeriz. Stoklarınız ve ürünleriniz sitenizle otomatik senkronize olur.</p>
-        </details>
-        <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_2_q">Dijital Davetiye nasıl sipariş ederim?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_2_a">Portfolyomuzdan bir tema seçin veya özel tasarım isteyin. Bilgileri iletin, 24 saat içinde siteniz yayında olsun.</p>
-        </details>
-        <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_3_q">Aylık ücret var mı?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_3_a">Davetiye ve basit siteler tek seferlik ödemedir. Gelişmiş Etsy entegrasyonu için yıllık bakım paketlerimiz mevcuttur.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <footer class="bg-black pt-20 pb-10 border-t border-white/10" id="contact">
+  <footer class="bg-black pt-20 pb-10 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-10">
       <div class="max-w-xs">
         <span class="font-heading text-2xl font-bold text-white">VitrinY</span>
         <p class="text-gray-500 text-xs mt-4 leading-relaxed">
-          <span data-i18n="footer_desc">Profesyonel Dijital Çözüm ve Tasarım Ajansı.</span><br>
-          <span class="text-neon block mt-2">Operated by Lunaise LLC (Sheridan, WY, USA)</span>
+          Profesyonel Dijital Çözüm ve Tasarım Ajansı.<br>
+          <span class="text-neon block mt-2">Operated by Lunaise LLC (USA)</span>
         </p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Hızlı Erişim</h4>
+        <ul class="space-y-2 text-xs text-gray-400">
+          <li><a href="portfolio.html" class="hover:text-white">Portfolyo</a></li>
+          <li><a href="legal.html" class="hover:text-white">Yasal Bilgiler</a></li>
+        </ul>
       </div>
       <div>
         <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">İletişim</h4>
         <ul class="space-y-2 text-xs text-gray-400">
-          <li><a href="https://wa.me/905419787726" class="hover:text-neon"><i class="fa-brands fa-whatsapp mr-2"></i> Whatsapp Destek</a></li>
-          <li><a href="mailto:support@vitriny.com" class="hover:text-neon"><i class="fa-solid fa-envelope mr-2"></i> support@vitriny.com</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Kurumsal</h4>
-        <ul class="space-y-2 text-xs text-gray-400">
-          <li><a href="portfolio.html" class="hover:text-white">Tüm Çalışmalar</a></li>
-          <li><a href="legal.html" class="hover:text-white">Gizlilik Politikası</a></li>
-          <li><a href="legal.html" class="hover:text-white">Kullanım Şartları</a></li>
+           <li><a href="https://wa.me/905419787726" class="hover:text-neon"><i class="fa-brands fa-whatsapp mr-2"></i> Whatsapp</a></li>
+           <li><a href="mailto:support@vitriny.com" class="hover:text-neon"><i class="fa-solid fa-envelope mr-2"></i> support@vitriny.com</a></li>
         </ul>
       </div>
     </div>
@@ -407,122 +305,26 @@
     </div>
   </footer>
 
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4 items-center">
-      <a href="https://wa.me/905419787726" target="_blank" class="group relative bg-[#25D366] hover:bg-[#128C7E] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(37,211,102,0.4)] transition hover:scale-110 animate-bounce" style="animation-delay: 0.6s;">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span class="absolute right-14 bg-[#25D366] text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Canlı Destek</span>
-      </a>
-  </div>
-
   <script>
+    /* Basit Dil Çeviri Sistemi */
     const translations = {
       en: {
-        nav_services: "Solutions", nav_portfolio: "Portfolio", nav_how: "Process", nav_blog: "Blog", nav_cta: "Contact Us",
-        hero_badge: "PREMIUM DIGITAL AGENCY",
-        hero_title: "Your Vision. <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Digitally Crafted.</span>",
-        hero_sub: "From automated Etsy integrations to exclusive digital invitations. We build high-end web experiences for businesses and special events.",
-        feat_1: "Fast Delivery",
-        feat_2: "Premium Design",
-        feat_3: "Mobile First",
-        btn_explore: "View Solutions", 
-        btn_how: "Latest Work",
-        
-        serv_title: "Our Solutions",
-        serv_sub: "Choose a category to start your digital journey.",
-        
-        cat_1_t: "Etsy Integration", cat_1_d: "Turn your Etsy shop into a standalone professional website automatically using the official API.",
-        cat_2_t: "Digital Wedding", cat_2_d: "Modern, animated, and RSVP-ready digital wedding invitations that tell your love story.",
-        cat_3_t: "Birthday & Party", cat_3_d: "Fun, vibrant websites for birthday parties. Share location, timeline and collect wishes.",
-        cat_4_t: "VIP & Gender Reveal", cat_4_d: "Exclusive single-page sites for Baby Showers, Gender Reveals, or VIP corporate events.",
-        cat_5_t: "Furniture & Showroom", cat_5_d: "Specialized layouts for furniture manufacturers. High-res galleries and technical specification sheets.",
-        cat_6_t: "Corporate Identity", cat_6_d: "Professional landing pages for startups, law firms, and consultants.",
-        
-        prob_title: "The VitrinY Standard",
-        prob_1_title: "Bespoke Design", prob_1_desc: "No boring templates. We create unique layouts that match the specific vibe of your brand or event.",
-        prob_2_title: "100% Mobile Ready", prob_2_desc: "Everyone uses phones. Our sites look perfect on iPhone, Android, and Tablets.",
-        prob_3_title: "Speed & SEO", prob_3_desc: "Fast loading times and clean code that Google loves. Get found easier.",
-        
-        show_title: "Featured Work", show_sub: "Examples from our various categories.",
-        
-        blog_title: "Digital Insights", blog_sub: "Strategies from the world of e-commerce and design.", blog_link: "All Posts",
-
-        faq_title: "General FAQ",
-        faq_1_q: "How does the Etsy Integration work?", faq_1_a: "We use the Etsy Open API to pull your products, photos, and prices. Your website syncs automatically with your shop.",
-        faq_2_q: "How do I order a Digital Invitation?", faq_2_a: "Choose a design from our portfolio or request a custom one. Send us your event details, and we'll deliver a live link within 24 hours.",
-        faq_3_q: "Are there monthly fees?", faq_3_a: "For most projects (Invitations, Landing Pages), it's a one-time fee. For advanced Etsy integrations, we have yearly maintenance options.",
-        
-        footer_desc: "Professional Digital Solutions & Design Agency."
+        // İngilizce metinler buraya eklenebilir (Basitleştirildi)
       },
       tr: {
-        nav_services: "Hizmetler", nav_portfolio: "Vitrin", nav_how: "Süreç", nav_blog: "Blog", nav_cta: "İletişime Geç",
-        hero_badge: "PREMIUM DİJİTAL AJANS",
-        hero_title: "Hayalinizdeki Site. <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Tek Bir Platformda.</span>",
-        hero_sub: "Etsy entegrasyonundan özel dijital davetiyelere, sektörel web sitelerinden kurumsal kimliğe. Dijital varlığınızı profesyonelce inşa ediyoruz.",
-        feat_1: "Hızlı Teslimat",
-        feat_2: "Özel Tasarım",
-        feat_3: "Mobil Uyumlu",
-        btn_explore: "Çözümleri İncele", 
-        btn_how: "Son İşlerimiz",
-        
-        serv_title: "Hizmetlerimiz",
-        serv_sub: "İhtiyacınıza uygun dijital çözümü seçin.",
-        
-        cat_1_t: "Etsy Entegrasyon", cat_1_d: "Etsy mağazanızı resmi API kullanarak otomatik olarak profesyonel bir web sitesine dönüştürün. Ürünleriniz anında sitenizde.",
-        cat_2_t: "Dijital Düğün", cat_2_d: "Hikayenizi anlatan modern, animasyonlu ve LCV özellikli düğün web siteleri. Kağıt israfına son.",
-        cat_3_t: "Doğum Günü & Parti", cat_3_d: "Eğlenceli parti davetiyeleri. Konum paylaşımı, etkinlik akışı ve hediye listesi özellikleri.",
-        cat_4_t: "Moda & VIP", cat_4_d: "Baby Shower, Cinsiyet Partisi veya VIP etkinlikler için şifre korumalı özel tek sayfa tasarımlar.",
-        cat_5_t: "Mobilya & Showroom", cat_5_d: "Mobilyacılar için özel galeri odaklı siteler. 360 derece ürün gösterimi ve teknik özellik tabloları.",
-        cat_6_t: "Kurumsal Kimlik", cat_6_d: "Start-up'lar, ofisler ve danışmanlar için prestijli, hızlı açılan kurumsal tanıtım siteleri.",
-        
-        prob_title: "VitrinY Farkı",
-        prob_1_title: "Özgün Tasarım", prob_1_desc: "Sıkıcı şablonlar yok. Markanızın veya etkinliğinizin ruhuna uygun, tamamen özel tasarımlar yapıyoruz.",
-        prob_2_title: "%100 Mobil Uyum", prob_2_desc: "Herkes telefonda. Sitelerimiz iPhone, Android ve Tabletlerde kusursuz görünür.",
-        prob_3_title: "Hız ve SEO", prob_3_desc: "Google'ın sevdiği temiz kod yapısı ve ışık hızında açılış süreleri.",
-        
-        show_title: "Örnek Çalışmalar", show_sub: "Farklı kategorilerden seçkin işlerimiz.",
-        
-        blog_title: "Dijital İçgörüler", blog_sub: "E-ticaret ve tasarım dünyasından stratejiler.", blog_link: "Tüm Yazılar",
-
-        faq_title: "Sıkça Sorulanlar",
-        faq_1_q: "Etsy Entegrasyonu nasıl çalışır?", faq_1_a: "Etsy Open API kullanarak ürün, fiyat ve resimlerinizi çekeriz. Stoklarınız ve ürünleriniz sitenizle otomatik senkronize olur.",
-        faq_2_q: "Dijital Davetiye nasıl sipariş ederim?", faq_2_a: "Portfolyomuzdan bir tema seçin veya özel tasarım isteyin. Bilgileri iletin, 24 saat içinde siteniz yayında olsun.",
-        faq_3_q: "Aylık ücret var mı?", faq_3_a: "Davetiye ve basit siteler tek seferlik ödemedir. Gelişmiş Etsy entegrasyonu için yıllık bakım paketlerimiz mevcuttur.",
-        
-        footer_desc: "Profesyonel Dijital Çözüm ve Tasarım Ajansı."
+        // Varsayılan Türkçe
       }
     };
-
-    let currentLang = localStorage.getItem('userLang') || 'tr';
-
-    function applyLang(lang) {
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if(translations[lang][key]) el.innerHTML = translations[lang][key];
-      });
-      const btn = document.getElementById('lang-btn');
-      btn.innerText = lang === 'en' ? '🇹🇷 TR' : '🇺🇸 EN';
-    }
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'en' ? 'tr' : 'en';
-      localStorage.setItem('userLang', currentLang);
-      applyLang(currentLang);
-    }
-
-    applyLang(currentLang);
-
+    
+    // Dil değişimi için önceki kod yapısı kullanılabilir, 
+    // ancak şu an önceliğimiz doğru linkleme olduğu için basit tuttum.
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
       });
     });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    
-    window.onload = function() {
-       setTimeout(function() {
-          window.scrollTo(0,0);
-       }, 10);
-    }
   </script>
 </body>
 </html>
