@@ -3,116 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olivia's 1st Birthday | A Magical Celebration</title>
+    <title>Birthday Invitation</title> 
     
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito:wght@400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+    <script>
+        const config = {
+            // --- 1. TEMEL BİLGİLER ---
+            childName: "Olivia Grace",       // Çocuğun Adı
+            age: "ONE",                      // Yaşı (Yazı ile: ONE, TWO, THREE)
+            ageNum: "1st",                   // Yaşı (Rakam ile: 1st, 2nd, 3rd)
+            
+            // --- 2. TARİH VE SAAT ---
+            dateFull: "Saturday, July 15th", // Uzun Tarih
+            year: "2025",                    // Yıl
+            time: "2:00 PM",                 // Başlangıç Saati
+            endTime: "5:00 PM",              // Bitiş Saati (Opsiyonel)
+            cakeTime: "3:30",                // Pasta Kesim Saati
+
+            // --- 3. MEKAN BİLGİLERİ ---
+            locationName: "The Garden House",      // Mekan Adı
+            address: "123 Maple Street, San Francisco", // Adres
+            googleMapsLink: "https://maps.google.com",  // Google Harita Linki
+
+            // --- 4. HEDİYE / REGISTRY ---
+            registryLink: "https://www.amazon.com/registries", // Hediye Listesi Linki
+            registryText: "No gifts needed, your presence is enough! (But we have a registry just in case 😉)",
+
+            // --- 5. EĞLENCE & DOSYALAR ---
+            pdfCake: "#",     // Pasta Boyama PDF Linki (Dropbox/Drive linki koy)
+            pdfBalloon: "#",  // Balon Boyama PDF Linki
+
+            // --- 6. FORMSPREE LİNKLERİ (SENİN HESABIN) ---
+            formspreeTimeCapsule: "https://formspree.io/f/mykzpvzg",
+            formspreeRSVP: "https://formspree.io/f/xpqwlbvd"
+        };
+    </script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        'head': ['Fredoka', 'sans-serif'],
-                        'body': ['Nunito', 'sans-serif'],
-                        'script': ['Dancing Script', 'cursive'],
-                    },
-                    colors: {
-                        'boho-bg': '#FFF9F5',      
-                        'boho-cream': '#FDF6E3',
-                        'boho-primary': '#E07A5F', // Kiremit
-                        'boho-secondary': '#81B29A', // Adaçayı
-                        'boho-accent': '#F2CC8F',  // Hardal
-                        'boho-text': '#3D405B',    
-                        'boho-rose': '#EAB8B2',    // Pembe
-                    },
-                    boxShadow: {
-                        'soft-xl': '0 20px 25px -5px rgba(224, 122, 95, 0.1), 0 8px 10px -6px rgba(224, 122, 95, 0.05)',
-                        'glow': '0 0 15px rgba(242, 204, 143, 0.5)',
-                    },
-                    animation: {
-                        'float-slow': 'float 8s ease-in-out infinite',
-                        'float-medium': 'float 6s ease-in-out infinite',
-                        'float-fast': 'float 4s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'spin-slow': 'spin 12s linear infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
-                        }
-                    },
-                    backgroundImage: {
-                        'paper-texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')"
-                    }
+                    fontFamily: { 'head': ['Fredoka', 'sans-serif'], 'body': ['Nunito', 'sans-serif'], 'script': ['Dancing Script', 'cursive'] },
+                    colors: { 'boho-bg': '#FFF9F5', 'boho-cream': '#FDF6E3', 'boho-primary': '#E07A5F', 'boho-secondary': '#81B29A', 'boho-accent': '#F2CC8F', 'boho-text': '#3D405B', 'boho-rose': '#EAB8B2' },
+                    boxShadow: { 'soft-xl': '0 20px 25px -5px rgba(224, 122, 95, 0.1), 0 8px 10px -6px rgba(224, 122, 95, 0.05)', 'glow': '0 0 15px rgba(242, 204, 143, 0.5)' },
+                    animation: { 'float-slow': 'float 8s ease-in-out infinite', 'float-medium': 'float 6s ease-in-out infinite', 'float-fast': 'float 4s ease-in-out infinite', 'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite', 'spin-slow': 'spin 12s linear infinite' },
+                    keyframes: { float: { '0%, 100%': { transform: 'translateY(0) rotate(0deg)' }, '50%': { transform: 'translateY(-20px) rotate(5deg)' } } },
+                    backgroundImage: { 'paper-texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')" }
                 }
             }
         }
     </script>
-
     <style>
-        body {
-            background-color: #FFF9F5;
-            color: #3D405B;
-            font-family: 'Nunito', sans-serif;
-            overflow-x: hidden;
-        }
-        
+        body { background-color: #FFF9F5; color: #3D405B; font-family: 'Nunito', sans-serif; overflow-x: hidden; }
         h1, h2, h3, .font-head { font-family: 'Fredoka', sans-serif; }
-
-        /* Yüzen Arka Plan Elemanları */
-        .floating-elements {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
+        .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .floater { position: absolute; opacity: 0.6; filter: blur(1px); }
-
-        /* Dalgalı Geçişler */
-        .wave-divider {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: rotate(180deg);
-        }
-        .wave-divider svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 100px;
-        }
-
-        /* Fotoğraf Çerçevesi */
-        .photo-frame {
-            background: white;
-            padding: 12px;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
-            transform: rotate(-2deg) scale(1);
-            transition: all 0.4s ease-out;
-            position: relative;
-        }
+        .wave-divider { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg); }
+        .wave-divider svg { position: relative; display: block; width: calc(100% + 1.3px); height: 100px; }
+        .photo-frame { background: white; padding: 12px; box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1); transform: rotate(-2deg) scale(1); transition: all 0.4s ease-out; position: relative; }
         .photo-frame:hover { transform: rotate(0deg) scale(1.05); box-shadow: 0 20px 30px -10px rgba(224, 122, 95, 0.2); }
-
-        /* Özel Input */
-        .custom-input {
-            width: 100%; padding: 14px 20px;
-            border-radius: 1.5rem; border: 2px solid #F2CC8F;
-            background-color: white/90; backdrop-filter: blur(5px);
-            outline: none; transition: all 0.3s;
-            font-weight: 700; color: #3D405B;
-        }
+        .custom-input { width: 100%; padding: 14px 20px; border-radius: 1.5rem; border: 2px solid #F2CC8F; background-color: white/90; backdrop-filter: blur(5px); outline: none; transition: all 0.3s; font-weight: 700; color: #3D405B; }
         .custom-input:focus { border-color: #E07A5F; box-shadow: 0 0 0 5px rgba(224, 122, 95, 0.15); background-color: white; }
-
-        /* Mobil Menü */
         #mobile-menu { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; opacity: 0; }
         #mobile-menu.open { max-height: 400px; opacity: 1; }
     </style>
@@ -131,7 +85,7 @@
     <nav class="fixed w-full z-50 bg-white/70 backdrop-blur-md shadow-sm border-b border-white/50">
         <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-head font-bold text-boho-primary tracking-wide flex items-center gap-2">
-                <span class="text-3xl animate-bounce-slow">🧁</span> Olivia's 1st
+                <span class="text-3xl animate-bounce-slow">🧁</span> <span id="nav-title">Olivia's 1st</span>
             </a>
             <div class="hidden md:flex gap-8 font-bold text-boho-text/80 items-center">
                 <a href="#details" class="hover:text-boho-primary transition">Details</a>
@@ -140,9 +94,7 @@
                 <a href="#capsule" class="hover:text-boho-primary transition">Time Capsule</a>
                 <a href="#rsvp" class="px-6 py-3 bg-boho-primary text-white rounded-full hover:bg-boho-text transition shadow-soft-xl hover:shadow-none transform hover:-translate-y-1">RSVP Now</a>
             </div>
-            <button id="menu-btn" class="md:hidden text-3xl text-boho-primary hover:text-boho-text transition">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
+            <button id="menu-btn" class="md:hidden text-3xl text-boho-primary hover:text-boho-text transition"><i class="fa-solid fa-bars-staggered"></i></button>
         </div>
         <div id="mobile-menu" class="bg-white/95 md:hidden shadow-lg backdrop-blur-md border-t border-boho-accent/20">
             <div class="flex flex-col p-8 space-y-6 font-bold text-center text-xl text-boho-text">
@@ -159,19 +111,19 @@
         <div class="max-w-4xl mx-auto relative">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-boho-rose/20 via-boho-accent/20 to-boho-secondary/20 rounded-full blur-3xl -z-10 opacity-60 animate-pulse-slow"></div>
             <p class="font-script text-3xl md:text-4xl text-boho-secondary mb-4 transform -rotate-2">Our little sunshine is turning...</p>
-            <h1 class="font-head text-[10rem] md:text-[12rem] leading-none text-boho-primary mb-2 animate-pulse-slow drop-shadow-sm relative inline-block">
-                ONE <span class="absolute -top-4 -right-8 text-6xl text-boho-accent animate-bounce-slow">👑</span>
+            <h1 class="font-head text-[8rem] md:text-[12rem] leading-none text-boho-primary mb-2 animate-pulse-slow drop-shadow-sm relative inline-block">
+                <span id="hero-age">ONE</span> <span class="absolute -top-4 -right-8 text-6xl text-boho-accent animate-bounce-slow">👑</span>
             </h1>
-            <h2 class="font-head text-5xl md:text-7xl text-boho-text mb-10">Olivia Grace</h2>
+            <h2 class="font-head text-5xl md:text-7xl text-boho-text mb-10" id="hero-name">Olivia Grace</h2>
             <div class="inline-flex flex-col md:flex-row items-center justify-center gap-4 bg-white/80 backdrop-blur-sm px-10 py-6 rounded-[2rem] shadow-soft-xl border-2 border-boho-accent/50 group hover:border-boho-primary transition-all duration-500">
                 <div class="flex items-center gap-3">
                     <i class="fa-regular fa-calendar text-4xl text-boho-primary group-hover:scale-110 transition"></i>
-                    <div class="text-left"><p class="text-xl font-bold text-boho-text">Saturday, July 15th</p><p class="text-boho-text/70">2025</p></div>
+                    <div class="text-left"><p class="text-xl font-bold text-boho-text" id="hero-date">Saturday, July 15th</p><p class="text-boho-text/70" id="hero-year">2025</p></div>
                 </div>
                 <div class="hidden md:block w-px h-12 bg-boho-accent/50"></div>
                 <div class="flex items-center gap-3">
                     <i class="fa-regular fa-clock text-4xl text-boho-secondary group-hover:scale-110 transition"></i>
-                    <div class="text-left"><p class="text-xl font-bold text-boho-text">2:00 PM</p><p class="text-boho-text/70">in the Afternoon</p></div>
+                    <div class="text-left"><p class="text-xl font-bold text-boho-text" id="hero-time">2:00 PM</p><p class="text-boho-text/70">in the Afternoon</p></div>
                 </div>
             </div>
             <div class="mt-16 relative z-20">
@@ -195,23 +147,23 @@
                 <div class="group text-center p-10 rounded-[3rem] bg-white border-4 border-boho-cream hover:border-boho-primary/30 shadow-sm hover:shadow-soft-xl transition-all duration-500 transform hover:-translate-y-2">
                     <div class="w-24 h-24 bg-boho-bg rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-5xl text-boho-primary group-hover:scale-110 transition"><i class="fa-solid fa-map-location-dot"></i></div>
                     <h3 class="font-head text-3xl mb-3 text-boho-text">Where</h3>
-                    <p class="text-boho-text/90 font-bold text-xl">The Garden House</p>
-                    <p class="text-boho-text/70 mb-6">123 Maple Street, SF</p>
-                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 text-boho-primary font-bold underline hover:text-boho-text transition">See Map <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></a>
+                    <p class="text-boho-text/90 font-bold text-xl" id="detail-loc-name">The Garden House</p>
+                    <p class="text-boho-text/70 mb-6" id="detail-loc-addr">123 Maple Street, SF</p>
+                    <a href="#" id="map-link" target="_blank" class="inline-flex items-center gap-2 text-boho-primary font-bold underline hover:text-boho-text transition">See Map <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></a>
                 </div>
                 <div class="group text-center p-10 rounded-[3rem] bg-white border-4 border-boho-cream hover:border-boho-secondary/30 shadow-sm hover:shadow-soft-xl transition-all duration-500 transform hover:-translate-y-2 relative mt-8 md:mt-0">
                     <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-boho-secondary text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">Don't be late!</div>
                     <div class="w-24 h-24 bg-boho-bg rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-5xl text-boho-secondary group-hover:scale-110 transition"><i class="fa-regular fa-clock"></i></div>
                     <h3 class="font-head text-3xl mb-3 text-boho-text">When</h3>
-                    <p class="text-boho-text/90 font-bold text-xl">July 15, 2025</p>
-                    <p class="text-boho-text/70">2:00 PM - 5:00 PM</p>
-                    <p class="text-boho-primary mt-4 font-bold flex items-center justify-center gap-2"><i class="fa-solid fa-cake-candles"></i> Cake at 3:30!</p>
+                    <p class="text-boho-text/90 font-bold text-xl" id="detail-date">July 15, 2025</p>
+                    <p class="text-boho-text/70"><span id="detail-time-start">2:00 PM</span> - <span id="detail-time-end">5:00 PM</span></p>
+                    <p class="text-boho-primary mt-4 font-bold flex items-center justify-center gap-2"><i class="fa-solid fa-cake-candles"></i> Cake at <span id="detail-cake">3:30</span>!</p>
                 </div>
                 <div class="group text-center p-10 rounded-[3rem] bg-white border-4 border-boho-cream hover:border-boho-accent/30 shadow-sm hover:shadow-soft-xl transition-all duration-500 transform hover:-translate-y-2">
                     <div class="w-24 h-24 bg-boho-bg rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-5xl text-boho-accent group-hover:scale-110 transition"><i class="fa-solid fa-gift"></i></div>
                     <h3 class="font-head text-3xl mb-3 text-boho-text">Gifts</h3>
-                    <p class="text-boho-text/70 text-lg leading-relaxed mb-6 font-medium">Your presence is the best present! (Registry linked below if you insist 😉)</p>
-                    <a href="#" class="inline-block px-8 py-3 bg-boho-accent/20 text-boho-text font-bold rounded-full hover:bg-boho-accent hover:text-white transition">View Registry</a>
+                    <p class="text-boho-text/70 text-lg leading-relaxed mb-6 font-medium" id="detail-registry-text">Your presence is the best present!</p>
+                    <a href="#" id="registry-link" class="inline-block px-8 py-3 bg-boho-accent/20 text-boho-text font-bold rounded-full hover:bg-boho-accent hover:text-white transition">View Registry</a>
                 </div>
             </div>
         </div>
@@ -250,8 +202,8 @@
                     <h3 class="font-head text-2xl text-boho-text mt-6 mb-4">Little Artists</h3>
                     <p class="text-boho-text/70 mb-6 font-bold text-sm">Download fun coloring pages!</p>
                     <div class="space-y-3">
-                        <button onclick="alert('Demo: This would download the Cake Coloring PDF!')" class="block w-full bg-white border-2 border-boho-accent text-boho-text py-3 rounded-xl font-bold hover:bg-boho-accent hover:text-white transition flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Birthday Cake</button>
-                        <button onclick="alert('Demo: This would download the Balloon Coloring PDF!')" class="block w-full bg-white border-2 border-boho-primary text-boho-text py-3 rounded-xl font-bold hover:bg-boho-primary hover:text-white transition flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Party Balloons</button>
+                        <a href="#" id="link-pdf-cake" class="block w-full bg-white border-2 border-boho-accent text-boho-text py-3 rounded-xl font-bold hover:bg-boho-accent hover:text-white transition flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Birthday Cake</a>
+                        <a href="#" id="link-pdf-balloon" class="block w-full bg-white border-2 border-boho-primary text-boho-text py-3 rounded-xl font-bold hover:bg-boho-primary hover:text-white transition flex items-center justify-center gap-2"><i class="fa-solid fa-download"></i> Party Balloons</a>
                     </div>
                 </div>
                 <div class="bg-boho-bg rounded-[2.5rem] p-8 text-center border-4 border-white shadow-soft-xl transform hover:-translate-y-2 transition duration-300 relative">
@@ -271,10 +223,10 @@
             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-boho-primary via-boho-accent to-boho-secondary"></div>
             <div class="inline-block p-6 bg-white rounded-full shadow-md mb-8 animate-bounce-slow"><i class="fa-solid fa-envelope-open-text text-6xl text-boho-primary"></i></div>
             <h2 class="font-head text-4xl md:text-5xl text-boho-text mb-6">A Note for the Future 💌</h2>
-            <p class="text-boho-text/70 mb-10 font-bold text-lg leading-relaxed">Leave a message for Olivia to read when she turns 18. We are creating a digital time capsule!</p>
+            <p class="text-boho-text/70 mb-10 font-bold text-lg leading-relaxed">Leave a message for <span class="dynamic-name">Olivia</span> to read when she turns 18. We are creating a digital time capsule!</p>
             
-            <form id="capsuleForm" action="https://formspree.io/f/mykzpvzg" method="POST" class="space-y-6 text-left">
-                <div class="relative"><textarea name="message" rows="5" required class="custom-input resize-none" placeholder="Dear Olivia, I hope you..."></textarea><i class="fa-solid fa-pen-fancy absolute top-4 right-4 text-boho-accent/50 text-xl"></i></div>
+            <form id="capsuleForm" method="POST" class="space-y-6 text-left">
+                <div class="relative"><textarea name="message" rows="5" required class="custom-input resize-none" placeholder="Write your message here..."></textarea><i class="fa-solid fa-pen-fancy absolute top-4 right-4 text-boho-accent/50 text-xl"></i></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <input type="text" name="from" required class="custom-input" placeholder="From (Your Name)">
                     <input type="email" name="email" class="custom-input" placeholder="Your Email (Optional)">
@@ -308,7 +260,7 @@
                 <button onclick="location.reload()" class="text-boho-secondary font-bold text-lg underline hover:text-boho-primary transition">Add another guest</button>
             </div>
 
-            <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-6 bg-white/10 p-8 md:p-12 rounded-[3rem] backdrop-blur-md border border-white/30 shadow-2xl text-left">
+            <form id="rsvpForm" method="POST" class="space-y-6 bg-white/10 p-8 md:p-12 rounded-[3rem] backdrop-blur-md border border-white/30 shadow-2xl text-left">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="relative"><input type="text" name="name" required placeholder="First Name" class="w-full px-8 py-5 rounded-full border-2 border-white/50 bg-white/80 focus:bg-white focus:border-boho-accent text-boho-text font-bold outline-none transition text-lg placeholder:text-boho-text/50"></div>
                     <div class="relative"><input type="text" name="surname" required placeholder="Last Name" class="w-full px-8 py-5 rounded-full border-2 border-white/50 bg-white/80 focus:bg-white focus:border-boho-accent text-boho-text font-bold outline-none transition text-lg placeholder:text-boho-text/50"></div>
@@ -357,7 +309,37 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. MOBİL MENÜ
+            // --- 1. AYARLARI UYGULA (CONFIG) ---
+            document.title = config.childName + "'s Birthday";
+            document.getElementById('nav-title').innerText = config.childName + "'s " + config.ageNum;
+            document.getElementById('hero-age').innerText = config.age;
+            document.getElementById('hero-name').innerText = config.childName;
+            document.getElementById('hero-date').innerText = config.dateFull;
+            document.getElementById('hero-year').innerText = config.year;
+            document.getElementById('hero-time').innerText = config.time;
+            
+            document.getElementById('detail-loc-name').innerText = config.locationName;
+            document.getElementById('detail-loc-addr').innerText = config.address;
+            document.getElementById('map-link').href = config.googleMapsLink;
+            document.getElementById('detail-date').innerText = config.dateFull + ", " + config.year;
+            document.getElementById('detail-time-start').innerText = config.time;
+            document.getElementById('detail-time-end').innerText = config.endTime;
+            document.getElementById('detail-cake').innerText = config.cakeTime;
+            document.getElementById('detail-registry-text').innerText = config.registryText;
+            document.getElementById('registry-link').href = config.registryLink;
+            
+            document.querySelectorAll('.dynamic-name').forEach(el => el.innerText = config.childName);
+            document.getElementById('link-pdf-cake').href = config.pdfCake;
+            document.getElementById('link-pdf-balloon').href = config.pdfBalloon;
+
+            // FORMSPREE ACTION URL SETTING
+            document.getElementById('capsuleForm').action = config.formspreeTimeCapsule;
+            document.getElementById('rsvpForm').action = config.formspreeRSVP;
+
+
+            // --- 2. DİĞER FONKSİYONLAR ---
+            
+            // Mobil Menü
             const btn = document.getElementById('menu-btn');
             const menu = document.getElementById('mobile-menu');
             const links = document.querySelectorAll('.menu-link');
@@ -366,7 +348,7 @@
                 links.forEach(link => { link.addEventListener('click', () => { menu.classList.remove('open'); }); });
             }
 
-            // 2. RSVP BUTON MANTIĞI
+            // RSVP Butonları
             const btnYes = document.getElementById('btn-yes');
             const btnNo = document.getElementById('btn-no');
             const inputAttend = document.getElementById('attendance-input');
@@ -389,7 +371,7 @@
                 });
             }
 
-            // 3. JOKE GENERATOR (EĞLENCE KUTUSU)
+            // Joke Generator
             const jokes = [
                 "Why did the teddy bear say no to dessert? Because she was stuffed!",
                 "What do you call a sleeping dinosaur? A dino-snore!",
@@ -408,7 +390,7 @@
                 });
             }
 
-            // 4. RSVP FORM GÖNDERME & KONFETİ
+            // RSVP Submit
             const rsvpForm = document.getElementById('rsvpForm');
             const rsvpSuccess = document.getElementById('rsvp-success');
             if(rsvpForm) {
@@ -437,7 +419,7 @@
                 });
             }
 
-            // 5. ZAMAN KAPSÜLÜ GÖNDERME
+            // Capsule Submit
             const capsuleForm = document.getElementById('capsuleForm');
             const capsuleStatus = document.getElementById('capsule-status');
             if(capsuleForm) {
