@@ -13,7 +13,7 @@
     <script>
         const config = {
             // --- 1. TEMEL BİLGİLER ---
-            childName: "Olivia Grace",       
+            childName: "Olivia Grace",        
             firstName: "Olivia", // Sadece ilk isim (Şarkı etiketi için)
             age: "ONE",                      
             ageNum: "1st",                   
@@ -22,12 +22,12 @@
             partyDate: "2025-07-15 14:00:00", 
             dateFull: "Saturday, July 15th", 
             year: "2025",                    
-            time: "2:00 PM",                 
-            endTime: "5:00 PM",              
-            cakeTime: "3:30",                
+            time: "2:00 PM",                  
+            endTime: "5:00 PM",               
+            cakeTime: "3:30",                 
 
             // --- 3. MEKAN BİLGİLERİ ---
-            locationName: "The Garden House",      
+            locationName: "The Garden House",       
             address: "123 Maple Street, San Francisco", 
             googleMapsLink: "https://maps.google.com",  
 
@@ -36,11 +36,11 @@
             registryText: "No gifts needed, your presence is enough! (But we have a registry just in case 😉)",
 
             // --- 5. EĞLENCE & DOSYALAR ---
-            pdfCake: "#",     
+            pdfCake: "#",      
             pdfBalloon: "#",
             
-            // --- 6. MÜZİK (MP3 Linki) ---
-            // DÜZELTİLDİ: Artık tek bir anahtar var ve doğru çalışacak.
+            // --- 6. MÜZİK (MP3 Linki - BURAYI KONTROL ET) ---
+            // Eğer dosya html ile aynı yerdeyse sadece "sarki-ismi.mp3" yaz.
             musicURL: "assets/audio/olivia-song.mp3", 
 
             // --- 7. FORMSPREE LİNKLERİ ---
@@ -421,7 +421,6 @@
             document.getElementById('detail-date').innerText = config.dateFull + ", " + config.year;
             document.getElementById('detail-time-start').innerText = config.time;
             document.getElementById('detail-time-end').innerText = config.endTime;
-            document.getElementById('detail-cake').innerText = config.cakeTime;
             document.getElementById('detail-registry-text').innerText = config.registryText;
             document.getElementById('registry-link').href = config.registryLink;
             
@@ -458,49 +457,55 @@
             setInterval(updateCountdown, 1000);
             updateCountdown(); 
 
-            // --- 3. MÜZİK PLAYER ---
+            // --- 3. MÜZİK PLAYER (DÜZELTİLDİ VE GÜNCELLENDİ) ---
             const bgMusic = document.getElementById('bg-music');
-            const musicBtn = document.getElementById('music-toggle');
-            const musicIcon = musicBtn.querySelector('i');
-            
-            bgMusic.src = config.musicURL;
-            bgMusic.volume = 0.5;
+            const musicBtn = document.getElementById('music-disc'); 
+            const musicIcon = document.getElementById('music-icon'); 
+            const musicLabel = document.getElementById('music-name');
 
-            document.body.addEventListener('click', function() {
-                if(bgMusic.paused) {
-                    bgMusic.play().then(() => {
+            if(bgMusic && musicBtn && musicIcon) {
+                // Şarkı kaynağını ayarla
+                bgMusic.src = config.musicURL;
+                bgMusic.volume = 0.5;
+                if(musicLabel) musicLabel.innerText = config.firstName + "'s Song";
+
+                // Tarayıcılar için otomatik oynatma çözümü (Kullanıcı ilk tıkladığında başla)
+                document.body.addEventListener('click', function() {
+                    if(bgMusic.paused) {
+                        bgMusic.play().then(() => {
+                            musicIcon.classList.remove('fa-play');
+                            musicIcon.classList.add('fa-pause');
+                            musicBtn.classList.add('playing');
+                        }).catch(e => {
+                            // Tarayıcı yine de izin vermezse konsola yaz, kullanıcı butona basınca çalacaktır.
+                            console.log("Otomatik oynatma bekliyor...");
+                        });
+                    }
+                }, { once: true });
+
+                // Buton tıklama olayı
+                musicBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    if (bgMusic.paused) {
+                        bgMusic.play();
                         musicIcon.classList.remove('fa-play');
                         musicIcon.classList.add('fa-pause');
-                        musicBtn.classList.add('music-playing');
-                    }).catch(e => console.log("Audio play blocked until interaction"));
-                }
-            }, { once: true });
-
-            musicBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); 
-                if (bgMusic.paused) {
-                    bgMusic.play();
-                    musicIcon.classList.remove('fa-play');
-                    musicIcon.classList.add('fa-pause');
-                    musicBtn.classList.add('music-playing');
-                } else {
-                    bgMusic.pause();
-                    musicIcon.classList.remove('fa-pause');
-                    musicIcon.classList.add('fa-play');
-                    musicBtn.classList.remove('music-playing');
-                }
-            });
+                        musicBtn.classList.add('playing');
+                    } else {
+                        bgMusic.pause();
+                        musicIcon.classList.remove('fa-pause');
+                        musicIcon.classList.add('fa-play');
+                        musicBtn.classList.remove('playing');
+                    }
+                });
+            }
 
             // --- 4. GOOGLE TAKVİME EKLE ---
             document.getElementById('add-to-calendar').addEventListener('click', (e) => {
                 e.preventDefault();
-                // Basit Google Takvim Linki Oluşturucu
-                // Not: Daha hassas zaman ayarı için config verilerini parse etmek gerekir ama bu basit demo içindir.
                 const title = encodeURIComponent(config.childName + "'s Birthday Party");
                 const location = encodeURIComponent(config.address);
                 const details = encodeURIComponent("Can't wait to see you there!");
-                // Tarih formatı YYYYMMDDTHHMMSSZ (Kabaca) - Demoda sabit bir tarih kullanıyorum güvenli olması için
-                // Gerçek üründe config.partyDate'i parse edip buraya koyarız.
                 const start = "20260715T140000"; 
                 const end = "20260715T170000";
                 
