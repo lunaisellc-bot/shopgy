@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="tr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY | Enterprise Grade Etsy Solutions</title>
+  <title>VitrinY | Digital Design & Tech Agency</title>
 
-  <meta name="description" content="Turn your Etsy shop into a standalone professional website using official API. Payments remain on Etsy." />
+  <meta name="description" content="Profesyonel web çözümleri: Etsy Entegrasyonu, Dijital Davetiyeler, Kurumsal Web Siteleri ve daha fazlası." />
   
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -49,12 +49,14 @@
   </script>
 
   <style>
+    /* Global Styles & Animations */
     html, body { background-color: #050505; color: white; width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; scroll-padding-top: 100px; }
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
     .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
     .glass:hover { border-color: rgba(0, 255, 157, 0.3); background: rgba(255, 255, 255, 0.05); transform: translateY(-5px); }
     
+    /* Marquee / Slider Styles */
     .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
     .marquee-container::before, .marquee-container::after { content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none; }
     .marquee-container::before { left: 0; background: linear-gradient(to right, #050505, transparent); }
@@ -66,12 +68,12 @@
     @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
+    /* Card Styles */
     .theme-card { width: 280px; height: 380px; border-radius: 20px; overflow: hidden; position: relative; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
     .theme-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: grayscale(100%); }
     .theme-card:hover { transform: scale(1.05); border-color: rgba(0, 255, 157, 0.5); z-index: 10; box-shadow: 0 0 30px rgba(0,255,157,0.1); }
     .theme-card:hover img { transform: scale(1.1); filter: grayscale(0%); }
 
-    /* FIX: align-items (was alignItems) */
     .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; gap: 15px; }
     .theme-card:hover .overlay { opacity: 1; }
 
@@ -83,6 +85,10 @@
     details > summary::-webkit-details-marker { display: none; }
     details[open] summary ~ * { animation: sweep .3s ease-out; }
     @keyframes sweep { 0% {opacity: 0; transform: translateY(-5px)} 100% {opacity: 1; transform: translateY(0)} }
+
+    /* Service Icons */
+    .service-icon { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; transition: all 0.3s; }
+    .glass:hover .service-icon { transform: scale(1.1) rotate(5deg); }
   </style>
 </head>
 
@@ -102,18 +108,18 @@
       </a>
 
       <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-        <a href="#integration" class="hover:text-neon transition" data-i18n="nav_tech">Integration Tech</a>
-        <a href="portfolio.html" class="hover:text-white transition" data-i18n="nav_portfolio">Portfolio</a>
-        <a href="#how-it-works" class="hover:text-white transition" data-i18n="nav_how">Process</a>
-        <a href="#pricing" class="hover:text-white transition" data-i18n="nav_pricing">Pricing</a>
+        <a href="#services" class="hover:text-neon transition" data-i18n="nav_services">Çözümler</a>
+        <a href="portfolio.html" class="hover:text-white transition" data-i18n="nav_portfolio">Vitrin (Portfolio)</a>
+        <a href="#process" class="hover:text-white transition" data-i18n="nav_how">Süreç</a>
+        <a href="#blog" class="hover:text-white transition" data-i18n="nav_blog">Blog</a>
       </div>
 
       <div class="flex items-center gap-4">
         <button id="lang-btn" onclick="toggleLanguage()" class="text-xs font-bold text-gray-500 hover:text-white border border-white/10 px-3 py-2 rounded-lg transition">
           🇹🇷 TR
         </button>
-        <a href="#pricing" class="hidden sm:block bg-white text-black px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-[0_0_20px_rgba(0,255,157,0.4)]" data-i18n="nav_cta">
-          Sync Shop
+        <a href="https://wa.me/905419787726" target="_blank" class="hidden sm:block bg-white text-black px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-[0_0_20px_rgba(0,255,157,0.4)]" data-i18n="nav_cta">
+          İletişime Geç
         </a>
       </div>
     </div>
@@ -124,363 +130,284 @@
     <div class="mb-8 animate-float">
       <div class="px-4 py-2 rounded-full border border-neon/30 bg-neon/5 text-neon text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 backdrop-blur-md shadow-[0_0_15px_rgba(0,255,157,0.2)]">
         <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
-        <span data-i18n="hero_badge">OFFICIAL API SYNC</span>
+        <span data-i18n="hero_badge">PREMIUM DİJİTAL AJANS</span>
       </div>
     </div>
 
     <h1 class="reveal font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 tracking-tighter" data-i18n="hero_title">
-      Turn Your Etsy Shop <br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">Into Your Own Professional Website.</span>
+      Hayalinizdeki Site. <br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">Tek Bir Platformda.</span>
     </h1>
 
     <div class="reveal max-w-2xl mx-auto mb-10 delay-100">
         <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-6" data-i18n="hero_sub">
-            Automatically synced via the official <strong>Etsy Open API</strong>.
-            Your products stay on Etsy — payments and checkout always remain on Etsy.
+            Etsy entegrasyonundan özel dijital davetiyelere, sektörel web sitelerinden kurumsal kimliğe. 
+            Dijital varlığınızı profesyonelce inşa ediyoruz.
         </p>
         
         <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-            <span class="flex items-center gap-2"><i class="fa-solid fa-sync text-neon fa-spin-pulse" style="--fa-animation-duration: 3s;"></i> <span data-i18n="feat_1">Auto-Import</span></span>
-            <span class="flex items-center gap-2"><i class="fa-brands fa-etsy text-neon"></i> <span data-i18n="feat_2">Etsy Checkout</span></span>
-            <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-neon"></i> <span data-i18n="feat_3">100% Safe</span></span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-neon"></i> <span data-i18n="feat_1">Hızlı Teslimat</span></span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-neon"></i> <span data-i18n="feat_2">Özel Tasarım</span></span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-mobile-screen text-neon"></i> <span data-i18n="feat_3">Mobil Uyumlu</span></span>
         </div>
     </div>
 
     <div class="reveal flex flex-col sm:flex-row gap-5 delay-200">
-      <a href="#integration" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105 shadow-[0_0_30px_rgba(0,255,157,0.3)]">
-        <span class="relative flex items-center gap-2 tracking-wide"><i class="fa-solid fa-network-wired"></i> <span data-i18n="btn_explore">Start Syncing</span></span>
+      <a href="#services" class="group relative px-8 py-4 bg-neon text-black font-bold rounded-xl overflow-hidden transition-transform hover:scale-105 shadow-[0_0_30px_rgba(0,255,157,0.3)]">
+        <span class="relative flex items-center gap-2 tracking-wide"><i class="fa-solid fa-layer-group"></i> <span data-i18n="btn_explore">Çözümleri İncele</span></span>
       </a>
       <a href="portfolio.html" class="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition backdrop-blur-md flex items-center gap-2">
-        <span data-i18n="btn_how">View Examples</span>
+        <span data-i18n="btn_how">Son İşlerimiz</span>
       </a>
-    </div>
-    
-    <div class="mt-16 reveal delay-300">
-       <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-4 py-2 rounded-full text-[10px] font-bold tracking-widest text-gray-400 uppercase hover:border-white/20 transition cursor-default">
-         <img src="https://flagcdn.com/w20/us.png" alt="USA" class="w-4 rounded-sm grayscale opacity-60">
-         <span data-i18n="us_company">Registered in Wyoming, USA</span>
-       </div>
     </div>
   </header>
 
-  <section id="integration" class="py-16 border-y border-white/5 bg-white/[0.02]">
+  <section id="services" class="py-24 border-y border-white/5 bg-white/[0.02]">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
-            <div class="reveal">
-                <i class="fa-regular fa-images text-2xl text-neon mb-4"></i>
-                <h4 class="font-heading font-bold text-white mb-1" data-i18n="spec_1_t">High-Res Media</h4>
-                <p class="text-[10px] text-gray-500 uppercase tracking-wider" data-i18n="spec_1_d">4K Photo Sync</p>
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4" data-i18n="serv_title">Hizmetlerimiz</h2>
+            <p class="text-gray-500" data-i18n="serv_sub">Dijital yolculuğunuz için bir kategori seçin.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="glass p-8 rounded-2xl group reveal">
+                <div class="service-icon bg-orange-500/10 text-orange-500 group-hover:bg-orange-500 group-hover:text-black">
+                    <i class="fa-brands fa-etsy"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_1_t">Etsy Entegrasyon</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_1_d">Etsy mağazanızı resmi API kullanarak otomatik olarak profesyonel bir web sitesine dönüştürün.</p>
+                <a href="demo-starter.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
             </div>
-            <div class="reveal delay-75">
-                <i class="fa-solid fa-tag text-2xl text-purple-400 mb-4"></i>
-                <h4 class="font-heading font-bold text-white mb-1" data-i18n="spec_2_t">Smart Pricing</h4>
-                <p class="text-[10px] text-gray-500 uppercase tracking-wider" data-i18n="spec_2_d">Auto Currency Convert</p>
+
+            <div class="glass p-8 rounded-2xl group reveal delay-75">
+                <div class="service-icon bg-pink-500/10 text-pink-500 group-hover:bg-pink-500 group-hover:text-black">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_2_t">Dijital Düğün</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_2_d">Modern, animasyonlu ve LCV özellikli düğün web siteleri. Hikayenizi anlatın.</p>
+                <a href="event-2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
             </div>
-            <div class="reveal delay-100">
-                <i class="fa-solid fa-list-ul text-2xl text-blue-400 mb-4"></i>
-                <h4 class="font-heading font-bold text-white mb-1" data-i18n="spec_3_t">Descriptions</h4>
-                <p class="text-[10px] text-gray-500 uppercase tracking-wider" data-i18n="spec_3_d">HTML Formatting Kept</p>
+
+            <div class="glass p-8 rounded-2xl group reveal delay-100">
+                <div class="service-icon bg-yellow-400/10 text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black">
+                    <i class="fa-solid fa-cake-candles"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_3_t">Doğum Günü & Parti</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_3_d">Eğlenceli parti davetiyeleri. Konum paylaşımı ve hediye listesi özellikleri.</p>
+                <a href="demo-kids.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
             </div>
-            <div class="reveal delay-150 border-none">
-                <i class="fa-solid fa-magnifying-glass text-2xl text-yellow-400 mb-4"></i>
-                <h4 class="font-heading font-bold text-white mb-1" data-i18n="spec_4_t">SEO Tags</h4>
-                <p class="text-[10px] text-gray-500 uppercase tracking-wider" data-i18n="spec_4_d">Keywords Preserved</p>
+
+            <div class="glass p-8 rounded-2xl group reveal delay-150">
+                <div class="service-icon bg-purple-500/10 text-purple-400 group-hover:bg-purple-500 group-hover:text-black">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_4_t">Moda & VIP</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_4_d">Markanız veya özel lansmanlarınız için premium, tek sayfa tasarımlar.</p>
+                <a href="demo-fashion2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
             </div>
+
+             <div class="glass p-8 rounded-2xl group reveal delay-200">
+                <div class="service-icon bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-black">
+                    <i class="fa-solid fa-couch"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_5_t">Mobilya & Showroom</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_5_d">Mobilyacılar için galeri odaklı siteler. 360 derece ürün gösterimi.</p>
+                <a href="demo-business-2.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </div>
+
+             <div class="glass p-8 rounded-2xl group reveal delay-300">
+                <div class="service-icon bg-green-500/10 text-green-400 group-hover:bg-green-500 group-hover:text-black">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white" data-i18n="cat_6_t">Kurumsal Kimlik</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="cat_6_d">Start-up'lar ve ofisler için prestijli tanıtım siteleri.</p>
+                <a href="demo-business.html" class="inline-block text-xs font-bold uppercase tracking-widest text-white border-b border-neon pb-1 hover:text-neon transition">Demo <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </div>
+
         </div>
     </div>
   </section>
 
-  <section id="problem" class="py-24 bg-surface relative overflow-hidden">
+  <section id="process" class="py-24 bg-surface relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-16" data-i18n="prob_title">The "Sync" Advantage</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-16" data-i18n="prob_title">VitrinY Standartları</h2>
       
       <div class="grid md:grid-cols-3 gap-8">
         <div class="glass p-8 rounded-2xl text-left hover:border-neon/50 transition duration-500 group">
           <div class="w-12 h-12 rounded-full bg-neon/10 flex items-center justify-center mb-6 group-hover:bg-neon/20 transition">
-             <i class="fa-solid fa-link text-neon text-xl"></i>
+             <i class="fa-solid fa-pen-ruler text-neon text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="prob_1_title">One Dashboard</h3>
-          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_1_desc">Stop uploading products twice. Add a product to Etsy, and it magically appears on your website instantly.</p>
+          <h3 class="text-xl font-bold mb-3" data-i18n="prob_1_title">Özgün Tasarım</h3>
+          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_1_desc">Sıkıcı şablonlar yok. Markanızın veya etkinliğinizin ruhuna uygun, tamamen özel tasarımlar yapıyoruz.</p>
         </div>
         <div class="glass p-8 rounded-2xl text-left hover:border-purple/50 transition duration-500 group">
           <div class="w-12 h-12 rounded-full bg-purple/10 flex items-center justify-center mb-6 group-hover:bg-purple/20 transition">
-             <i class="fa-solid fa-robot text-purple text-xl"></i>
+             <i class="fa-solid fa-mobile-screen-button text-purple text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="prob_2_title">Inventory Guard</h3>
-          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_2_desc">Sold an item on Etsy? Our system detects the stock change and updates your website to prevent overselling.</p>
+          <h3 class="text-xl font-bold mb-3" data-i18n="prob_2_title">%100 Mobil Uyum</h3>
+          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_2_desc">Herkes telefonda. Sitelerimiz iPhone, Android ve Tabletlerde kusursuz görünür.</p>
         </div>
         <div class="glass p-8 rounded-2xl text-left hover:border-white/50 transition duration-500 group">
           <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:bg-white/20 transition">
-             <i class="fa-solid fa-globe text-white text-xl"></i>
+             <i class="fa-solid fa-rocket text-white text-xl"></i>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="prob_3_title">Brand Independence</h3>
-          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_3_desc">While using Etsy's data, you build your own SEO ranking on Google with your own .com domain.</p>
+          <h3 class="text-xl font-bold mb-3" data-i18n="prob_3_title">Hız ve SEO</h3>
+          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="prob_3_desc">Google'ın sevdiği temiz kod yapısı ve ışık hızında açılış süreleri.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="how-it-works" class="py-24 relative border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4" data-i18n="how_title">API Driven Setup</h2>
-        <p class="text-gray-500" data-i18n="how_sub">Complex code on the backend. One click for you.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 text-center reveal delay-100">
-        <div class="relative group">
-          <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl border border-white/10 text-white group-hover:border-neon transition">
-              <i class="fa-solid fa-key text-sm"></i>
-          </div>
-          <h3 class="font-bold text-lg mb-2" data-i18n="step_1_title">1. Handshake</h3>
-          <p class="text-gray-500 text-sm px-6" data-i18n="step_1_desc">We securely authenticate with your shop using OAuth 2.0. No password sharing required.</p>
-        </div>
-        <div class="relative group">
-          <div class="w-16 h-16 bg-neon/10 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl border border-neon/30 text-neon shadow-[0_0_20px_rgba(0,255,157,0.2)]">
-              <i class="fa-solid fa-download text-sm"></i>
-          </div>
-          <h3 class="font-bold text-lg mb-2" data-i18n="step_2_title">2. Bulk Fetch</h3>
-          <p class="text-gray-500 text-sm px-6" data-i18n="step_2_desc">Our engine downloads 100+ listings, variations, and high-res images in under 60 seconds.</p>
-        </div>
-        <div class="relative group">
-          <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl border border-white/10 text-white group-hover:border-neon transition">
-              <i class="fa-solid fa-tower-broadcast text-sm"></i>
-          </div>
-          <h3 class="font-bold text-lg mb-2" data-i18n="step_3_title">3. Live Broadcast</h3>
-          <p class="text-gray-500 text-sm px-6" data-i18n="step_3_desc">We deploy your new brand website. Future changes on Etsy reflect automatically.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDER SECTION (UPDATED TO LOCAL IMAGES) -->
   <section class="py-24 bg-[#050505] relative overflow-hidden border-y border-white/5">
     <div class="text-center mb-16 reveal relative z-10 px-6">
-      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" data-i18n="show_title">World Class Designs</h2>
-      <p class="text-gray-500" data-i18n="show_sub">Your data + Our code = Magic.</p>
+      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4" data-i18n="show_title">Örnek Çalışmalar</h2>
+      <p class="text-gray-500" data-i18n="show_sub">Farklı kategorilerden seçkin işlerimiz.</p>
     </div>
 
     <div class="marquee-container mb-8">
       <div class="marquee-content scroll-left hover:pause">
-        <a href="demo-ultra.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-ultra.jpg.png" alt="Project X" loading="lazy" decoding="async">
+        <a href="event-2.html" class="theme-card group">
+          <img src="assets/img/preview-ultra.jpg.png" alt="Wedding" loading="lazy" decoding="async">
           <div class="overlay">
-            <span class="tag border-red-500 text-red-500">PROJECT X</span>
-            <span class="btn-view bg-red-500 text-black">VIEW DEMO</span>
+            <span class="tag border-red-500 text-red-500">WEDDING</span>
+            <span class="btn-view bg-red-500 text-black">DEMO</span>
+          </div>
+        </a>
+        
+        <a href="demo-business-2.html" class="theme-card group">
+            <img src="assets/img/preview-business.jpg.png" alt="Furniture" loading="lazy" decoding="async">
+            <div class="overlay">
+              <span class="tag border-stone-300 text-stone-300">FURNITURE</span>
+              <span class="btn-view bg-stone-300 text-black">DEMO</span>
+            </div>
+          </a>
+
+        <a href="demo-starter.html" class="theme-card group">
+          <img src="assets/img/preview-art.jpg.png" alt="Etsy" loading="lazy" decoding="async">
+          <div class="overlay">
+            <span class="tag border-yellow-400 text-yellow-400">ETSY SHOP</span>
+            <span class="btn-view bg-yellow-400 text-black">DEMO</span>
           </div>
         </a>
 
-        <a href="demo-art.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-art.jpg.png" alt="Gallery" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-yellow-400 text-yellow-400">GALLERY</span>
-            <span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-fashion2.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-fashion2.jpg.png" alt="Atelier" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-white text-white">ATELIER</span>
-            <span class="btn-view bg-white text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-business.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-business.jpg.png" alt="Luma" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-stone-300 text-stone-300">LUMA</span>
-            <span class="btn-view bg-stone-300 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <!-- repeat for seamless loop -->
-        <a href="demo-ultra.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-ultra.jpg.png" alt="Project X" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-red-500 text-red-500">PROJECT X</span>
-            <span class="btn-view bg-red-500 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-art.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-art.jpg.png" alt="Gallery" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-yellow-400 text-yellow-400">GALLERY</span>
-            <span class="btn-view bg-yellow-400 text-black">VIEW DEMO</span>
-          </div>
-        </a>
+        <a href="demo-kids.html" class="theme-card group">
+            <img src="assets/img/preview-jewelry.jpg.png" alt="Party" loading="lazy" decoding="async">
+            <div class="overlay">
+              <span class="tag border-yellow-200 text-yellow-200">BIRTHDAY</span>
+              <span class="btn-view bg-yellow-200 text-black">DEMO</span>
+            </div>
+          </a>
+        
+        <a href="event-2.html" class="theme-card group">
+            <img src="assets/img/preview-ultra.jpg.png" alt="Wedding" loading="lazy" decoding="async">
+            <div class="overlay">
+              <span class="tag border-red-500 text-red-500">WEDDING</span>
+              <span class="btn-view bg-red-500 text-black">DEMO</span>
+            </div>
+          </a>
       </div>
-    </div>
-
-    <div class="marquee-container">
-      <div class="marquee-content scroll-right hover:pause">
-        <a href="demo-business-2.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-business-2.jpg.png" alt="Naturel" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-green-400 text-green-400">NATUREL</span>
-            <span class="btn-view bg-green-400 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-jewelry.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-jewelry.jpg.png" alt="Aurora" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-yellow-200 text-yellow-200">AURORA</span>
-            <span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-event.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-event.jpg.png" alt="Velvet" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-pink-300 text-pink-300">VELVET</span>
-            <span class="btn-view bg-pink-300 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-starter.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-starter.jpg.png" alt="Iron" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-green-500 text-green-500">IRON</span>
-            <span class="btn-view bg-green-500 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <!-- repeat for seamless loop -->
-        <a href="demo-business-2.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-business-2.jpg.png" alt="Naturel" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-green-400 text-green-400">NATUREL</span>
-            <span class="btn-view bg-green-400 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-
-        <a href="demo-jewelry.html" target="_blank" class="theme-card group">
-          <img src="assets/img/preview-jewelry.jpg.png" alt="Aurora" loading="lazy" decoding="async">
-          <div class="overlay">
-            <span class="tag border-yellow-200 text-yellow-200">AURORA</span>
-            <span class="btn-view bg-yellow-200 text-black">VIEW DEMO</span>
-          </div>
-        </a>
-      </div>
-    </div>
-    
-    <div class="mt-12 text-center relative z-10">
-        <a href="portfolio.html" class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/10 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-neon hover:text-black hover:scale-105 transition-all duration-300 group" data-i18n="btn_full_portfolio">
-            View Full Portfolio
-            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-        </a>
     </div>
   </section>
 
-  <section id="pricing" class="py-32 relative z-10">
+  <section id="blog" class="py-24 border-t border-white/5 bg-black relative">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-20 reveal">
-        <h2 class="font-heading text-4xl font-bold mb-4" data-i18n="price_title">One-Time Integration</h2>
-        <p class="text-gray-400" data-i18n="price_sub">Own your platform. No monthly subscriptions to us.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass p-8 rounded-3xl flex flex-col reveal">
-          <div class="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-4">STARTER</div>
-          <div class="text-4xl font-heading font-bold text-white mb-2">$149</div>
-          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6" data-i18n="p_1_sub">Standard Sync</div>
-          <ul class="space-y-4 mb-8 text-sm text-gray-400 flex-1">
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_1_f1">100 Products Sync</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_1_f2">Images & Prices Import</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_1_f3">Domain Connection</span></li>
-          </ul>
-          <a href="portfolio.html" class="block w-full text-center py-4 rounded-xl border border-white/10 hover:bg-white hover:text-black transition font-bold text-xs uppercase tracking-widest" data-i18n="btn_select">Select Theme</a>
+        <div class="flex justify-between items-end mb-12 reveal">
+            <div>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-2" data-i18n="blog_title">Dijital İçgörüler</h2>
+                <p class="text-gray-500 text-sm" data-i18n="blog_sub">E-ticaret ve tasarım dünyasından stratejiler.</p>
+            </div>
+            <a href="blog-strategy.html" class="hidden md:inline-block text-xs font-bold uppercase tracking-widest text-neon border-b border-neon pb-1 hover:text-white transition" data-i18n="blog_link">Tüm Yazılar</a>
         </div>
 
-        <div class="p-[1px] rounded-3xl bg-gradient-to-b from-neon to-emerald-900 shadow-[0_0_60px_rgba(0,255,157,0.1)] relative transform md:-translate-y-4 reveal delay-100">
-           <div class="bg-surface rounded-[23px] h-full w-full p-8 flex flex-col">
-            <div class="absolute top-0 right-0 bg-neon text-black text-[9px] font-bold px-4 py-2 rounded-bl-xl tracking-widest" data-i18n="p_pop">POPULAR</div>
-            <div class="text-[10px] font-bold tracking-[0.2em] text-neon mb-4">BUSINESS</div>
-            <div class="text-5xl font-heading font-bold text-white mb-2">$299</div>
-            <div class="text-xs text-gray-400 mb-8 border-b border-white/10 pb-6" data-i18n="p_2_sub">Enhanced Sync</div>
-            <ul class="space-y-4 mb-8 text-sm text-white flex-1 font-medium">
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f1">500 Products Sync</span></li>
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f2">Variant/SKU Mapping</span></li>
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f3">Daily Auto-Update</span></li>
-              <li class="flex gap-3"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p_2_f4">30 Days Support</span></li>
-            </ul>
-            <a href="portfolio.html" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold text-xs uppercase tracking-widest shadow-lg" data-i18n="btn_start">Start Now</a>
-           </div>
-        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <a href="blog-trends.html" class="group block reveal">
+                <div class="overflow-hidden rounded-xl mb-6 border border-white/10">
+                    <div class="bg-surface h-48 w-full group-hover:scale-105 transition duration-500 flex items-center justify-center text-gray-700">
+                        <i class="fa-solid fa-chart-line text-3xl"></i>
+                    </div>
+                </div>
+                <div class="text-[10px] font-bold text-neon mb-2 uppercase tracking-widest">TRENDLER</div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-neon transition">2026 E-Ticaret Trendleri</h3>
+                <p class="text-gray-500 text-sm line-clamp-2">Geleceğin mağazaları nasıl şekilleniyor? Dijital vitrinlerin yükselişi.</p>
+            </a>
 
-        <div class="glass p-8 rounded-3xl flex flex-col reveal delay-200 border-purple/30">
-          <div class="text-[10px] font-bold tracking-[0.2em] text-purple-400 mb-4">ELITE</div>
-          <div class="text-4xl font-heading font-bold text-white mb-2">$599</div>
-          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6" data-i18n="p_3_sub">Real-Time Sync</div>
-          <ul class="space-y-4 mb-8 text-sm text-gray-400 flex-1">
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f1">Unlimited Products</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f2">Real-time Webhooks</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f3">SEO Meta Tag Sync</span></li>
-            <li class="flex gap-3"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="p_3_f4">90 Days VIP Support</span></li>
-          </ul>
-          <a href="sms:+13072059144" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold text-xs uppercase tracking-widest" data-i18n="btn_contact">Contact Us</a>
+            <a href="blog-strategy.html" class="group block reveal delay-100">
+                <div class="overflow-hidden rounded-xl mb-6 border border-white/10">
+                    <div class="bg-surface h-48 w-full group-hover:scale-105 transition duration-500 flex items-center justify-center text-gray-700">
+                        <i class="fa-solid fa-lightbulb text-3xl"></i>
+                    </div>
+                </div>
+                <div class="text-[10px] font-bold text-purple-400 mb-2 uppercase tracking-widest">STRATEJİ</div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition">Satış Artıran Tasarımlar</h3>
+                <p class="text-gray-500 text-sm line-clamp-2">Müşteri psikolojisine uygun renk ve düzen seçimleri.</p>
+            </a>
+
+            <a href="blog-mindset.html" class="group block reveal delay-200">
+                <div class="overflow-hidden rounded-xl mb-6 border border-white/10">
+                    <div class="bg-surface h-48 w-full group-hover:scale-105 transition duration-500 flex items-center justify-center text-gray-700">
+                        <i class="fa-solid fa-brain text-3xl"></i>
+                    </div>
+                </div>
+                <div class="text-[10px] font-bold text-blue-400 mb-2 uppercase tracking-widest">MINDSET</div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition">Girişimci Zihniyeti</h3>
+                <p class="text-gray-500 text-sm line-clamp-2">Dijital dünyada ayakta kalmanın ve büyümenin yolları.</p>
+            </a>
         </div>
-      </div>
     </div>
   </section>
 
-  <section class="py-24 bg-surface border-t border-white/5">
+  <section id="faq" class="py-24 bg-surface border-t border-white/5">
     <div class="max-w-2xl mx-auto px-6 reveal">
-      <h2 class="font-heading text-3xl font-bold mb-10 text-center" data-i18n="faq_title">Technical FAQ</h2>
+      <h2 class="font-heading text-3xl font-bold mb-10 text-center" data-i18n="faq_title">Sıkça Sorulanlar</h2>
       <div class="space-y-4">
         <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_1_q">How often does it sync with Etsy?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_1_a">Depends on the plan. Business plan checks daily. Elite plan uses 'Webhooks' which triggers an update the second you change something on Etsy.</p>
+          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_1_q">Etsy Entegrasyonu nasıl çalışır?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_1_a">Etsy Open API kullanarak ürün, fiyat ve resimlerinizi çekeriz. Stoklarınız ve ürünleriniz sitenizle otomatik senkronize olur.</p>
         </details>
         <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_2_q">Do my Etsy reviews transfer?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_2_a">We can embed your Etsy star rating badge to build trust, but we don't copy individual user review texts due to privacy policies.</p>
+          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_2_q">Dijital Davetiye nasıl sipariş ederim?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_2_a">Portfolyomuzdan bir tema seçin veya özel tasarım isteyin. Bilgileri iletin, 24 saat içinde siteniz yayında olsun.</p>
         </details>
         <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_3_q">What if I delete a product on Etsy?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_3_a">The system will automatically archive it on your website during the next sync cycle, so you don't sell an item you don't have.</p>
+          <summary class="font-bold text-sm flex justify-between"><span data-i18n="faq_3_q">Aylık ücret var mı?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
+          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="faq_3_a">Davetiye ve basit siteler tek seferlik ödemedir. Gelişmiş Etsy entegrasyonu için yıllık bakım paketlerimiz mevcuttur.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <footer class="bg-black pt-20 pb-10 border-t border-white/10">
+  <footer class="bg-black pt-20 pb-10 border-t border-white/10" id="contact">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-10">
       <div class="max-w-xs">
         <span class="font-heading text-2xl font-bold text-white">VitrinY</span>
         <p class="text-gray-500 text-xs mt-4 leading-relaxed">
-          <span data-i18n="footer_desc">Etsy API Integration Partners & Web Design Agency.</span><br>
+          <span data-i18n="footer_desc">Profesyonel Dijital Çözüm ve Tasarım Ajansı.</span><br>
           <span class="text-neon block mt-2">Operated by Lunaise LLC (Sheridan, WY, USA)</span>
         </p>
       </div>
       <div>
-        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Contact (HQ)</h4>
+        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">İletişim</h4>
         <ul class="space-y-2 text-xs text-gray-400">
-          <li><a href="sms:+13072059144" class="hover:text-neon"><i class="fa-solid fa-comment-sms mr-2"></i> +1 (307) 205-9144 (SMS Only)</a></li>
+          <li><a href="https://wa.me/905419787726" class="hover:text-neon"><i class="fa-brands fa-whatsapp mr-2"></i> Whatsapp Destek</a></li>
           <li><a href="mailto:support@vitriny.com" class="hover:text-neon"><i class="fa-solid fa-envelope mr-2"></i> support@vitriny.com</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Legal</h4>
+        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Kurumsal</h4>
         <ul class="space-y-2 text-xs text-gray-400">
-          <li><a href="legal.html" class="hover:text-white">Privacy Policy</a></li>
-          <li><a href="legal.html" class="hover:text-white">Terms of Service</a></li>
+          <li><a href="portfolio.html" class="hover:text-white">Tüm Çalışmalar</a></li>
+          <li><a href="legal.html" class="hover:text-white">Gizlilik Politikası</a></li>
+          <li><a href="legal.html" class="hover:text-white">Kullanım Şartları</a></li>
         </ul>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 text-center md:text-left text-[10px] text-gray-600">
-      &copy; 2025 VitrinY. All rights reserved. The term 'Etsy' is a trademark of Etsy, Inc. This application uses the Etsy API but is not endorsed or certified by Etsy, Inc.
+      &copy; 2025 VitrinY. All rights reserved.
     </div>
   </footer>
 
   <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4 items-center">
-      <a href="sms:+13072059144" class="group relative bg-white hover:bg-gray-200 text-black w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-[0_0_20px_rgba(255,255,255,0.3)] transition hover:scale-110 animate-bounce" style="animation-delay: 0.1s;">
-        <i class="fa-solid fa-comment-sms"></i>
-        <span class="absolute right-12 bg-white text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">US Support</span>
-      </a>
-
       <a href="https://wa.me/905419787726" target="_blank" class="group relative bg-[#25D366] hover:bg-[#128C7E] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(37,211,102,0.4)] transition hover:scale-110 animate-bounce" style="animation-delay: 0.6s;">
         <i class="fa-brands fa-whatsapp"></i>
         <span class="absolute right-14 bg-[#25D366] text-black text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Canlı Destek</span>
@@ -490,82 +417,82 @@
   <script>
     const translations = {
       en: {
-        nav_tech: "Integration Tech", nav_portfolio: "Portfolio", nav_how: "Process", nav_pricing: "Pricing", nav_cta: "Sync Shop",
-        hero_badge: "OFFICIAL API SYNC",
-        hero_title: "Turn Your Etsy Shop <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Into Your Own Professional Website.</span>",
-        hero_sub: "Automatically synced via the official <strong>Etsy Open API</strong>. Your products stay on Etsy — payments and checkout always remain on Etsy.",
-        feat_1: "Auto-Import",
-        feat_2: "Etsy Checkout",
-        feat_3: "100% Safe",
-        btn_explore: "Start Syncing", 
-        btn_how: "View Examples",
-        us_company: "Registered in Wyoming, USA",
-        spec_1_t: "High-Res Media", spec_1_d: "4K Photo Sync",
-        spec_2_t: "Smart Pricing", spec_2_d: "Auto Currency Convert",
-        spec_3_t: "Descriptions", spec_3_d: "HTML Formatting Kept",
-        spec_4_t: "SEO Tags", spec_4_d: "Keywords Preserved",
-        prob_title: "The 'Sync' Advantage",
-        prob_1_title: "One Dashboard", prob_1_desc: "Stop uploading products twice. Add a product to Etsy, and it magically appears on your website instantly.",
-        prob_2_title: "Inventory Guard", prob_2_desc: "Sold an item on Etsy? Our system detects the stock change and updates your website to prevent overselling.",
-        prob_3_title: "Brand Independence", prob_3_desc: "While using Etsy's data, you build your own SEO ranking on Google with your own .com domain.",
-        how_title: "API Driven Setup", how_sub: "Complex code on the backend. One click for you.",
-        step_1_title: "1. Handshake", step_1_desc: "We securely authenticate with your shop using OAuth 2.0. No password sharing required.",
-        step_2_title: "2. Bulk Fetch", step_2_desc: "Our engine downloads 100+ listings, variations, and high-res images in under 60 seconds.",
-        step_3_title: "3. Live Broadcast", step_3_desc: "We deploy your new brand website. Future changes on Etsy reflect automatically.",
-        show_title: "World Class Designs", show_sub: "Your data + Our code = Magic.",
-        btn_full_portfolio: "View Full Portfolio",
-        price_title: "One-Time Integration", price_sub: "Own your platform. No monthly subscriptions to us.",
-        p_pop: "POPULAR", p_1_sub: "Standard Sync", p_2_sub: "Enhanced Sync", p_3_sub: "Real-Time Sync",
-        p_1_f1: "100 Products Sync", p_1_f2: "Images & Prices Import", p_1_f3: "Domain Connection",
-        p_2_f1: "500 Products Sync", p_2_f2: "Variant/SKU Mapping", p_2_f3: "Daily Auto-Update", p_2_f4: "30 Days Support",
-        p_3_f1: "Unlimited Products", p_3_f2: "Real-time Webhooks", p_3_f3: "SEO Meta Tag Sync", p_3_f4: "90 Days VIP Support",
-        btn_select: "Select Theme", btn_start: "Start Now", btn_contact: "Contact Us",
-        faq_title: "Technical FAQ",
-        faq_1_q: "How often does it sync with Etsy?", faq_1_a: "Depends on the plan. Business plan checks daily. Elite plan uses 'Webhooks' which triggers an update the second you change something on Etsy.",
-        faq_2_q: "Do my Etsy reviews transfer?", faq_2_a: "We can embed your Etsy star rating badge to build trust, but we don't copy individual user review texts due to privacy policies.",
-        faq_3_q: "What if I delete a product on Etsy?", faq_3_a: "The system will automatically archive it on your website during the next sync cycle, so you don't sell an item you don't have.",
-        footer_desc: "Etsy API Integration Partners & Web Design Agency."
+        nav_services: "Solutions", nav_portfolio: "Portfolio", nav_how: "Process", nav_blog: "Blog", nav_cta: "Contact Us",
+        hero_badge: "PREMIUM DIGITAL AGENCY",
+        hero_title: "Your Vision. <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Digitally Crafted.</span>",
+        hero_sub: "From automated Etsy integrations to exclusive digital invitations. We build high-end web experiences for businesses and special events.",
+        feat_1: "Fast Delivery",
+        feat_2: "Premium Design",
+        feat_3: "Mobile First",
+        btn_explore: "View Solutions", 
+        btn_how: "Latest Work",
+        
+        serv_title: "Our Solutions",
+        serv_sub: "Choose a category to start your digital journey.",
+        
+        cat_1_t: "Etsy Integration", cat_1_d: "Turn your Etsy shop into a standalone professional website automatically using the official API.",
+        cat_2_t: "Digital Wedding", cat_2_d: "Modern, animated, and RSVP-ready digital wedding invitations that tell your love story.",
+        cat_3_t: "Birthday & Party", cat_3_d: "Fun, vibrant websites for birthday parties. Share location, timeline and collect wishes.",
+        cat_4_t: "VIP & Gender Reveal", cat_4_d: "Exclusive single-page sites for Baby Showers, Gender Reveals, or VIP corporate events.",
+        cat_5_t: "Furniture & Showroom", cat_5_d: "Specialized layouts for furniture manufacturers. High-res galleries and technical specification sheets.",
+        cat_6_t: "Corporate Identity", cat_6_d: "Professional landing pages for startups, law firms, and consultants.",
+        
+        prob_title: "The VitrinY Standard",
+        prob_1_title: "Bespoke Design", prob_1_desc: "No boring templates. We create unique layouts that match the specific vibe of your brand or event.",
+        prob_2_title: "100% Mobile Ready", prob_2_desc: "Everyone uses phones. Our sites look perfect on iPhone, Android, and Tablets.",
+        prob_3_title: "Speed & SEO", prob_3_desc: "Fast loading times and clean code that Google loves. Get found easier.",
+        
+        show_title: "Featured Work", show_sub: "Examples from our various categories.",
+        
+        blog_title: "Digital Insights", blog_sub: "Strategies from the world of e-commerce and design.", blog_link: "All Posts",
+
+        faq_title: "General FAQ",
+        faq_1_q: "How does the Etsy Integration work?", faq_1_a: "We use the Etsy Open API to pull your products, photos, and prices. Your website syncs automatically with your shop.",
+        faq_2_q: "How do I order a Digital Invitation?", faq_2_a: "Choose a design from our portfolio or request a custom one. Send us your event details, and we'll deliver a live link within 24 hours.",
+        faq_3_q: "Are there monthly fees?", faq_3_a: "For most projects (Invitations, Landing Pages), it's a one-time fee. For advanced Etsy integrations, we have yearly maintenance options.",
+        
+        footer_desc: "Professional Digital Solutions & Design Agency."
       },
       tr: {
-        nav_tech: "Teknoloji", nav_portfolio: "Vitrin", nav_how: "Süreç", nav_pricing: "Paketler", nav_cta: "Mağazayı Bağla",
-        hero_badge: "RESMİ API SENKRONİZASYONU",
-        hero_title: "Etsy Mağazanızı <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Kendi Profesyonel Sitenize Dönüştürün.</span>",
-        hero_sub: "Resmi <strong>Etsy Open API</strong> ile otomatik senkronize edilir. Ürünleriniz Etsy'de kalır — ödeme ve sipariş işlemleri daima Etsy üzerinden gerçekleşir.",
-        feat_1: "Oto-İçe Aktarma",
-        feat_2: "Etsy Ödeme Altyapısı",
-        feat_3: "%100 Güvenli",
-        btn_explore: "Senkronizasyonu Başlat", 
-        btn_how: "Örnekleri Gör",
-        us_company: "ABD Tescilli Şirket (Wyoming)",
-        spec_1_t: "Yüksek Çözünürlük", spec_1_d: "4K Fotoğraf Aktarımı",
-        spec_2_t: "Akıllı Fiyat", spec_2_d: "Otomatik Kur Dönüşümü",
-        spec_3_t: "Açıklamalar", spec_3_d: "HTML Formatı Korunur",
-        spec_4_t: "SEO Etiketleri", spec_4_d: "Anahtar Kelimeler Gelir",
-        prob_title: "'Senkronizasyon' Avantajı",
-        prob_1_title: "Tek Yönetim Paneli", prob_1_desc: "İki kere ürün yüklemeye son. Etsy'ye bir ürün ekleyin, anında kendi sitenizde de görünsün.",
-        prob_2_title: "Stok Koruyucu", prob_2_desc: "Etsy'de satış mı oldu? Sistemimiz stok değişimini algılar ve sitenizdeki adedi düşürür. Yok satmayı önler.",
-        prob_3_title: "Marka Bağımsızlığı", prob_3_desc: "Etsy verilerini kullanırken, kendi .com alan adınızla Google'da kendi SEO sıralamanızı yükseltin.",
-        how_title: "API Tabanlı Kurulum", how_sub: "Arka planda karmaşık kodlar, sizin için tek tık.",
-        step_1_title: "1. El Sıkışma", step_1_desc: "OAuth 2.0 protokolü ile mağazanızla güvenli bağlantı kuruyoruz. Şifre paylaşımı yok.",
-        step_2_title: "2. Toplu Veri Alımı", step_2_desc: "Motorumuz 100+ ilanı, varyasyonları ve HD fotoğrafları 60 saniyenin altında indirir.",
-        step_3_title: "3. Canlı Yayın", step_3_desc: "Yeni marka sitenizi yayına alıyoruz. Etsy'de yapacağınız değişiklikler otomatik yansır.",
-        show_title: "Dünya Klasmanında Tasarım", show_sub: "Sizin veriniz + Bizim kodumuz = Büyü.",
-        btn_full_portfolio: "Tüm Vitrini İncele",
-        price_title: "Tek Seferlik Entegrasyon", price_sub: "Sitenin sahibi siz olun. Aylık aidat yok.",
-        p_pop: "EN ÇOK SATAN", p_1_sub: "Standart Senkronizasyon", p_2_sub: "Gelişmiş Senkronizasyon", p_3_sub: "Canlı Senkronizasyon",
-        p_1_f1: "100 Ürün Aktarımı", p_1_f2: "Resim ve Fiyat İçe Aktarma", p_1_f3: "Alan Adı Bağlantısı",
-        p_2_f1: "500 Ürün Aktarımı", p_2_f2: "Varyasyon/SKU Eşleme", p_2_f3: "Günlük Otomatik Kontrol", p_2_f4: "30 Gün Destek",
-        p_3_f1: "Sınırsız Ürün", p_3_f2: "Anlık Webhook (Canlı)", p_3_f3: "SEO Meta Tag Aktarımı", p_3_f4: "90 Gün VIP Destek",
-        btn_select: "Paket Seç", btn_start: "Başla", btn_contact: "İletişime Geç",
-        faq_title: "Teknik SSS",
-        faq_1_q: "Ne sıklıkla senkronize oluyor?", faq_1_a: "Pakete göre değişir. Business paket günde bir kez tarar. Elite paket 'Webhook' kullanır, Etsy'de değişiklik yaptığınız saniye siteniz güncellenir.",
-        faq_2_q: "Etsy yorumlarım geliyor mu?", faq_2_a: "Güven oluşturmak için Etsy yıldız puanınızı (rozet olarak) çekebiliriz, ancak gizlilik kuralları gereği müşteri yorum metinlerini kopyalamıyoruz.",
-        faq_3_q: "Etsy'den ürün silersem ne olur?", faq_3_a: "Sistem bir sonraki taramada bu ürünün silindiğini fark eder ve sitenizden otomatik olarak arşive kaldırır.",
-        footer_desc: "Etsy API Entegrasyon Partneri ve Tasarım Ajansı."
+        nav_services: "Hizmetler", nav_portfolio: "Vitrin", nav_how: "Süreç", nav_blog: "Blog", nav_cta: "İletişime Geç",
+        hero_badge: "PREMIUM DİJİTAL AJANS",
+        hero_title: "Hayalinizdeki Site. <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple'>Tek Bir Platformda.</span>",
+        hero_sub: "Etsy entegrasyonundan özel dijital davetiyelere, sektörel web sitelerinden kurumsal kimliğe. Dijital varlığınızı profesyonelce inşa ediyoruz.",
+        feat_1: "Hızlı Teslimat",
+        feat_2: "Özel Tasarım",
+        feat_3: "Mobil Uyumlu",
+        btn_explore: "Çözümleri İncele", 
+        btn_how: "Son İşlerimiz",
+        
+        serv_title: "Hizmetlerimiz",
+        serv_sub: "İhtiyacınıza uygun dijital çözümü seçin.",
+        
+        cat_1_t: "Etsy Entegrasyon", cat_1_d: "Etsy mağazanızı resmi API kullanarak otomatik olarak profesyonel bir web sitesine dönüştürün. Ürünleriniz anında sitenizde.",
+        cat_2_t: "Dijital Düğün", cat_2_d: "Hikayenizi anlatan modern, animasyonlu ve LCV özellikli düğün web siteleri. Kağıt israfına son.",
+        cat_3_t: "Doğum Günü & Parti", cat_3_d: "Eğlenceli parti davetiyeleri. Konum paylaşımı, etkinlik akışı ve hediye listesi özellikleri.",
+        cat_4_t: "Moda & VIP", cat_4_d: "Baby Shower, Cinsiyet Partisi veya VIP etkinlikler için şifre korumalı özel tek sayfa tasarımlar.",
+        cat_5_t: "Mobilya & Showroom", cat_5_d: "Mobilyacılar için özel galeri odaklı siteler. 360 derece ürün gösterimi ve teknik özellik tabloları.",
+        cat_6_t: "Kurumsal Kimlik", cat_6_d: "Start-up'lar, ofisler ve danışmanlar için prestijli, hızlı açılan kurumsal tanıtım siteleri.",
+        
+        prob_title: "VitrinY Farkı",
+        prob_1_title: "Özgün Tasarım", prob_1_desc: "Sıkıcı şablonlar yok. Markanızın veya etkinliğinizin ruhuna uygun, tamamen özel tasarımlar yapıyoruz.",
+        prob_2_title: "%100 Mobil Uyum", prob_2_desc: "Herkes telefonda. Sitelerimiz iPhone, Android ve Tabletlerde kusursuz görünür.",
+        prob_3_title: "Hız ve SEO", prob_3_desc: "Google'ın sevdiği temiz kod yapısı ve ışık hızında açılış süreleri.",
+        
+        show_title: "Örnek Çalışmalar", show_sub: "Farklı kategorilerden seçkin işlerimiz.",
+        
+        blog_title: "Dijital İçgörüler", blog_sub: "E-ticaret ve tasarım dünyasından stratejiler.", blog_link: "Tüm Yazılar",
+
+        faq_title: "Sıkça Sorulanlar",
+        faq_1_q: "Etsy Entegrasyonu nasıl çalışır?", faq_1_a: "Etsy Open API kullanarak ürün, fiyat ve resimlerinizi çekeriz. Stoklarınız ve ürünleriniz sitenizle otomatik senkronize olur.",
+        faq_2_q: "Dijital Davetiye nasıl sipariş ederim?", faq_2_a: "Portfolyomuzdan bir tema seçin veya özel tasarım isteyin. Bilgileri iletin, 24 saat içinde siteniz yayında olsun.",
+        faq_3_q: "Aylık ücret var mı?", faq_3_a: "Davetiye ve basit siteler tek seferlik ödemedir. Gelişmiş Etsy entegrasyonu için yıllık bakım paketlerimiz mevcuttur.",
+        
+        footer_desc: "Profesyonel Dijital Çözüm ve Tasarım Ajansı."
       }
     };
 
-    let currentLang = localStorage.getItem('userLang') || 'en';
+    let currentLang = localStorage.getItem('userLang') || 'tr';
 
     function applyLang(lang) {
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -597,58 +524,5 @@
        }, 10);
     }
   </script>
-
-  <div id="cookie-banner" class="fixed bottom-4 right-4 max-w-sm w-[calc(100%-2rem)] z-[60] transform translate-y-full transition-transform duration-500 hidden">
-    <div class="glass border border-white/10 p-6 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-      <div class="flex items-start gap-4">
-        <div class="min-w-[40px] h-10 rounded-full bg-neon/10 flex items-center justify-center text-neon">
-          <i class="fa-solid fa-cookie-bite text-xl"></i>
-        </div>
-        <div>
-          <h4 class="font-heading font-bold text-white text-sm mb-2">Cookie Preferences</h4>
-          <p class="text-xs text-gray-400 leading-relaxed mb-4">
-            We use cookies to ensure you get the best experience on VitrinY. 
-            By continuing, you agree to our usage.
-          </p>
-          <div class="flex gap-3">
-            <button onclick="acceptCookies()" class="flex-1 bg-neon text-black text-xs font-bold py-2.5 rounded-lg hover:bg-white transition">
-              Accept
-            </button>
-            <button onclick="declineCookies()" class="flex-1 border border-white/10 text-white text-xs font-bold py-2.5 rounded-lg hover:bg-white/5 transition">
-              Decline
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const banner = document.getElementById('cookie-banner');
-    if (!localStorage.getItem('cookieConsent')) {
-        banner.classList.remove('hidden');
-        setTimeout(() => {
-            banner.classList.remove('translate-y-full');
-        }, 2000);
-    }
-
-    function acceptCookies() {
-        localStorage.setItem('cookieConsent', 'accepted');
-        hideBanner();
-    }
-
-    function declineCookies() {
-        localStorage.setItem('cookieConsent', 'declined');
-        hideBanner();
-    }
-
-    function hideBanner() {
-        banner.classList.add('translate-y-full');
-        setTimeout(() => {
-            banner.classList.add('hidden');
-        }, 500);
-    }
-  </script>
-
 </body>
 </html>
