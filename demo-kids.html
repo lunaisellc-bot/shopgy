@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LITTLE WONDERS | Organic Play</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- SEO / Sharing -->
   <meta name="description" content="Sustainable, organic toys and essentials that spark imagination. Montessori-inspired play made with love." />
   <meta property="og:title" content="Little Wonders | Organic Play" />
   <meta property="og:description" content="Sustainable, organic toys and essentials that spark imagination." />
@@ -53,7 +53,7 @@
 
   <style>
     body { background-color: #FFF5F5; color: #455A64; }
-
+    
     /* Sticky nav anchor offset */
     section { scroll-margin-top: 96px; }
 
@@ -82,6 +82,11 @@
       background-position: 0 0, 25px 25px;
       opacity: 0.5;
     }
+    
+    /* MOBILE MENU TRANSITION */
+    #mobile-menu { transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; }
+    .mobile-menu-hidden { max-height: 0; opacity: 0; overflow: hidden; }
+    .mobile-menu-visible { max-height: 400px; opacity: 1; }
   </style>
 </head>
 
@@ -92,7 +97,12 @@
   </div>
 
   <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-berry/20">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
+      
+      <a href="#" class="font-head text-3xl font-bold text-berry flex items-center gap-2">
+        <i class="fa-solid fa-shapes text-sky animate-bounce-slow"></i> Little Wonders
+      </a>
+
       <div class="hidden md:flex gap-6 font-bold text-charcoal/80">
         <a href="#shop" class="hover:text-berry transition">Toys</a>
         <a href="#clothing" class="hover:text-berry transition">Clothing</a>
@@ -100,10 +110,6 @@
         <a href="#capsule" class="hover:text-berry transition">Time Capsule</a>
         <a href="#about" class="hover:text-berry transition">Our Story</a>
       </div>
-
-      <a href="#" class="font-head text-3xl font-bold text-berry flex items-center gap-2">
-        <i class="fa-solid fa-shapes text-sky animate-bounce-slow"></i> Little Wonders
-      </a>
 
       <div class="flex items-center gap-6 text-charcoal">
         <button type="button" data-open-modal="demoModal" class="hover:text-berry transition text-xl" aria-label="Search">
@@ -113,27 +119,38 @@
           <i class="fa-solid fa-basket-shopping"></i>
           <span class="absolute -top-2 -right-2 bg-sky text-charcoal text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">2</span>
         </button>
+        
+        <button id="mobile-menu-btn" class="md:hidden text-2xl hover:text-berry transition">
+            <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu-hidden bg-white border-t border-berry/10 md:hidden shadow-lg">
+        <div class="flex flex-col p-6 font-bold text-charcoal space-y-4 text-center">
+            <a href="#shop" class="mobile-link hover:text-berry">Toys</a>
+            <a href="#clothing" class="mobile-link hover:text-berry">Clothing</a>
+            <a href="#nursery" class="mobile-link hover:text-berry">Nursery</a>
+            <a href="#capsule" class="mobile-link hover:text-berry">Time Capsule</a>
+            <a href="#about" class="mobile-link hover:text-berry">Our Story</a>
+        </div>
     </div>
   </nav>
 
-  <!-- DEMO MODAL (for search/cart placeholders) -->
   <div id="demoModal" class="fixed inset-0 z-[999] hidden">
     <div id="demoBackdrop" class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm"></div>
-
-    <div class="relative max-w-lg mx-auto mt-24 bg-white rounded-[2rem] shadow-2xl border border-berry/20 p-8">
+    <div class="relative max-w-lg mx-auto mt-24 bg-white rounded-[2rem] shadow-2xl border border-berry/20 p-8 m-4">
       <div class="flex items-start justify-between gap-4">
         <div>
           <h3 class="font-head text-2xl text-charcoal">Demo UI</h3>
           <p class="mt-2 text-charcoal/70 font-bold">
-            Search, cart, and add buttons are demo placeholders. In a real store, these can link to Etsy product pages.
+            Search, cart, and add buttons are demo placeholders. In a real store, these can link to Etsy product pages or checkout.
           </p>
         </div>
         <button type="button" data-close-modal="demoModal" class="text-charcoal/60 hover:text-berry text-xl" aria-label="Close">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
-
       <div class="mt-6 flex flex-col sm:flex-row gap-3">
         <a href="#shop" data-close-modal="demoModal" class="btn-soft bg-berry text-white px-6 py-3 font-bold shadow-lg shadow-berry/20 text-center">
           Continue Shopping
@@ -148,7 +165,7 @@
   <header class="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-marshmallow">
     <div class="absolute inset-0 doodles"></div>
 
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10 pt-10 md:pt-0">
       <div class="text-center md:text-left order-2 md:order-1">
         <span class="bg-sky text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6">Montessori Inspired</span>
         <h1 class="font-head text-5xl md:text-7xl text-charcoal mb-6 leading-tight">
@@ -165,10 +182,10 @@
 
       <div class="relative order-1 md:order-2 animate-float">
         <div class="absolute inset-0 bg-sunshine rounded-full blur-3xl opacity-30 transform scale-90"></div>
-        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop"
+        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" 
              class="relative rounded-[3rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-500 border-8 border-white"
              alt="Happy Kid">
-
+        
         <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce-slow">
           <div class="bg-mint p-2 rounded-full text-2xl">🌱</div>
           <div>
@@ -186,7 +203,6 @@
     </div>
   </header>
 
-  <!-- SHOP / CATEGORIES -->
   <section id="shop" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -194,55 +210,38 @@
         <div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div>
       </div>
 
-      <!-- Inline SVG icons to avoid licensing issues -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-
         <a href="#shop" class="play-card bg-sky/30 rounded-3xl p-6 text-center group">
           <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 7h10v10H7V7Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M4 10h3M17 10h3M4 14h3M17 14h3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
-              <path d="M10 4v3M14 4v3M10 17v3M14 17v3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10v10H7V7Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M4 10h3M17 10h3M4 14h3M17 14h3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/><path d="M10 4v3M14 4v3M10 17v3M14 17v3" stroke="#455A64" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-head text-xl text-charcoal">Wooden Toys</h3>
         </a>
 
         <a href="#clothing" class="play-card bg-berry/20 rounded-3xl p-6 text-center group">
           <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M8 6 12 4l4 2 3 3-2 2v9H7v-9L5 9l3-3Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M9 8c1.5 1.3 4.5 1.3 6 0" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6 12 4l4 2 3 3-2 2v9H7v-9L5 9l3-3Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M9 8c1.5 1.3 4.5 1.3 6 0" stroke="#455A64" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-head text-xl text-charcoal">Soft Clothing</h3>
         </a>
 
         <a href="#nursery" class="play-card bg-sunshine/40 rounded-3xl p-6 text-center group">
           <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6 4h10a2 2 0 0 1 2 2v14l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M9 8h6M9 12h6" stroke="#455A64" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v14l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M9 8h6M9 12h6" stroke="#455A64" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-head text-xl text-charcoal">Story Books</h3>
         </a>
 
         <a href="#nursery" class="play-card bg-mint/50 rounded-3xl p-6 text-center group">
           <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 10 12 4l8 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M9 22v-8h6v8" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
-            </svg>
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10 12 4l8 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10Z" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/><path d="M9 22v-8h6v8" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/></svg>
           </div>
           <h3 class="font-head text-xl text-charcoal">Room Decor</h3>
         </a>
-
       </div>
     </div>
   </section>
 
-  <!-- NEW ARRIVALS -->
   <section class="py-24 bg-mint/20 relative">
     <div class="wave-top">
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -261,7 +260,7 @@
           <div class="relative bg-marshmallow rounded-2xl overflow-hidden mb-4 h-64">
             <span class="absolute top-3 left-3 bg-sunshine text-charcoal text-xs font-bold px-3 py-1 rounded-full z-10">Bestseller</span>
             <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Toy">
-            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-berry hover:text-white transition text-charcoal" aria-label="Add">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-berry hover:text-white transition text-charcoal">
               <i class="fa-solid fa-plus"></i>
             </button>
           </div>
@@ -271,11 +270,11 @@
             <span class="font-bold text-berry text-xl">$24.00</span>
           </div>
         </div>
-
+        
         <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sky">
           <div class="relative bg-sky/20 rounded-2xl overflow-hidden mb-4 h-64">
             <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
-            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sky hover:text-charcoal transition text-charcoal" aria-label="Add">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sky hover:text-charcoal transition text-charcoal">
               <i class="fa-solid fa-plus"></i>
             </button>
           </div>
@@ -290,7 +289,7 @@
           <div class="relative bg-mint/20 rounded-2xl overflow-hidden mb-4 h-64">
             <span class="absolute top-3 left-3 bg-berry text-white text-xs font-bold px-3 py-1 rounded-full z-10">-20%</span>
             <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
-            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-mint hover:text-charcoal transition text-charcoal" aria-label="Add">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-mint hover:text-charcoal transition text-charcoal">
               <i class="fa-solid fa-plus"></i>
             </button>
           </div>
@@ -304,7 +303,7 @@
         <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sunshine">
           <div class="relative bg-sunshine/20 rounded-2xl overflow-hidden mb-4 h-64">
             <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
-            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sunshine hover:text-charcoal transition text-charcoal" aria-label="Add">
+            <button type="button" data-open-modal="demoModal" class="absolute bottom-3 right-3 bg-white p-3 rounded-full shadow-md hover:bg-sunshine hover:text-charcoal transition text-charcoal">
               <i class="fa-solid fa-plus"></i>
             </button>
           </div>
@@ -318,7 +317,6 @@
     </div>
   </section>
 
-  <!-- TIME CAPSULE (Formspree integrated) -->
   <section id="capsule" class="py-24 px-6 bg-white relative overflow-hidden">
     <div class="max-w-4xl mx-auto bg-marshmallow rounded-[3rem] p-10 md:p-14 shadow-xl border border-berry/20 relative">
       <div class="text-center">
@@ -332,48 +330,49 @@
       </div>
 
       <div class="mt-10 bg-white rounded-[2.5rem] p-6 md:p-8 border border-charcoal/10 shadow-sm">
-        <form
+        
+        <form 
           id="capsuleForm"
           action="https://formspree.io/f/mykzpvzg"
           method="POST"
           class="space-y-4"
         >
-          <textarea
-            name="message"
-            required
-            rows="5"
+          <textarea 
+            name="message" 
+            required 
+            rows="5" 
             placeholder="Dear Olivia..."
             class="w-full px-6 py-5 rounded-[2rem] bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"
           ></textarea>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              name="from"
+            <input 
+              type="text" 
+              name="from" 
               required
               placeholder="From (Your Name)"
               class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"
             />
-
-            <input
-              type="email"
-              name="reply_to"
+            
+            <input 
+              type="email" 
+              name="reply_to" 
               placeholder="Your Email (optional)"
               class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"
             />
           </div>
-
+          
           <input type="hidden" name="source" value="Little Wonders - Time Capsule" />
           <input type="hidden" name="_subject" value="New Time Capsule Note" />
           <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
 
-          <button
-            type="submit"
+          <button 
+            type="submit" 
             class="w-full btn-soft bg-mint text-charcoal px-8 py-5 font-bold shadow-lg shadow-mint/30 hover:opacity-95"
           >
             SEAL IN CAPSULE
           </button>
-
+          
           <p id="capsule-status" class="text-center text-sm font-bold text-charcoal/70"></p>
           <p class="text-center text-xs font-bold text-charcoal/40">
             Messages are sent securely. Please avoid sharing sensitive information.
@@ -386,7 +385,6 @@
     </div>
   </section>
 
-  <!-- CLOTHING -->
   <section id="clothing" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-12">
@@ -451,7 +449,6 @@
     </div>
   </section>
 
-  <!-- NURSERY -->
   <section id="nursery" class="py-24 bg-mint/20 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
@@ -496,7 +493,6 @@
     <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about" class="py-24 px-6 bg-white relative overflow-hidden">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
@@ -507,10 +503,10 @@
           Made with love, designed to last.
         </h2>
         <p class="text-charcoal/70 text-lg font-bold leading-relaxed mb-6">
-          Little Wonders is built around mindful play—natural materials, safe finishes, and joyful design.
+          Little Wonders is built around mindful play—natural materials, safe finishes, and joyful design. 
           We choose pieces that feel good in tiny hands and look beautiful in your home.
         </p>
-
+        
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="bg-sky/30 rounded-3xl p-6">
             <p class="font-head text-2xl">🌱</p>
@@ -534,8 +530,8 @@
 
       <div class="relative">
         <div class="absolute inset-0 bg-sky rounded-full blur-3xl opacity-30 transform scale-90"></div>
-        <img
-          src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=1200&q=80"
+        <img 
+          src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=1200&q=80" 
           class="relative rounded-[3rem] shadow-2xl border-8 border-white"
           alt="Nursery"
         >
@@ -543,7 +539,6 @@
     </div>
   </section>
 
-  <!-- NEWSLETTER (Formspree integrated) -->
   <section class="py-24 px-6 bg-white relative overflow-hidden">
     <div class="max-w-3xl mx-auto bg-sky/30 rounded-[3rem] p-12 text-center relative z-10">
       <h2 class="font-head text-3xl md:text-5xl text-charcoal mb-6">Join the Fun Club! 🎈</h2>
@@ -551,16 +546,16 @@
         Sign up for exclusive offers, fun activities, and new product drops.
       </p>
 
-      <form
+      <form 
         id="newsletterForm"
         action="https://formspree.io/f/xpqwlbvd"
         method="POST"
         class="flex flex-col md:flex-row gap-4 max-w-md mx-auto"
       >
-        <input
-          type="email"
-          name="email"
-          required
+        <input 
+          type="email" 
+          name="email" 
+          required 
           autocomplete="email"
           placeholder="Parent's Email Address"
           class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body font-bold"
@@ -570,8 +565,8 @@
         <input type="hidden" name="_subject" value="New Fun Club Subscriber" />
         <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
 
-        <button
-          type="submit"
+        <button 
+          type="submit" 
           class="bg-berry text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition"
         >
           Subscribe
@@ -622,7 +617,7 @@
             <i class="fa-brands fa-instagram"></i>
           </a>
           <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-sky transition" aria-label="TikTok">
-            <i class="fa-brands fa-tiktok"></i>
+             <i class="fa-brands fa-tiktok"></i>
           </a>
           <a href="#" class="bg-white/10 w-10 h-10 rounded-full flex items-center justify-center hover:bg-sunshine transition" aria-label="Pinterest">
             <i class="fa-brands fa-pinterest"></i>
@@ -632,11 +627,10 @@
     </div>
 
     <div class="text-center pt-8 border-t border-white/10 text-white/50 text-sm font-bold">
-      <p>&copy; 2025 LITTLE WONDERS. POWERED BY VITRINX.</p>
+      <p>&copy; 2025 LITTLE WONDERS. POWERED BY ZAYNCOLLECTIVE.</p>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
     // Modal open/close
     const openButtons = document.querySelectorAll('[data-open-modal]');
@@ -667,13 +661,39 @@
     // Close demo modal by clicking backdrop + ESC
     const demoModal = document.getElementById('demoModal');
     const demoBackdrop = document.getElementById('demoBackdrop');
-
+    
     if (demoModal) {
       if (demoBackdrop) demoBackdrop.addEventListener('click', () => closeModal('demoModal'));
-
+      
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !demoModal.classList.contains('hidden')) closeModal('demoModal');
       });
+    }
+
+    // MOBILE MENU LOGIC
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+            // Toggle visibility classes
+            if (mobileMenu.classList.contains('mobile-menu-hidden')) {
+                mobileMenu.classList.remove('mobile-menu-hidden');
+                mobileMenu.classList.add('mobile-menu-visible');
+            } else {
+                mobileMenu.classList.add('mobile-menu-hidden');
+                mobileMenu.classList.remove('mobile-menu-visible');
+            }
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('mobile-menu-hidden');
+                mobileMenu.classList.remove('mobile-menu-visible');
+            });
+        });
     }
 
     // Newsletter Formspree submit (no refresh)
@@ -684,7 +704,7 @@
       newsletterForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         newsletterStatus.textContent = "Sending...";
-
+        
         const btn = newsletterForm.querySelector('button[type="submit"]');
         if (btn) btn.disabled = true;
 
@@ -695,7 +715,7 @@
             body: data,
             headers: { "Accept": "application/json" }
           });
-
+          
           if (res.ok) {
             newsletterForm.reset();
             newsletterStatus.textContent = "You're in! Welcome to the Fun Club.";
@@ -718,7 +738,7 @@
       capsuleForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         capsuleStatus.textContent = "Sealing...";
-
+        
         const btn = capsuleForm.querySelector('button[type="submit"]');
         if (btn) btn.disabled = true;
 
@@ -729,7 +749,7 @@
             body: data,
             headers: { "Accept": "application/json" }
           });
-
+          
           if (res.ok) {
             capsuleForm.reset();
             capsuleStatus.textContent = "Sealed. Thank you!";
