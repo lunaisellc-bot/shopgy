@@ -5,19 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>THE GRAND CELEBRATION | VIP Invite</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <!-- QR -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
   <script>
@@ -42,23 +34,20 @@
       --line: rgba(255,255,255,.10);
       --muted: rgba(255,255,255,.55);
       --text: rgba(255,255,255,.92);
-      --accent: #D4AF37;  /* gold */
-      --accent2: #8A7036; /* gold-dim */
+      --accent: #D4AF37;
+      --accent2: #8A7036;
       --shadow: 0 30px 80px rgba(0,0,0,.55);
-      --radius: 18px;
     }
 
     body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
 
-    /* Accent helpers */
     .accent-text{ color: var(--accent); }
     .accent-dim{ color: var(--accent2); }
-    .accent-border{ border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
     .panel{ background: var(--panel); }
     .panel-strong{ background: var(--panel2); }
     .soft-line{ border-color: var(--line); }
+    .accent-border{ border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
 
-    /* GOLD SHINE (kept for VIP; looks OK on other themes too) */
     .text-gold-shine {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -66,23 +55,25 @@
     }
     @keyframes shine { to { background-position: 200% center; } }
 
-    /* Scroll hide */
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Entrance screen */
+    /* Entrance */
     #entrance-screen {
       position: fixed; inset: 0; z-index: 110; background: #000;
-      display: flex; align-items: center; justify-content: center;
+      display: none; /* PIN geçilmeden gösterme */
+      align-items: center; justify-content: center;
       transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
     }
+    #entrance-screen.show{ display:flex; }
     .envelope-hidden { transform: translateY(-100%); }
 
-    /* PIN gate */
+    /* PIN Gate */
     #pin-screen{
       position: fixed; inset: 0; z-index: 120;
       display: none; align-items: center; justify-content: center;
-      background: radial-gradient(900px 420px at 50% 10%, rgba(212,175,55,.10), rgba(0,0,0,.92));
+      /* tamamen opak -> alttaki content görünmez (screenshot bug fix) */
+      background: radial-gradient(900px 420px at 50% 10%, rgba(212,175,55,.12), rgba(0,0,0,1));
     }
     #pin-screen.active{ display:flex; }
 
@@ -90,20 +81,14 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* video overlay */
-    .video-overlay {
-      position:absolute; inset:0;
-      background: radial-gradient(900px 420px at 50% 10%, rgba(212,175,55,.10), rgba(0,0,0,.55));
-      pointer-events:none;
-    }
-
-    /* subtle texture layer (optional) */
+    /* subtle texture */
     .texture {
       position: fixed; inset:0; pointer-events:none; opacity:.18;
       background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      display:block;
     }
 
-    /* tiny shake for wrong pin */
+    /* shake wrong pin */
     @keyframes shake {
       0%,100%{ transform: translateX(0); }
       20%{ transform: translateX(-6px); }
@@ -121,6 +106,19 @@
       padding: 18px;
     }
     #adminModal.open{ display:flex; }
+
+    /* badge */
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:999px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.80);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 
@@ -137,6 +135,7 @@
             <div class="absolute inset-0 rounded-full" style="background: rgba(212,175,55,.10);"></div>
             <span class="font-luxury text-4xl accent-text" id="pinMonogram">S</span>
           </div>
+
           <h2 class="font-luxury text-white text-xl tracking-[0.35em] mb-2">VIP ACCESS</h2>
           <p class="text-xs" style="color: var(--muted); letter-spacing:.14em; text-transform:uppercase;">
             Enter your private code
@@ -148,10 +147,11 @@
           <input id="pinInput" inputmode="numeric" maxlength="10"
                  class="mt-2 w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600"
                  placeholder="••••" />
+
           <div class="mt-3 flex items-center justify-between gap-3">
             <label class="text-xs" style="color: var(--muted);">
               <input type="checkbox" id="rememberDevice" class="mr-2 align-middle" />
-              Remember this device
+              Remember for this session
             </label>
             <button id="pinSubmit"
               class="px-5 py-2 rounded-full border soft-line text-xs hover:border-[color:var(--accent)] transition"
@@ -159,14 +159,15 @@
               Unlock
             </button>
           </div>
-          <p id="pinError" class="text-xs mt-3 hidden" style="color: rgba(255,255,255,.75);">
+
+          <p id="pinError" class="text-xs mt-3 hidden" style="color: rgba(255,255,255,.78);">
             Incorrect code. Please try again.
           </p>
         </div>
 
         <div class="mt-8 border-t soft-line pt-5">
           <p class="text-[11px]" style="color: var(--muted); line-height:1.6;">
-            This invitation is delivered as a private shareable link. No downloads required.
+            Delivered as a private shareable link. No downloads required.
           </p>
         </div>
       </div>
@@ -182,6 +183,7 @@
         <div class="absolute inset-0 rounded-full" style="background: rgba(212,175,55,.10);"></div>
         <span class="font-luxury text-4xl accent-text" id="monogram">S</span>
       </div>
+
       <h2 class="font-luxury text-white text-xl tracking-[0.4em] mb-2" id="privateLabel">PRIVATE EVENT</h2>
       <p class="text-gray-500 text-xs mb-10 tracking-widest uppercase" id="clickLabel">Click to Reveal Invitation</p>
 
@@ -190,26 +192,17 @@
         OPEN ENVELOPE
       </button>
 
-      <!-- Theme selector (optional) -->
       <div class="mt-10 flex flex-wrap justify-center gap-2">
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="vip">
-          Dark VIP
-        </button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="ivory">
-          Minimal Ivory
-        </button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="floral">
-          Soft Floral
-        </button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="boho">
-          Boho Earth
-        </button>
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="vip">Dark VIP</button>
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="ivory">Minimal Ivory</button>
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="floral">Soft Floral</button>
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="boho">Boho Earth</button>
       </div>
+
       <p class="mt-3 text-[11px]" style="color: var(--muted);">Theme is adjustable per client before delivery.</p>
     </div>
   </div>
 
-  <!-- texture -->
   <div class="texture"></div>
 
   <!-- =======================
@@ -219,47 +212,31 @@
 
     <!-- LOCAL MUSIC -->
     <audio id="bgMusic" loop preload="metadata">
-      <source src="assets/music.mp3" type="audio/mpeg">
+      <source id="musicSource" src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Music button -->
     <button id="music-btn"
       class="fixed bottom-6 right-6 z-50 w-12 h-12 panel-strong backdrop-blur border accent-border rounded-full accent-text flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:scale-110 transition"
       aria-label="Music" aria-pressed="false" title="Music">
       <i class="fa-solid fa-music"></i>
     </button>
 
-    <!-- Quick actions -->
-    <div class="fixed bottom-6 left-6 z-50 hidden md:flex flex-col gap-3">
-      <button id="share-btn" class="px-4 py-3 panel-strong border soft-line rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition backdrop-blur">
-        <i class="fa-solid fa-link mr-2"></i> Share Link
-      </button>
-      <a href="#rsvp" class="px-4 py-3 panel-strong border soft-line rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition backdrop-blur">
-        <i class="fa-solid fa-pen-to-square mr-2"></i> RSVP
-      </a>
-      <a href="#map" class="px-4 py-3 panel-strong border soft-line rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition backdrop-blur">
-        <i class="fa-solid fa-location-dot mr-2"></i> Directions
-      </a>
-    </div>
+    <button id="share-btn"
+      class="fixed bottom-6 left-6 z-50 hidden md:inline-flex items-center gap-2 px-4 py-3 panel-strong border soft-line rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition backdrop-blur">
+      <i class="fa-solid fa-link"></i> Share Link
+    </button>
 
-    <!-- Add to Home Screen hint -->
     <div id="a2hs"
       class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block px-4 py-3 panel-strong border soft-line rounded-full text-[11px] text-white/70 backdrop-blur">
       Tip: On iPhone, tap <span class="accent-text font-semibold">Share</span> → <span class="accent-text font-semibold">Add to Home Screen</span>
       <button id="a2hsClose" class="ml-3 opacity-70 hover:opacity-100"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- =======================
-         HERO
-    ======================== -->
+    <!-- HERO -->
     <header class="relative pt-24 pb-16 text-center px-4 overflow-hidden">
 
-      <!-- optional bg video -->
-      <div class="absolute inset-0 -z-10">
-        <video id="bgVideo" class="w-full h-full object-cover opacity-20" playsinline muted loop preload="metadata">
-          <source src="assets/bg.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
+      <div class="max-w-3xl mx-auto mb-8 reveal">
+        <span class="badge"><i class="fa-solid fa-globe"></i> NOT A PDF · A REAL WEBSITE</span>
       </div>
 
       <p class="tracking-[0.3em] text-xs uppercase mb-6 reveal" style="color: rgba(212,175,55,.8);" id="heroTop">
@@ -276,16 +253,11 @@
         "A Night of Elegance & Memories"
       </p>
 
-      <!-- Event status -->
-      <div class="mt-8 reveal">
-        <span id="eventStatusBadge"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full border soft-line panel-strong text-xs text-white/80 backdrop-blur">
-          <i class="fa-regular fa-clock"></i>
-          <span id="eventStatusText">Counting down</span>
-        </span>
+      <div class="mt-7 reveal">
+        <span class="badge"><i class="fa-solid fa-link"></i> Delivered as a private shareable link</span>
       </div>
 
-      <!-- QR strip -->
+      <!-- QR -->
       <div class="max-w-4xl mx-auto mt-10 px-6 reveal">
         <div class="grid md:grid-cols-3 gap-4">
           <div class="panel border soft-line rounded-xl p-4 text-center">
@@ -309,51 +281,19 @@
             </div>
           </div>
         </div>
-
         <p class="text-gray-500 text-[11px] mt-4">
           QR codes are generated from this page’s links. In final delivery, they will point to the private shareable link.
         </p>
       </div>
     </header>
 
-    <!-- =======================
-         VIDEO MOMENT (LOCAL)
-    ======================== -->
-    <section class="max-w-4xl mx-auto px-6 mb-12">
-      <div class="relative aspect-video rounded-xl overflow-hidden border accent-border shadow-2xl reveal group" id="momentWrap">
-        <div class="absolute inset-0" style="background: rgba(212,175,55,.06);"></div>
-
-        <video id="momentVideo" class="w-full h-full object-cover relative z-10" playsinline controls preload="metadata">
-          <source src="assets/moment.mp4" type="video/mp4">
-        </video>
-
-        <div class="absolute bottom-3 left-3 z-20 text-[11px] text-white/70 panel-strong px-3 py-2 rounded-full border soft-line backdrop-blur">
-          Optional “moment” video
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================
-         COUNTDOWN + CALENDAR
-    ======================== -->
-    <section class="max-w-4xl mx-auto px-6 mb-24">
+    <!-- COUNTDOWN + CALENDAR -->
+    <section class="max-w-4xl mx-auto px-6 mb-16">
       <div class="grid grid-cols-4 gap-4 text-center border-y soft-line py-8 reveal">
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="days">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Days</span>
-        </div>
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="hours">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Hrs</span>
-        </div>
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="minutes">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Mins</span>
-        </div>
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="seconds">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Secs</span>
-        </div>
+        <div><span class="block font-luxury text-3xl md:text-5xl accent-text" id="days">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Days</span></div>
+        <div><span class="block font-luxury text-3xl md:text-5xl accent-text" id="hours">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Hrs</span></div>
+        <div><span class="block font-luxury text-3xl md:text-5xl accent-text" id="minutes">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Mins</span></div>
+        <div><span class="block font-luxury text-3xl md:text-5xl accent-text" id="seconds">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Secs</span></div>
       </div>
 
       <p class="text-center text-gray-600 text-xs mt-4" id="tzHint">Time shown in your local timezone.</p>
@@ -370,147 +310,8 @@
       </div>
     </section>
 
-    <!-- =======================
-         DETAILS + DRESS CODE + REGISTRY
-    ======================== -->
-    <section class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 mb-24 reveal" id="details">
-      <div class="space-y-12 text-center md:text-right">
-        <div>
-          <i class="fa-regular fa-clock text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">When</h3>
-          <p class="font-elegant text-xl text-gray-300" id="whenDate">Saturday, October 25th</p>
-          <p class="accent-text font-bold" id="whenTime">19:00 - Late</p>
-        </div>
-
-        <div>
-          <i class="fa-solid fa-location-dot text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">Where</h3>
-          <p class="font-elegant text-xl text-gray-300" id="whereName">The Grand Ballroom</p>
-          <p class="text-gray-500 text-sm" id="whereAddress">123 Luxury Ave, Manhattan, NY</p>
-
-          <div class="flex flex-wrap justify-center md:justify-end gap-3 mt-4">
-            <a id="map-google" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Google Maps</a>
-            <a id="map-apple" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Apple Maps</a>
-            <a id="map-waze" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Waze</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-12 text-center md:text-left border-t md:border-t-0 md:border-l soft-line pt-12 md:pt-0 md:pl-12">
-        <div>
-          <i class="fa-solid fa-vest text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">Dress Code</h3>
-          <p class="font-elegant text-xl text-gray-300 mb-4" id="dressCode">Black Tie / Formal</p>
-
-          <div class="flex justify-center md:justify-start gap-4" id="palette">
-            <div class="w-8 h-8 rounded-full bg-black border soft-line" title="Black"></div>
-            <div class="w-8 h-8 rounded-full" style="background: var(--accent);" title="Accent"></div>
-            <div class="w-8 h-8 rounded-full" style="background: #1B2430;" title="Navy"></div>
-          </div>
-
-          <p class="text-xs text-gray-600 mt-2" id="paletteNote">Please stick to the palette.</p>
-        </div>
-
-        <div>
-          <i class="fa-solid fa-gift text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">Registry</h3>
-          <p class="text-gray-400 text-sm mb-4" id="registryNote">Your presence is the greatest gift.</p>
-          <a id="registryLink" href="#" target="_blank" rel="noopener"
-             class="px-6 py-2 border soft-line rounded-full text-xs hover:bg-white hover:text-black transition">
-            View Wishlist
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================
-         GUEST GUIDE
-    ======================== -->
-    <section class="max-w-2xl mx-auto px-6 mb-24 reveal">
-      <h2 class="font-luxury text-2xl accent-text mb-6 text-center">Guest Guide</h2>
-
-      <div class="space-y-4">
-        <details class="group panel border soft-line rounded-lg overflow-hidden">
-          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-car-side mr-2 accent-text/70"></i>Parking / Arrival</span>
-            <span class="accent-text group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="parkingInfo"></div>
-        </details>
-
-        <details class="group panel border soft-line rounded-lg overflow-hidden">
-          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-phone mr-2 accent-text/70"></i>Contact</span>
-            <span class="accent-text group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="contactInfo"></div>
-        </details>
-
-        <details class="group panel border soft-line rounded-lg overflow-hidden">
-          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-circle-info mr-2 accent-text/70"></i>Notes / Policy</span>
-            <span class="accent-text group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="policyInfo"></div>
-        </details>
-      </div>
-    </section>
-
-    <!-- =======================
-         PROGRAM TIMELINE
-    ======================== -->
-    <section class="max-w-3xl mx-auto px-6 mb-24 reveal">
-      <div class="text-center mb-12">
-        <h2 class="font-luxury text-3xl text-gold-shine">The Evening Program</h2>
-      </div>
-      <div class="relative border-l accent-border ml-6 md:ml-1/2 md:translate-x-[-1px]" id="timeline"></div>
-    </section>
-
-    <!-- =======================
-         PHOTO ALBUM
-    ======================== -->
-    <section class="mb-16 reveal" id="gallery">
-      <div class="text-center mb-8">
-        <h2 class="font-luxury text-3xl text-white">Through The Years</h2>
-        <p class="text-gray-500 text-xs mt-2" id="galleryNote">Swipe to view memories.</p>
-      </div>
-      <div class="flex overflow-x-auto gap-4 px-6 pb-8 snap-x hide-scrollbar" id="galleryRow"></div>
-    </section>
-
-    <!-- =======================
-         PHOTO UPLOAD (STANDARD)
-    ======================== -->
-    <section class="max-w-3xl mx-auto px-6 mb-24 reveal" id="photoUpload">
-      <div class="panel border soft-line rounded-2xl p-8">
-        <div class="text-center">
-          <h2 class="font-luxury text-2xl accent-text mb-2">After-Party Photo Upload</h2>
-          <p class="text-gray-400 text-sm mb-6">
-            Share your favorite moments. Upload link opens in a new tab.
-          </p>
-
-          <a id="uploadLink" href="#" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 px-7 py-3 rounded-full border accent-border text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
-            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos
-          </a>
-
-          <p class="text-[11px] mt-5" style="color: var(--muted); line-height:1.6;">
-            Standard: upload is handled via Google Drive / Dropbox link (stable + no app needed).  
-            Premium: in-page upload + auto-gallery requires backend.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================
-         MAP EMBED
-    ======================== -->
-    <section class="max-w-4xl mx-auto px-6 mb-24 reveal" id="map">
+    <!-- MAP -->
+    <section class="max-w-4xl mx-auto px-6 mb-16 reveal" id="map">
       <div class="panel border soft-line rounded-xl overflow-hidden">
         <div class="p-6 border-b soft-line flex items-center justify-between gap-3 flex-wrap">
           <div>
@@ -518,33 +319,39 @@
             <p class="text-gray-500 text-xs mt-1" id="mapSub">Tap for directions.</p>
           </div>
           <div class="flex gap-2 flex-wrap">
-            <a id="map-google-2" target="_blank" rel="noopener"
+            <a id="map-google" target="_blank" rel="noopener"
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Google</a>
-            <a id="map-apple-2" target="_blank" rel="noopener"
+            <a id="map-apple" target="_blank" rel="noopener"
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Apple</a>
-            <a id="map-waze-2" target="_blank" rel="noopener"
+            <a id="map-waze" target="_blank" rel="noopener"
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Waze</a>
           </div>
         </div>
 
-        <iframe id="mapFrame" class="w-full h-[420px]"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div id="mapFallback" class="hidden p-6 text-sm text-white/70">
+          Map could not be loaded on this device. Please use the direction buttons above.
+        </div>
+
+        <iframe id="mapFrame" class="w-full h-[420px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
 
-    <!-- =======================
-         RSVP (UPGRADED)
-    ======================== -->
-    <section id="rsvp" class="max-w-xl mx-auto px-6 pb-16 reveal">
+    <!-- RSVP -->
+    <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
       <div class="relative panel border accent-border p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.45)]">
         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 rounded-b-full border-b accent-border" style="background: var(--bg);"></div>
 
         <div class="text-center mb-8">
           <h2 class="font-luxury text-4xl text-white mb-2">R.S.V.P</h2>
           <p class="accent-dim text-sm uppercase tracking-widest" id="rsvpDeadline">By October 10th</p>
+        </div>
+
+        <div id="rsvpDisabled" class="hidden text-center p-6 border soft-line rounded-2xl panel-strong">
+          <p class="text-sm text-white/80">RSVP is not configured yet.</p>
+          <p class="text-[11px] mt-2 text-white/60">Host can enable it by adding the RSVP endpoint.</p>
         </div>
 
         <div id="success-msg" class="hidden text-center py-10">
@@ -572,9 +379,7 @@
           </div>
         </div>
 
-        <!-- RSVP form -->
-        <form id="rsvpForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-5">
-
+        <form id="rsvpForm" action="" method="POST" class="space-y-5">
           <div>
             <input type="text" name="name" required placeholder="Guest Name(s)"
               class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
@@ -592,25 +397,17 @@
           </div>
 
           <div id="extra-fields" class="space-y-5">
-
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <label class="text-xs uppercase tracking-widest" style="color: var(--muted);">Adults</label>
                 <select name="adults" class="mt-2 w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition">
-                  <option value="1" class="bg-black">1</option>
-                  <option value="2" class="bg-black">2</option>
-                  <option value="3" class="bg-black">3</option>
-                  <option value="4" class="bg-black">4</option>
+                  <option value="1" class="bg-black">1</option><option value="2" class="bg-black">2</option><option value="3" class="bg-black">3</option><option value="4" class="bg-black">4</option>
                 </select>
               </div>
-
               <div>
                 <label class="text-xs uppercase tracking-widest" style="color: var(--muted);">Kids</label>
                 <select name="kids" class="mt-2 w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition">
-                  <option value="0" class="bg-black">0</option>
-                  <option value="1" class="bg-black">1</option>
-                  <option value="2" class="bg-black">2</option>
-                  <option value="3" class="bg-black">3</option>
+                  <option value="0" class="bg-black">0</option><option value="1" class="bg-black">1</option><option value="2" class="bg-black">2</option><option value="3" class="bg-black">3</option>
                 </select>
               </div>
             </div>
@@ -641,7 +438,6 @@
                 class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm"
                 rows="3"></textarea>
             </div>
-
           </div>
 
           <button type="submit" id="submit-btn"
@@ -650,77 +446,17 @@
           </button>
 
           <p class="text-gray-600 text-[11px] leading-relaxed">
-            Standard: RSVP is collected via your chosen endpoint (Formspree/Google Form).  
-            Premium: backend confirmations + live guestbook + photo upload + analytics report.
+            One-time purchase · No subscription · Not a PDF · Delivered as a private shareable link
           </p>
         </form>
       </div>
     </section>
 
-    <!-- =======================
-         GUESTBOOK (STANDARD + LOCAL PREVIEW + ADMIN EXPORT)
-    ======================== -->
-    <section class="max-w-3xl mx-auto px-6 pb-24 reveal" id="guestbook">
-      <div class="panel border soft-line rounded-2xl p-8">
-        <div class="text-center">
-          <h2 class="font-luxury text-2xl accent-text mb-2">Digital Guestbook</h2>
-          <p class="text-gray-400 text-sm mb-6">
-            Leave a short note. (Standard: messages are collected to the host inbox/sheet.)
-          </p>
-        </div>
-
-        <form id="guestbookForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-4">
-          <div class="grid md:grid-cols-2 gap-4">
-            <input name="guest_name" required placeholder="Your Name"
-              class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
-            <input name="guest_city" placeholder="City (optional)"
-              class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
-          </div>
-
-          <textarea name="guest_message" required placeholder="Your message..."
-            class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600"
-            rows="4"></textarea>
-
-          <button type="submit" id="guestbookBtn"
-            class="w-full border accent-border rounded-xl py-4 text-xs text-white/85 hover:border-[color:var(--accent)] hover:text-white transition">
-            SEND MESSAGE
-          </button>
-
-          <div id="guestbookOk" class="hidden text-center text-xs mt-3" style="color: var(--muted);">
-            Thank you. Your message has been sent.
-          </div>
-        </form>
-
-        <!-- Local preview list (client-side) -->
-        <div class="mt-10 border-t soft-line pt-8">
-          <div class="flex items-center justify-between flex-wrap gap-3">
-            <h3 class="font-luxury text-lg text-white">Messages (Preview)</h3>
-            <button id="openAdmin" class="text-[11px] px-4 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition">
-              Admin Panel
-            </button>
-          </div>
-
-          <p class="text-[11px] mt-2" style="color: var(--muted); line-height:1.6;">
-            This preview uses device storage for demo/backup. For a true live guestbook visible to everyone, Premium backend is required.
-          </p>
-
-          <div id="guestbookList" class="mt-6 grid gap-3"></div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="text-center py-8 border-t soft-line text-gray-600 text-xs">
-      One-time purchase · No subscription · Not a PDF · Delivered as a private shareable link
-      <div class="mt-2 opacity-0 select-none" aria-hidden="true">admin</div>
-    </footer>
-
-    <!-- Analytics embed (optional) -->
+    <!-- Analytics mount (optional) -->
     <div id="analyticsMount"></div>
   </div>
 
-  <!-- =======================
-      ADMIN MODAL (CLIENT-SIDE)
-  ======================== -->
+  <!-- Admin modal (only ?admin=1 opens) -->
   <div id="adminModal" role="dialog" aria-modal="true">
     <div class="w-full max-w-3xl panel border soft-line rounded-2xl p-6 shadow-[0_30px_80px_rgba(0,0,0,.55)]">
       <div class="flex items-start justify-between gap-4">
@@ -735,27 +471,9 @@
         </button>
       </div>
 
-      <div class="mt-6 grid md:grid-cols-2 gap-4">
-        <div class="panel-strong border soft-line rounded-xl p-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-luxury text-sm text-white">RSVP (Local)</h3>
-            <button id="exportRsvp" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition">Export CSV</button>
-          </div>
-          <div id="rsvpLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
-        </div>
-
-        <div class="panel-strong border soft-line rounded-xl p-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-luxury text-sm text-white">Guestbook (Local)</h3>
-            <button id="exportGuestbook" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition">Export CSV</button>
-          </div>
-          <div id="guestbookLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
-        </div>
-      </div>
-
       <div class="mt-6 panel-strong border soft-line rounded-xl p-4">
         <h3 class="font-luxury text-sm text-white">Admin Unlock</h3>
-        <p class="text-[11px]" style="color: var(--muted);">Enter admin code to enable exports and view entries.</p>
+        <p class="text-[11px]" style="color: var(--muted);">Enter admin code to enable exports.</p>
 
         <div class="mt-3 flex gap-3 flex-wrap items-center">
           <input id="adminCode" placeholder="Admin code"
@@ -766,6 +484,24 @@
           <span id="adminState" class="text-[11px]" style="color: var(--muted);">Locked</span>
         </div>
       </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-4">
+        <div class="panel-strong border soft-line rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-luxury text-sm text-white">RSVP (Local)</h3>
+            <button id="exportRsvp" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition" disabled>Export CSV</button>
+          </div>
+          <div id="rsvpLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
+        </div>
+
+        <div class="panel-strong border soft-line rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-luxury text-sm text-white">Guestbook (Local)</h3>
+            <button id="exportGuestbook" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition" disabled>Export CSV</button>
+          </div>
+          <div id="guestbookLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -774,125 +510,249 @@
        CONFIG (EDIT ONLY THIS)
     ========================== */
     const CONFIG = {
-      // Security
-      accessPin: "2580",     // VIP PIN (client-side gate)
-      adminPin: "9999",      // Admin exports (client-side)
+      accessPin: "2580",
+      adminPin: "9999",
 
-      // Theme: vip | ivory | floral | boho
       theme: "vip",
-
-      // Entrance
       monogram: "S",
+
       entranceTitle: "PRIVATE EVENT",
       entranceSubtitle: "Click to Reveal Invitation",
       entranceButton: "OPEN ENVELOPE",
 
-      // Hero
       heroTop: "Join us for the 30th Birthday of",
       celebrantName: "SOPHIA",
       heroQuote: "\"A Night of Elegance & Memories\"",
 
-      // Event datetime (include timezone offset)
       eventStartISO: "2026-10-25T19:00:00-04:00",
       eventEndISO:   "2026-10-26T01:00:00-04:00",
 
-      whenDateText: "Saturday, October 25th, 2026",
-      whenTimeText: "19:00 - Late",
-
-      // Venue
-      venueName: "The Grand Ballroom",
-      venueAddress: "123 Luxury Ave, Manhattan, NY",
       venueQuery: "The Grand Ballroom, 123 Luxury Ave, Manhattan, NY",
-
-      // Dress code / registry
-      dressCode: "Black Tie / Formal",
-      paletteNote: "Please stick to the palette.",
-      registryNote: "Your presence is the greatest gift.",
-      registryUrl: "#",
-
-      // Guest guide
-      parkingInfo: "Valet parking is available at the entrance. Please arrive 10–15 minutes early for a smooth entry.",
-      contactInfo: "For any questions: <span class='text-white'>+1 (000) 000-0000</span> (Host).",
-      policyInfo: "Kindly RSVP by the deadline. Venue is adults-only unless stated otherwise. Please respect the dress code.",
-
-      // RSVP
-      rsvpDeadlineText: "By October 10th",
-      rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
-      successText: "See you on the dance floor.",
-
-      // Guestbook (Standard endpoint)
-      guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
-
-      // Media (LOCAL)
-      enableBgVideo: true,
-      bgVideoSrc: "assets/bg.mp4",
-      momentVideoSrc: "assets/moment.mp4",
-      musicSrc: "assets/music.mp3",
-
-      // Gallery images (local recommended)
-      galleryImages: [
-        "assets/gallery/1.jpg",
-        "assets/gallery/2.jpg",
-        "assets/gallery/3.jpg",
-        "assets/gallery/4.jpg",
-      ],
-
-      // Photo upload link (Drive/Dropbox)
-      photoUploadUrl: "https://drive.google.com/",
-
-      // Map embed
       mapEmbedUrl: "https://www.google.com/maps?q=" + encodeURIComponent("The Grand Ballroom, 123 Luxury Ave, Manhattan, NY") + "&output=embed",
 
-      // Timeline
-      timeline: [
-        { time: "19:00", title: "Welcome Cocktails", note: "Champagne & Jazz" },
-        { time: "20:00", title: "Gala Dinner", note: "Three-course meal" },
-        { time: "22:00", title: "Cake & Toast", note: "Let the party begin!" },
-      ],
+      rsvpDeadlineText: "By October 10th",
+      rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",  // <- gerçek endpoint
+      guestbookEndpoint: "https://formspree.io/f/XXXXXXXX", // <- gerçek endpoint
 
-      // Analytics (optional): paste Cloudflare Web Analytics snippet here if desired
       enableAnalytics: false,
       analyticsEmbedHtml: ""
     };
 
     const THEMES = {
-      vip:   { bg:"#050505", panel:"rgba(255,255,255,.05)", line:"rgba(255,255,255,.10)", accent:"#D4AF37", accent2:"#8A7036", texture: true },
-      ivory: { bg:"#f6f0e7", panel:"rgba(255,255,255,.75)", line:"rgba(0,0,0,.10)",     accent:"#1a1a1a", accent2:"#6b6b6b", texture: false },
-      floral:{ bg:"#fbf7f2", panel:"rgba(255,255,255,.78)", line:"rgba(0,0,0,.10)",     accent:"#B06B7A", accent2:"#7A4A56", texture: false },
-      boho:  { bg:"#1a1713", panel:"rgba(255,255,255,.06)", line:"rgba(255,255,255,.10)", accent:"#C99B6C", accent2:"#8F6B49", texture: true }
+      vip:   { bg:"#050505", panel:"rgba(255,255,255,.05)", line:"rgba(255,255,255,.10)", accent:"#D4AF37", accent2:"#8A7036", texture:true },
+      ivory: { bg:"#f6f0e7", panel:"rgba(255,255,255,.75)", line:"rgba(0,0,0,.10)",     accent:"#1a1a1a", accent2:"#6b6b6b", texture:false },
+      floral:{ bg:"#fbf7f2", panel:"rgba(255,255,255,.78)", line:"rgba(0,0,0,.10)",     accent:"#B06B7A", accent2:"#7A4A56", texture:false },
+      boho:  { bg:"#1a1713", panel:"rgba(255,255,255,.06)", line:"rgba(255,255,255,.10)", accent:"#C99B6C", accent2:"#8F6B49", texture:true }
     };
 
-    /* =========================
-       helpers
-    ========================== */
     const $ = (id) => document.getElementById(id);
-    const LS = {
-      rsvpKey: "vipInvite_rsvp",
-      guestbookKey: "vipInvite_guestbook",
-      unlockKey: "vipInvite_unlocked"
-    };
 
     function setRootVar(name, val){ document.documentElement.style.setProperty(name, val); }
     function safeSetText(id, text){ const el = $(id); if(el) el.textContent = text; }
-    function safeSetHTML(id, html){ const el = $(id); if(el) el.innerHTML = html; }
     function fmt2(n){ return String(n).padStart(2,'0'); }
 
-    function buildGoogleMapsLink(query){ return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query); }
-    function buildAppleMapsLink(query){ return "https://maps.apple.com/?q=" + encodeURIComponent(query); }
-    function buildWazeLink(query){ return "https://waze.com/ul?q=" + encodeURIComponent(query) + "&navigate=yes"; }
-
-    function escapeICSText(s){
-      return String(s)
-        .replace(/\\/g,"\\\\")
-        .replace(/\n/g,"\\n")
-        .replace(/,/g,"\\,")
-        .replace(/;/g,"\\;");
+    function applyTheme(themeKey){
+      const t = THEMES[themeKey] || THEMES.vip;
+      setRootVar("--bg", t.bg);
+      setRootVar("--panel", t.panel);
+      setRootVar("--line", t.line);
+      setRootVar("--accent", t.accent);
+      setRootVar("--accent2", t.accent2);
+      document.querySelector(".texture").style.display = t.texture ? "block" : "none";
+      document.body.style.backgroundColor = t.bg;
     }
 
-    function downloadICS({title, startISO, endISO, location, description}){
-      const dtStamp = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + "Z";
-      const start = new Date(startISO);
-      const end = new Date(endISO);
+    applyTheme(CONFIG.theme);
+
+    document.querySelectorAll(".themeBtn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const k = btn.getAttribute("data-theme");
+        applyTheme(k);
+      });
+    });
+
+    safeSetText("pinMonogram", CONFIG.monogram);
+    safeSetText("monogram", CONFIG.monogram);
+    safeSetText("privateLabel", CONFIG.entranceTitle);
+    safeSetText("clickLabel", CONFIG.entranceSubtitle);
+    safeSetText("open-btn", CONFIG.entranceButton);
+
+    safeSetText("heroTop", CONFIG.heroTop);
+    safeSetText("heroName", CONFIG.celebrantName);
+    safeSetText("heroQuote", CONFIG.heroQuote);
+
+    safeSetText("rsvpDeadline", CONFIG.rsvpDeadlineText);
+
+    /* ===========
+       PIN FLOW
+       - PIN açıkken entrance kesinlikle gizli (screenshot bug fix)
+    =========== */
+    const pinScreen = $("pin-screen");
+    const entrance = $("entrance-screen");
+
+    const pinInput = $("pinInput");
+    const pinSubmit = $("pinSubmit");
+    const pinError = $("pinError");
+    const pinBox = $("pinBox");
+    const rememberDevice = $("rememberDevice");
+
+    function showPinGate(){
+      pinScreen.classList.add("active");
+      entrance.classList.remove("show");  // alttaki içerik görünmesin
+      setTimeout(()=>pinInput.focus(), 120);
+    }
+    function showEntrance(){
+      entrance.classList.add("show");
+    }
+    function hidePinGate(){
+      pinScreen.classList.remove("active");
+    }
+
+    // session unlock
+    const unlockKey = "vipInvite_unlocked";
+    const unlocked = sessionStorage.getItem(unlockKey) === "1";
+    if(!unlocked){
+      showPinGate();
+    } else {
+      showEntrance();
+    }
+
+    function tryUnlock(){
+      const v = (pinInput.value || "").trim();
+      if(v === CONFIG.accessPin){
+        pinError.classList.add("hidden");
+        pinBox.classList.remove("shake");
+        hidePinGate();
+        showEntrance();
+        if(rememberDevice.checked){
+          sessionStorage.setItem(unlockKey, "1");
+        }
+      } else {
+        pinError.classList.remove("hidden");
+        pinBox.classList.remove("shake");
+        void pinBox.offsetWidth;
+        pinBox.classList.add("shake");
+      }
+    }
+    pinSubmit.addEventListener("click", tryUnlock);
+    pinInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryUnlock(); });
+
+    /* ===========
+       Entrance open + music
+    =========== */
+    const openBtn = $("open-btn");
+    const musicBtn = $("music-btn");
+    const musicEl = $("bgMusic");
+    let musicPlaying = false;
+
+    function setMusicUI(on){
+      musicBtn.style.opacity = on ? "1" : "0.5";
+      musicBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    setMusicUI(false);
+
+    openBtn.addEventListener("click", () => {
+      entrance.classList.add("envelope-hidden");
+
+      confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#D4AF37', '#ffffff'] });
+
+      musicEl.play()
+        .then(() => { musicPlaying = true; setMusicUI(true); })
+        .catch(() => { musicPlaying = false; setMusicUI(false); });
+    });
+
+    musicBtn.addEventListener("click", () => {
+      if(musicPlaying){
+        musicEl.pause(); musicPlaying = false; setMusicUI(false);
+      } else {
+        musicEl.play().then(()=>{ musicPlaying=true; setMusicUI(true); }).catch(()=>{ musicPlaying=false; setMusicUI(false); });
+      }
+    });
+
+    // audio source error fallback
+    const musicSource = $("musicSource");
+    musicSource.addEventListener("error", ()=>{ musicBtn.style.display="none"; });
+
+    /* ===========
+       Share
+    =========== */
+    async function shareLink(){
+      const link = location.href;
+      try{
+        if(navigator.share){
+          await navigator.share({ title: document.title, text: "VIP Invite", url: link });
+        } else {
+          await navigator.clipboard.writeText(link);
+          return true;
+        }
+      } catch {}
+      return false;
+    }
+    $("share-btn").addEventListener("click", async ()=>{
+      const ok = await shareLink();
+      if(ok){
+        $("share-btn").innerHTML = "<i class='fa-solid fa-check'></i> Copied";
+        setTimeout(()=> $("share-btn").innerHTML = "<i class='fa-solid fa-link'></i> Share Link", 1400);
+      }
+    });
+    $("successShare")?.addEventListener("click", shareLink);
+    $("a2hsClose").addEventListener("click", ()=> $("a2hs").style.display="none");
+
+    /* ===========
+       QR
+    =========== */
+    function genQR(elId, text){
+      const el = $(elId);
+      if(!el) return;
+      el.innerHTML = "";
+      if(window.QRCode){
+        QRCode.toCanvas(text, { width: 120, margin: 1 }, (err, canvas) => {
+          if(err){ el.innerHTML = "<span class='text-gray-600 text-xs'>QR error</span>"; return; }
+          canvas.style.borderRadius = "10px";
+          el.appendChild(canvas);
+        });
+      } else {
+        el.innerHTML = "<span class='text-gray-600 text-xs'>QR unavailable</span>";
+      }
+    }
+
+    const pageLink = location.href;
+    genQR("qr-rsvp", pageLink.split("#")[0] + "#rsvp");
+    genQR("qr-map", pageLink.split("#")[0] + "#map");
+    genQR("qr-share", pageLink);
+
+    /* ===========
+       Countdown
+    =========== */
+    const targetDate = new Date(CONFIG.eventStartISO).getTime();
+    function tick(){
+      const now = Date.now();
+      const dist = targetDate - now;
+      if(dist <= 0){ $("days").innerText="00"; $("hours").innerText="00"; $("minutes").innerText="00"; $("seconds").innerText="00"; return; }
+      const days = Math.floor(dist / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((dist % (1000 * 60)) / 1000);
+
+      $("days").innerText = fmt2(days);
+      $("hours").innerText = fmt2(hours);
+      $("minutes").innerText = fmt2(minutes);
+      $("seconds").innerText = fmt2(seconds);
+    }
+    tick();
+    setInterval(tick, 1000);
+    $("tzHint").textContent = "Time shown in your local timezone. (" + Intl.DateTimeFormat().resolvedOptions().timeZone + ")";
+
+    /* ===========
+       Calendar buttons
+    =========== */
+    function escapeICSText(s){
+      return String(s).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;");
+    }
+    function downloadICS(){
+      const title = `${CONFIG.celebrantName} · VIP Celebration`;
+      const start = new Date(CONFIG.eventStartISO);
+      const end = new Date(CONFIG.eventEndISO);
       const toICS = (d) => {
         const yyyy = d.getUTCFullYear();
         const mm = fmt2(d.getUTCMonth()+1);
@@ -911,28 +771,24 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:${uid}
-DTSTAMP:${dtStamp}
 DTSTART:${toICS(start)}
 DTEND:${toICS(end)}
 SUMMARY:${escapeICSText(title)}
-LOCATION:${escapeICSText(location)}
-DESCRIPTION:${escapeICSText(description || "")}
+LOCATION:${escapeICSText(CONFIG.venueQuery)}
 END:VEVENT
 END:VCALENDAR`;
-
       const blob = new Blob([ics], {type:"text/calendar;charset=utf-8"});
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = `${title.replace(/[^\w]+/g,'_')}.ics`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+      a.download = "event.ics";
+      document.body.appendChild(a); a.click(); a.remove();
       setTimeout(()=>URL.revokeObjectURL(a.href), 1200);
     }
 
-    function buildGoogleCalendarLink({title, startISO, endISO, location, details}){
-      const start = new Date(startISO);
-      const end = new Date(endISO);
+    function buildGoogleCalendarLink(){
+      const title = `${CONFIG.celebrantName} · VIP Celebration`;
+      const start = new Date(CONFIG.eventStartISO);
+      const end = new Date(CONFIG.eventEndISO);
       const toGCal = (d) => {
         const yyyy = d.getUTCFullYear();
         const mm = fmt2(d.getUTCMonth()+1);
@@ -947,414 +803,62 @@ END:VCALENDAR`;
       url.searchParams.set("action","TEMPLATE");
       url.searchParams.set("text", title);
       url.searchParams.set("dates", dates);
-      url.searchParams.set("location", location);
-      url.searchParams.set("details", details || "");
+      url.searchParams.set("location", CONFIG.venueQuery);
       return url.toString();
     }
 
-    function genQR(elId, text){
-      const el = $(elId);
-      if(!el) return;
-      el.innerHTML = "";
-      if(window.QRCode){
-        QRCode.toCanvas(text, { width: 120, margin: 1 }, (err, canvas) => {
-          if(err){
-            el.innerHTML = "<span class='text-gray-600 text-xs'>QR error</span>";
-            return;
-          }
-          canvas.style.borderRadius = "10px";
-          el.appendChild(canvas);
-        });
-      } else {
-        el.innerHTML = "<span class='text-gray-600 text-xs'>QR unavailable</span>";
-      }
-    }
-
-    function loadJSON(key, fallback){
-      try{ return JSON.parse(localStorage.getItem(key) || "null") ?? fallback; }catch{ return fallback; }
-    }
-    function saveJSON(key, data){
-      localStorage.setItem(key, JSON.stringify(data));
-    }
-
-    function toCSV(rows){
-      const esc = (v) => `"${String(v ?? "").replace(/"/g,'""')}"`;
-      const headers = Object.keys(rows[0] || {});
-      const lines = [
-        headers.map(esc).join(","),
-        ...rows.map(r => headers.map(h => esc(r[h])).join(","))
-      ];
-      return lines.join("\n");
-    }
-    function downloadText(filename, text, type="text/plain;charset=utf-8"){
-      const blob = new Blob([text], {type});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=>URL.revokeObjectURL(a.href), 1200);
-    }
-
-    /* =========================
-       Theme apply
-    ========================== */
-    function applyTheme(themeKey){
-      const t = THEMES[themeKey] || THEMES.vip;
-      setRootVar("--bg", t.bg);
-      setRootVar("--panel", t.panel);
-      setRootVar("--line", t.line);
-      setRootVar("--accent", t.accent);
-      setRootVar("--accent2", t.accent2);
-
-      // adjust texture visibility
-      document.querySelector(".texture").style.display = t.texture ? "block" : "none";
-
-      // small contrast fix for light themes
-      if(themeKey === "ivory" || themeKey === "floral"){
-        document.body.style.color = "rgba(0,0,0,.86)";
-        document.body.style.backgroundColor = t.bg;
-      } else {
-        document.body.style.color = "rgba(255,255,255,.92)";
-        document.body.style.backgroundColor = t.bg;
-      }
-    }
-
-    /* =========================
-       Apply CONFIG to UI
-    ========================== */
-    applyTheme(CONFIG.theme);
-
-    // Entrance theme selector (preview only)
-    document.querySelectorAll(".themeBtn").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const k = btn.getAttribute("data-theme");
-        applyTheme(k);
-      });
-    });
-
-    safeSetText("monogram", CONFIG.monogram);
-    safeSetText("privateLabel", CONFIG.entranceTitle);
-    safeSetText("clickLabel", CONFIG.entranceSubtitle);
-    safeSetText("open-btn", CONFIG.entranceButton);
-
-    safeSetText("pinMonogram", CONFIG.monogram);
-    safeSetText("heroTop", CONFIG.heroTop);
-    safeSetText("heroName", CONFIG.celebrantName);
-    safeSetText("heroQuote", CONFIG.heroQuote);
-
-    safeSetText("whenDate", CONFIG.whenDateText);
-    safeSetText("whenTime", CONFIG.whenTimeText);
-
-    safeSetText("whereName", CONFIG.venueName);
-    safeSetText("whereAddress", CONFIG.venueAddress);
-
-    safeSetText("dressCode", CONFIG.dressCode);
-    safeSetText("paletteNote", CONFIG.paletteNote);
-    safeSetText("registryNote", CONFIG.registryNote);
-    $("registryLink").href = CONFIG.registryUrl || "#";
-
-    safeSetHTML("parkingInfo", CONFIG.parkingInfo);
-    safeSetHTML("contactInfo", CONFIG.contactInfo);
-    safeSetHTML("policyInfo", CONFIG.policyInfo);
-
-    safeSetText("rsvpDeadline", CONFIG.rsvpDeadlineText);
-    safeSetText("successText", CONFIG.successText);
-
-    $("rsvpForm").action = CONFIG.rsvpEndpoint;
-    $("guestbookForm").action = CONFIG.guestbookEndpoint;
-
-    $("uploadLink").href = CONFIG.photoUploadUrl || "#";
-
-    // Media sources (local)
-    const musicEl = $("bgMusic");
-    const musicSource = musicEl.querySelector("source");
-    musicSource.src = CONFIG.musicSrc;
-    musicEl.load();
-
-    const bgVideo = $("bgVideo");
-    if(CONFIG.enableBgVideo && CONFIG.bgVideoSrc){
-      bgVideo.querySelector("source").src = CONFIG.bgVideoSrc;
-      bgVideo.load();
-      bgVideo.play().catch(()=>{ /* ignore */ });
-      bgVideo.addEventListener("error", ()=>{ bgVideo.style.display="none"; });
-    } else {
-      bgVideo.style.display = "none";
-    }
-
-    const momentWrap = $("momentWrap");
-    const momentVideo = $("momentVideo");
-    if(CONFIG.momentVideoSrc){
-      momentVideo.querySelector("source").src = CONFIG.momentVideoSrc;
-      momentVideo.load();
-      momentVideo.addEventListener("error", ()=>{ momentWrap.style.display="none"; });
-    } else {
-      momentWrap.style.display = "none";
-    }
-
-    // Hide music button if missing
-    musicEl.addEventListener("error", ()=>{
-      $("music-btn").style.display = "none";
-    });
-
-    // Map links
-    const gLink = buildGoogleMapsLink(CONFIG.venueQuery);
-    const aLink = buildAppleMapsLink(CONFIG.venueQuery);
-    const wLink = buildWazeLink(CONFIG.venueQuery);
-
-    $("map-google").href = gLink;
-    $("map-apple").href = aLink;
-    $("map-waze").href = wLink;
-    $("map-google-2").href = gLink;
-    $("map-apple-2").href = aLink;
-    $("map-waze-2").href = wLink;
-
-    // Map embed
-    $("mapFrame").src = CONFIG.mapEmbedUrl;
-
-    // Calendar links
-    const calTitle = `${CONFIG.celebrantName} · VIP Celebration`;
-    const gcal = buildGoogleCalendarLink({
-      title: calTitle,
-      startISO: CONFIG.eventStartISO,
-      endISO: CONFIG.eventEndISO,
-      location: `${CONFIG.venueName} — ${CONFIG.venueAddress}`,
-      details: "Invitation: " + (location.href || "")
-    });
+    $("ics-btn").addEventListener("click", downloadICS);
+    $("successIcs")?.addEventListener("click", downloadICS);
+    const gcal = buildGoogleCalendarLink();
     $("gcal-link").href = gcal;
     $("successGcal").href = gcal;
-    $("successDirections").href = gLink;
 
-    const icsHandler = () => downloadICS({
-      title: calTitle,
-      startISO: CONFIG.eventStartISO,
-      endISO: CONFIG.eventEndISO,
-      location: `${CONFIG.venueName} — ${CONFIG.venueAddress}`,
-      description: `Dress Code: ${CONFIG.dressCode}\n\nDirections: ${gLink}\n\nRSVP: ${location.origin + location.pathname}#rsvp`
-    });
+    /* ===========
+       Map + fallback
+    =========== */
+    function buildGoogleMapsLink(q){ return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q); }
+    function buildAppleMapsLink(q){ return "https://maps.apple.com/?q=" + encodeURIComponent(q); }
+    function buildWazeLink(q){ return "https://waze.com/ul?q=" + encodeURIComponent(q) + "&navigate=yes"; }
 
-    $("ics-btn").addEventListener("click", icsHandler);
-    $("successIcs").addEventListener("click", icsHandler);
+    $("map-google").href = buildGoogleMapsLink(CONFIG.venueQuery);
+    $("map-apple").href = buildAppleMapsLink(CONFIG.venueQuery);
+    $("map-waze").href = buildWazeLink(CONFIG.venueQuery);
 
-    // Timeline render
-    const timeline = $("timeline");
-    timeline.innerHTML = "";
-    CONFIG.timeline.forEach(item => {
-      const block = document.createElement("div");
-      block.className = "mb-12 ml-8 relative";
-      block.innerHTML = `
-        <div class="absolute -left-[41px] w-5 h-5 rounded-full border-4 shadow-[0_0_10px_rgba(0,0,0,.2)]"
-             style="background: var(--accent); border-color: var(--bg); box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 75%, transparent);"></div>
-        <span class="accent-text font-bold text-sm tracking-widest">${item.time}</span>
-        <h4 class="font-luxury text-xl mt-1" style="color: var(--text);">${item.title}</h4>
-        <p class="text-gray-500 text-sm italic">${item.note || ""}</p>
-      `;
-      timeline.appendChild(block);
-    });
+    const mapFrame = $("mapFrame");
+    mapFrame.src = CONFIG.mapEmbedUrl;
 
-    // Gallery render
-    const galleryRow = $("galleryRow");
-    galleryRow.innerHTML = "";
-    CONFIG.galleryImages.forEach(src => {
-      const card = document.createElement("div");
-      card.className = "flex-shrink-0 snap-center w-64 aspect-[3/4] panel p-2 border soft-line rounded-lg";
-      card.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory"
-                           onerror="this.closest('.flex-shrink-0').style.display='none'">`;
-      galleryRow.appendChild(card);
-    });
-
-    /* =========================
-       Analytics optional
-    ========================== */
-    if(CONFIG.enableAnalytics && CONFIG.analyticsEmbedHtml){
-      $("analyticsMount").innerHTML = CONFIG.analyticsEmbedHtml;
-    }
-
-    /* =========================
-       PIN Gate logic
-    ========================== */
-    const pinScreen = $("pin-screen");
-    const pinInput = $("pinInput");
-    const pinSubmit = $("pinSubmit");
-    const pinError = $("pinError");
-    const pinBox = $("pinBox");
-    const rememberDevice = $("rememberDevice");
-
-    function showPinGate(){
-      pinScreen.classList.add("active");
-      setTimeout(()=>pinInput.focus(), 120);
-    }
-    function hidePinGate(){
-      pinScreen.classList.remove("active");
-    }
-
-    // Use session unlock if remembered
-    const unlocked = sessionStorage.getItem(LS.unlockKey) === "1";
-    if(!unlocked){
-      showPinGate();
-    }
-
-    function tryUnlock(){
-      const v = (pinInput.value || "").trim();
-      if(v === CONFIG.accessPin){
-        pinError.classList.add("hidden");
-        pinBox.classList.remove("shake");
-        hidePinGate();
-        if(rememberDevice.checked){
-          sessionStorage.setItem(LS.unlockKey, "1");
-        }
-      } else {
-        pinError.classList.remove("hidden");
-        pinBox.classList.remove("shake");
-        void pinBox.offsetWidth;
-        pinBox.classList.add("shake");
+    // iframe load başarısızsa fallback göster
+    let mapLoaded = false;
+    mapFrame.addEventListener("load", ()=>{ mapLoaded = true; });
+    setTimeout(()=>{
+      if(!mapLoaded){
+        $("mapFallback").classList.remove("hidden");
+        mapFrame.style.display = "none";
       }
-    }
-    pinSubmit.addEventListener("click", tryUnlock);
-    pinInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryUnlock(); });
+    }, 3000);
 
-    /* =========================
-       Entrance + music start
-    ========================== */
-    const openBtn = $("open-btn");
-    const entrance = $("entrance-screen");
-    const musicBtn = $("music-btn");
-
-    let musicPlaying = false;
-    function setMusicUI(on){
-      musicBtn.style.opacity = on ? "1" : "0.5";
-      musicBtn.setAttribute("aria-pressed", on ? "true" : "false");
-      musicBtn.title = on ? "Music: On" : "Music: Off";
-    }
-    setMusicUI(false);
-
-    openBtn.addEventListener("click", () => {
-      entrance.classList.add("envelope-hidden");
-
-      confetti({
-        particleCount: 160, spread: 70, origin: { y: 0.6 },
-        colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
-      });
-
-      // Start music (user gesture)
-      musicEl.play()
-        .then(() => { musicPlaying = true; setMusicUI(true); })
-        .catch(() => { musicPlaying = false; setMusicUI(false); });
-    });
-
-    musicBtn.addEventListener("click", () => {
-      if(musicPlaying){
-        musicEl.pause();
-        musicPlaying = false;
-        setMusicUI(false);
-      } else {
-        musicEl.play()
-          .then(() => { musicPlaying = true; setMusicUI(true); })
-          .catch(() => { musicPlaying = false; setMusicUI(false); });
-      }
-    });
-
-    /* =========================
-       Share buttons
-    ========================== */
-    async function shareLink(){
-      const link = location.href;
-      try{
-        if(navigator.share){
-          await navigator.share({ title: calTitle, text: "VIP Invite", url: link });
-        } else {
-          await navigator.clipboard.writeText(link);
-          return true;
-        }
-      } catch { /* ignore */ }
-      return false;
-    }
-
-    $("share-btn").addEventListener("click", async ()=>{
-      const ok = await shareLink();
-      if(ok){
-        $("share-btn").innerHTML = "<i class='fa-solid fa-check mr-2'></i> Copied";
-        setTimeout(()=> $("share-btn").innerHTML = "<i class='fa-solid fa-link mr-2'></i> Share Link", 1400);
-      }
-    });
-    $("successShare").addEventListener("click", shareLink);
-
-    /* =========================
-       A2HS banner close
-    ========================== */
-    $("a2hsClose").addEventListener("click", ()=> $("a2hs").style.display="none");
-
-    /* =========================
-       Reveal on scroll
-    ========================== */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    /* =========================
-       Countdown + status switch
-    ========================== */
-    const targetDate = new Date(CONFIG.eventStartISO).getTime();
-    const endDate = new Date(CONFIG.eventEndISO).getTime();
-
-    function setStatus(text, iconClass){
-      const badge = $("eventStatusBadge");
-      $("eventStatusText").textContent = text;
-      badge.querySelector("i").className = iconClass;
-    }
-
-    function tick(){
-      const now = Date.now();
-      const dist = targetDate - now;
-
-      if(now < targetDate){
-        setStatus("Counting down", "fa-regular fa-clock");
-      } else if(now >= targetDate && now <= endDate){
-        setStatus("Tonight · Event in progress", "fa-solid fa-bolt");
-      } else {
-        setStatus("Thank you for coming", "fa-regular fa-heart");
-      }
-
-      if(dist <= 0){
-        $("days").innerText = "00"; $("hours").innerText = "00"; $("minutes").innerText = "00"; $("seconds").innerText = "00";
-        return;
-      }
-
-      const days = Math.floor(dist / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((dist % (1000 * 60)) / 1000);
-
-      $("days").innerText = String(days).padStart(2,"0");
-      $("hours").innerText = String(hours).padStart(2,"0");
-      $("minutes").innerText = String(minutes).padStart(2,"0");
-      $("seconds").innerText = String(seconds).padStart(2,"0");
-    }
-    tick();
-    setInterval(tick, 1000);
-    $("tzHint").textContent = "Time shown in your local timezone. (" + Intl.DateTimeFormat().resolvedOptions().timeZone + ")";
-
-    /* =========================
-       QR generation
-    ========================== */
-    const pageLink = location.href;
-    const rsvpLink = pageLink.split("#")[0] + "#rsvp";
-    const mapLink = gLink;
-
-    genQR("qr-rsvp", rsvpLink);
-    genQR("qr-map", mapLink);
-    genQR("qr-share", pageLink);
-
-    /* =========================
-       RSVP logic (+ local save)
-    ========================== */
+    /* ===========
+       RSVP endpoint guard (iade riskini azaltır)
+    =========== */
     const rsvpForm = $("rsvpForm");
+    const rsvpDisabled = $("rsvpDisabled");
     const submitBtn = $("submit-btn");
     const successMsg = $("success-msg");
     const extraFields = $("extra-fields");
     const radios = document.querySelectorAll('input[name="attendance"]');
+
+    function endpointLooksValid(url){
+      return typeof url === "string" && url.startsWith("https://") && !url.includes("XXXXXXXX");
+    }
+
+    if(endpointLooksValid(CONFIG.rsvpEndpoint)){
+      rsvpForm.action = CONFIG.rsvpEndpoint;
+      rsvpDisabled.classList.add("hidden");
+      rsvpForm.classList.remove("hidden");
+    } else {
+      rsvpForm.classList.add("hidden");
+      rsvpDisabled.classList.remove("hidden");
+    }
 
     radios.forEach(radio => {
       radio.addEventListener('change', (e) => {
@@ -1367,40 +871,17 @@ END:VCALENDAR`;
       submitBtn.innerText = "SENDING...";
       submitBtn.disabled = true;
 
-      // local save snapshot
-      const fd = new FormData(rsvpForm);
-      const localEntry = {
-        ts: new Date().toISOString(),
-        name: fd.get("name") || "",
-        attendance: fd.get("attendance") || "",
-        adults: fd.get("adults") || "",
-        kids: fd.get("kids") || "",
-        dietary: fd.get("dietary") || "",
-        allergies: fd.get("allergies") || "",
-        song: fd.get("song_request") || "",
-        note: fd.get("note") || ""
-      };
-
       try {
         const res = await fetch(rsvpForm.action, {
           method: 'POST',
-          body: fd,
+          body: new FormData(rsvpForm),
           headers: { 'Accept': 'application/json' }
         });
 
         if(res.ok) {
-          // store locally for admin export
-          const list = loadJSON(LS.rsvpKey, []);
-          list.unshift(localEntry);
-          saveJSON(LS.rsvpKey, list);
-
           rsvpForm.classList.add('hidden');
           successMsg.classList.remove('hidden');
-
-          confetti({
-            particleCount: 120, spread: 60, origin: { y: 0.75 },
-            colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
-          });
+          confetti({ particleCount: 100, spread: 60, origin: { y: 0.75 }, colors: ['#D4AF37', '#ffffff'] });
         } else {
           alert("Error. Try again.");
           submitBtn.innerText = "CONFIRM";
@@ -1413,170 +894,27 @@ END:VCALENDAR`;
       }
     });
 
-    /* =========================
-       Guestbook logic (+ local preview)
-    ========================== */
-    const guestbookForm = $("guestbookForm");
-    const guestbookBtn = $("guestbookBtn");
-    const guestbookOk = $("guestbookOk");
-    const guestbookList = $("guestbookList");
-
-    function renderGuestbook(){
-      const entries = loadJSON(LS.guestbookKey, []);
-      guestbookList.innerHTML = "";
-      if(entries.length === 0){
-        guestbookList.innerHTML = `<div class="text-[12px] text-gray-500">No messages yet.</div>`;
-        return;
-      }
-      entries.slice(0, 10).forEach(m=>{
-        const card = document.createElement("div");
-        card.className = "panel-strong border soft-line rounded-xl p-4";
-        card.innerHTML = `
-          <div class="flex items-center justify-between gap-3">
-            <div class="text-[12px] text-white/90"><span class="accent-text font-semibold">${escapeHtml(m.name)}</span> <span class="text-white/50">${m.city ? "· " + escapeHtml(m.city) : ""}</span></div>
-            <div class="text-[10px] text-white/40">${new Date(m.ts).toLocaleString()}</div>
-          </div>
-          <div class="mt-2 text-[13px] text-white/75 leading-relaxed">${escapeHtml(m.message)}</div>
-        `;
-        guestbookList.appendChild(card);
-      });
-    }
-
-    function escapeHtml(s){
-      return String(s ?? "").replace(/[&<>"']/g, (c)=>({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-      }[c]));
-    }
-
-    renderGuestbook();
-
-    guestbookForm.addEventListener("submit", async (e)=>{
-      e.preventDefault();
-      guestbookBtn.innerText = "SENDING...";
-      guestbookBtn.disabled = true;
-
-      const fd = new FormData(guestbookForm);
-      const localMsg = {
-        ts: new Date().toISOString(),
-        name: fd.get("guest_name") || "",
-        city: fd.get("guest_city") || "",
-        message: fd.get("guest_message") || ""
-      };
-
-      try{
-        const res = await fetch(guestbookForm.action, {
-          method:"POST",
-          body: fd,
-          headers:{ "Accept":"application/json" }
-        });
-
-        if(res.ok){
-          // local preview store
-          const list = loadJSON(LS.guestbookKey, []);
-          list.unshift(localMsg);
-          saveJSON(LS.guestbookKey, list);
-
-          guestbookForm.reset();
-          guestbookOk.classList.remove("hidden");
-          setTimeout(()=>guestbookOk.classList.add("hidden"), 2200);
-
-          renderGuestbook();
-
-          confetti({
-            particleCount: 80, spread: 55, origin: { y: 0.75 },
-            colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
-          });
-
-        } else {
-          alert("Error. Try again.");
-        }
-      } catch {
-        alert("Connection Error");
-      } finally {
-        guestbookBtn.innerText = "SEND MESSAGE";
-        guestbookBtn.disabled = false;
-      }
-    });
-
-    /* =========================
-       Admin modal
-    ========================== */
+    /* ===========
+       Admin panel only if ?admin=1
+    =========== */
     const adminModal = $("adminModal");
-    const openAdmin = $("openAdmin");
     const closeAdmin = $("closeAdmin");
-    const adminUnlock = $("adminUnlock");
-    const adminCode = $("adminCode");
-    const adminState = $("adminState");
-    const exportRsvp = $("exportRsvp");
-    const exportGuestbook = $("exportGuestbook");
-    const rsvpLocalList = $("rsvpLocalList");
-    const guestbookLocalList = $("guestbookLocalList");
-
-    let adminUnlocked = false;
-
-    function renderAdminLists(){
-      const rsvp = loadJSON(LS.rsvpKey, []);
-      const gb = loadJSON(LS.guestbookKey, []);
-
-      rsvpLocalList.innerHTML = rsvp.length ? "" : `<div class="text-white/40">No RSVP entries.</div>`;
-      rsvp.slice(0, 12).forEach(x=>{
-        const row = document.createElement("div");
-        row.className = "border-b border-white/10 pb-2";
-        row.innerHTML = `<div><span class="accent-text font-semibold">${escapeHtml(x.name)}</span> · <span class="text-white/60">${escapeHtml(x.attendance)}</span></div>
-                         <div class="text-white/45 text-[11px]">Adults: ${escapeHtml(x.adults)} · Kids: ${escapeHtml(x.kids)} · Dietary: ${escapeHtml(x.dietary)}</div>`;
-        rsvpLocalList.appendChild(row);
-      });
-
-      guestbookLocalList.innerHTML = gb.length ? "" : `<div class="text-white/40">No guestbook entries.</div>`;
-      gb.slice(0, 12).forEach(x=>{
-        const row = document.createElement("div");
-        row.className = "border-b border-white/10 pb-2";
-        row.innerHTML = `<div><span class="accent-text font-semibold">${escapeHtml(x.name)}</span> <span class="text-white/50">${x.city ? "· " + escapeHtml(x.city) : ""}</span></div>
-                         <div class="text-white/60 text-[11px] line-clamp-2">${escapeHtml(x.message)}</div>`;
-        guestbookLocalList.appendChild(row);
+    const params = new URLSearchParams(location.search);
+    if(params.get("admin") === "1"){
+      // open with Ctrl+Shift+A
+      window.addEventListener("keydown", (e)=>{
+        if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a"){
+          adminModal.classList.add("open");
+        }
       });
     }
 
-    function setAdminState(){
-      adminState.textContent = adminUnlocked ? "Unlocked" : "Locked";
-      adminState.style.color = adminUnlocked ? "rgba(255,255,255,.85)" : "rgba(255,255,255,.55)";
-      exportRsvp.disabled = !adminUnlocked;
-      exportGuestbook.disabled = !adminUnlocked;
-      exportRsvp.style.opacity = adminUnlocked ? "1" : "0.4";
-      exportGuestbook.style.opacity = adminUnlocked ? "1" : "0.4";
-    }
-
-    openAdmin.addEventListener("click", ()=>{
-      adminModal.classList.add("open");
-      renderAdminLists();
-      setAdminState();
-      setTimeout(()=>adminCode.focus(), 150);
-    });
     closeAdmin.addEventListener("click", ()=> adminModal.classList.remove("open"));
-    adminModal.addEventListener("click", (e)=>{ if(e.target === adminModal) adminModal.classList.remove("open"); });
 
-    adminUnlock.addEventListener("click", ()=>{
-      adminUnlocked = (adminCode.value || "").trim() === CONFIG.adminPin;
-      setAdminState();
-      if(!adminUnlocked){
-        adminState.textContent = "Wrong code";
-        adminState.style.color = "rgba(255,255,255,.75)";
-      }
-    });
-
-    exportRsvp.addEventListener("click", ()=>{
-      if(!adminUnlocked) return;
-      const rsvp = loadJSON(LS.rsvpKey, []);
-      const csv = toCSV(rsvp);
-      downloadText("rsvp_export.csv", csv, "text/csv;charset=utf-8");
-    });
-
-    exportGuestbook.addEventListener("click", ()=>{
-      if(!adminUnlocked) return;
-      const gb = loadJSON(LS.guestbookKey, []);
-      const csv = toCSV(gb);
-      downloadText("guestbook_export.csv", csv, "text/csv;charset=utf-8");
-    });
+    // Analytics
+    if(CONFIG.enableAnalytics && CONFIG.analyticsEmbedHtml){
+      $("analyticsMount").innerHTML = CONFIG.analyticsEmbedHtml;
+    }
   </script>
 </body>
 </html>
