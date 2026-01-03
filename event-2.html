@@ -36,15 +36,12 @@
       --text: rgba(255,255,255,.92);
       --accent: #D4AF37;
       --accent2: #8A7036;
-      --shadow: 0 30px 80px rgba(0,0,0,.55);
     }
 
     body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
 
     .accent-text{ color: var(--accent); }
     .accent-dim{ color: var(--accent2); }
-    .panel{ background: var(--panel); }
-    .panel-strong{ background: var(--panel2); }
     .soft-line{ border-color: var(--line); }
     .accent-border{ border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
 
@@ -58,30 +55,31 @@
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Entrance */
+    /* Entrance (PIN geçilmeden görünmez) */
     #entrance-screen {
       position: fixed; inset: 0; z-index: 110; background: #000;
-      display: none; /* PIN geçilmeden gösterme */
+      display: none;
       align-items: center; justify-content: center;
       transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
     }
     #entrance-screen.show{ display:flex; }
     .envelope-hidden { transform: translateY(-100%); }
 
-    /* PIN Gate */
+    /* ✅ PIN Gate: default görünür (JS çalışmazsa bile boş sayfa olmaz) */
     #pin-screen{
       position: fixed; inset: 0; z-index: 120;
-      display: none; align-items: center; justify-content: center;
-      /* tamamen opak -> alttaki content görünmez (screenshot bug fix) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: radial-gradient(900px 420px at 50% 10%, rgba(212,175,55,.12), rgba(0,0,0,1));
     }
-    #pin-screen.active{ display:flex; }
+    #pin-screen.hidden{ display:none; }
 
-    /* reveal */
+    /* Reveal (scroll anim) */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* subtle texture */
+    /* texture */
     .texture {
       position: fixed; inset:0; pointer-events:none; opacity:.18;
       background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
@@ -107,7 +105,7 @@
     }
     #adminModal.open{ display:flex; }
 
-    /* badge */
+    /* badges */
     .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding:10px 14px; border-radius:999px;
@@ -129,7 +127,8 @@
   ======================== -->
   <div id="pin-screen" aria-modal="true" role="dialog">
     <div class="w-full max-w-md mx-auto px-6">
-      <div class="panel border soft-line rounded-2xl p-8 shadow-[0_30px_80px_rgba(0,0,0,.55)]">
+      <div class="border soft-line rounded-2xl p-8 shadow-[0_30px_80px_rgba(0,0,0,.55)]"
+           style="background: rgba(0,0,0,.72); backdrop-filter: blur(14px);">
         <div class="text-center">
           <div class="w-20 h-20 mx-auto mb-5 rounded-full border soft-line flex items-center justify-center relative">
             <div class="absolute inset-0 rounded-full" style="background: rgba(212,175,55,.10);"></div>
@@ -151,7 +150,7 @@
           <div class="mt-3 flex items-center justify-between gap-3">
             <label class="text-xs" style="color: var(--muted);">
               <input type="checkbox" id="rememberDevice" class="mr-2 align-middle" />
-              Remember for this session
+              Remember this device
             </label>
             <button id="pinSubmit"
               class="px-5 py-2 rounded-full border soft-line text-xs hover:border-[color:var(--accent)] transition"
@@ -191,15 +190,6 @@
         class="group relative px-8 py-4 bg-transparent border accent-border text-[color:var(--accent)] font-luxury tracking-widest hover:bg-[color:var(--accent)] hover:text-black transition duration-500">
         OPEN ENVELOPE
       </button>
-
-      <div class="mt-10 flex flex-wrap justify-center gap-2">
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="vip">Dark VIP</button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="ivory">Minimal Ivory</button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="floral">Soft Floral</button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="boho">Boho Earth</button>
-      </div>
-
-      <p class="mt-3 text-[11px]" style="color: var(--muted);">Theme is adjustable per client before delivery.</p>
     </div>
   </div>
 
@@ -210,24 +200,26 @@
   ======================== -->
   <div id="main-content" class="relative min-h-screen">
 
-    <!-- LOCAL MUSIC -->
     <audio id="bgMusic" loop preload="metadata">
       <source id="musicSource" src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
     <button id="music-btn"
-      class="fixed bottom-6 right-6 z-50 w-12 h-12 panel-strong backdrop-blur border accent-border rounded-full accent-text flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:scale-110 transition"
+      class="fixed bottom-6 right-6 z-50 w-12 h-12 border accent-border rounded-full accent-text flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:scale-110 transition"
+      style="background: rgba(0,0,0,.35); backdrop-filter: blur(10px);"
       aria-label="Music" aria-pressed="false" title="Music">
       <i class="fa-solid fa-music"></i>
     </button>
 
     <button id="share-btn"
-      class="fixed bottom-6 left-6 z-50 hidden md:inline-flex items-center gap-2 px-4 py-3 panel-strong border soft-line rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition backdrop-blur">
+      class="fixed bottom-6 left-6 z-50 hidden md:inline-flex items-center gap-2 px-4 py-3 border soft-line rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
+      style="background: rgba(0,0,0,.35); backdrop-filter: blur(10px);">
       <i class="fa-solid fa-link"></i> Share Link
     </button>
 
     <div id="a2hs"
-      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block px-4 py-3 panel-strong border soft-line rounded-full text-[11px] text-white/70 backdrop-blur">
+      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block px-4 py-3 border soft-line rounded-full text-[11px] text-white/70"
+      style="background: rgba(0,0,0,.35); backdrop-filter: blur(10px);">
       Tip: On iPhone, tap <span class="accent-text font-semibold">Share</span> → <span class="accent-text font-semibold">Add to Home Screen</span>
       <button id="a2hsClose" class="ml-3 opacity-70 hover:opacity-100"><i class="fa-solid fa-xmark"></i></button>
     </div>
@@ -260,23 +252,23 @@
       <!-- QR -->
       <div class="max-w-4xl mx-auto mt-10 px-6 reveal">
         <div class="grid md:grid-cols-3 gap-4">
-          <div class="panel border soft-line rounded-xl p-4 text-center">
+          <div class="border soft-line rounded-xl p-4 text-center" style="background: rgba(255,255,255,.04);">
             <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · RSVP</div>
-            <div class="mx-auto w-[120px] h-[120px] panel-strong rounded-lg border soft-line flex items-center justify-center" id="qr-rsvp">
+            <div class="mx-auto w-[120px] h-[120px] rounded-lg border soft-line flex items-center justify-center" style="background: rgba(0,0,0,.35);" id="qr-rsvp">
               <span class="text-gray-600 text-xs">Loading…</span>
             </div>
           </div>
 
-          <div class="panel border soft-line rounded-xl p-4 text-center">
+          <div class="border soft-line rounded-xl p-4 text-center" style="background: rgba(255,255,255,.04);">
             <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · Map</div>
-            <div class="mx-auto w-[120px] h-[120px] panel-strong rounded-lg border soft-line flex items-center justify-center" id="qr-map">
+            <div class="mx-auto w-[120px] h-[120px] rounded-lg border soft-line flex items-center justify-center" style="background: rgba(0,0,0,.35);" id="qr-map">
               <span class="text-gray-600 text-xs">Loading…</span>
             </div>
           </div>
 
-          <div class="panel border soft-line rounded-xl p-4 text-center">
+          <div class="border soft-line rounded-xl p-4 text-center" style="background: rgba(255,255,255,.04);">
             <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · Share</div>
-            <div class="mx-auto w-[120px] h-[120px] panel-strong rounded-lg border soft-line flex items-center justify-center" id="qr-share">
+            <div class="mx-auto w-[120px] h-[120px] rounded-lg border soft-line flex items-center justify-center" style="background: rgba(0,0,0,.35);" id="qr-share">
               <span class="text-gray-600 text-xs">Loading…</span>
             </div>
           </div>
@@ -287,7 +279,7 @@
       </div>
     </header>
 
-    <!-- COUNTDOWN + CALENDAR -->
+    <!-- COUNTDOWN -->
     <section class="max-w-4xl mx-auto px-6 mb-16">
       <div class="grid grid-cols-4 gap-4 text-center border-y soft-line py-8 reveal">
         <div><span class="block font-luxury text-3xl md:text-5xl accent-text" id="days">00</span><span class="text-xs text-gray-500 uppercase tracking-widest">Days</span></div>
@@ -312,7 +304,7 @@
 
     <!-- MAP -->
     <section class="max-w-4xl mx-auto px-6 mb-16 reveal" id="map">
-      <div class="panel border soft-line rounded-xl overflow-hidden">
+      <div class="border soft-line rounded-xl overflow-hidden" style="background: rgba(255,255,255,.04);">
         <div class="p-6 border-b soft-line flex items-center justify-between gap-3 flex-wrap">
           <div>
             <h2 class="font-luxury text-2xl text-white">Map</h2>
@@ -341,7 +333,8 @@
 
     <!-- RSVP -->
     <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
-      <div class="relative panel border accent-border p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.45)]">
+      <div class="relative border accent-border p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.45)]"
+           style="background: rgba(255,255,255,.04);">
         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 rounded-b-full border-b accent-border" style="background: var(--bg);"></div>
 
         <div class="text-center mb-8">
@@ -349,7 +342,7 @@
           <p class="accent-dim text-sm uppercase tracking-widest" id="rsvpDeadline">By October 10th</p>
         </div>
 
-        <div id="rsvpDisabled" class="hidden text-center p-6 border soft-line rounded-2xl panel-strong">
+        <div id="rsvpDisabled" class="hidden text-center p-6 border soft-line rounded-2xl" style="background: rgba(0,0,0,.35);">
           <p class="text-sm text-white/80">RSVP is not configured yet.</p>
           <p class="text-[11px] mt-2 text-white/60">Host can enable it by adding the RSVP endpoint.</p>
         </div>
@@ -358,25 +351,6 @@
           <i class="fa-regular fa-circle-check text-5xl accent-text mb-4"></i>
           <h3 class="text-white font-luxury text-xl">Confirmed!</h3>
           <p class="text-gray-500 mt-2" id="successText">See you on the dance floor.</p>
-
-          <div class="mt-7 flex flex-wrap justify-center gap-3">
-            <button id="successIcs" class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
-              <i class="fa-regular fa-calendar mr-2"></i> Download .ics
-            </button>
-            <a id="successGcal" target="_blank" rel="noopener"
-               class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">
-              <i class="fa-brands fa-google mr-2"></i> Google Calendar
-            </a>
-            <a id="successDirections" target="_blank" rel="noopener"
-               class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">
-              <i class="fa-solid fa-location-dot mr-2"></i> Directions
-            </a>
-            <button id="successShare" class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
-              <i class="fa-solid fa-link mr-2"></i> Share
-            </button>
-          </div>
         </div>
 
         <form id="rsvpForm" action="" method="POST" class="space-y-5">
@@ -452,57 +426,7 @@
       </div>
     </section>
 
-    <!-- Analytics mount (optional) -->
     <div id="analyticsMount"></div>
-  </div>
-
-  <!-- Admin modal (only ?admin=1 opens) -->
-  <div id="adminModal" role="dialog" aria-modal="true">
-    <div class="w-full max-w-3xl panel border soft-line rounded-2xl p-6 shadow-[0_30px_80px_rgba(0,0,0,.55)]">
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <h2 class="font-luxury text-xl accent-text">Admin Panel (Local)</h2>
-          <p class="text-[11px]" style="color: var(--muted);">
-            Export CSV / view locally saved submissions. For real-time multi-guest admin, Premium backend is required.
-          </p>
-        </div>
-        <button id="closeAdmin" class="w-10 h-10 rounded-full border soft-line hover:border-[color:var(--accent)] transition">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="mt-6 panel-strong border soft-line rounded-xl p-4">
-        <h3 class="font-luxury text-sm text-white">Admin Unlock</h3>
-        <p class="text-[11px]" style="color: var(--muted);">Enter admin code to enable exports.</p>
-
-        <div class="mt-3 flex gap-3 flex-wrap items-center">
-          <input id="adminCode" placeholder="Admin code"
-            class="flex-1 min-w-[220px] bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600" />
-          <button id="adminUnlock" class="px-5 py-3 rounded-full border accent-border text-xs hover:border-[color:var(--accent)] transition">
-            Unlock
-          </button>
-          <span id="adminState" class="text-[11px]" style="color: var(--muted);">Locked</span>
-        </div>
-      </div>
-
-      <div class="mt-6 grid md:grid-cols-2 gap-4">
-        <div class="panel-strong border soft-line rounded-xl p-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-luxury text-sm text-white">RSVP (Local)</h3>
-            <button id="exportRsvp" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition" disabled>Export CSV</button>
-          </div>
-          <div id="rsvpLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
-        </div>
-
-        <div class="panel-strong border soft-line rounded-xl p-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-luxury text-sm text-white">Guestbook (Local)</h3>
-            <button id="exportGuestbook" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition" disabled>Export CSV</button>
-          </div>
-          <div id="guestbookLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <script>
@@ -513,7 +437,6 @@
       accessPin: "2580",
       adminPin: "9999",
 
-      theme: "vip",
       monogram: "S",
 
       entranceTitle: "PRIVATE EVENT",
@@ -532,89 +455,57 @@
 
       rsvpDeadlineText: "By October 10th",
       rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",  // <- gerçek endpoint
-      guestbookEndpoint: "https://formspree.io/f/XXXXXXXX", // <- gerçek endpoint
-
       enableAnalytics: false,
       analyticsEmbedHtml: ""
     };
 
-    const THEMES = {
-      vip:   { bg:"#050505", panel:"rgba(255,255,255,.05)", line:"rgba(255,255,255,.10)", accent:"#D4AF37", accent2:"#8A7036", texture:true },
-      ivory: { bg:"#f6f0e7", panel:"rgba(255,255,255,.75)", line:"rgba(0,0,0,.10)",     accent:"#1a1a1a", accent2:"#6b6b6b", texture:false },
-      floral:{ bg:"#fbf7f2", panel:"rgba(255,255,255,.78)", line:"rgba(0,0,0,.10)",     accent:"#B06B7A", accent2:"#7A4A56", texture:false },
-      boho:  { bg:"#1a1713", panel:"rgba(255,255,255,.06)", line:"rgba(255,255,255,.10)", accent:"#C99B6C", accent2:"#8F6B49", texture:true }
-    };
-
     const $ = (id) => document.getElementById(id);
-
-    function setRootVar(name, val){ document.documentElement.style.setProperty(name, val); }
     function safeSetText(id, text){ const el = $(id); if(el) el.textContent = text; }
     function fmt2(n){ return String(n).padStart(2,'0'); }
 
-    function applyTheme(themeKey){
-      const t = THEMES[themeKey] || THEMES.vip;
-      setRootVar("--bg", t.bg);
-      setRootVar("--panel", t.panel);
-      setRootVar("--line", t.line);
-      setRootVar("--accent", t.accent);
-      setRootVar("--accent2", t.accent2);
-      document.querySelector(".texture").style.display = t.texture ? "block" : "none";
-      document.body.style.backgroundColor = t.bg;
-    }
-
-    applyTheme(CONFIG.theme);
-
-    document.querySelectorAll(".themeBtn").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const k = btn.getAttribute("data-theme");
-        applyTheme(k);
-      });
-    });
-
+    // bind texts
     safeSetText("pinMonogram", CONFIG.monogram);
     safeSetText("monogram", CONFIG.monogram);
     safeSetText("privateLabel", CONFIG.entranceTitle);
     safeSetText("clickLabel", CONFIG.entranceSubtitle);
     safeSetText("open-btn", CONFIG.entranceButton);
-
     safeSetText("heroTop", CONFIG.heroTop);
     safeSetText("heroName", CONFIG.celebrantName);
     safeSetText("heroQuote", CONFIG.heroQuote);
-
     safeSetText("rsvpDeadline", CONFIG.rsvpDeadlineText);
 
     /* ===========
-       PIN FLOW
-       - PIN açıkken entrance kesinlikle gizli (screenshot bug fix)
+       PIN FLOW (device/session)
     =========== */
     const pinScreen = $("pin-screen");
     const entrance = $("entrance-screen");
-
     const pinInput = $("pinInput");
     const pinSubmit = $("pinSubmit");
     const pinError = $("pinError");
     const pinBox = $("pinBox");
     const rememberDevice = $("rememberDevice");
 
-    function showPinGate(){
-      pinScreen.classList.add("active");
-      entrance.classList.remove("show");  // alttaki içerik görünmesin
-      setTimeout(()=>pinInput.focus(), 120);
-    }
+    const unlockKey = "vipInvite_unlocked";
+    const unlockedSession = sessionStorage.getItem(unlockKey) === "1";
+    const unlockedDevice  = localStorage.getItem(unlockKey) === "1";
+
     function showEntrance(){
       entrance.classList.add("show");
     }
+    function showPinGate(){
+      pinScreen.classList.remove("hidden");
+      entrance.classList.remove("show");
+      setTimeout(()=>pinInput.focus(), 120);
+    }
     function hidePinGate(){
-      pinScreen.classList.remove("active");
+      pinScreen.classList.add("hidden");
     }
 
-    // session unlock
-    const unlockKey = "vipInvite_unlocked";
-    const unlocked = sessionStorage.getItem(unlockKey) === "1";
-    if(!unlocked){
-      showPinGate();
-    } else {
+    if(unlockedSession || unlockedDevice){
+      hidePinGate();
       showEntrance();
+    } else {
+      showPinGate();
     }
 
     function tryUnlock(){
@@ -624,7 +515,10 @@
         pinBox.classList.remove("shake");
         hidePinGate();
         showEntrance();
+
         if(rememberDevice.checked){
+          localStorage.setItem(unlockKey, "1");
+        } else {
           sessionStorage.setItem(unlockKey, "1");
         }
       } else {
@@ -634,6 +528,7 @@
         pinBox.classList.add("shake");
       }
     }
+
     pinSubmit.addEventListener("click", tryUnlock);
     pinInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryUnlock(); });
 
@@ -643,6 +538,7 @@
     const openBtn = $("open-btn");
     const musicBtn = $("music-btn");
     const musicEl = $("bgMusic");
+    const musicSource = $("musicSource");
     let musicPlaying = false;
 
     function setMusicUI(on){
@@ -659,6 +555,16 @@
       musicEl.play()
         .then(() => { musicPlaying = true; setMusicUI(true); })
         .catch(() => { musicPlaying = false; setMusicUI(false); });
+
+      /* ✅ CRITICAL FIX: reveal everything after open (no more blank page) */
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          el.classList.add('active');
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }, 300);
     });
 
     musicBtn.addEventListener("click", () => {
@@ -669,9 +575,38 @@
       }
     });
 
-    // audio source error fallback
-    const musicSource = $("musicSource");
     musicSource.addEventListener("error", ()=>{ musicBtn.style.display="none"; });
+
+    /* ===========
+       Reveal observer (nice-to-have)
+    =========== */
+    (function initReveal(){
+      const els = document.querySelectorAll('.reveal');
+      if(!els.length) return;
+
+      if(!('IntersectionObserver' in window)){
+        els.forEach(el => el.classList.add('active'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      els.forEach(el => observer.observe(el));
+
+      setTimeout(() => {
+        els.forEach(el => {
+          const r = el.getBoundingClientRect();
+          if(r.top < window.innerHeight * 1.05) el.classList.add('active');
+        });
+      }, 150);
+    })();
 
     /* ===========
        Share
@@ -688,6 +623,7 @@
       } catch {}
       return false;
     }
+
     $("share-btn").addEventListener("click", async ()=>{
       const ok = await shareLink();
       if(ok){
@@ -695,7 +631,7 @@
         setTimeout(()=> $("share-btn").innerHTML = "<i class='fa-solid fa-link'></i> Share Link", 1400);
       }
     });
-    $("successShare")?.addEventListener("click", shareLink);
+
     $("a2hsClose").addEventListener("click", ()=> $("a2hs").style.display="none");
 
     /* ===========
@@ -725,10 +661,14 @@
        Countdown
     =========== */
     const targetDate = new Date(CONFIG.eventStartISO).getTime();
+
     function tick(){
       const now = Date.now();
       const dist = targetDate - now;
-      if(dist <= 0){ $("days").innerText="00"; $("hours").innerText="00"; $("minutes").innerText="00"; $("seconds").innerText="00"; return; }
+      if(dist <= 0){
+        $("days").innerText="00"; $("hours").innerText="00"; $("minutes").innerText="00"; $("seconds").innerText="00";
+        return;
+      }
       const days = Math.floor(dist / (1000 * 60 * 60 * 24));
       const hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
@@ -808,10 +748,7 @@ END:VCALENDAR`;
     }
 
     $("ics-btn").addEventListener("click", downloadICS);
-    $("successIcs")?.addEventListener("click", downloadICS);
-    const gcal = buildGoogleCalendarLink();
-    $("gcal-link").href = gcal;
-    $("successGcal").href = gcal;
+    $("gcal-link").href = buildGoogleCalendarLink();
 
     /* ===========
        Map + fallback
@@ -827,7 +764,6 @@ END:VCALENDAR`;
     const mapFrame = $("mapFrame");
     mapFrame.src = CONFIG.mapEmbedUrl;
 
-    // iframe load başarısızsa fallback göster
     let mapLoaded = false;
     mapFrame.addEventListener("load", ()=>{ mapLoaded = true; });
     setTimeout(()=>{
@@ -838,7 +774,7 @@ END:VCALENDAR`;
     }, 3000);
 
     /* ===========
-       RSVP endpoint guard (iade riskini azaltır)
+       RSVP endpoint guard
     =========== */
     const rsvpForm = $("rsvpForm");
     const rsvpDisabled = $("rsvpDisabled");
@@ -882,6 +818,13 @@ END:VCALENDAR`;
           rsvpForm.classList.add('hidden');
           successMsg.classList.remove('hidden');
           confetti({ particleCount: 100, spread: 60, origin: { y: 0.75 }, colors: ['#D4AF37', '#ffffff'] });
+
+          // local reveal safety
+          document.querySelectorAll('.reveal').forEach(el => {
+            el.classList.add('active');
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          });
         } else {
           alert("Error. Try again.");
           submitBtn.innerText = "CONFIRM";
@@ -895,23 +838,8 @@ END:VCALENDAR`;
     });
 
     /* ===========
-       Admin panel only if ?admin=1
+       Analytics
     =========== */
-    const adminModal = $("adminModal");
-    const closeAdmin = $("closeAdmin");
-    const params = new URLSearchParams(location.search);
-    if(params.get("admin") === "1"){
-      // open with Ctrl+Shift+A
-      window.addEventListener("keydown", (e)=>{
-        if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a"){
-          adminModal.classList.add("open");
-        }
-      });
-    }
-
-    closeAdmin.addEventListener("click", ()=> adminModal.classList.remove("open"));
-
-    // Analytics
     if(CONFIG.enableAnalytics && CONFIG.analyticsEmbedHtml){
       $("analyticsMount").innerHTML = CONFIG.analyticsEmbedHtml;
     }
