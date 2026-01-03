@@ -1,288 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OLIVIA'S 1ST BIRTHDAY | You are invited!</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand:wght@300;400;500;600;700&family=Homemade+Apple&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LITTLE WONDERS | Organic Play</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'head': ['DM Serif Display', 'serif'],
-                        'body': ['Quicksand', 'sans-serif'],
-                        'hand': ['Homemade Apple', 'cursive'],
-                    },
-                    colors: {
-                        'terracotta': '#E07A5F',
-                        'sage': '#81B29A',
-                        'sand': '#F4F1DE',
-                        'blush': '#F2CC8F',
-                        'cream': '#FDFCF8'
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'wiggle': 'wiggle 2s ease-in-out infinite',
-                        'drift': 'drift 20s linear infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
-                        wiggle: {
-                            '0%, 100%': { transform: 'rotate(-3deg)' },
-                            '50%': { transform: 'rotate(3deg)' },
-                        },
-                        drift: {
-                            '0%': { backgroundPosition: '0 0' },
-                            '100%': { backgroundPosition: '100% 0' },
-                        }
-                    }
-                }
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'head': ['Fredoka', 'sans-serif'],
+            'body': ['Quicksand', 'sans-serif'],
+          },
+          colors: {
+            'marshmallow': '#FFF5F5',
+            'sky': '#E0F7FA',
+            'sunshine': '#FFF9C4',
+            'mint': '#E0F2F1',
+            'berry': '#FFCDD2',
+            'charcoal': '#455A64',
+            'rsvp-orange': '#E07A5F',
+            'rsvp-yellow': '#F2CC8F'
+          },
+          animation: {
+            'bounce-slow': 'bounce 3s infinite',
+            'float': 'float 6s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
             }
+          }
         }
-    </script>
-    <style>
-        body { background-color: #FDFCF8; color: #3D405B; overflow-x: hidden; }
+      }
+    }
+  </script>
 
-        /* CLOUD BACKGROUND */
-        .cloud-bg {
-            position: fixed; inset: 0; z-index: -1; opacity: 0.4;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 50 Q 25 25 40 50 T 70 50 T 100 50' stroke='%23F4F1DE' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-            animation: drift 60s linear infinite;
-        }
-
-        /* WASHI TAPE EFFECT (Bant) */
-        .washi-tape {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(-2deg);
-            width: 100px; height: 30px; background: rgba(224, 122, 95, 0.3);
-            mask-image: url("data:image/svg+xml,%3Csvg width='100' height='30' viewBox='0 0 100 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L100 0 L95 30 L5 30 Z' fill='black'/%3E%3C/svg%3E");
-            z-index: 10;
-        }
-
-        /* ORGANIC SHAPES */
-        .blob-shape {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transition: border-radius 3s ease;
-        }
-        .blob-shape:hover {
-            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-        }
-
-        /* BALLOON ANIMATION */
-        .balloon {
-            position: fixed; bottom: -100px; z-index: 50; opacity: 0.8;
-            animation: flyUp 15s linear infinite;
-        }
-        @keyframes flyUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
-        }
-        
-        /* CONFETTI BUTTON */
-        .confetti-btn:active { transform: scale(0.95); }
-    </style>
+  <style>
+    body { background-color: #FFF5F5; color: #455A64; scroll-behavior: smooth; }
+    section { scroll-margin-top: 100px; }
+    
+    /* Dalga Efektleri */
+    .wave-bottom svg { display: block; width: calc(100% + 1.3px); height: 150px; }
+    .wave-top { transform: rotate(180deg); }
+    
+    /* Kart Efektleri */
+    .play-card { transition: all 0.3s ease; }
+    .play-card:hover { transform: translateY(-10px); }
+    
+    /* Arka Plan Desen */
+    .doodles { 
+      background-image: radial-gradient(#FFCDD2 2px, transparent 2px), radial-gradient(#E0F7FA 2px, transparent 2px); 
+      background-size: 50px 50px; 
+      opacity: 0.5; 
+    }
+    
+    /* Mobil Menü Animasyonu */
+    #mobile-menu { transition: all 0.3s ease-in-out; overflow: hidden; }
+    .mobile-menu-hidden { max-height: 0; opacity: 0; }
+    .mobile-menu-visible { max-height: 400px; opacity: 1; }
+    
+    /* Form Dropdown Oku Gizleme */
+    .rsvp-select { 
+      -webkit-appearance: none; 
+      appearance: none; 
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+      background-repeat: no-repeat; 
+      background-position: right 1rem center; 
+      background-size: 1.2em; 
+    }
+  </style>
 </head>
-<body class="font-body selection:bg-sage selection:text-white">
 
-    <div class="cloud-bg"></div>
+<body class="font-body selection:bg-berry selection:text-white">
 
-    <div class="balloon text-4xl text-terracotta left-[10%]" style="animation-delay: 0s; font-size: 3rem;">🎈</div>
-    <div class="balloon text-4xl text-sage left-[25%]" style="animation-delay: 5s; font-size: 2rem;">🎈</div>
-    <div class="balloon text-4xl text-blush left-[80%]" style="animation-delay: 2s; font-size: 4rem;">🎈</div>
-    <div class="balloon text-4xl text-terracotta left-[60%]" style="animation-delay: 8s; font-size: 2.5rem;">🎈</div>
+  <div class="bg-berry text-white text-center py-2 text-sm font-bold tracking-wide">
+    🌈 Free Shipping on Orders Over $50! Use Code: HAPPY 🌈
+  </div>
 
-    <div class="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm flex items-center gap-2 cursor-pointer border border-sand hover:scale-105 transition">
-        <div class="w-2 h-2 bg-terracotta rounded-full animate-pulse"></div>
-        <span class="text-xs font-bold text-terracotta uppercase tracking-wider">Music On</span>
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-berry/20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
+      <a href="#" class="font-head text-3xl font-bold text-berry flex items-center gap-2">
+        <i class="fa-solid fa-shapes text-sky animate-bounce-slow"></i> Little Wonders
+      </a>
+
+      <div class="hidden md:flex gap-6 font-bold text-charcoal/80">
+        <a href="#shop" class="hover:text-berry transition">Toys</a>
+        <a href="#clothing" class="hover:text-berry transition">Clothing</a>
+        <a href="#capsule" class="hover:text-berry transition">Time Capsule</a>
+        <a href="#rsvp" class="text-rsvp-orange hover:text-rsvp-yellow transition border-b-2 border-transparent hover:border-rsvp-orange">Party RSVP</a>
+        <a href="#about" class="hover:text-berry transition">Our Story</a>
+      </div>
+
+      <div class="flex items-center gap-5 text-charcoal">
+        <button class="hover:text-berry text-xl"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="hover:text-berry text-xl relative">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span class="absolute -top-2 -right-2 bg-sky text-charcoal text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">2</span>
+        </button>
+        <button id="mobile-menu-btn" class="md:hidden text-2xl hover:text-berry"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
 
-    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
-        <div class="absolute top-10 left-10 text-6xl opacity-20 animate-wiggle">🌈</div>
-        <div class="absolute bottom-20 right-10 text-6xl opacity-20 animate-float">☁️</div>
+    <div id="mobile-menu" class="mobile-menu-hidden bg-white border-t border-berry/10 md:hidden shadow-lg">
+      <div class="flex flex-col p-6 font-bold text-charcoal space-y-4 text-center">
+        <a href="#shop" class="mobile-link">Toys</a>
+        <a href="#clothing" class="mobile-link">Clothing</a>
+        <a href="#capsule" class="mobile-link">Time Capsule</a>
+        <a href="#rsvp" class="mobile-link text-rsvp-orange">Party RSVP</a>
+      </div>
+    </div>
+  </nav>
 
-        <div class="relative z-10 animate-float">
-            <span class="font-hand text-3xl text-sage block mb-4 rotate-[-5deg]">Our little sunshine is turning</span>
-            <h1 class="font-head text-8xl md:text-[10rem] text-terracotta leading-none mb-2">
-                ONE
-            </h1>
-            <h2 class="font-head text-4xl md:text-6xl text-3D405B">Olivia Grace</h2>
+  <header class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-marshmallow">
+    <div class="absolute inset-0 doodles"></div>
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="text-center md:text-left order-2 md:order-1">
+        <span class="bg-sky text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-6">Montessori Inspired</span>
+        <h1 class="font-head text-5xl md:text-7xl text-charcoal mb-6 leading-tight">Playtime Reimagined.</h1>
+        <p class="text-lg text-charcoal/70 mb-8 font-bold">Sustainable, organic, and beautifully crafted toys that spark imagination.</p>
+        <a href="#shop" class="inline-block bg-berry text-white px-8 py-4 rounded-full font-bold shadow-lg hover:scale-105 transition">Shop Collection</a>
+      </div>
+      <div class="relative order-1 md:order-2 animate-float">
+        <div class="absolute inset-0 bg-sunshine rounded-full blur-3xl opacity-30 transform scale-90"></div>
+        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2070&auto=format&fit=crop" class="relative rounded-[3rem] shadow-2xl border-8 border-white" alt="Kid">
+      </div>
+    </div>
+    <div class="wave-bottom absolute bottom-0 w-full"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#FFFFFF"></path></svg></div>
+  </header>
+
+  <section id="shop" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16"><h2 class="font-head text-4xl text-charcoal mb-4">New Arrivals 🚀</h2><div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div></div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-berry">
+          <div class="relative bg-marshmallow rounded-2xl overflow-hidden mb-4 h-64">
+            <span class="absolute top-3 left-3 bg-sunshine text-charcoal text-xs font-bold px-3 py-1 rounded-full z-10">Bestseller</span>
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Rainbow Stacker</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Wooden</span><span class="font-bold text-berry text-xl">$24.00</span></div>
         </div>
-
-        <div class="mt-8 flex flex-col items-center gap-2">
-            <span class="bg-sand text-terracotta px-6 py-2 rounded-full font-bold text-sm tracking-widest uppercase">
-                Saturday, July 15th
-            </span>
-            <span class="font-bold text-gray-400">@ 2:00 PM in the Afternoon</span>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sky">
+          <div class="relative bg-sky/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Cuddly Bear</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Plush</span><span class="font-bold text-berry text-xl">$18.50</span></div>
         </div>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-mint">
+          <div class="relative bg-mint/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Shape Sorter</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Educational</span><span class="font-bold text-berry text-xl">$32.00</span></div>
+        </div>
+        <div class="play-card bg-white rounded-3xl p-4 shadow-lg border-2 border-transparent hover:border-sunshine">
+          <div class="relative bg-sunshine/20 rounded-2xl overflow-hidden mb-4 h-64">
+            <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800&q=80" class="w-full h-full object-cover" alt="Toy">
+          </div>
+          <h3 class="font-head text-lg text-charcoal mb-1">Activity Cube</h3>
+          <div class="flex justify-between items-center"><span class="text-gray-400 text-sm font-bold">Sensory</span><span class="font-bold text-berry text-xl">$45.00</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="mt-12 relative group">
-             <div class="absolute -inset-1 bg-gradient-to-r from-terracotta to-sage rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-            <a href="#rsvp" class="relative bg-white text-terracotta px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:text-sage transition flex items-center gap-2 confetti-btn">
-                <i class="fa-solid fa-cake-candles"></i> Join the Party
-            </a>
+  <section id="capsule" class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto bg-marshmallow rounded-[3rem] p-10 md:p-14 shadow-xl border border-berry/20 relative z-10">
+      <div class="text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-sm border border-charcoal/10 text-2xl mb-6">💌</div>
+        <h2 class="font-head text-4xl md:text-5xl text-charcoal mb-4">A Note for the Future</h2>
+        <p class="text-charcoal/70 text-lg font-bold max-w-2xl mx-auto">Leave a message, a wish, or a piece of advice to be opened later. We are creating a digital time capsule!</p>
+      </div>
+      
+      <div class="mt-10 bg-white rounded-[2.5rem] p-6 md:p-8 border border-charcoal/10 shadow-sm">
+        <form id="capsuleForm" action="https://formspree.io/f/mykzpvzg" method="POST" class="space-y-4">
+          <textarea name="message" required rows="5" placeholder="Dear Olivia..." class="w-full px-6 py-5 rounded-[2rem] bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"></textarea>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="from" required placeholder="From (Your Name)" class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"/>
+            <input type="email" name="reply_to" placeholder="Your Email (optional)" class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"/>
+          </div>
+          <input type="hidden" name="_subject" value="New Time Capsule Note" />
+          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+          
+          <button type="submit" class="w-full btn-soft bg-mint text-charcoal px-8 py-5 font-bold shadow-lg shadow-mint/30 hover:opacity-95 text-lg">
+            SEAL IN CAPSULE
+          </button>
+          <p id="capsule-status" class="text-center text-sm font-bold text-charcoal/70 pt-2"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="rsvp" class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto bg-rsvp-orange rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden text-white z-10">
+      <div class="absolute top-6 right-8 text-white/40 text-6xl rotate-12 animate-float">🎈</div>
+      
+      <div id="rsvp-success-message" class="hidden text-center py-10 animate-pulse">
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white text-4xl mb-6 shadow-lg text-rsvp-orange">🎉</div>
+        <h2 class="font-head text-4xl mb-4">Awesome!</h2>
+        <p class="text-white/90 text-xl font-bold">Your RSVP has been sent successfully.</p>
+        <button onclick="location.reload()" class="mt-8 text-white underline hover:text-rsvp-yellow font-bold">Add Another Guest</button>
+      </div>
+
+      <div id="rsvp-form-content">
+        <div class="text-center mb-8">
+          <h2 class="font-head text-5xl mb-2">Are you coming?</h2>
+          <p class="text-white/80 font-bold">We need a head count for the cake! 🍰</p>
         </div>
         
-        <div class="absolute bottom-10 animate-bounce text-terracotta/50">
-            <i class="fa-solid fa-chevron-down text-2xl"></i>
-        </div>
-    </header>
-
-    <section class="py-20">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="font-head text-5xl text-terracotta mb-4">Growing Up So Fast</h2>
-                <p class="text-gray-500 font-hand text-xl">A year full of giggles and love</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="relative bg-white p-4 pb-16 shadow-lg rotate-[-2deg] hover:rotate-0 transition duration-300 transform hover:scale-105">
-                    <div class="washi-tape"></div>
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&q=80" class="w-full aspect-square object-cover grayscale-[20%]" alt="Baby">
-                    <div class="absolute bottom-4 left-0 w-full text-center font-hand text-2xl text-gray-600">
-                        Hello World
-                    </div>
-                </div>
-
-                <div class="relative bg-white p-4 pb-16 shadow-lg rotate-[3deg] hover:rotate-0 transition duration-300 transform hover:scale-105 md:-mt-10">
-                    <div class="washi-tape" style="background: rgba(129, 178, 154, 0.3);"></div>
-                    <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df4?w=600&q=80" class="w-full aspect-square object-cover grayscale-[20%]" alt="Baby Laughing">
-                    <div class="absolute bottom-4 left-0 w-full text-center font-hand text-2xl text-gray-600">
-                        First Giggle
-                    </div>
-                </div>
-
-                <div class="relative bg-white p-4 pb-16 shadow-lg rotate-[-1deg] hover:rotate-0 transition duration-300 transform hover:scale-105">
-                    <div class="washi-tape" style="background: rgba(242, 204, 143, 0.3);"></div>
-                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80" class="w-full aspect-square object-cover grayscale-[20%]" alt="Baby Steps">
-                    <div class="absolute bottom-4 left-0 w-full text-center font-hand text-2xl text-gray-600">
-                        On the move!
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 bg-sand/30 relative overflow-hidden">
-        <div class="absolute -top-20 -left-20 w-64 h-64 bg-sage/20 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-terracotta/20 rounded-full blur-3xl"></div>
-
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 class="font-head text-5xl text-3D405B mb-12">Party Details</h2>
+        <form id="rsvpForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="space-y-4">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="name" required placeholder="Name" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+            <input type="text" name="surname" required placeholder="Surname" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+          </div>
+          
+          <input type="email" name="email" required placeholder="Email Address" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white placeholder-white/60 font-bold focus:outline-none focus:bg-white/30 focus:border-white transition">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <input type="hidden" id="attendance-input" name="attendance" value="yes">
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-[2rem] shadow-sm border-2 border-dashed border-terracotta/20 hover:border-terracotta transition group">
-                    <div class="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-location-dot text-2xl text-terracotta"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Where</h3>
-                    <p class="text-sm text-gray-500">
-                        The Garden House <br> 123 Maple Street <br> San Francisco
-                    </p>
-                    <a href="#" class="inline-block mt-4 text-xs font-bold text-terracotta border-b border-terracotta pb-1">See Map</a>
-                </div>
+            <button type="button" id="btn-yes" class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 shadow-md transform scale-105 bg-white text-rsvp-orange">
+              Yes, can't wait! 😍
+            </button>
+            <button type="button" id="btn-no" class="rounded-2xl px-6 py-4 font-bold transition-all duration-300 border-2 border-white/40 text-white hover:bg-white/10">
+              Sad to miss it 😢
+            </button>
+          </div>
 
-                <div class="bg-white p-8 rounded-[2rem] shadow-sm border-2 border-dashed border-sage/20 hover:border-sage transition group">
-                    <div class="w-16 h-16 bg-sage/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                        <i class="fa-regular fa-clock text-2xl text-sage"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">When</h3>
-                    <p class="text-sm text-gray-500">
-                        July 15, 2025 <br> 2:00 PM - 5:00 PM <br> Cake Cutting at 3:30
-                    </p>
-                    <a href="#" class="inline-block mt-4 text-xs font-bold text-sage border-b border-sage pb-1">Add to Calendar</a>
-                </div>
-
-                <div class="bg-white p-8 rounded-[2rem] shadow-sm border-2 border-dashed border-blush/20 hover:border-blush transition group">
-                    <div class="w-16 h-16 bg-blush/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-gift text-2xl text-blush"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Gifts</h3>
-                    <p class="text-sm text-gray-500">
-                        No gifts needed, your presence is enough! (But we have a registry just in case)
-                    </p>
-                    <a href="#" class="inline-block mt-4 text-xs font-bold text-blush border-b border-blush pb-1">View Registry</a>
-                </div>
+          <div id="guest-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 transition-opacity duration-300">
+            <div class="relative">
+              <select name="adults" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
+                <option value="1" class="text-charcoal" selected>1 Adult</option>
+                <option value="2" class="text-charcoal">2 Adults</option>
+                <option value="3" class="text-charcoal">3 Adults</option>
+                <option value="4" class="text-charcoal">4 Adults</option>
+                <option value="5" class="text-charcoal">5 Adults</option>
+                <option value="6" class="text-charcoal">6 Adults</option>
+                <option value="7" class="text-charcoal">7 Adults</option>
+                <option value="8" class="text-charcoal">8 Adults</option>
+                <option value="9" class="text-charcoal">9 Adults</option>
+                <option value="10" class="text-charcoal">10 Adults</option>
+              </select>
             </div>
-        </div>
-    </section>
+            <div class="relative">
+              <select name="children" class="rsvp-select w-full bg-white/20 border-2 border-white/30 rounded-2xl px-6 py-4 text-white font-bold focus:outline-none cursor-pointer">
+                <option value="0" class="text-charcoal" selected>No Children</option>
+                <option value="1" class="text-charcoal">1 Child</option>
+                <option value="2" class="text-charcoal">2 Children</option>
+                <option value="3" class="text-charcoal">3 Children</option>
+                <option value="4" class="text-charcoal">4 Children</option>
+                <option value="5" class="text-charcoal">5 Children</option>
+                <option value="6" class="text-charcoal">6 Children</option>
+                <option value="7" class="text-charcoal">7 Children</option>
+                <option value="8" class="text-charcoal">8 Children</option>
+                <option value="9" class="text-charcoal">9 Children</option>
+                <option value="10" class="text-charcoal">10 Children</option>
+              </select>
+            </div>
+          </div>
 
-    <section class="py-24 bg-white">
-        <div class="max-w-2xl mx-auto px-6 text-center">
-            <span class="text-5xl block mb-2">💌</span>
-            <h2 class="font-head text-4xl text-terracotta mb-4">A Note for the Future</h2>
-            <p class="text-gray-500 mb-8">
-                Leave a message, a wish, or a piece of advice for Olivia to read when she turns 18. We are creating a digital time capsule!
-            </p>
+          <input type="hidden" name="_subject" value="New Party RSVP!" />
+          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
 
-            <form class="bg-sand/20 p-8 rounded-3xl border border-sand">
-                <textarea class="w-full h-32 bg-white rounded-xl p-4 border-none focus:ring-2 focus:ring-sage resize-none mb-4 font-hand text-xl text-gray-600" placeholder="Dear Olivia..."></textarea>
-                <input type="text" placeholder="From (Your Name)" class="w-full bg-white rounded-xl p-4 border-none focus:ring-2 focus:ring-sage mb-4">
-                <button class="w-full bg-sage text-white py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-sage/80 transition shadow-lg">
-                    Seal in Capsule
-                </button>
-            </form>
-        </div>
-    </section>
+          <button type="submit" class="w-full bg-rsvp-yellow hover:bg-white text-charcoal text-xl font-head font-bold rounded-2xl py-4 mt-4 shadow-lg transform hover:-translate-y-1 transition duration-300">
+            Send RSVP
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-    <section id="rsvp" class="py-24 bg-terracotta text-white relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-10 bg-white" style="clip-path: polygon(0 0, 100% 0, 50% 100%);"></div>
-        
-        <div class="max-w-xl mx-auto px-6 text-center relative z-10">
-            <h2 class="font-head text-5xl mb-6">Are you coming?</h2>
-            <p class="text-white/80 mb-8 text-lg">We need a head count for the cake! 🍰</p>
+  <section class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-3xl mx-auto bg-sky/30 rounded-[3rem] p-12 text-center relative z-10">
+      <h2 class="font-head text-3xl md:text-5xl text-charcoal mb-6">Join the Fun Club! 🎈</h2>
+      <p class="text-charcoal/70 mb-8 text-lg font-bold">Sign up for exclusive offers, fun activities, and new product drops.</p>
+      
+      <form id="newsletterForm" action="https://formspree.io/f/xpqwlbvd" method="POST" class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+        <input type="email" name="email" required autocomplete="email" placeholder="Parent's Email Address" class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body font-bold" />
+        <input type="hidden" name="source" value="Little Wonders - Fun Club" />
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+        <button type="submit" class="bg-berry text-white px-8 py-4 rounded-full font-bold hover:bg-charcoal transition">Subscribe</button>
+      </form>
+      <p id="form-status" class="mt-4 text-sm font-bold text-charcoal/70"></p>
+    </div>
+    <div class="absolute top-10 left-10 w-20 h-20 bg-sunshine rounded-full blur-xl opacity-50 animate-bounce-slow"></div>
+    <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
+  </section>
 
-            <form class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="text" placeholder="First Name" class="bg-white/10 border border-white/20 p-4 rounded-xl placeholder-white/60 text-white focus:outline-none focus:bg-white/20">
-                    <input type="text" placeholder="Last Name" class="bg-white/10 border border-white/20 p-4 rounded-xl placeholder-white/60 text-white focus:outline-none focus:bg-white/20">
-                </div>
+  <footer class="bg-charcoal text-white pt-20 pb-10 px-6 rounded-t-[3rem]">
+    <div class="max-w-7xl mx-auto text-center">
+      <a href="#" class="font-head text-3xl font-bold text-sunshine inline-block mb-6"><i class="fa-solid fa-shapes"></i> Little Wonders</a>
+      <p class="text-white/70 leading-relaxed font-bold mb-8">Making childhood magical.</p>
+      <div class="border-t border-white/10 pt-8 text-white/50 text-sm font-bold"><p>&copy; 2025 LITTLE WONDERS. POWERED BY ZAYNCOLLECTIVE.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    // Sayfa Tamamen Yüklendiğinde Çalıştır
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Script başlatıldı - Little Wonders");
+
+        // --- MOBİL MENÜ ---
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('mobile-menu-hidden')) {
+                    mobileMenu.classList.remove('mobile-menu-hidden');
+                    mobileMenu.classList.add('mobile-menu-visible');
+                } else {
+                    mobileMenu.classList.add('mobile-menu-hidden');
+                    mobileMenu.classList.remove('mobile-menu-visible');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('mobile-menu-hidden');
+                    mobileMenu.classList.remove('mobile-menu-visible');
+                });
+            });
+        }
+
+        // --- ZAMAN KAPSÜLÜ FORMU ---
+        const capsuleForm = document.getElementById('capsuleForm');
+        const capsuleStatus = document.getElementById('capsule-status');
+
+        if (capsuleForm) {
+            capsuleForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const btn = capsuleForm.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
                 
-                <div class="flex justify-center gap-4 py-2">
-                    <button type="button" class="flex-1 bg-white text-terracotta py-3 rounded-xl font-bold hover:bg-sand transition">Yes, can't wait!</button>
-                    <button type="button" class="flex-1 bg-transparent border-2 border-white/30 text-white py-3 rounded-xl font-bold hover:bg-white/10 transition">Sad to miss it</button>
-                </div>
+                btn.disabled = true;
+                btn.innerText = "Sealing...";
+                capsuleStatus.textContent = "Sending to the future...";
 
-                <select class="w-full bg-white/10 border border-white/20 p-4 rounded-xl text-white focus:outline-none">
-                    <option class="text-gray-500">Number of Guests (Adults)</option>
-                    <option class="text-gray-500">1</option>
-                    <option class="text-gray-500">2</option>
-                    <option class="text-gray-500">3</option>
-                </select>
+                try {
+                    const data = new FormData(capsuleForm);
+                    const res = await fetch(capsuleForm.action, {
+                        method: capsuleForm.method,
+                        body: data,
+                        headers: { "Accept": "application/json" }
+                    });
+                    
+                    if (res.ok) {
+                        capsuleForm.reset();
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                        capsuleStatus.textContent = "Sealed! Thank you.";
+                        capsuleStatus.className = "text-center text-sm font-bold text-green-600 pt-2";
+                    } else {
+                        throw new Error("Formspree hatası");
+                    }
+                } catch (err) {
+                    capsuleStatus.textContent = "Oops! Something went wrong.";
+                    capsuleStatus.className = "text-center text-sm font-bold text-red-500 pt-2";
+                    btn.disabled = false;
+                    btn.innerText = originalText;
+                }
+            });
+        }
+
+        // --- RSVP (DAVET) FORMU ---
+        const btnYes = document.getElementById('btn-yes');
+        const btnNo = document.getElementById('btn-no');
+        const attendanceInput = document.getElementById('attendance-input');
+        const guestOptions = document.getElementById('guest-options');
+        const rsvpForm = document.getElementById('rsvpForm');
+        const rsvpContent = document.getElementById('rsvp-form-content');
+        const rsvpSuccess = document.getElementById('rsvp-success-message');
+
+        // Stil Sınıfları
+        const activeClass = "bg-white text-rsvp-orange shadow-md transform scale-105 border-transparent";
+        const inactiveClass = "bg-transparent text-white border-2 border-white/40 hover:bg-white/10";
+
+        if(btnYes && btnNo) {
+            btnYes.addEventListener('click', () => {
+                attendanceInput.value = "yes";
+                btnYes.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${activeClass}`;
+                btnNo.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${inactiveClass}`;
+                guestOptions.classList.remove('opacity-50', 'pointer-events-none');
+            });
+
+            btnNo.addEventListener('click', () => {
+                attendanceInput.value = "no";
+                btnNo.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${activeClass}`;
+                btnYes.className = `rounded-2xl px-6 py-4 font-bold transition-all duration-300 ${inactiveClass}`;
+                guestOptions.classList.add('opacity-50', 'pointer-events-none');
+            });
+        }
+
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); 
+                const btn = rsvpForm.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
                 
-                <select class="w-full bg-white/10 border border-white/20 p-4 rounded-xl text-white focus:outline-none">
-                    <option class="text-gray-500">Number of Kids</option>
-                    <option class="text-gray-500">0</option>
-                    <option class="text-gray-500">1</option>
-                    <option class="text-gray-500">2</option>
-                </select>
+                btn.disabled = true;
+                btn.innerText = "Sending...";
 
-                <button class="w-full bg-sand text-terracotta py-4 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition transform mt-4">
-                    Send RSVP
-                </button>
-            </form>
-        </div>
-    </section>
+                try {
+                    const data = new FormData(rsvpForm);
+                    const response = await fetch(rsvpForm.action, {
+                        method: rsvpForm.method,
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    });
 
-    <footer class="bg-white py-12 text-center">
-        <p class="font-hand text-3xl text-sage mb-2">Olivia's 1st Birthday</p>
-        <p class="text-xs text-gray-400 uppercase tracking-widest">Designed with ❤️ by VitrinX</p>
-    </footer>
+                    if (response.ok) {
+                        rsvpContent.style.display = 'none';
+                        rsvpSuccess.classList.remove('hidden');
+                        rsvpForm.reset();
+                    } else {
+                        alert("There was a problem sending your RSVP. Please try again.");
+                        btn.disabled = false;
+                        btn.innerText = originalText;
+                    }
+                } catch (error) {
+                    alert("Connection error! Please check your internet.");
+                    console.error('Hata:', error);
+                    btn.disabled = false;
+                    btn.innerText = originalText;
+                }
+            });
+        }
 
-    <script>
-        document.querySelector('.confetti-btn').addEventListener('click', function(e) {
-            // Basit bir tıklama efekti
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 100);
-        });
-    </script>
+        // --- NEWSLETTER FORMU ---
+        const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterStatus = document.getElementById('form-status');
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const btn = newsletterForm.querySelector('button[type="submit"]');
+                newsletterStatus.textContent = "Sending...";
+                btn.disabled = true;
+
+                try {
+                    const data = new FormData(newsletterForm);
+                    const res = await fetch(newsletterForm.action, {
+                        method: newsletterForm.method,
+                        body: data,
+                        headers: { "Accept": "application/json" }
+                    });
+                    
+                    if (res.ok) {
+                        newsletterForm.reset();
+                        newsletterStatus.textContent = "Welcome to the club! 🎈";
+                        newsletterStatus.className = "mt-4 text-sm font-bold text-green-600";
+                        setTimeout(() => { btn.disabled = false; }, 2000);
+                    } else {
+                        throw new Error("Form hatası");
+                    }
+                } catch (err) {
+                    newsletterStatus.textContent = "Network error. Try again.";
+                    newsletterStatus.className = "mt-4 text-sm font-bold text-red-500";
+                    btn.disabled = false;
+                }
+            });
+        }
+    });
+  </script>
+
 </body>
 </html>
