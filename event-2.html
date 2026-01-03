@@ -1,39 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LITTLE WONDERS | Organic Play</title>
-  
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOPHIA IS TURNING ONE! | Birthday Invite</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="You are invited to a groovy birthday party!" />
+    <meta property="og:title" content="Birthday Invitation" />
+    <meta property="og:type" content="website" />
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            'head': ['Fredoka', 'sans-serif'],
-            'body': ['Quicksand', 'sans-serif'],
-          },
-          colors: {
-            'marshmallow': '#FFF5F5',
-            'sky': '#E0F7FA',
-            'sunshine': '#FFF9C4',
-            'mint': '#E0F2F1',
-            'berry': '#FFCDD2',
-            'charcoal': '#455A64',
-            'rsvp-orange': '#E07A5F',
-            'rsvp-yellow': '#F2CC8F'
-          },
-          animation: {
-            'bounce-slow': 'bounce 3s infinite',
-            'float': 'float 6s ease-in-out infinite'
-          },
-          keyframes: {
-            float: {
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'retro': ['Chewy', 'cursive'],
+                        'body': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'cream': '#FFF8E7',
+                        'terracotta': '#E07A5F',
+                        'mustard': '#F2CC8F',
+                        'sage': '#81B29A',
+                        'charcoal': '#3D405B'
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #FFF8E7; color: #3D405B; scroll-behavior: smooth; }
+        .pattern-bg {
+            background-image: radial-gradient(#F2CC8F 20%, transparent 20%), radial-gradient(#E07A5F 20%, transparent 20%);
+            background-color: #FFF8E7;
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+            opacity: 0.15;
+        }
+        /* Özel RSVP Select İkonu */
+        .custom-select {
+            -webkit-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233D405B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;
+        }
+    </style>
+</head>
+
+<body class="font-body antialiased selection:bg-terracotta selection:text-white">
+
+    <div class="fixed inset-0 pattern-bg z-0 pointer-events-none"></div>
+
+    <main class="relative z-10 max-w-2xl mx-auto bg-white/80 backdrop-blur-sm min-h-screen shadow-2xl border-x-4 border-mustard">
+        
+        <header class="text-center pt-16 pb-10 px-6 relative overflow-hidden">
+            <div class="absolute top-4 left-4 text-4xl animate-spin-slow">☀️</div>
+            <div class="absolute top-10 right-6 text-3xl animate-bounce-slow text-terracotta">🎈</div>
+
+            <p class="font-bold tracking-widest text-terracotta uppercase mb-4">You Are Invited To</p>
+            
+            <h1 class="font-retro text-7xl md:text-8xl text-mustard drop-shadow-lg leading-none transform -rotate-2 mb-4">
+                SOPHIA'S
+                <span class="block text-terracotta transform rotate-3">BIRTHDAY!</span>
+            </h1>
+
+            <div class="mt-8 relative inline-block">
+                <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&q=80" 
+                     class="w-64 h-64 object-cover rounded-full border-8 border-sage shadow-xl mx-auto rotate-2 hover:rotate-0 transition duration-500" 
+                     alt="Birthday Kid">
+                <div class="absolute -bottom-4 -right-4 bg-white px-4 py-2 rounded-full font-retro text-2xl shadow-lg border-2 border-terracotta transform rotate-6">
+                    She is Turning 1!
+                </div>
+            </div>
+        </header>
+
+        <section class="py-8 px-6">
+            <div class="bg-sage/20 rounded-3xl p-6 border-2 border-sage text-center">
+                <h3 class="font-retro text-2xl text-sage mb-4">Let the Countdown Begin!</h3>
+                <div class="flex justify-center gap-4 text-charcoal">
+                    <div class="bg-white p-3 rounded-xl w-20 shadow-sm">
+                        <span id="days" class="block font-bold text-3xl text-terracotta">00</span>
+                        <span class="text-xs font-bold uppercase">Days</span>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl w-20 shadow-sm">
+                        <span id="hours" class="block font-bold text-3xl text-terracotta">00</span>
+                        <span class="text-xs font-bold uppercase">Hours</span>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl w-20 shadow-sm">
+                        <span id="minutes" class="block font-bold text-3xl text-terracotta">00</span>
+                        <span class="text-xs font-bold uppercase">Mins</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-8 px-6">
+            <div class="bg-white rounded-[2.5rem] p-8 shadow-lg border-2 border-mustard text-center space-y-8">
+                
+                <div class="group">
+                    <div class="inline-flex items-center justify-center w-14 h-14 bg-mustard/20 rounded-full mb-2 group-hover:scale-110 transition">
+                        <i class="fa-regular fa-calendar text-2xl text-terracotta"></i>
+                    </div>
+                    <h3 class="font-retro text-2xl">Saturday, October 25</h3>
+                    <p class="text-charcoal/70 font-bold">2:00 PM - 5:00 PM</p>
+                </div>
+
+                <hr class="border-dashed border-gray-200 w-1/2 mx-auto">
+
+                <div class="group">
+                    <div class="inline-flex items-center justify-center w-14 h-14 bg-sage/20 rounded-full mb-2 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-location-dot text-2xl text-sage"></i>
+                    </div>
+                    <h3 class="font-retro text-2xl">Central City Park</h3>
+                    <p class="text-charcoal/70 font-bold">Picnic Area B, San Diego, CA</p>
+                    <a href="https://maps.google.com" target="_blank" class="inline-block mt-3 text-sm font-bold text-terracotta underline hover:text-mustard">
+                        View on Map ↗
+                    </a>
+                </div>
+
+                <hr class="border-dashed border-gray-200 w-1/2 mx-auto">
+
+                <div>
+                    <p class="font-bold text-charcoal/80 italic">
+                        "There will be cake, games, and lots of fun! <br> Please bring your socks for the bouncy castle!"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-4 px-6 text-center">
+            <h3 class="font-retro text-2xl mb-4 text-charcoal">Gift Ideas</h3>
+            <p class="text-sm font-bold text-charcoal/60 mb-4 px-4">Your presence is the best present! But if you wish to bring a gift, here is a list.</p>
+            <a href="#" class="inline-flex items-center gap-2 bg-white border-2 border-charcoal/10 px-6 py-3 rounded-full font-bold hover:bg-mustard hover:border-mustard hover:text-white transition group">
+                <i class="fa-solid fa-gift group-hover:animate-wiggle"></i> See Gift Registry
+            </a>
+        </section>
+
+        <section id="rsvp" class="py-12 px-6">
+            <div class="bg-terracotta rounded-[2.5rem] p-8 md:p-10 shadow-xl relative overflow-hidden text-white">
+                <div class="absolute -top-6 -left-6 w-24 h-24 bg-mustard rounded-full opacity-50"></div>
+                <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-sage rounded-full opacity-50"></div>
+
+                <div class="relative z-10">
+                    <div class="text-center mb-8">
+                        <h2 class="font-retro text-5xl mb-2">RSVP</h2>
+                        <p class="font-bold opacity-90">Please let us know by Oct 10th</p>
+                    </div>
+
+                    <div id="rsvp-success" class="hidden text-center py-8">
+                        <div class="text-6xl mb-4 animate-bounce">💌</div>
+                        <h3 class="font-retro text-3xl mb-2">Message Sent!</h3>
+                        <p class="font-bold">Thank you for letting us know.</p>
+                        <button onclick="location.reload()" class="mt-6 text-sm underline hover:text-mustard font-bold">Submit another</button>
+                    </div>
+
+                    <form id="rsvpForm" action="https://formspree.io/f/BURAYA_FORM_ID_YAZIN" method="POST" class="space-y-4">
+                        
+                        <div>
+                            <label class="block font-retro text-xl mb-1 ml-2">Your Name</label>
+                            <input type="text" name="name" required class="w-full bg-white text-charcoal px-6 py-4 rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-mustard" placeholder="Jane Doe">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <button type="button" id="btn-coming" class="bg-white/20 border-2 border-white text-white py-4 rounded-2xl font-bold hover:bg-white/30 transition">
+                                I'm Coming! 😎
+                            </button>
+                            <button type="button" id="btn-not-coming" class="bg-white/20 border-2 border-white text-white py-4 rounded-2xl font-bold hover:bg-white/30 transition">
+                                Can't Make it 😢
+                            </button>
+                            <input type="hidden" name="attendance" id="attendance-input">
+                        </div>
+
+                        <div id="extra-details" class="hidden space-y-4">
+                            <div>
+                                <label class="block font-retro text-xl mb-1 ml-2">Total Guests</label>
+                                <select name="guests" class="custom-select w-full bg-white text-charcoal px-6 py-4 rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-mustard">
+                                    <option value="1">Just Me</option>
+                                    <option value="2">2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5">5 People</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-retro text-xl mb-1 ml-2">Dietary Notes</label>
+                                <input type="text" name="diet" class="w-full bg-white text-charcoal px-6 py-4 rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-mustard" placeholder="e.g. Vegetarian, Nut Allergy">
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="_subject" value="Birthday RSVP Response" />
+                        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+                        <button type="submit" id="submit-btn" class="w-full bg-mustard text-charcoal font-retro text-2xl py-4 rounded-2xl shadow-lg hover:scale-105 transition transform mt-4">
+                            Send RSVP
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-10 px-6 opacity-60">
+            <p class="font-retro text-xl text-charcoal">Can't wait to celebrate!</p>
+            <p class="text-xs font-bold mt-2">&copy; 2025 Template by ZaynCollective</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- COUNTDOWN TIMER ---
+        // Tarihi buradan ayarlayabilirsin (Yıl, Ay-1, Gün)
+        const targetDate = new Date("2025-10-25T14:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("days").innerText = "0";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+        }, 1000);
+
+        // --- RSVP LOGIC ---
+        const btnComing = document.getElementById('btn-coming');
+        const btnNotComing = document.getElementById('btn-not-coming');
+        const attendanceInput = document.getElementById('attendance-input');
+        const extraDetails = document.getElementById('extra-details');
+        const form = document.getElementById('rsvpForm');
+        const successMsg = document.getElementById('rsvp-success');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // Stil sınıfları
+        const selectedClass = "bg-white text-terracotta scale-105 shadow-md border-transparent";
+        const defaultClass = "bg-white/20 border-2 border-white text-white hover:bg-white/30";
+
+        btnComing.addEventListener('click', () => {
+            attendanceInput.value = "Coming";
+            btnComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${selectedClass}`;
+            btnNotComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${defaultClass}`;
+            extraDetails.classList.remove('hidden'); // Detayları aç
+        });
+
+        btnNotComing.addEventListener('click', () => {
+            attendanceInput.value = "Not Coming";
+            btnNotComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${selectedClass}`;
+            btnComing.className = `py-4 rounded-2xl font-bold transition duration-300 ${defaultClass}`;
+            extraDetails.classList.add('hidden'); // Detayları gizle
+        });
+
+        // FORM GÖNDERME
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Seçim yapılmamışsa uyar
+            if (!attendanceInput.value) {
+                alert("Please select if you are coming or not! 😊");
+                return;
+            }
+
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    successMsg.classList.remove('hidden');
+                } else {
+                    alert("Oops! Something went wrong.");
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                alert("Connection error.");
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
               '0%, 100%': { transform: 'translateY(0)' },
               '50%': { transform: 'translateY(-10px)' },
             }
