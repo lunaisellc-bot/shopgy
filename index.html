@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY | Global Dijital Tasarım Ajansı</title>
-  <meta name="description" content="Etsy entegrasyonu, premium düğün davetiyeleri ve kurumsal web tasarımları. Markanızı dijital dünyada bir şahesere dönüştürün." />
+  <title>VitrinY | Global Digital Agency</title>
+  <meta name="description" content="Etsy integrations, premium wedding websites, and corporate design solutions." />
   
-  <script>
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.onbeforeunload = function () { window.scrollTo(0, 0); }
-  </script>
-
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -46,337 +41,190 @@
 
   <style>
     html, body { background-color: #050505; color: white; -webkit-font-smoothing: antialiased; }
-    
-    /* Gürültü Efekti (Texture) */
     .bg-noise { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); }
-    
-    /* Bölüm Geçişleri */
-    section { position: relative; overflow: hidden; }
-    
-    /* Özel Buton Efektleri */
-    .btn-glow:hover { box-shadow: 0 0 30px rgba(0, 255, 157, 0.4); }
-    .btn-glow-purple:hover { box-shadow: 0 0 30px rgba(189, 0, 255, 0.4); }
-    
-    /* Görsel Maskeleme */
-    .mask-fade-b { -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%); }
-    .mask-fade-r { -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%); }
-
-    /* Scroll Reveal */
     .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 
-<body class="font-sans bg-noise selection:bg-neon selection:text-black">
+<body class="font-sans bg-noise">
 
-  <nav class="fixed w-full z-50 top-0 bg-dark/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+  <nav class="fixed w-full z-50 top-0 bg-dark/80 backdrop-blur-xl border-b border-white/5">
     <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
       <a href="#" class="flex items-center gap-2 group">
-        <div class="w-10 h-10 bg-gradient-to-br from-neon to-emerald-900 rounded-lg flex items-center justify-center text-black font-bold text-xl group-hover:rotate-12 transition">V</div>
-        <div class="flex flex-col">
-            <span class="font-heading text-lg font-bold tracking-tight leading-none">VitrinY</span>
-            <span class="text-[9px] text-gray-500 tracking-[0.2em] uppercase">Creative</span>
-        </div>
+        <div class="w-10 h-10 bg-gradient-to-br from-neon to-emerald-900 rounded-lg flex items-center justify-center text-black font-bold text-xl">V</div>
+        <span class="font-heading text-lg font-bold tracking-tight">VitrinY</span>
       </a>
 
       <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-400">
-        <a href="#etsy-section" class="hover:text-neon transition">E-Ticaret</a>
-        <a href="#wedding-section" class="hover:text-purple-400 transition">Davetiye</a>
-        <a href="#corporate-section" class="hover:text-blue-400 transition">Kurumsal</a>
+        <a href="#etsy-section" class="hover:text-neon transition" data-i18n="nav_etsy">E-Commerce</a>
+        <a href="#wedding-section" class="hover:text-purple-400 transition" data-i18n="nav_wedding">Events</a>
+        <a href="#corporate-section" class="hover:text-blue-400 transition" data-i18n="nav_corp">Corporate</a>
         <a href="#blog" class="hover:text-white transition">Blog</a>
       </div>
 
-      <a href="https://wa.me/905419787726" class="hidden sm:flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:scale-105">
-        <span>Teklif Al</span>
-      </a>
+      <div class="flex items-center gap-4">
+        <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-500 border border-white/10 px-3 py-2 rounded hover:text-white transition">EN</button>
+        
+        <a href="https://wa.me/905419787726" class="hidden sm:flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:scale-105">
+            <span data-i18n="nav_cta">Get Quote</span>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <header class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+  <header class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden text-center">
     <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-purple/20 blur-[150px] rounded-full animate-float"></div>
     <div class="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-neon/10 blur-[150px] rounded-full animate-float" style="animation-delay: 2s"></div>
     
-    <div class="text-center max-w-5xl mx-auto relative z-10">
-        <div class="inline-block mb-6 opacity-0 animate-[fadeInUp_1s_ease-out_forwards]">
-            <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">
-                Estetik &middot; Teknoloji &middot; Strateji
+    <div class="max-w-5xl mx-auto relative z-10">
+        <div class="inline-block mb-6 animate-fade-in-up">
+            <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase" data-i18n="hero_badge">
+                Aesthetics · Tech · Strategy
             </span>
         </div>
         
-        <h1 class="font-heading text-6xl md:text-8xl font-bold leading-[0.9] mb-8 tracking-tighter opacity-0 animate-[fadeInUp_1s_ease-out_0.2s_forwards]">
-            Dijital Dünyada <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple">Sıradanlığa Yer Yok.</span>
+        <h1 class="font-heading text-6xl md:text-8xl font-bold leading-[0.9] mb-8 tracking-tighter animate-fade-in-up" style="animation-delay: 0.2s">
+            <span data-i18n="hero_t1">No Place for Average</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple" data-i18n="hero_t2">In The Digital World.</span>
         </h1>
 
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed opacity-0 animate-[fadeInUp_1s_ease-out_0.4s_forwards]">
-            VitrinY, markanızı bir "web sitesi" sahibi yapmaz. Size bir <strong>kimlik</strong>, çalışan bir <strong>satış makinesi</strong> ve unutulmaz bir <strong>deneyim</strong> tasarlar.
+        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up" style="animation-delay: 0.4s" data-i18n="hero_sub">
+            VitrinY doesn't just give you a website. We design an identity, a working sales machine, and an unforgettable experience.
         </p>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-6 opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]">
-            <a href="#etsy-section" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:scale-105 transition shadow-[0_0_40px_rgba(0,255,157,0.3)] flex items-center justify-center gap-3">
-                <i class="fa-solid fa-shop"></i> Satıcıyım
+        <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up" style="animation-delay: 0.6s">
+            <a href="#etsy-section" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:scale-105 transition flex items-center justify-center gap-3">
+                <i class="fa-solid fa-shop"></i> <span data-i18n="btn_seller">I'm a Seller</span>
             </a>
-            <a href="#wedding-section" class="px-8 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-500 transition shadow-[0_0_40px_rgba(189,0,255,0.3)] flex items-center justify-center gap-3">
-                <i class="fa-solid fa-heart"></i> Evleniyorum
-            </a>
-            <a href="#corporate-section" class="px-8 py-4 border border-white/20 text-white font-bold rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-3">
-                <i class="fa-solid fa-briefcase"></i> İşletmeyim
+            <a href="#wedding-section" class="px-8 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-500 transition flex items-center justify-center gap-3">
+                <i class="fa-solid fa-heart"></i> <span data-i18n="btn_wedding">I'm Getting Married</span>
             </a>
         </div>
-    </div>
-
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-        <i class="fa-solid fa-arrow-down text-white"></i>
     </div>
   </header>
 
   <section id="etsy-section" class="py-32 border-t border-white/5 relative bg-gradient-to-b from-dark to-[#0a110f]">
       <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div class="order-2 lg:order-1 reveal">
-              <div class="flex items-center gap-3 mb-6">
-                  <div class="w-12 h-12 bg-neon/10 rounded-xl flex items-center justify-center text-neon text-2xl border border-neon/20">
-                      <i class="fa-brands fa-etsy"></i>
-                  </div>
-                  <span class="text-neon font-bold tracking-widest text-xs uppercase">E-Ticaret Devrimi</span>
-              </div>
-              
-              <h2 class="font-heading text-4xl md:text-6xl font-bold leading-tight mb-6">
-                  Etsy Mağazanızı <br> İmparatorluğa Dönüştürün.
+              <span class="text-neon font-bold tracking-widest text-xs uppercase mb-4 block" data-i18n="etsy_badge">E-Commerce Revolution</span>
+              <h2 class="font-heading text-4xl md:text-6xl font-bold leading-tight mb-6" data-i18n="etsy_title">
+                  Turn Your Etsy Shop <br> Into an Empire.
               </h2>
-              <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-                  Sadece bir pazar yerinde sıkışıp kalmayın. Resmi API entegrasyonumuz ile ürünlerinizi, yorumlarınızı ve fotoğraflarınızı çekiyor; size ait, komisyonsuz, profesyonel bir marka sitesi kuruyoruz.
+              <p class="text-gray-400 text-lg mb-8 leading-relaxed" data-i18n="etsy_desc">
+                  Don't get stuck in a marketplace. With our official API integration, we pull your products, reviews, and photos to build your own commission-free professional brand site.
               </p>
-
-              <div class="space-y-4 mb-10">
-                  <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-neon/30 transition">
-                      <i class="fa-solid fa-sync text-neon text-xl"></i>
-                      <div>
-                          <h4 class="font-bold text-white text-sm">Otomatik Senkronizasyon</h4>
-                          <p class="text-xs text-gray-500">Stoklarınız ve fiyatlarınız Etsy ile anlık güncellenir.</p>
-                      </div>
-                  </div>
-                  <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-neon/30 transition">
-                      <i class="fa-solid fa-sack-dollar text-neon text-xl"></i>
-                      <div>
-                          <h4 class="font-bold text-white text-sm">%0 Komisyon</h4>
-                          <p class="text-xs text-gray-500">Kendi sitenizde Etsy kesintisi ödemezsiniz.</p>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="flex gap-4">
-                  <a href="etsy.html" class="px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-neon transition flex items-center gap-2">
-                      Sistemi İncele <i class="fa-solid fa-arrow-right"></i>
-                  </a>
-                  <a href="demo-starter.html" class="px-8 py-4 border border-white/10 rounded-lg hover:bg-white/5 transition">
-                      Canlı Demo
-                  </a>
-              </div>
+              <a href="etsy.html" class="px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-neon transition inline-flex items-center gap-2">
+                  <span data-i18n="btn_examine">Examine System</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
           </div>
-
           <div class="order-1 lg:order-2 relative reveal delay-200">
-              <div class="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-neon/10 group">
-                  <img src="assets/img/preview-art.jpg.png" alt="Etsy Dashboard" class="w-full object-cover transform group-hover:scale-105 transition duration-700">
-                  <div class="absolute bottom-8 right-8 bg-black/80 backdrop-blur border border-neon/50 px-6 py-4 rounded-xl">
-                      <div class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">Total Sales</div>
-                      <div class="text-2xl font-heading font-bold text-white">$12,450.00</div>
-                      <div class="text-xs text-neon mt-1"><i class="fa-solid fa-arrow-trend-up"></i> +%24 this month</div>
-                  </div>
-              </div>
-              <div class="absolute -top-20 -right-20 w-[400px] h-[400px] bg-neon/10 blur-[100px] rounded-full z-0 pointer-events-none"></div>
+              <img src="assets/img/preview-art.jpg.png" class="rounded-2xl border border-white/10 shadow-2xl shadow-neon/10 w-full">
           </div>
       </div>
   </section>
 
   <section id="wedding-section" class="py-32 border-t border-white/5 relative bg-[#0F0510]">
       <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          
-          <div class="relative reveal">
-             <div class="relative z-10 rounded-full overflow-hidden border border-purple-500/20 shadow-2xl shadow-purple-500/10 aspect-square max-w-md mx-auto group">
-                  <img src="assets/img/preview-ultra.jpg.png" alt="Wedding Couple" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 grayscale group-hover:grayscale-0">
-                  <div class="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent"></div>
-                  
-                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
-                      <a href="demo-event.html" class="w-20 h-20 bg-white text-black rounded-full flex items-center justify-center text-2xl hover:scale-110 transition">
-                          <i class="fa-solid fa-play"></i>
-                      </a>
+          <div class="reveal relative">
+             <div class="rounded-full overflow-hidden border border-purple-500/20 shadow-2xl shadow-purple-500/10 aspect-square max-w-md mx-auto relative group">
+                  <img src="assets/img/preview-ultra.jpg.png" class="w-full h-full object-cover transition duration-1000 grayscale group-hover:grayscale-0">
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <a href="digital-invitation.html" class="w-20 h-20 bg-white text-black rounded-full flex items-center justify-center text-2xl hover:scale-110 transition"><i class="fa-solid fa-play"></i></a>
                   </div>
               </div>
-              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple/10 blur-[100px] rounded-full z-0 pointer-events-none"></div>
           </div>
-
           <div class="reveal delay-200 text-center lg:text-left">
-              <div class="flex items-center justify-center lg:justify-start gap-3 mb-6">
-                  <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 text-2xl border border-purple-500/20">
-                      <i class="fa-solid fa-rings-wedding"></i>
-                  </div>
-                  <span class="text-purple-400 font-bold tracking-widest text-xs uppercase">Exclusive Events</span>
-              </div>
-              
-              <h2 class="font-serif italic text-4xl md:text-6xl font-bold leading-tight mb-6">
-                  Kağıtları Unutun. <br> Hikayenizi Yaşatın.
+              <span class="text-purple-400 font-bold tracking-widest text-xs uppercase mb-4 block" data-i18n="wed_badge">Exclusive Events</span>
+              <h2 class="font-serif italic text-4xl md:text-6xl font-bold leading-tight mb-6" data-i18n="wed_title">
+                  Forget Paper. <br> Live Your Story.
               </h2>
-              <p class="text-gray-400 text-lg mb-8 leading-relaxed font-serif">
-                  Düğününüz sıradan bir PDF dosyası olamaz. Müzikli, animasyonlu, fotoğraf galerili ve LCV formlu özel bir web sitesi tasarlıyoruz. Konuklarınız davetiyenizi gördüğünde büyülenecek.
+              <p class="text-gray-400 text-lg mb-8 leading-relaxed font-serif" data-i18n="wed_desc">
+                  Your wedding cannot be just a PDF. We design a special website with music, animation, photo gallery, time capsule, and RSVP forms.
               </p>
-
-              <div class="grid grid-cols-2 gap-6 mb-10 text-left">
-                  <div class="pl-4 border-l border-purple-500">
-                      <h4 class="font-bold text-white text-lg">LCV Takibi</h4>
-                      <p class="text-xs text-gray-500 mt-1">Katılım durumunu panelden anlık izleyin.</p>
-                  </div>
-                  <div class="pl-4 border-l border-purple-500">
-                      <h4 class="font-bold text-white text-lg">Navigasyon</h4>
-                      <p class="text-xs text-gray-500 mt-1">Tek tıkla konum tarifi alınır.</p>
-                  </div>
-              </div>
-
-              <div class="flex justify-center lg:justify-start gap-4">
-                  <a href="demo-event.html" class="px-8 py-4 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition flex items-center gap-2 shadow-lg shadow-purple-900/40">
-                      Örnek Siteyi İncele
-                  </a>
-                  <a href="https://wa.me/905419787726?text=Düğün davetiyesi hakkında bilgi almak istiyorum" class="px-8 py-4 border border-white/10 rounded-lg hover:bg-white/5 transition">
-                      Fiyat Al
-                  </a>
-              </div>
+              <a href="digital-invitation.html" class="px-8 py-4 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition inline-flex items-center gap-2 shadow-lg shadow-purple-900/40">
+                  <span data-i18n="btn_details">View All Features</span> <i class="fa-solid fa-arrow-right"></i>
+              </a>
           </div>
       </div>
   </section>
 
-  <section id="corporate-section" class="py-32 border-t border-white/5 bg-dark relative">
-      <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-              <span class="text-blue-400 font-bold tracking-widest text-xs uppercase mb-4 block">Endüstriyel & Kurumsal</span>
-              <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">İşletmenizin Dijital Genel Merkezi</h2>
-              <p class="text-gray-400">Mobilya, İnşaat, Mimarlık veya Danışmanlık. Sektörünüz ne olursa olsun, müşteriniz sitenize girdiğinde "Bu firma işini biliyor" demeli.</p>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-8">
-              <div class="group relative overflow-hidden rounded-2xl bg-surface border border-white/10 hover:border-blue-500/50 transition duration-500 reveal">
-                  <div class="h-48 overflow-hidden">
-                      <img src="assets/img/preview-business.jpg.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
-                  </div>
-                  <div class="p-8">
-                      <h3 class="text-xl font-bold text-white mb-2">Showroom Modu</h3>
-                      <p class="text-sm text-gray-400 mb-4">Ürünlerinizi bir katalog gibi sergileyin. Fiyat göstermeden teklif toplayın.</p>
-                      <a href="demo-business-2.html" class="text-xs font-bold text-blue-400 uppercase tracking-widest hover:text-white transition">Detayı Gör -></a>
-                  </div>
-              </div>
-
-              <div class="group relative overflow-hidden rounded-2xl bg-surface border border-white/10 hover:border-green-500/50 transition duration-500 reveal delay-100">
-                <div class="h-48 overflow-hidden">
-                    <img src="assets/img/preview-business-2.jpg.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
-                </div>
-                <div class="p-8">
-                    <h3 class="text-xl font-bold text-white mb-2">Hizmet Odaklı</h3>
-                    <p class="text-sm text-gray-400 mb-4">Avukatlar, diyetisyenler ve koçlar için randevu ve blog odaklı yapılar.</p>
-                    <a href="demo-business.html" class="text-xs font-bold text-green-400 uppercase tracking-widest hover:text-white transition">Detayı Gör -></a>
-                </div>
-            </div>
-
-            <div class="group relative overflow-hidden rounded-2xl bg-surface border border-white/10 hover:border-purple-500/50 transition duration-500 reveal delay-200">
-                <div class="h-48 overflow-hidden">
-                    <img src="assets/img/preview-fashion2.jpg.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
-                </div>
-                <div class="p-8">
-                    <h3 class="text-xl font-bold text-white mb-2">Butik & Moda</h3>
-                    <p class="text-sm text-gray-400 mb-4">Instagram satışlarınızı web'e taşıyın. Mobil uyumlu, hızlı ve şık.</p>
-                    <a href="demo-fashion2.html" class="text-xs font-bold text-purple-400 uppercase tracking-widest hover:text-white transition">Detayı Gör -></a>
-                </div>
-            </div>
-          </div>
+  <section id="corporate-section" class="py-32 border-t border-white/5 bg-dark">
+      <div class="max-w-7xl mx-auto px-6 text-center reveal">
+          <span class="text-blue-400 font-bold tracking-widest text-xs uppercase mb-4 block" data-i18n="corp_badge">Industrial & Corporate</span>
+          <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6" data-i18n="corp_title">Digital HQ for Your Business</h2>
+          <p class="text-gray-400 max-w-2xl mx-auto mb-12" data-i18n="corp_desc">Furniture, Construction, Architecture. When a client visits your site, they must say "This company knows their business".</p>
+          <a href="demo-business.html" class="text-blue-400 font-bold border-b border-blue-400 pb-1 hover:text-white transition" data-i18n="btn_demo">View Corporate Demo</a>
       </div>
   </section>
 
-  <section class="py-24 border-y border-white/5 bg-[#050505]">
-      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
-          <div class="text-center md:text-left reveal">
-              <h2 class="font-heading text-3xl font-bold mb-2">Rakamlarla VitrinY</h2>
-              <p class="text-gray-500 text-sm">Başarımız tesadüf değil.</p>
-          </div>
-          <div class="flex gap-12 text-center reveal delay-100">
-              <div>
-                  <div class="text-4xl font-heading font-bold text-white mb-1">480+</div>
-                  <div class="text-[10px] text-gray-500 uppercase tracking-widest">Web Sitesi</div>
-              </div>
-              <div>
-                  <div class="text-4xl font-heading font-bold text-white mb-1">%100</div>
-                  <div class="text-[10px] text-gray-500 uppercase tracking-widest">Memnuniyet</div>
-              </div>
-              <div>
-                  <div class="text-4xl font-heading font-bold text-white mb-1">5 Ülke</div>
-                  <div class="text-[10px] text-gray-500 uppercase tracking-widest">Global Hizmet</div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <section class="py-24 relative overflow-hidden">
-      <div class="absolute inset-0 bg-neon/5"></div>
-      <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 class="font-heading text-5xl md:text-7xl font-bold mb-8 tracking-tighter">
-              Bir Sonraki Adımı Atın.
-          </h2>
-          <p class="text-gray-400 text-lg mb-12">
-              Markanızın potansiyelini ertelemeyin. Sizin için en uygun çözümü birlikte planlayalım.
-              Ücretsiz danışmanlık seansı için bize yazın.
-          </p>
-          <a href="https://wa.me/905419787726" class="inline-block px-12 py-6 bg-white text-black font-bold text-lg rounded-full hover:bg-neon hover:scale-105 transition shadow-[0_0_50px_rgba(255,255,255,0.2)]">
-              WhatsApp'tan Yazın
-          </a>
-      </div>
-  </section>
-
-  <footer class="bg-black py-16 border-t border-white/10 text-sm text-gray-500">
-      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">
-          <div class="col-span-2">
-              <a href="#" class="font-heading text-2xl font-bold text-white block mb-6">VitrinY</a>
-              <p class="max-w-sm mb-6">
-                  Amerika Birleşik Devletleri (Wyoming) merkezli, global vizyona sahip butik dijital tasarım ve yazılım ajansı.
-              </p>
-              <div class="flex gap-4">
-                  <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-linkedin"></i></a>
-                  <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-pinterest"></i></a>
-              </div>
-          </div>
-          <div>
-              <h4 class="font-bold text-white uppercase tracking-widest mb-6 text-xs">Hizmetler</h4>
-              <ul class="space-y-3">
-                  <li><a href="etsy.html" class="hover:text-neon transition">Etsy Entegrasyon</a></li>
-                  <li><a href="demo-event.html" class="hover:text-purple-400 transition">Dijital Davetiye</a></li>
-                  <li><a href="demo-business.html" class="hover:text-blue-400 transition">Kurumsal Web</a></li>
-                  <li><a href="portfolio.html" class="hover:text-white transition">Portfolyo</a></li>
-              </ul>
-          </div>
-          <div>
-              <h4 class="font-bold text-white uppercase tracking-widest mb-6 text-xs">Kurumsal</h4>
-              <ul class="space-y-3">
-                  <li><a href="#blog" class="hover:text-white transition">Blog & İçgörüler</a></li>
-                  <li><a href="legal.html" class="hover:text-white transition">Gizlilik Politikası</a></li>
-                  <li><a href="legal.html" class="hover:text-white transition">Kullanım Şartları</a></li>
-                  <li><a href="mailto:support@vitriny.com" class="hover:text-white transition">Destek</a></li>
-              </ul>
-          </div>
-      </div>
-      <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>&copy; 2025 VitrinY LLC. All rights reserved.</p>
-          <p class="text-[10px]">Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for Entrepreneurs.</p>
-      </div>
+  <footer class="bg-black py-16 border-t border-white/10 text-center text-xs text-gray-600">
+      <p>&copy; 2025 VitrinY LLC. All rights reserved.</p>
   </footer>
 
   <script>
-    // Scroll Reveal Animation Script
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
+    const translations = {
+      en: {
+        nav_etsy: "E-Commerce", nav_wedding: "Events", nav_corp: "Corporate", nav_cta: "Get Quote",
+        hero_badge: "Aesthetics · Tech · Strategy",
+        hero_t1: "No Place for Average", hero_t2: "In The Digital World.",
+        hero_sub: "VitrinY doesn't just give you a website. We design an identity, a working sales machine, and an unforgettable experience.",
+        btn_seller: "I'm a Seller", btn_wedding: "I'm Getting Married",
+        etsy_badge: "E-Commerce Revolution", etsy_title: "Turn Your Etsy Shop <br> Into an Empire.",
+        etsy_desc: "Don't get stuck in a marketplace. With our official API integration, we pull your products, reviews, and photos to build your own commission-free professional brand site.",
+        btn_examine: "Examine System",
+        wed_badge: "Exclusive Events", wed_title: "Forget Paper. <br> Live Your Story.",
+        wed_desc: "Your wedding cannot be just a PDF. We design a special website with music, animation, photo gallery, time capsule, and RSVP forms.",
+        btn_details: "View All Features",
+        corp_badge: "Industrial & Corporate", corp_title: "Digital HQ for Your Business",
+        corp_desc: "Furniture, Construction, Architecture. When a client visits your site, they must say 'This company knows their business'.",
+        btn_demo: "View Corporate Demo"
+      },
+      tr: {
+        nav_etsy: "E-Ticaret", nav_wedding: "Davetiye", nav_corp: "Kurumsal", nav_cta: "Teklif Al",
+        hero_badge: "Estetik · Teknoloji · Strateji",
+        hero_t1: "Dijital Dünyada", hero_t2: "Sıradanlığa Yer Yok.",
+        hero_sub: "VitrinY size sadece bir site yapmaz. Size bir kimlik, çalışan bir satış makinesi ve unutulmaz bir deneyim tasarlar.",
+        btn_seller: "Satıcıyım", btn_wedding: "Evleniyorum",
+        etsy_badge: "E-Ticaret Devrimi", etsy_title: "Etsy Mağazanızı <br> İmparatorluğa Dönüştürün.",
+        etsy_desc: "Sadece bir pazar yerinde sıkışıp kalmayın. Resmi API entegrasyonumuz ile ürünlerinizi çekiyor; size ait, komisyonsuz, profesyonel bir marka sitesi kuruyoruz.",
+        btn_examine: "Sistemi İncele",
+        wed_badge: "Özel Davetiyeler", wed_title: "Kağıtları Unutun. <br> Hikayenizi Yaşatın.",
+        wed_desc: "Düğününüz sıradan bir PDF olamaz. Müzikli, animasyonlu, fotoğraf galerili, zaman kapsüllü ve LCV formlu özel bir web sitesi tasarlıyoruz.",
+        btn_details: "Tüm Özellikleri Gör",
+        corp_badge: "Endüstriyel & Kurumsal", corp_title: "İşletmenizin Dijital Genel Merkezi",
+        corp_desc: "Mobilya, İnşaat, Mimarlık. Müşteriniz sitenize girdiğinde 'Bu firma işini biliyor' demeli. Katalog modu ve galeri odaklı yapılar.",
+        btn_demo: "Kurumsal Demoyu Gör"
+      }
+    };
+
+    // Detect Language
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
     
+    function applyLang() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    }
+
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        localStorage.setItem('lang', currentLang);
+        applyLang();
+    }
+
+    // Init
+    applyLang();
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
-
 </body>
 </html>
