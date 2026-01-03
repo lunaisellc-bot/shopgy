@@ -6,6 +6,12 @@
   <title>LITTLE WONDERS | Organic Play</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- SEO / Sharing -->
+  <meta name="description" content="Sustainable, organic toys and essentials that spark imagination. Montessori-inspired play made with love." />
+  <meta property="og:title" content="Little Wonders | Organic Play" />
+  <meta property="og:description" content="Sustainable, organic toys and essentials that spark imagination." />
+  <meta property="og:type" content="website" />
+
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -48,16 +54,13 @@
   <style>
     body { background-color: #FFF5F5; color: #455A64; }
 
+    /* Sticky nav anchor offset */
+    section { scroll-margin-top: 96px; }
+
     /* WAVE DIVIDER */
-    .wave-bottom {
-      position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0;
-    }
-    .wave-bottom svg {
-      position: relative; display: block; width: calc(100% + 1.3px); height: 150px;
-    }
-    .wave-top {
-      position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg);
-    }
+    .wave-bottom { position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; }
+    .wave-bottom svg { position: relative; display: block; width: calc(100% + 1.3px); height: 150px; }
+    .wave-top { position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg); }
 
     /* CARD HOVER */
     .play-card { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -94,6 +97,7 @@
         <a href="#shop" class="hover:text-berry transition">Toys</a>
         <a href="#clothing" class="hover:text-berry transition">Clothing</a>
         <a href="#nursery" class="hover:text-berry transition">Nursery</a>
+        <a href="#capsule" class="hover:text-berry transition">Time Capsule</a>
         <a href="#about" class="hover:text-berry transition">Our Story</a>
       </div>
 
@@ -115,13 +119,14 @@
 
   <!-- DEMO MODAL (for search/cart placeholders) -->
   <div id="demoModal" class="fixed inset-0 z-[999] hidden">
-    <div class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm"></div>
+    <div id="demoBackdrop" class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm"></div>
+
     <div class="relative max-w-lg mx-auto mt-24 bg-white rounded-[2rem] shadow-2xl border border-berry/20 p-8">
       <div class="flex items-start justify-between gap-4">
         <div>
           <h3 class="font-head text-2xl text-charcoal">Demo UI</h3>
           <p class="mt-2 text-charcoal/70 font-bold">
-            Search & cart are placeholder elements in this demo layout.
+            Search, cart, and add buttons are demo placeholders. In a real store, these can link to Etsy product pages.
           </p>
         </div>
         <button type="button" data-close-modal="demoModal" class="text-charcoal/60 hover:text-berry text-xl" aria-label="Close">
@@ -149,7 +154,7 @@
         <h1 class="font-head text-5xl md:text-7xl text-charcoal mb-6 leading-tight">
           Playtime Reimagined.
         </h1>
-        <p class="text-lg text-charcoal/70 mb-8 leading-relaxed">
+        <p class="text-lg text-charcoal/70 mb-8 leading-relaxed font-bold">
           Sustainable, organic, and beautifully crafted toys that spark imagination and joy. Safe for your little ones, kind to the planet.
         </p>
         <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
@@ -168,7 +173,7 @@
           <div class="bg-mint p-2 rounded-full text-2xl">🌱</div>
           <div>
             <p class="font-bold text-sm text-charcoal">100% Organic</p>
-            <p class="text-xs text-charcoal/50">Cotton & Wood</p>
+            <p class="text-xs text-charcoal/50 font-bold">Cotton & Wood</p>
           </div>
         </div>
       </div>
@@ -189,7 +194,7 @@
         <div class="w-24 h-2 bg-sunshine mx-auto rounded-full"></div>
       </div>
 
-      <!-- Replaced external icon PNGs with inline SVGs to avoid licensing issues -->
+      <!-- Inline SVG icons to avoid licensing issues -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
         <a href="#shop" class="play-card bg-sky/30 rounded-3xl p-6 text-center group">
@@ -262,7 +267,7 @@
           </div>
           <h3 class="font-head text-lg text-charcoal mb-1">Rainbow Stacker</h3>
           <div class="flex justify-between items-center">
-            <span class="text-gray-400 text-sm">Wooden</span>
+            <span class="text-gray-400 text-sm font-bold">Wooden</span>
             <span class="font-bold text-berry text-xl">$24.00</span>
           </div>
         </div>
@@ -276,7 +281,7 @@
           </div>
           <h3 class="font-head text-lg text-charcoal mb-1">Cuddly Bear</h3>
           <div class="flex justify-between items-center">
-            <span class="text-gray-400 text-sm">Plush</span>
+            <span class="text-gray-400 text-sm font-bold">Plush</span>
             <span class="font-bold text-berry text-xl">$18.50</span>
           </div>
         </div>
@@ -291,7 +296,7 @@
           </div>
           <h3 class="font-head text-lg text-charcoal mb-1">Shape Sorter</h3>
           <div class="flex justify-between items-center">
-            <span class="text-gray-400 text-sm">Educational</span>
+            <span class="text-gray-400 text-sm font-bold">Educational</span>
             <span class="font-bold text-berry text-xl">$32.00</span>
           </div>
         </div>
@@ -305,7 +310,7 @@
           </div>
           <h3 class="font-head text-lg text-charcoal mb-1">Activity Cube</h3>
           <div class="flex justify-between items-center">
-            <span class="text-gray-400 text-sm">Sensory</span>
+            <span class="text-gray-400 text-sm font-bold">Sensory</span>
             <span class="font-bold text-berry text-xl">$45.00</span>
           </div>
         </div>
@@ -313,7 +318,75 @@
     </div>
   </section>
 
-  <!-- CLOTHING (added) -->
+  <!-- TIME CAPSULE (Formspree integrated) -->
+  <section id="capsule" class="py-24 px-6 bg-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto bg-marshmallow rounded-[3rem] p-10 md:p-14 shadow-xl border border-berry/20 relative">
+      <div class="text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-sm border border-charcoal/10 text-2xl mb-6">
+          💌
+        </div>
+        <h2 class="font-head text-4xl md:text-5xl text-charcoal mb-4">A Note for the Future</h2>
+        <p class="text-charcoal/70 text-lg font-bold max-w-2xl mx-auto">
+          Leave a message, a wish, or a piece of advice to be opened later. We are creating a digital time capsule!
+        </p>
+      </div>
+
+      <div class="mt-10 bg-white rounded-[2.5rem] p-6 md:p-8 border border-charcoal/10 shadow-sm">
+        <form
+          id="capsuleForm"
+          action="https://formspree.io/f/mykzpvzg"
+          method="POST"
+          class="space-y-4"
+        >
+          <textarea
+            name="message"
+            required
+            rows="5"
+            placeholder="Dear Olivia..."
+            class="w-full px-6 py-5 rounded-[2rem] bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"
+          ></textarea>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="from"
+              required
+              placeholder="From (Your Name)"
+              class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"
+            />
+
+            <input
+              type="email"
+              name="reply_to"
+              placeholder="Your Email (optional)"
+              class="w-full px-6 py-4 rounded-full bg-marshmallow border-2 border-white focus:outline-none focus:border-sky font-body font-bold text-charcoal placeholder:text-charcoal/40"
+            />
+          </div>
+
+          <input type="hidden" name="source" value="Little Wonders - Time Capsule" />
+          <input type="hidden" name="_subject" value="New Time Capsule Note" />
+          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <button
+            type="submit"
+            class="w-full btn-soft bg-mint text-charcoal px-8 py-5 font-bold shadow-lg shadow-mint/30 hover:opacity-95"
+          >
+            SEAL IN CAPSULE
+          </button>
+
+          <p id="capsule-status" class="text-center text-sm font-bold text-charcoal/70"></p>
+          <p class="text-center text-xs font-bold text-charcoal/40">
+            Messages are sent securely. Please avoid sharing sensitive information.
+          </p>
+        </form>
+      </div>
+
+      <div class="absolute -top-10 -left-10 w-28 h-28 bg-sky rounded-full blur-2xl opacity-40 animate-float"></div>
+      <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-berry rounded-full blur-2xl opacity-30 animate-bounce-slow"></div>
+    </div>
+  </section>
+
+  <!-- CLOTHING -->
   <section id="clothing" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-12">
@@ -378,7 +451,7 @@
     </div>
   </section>
 
-  <!-- NURSERY (added) -->
+  <!-- NURSERY -->
   <section id="nursery" class="py-24 bg-mint/20 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
@@ -423,7 +496,7 @@
     <div class="absolute bottom-10 right-10 w-32 h-32 bg-berry rounded-full blur-xl opacity-40 animate-float"></div>
   </section>
 
-  <!-- ABOUT (added) -->
+  <!-- ABOUT -->
   <section id="about" class="py-24 px-6 bg-white relative overflow-hidden">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
@@ -479,6 +552,7 @@
       </p>
 
       <form
+        id="newsletterForm"
         action="https://formspree.io/f/xpqwlbvd"
         method="POST"
         class="flex flex-col md:flex-row gap-4 max-w-md mx-auto"
@@ -489,12 +563,11 @@
           required
           autocomplete="email"
           placeholder="Parent's Email Address"
-          class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body"
+          class="flex-1 px-6 py-4 rounded-full border-2 border-white focus:outline-none focus:border-sky font-body font-bold"
         />
 
         <input type="hidden" name="source" value="Little Wonders - Fun Club" />
-
-        <!-- Honeypot anti-spam -->
+        <input type="hidden" name="_subject" value="New Fun Club Subscriber" />
         <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
 
         <button
@@ -591,43 +664,82 @@
       btn.addEventListener('click', () => closeModal(btn.getAttribute('data-close-modal')));
     });
 
-    // Close modal by clicking backdrop
+    // Close demo modal by clicking backdrop + ESC
     const demoModal = document.getElementById('demoModal');
+    const demoBackdrop = document.getElementById('demoBackdrop');
+
     if (demoModal) {
-      demoModal.addEventListener('click', (e) => {
-        if (e.target === demoModal) closeModal('demoModal');
-      });
-      // Close modal with ESC
+      if (demoBackdrop) demoBackdrop.addEventListener('click', () => closeModal('demoModal'));
+
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !demoModal.classList.contains('hidden')) closeModal('demoModal');
       });
     }
 
-    // Formspree submit (no refresh)
-    const form = document.querySelector('form[action="https://formspree.io/f/xpqwlbvd"]');
-    const statusEl = document.getElementById('form-status');
+    // Newsletter Formspree submit (no refresh)
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterStatus = document.getElementById('form-status');
 
-    if (form && statusEl) {
-      form.addEventListener("submit", async (e) => {
+    if (newsletterForm && newsletterStatus) {
+      newsletterForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        statusEl.textContent = "Sending...";
+        newsletterStatus.textContent = "Sending...";
+
+        const btn = newsletterForm.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
 
         try {
-          const data = new FormData(form);
-          const res = await fetch(form.action, {
-            method: form.method,
+          const data = new FormData(newsletterForm);
+          const res = await fetch(newsletterForm.action, {
+            method: newsletterForm.method,
             body: data,
             headers: { "Accept": "application/json" }
           });
 
           if (res.ok) {
-            form.reset();
-            statusEl.textContent = "You're in! Welcome to the Fun Club.";
+            newsletterForm.reset();
+            newsletterStatus.textContent = "You're in! Welcome to the Fun Club.";
           } else {
-            statusEl.textContent = "Oops—please try again in a moment.";
+            newsletterStatus.textContent = "Oops—please try again in a moment.";
           }
         } catch (err) {
-          statusEl.textContent = "Network error—please try again.";
+          newsletterStatus.textContent = "Network error—please try again.";
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+    }
+
+    // Time Capsule Formspree submit (no refresh)
+    const capsuleForm = document.getElementById('capsuleForm');
+    const capsuleStatus = document.getElementById('capsule-status');
+
+    if (capsuleForm && capsuleStatus) {
+      capsuleForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        capsuleStatus.textContent = "Sealing...";
+
+        const btn = capsuleForm.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
+
+        try {
+          const data = new FormData(capsuleForm);
+          const res = await fetch(capsuleForm.action, {
+            method: capsuleForm.method,
+            body: data,
+            headers: { "Accept": "application/json" }
+          });
+
+          if (res.ok) {
+            capsuleForm.reset();
+            capsuleStatus.textContent = "Sealed. Thank you!";
+          } else {
+            capsuleStatus.textContent = "Oops—please try again.";
+          }
+        } catch (err) {
+          capsuleStatus.textContent = "Network error—please try again.";
+        } finally {
+          if (btn) btn.disabled = false;
         }
       });
     }
