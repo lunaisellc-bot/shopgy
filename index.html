@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY | The Digital Atelier</title>
-  <meta name="description" content="High-end Etsy integrations, cinematic wedding websites, and visionary corporate design." />
+  <title>VitrinY | Digital Design Agency by Lunaise LLC</title>
+  <meta name="description" content="High-end Etsy integrations, digital invitations, and corporate web design. Operated by Lunaise LLC, Sheridan, WY." />
+  <meta name="author" content="Lunaise LLC">
 
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -20,9 +21,7 @@
             serif: ['Playfair Display', 'serif']
           },
           colors: {
-            // Yeni "Premium Dark" arka plan (Zifiri siyah değil)
-            bgdark: '#0B0B15',
-            // Vurgu renkleri
+            bgdark: '#0B0B15', // Premium Dark
             neon: '#00DC82',
             purple: '#7B61FF',
             gold: '#D4AF37',
@@ -38,18 +37,17 @@
   <style>
     body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     
-    /* Ambient Light Background - Karanlığı kıran gizli ışıklar */
+    /* Ortam Işıkları */
     .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
     .light-orb-1 { position: absolute; top: -20%; left: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(123,97,255,0.15) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 8s infinite alternate; }
     .light-orb-2 { position: absolute; bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(0,220,130,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 12s infinite alternate-reverse; }
 
-    /* Accordion Services - Daha aydınlık hover efekti */
+    /* Servis Panelleri */
     .service-panel { flex: 1; transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s; filter: grayscale(80%) brightness(0.8); position: relative; overflow: hidden; border-right: 1px solid rgba(255,255,255,0.05); }
     .service-panel:hover { flex: 3; filter: grayscale(0%) brightness(1); }
     .service-panel::before { content: ''; position: absolute; inset: 0; background: rgba(11,11,21,0.5); z-index: 10; transition: background 0.5s; }
     .service-panel:hover::before { background: rgba(11,11,21,0.1); }
     
-    /* Scroll Reveal Utility */
     .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
@@ -153,15 +151,13 @@
       
       <div class="service-panel flex flex-col justify-end p-10 relative group bg-[#050A08] hover:bg-[#081410]">
           <img src="assets/img/preview-art.jpg.png" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100">
-          
           <div class="relative z-20 transform md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-20 md:left-20 group-hover:rotate-0 group-hover:static group-hover:translate-x-0 transition-all duration-500">
               <span class="text-neon font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-brands fa-etsy mr-2"></i> Commerce</span>
               <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="etsy_title">Etsy Sync</h2>
           </div>
-          
           <div class="relative z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
               <p class="text-gray-300 max-w-sm mb-8 text-lg leading-relaxed" data-i18n="etsy_desc">
-                  Turn your Etsy shop into an empire. API integration, 0% commission, and full brand control. Stop renting, start owning.
+                  Turn your Etsy shop into an empire. API integration, 0% commission, and full brand control.
               </p>
               <a href="etsy.html" class="px-8 py-4 rounded-full bg-neon text-black font-bold text-sm uppercase tracking-widest hover:bg-white transition inline-flex items-center gap-2">
                   <span data-i18n="btn_explore">Explore System</span> <i class="fa-solid fa-arrow-right"></i>
@@ -171,15 +167,13 @@
 
       <div class="service-panel flex flex-col justify-end p-10 relative group bg-[#0A050E] hover:bg-[#15081C]">
         <img src="assets/img/preview-ultra.jpg.png" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100">
-        
         <div class="relative z-20 transform md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-20 md:left-20 group-hover:rotate-0 group-hover:static group-hover:translate-x-0 transition-all duration-500">
-            <span class="text-purple font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-solid fa-heart mr-2"></i> Emotion</span>
-            <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="wed_title">Events & Love</h2>
+            <span class="text-purple font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-solid fa-champagne-glasses mr-2"></i> Events</span>
+            <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="wed_title">Wedding & VIP</h2>
         </div>
-        
         <div class="relative z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
             <p class="text-gray-300 max-w-sm mb-8 text-lg leading-relaxed" data-i18n="wed_desc">
-                A digital cinematic experience with background music, RSVP tracking, and time capsules. For weddings and private VIP parties.
+                Cinematic websites for Weddings and Private VIP Parties. Password protection, RSVP, and Time Capsules included.
             </p>
             <a href="digital-invitation.html" class="px-8 py-4 rounded-full bg-purple text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-purple transition inline-flex items-center gap-2">
                 <span data-i18n="btn_view">View Examples</span> <i class="fa-solid fa-arrow-right"></i>
@@ -189,12 +183,10 @@
 
     <div class="service-panel flex flex-col justify-end p-10 relative group bg-[#05070E] hover:bg-[#080C18]">
         <img src="assets/img/preview-business.jpg.png" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100">
-        
         <div class="relative z-20 transform md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-20 md:left-20 group-hover:rotate-0 group-hover:static group-hover:translate-x-0 transition-all duration-500">
             <span class="text-blue-400 font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-solid fa-building mr-2"></i> Authority</span>
             <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="corp_title">Corporate HQ</h2>
         </div>
-        
         <div class="relative z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
             <p class="text-gray-300 max-w-sm mb-8 text-lg leading-relaxed" data-i18n="corp_desc">
                 High-end web architecture for Furniture brands, Architects, and Consultants. Establish unquestionable authority.
@@ -222,7 +214,6 @@
             <div class="w-20 h-20 mx-auto bg-neon/10 rounded-2xl border border-neon/30 flex items-center justify-center text-3xl text-neon font-serif mb-8 shadow-lg shadow-neon/20">02</div>
             <h3 class="text-xl font-bold mb-4" data-i18n="s2_t">Creation</h3>
             <p class="text-gray-400" data-i18n="s2_d">We build your platform using our premium frameworks. We sync your data and refine the design.</p>
-            <div class="hidden md:block absolute top-10 left-full w-full h-[2px] bg-gradient-to-r from-neon/50 to-transparent -translate-x-1/2 z-0"></div>
         </div>
          <div class="relative text-center reveal transition-delay-400">
             <div class="w-20 h-20 mx-auto bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center text-3xl text-white font-serif mb-8">03</div>
@@ -257,25 +248,60 @@
                 <h3 class="font-serif text-3xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">Building a Brand, Not Just a Shop</h3>
             </div>
         </a>
+        <a href="blog-strategy.html" class="min-w-[350px] snap-center group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/5">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70">
+            <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/20 to-transparent"></div>
+            <div class="absolute bottom-0 p-10">
+                <span class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3 block">Strategy</span>
+                <h3 class="font-serif text-3xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">High Conversion Design Secrets</h3>
+            </div>
+        </a>
       </div>
   </section>
 
   <footer class="py-20 bg-bgdark border-t border-white/5 text-center relative z-10">
-      <div class="mb-10 reveal">
-          <span class="font-bold text-3xl tracking-widest">VITRINY</span>
-          <p class="text-gray-500 mt-4" data-i18n="footer_tag">Premium Digital Solutions.</p>
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 text-left mb-12">
+          <div class="col-span-1 md:col-span-2">
+              <span class="font-bold text-3xl tracking-widest block mb-6">VITRINY</span>
+              <p class="text-gray-500 text-sm max-w-sm mb-6" data-i18n="footer_desc">
+                  Operated by <strong>Lunaise LLC</strong>.<br>
+                  Premium digital solutions for global entrepreneurs.
+              </p>
+              <div class="flex gap-4">
+                  <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-linkedin"></i></a>
+              </div>
+          </div>
+          <div>
+              <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">HQ / Contact</h4>
+              <ul class="space-y-4 text-sm text-gray-400">
+                  <li><i class="fa-solid fa-location-dot mr-2"></i> Sheridan, WY, USA</li>
+                  <li><a href="tel:+13072059144" class="hover:text-white"><i class="fa-solid fa-phone mr-2"></i> +1 (307) 205-9144</a></li>
+                  <li><a href="https://wa.me/905419787726" class="hover:text-neon"><i class="fa-brands fa-whatsapp mr-2"></i> +90 541 978 77 26</a></li>
+                  <li><a href="mailto:support@vitriny.com" class="hover:text-white"><i class="fa-solid fa-envelope mr-2"></i> support@vitriny.com</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Quick Links</h4>
+              <ul class="space-y-3 text-sm text-gray-400">
+                  <li><a href="etsy.html" class="hover:text-white transition">Etsy Integration</a></li>
+                  <li><a href="digital-invitation.html" class="hover:text-white transition">Digital Events</a></li>
+                  <li><a href="portfolio.html" class="hover:text-white transition">Portfolio</a></li>
+                  <li><a href="legal.html" class="hover:text-white transition">Legal & Privacy</a></li>
+              </ul>
+          </div>
       </div>
-      <div class="flex justify-center gap-8 mb-12 text-xs font-bold uppercase tracking-widest text-gray-400 reveal transition-delay-200">
-          <a href="etsy.html" class="hover:text-white transition">Etsy</a>
-          <a href="digital-invitation.html" class="hover:text-white transition">Events</a>
-          <a href="portfolio.html" class="hover:text-white transition">Portfolio</a>
-          <a href="legal.html" class="hover:text-white transition">Legal</a>
+      <div class="border-t border-white/5 pt-8 text-xs text-gray-600">
+          &copy; 2025 Lunaise LLC. All rights reserved.
       </div>
-      <p class="text-[10px] text-gray-600 uppercase tracking-widest reveal transition-delay-300">&copy; 2025 VitrinY LLC. All rights reserved.</p>
   </footer>
 
+  <a href="https://wa.me/905419787726" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 transition animate-bounce" style="animation-duration: 3s;">
+      <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
   <script>
-    // 1. SCROLL REVEAL
+    // Scroll Reveal
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('active');
@@ -283,7 +309,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // 2. TRANSLATION ENGINE (Gelişmiş Pazarlama Dili)
+    // Translation
     const translations = {
       en: {
         nav_why: "Why Us", nav_work: "Services", nav_proc: "Process", nav_cta: "Start Project",
@@ -295,7 +321,7 @@
         real_p1: "You have a great product on Etsy, but fees are eating your profit. You're getting married, but sending a PDF invitation feels cheap. You have a business, but your site looks like it was made in 2010.",
         real_p2: "We exist to fix this. We don't just design; we elevate your perceived value.",
         etsy_title: "Etsy Sync", etsy_desc: "Turn your Etsy shop into an empire. API integration, 0% commission, and full brand control. Stop renting, start owning.",
-        wed_title: "Events & Love", wed_desc: "A digital cinematic experience with background music, RSVP tracking, and time capsules. For weddings and private VIP parties.",
+        wed_title: "Events & Love", wed_desc: "Cinematic websites for Weddings and Private VIP Parties. Password protection, RSVP, and Time Capsules included.",
         corp_title: "Corporate HQ", corp_desc: "High-end web architecture for Furniture brands, Architects, and Consultants. Establish unquestionable authority.",
         btn_view: "View Examples", btn_demo: "Corporate Demo",
         proc_title: "Complex Tech. Simple Process.", proc_sub: "We know you are busy. We handle the heavy lifting so you can focus on your business.",
@@ -303,7 +329,7 @@
         s2_t: "Creation", s2_d: "We build your platform using our premium frameworks. We sync your data and refine the design.",
         s3_t: "Launch", s3_d: "We connect your domain, set up payments, and you are live globally. Ready to impress.",
         blog_title: "The Journal", blog_sub: "Insights on strategy and design.",
-        footer_tag: "Premium Digital Solutions."
+        footer_desc: "Operated by Lunaise LLC. Premium digital solutions for global entrepreneurs."
       },
       tr: {
         nav_why: "Neden Biz", nav_work: "Hizmetler", nav_proc: "Süreç", nav_cta: "Projeye Başla",
@@ -315,7 +341,7 @@
         real_p1: "Etsy'de harika bir ürününüz var ama kesintiler kârınızı eritiyor. Evleniyorsunuz ama PDF davetiye göndermek basit kaçıyor. Bir işiniz var ama siteniz 2010'dan kalma görünüyor.",
         real_p2: "Biz bunu düzeltmek için varız. Sadece tasarım yapmıyoruz; algılanan değerinizi yükseltiyoruz.",
         etsy_title: "Etsy Entegrasyon", etsy_desc: "Etsy mağazanızı bir imparatorluğa dönüştürün. API entegrasyonu, %0 komisyon ve tam marka kontrolü. Kiralamayı bırakın, sahip olun.",
-        wed_title: "Etkinlik & Aşk", wed_desc: "Arka plan müzikli, LCV takipli ve zaman kapsüllü sinematik bir dijital deneyim. Düğünler ve özel VIP partiler için.",
+        wed_title: "Düğün & VIP", wed_desc: "Düğünler ve Yetişkin VIP Partileri için sinematik web siteleri. Şifreli giriş, Müzik, LCV ve Zaman Kapsülü.",
         corp_title: "Kurumsal Merkez", corp_desc: "Mobilya markaları, Mimarlar ve Danışmanlar için üst düzey web mimarisi. Tartışmasız bir otorite kurun.",
         btn_view: "Örnekleri Gör", btn_demo: "Kurumsal Demo",
         proc_title: "Karmaşık Teknoloji. Basit Süreç.", proc_sub: "Meşgul olduğunuzu biliyoruz. Zor işleri biz hallediyoruz, siz işinize odaklanın.",
@@ -323,7 +349,7 @@
         s2_t: "Oluşturma", s2_d: "Premium altyapılarımızı kullanarak platformunuzu kuruyoruz. Verilerinizi eşitliyor ve tasarımı mükemmelleştiriyoruz.",
         s3_t: "Lansman", s3_d: "Alan adınızı bağlıyoruz, ödemeleri kuruyoruz ve global olarak yayındasınız. Etkilemeye hazırsınız.",
         blog_title: "Günlük", blog_sub: "Strateji ve tasarım üzerine içgörüler.",
-        footer_tag: "Premium Dijital Çözümler."
+        footer_desc: "Lunaise LLC iştirakidir. Global girişimciler için premium dijital çözümler."
       }
     };
 
