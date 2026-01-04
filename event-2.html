@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>THE GRAND CELEBRATION | Royal Velvet Invite</title>
+  <title>THE GRAND CELEBRATION | Royal Masterpiece</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Pinyon+Script&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Pinyon+Script&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -18,28 +18,38 @@
       theme: {
         extend: {
           fontFamily: {
-            'luxury': ['Cinzel', 'serif'],
+            'luxury': ['Cinzel Decorative', 'serif'], /* Başlık fontu değişti */
+            'sub': ['Cinzel', 'serif'],
             'elegant': ['Cormorant Garamond', 'serif'],
             'script': ['Pinyon Script', 'cursive'],
             'modern': ['Montserrat', 'sans-serif'],
           },
           animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'shine': 'shine 8s linear infinite',
-            'scroll-text': 'scrollText 30s linear infinite',
+            'float': 'float 8s ease-in-out infinite',
+            'shine': 'shine 4s linear infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'grain': 'grain 8s steps(10) infinite',
           },
           keyframes: {
             float: {
               '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' },
+              '50%': { transform: 'translateY(-15px)' },
             },
             shine: {
               '0%': { backgroundPosition: '200% center' },
               '100%': { backgroundPosition: '-200% center' },
             },
-            scrollText: {
-              '0%': { transform: 'translateX(0)' },
-              '100%': { transform: 'translateX(-50%)' },
+            grain: {
+              '0%, 100%': { transform: 'translate(0, 0)' },
+              '10%': { transform: 'translate(-5%, -10%)' },
+              '20%': { transform: 'translate(-15%, 5%)' },
+              '30%': { transform: 'translate(7%, -25%)' },
+              '40%': { transform: 'translate(-5%, 25%)' },
+              '50%': { transform: 'translate(-15%, 10%)' },
+              '60%': { transform: 'translate(15%, 0%)' },
+              '70%': { transform: 'translate(0%, 15%)' },
+              '80%': { transform: 'translate(3%, 35%)' },
+              '90%': { transform: 'translate(-10%, 10%)' },
             }
           }
         }
@@ -49,194 +59,184 @@
 
   <style>
     :root {
-      /* --- YENİ KADİFEMSİ KRALİYET PALETİ (Kahve & Mor) --- */
+      /* DERİN KADİFE PALETİ */
+      --bg-deep: #0D0208;
+      --bg-purple: #1A0B1C;
+      --bg-coffee: #241318;
       
-      /* En koyu kenarlar (Derin Erik/Kakao) */
-      --bg-deep: #1A0F1F; 
+      --gold-light: #FFF5C2;
+      --gold: #C6A664;
+      --gold-dark: #806330;
       
-      /* Merkezdeki ışık (Zengin Mürdüm/Altın yansıması) */
-      --bg-gradient-center: #4A235A; 
+      --text-main: #F2EBE5;
+      --text-muted: #9C8C96;
       
-      /* Altın Detaylar */
-      --gold-light: #F2D06B;
-      --gold: #D4AF37;
-      --gold-dark: #8A7036;
-      
-      --text-main: #F0E6D2; /* Hafif krem rengi metin, mor üzerinde daha iyi durur */
-      --text-muted: #A8909C; /* Morumsu gri */
-      
-      /* Panellerin rengini yeni arkaplana uydurduk */
-      --panel: rgba(40, 25, 45, 0.5); 
-      --border-soft: rgba(212, 175, 55, 0.25);
+      --glass: rgba(255, 255, 255, 0.03);
+      --border-gold: rgba(198, 166, 100, 0.3);
     }
 
     body {
       background-color: var(--bg-deep);
       color: var(--text-main);
       overflow-x: hidden;
-      
-      /* YENİ: Kadifemsi Radyal Gradyan Arkaplan */
-      /* Merkezden dışa doğru mor ve kahve tonlarının zengin geçişi */
-      background: radial-gradient(circle at 50% 40%, var(--bg-gradient-center) 0%, #3E2723 50%, var(--bg-deep) 90%);
-      background-attachment: fixed; /* Kaydırırken arkaplan sabit kalsın (derinlik hissi) */
       min-height: 100vh;
     }
 
-    /* --- CSS KRALİYET MÜHRÜ (Wax Seal) --- */
-    .wax-seal-container {
-        position: relative;
-        width: 140px; height: 140px;
+    /* --- 1. SİNEMATİK ARKAPLAN (Noise & Vignette) --- */
+    .bg-cinema {
+        position: fixed; inset: 0; z-index: -2;
+        /* Zengin Mor-Kahve Gradyan */
+        background: radial-gradient(circle at 50% 30%, #3a1c2e 0%, #180a14 50%, #050103 100%);
+    }
+    
+    .noise-overlay {
+        position: fixed; inset: -50%; width: 200%; height: 200%; z-index: -1;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+        animation: grain 8s steps(10) infinite;
+        pointer-events: none;
+        mix-blend-mode: overlay;
+    }
+
+    .vignette {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.8) 100%);
+    }
+
+    /* --- 2. GELİŞMİŞ SÜSLÜ ÇERÇEVE (SVG ORNAMENTS) --- */
+    .ornamental-frame {
+        position: fixed; inset: 15px; pointer-events: none; z-index: 50;
+        border: 1px solid rgba(198, 166, 100, 0.15);
+    }
+    .corner-ornament {
+        position: fixed; width: 80px; height: 80px; z-index: 51; pointer-events: none;
+        fill: none; stroke: var(--gold); stroke-width: 1;
+        filter: drop-shadow(0 0 5px rgba(198,166,100, 0.5));
+    }
+    .c-tl { top: 15px; left: 15px; }
+    .c-tr { top: 15px; right: 15px; transform: scaleX(-1); }
+    .c-bl { bottom: 15px; left: 15px; transform: scaleY(-1); }
+    .c-br { bottom: 15px; right: 15px; transform: scale(-1, -1); }
+
+    /* --- 3. 3D GERÇEKÇİ WAX SEAL (Mühür) --- */
+    .wax-seal-wrapper {
+        position: relative; width: 160px; height: 160px;
         display: flex; align-items: center; justify-content: center;
-        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
     }
-    .wax-seal-body {
+    .wax-blob {
         position: absolute; inset: 0;
-        border-radius: 50%;
-        /* Düzensiz kenarlar için border-radius hilesi */
-        border-radius: 48% 52% 51% 49% / 51% 49% 52% 48%;
-        /* Altın/Mum dokusu gradyanı */
-        background: radial-gradient(circle at 30% 30%, #FFD700, #D4AF37, #B8860B, #8A7036);
-        /* Kalınlık ve 3D hissi için gölgeler */
+        background: radial-gradient(circle at 30% 30%, #E6C575, #C6A664, #917332, #5C4315);
+        border-radius: 45% 55% 48% 52% / 51% 49% 52% 48%; /* Organik şekil */
         box-shadow: 
-            inset 0 0 20px rgba(0,0,0,0.2),
-            inset 0 0 5px rgba(255,255,255,0.3), /* Parlama */
-            0 0 0 4px #B8860B, /* Dış kenar */
-            0 0 0 7px #D4AF37; /* İkinci dış kenar (erimiş efekti) */
-        border: 2px solid #C5A028;
+            inset 2px 2px 10px rgba(255,255,255,0.4),
+            inset -5px -5px 20px rgba(0,0,0,0.4);
+        animation: pulse-slow 4s ease-in-out infinite alternate;
     }
-    /* Mühür içindeki kabartma yazı efekti */
-    .seal-text {
-        font-family: 'Cinzel', serif;
-        font-size: 3.5rem;
-        color: #B8860B;
-        /* İçeri gömülü (engraved) efekti */
-        text-shadow: 
-            1px 1px 2px rgba(255,255,255,0.3), 
-            -1px -1px 2px rgba(0,0,0,0.5);
-        z-index: 2;
+    .wax-inner {
+        position: absolute; width: 75%; height: 75%;
+        border-radius: 50%;
+        border: 2px solid rgba(92, 67, 21, 0.3);
+        background: radial-gradient(circle at 40% 40%, #C6A664, #9C7E3E);
+        box-shadow: 
+            inset 0 0 15px rgba(0,0,0,0.5),
+            0 2px 5px rgba(255,255,255,0.2);
+        display: flex; align-items: center; justify-content: center;
     }
-
-    /* --- BAROQUE FRAME --- */
-    .vip-frame {
-      position: fixed; inset: 12px; z-index: 90; pointer-events: none;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      /* Çerçeve iç gölgesini yeni mor temaya uydurduk */
-      box-shadow: inset 0 0 120px rgba(20, 5, 25, 0.8); 
-    }
-    .vip-frame::before {
-      content: ""; position: absolute; inset: 4px;
-      border: 1px solid rgba(212, 175, 55, 0.15);
-    }
-    .corner {
-      position: fixed; width: 45px; height: 45px; z-index: 91; pointer-events: none;
-      border: 2px solid var(--gold); opacity: 0.9;
-    }
-    .c-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-    .c-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-    .c-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-    .c-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
-
-    /* --- TEXTURE & EFFECTS --- */
-    .texture-overlay {
-      position: fixed; inset: 0; pointer-events: none; z-index: 1;
-      opacity: 0.2; /* Dokuyu biraz daha belirginleştirdik */
-      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-      mix-blend-mode: overlay;
+    .seal-initial {
+        font-family: 'Cinzel Decorative', serif;
+        font-size: 4rem; color: #5C4315;
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.3), -1px -1px 0 rgba(0,0,0,0.5);
     }
 
+    /* --- 4. ALTIN VARAKLI YAZILAR --- */
+    .text-gradient-gold {
+        background: linear-gradient(to bottom, #FFF5C2 0%, #C6A664 40%, #806330 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+        text-shadow: 0 0 40px rgba(198,166,100, 0.3);
+    }
+    
+    /* --- 5. CAM (GLASS) PANELLER --- */
+    .glass-card {
+        background: rgba(20, 10, 20, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(198, 166, 100, 0.15);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(198, 166, 100, 0.05);
+    }
+
+    /* Entrance Flash */
     .flash-effect {
-      position: fixed; inset: 0; background: #FFF0C0; /* Flash rengini hafif altın sarısı yaptık */
-      z-index: 150; pointer-events: none; opacity: 0; transition: opacity 1.5s ease-out;
+        position: fixed; inset: 0; background: #FFF; z-index: 150;
+        pointer-events: none; opacity: 0; transition: opacity 1.5s ease-out;
     }
-    .flash-effect.trigger { opacity: 0.5; animation: flashFade 1.2s forwards; }
+    .flash-effect.trigger { opacity: 0.6; animation: flashFade 1.2s forwards; }
     @keyframes flashFade { to { opacity: 0; } }
 
-    .gold-text {
-      background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      background-size: 200% auto; animation: shine 6s linear infinite;
-      text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-    }
-
-    .glass-panel {
-      background: var(--panel);
-      backdrop-filter: blur(16px); /* Bulanıklığı artırdık */
-      border: 1px solid var(--border-soft);
-      box-shadow: 0 25px 70px rgba(10, 0, 15, 0.5); /* Gölgeleri morlaştırdık */
-    }
-
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+    /* Reveal Animations */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
+    /* Giriş Ekranı */
     #entrance-screen {
-      position: fixed; inset: 0; z-index: 110; 
-      /* Giriş ekranı arkaplanı da ana tema ile uyumlu */
-      background: radial-gradient(circle at center, #3E1F47 0%, #1A0F1F 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        position: fixed; inset: 0; z-index: 110; 
+        background: radial-gradient(circle at center, #2E1A26 0%, #0D0208 100%);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
     .envelope-open { transform: translateY(-100%); }
 
-    /* Inputs */
+    /* Custom Scrollbar */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    
+    /* Form Elements */
     input, select, textarea {
-      background: rgba(30, 15, 35, 0.5); border-bottom: 1px solid rgba(255,255,255,0.15);
-      color: var(--text-main); outline: none; transition: 0.3s;
+        background: rgba(0,0,0,0.2); border-bottom: 1px solid rgba(198, 166, 100, 0.3);
+        color: var(--text-main); outline: none; transition: 0.3s;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: var(--gold); background: rgba(40, 20, 45, 0.7);
+        border-color: var(--gold); background: rgba(198, 166, 100, 0.05);
     }
-
-    /* Scrollbar */
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #1A0F1F; }
-    ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
     
-    @keyframes shake {
-      0%,100%{ transform: translateX(0); }
-      20%{ transform: translateX(-6px); } 40%{ transform: translateX(6px); }
-      60%{ transform: translateX(-4px); } 80%{ transform: translateX(4px); }
+    /* Admin Modal */
+    #adminModal {
+        background: rgba(13, 2, 8, 0.95);
     }
-    .shake{ animation: shake .35s ease-in-out; }
-
-    #adminModal{
-      position: fixed; inset:0; z-index: 200;
-      display:none; align-items:center; justify-content:center;
-      background: rgba(10, 5, 15, 0.9); padding: 18px; backdrop-filter: blur(8px);
-    }
-    #adminModal.open{ display:flex; }
   </style>
 </head>
 
 <body class="font-modern antialiased">
 
-  <div class="texture-overlay"></div>
+  <div class="bg-cinema"></div>
+  <div class="noise-overlay"></div>
+  <div class="vignette"></div>
   <div class="flash-effect" id="flash"></div>
 
-  <div class="vip-frame"></div>
-  <div class="corner c-tl"></div>
-  <div class="corner c-tr"></div>
-  <div class="corner c-bl"></div>
-  <div class="corner c-br"></div>
+  <div class="ornamental-frame"></div>
+  
+  <svg style="display: none;">
+    <symbol id="ornament-corner" viewBox="0 0 100 100">
+      <path d="M10,90 Q10,10 90,10 M10,90 L10,60 M90,10 L60,10 M15,85 Q15,15 85,15" stroke="currentColor" fill="none"/>
+      <circle cx="10" cy="10" r="3" fill="currentColor"/>
+      <circle cx="10" cy="90" r="2" fill="currentColor"/>
+      <circle cx="90" cy="10" r="2" fill="currentColor"/>
+    </symbol>
+  </svg>
 
-  <div id="pin-screen" class="fixed inset-0 z-[120] bg-[#1A0F1F] flex items-center justify-center hidden" role="dialog">
+  <svg class="corner-ornament c-tl"><use href="#ornament-corner"/></svg>
+  <svg class="corner-ornament c-tr"><use href="#ornament-corner"/></svg>
+  <svg class="corner-ornament c-bl"><use href="#ornament-corner"/></svg>
+  <svg class="corner-ornament c-br"><use href="#ornament-corner"/></svg>
+
+  <div id="pin-screen" class="fixed inset-0 z-[120] bg-[#0D0208] flex items-center justify-center hidden">
     <div class="w-full max-w-sm px-8 relative z-10">
-      <div class="glass-panel rounded-xl p-10 text-center border border-[#D4AF37]/20 shadow-2xl">
-        <div class="mx-auto mb-6 wax-seal-container">
-            <div class="wax-seal-body"></div>
-            <span class="seal-text" id="pinMonogram">S</span>
-        </div>
-        <p class="font-luxury text-[#D4AF37] tracking-[0.3em] text-lg mb-8">VIP ACCESS</p>
+      <div class="glass-card rounded-sm p-10 text-center">
+        <div class="mb-6 font-luxury text-3xl text-gradient-gold animate-pulse">S</div>
+        <p class="font-sub text-[#9C8C96] tracking-[0.3em] text-xs mb-8 uppercase">Private Access</p>
         <div id="pinBox">
           <input id="pinInput" type="tel" maxlength="10" 
-            class="text-center text-2xl font-luxury tracking-[0.5em] w-full bg-transparent border-b border-[#D4AF37]/30 focus:border-[#D4AF37] text-[#F0E6D2] placeholder-[#D4AF37]/20 py-3" 
+            class="text-center text-2xl font-sub tracking-[0.5em] w-full bg-transparent py-3 text-[#F2EBE5] placeholder-[#9C8C96]/20" 
             placeholder="••••" />
-          <div class="mt-4 flex items-center justify-center gap-3">
-             <label class="text-[10px] text-[#D4AF37]/60 uppercase tracking-wider cursor-pointer">
-                <input type="checkbox" id="rememberDevice" class="mr-2 align-middle accent-[#D4AF37]"> Remember
-             </label>
-          </div>
-          <button id="pinSubmit" class="mt-6 px-8 py-2 border border-[#D4AF37]/30 rounded-full text-xs text-[#D4AF37]/80 hover:text-[#1A0F1F] hover:bg-[#D4AF37] transition uppercase tracking-widest">Enter</button>
+          <button id="pinSubmit" class="mt-8 px-8 py-3 border border-[#C6A664]/30 text-[#C6A664] text-xs tracking-[0.2em] hover:bg-[#C6A664] hover:text-[#0D0208] transition duration-500 uppercase">Enter</button>
           <p id="pinError" class="text-[10px] text-red-400 mt-4 hidden tracking-widest uppercase">Incorrect Code</p>
         </div>
       </div>
@@ -244,19 +244,21 @@
   </div>
 
   <div id="entrance-screen">
-    <div class="text-center px-6 relative z-10">
-      <div class="mb-10 animate-float mx-auto wax-seal-container">
-         <div class="wax-seal-body"></div>
-         <span class="seal-text" id="monogram">S</span>
+    <div class="text-center px-6 relative z-10 flex flex-col items-center">
+      
+      <div class="wax-seal-wrapper mb-12 cursor-pointer transition-transform hover:scale-105 duration-700" id="sealBtn">
+         <div class="wax-blob"></div>
+         <div class="wax-inner">
+            <span class="seal-initial">S</span>
+         </div>
       </div>
       
-      <h2 class="font-luxury text-[#F0E6D2] text-xl tracking-[0.4em] mb-3" id="privateLabel">PRIVATE INVITATION</h2>
-      <p class="font-modern text-[10px] text-[#A8909C] tracking-[0.2em] uppercase mb-12" id="clickLabel">Strictly Personal</p>
+      <h2 class="font-luxury text-gradient-gold text-2xl tracking-[0.2em] mb-4" id="privateLabel">PRIVATE INVITATION</h2>
+      <p class="font-elegant text-[#9C8C96] text-lg italic mb-12" id="clickLabel">Strictly Personal & Confidential</p>
       
       <button id="open-btn" 
-        class="group relative px-12 py-5 overflow-hidden transition-all duration-500 hover:scale-105 border-2 border-[#D4AF37] rounded-sm">
-        <div class="absolute inset-0 w-full h-full bg-[#D4AF37]/10 group-hover:bg-[#D4AF37] transition-all duration-700"></div>
-        <span class="relative font-luxury tracking-[0.25em] text-[#D4AF37] group-hover:text-[#1A0F1F] text-xs z-10 font-bold">BREAK THE SEAL</span>
+        class="group relative px-10 py-4 overflow-hidden border-t border-b border-[#C6A664]/30 transition-all duration-500 hover:border-[#C6A664]">
+        <span class="relative font-sub tracking-[0.3em] text-[#C6A664] text-xs z-10 group-hover:text-[#FFF5C2] transition-colors">TAP TO OPEN</span>
       </button>
     </div>
   </div>
@@ -268,276 +270,288 @@
     </audio>
 
     <button id="music-btn" 
-      class="fixed bottom-8 right-8 z-[100] w-12 h-12 rounded-full glass-panel border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] hover:scale-110 transition shadow-[0_0_25px_rgba(212,175,55,0.3)]"
-      aria-label="Music" aria-pressed="false" title="Music">
+      class="fixed bottom-8 right-8 z-[100] w-12 h-12 rounded-full glass-card flex items-center justify-center text-[#C6A664] hover:scale-110 transition opacity-60 hover:opacity-100"
+      aria-label="Music">
       <i class="fa-solid fa-music"></i>
     </button>
 
     <div class="fixed bottom-8 left-8 z-[100] hidden md:flex flex-col gap-3">
-      <button id="share-btn" class="px-5 py-3 glass-panel rounded-full text-xs text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition border border-[#D4AF37]/30">
-        <i class="fa-solid fa-link mr-2"></i> Share
+      <button id="share-btn" class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-[#C6A664] hover:bg-[#C6A664] hover:text-black transition">
+        <i class="fa-solid fa-link"></i>
       </button>
-      <a href="#rsvp" class="px-5 py-3 glass-panel rounded-full text-xs text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition border border-[#D4AF37]/30">
-        <i class="fa-solid fa-pen-to-square mr-2"></i> RSVP
+      <a href="#rsvp" class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-[#C6A664] hover:bg-[#C6A664] hover:text-black transition">
+        <i class="fa-solid fa-envelope"></i>
       </a>
     </div>
 
-    <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden pt-20">
-      <div class="absolute inset-0 -z-10">
-        <video id="bgVideo" class="w-full h-full object-cover opacity-30 grayscale mix-blend-luminosity" playsinline muted loop preload="metadata">
+    <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
+      
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <video id="bgVideo" class="w-full h-full object-cover opacity-20 grayscale mix-blend-screen" playsinline muted loop preload="metadata">
           <source src="assets/bg.mp4" type="video/mp4">
         </video>
-        <div class="video-overlay"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-[#1A0F1F]/80 via-transparent to-[#1A0F1F]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0D0208] via-transparent to-[#0D0208]"></div>
       </div>
 
-      <p class="font-modern text-[10px] tracking-[0.4em] uppercase text-[#A8909C] mb-8 reveal" id="heroTop">
-        You are cordially invited
+      <p class="font-sub text-[10px] tracking-[0.5em] uppercase text-[#9C8C96] mb-6 reveal" id="heroTop">
+        The Honor of Your Presence
       </p>
-      <h1 class="font-luxury text-6xl md:text-9xl gold-text mb-2 reveal drop-shadow-2xl animate-float" id="heroName">
+
+      <h1 class="font-luxury text-6xl md:text-8xl lg:text-9xl text-gradient-gold mb-4 reveal drop-shadow-2xl animate-float" id="heroName">
         SOPHIA
       </h1>
-      <p class="font-script text-4xl md:text-5xl text-[#F0E6D2] reveal mb-10 drop-shadow-lg" id="heroQuote">
-        "A Night of Elegance & Memories"
+      
+      <p class="font-script text-4xl md:text-6xl text-[#EAEAEA] reveal mb-12 drop-shadow-lg opacity-90" id="heroQuote">
+        "A Night of Timeless Elegance"
       </p>
-      <div class="h-px w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-10 reveal"></div>
+
       <div class="reveal">
-        <span id="eventStatusBadge" 
-          class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#D4AF37]/20 bg-[#4A235A]/30 backdrop-blur-md">
-          <span class="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse"></span>
-          <span class="font-modern text-xs tracking-widest text-[#F0E6D2] uppercase" id="eventStatusText">Counting down</span>
-        </span>
+        <div class="inline-flex items-center gap-4 px-8 py-3 rounded-full border border-[#C6A664]/20 bg-[#1A0B1C]/60 backdrop-blur-md">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#C6A664] animate-pulse"></span>
+          <span class="font-sub text-[10px] tracking-[0.2em] text-[#C6A664] uppercase" id="eventStatusText">Awaiting Arrival</span>
+        </div>
       </div>
-      <div class="absolute bottom-10 animate-bounce text-[#D4AF37]/50 text-xl">
+
+      <div class="absolute bottom-12 animate-bounce text-[#C6A664]/30 text-2xl">
         <i class="fa-solid fa-chevron-down"></i>
       </div>
     </header>
 
-    <section class="max-w-5xl mx-auto px-6 mb-24 mt-12 reveal">
-      <div class="relative aspect-video rounded-sm overflow-hidden border border-[#D4AF37]/40 shadow-[0_0_80px_rgba(74,35,90,0.4)] group" id="momentWrap">
-        <div class="absolute inset-0 bg-[#1A0F1F]/50 group-hover:bg-transparent transition duration-700 z-10 pointer-events-none"></div>
-        <video id="momentVideo" class="w-full h-full object-cover relative z-0" playsinline controls preload="metadata">
-          <source src="assets/moment.mp4" type="video/mp4">
-        </video>
+    <section class="max-w-5xl mx-auto px-6 mb-32 mt-12 reveal">
+      <div class="relative p-1 border border-[#C6A664]/30 shadow-[0_0_100px_rgba(36,19,24,0.6)]">
+        <div class="absolute -top-1 -left-1 w-4 h-4 border-t border-l border-[#C6A664]"></div>
+        <div class="absolute -top-1 -right-1 w-4 h-4 border-t border-r border-[#C6A664]"></div>
+        <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-[#C6A664]"></div>
+        <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-[#C6A664]"></div>
+        
+        <div class="relative aspect-video overflow-hidden group bg-black">
+           <video id="momentVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-1000" playsinline controls>
+             <source src="assets/moment.mp4" type="video/mp4">
+           </video>
+        </div>
       </div>
     </section>
 
     <section class="max-w-4xl mx-auto px-6 mb-32">
-      <div class="glass-panel rounded-lg p-8 reveal border-[#D4AF37]/20">
-        <div class="grid grid-cols-4 gap-4 text-center">
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="days">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Days</span></div>
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="hours">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Hrs</span></div>
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="minutes">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Mins</span></div>
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="seconds">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Secs</span></div>
+      <div class="glass-card p-10 reveal">
+        <div class="grid grid-cols-4 gap-4 text-center divide-x divide-[#C6A664]/10">
+          <div><span class="block font-luxury text-3xl md:text-5xl text-[#F2EBE5]" id="days">00</span><span class="text-[9px] text-[#C6A664] uppercase tracking-widest mt-2 block">Days</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl text-[#F2EBE5]" id="hours">00</span><span class="text-[9px] text-[#C6A664] uppercase tracking-widest mt-2 block">Hrs</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl text-[#F2EBE5]" id="minutes">00</span><span class="text-[9px] text-[#C6A664] uppercase tracking-widest mt-2 block">Mins</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl text-[#F2EBE5]" id="seconds">00</span><span class="text-[9px] text-[#C6A664] uppercase tracking-widest mt-2 block">Secs</span></div>
         </div>
-        <div class="text-center mt-8">
-           <button id="ics-btn" class="text-xs text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:text-[#F0E6D2] transition uppercase tracking-widest">Add to Calendar</button>
-           <a id="gcal-link" href="#" target="_blank" class="ml-6 text-xs text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:text-[#F0E6D2] transition uppercase tracking-widest">Google Calendar</a>
+        <div class="text-center mt-10 space-x-8">
+           <button id="ics-btn" class="text-[10px] text-[#9C8C96] hover:text-[#C6A664] transition uppercase tracking-[0.2em] border-b border-transparent hover:border-[#C6A664] pb-1">Download .ICS</button>
+           <a id="gcal-link" href="#" target="_blank" class="text-[10px] text-[#9C8C96] hover:text-[#C6A664] transition uppercase tracking-[0.2em] border-b border-transparent hover:border-[#C6A664] pb-1">Google Calendar</a>
         </div>
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 mb-32 reveal" id="details">
-      <div class="space-y-16 text-center md:text-right">
-        <div class="group">
-          <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">When</span>
-          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2" id="whenDateDisplay">OCT 25</h3>
-          <p class="font-elegant text-2xl text-[#A8909C] italic" id="whenDate">Saturday, October 25th</p>
-          <p class="font-modern text-sm text-[#A8909C]/70 mt-2 tracking-widest" id="whenTime">19:00 - Late</p>
+    <section class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 mb-32 reveal" id="details">
+      <div class="text-center md:text-right space-y-12">
+        <div>
+          <span class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] block mb-3">DATE & TIME</span>
+          <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1" id="whenDateDisplay">OCTOBER 25</h3>
+          <p class="font-elegant text-xl text-[#9C8C96] italic" id="whenDate">Saturday, 2026</p>
+          <p class="font-sub text-xs text-[#9C8C96]/60 mt-2 tracking-widest" id="whenTime">19:00 - Dawn</p>
         </div>
-        <div class="group">
-          <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Where</span>
-          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2" id="whereName">The Grand Ballroom</h3>
-          <p class="font-elegant text-xl text-[#A8909C] italic" id="whereAddress">123 Luxury Ave, Manhattan, NY</p>
-          <div class="flex flex-wrap justify-center md:justify-end gap-4 mt-6">
-            <a id="map-google" target="_blank" class="text-xs border border-[#D4AF37]/30 text-[#D4AF37] px-5 py-2 rounded-full hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition">Maps</a>
-            <a id="map-waze" target="_blank" class="text-xs border border-[#D4AF37]/30 text-[#D4AF37] px-5 py-2 rounded-full hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition">Waze</a>
+        <div>
+          <span class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] block mb-3">LOCATION</span>
+          <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1" id="whereName">Grand Ballroom</h3>
+          <p class="font-elegant text-xl text-[#9C8C96] italic" id="whereAddress">123 Luxury Ave, Manhattan</p>
+          <div class="flex justify-center md:justify-end gap-4 mt-4">
+             <a id="map-google" target="_blank" class="w-8 h-8 rounded-full border border-[#C6A664]/30 flex items-center justify-center text-[#C6A664] text-xs hover:bg-[#C6A664] hover:text-black transition"><i class="fa-solid fa-map-location"></i></a>
           </div>
         </div>
       </div>
-      <div class="space-y-16 text-center md:text-left border-t md:border-t-0 md:border-l border-[#D4AF37]/30 pt-12 md:pt-0 md:pl-12">
-        <div class="group">
-          <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Dress Code</span>
-          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2">BLACK TIE</h3>
-          <p class="font-elegant text-xl text-[#A8909C] italic" id="dressCode">Formal & Elegant</p>
-          <div class="flex justify-center md:justify-start gap-3 mt-6" id="palette">
-            <div class="w-6 h-6 rounded-full bg-[#1A0F1F] border border-[#D4AF37]/30"></div>
-            <div class="w-6 h-6 rounded-full bg-[#D4AF37] shadow-[0_0_10px_#D4AF37]"></div>
-            <div class="w-6 h-6 rounded-full bg-[#4A235A] border border-[#D4AF37]/30"></div>
+
+      <div class="text-center md:text-left space-y-12 border-t md:border-t-0 md:border-l border-[#C6A664]/10 pt-12 md:pt-0 md:pl-12">
+        <div>
+          <span class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] block mb-3">DRESS CODE</span>
+          <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1">BLACK TIE</h3>
+          <p class="font-elegant text-xl text-[#9C8C96] italic" id="dressCode">Strictly Formal</p>
+          <div class="flex justify-center md:justify-start gap-3 mt-4" id="palette">
+            <div class="w-5 h-5 rounded-full bg-[#0D0208] border border-[#C6A664]/30"></div>
+            <div class="w-5 h-5 rounded-full bg-[#C6A664] shadow-[0_0_10px_#C6A664]"></div>
+            <div class="w-5 h-5 rounded-full bg-[#3a1c2e] border border-[#C6A664]/30"></div>
           </div>
-          <p class="text-[10px] text-[#A8909C] mt-3 uppercase tracking-wider" id="paletteNote">Royal Palette</p>
         </div>
-        <div class="group">
-          <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Gifts</span>
-          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2">REGISTRY</h3>
-          <p class="font-elegant text-xl text-[#A8909C] italic" id="registryNote">Your presence is enough</p>
-          <a id="registryLink" href="#" target="_blank" class="inline-block mt-6 text-xs border-b border-[#D4AF37]/30 text-[#D4AF37] pb-1 hover:text-[#F0E6D2] hover:border-[#F0E6D2] transition uppercase tracking-widest">View Wishlist</a>
+        <div>
+          <span class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] block mb-3">GIFTING</span>
+          <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1">REGISTRY</h3>
+          <p class="font-elegant text-xl text-[#9C8C96] italic" id="registryNote">Your presence is our gift</p>
+          <a id="registryLink" href="#" target="_blank" class="inline-block mt-4 text-[10px] text-[#C6A664] hover:text-white border-b border-[#C6A664]/30 pb-1 transition tracking-widest uppercase">View Details</a>
         </div>
       </div>
     </section>
 
     <section class="max-w-2xl mx-auto px-6 mb-32 reveal">
-      <div class="glass-panel rounded-lg overflow-hidden divide-y divide-[#D4AF37]/10 border-[#D4AF37]/20">
+      <div class="glass-card divide-y divide-[#C6A664]/10">
         <details class="group">
-          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F0E6D2] hover:bg-[#4A235A]/20 transition">
-            <span class="font-luxury text-sm tracking-widest"><i class="fa-solid fa-car mr-3 text-[#D4AF37]"></i> PARKING</span>
-            <span class="text-[#D4AF37] group-open:rotate-180 transition">+</span>
+          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F2EBE5] hover:bg-[#C6A664]/5 transition">
+            <span class="font-sub text-xs tracking-[0.2em]"><i class="fa-solid fa-car mr-4 text-[#C6A664]"></i> VALET & PARKING</span>
+            <span class="text-[#C6A664] group-open:rotate-180 transition">+</span>
           </summary>
-          <div class="p-6 pt-0 text-[#A8909C] text-sm leading-relaxed font-elegant italic" id="parkingInfo"></div>
+          <div class="p-6 pt-0 text-[#9C8C96] text-sm leading-relaxed font-elegant italic" id="parkingInfo"></div>
         </details>
         <details class="group">
-          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F0E6D2] hover:bg-[#4A235A]/20 transition">
-            <span class="font-luxury text-sm tracking-widest"><i class="fa-solid fa-phone mr-3 text-[#D4AF37]"></i> CONTACT</span>
-            <span class="text-[#D4AF37] group-open:rotate-180 transition">+</span>
+          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F2EBE5] hover:bg-[#C6A664]/5 transition">
+            <span class="font-sub text-xs tracking-[0.2em]"><i class="fa-solid fa-phone mr-4 text-[#C6A664]"></i> CONTACT</span>
+            <span class="text-[#C6A664] group-open:rotate-180 transition">+</span>
           </summary>
-          <div class="p-6 pt-0 text-[#A8909C] text-sm leading-relaxed font-elegant italic" id="contactInfo"></div>
-        </details>
-        <details class="group">
-          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F0E6D2] hover:bg-[#4A235A]/20 transition">
-            <span class="font-luxury text-sm tracking-widest"><i class="fa-solid fa-info-circle mr-3 text-[#D4AF37]"></i> NOTES</span>
-            <span class="text-[#D4AF37] group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="p-6 pt-0 text-[#A8909C] text-sm leading-relaxed font-elegant italic" id="policyInfo"></div>
+          <div class="p-6 pt-0 text-[#9C8C96] text-sm leading-relaxed font-elegant italic" id="contactInfo"></div>
         </details>
       </div>
     </section>
 
     <section class="max-w-3xl mx-auto px-6 mb-32 reveal">
       <div class="text-center mb-16">
-        <h2 class="font-luxury text-3xl gold-text">The Evening</h2>
+        <h2 class="font-luxury text-4xl text-gradient-gold">Programme</h2>
       </div>
-      <div class="relative border-l border-[#D4AF37]/40 ml-6 pl-10 space-y-16" id="timeline"></div>
+      <div class="relative border-l border-[#C6A664]/20 ml-6 pl-12 space-y-16" id="timeline"></div>
     </section>
 
-    <section class="mb-32 reveal relative overflow-hidden py-16" id="gallery">
-      <div class="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none select-none overflow-hidden">
-         <div class="whitespace-nowrap animate-scroll-text font-luxury text-9xl text-[#D4AF37]">
-            ROYAL CELEBRATION • TIMELESS MEMORIES • ELEGANCE • LOVE • ROYAL CELEBRATION • TIMELESS MEMORIES •
+    <section class="mb-32 reveal relative overflow-hidden py-20" id="gallery">
+      <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
+         <div class="whitespace-nowrap animate-scroll-text font-luxury text-[10rem] text-[#C6A664]">
+            MEMORIES • TIMELESS • ELEGANCE • LOVE • MEMORIES • TIMELESS •
          </div>
       </div>
-      <div class="text-center mb-12 relative z-10">
-        <h2 class="font-luxury text-4xl text-[#F0E6D2]">Memories</h2>
-        <p class="font-script text-2xl text-[#D4AF37] mt-2">Captured Moments</p>
+      <div class="text-center mb-16 relative z-10">
+        <h2 class="font-luxury text-4xl text-[#F2EBE5]">Gallery</h2>
+        <p class="font-script text-3xl text-[#C6A664] mt-2 opacity-80">Captured Moments</p>
       </div>
-      <div class="flex overflow-x-auto gap-8 px-8 pb-16 snap-x hide-scrollbar relative z-10" id="galleryRow"></div>
+      <div class="flex overflow-x-auto gap-8 px-10 pb-10 snap-x hide-scrollbar relative z-10" id="galleryRow"></div>
     </section>
 
     <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
-      <div class="glass-panel p-10 md:p-14 rounded-t-[40px] border-t-2 border-[#D4AF37] relative shadow-[0_-10px_50px_rgba(74,35,90,0.3)]">
-        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-14 h-14 bg-[#1A0F1F] rounded-full border-2 border-[#D4AF37] flex items-center justify-center shadow-[0_0_20px_#D4AF37]">
-           <i class="fa-solid fa-envelope-open-text text-[#D4AF37] text-xl"></i>
+      <div class="glass-card p-10 md:p-14 relative border-t-2 border-t-[#C6A664]">
+        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#0D0208] rounded-full border border-[#C6A664] flex items-center justify-center shadow-[0_0_20px_#C6A664]">
+           <i class="fa-solid fa-pen-nib text-[#C6A664]"></i>
         </div>
-        <div class="text-center mb-10 mt-6">
-          <h2 class="font-luxury text-4xl text-[#F0E6D2] mb-2">R.S.V.P</h2>
-          <p class="font-modern text-[10px] tracking-[0.2em] text-[#D4AF37] uppercase" id="rsvpDeadline">By October 10th</p>
+        
+        <div class="text-center mb-12 mt-4">
+          <h2 class="font-luxury text-4xl text-[#F2EBE5] mb-2">R.S.V.P</h2>
+          <p class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] uppercase" id="rsvpDeadline">Respond by Oct 10</p>
         </div>
+
         <div id="success-msg" class="hidden text-center py-10 animate-float">
-          <div class="mx-auto mb-6 wax-seal-container scale-75"><div class="wax-seal-body"></div><span class="seal-text"><i class="fa-solid fa-check"></i></span></div>
-          <h3 class="text-[#F0E6D2] font-luxury text-2xl">Confirmed</h3>
-          <p class="text-[#A8909C] mt-2 font-elegant italic text-lg" id="successText">See you on the dance floor.</p>
-          <div class="mt-8">
-             <button id="successIcs" class="px-8 py-3 border border-[#D4AF37]/40 rounded-full text-xs text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition uppercase tracking-widest">Add to Calendar</button>
+          <div class="w-20 h-20 mx-auto border border-[#C6A664] rounded-full flex items-center justify-center mb-6">
+             <i class="fa-solid fa-check text-2xl text-[#C6A664]"></i>
           </div>
+          <h3 class="text-[#F2EBE5] font-luxury text-2xl">Attendance Confirmed</h3>
+          <p class="text-[#9C8C96] mt-4 font-elegant italic text-lg" id="successText">We await your company.</p>
+          <button id="successIcs" class="mt-8 px-8 py-3 border border-[#C6A664]/30 text-[#C6A664] text-[10px] tracking-[0.2em] hover:bg-[#C6A664] hover:text-black transition uppercase">Add to Calendar</button>
         </div>
-        <form id="rsvpForm" action="#" method="POST" class="space-y-8">
-          <div class="group">
-            <input type="text" name="name" required placeholder=" " class="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-[#F0E6D2] text-lg focus:border-[#D4AF37] placeholder-transparent peer">
-            <label class="block text-[10px] tracking-widest text-[#A8909C] uppercase mt-2 group-focus-within:text-[#D4AF37]">Guest Name(s)</label>
+
+        <form id="rsvpForm" class="space-y-10">
+          <div class="group relative">
+            <input type="text" name="name" required placeholder=" " class="w-full bg-transparent border-b border-[#C6A664]/30 py-3 text-[#F2EBE5] text-lg focus:border-[#C6A664] peer">
+            <label class="absolute left-0 top-3 text-[10px] tracking-[0.2em] text-[#9C8C96] uppercase transition-all peer-focus:-top-4 peer-focus:text-[#C6A664] peer-placeholder-shown:top-3 peer-not-placeholder-shown:-top-4">Guest Name(s)</label>
           </div>
-          <div class="flex gap-4 pt-4">
+
+          <div class="flex gap-6 pt-2">
             <label class="flex-1 cursor-pointer group">
               <input type="radio" name="attendance" value="Attending" class="peer hidden" checked>
-              <div class="py-4 text-center border border-[#D4AF37]/30 rounded-sm text-[#A8909C] peer-checked:bg-[#D4AF37] peer-checked:text-[#1A0F1F] peer-checked:border-[#D4AF37] peer-checked:font-bold transition duration-300">
-                <span class="block font-luxury text-sm tracking-widest">ACCEPT</span>
+              <div class="py-4 text-center border border-[#C6A664]/30 text-[#9C8C96] peer-checked:bg-[#C6A664] peer-checked:text-[#0D0208] transition duration-500">
+                <span class="block font-sub text-xs tracking-[0.2em]">ACCEPT</span>
               </div>
             </label>
             <label class="flex-1 cursor-pointer group">
               <input type="radio" name="attendance" value="Decline" class="peer hidden">
-              <div class="py-4 text-center border border-[#D4AF37]/30 rounded-sm text-[#A8909C] peer-checked:bg-[#1A0F1F]/50 peer-checked:text-[#F0E6D2] peer-checked:border-[#A8909C]/50 transition duration-300">
-                <span class="block font-luxury text-sm tracking-widest">DECLINE</span>
+              <div class="py-4 text-center border border-[#C6A664]/30 text-[#9C8C96] peer-checked:bg-[#241318] peer-checked:text-[#F2EBE5] peer-checked:border-red-900/50 transition duration-500">
+                <span class="block font-sub text-xs tracking-[0.2em]">DECLINE</span>
               </div>
             </label>
           </div>
-          <div id="extra-fields" class="space-y-6 pt-4">
-            <div class="grid grid-cols-2 gap-6">
+
+          <div id="extra-fields" class="space-y-8 pt-4">
+            <div class="grid grid-cols-2 gap-8">
               <div>
-                <label class="text-[10px] uppercase tracking-widest text-[#A8909C] block mb-2">Adults</label>
-                <select name="adults" class="w-full bg-[#1A0F1F]/80 text-[#F0E6D2] border-b border-[#D4AF37]/30 py-2"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                <label class="text-[9px] uppercase tracking-[0.2em] text-[#C6A664] block mb-2">Adults</label>
+                <select name="adults" class="w-full bg-[#1A0B1C] text-[#F2EBE5] border-b border-[#C6A664]/30 py-2"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
               </div>
               <div>
-                <label class="text-[10px] uppercase tracking-widest text-[#A8909C] block mb-2">Kids</label>
-                <select name="kids" class="w-full bg-[#1A0F1F]/80 text-[#F0E6D2] border-b border-[#D4AF37]/30 py-2"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
+                <label class="text-[9px] uppercase tracking-[0.2em] text-[#C6A664] block mb-2">Children</label>
+                <select name="kids" class="w-full bg-[#1A0B1C] text-[#F2EBE5] border-b border-[#C6A664]/30 py-2"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
               </div>
             </div>
             <div>
-               <label class="text-[10px] uppercase tracking-widest text-[#A8909C] block mb-2">Dietary</label>
-               <select name="dietary" class="w-full bg-[#1A0F1F]/80 text-[#F0E6D2] border-b border-[#D4AF37]/30 py-2"><option value="No preference">No preference</option><option value="Vegetarian">Vegetarian</option><option value="Vegan">Vegan</option><option value="Gluten-free">Gluten-free</option></select>
+               <label class="text-[9px] uppercase tracking-[0.2em] text-[#C6A664] block mb-2">Dietary Requirements</label>
+               <select name="dietary" class="w-full bg-[#1A0B1C] text-[#F2EBE5] border-b border-[#C6A664]/30 py-2"><option value="None">None</option><option value="Vegetarian">Vegetarian</option><option value="Vegan">Vegan</option><option value="Gluten-free">Gluten-free</option></select>
             </div>
-            <textarea name="note" placeholder="Message to the host..." class="w-full bg-[#4A235A]/20 border border-[#D4AF37]/20 rounded-lg p-4 text-[#F0E6D2] text-sm focus:border-[#D4AF37] placeholder-[#A8909C]/50" rows="3"></textarea>
+            <textarea name="note" placeholder="Message to the host..." class="w-full bg-[#C6A664]/5 border border-[#C6A664]/20 p-4 text-[#F2EBE5] text-sm focus:border-[#C6A664] placeholder-[#9C8C96]/30" rows="2"></textarea>
           </div>
-          <button type="submit" id="submit-btn" class="w-full py-4 mt-4 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#1A0F1F] font-luxury font-bold tracking-[0.2em] text-sm hover:scale-[1.02] transition duration-500 shadow-[0_0_40px_rgba(212,175,55,0.4)]">CONFIRM ATTENDANCE</button>
+
+          <button type="submit" id="submit-btn" class="w-full py-4 mt-6 bg-gradient-to-r from-[#C6A664] to-[#806330] text-[#0D0208] font-sub font-bold tracking-[0.25em] text-xs hover:shadow-[0_0_30px_rgba(198,166,100,0.4)] transition duration-500">
+            CONFIRM ATTENDANCE
+          </button>
         </form>
       </div>
     </section>
 
     <section class="max-w-3xl mx-auto px-6 pb-32 reveal" id="guestbook">
       <div class="text-center mb-8">
-         <h2 class="font-luxury text-2xl text-[#F0E6D2]">Guestbook</h2>
+         <h2 class="font-luxury text-2xl text-[#F2EBE5]">Guestbook</h2>
       </div>
-      <div class="glass-panel p-8 rounded-lg mb-8 border-[#D4AF37]/20">
-        <form id="guestbookForm" class="space-y-4">
-           <input name="guest_name" required placeholder="Your Name" class="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-[#F0E6D2] placeholder-[#D4AF37]/30">
-           <textarea name="guest_message" required placeholder="Write a note..." class="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-[#F0E6D2] placeholder-[#D4AF37]/30" rows="2"></textarea>
-           <button type="submit" id="guestbookBtn" class="text-xs text-[#D4AF37] uppercase tracking-widest border border-[#D4AF37]/40 px-8 py-3 rounded-full hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition mt-4">Send Note</button>
-           <div id="guestbookOk" class="hidden text-xs text-green-400 mt-2">Sent successfully.</div>
+      <div class="glass-card p-8 mb-8">
+        <form id="guestbookForm" class="space-y-6">
+           <input name="guest_name" required placeholder="Your Name" class="w-full bg-transparent border-b border-[#C6A664]/30 py-3 text-[#F2EBE5] placeholder-[#9C8C96]/30">
+           <textarea name="guest_message" required placeholder="Leave a note..." class="w-full bg-transparent border-b border-[#C6A664]/30 py-3 text-[#F2EBE5] placeholder-[#9C8C96]/30" rows="2"></textarea>
+           <div class="text-right">
+             <button type="submit" id="guestbookBtn" class="text-[10px] text-[#C6A664] uppercase tracking-[0.2em] border border-[#C6A664]/30 px-6 py-3 hover:bg-[#C6A664] hover:text-[#0D0208] transition">Sign Book</button>
+           </div>
+           <div id="guestbookOk" class="hidden text-xs text-[#C6A664] mt-2">Note saved.</div>
         </form>
       </div>
-      <div class="flex justify-between items-end border-b border-[#D4AF37]/20 pb-2 mb-6">
-         <span class="text-xs text-[#A8909C] uppercase tracking-widest">Recent Notes</span>
-         <button id="openAdmin" class="text-[10px] text-[#D4AF37]/50 hover:text-[#D4AF37] transition">Admin</button>
+      <div class="flex justify-between items-end border-b border-[#C6A664]/10 pb-2 mb-6">
+         <span class="text-[10px] text-[#9C8C96] uppercase tracking-[0.2em]">Latest Messages</span>
+         <button id="openAdmin" class="text-[9px] text-[#C6A664]/40 hover:text-[#C6A664] transition">ADMIN</button>
       </div>
       <div id="guestbookList" class="grid gap-4"></div>
     </section>
 
-    <footer class="text-center py-10 text-[10px] text-[#A8909C]/50 uppercase tracking-widest border-t border-[#D4AF37]/10">The Grand Celebration · 2026</footer>
+    <footer class="text-center py-12 text-[9px] text-[#9C8C96]/40 uppercase tracking-[0.3em] border-t border-[#C6A664]/5">
+      The Grand Celebration · 2026
+    </footer>
   </div>
 
-  <div id="adminModal" role="dialog" aria-modal="true">
-    <div class="w-full max-w-3xl glass-panel rounded-xl p-8 border border-[#D4AF37]/30">
+  <div id="adminModal" role="dialog" aria-modal="true" class="hidden fixed inset-0 z-[200] bg-black/90 flex items-center justify-center backdrop-blur-sm">
+    <div class="w-full max-w-3xl glass-card p-8 border border-[#C6A664]/30 m-4">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="font-luxury text-xl gold-text">Admin Dashboard</h2>
-        <button id="closeAdmin" class="text-[#A8909C] hover:text-[#D4AF37]"><i class="fa-solid fa-xmark text-xl"></i></button>
+        <h2 class="font-luxury text-xl text-[#C6A664]">Admin Dashboard</h2>
+        <button id="closeAdmin" class="text-[#9C8C96] hover:text-[#C6A664]"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-[#1A0F1F]/60 p-4 rounded border border-[#D4AF37]/20">
+        <div class="bg-[#1A0B1C] p-4 border border-[#C6A664]/20">
           <div class="flex justify-between mb-4">
-             <h3 class="text-xs uppercase text-[#A8909C] tracking-widest">RSVP Data</h3>
-             <button id="exportRsvp" class="text-[10px] text-[#D4AF37] border border-[#D4AF37]/30 px-2 py-1 rounded hover:bg-[#D4AF37] hover:text-[#1A0F1F]">Export CSV</button>
+             <h3 class="text-[10px] uppercase text-[#C6A664] tracking-widest">RSVP</h3>
+             <button id="exportRsvp" class="text-[9px] border border-[#C6A664]/30 px-2 py-1 text-[#F2EBE5] hover:bg-[#C6A664] hover:text-black">CSV</button>
           </div>
-          <div id="rsvpLocalList" class="h-40 overflow-y-auto text-[10px] text-[#A8909C] space-y-2 font-mono">Loading...</div>
+          <div id="rsvpLocalList" class="h-40 overflow-y-auto text-[10px] text-[#9C8C96] space-y-2 font-mono">Loading...</div>
         </div>
-        <div class="bg-[#1A0F1F]/60 p-4 rounded border border-[#D4AF37]/20">
+        <div class="bg-[#1A0B1C] p-4 border border-[#C6A664]/20">
           <div class="flex justify-between mb-4">
-             <h3 class="text-xs uppercase text-[#A8909C] tracking-widest">Guestbook</h3>
-             <button id="exportGuestbook" class="text-[10px] text-[#D4AF37] border border-[#D4AF37]/30 px-2 py-1 rounded hover:bg-[#D4AF37] hover:text-[#1A0F1F]">Export CSV</button>
+             <h3 class="text-[10px] uppercase text-[#C6A664] tracking-widest">Guestbook</h3>
+             <button id="exportGuestbook" class="text-[9px] border border-[#C6A664]/30 px-2 py-1 text-[#F2EBE5] hover:bg-[#C6A664] hover:text-black">CSV</button>
           </div>
-          <div id="guestbookLocalList" class="h-40 overflow-y-auto text-[10px] text-[#A8909C] space-y-2 font-mono">Loading...</div>
+          <div id="guestbookLocalList" class="h-40 overflow-y-auto text-[10px] text-[#9C8C96] space-y-2 font-mono">Loading...</div>
         </div>
       </div>
-      <div class="mt-6 pt-6 border-t border-[#D4AF37]/20 flex items-center gap-4">
-         <input id="adminCode" type="password" placeholder="Admin PIN" class="bg-[#1A0F1F]/60 border-b border-[#D4AF37]/30 px-3 py-2 text-[#F0E6D2] text-sm w-32 font-mono">
-         <button id="adminUnlock" class="px-6 py-2 bg-[#D4AF37] text-[#1A0F1F] text-xs font-bold rounded-sm hover:bg-[#F2D06B] transition tracking-wider">UNLOCK</button>
-         <span id="adminState" class="text-[10px] text-[#A8909C]">Locked</span>
+      <div class="mt-6 pt-6 border-t border-[#C6A664]/10 flex items-center gap-4">
+         <input id="adminCode" type="password" placeholder="PIN" class="bg-[#1A0B1C] border-b border-[#C6A664]/30 px-3 py-2 text-[#F2EBE5] text-sm w-24 font-mono">
+         <button id="adminUnlock" class="px-6 py-2 bg-[#C6A664] text-black text-[10px] font-bold tracking-widest hover:bg-white transition">UNLOCK</button>
+         <span id="adminState" class="text-[10px] text-[#9C8C96]">Locked</span>
       </div>
     </div>
   </div>
 
   <script>
-    // CONFIG
+    // --- CONFIGURATION ---
     const CONFIG = {
       accessPin: "2580",
       adminPin: "9999",
-      databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec",
+      databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec", // Update with your deployment
       monogram: "S",
       celebrantName: "SOPHIA",
       heroQuote: "\"A Night of Elegance & Memories\"",
@@ -552,18 +566,18 @@
       musicSrc: "assets/music.mp3",
       galleryImages: ["assets/gallery/1.jpg", "assets/gallery/2.jpg", "assets/gallery/3.jpg", "assets/gallery/4.jpg"],
       timeline: [
-        { time: "19:00", title: "Welcome Cocktails", note: "Champagne & Jazz" },
-        { time: "20:00", title: "Gala Dinner", note: "Three-course meal" },
-        { time: "22:00", title: "Cake & Toast", note: "Let the party begin!" },
-        { time: "00:00", title: "After Party", note: "Until dawn" },
+        { time: "19:00", title: "Cocktails", note: "Jazz & Champagne" },
+        { time: "20:00", title: "Dinner", note: "Three Courses" },
+        { time: "22:00", title: "Toast", note: "The Celebration" },
+        { time: "00:00", title: "After Party", note: "Until Dawn" },
       ]
     };
+    
     CONFIG.mapEmbedUrl = "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.venueQuery) + "&output=embed";
-
     const $ = (id) => document.getElementById(id);
     const LS = { rsvp: "vip_rsvp", guestbook: "vip_guestbook", session: "vip_session", device: "vip_device" };
 
-    // PIN
+    // --- PIN GATE ---
     const pinScreen = $("pin-screen");
     const pinInput = $("pinInput");
     if(!sessionStorage.getItem(LS.session) && !localStorage.getItem(LS.device)){
@@ -580,67 +594,65 @@
           if($("rememberDevice").checked) localStorage.setItem(LS.device, "1");
        } else {
           $("pinError").classList.remove("hidden");
-          const box = $("pinBox");
-          box.classList.remove("shake");
-          void box.offsetWidth;
-          box.classList.add("shake");
           pinInput.value = "";
        }
     }
 
-    // Entrance
-    $("open-btn").addEventListener("click", () => {
+    // --- ENTRANCE (WAX SEAL BREAK) ---
+    const openActions = () => {
        const audio = $("bgMusic");
-       audio.volume = 0.6;
-       audio.play().catch(()=>{});
+       audio.volume = 0.6; audio.play().catch(()=>{});
+       
        $("entrance-screen").classList.add("envelope-open");
        $("flash").classList.add("trigger");
-       var duration = 3500; var end = Date.now() + duration;
+       
+       // Gold Dust Loop
+       var duration = 3000; var end = Date.now() + duration;
        (function frame() {
-         confetti({ particleCount: 6, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#D4AF37', '#B8860B', '#F2D06B'], shapes: ['circle'], scalar: 0.7, drift: 0, gravity: 1.1 });
-         confetti({ particleCount: 6, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#D4AF37', '#B8860B', '#F2D06B'], shapes: ['circle'], scalar: 0.7, drift: 0, gravity: 1.1 });
+         confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#C6A664', '#FFF5C2'], shapes: ['circle'], scalar: 0.5, drift: 0, gravity: 1.5 });
+         confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#C6A664', '#FFF5C2'], shapes: ['circle'], scalar: 0.5, drift: 0, gravity: 1.5 });
          if (Date.now() < end) requestAnimationFrame(frame);
        }());
+       
        setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); revealAll(); }, 800);
-    });
+    };
+    $("open-btn").addEventListener("click", openActions);
+    $("sealBtn").addEventListener("click", openActions); // Mühre tıklayınca da açılır
+
     $("music-btn").addEventListener("click", () => { const el = $("bgMusic"); if(el.paused) el.play(); else el.pause(); });
 
-    // Content
-    $("pinMonogram").innerText = CONFIG.monogram;
+    // --- CONTENT POPULATION ---
     $("monogram").innerText = CONFIG.monogram;
     $("heroName").innerText = CONFIG.celebrantName;
     $("heroQuote").innerText = CONFIG.heroQuote;
     $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'});
     $("whenDate").innerText = CONFIG.whenDateText;
     
+    // Timeline
     const tlContainer = $("timeline");
     CONFIG.timeline.forEach(item => {
        tlContainer.innerHTML += `
-         <div class="relative">
-            <span class="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-[#D4AF37] shadow-[0_0_15px_#D4AF37]"></span>
-            <span class="text-xs tracking-widest text-[#D4AF37] block mb-1 font-modern">${item.time}</span>
-            <h4 class="font-luxury text-lg text-[#F0E6D2]">${item.title}</h4>
-            <p class="text-sm text-[#A8909C] mt-1 italic font-elegant">${item.note}</p>
+         <div class="relative group">
+            <span class="absolute -left-[55px] top-1 w-2 h-2 rounded-full bg-[#C6A664] shadow-[0_0_15px_#C6A664] group-hover:scale-150 transition"></span>
+            <span class="text-[10px] tracking-[0.2em] text-[#C6A664] block mb-1 font-sub">${item.time}</span>
+            <h4 class="font-luxury text-lg text-[#F2EBE5]">${item.title}</h4>
+            <p class="text-xs text-[#9C8C96] mt-1 italic font-elegant">${item.note}</p>
          </div>`;
     });
 
-    // Gallery Render
+    // Gallery
     const galContainer = $("galleryRow");
     if(CONFIG.galleryImages.length > 0){
         CONFIG.galleryImages.forEach((src, idx) => {
            galContainer.innerHTML += `
-             <div class="flex-shrink-0 snap-center group relative w-64 aspect-[3/4] glass-panel p-3 rounded-sm border border-[#D4AF37]/40 hover:scale-[1.02] transition duration-500 shadow-[0_15px_50px_rgba(10,0,20,0.6)]">
-                <div class="w-full h-[85%] overflow-hidden relative">
-                   <img src="${src}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700 grayscale-[30%] group-hover:grayscale-0" onerror="this.parentElement.parentElement.style.display='none'">
-                   <div class="absolute inset-0 border-2 border-[#D4AF37]/20 pointer-events-none"></div>
-                </div>
-                <div class="h-[15%] flex items-center justify-center">
-                   <span class="font-script text-[#D4AF37] text-xl">Memory ${idx+1}</span>
+             <div class="flex-shrink-0 snap-center group relative w-64 aspect-[3/4] p-1 border border-[#C6A664]/30 grayscale hover:grayscale-0 transition duration-700">
+                <div class="w-full h-full overflow-hidden relative">
+                   <img src="${src}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000" onerror="this.parentElement.parentElement.style.display='none'">
                 </div>
              </div>`;
         });
     } else {
-        galContainer.innerHTML = `<div class="w-full text-center text-[#A8909C] text-sm italic py-10 font-elegant">Photos coming soon...</div>`;
+        galContainer.innerHTML = `<div class="w-full text-center text-[#9C8C96] text-xs italic py-10">Memories Loading...</div>`;
     }
 
     // Countdown
@@ -655,13 +667,7 @@
        $("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2,'0');
     }, 1000);
 
-    // RSVP & Forms
-    const rsvpForm = $("rsvpForm");
-    const radios = document.querySelectorAll('input[name="attendance"]');
-    radios.forEach(r => r.addEventListener('change', (e) => {
-       $("extra-fields").style.display = e.target.value === 'Decline' ? 'none' : 'block';
-    }));
-
+    // --- LOGIC: RSVP & ADMIN ---
     function jsonp(url){
       return new Promise((resolve, reject)=>{
         const cb = "__cb" + Date.now() + Math.floor(Math.random()*999);
@@ -673,16 +679,25 @@
       });
     }
 
+    const rsvpForm = $("rsvpForm");
+    const radios = document.querySelectorAll('input[name="attendance"]');
+    radios.forEach(r => r.addEventListener('change', (e) => {
+       $("extra-fields").style.display = e.target.value === 'Decline' ? 'none' : 'block';
+    }));
+
     rsvpForm.addEventListener("submit", async (e) => {
        e.preventDefault();
        const btn = $("submit-btn");
        btn.innerText = "SENDING..."; btn.disabled = true;
        const fd = new FormData(rsvpForm);
+       
+       // Local Save
        const entry = Object.fromEntries(fd.entries());
        entry.date = new Date().toLocaleString();
        const localData = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
        localData.push(entry);
        localStorage.setItem(LS.rsvp, JSON.stringify(localData));
+
        try {
           if(CONFIG.databaseURL.includes("script.google.com")){
              await fetch(CONFIG.databaseURL, { method: 'POST', body: fd, mode: 'no-cors' });
@@ -691,10 +706,10 @@
           }
           rsvpForm.classList.add("hidden");
           $("success-msg").classList.remove("hidden");
-          confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#D4AF37', '#B8860B'] });
+          confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, colors: ['#C6A664', '#FFF5C2'] });
        } catch (err) {
-          alert("Connection error. Saved locally.");
-          btn.innerText = "TRY AGAIN"; btn.disabled = false;
+          alert("Network error. Saved locally.");
+          btn.innerText = "RETRY"; btn.disabled = false;
        }
     });
 
@@ -717,37 +732,37 @@
     function renderGuestbook(){
        const msgs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
        $("guestbookList").innerHTML = msgs.slice().reverse().map(m => `
-          <div class="glass-panel p-5 rounded border border-[#D4AF37]/20">
-             <div class="flex justify-between items-center mb-3"><span class="font-luxury text-lg gold-text">${m.name}</span><span class="text-[10px] text-[#A8909C]">${m.date}</span></div>
-             <p class="text-sm text-[#F0E6D2]/80 italic font-elegant">"${m.message}"</p>
+          <div class="p-4 border-l-2 border-[#C6A664]/30 bg-[#1A0B1C]/40">
+             <div class="flex justify-between items-center mb-1"><span class="font-luxury text-sm text-[#C6A664]">${m.name}</span><span class="text-[9px] text-[#9C8C96]">${m.date}</span></div>
+             <p class="text-xs text-[#F2EBE5]/80 italic font-elegant">"${m.message}"</p>
           </div>`).join("");
     }
     renderGuestbook();
 
     // Admin
     let adminUnlocked = false;
-    $("openAdmin").addEventListener("click", () => { $("adminModal").classList.add("open"); renderAdminLists(); });
-    $("closeAdmin").addEventListener("click", () => $("adminModal").classList.remove("open"));
+    $("openAdmin").addEventListener("click", () => { $("adminModal").classList.remove("hidden"); $("adminModal").classList.add("flex"); renderAdminLists(); });
+    $("closeAdmin").addEventListener("click", () => { $("adminModal").classList.add("hidden"); $("adminModal").classList.remove("flex"); });
     $("adminUnlock").addEventListener("click", async () => {
        if($("adminCode").value === CONFIG.adminPin){
           adminUnlocked = true;
-          $("adminState").innerText = "Fetching Live Data...";
+          $("adminState").innerText = "Syncing Sheets...";
           try {
              const data = await jsonp(CONFIG.databaseURL + "?action=read");
              let html = "";
              data.slice().reverse().forEach(row => {
-                html += `<div class="border-b border-[#D4AF37]/20 pb-2 mb-2 font-mono text-xs"><span class="text-[#D4AF37] font-bold">${row.Name}</span> <span class="text-[#A8909C]">(${row.Attendance})</span><div class="text-[#F0E6D2]/50 mt-1">${row.Note || ''}</div></div>`;
+                html += `<div class="border-b border-[#C6A664]/20 pb-1 mb-1 font-mono text-[9px]"><span class="text-[#C6A664]">${row.Name}</span> <span class="text-[#9C8C96]">(${row.Attendance})</span></div>`;
              });
-             $("rsvpLocalList").innerHTML = html || "No entries found.";
-             $("adminState").innerText = `Synced: ${data.length} entries`;
+             $("rsvpLocalList").innerHTML = html || "Empty.";
+             $("adminState").innerText = `Synced: ${data.length}`;
           } catch { $("adminState").innerText = "Offline Mode"; }
-       } else { $("adminState").innerText = "Invalid PIN"; }
+       } else { $("adminState").innerText = "Invalid"; }
     });
     function renderAdminLists(){
        const rsvps = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
-       $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-2 font-mono text-xs">${r.name} - ${r.attendance}</div>`).join("");
+       $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-1 font-mono text-[9px]">${r.name} - ${r.attendance}</div>`).join("");
        const gbs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
-       $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-2 font-mono text-xs">${g.name}: ${g.message}</div>`).join("");
+       $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-1 font-mono text-[9px]">${g.name}: ${g.message}</div>`).join("");
     }
     function downloadCSV(content, filename){
        const blob = new Blob([content], {type: 'text/csv'});
@@ -761,16 +776,10 @@
        if(!data.length) return alert("No data");
        const keys = Object.keys(data[0]);
        const csv = [keys.join(","), ...data.map(row => keys.map(k => `"${row[k]}"`).join(","))].join("\n");
-       downloadCSV(csv, "rsvp_backup.csv");
+       downloadCSV(csv, "rsvp_vip.csv");
     });
 
-    // QR & Reveal
-    const pageUrl = window.location.href;
-    if(window.QRCode){
-       new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#1A0F1F" });
-       new QRCode($("qr-map"), { text: CONFIG.mapEmbedUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#1A0F1F" });
-       new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#1A0F1F" });
-    }
+    // Reveal
     function revealAll(){
        const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("active"); });
