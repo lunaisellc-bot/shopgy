@@ -508,53 +508,62 @@
   </div>
 
   <script>
-    // --- GÜÇLENDİRİLMİŞ VERİ YÖNETİMİ ---
-    // Yeni Key: 'royal_guestbook_v1' ile temiz başlangıç.
-    const LS = { 
-        rsvp: "royal_rsvp_v1", 
-        guestbook: "royal_guestbook_v1", 
-        session: "vip_session", 
-        device: "vip_device" 
-    };
+    document.addEventListener("DOMContentLoaded", () => {
+        // --- GÜÇLENDİRİLMİŞ VERİ YÖNETİMİ ---
+        // Yeni Key: 'royal_guestbook_v2' ile temiz başlangıç (v1 cache'i ile karışmasın diye)
+        const LS = { 
+            rsvp: "royal_rsvp_v2", 
+            guestbook: "royal_guestbook_v2", 
+            session: "vip_session", 
+            device: "vip_device" 
+        };
 
-    // --- CONFIGURATION ---
-    const CONFIG = {
-      accessPin: "2580",
-      adminPin: "9999",
-      databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec", 
-      monogram: "S",
-      celebrantName: "SOPHIA",
-      heroQuote: "\"A Night of Elegance & Memories\"",
-      eventStartISO: "2026-10-25T19:00:00-04:00",
-      eventEndISO:    "2026-10-26T01:00:00-04:00",
-      whenDateText: "Saturday, October 25th, 2026",
-      venueName: "The Plaza Hotel",
-      venueAddress: "768 5th Ave, New York, NY",
-      venueQuery: "The Plaza Hotel New York",
-      rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
-      guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
-      musicSrc: "assets/music.mp3",
-      galleryImages: [
-          "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", 
-          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop", 
-          "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop", 
-          "https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=800&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1522673607200-1645062cd958?q=80&w=800&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1490750967868-58cb75069ed6?q=80&w=800&auto=format&fit=crop"
-      ],
-      timeline: [
-        { time: "19:00", title: "Cocktails", note: "Jazz & Champagne" },
-        { time: "20:00", title: "Dinner", note: "Three Courses" },
-        { time: "22:00", title: "Toast", note: "The Celebration" },
-        { time: "00:00", title: "After Party", note: "Until Dawn" },
-      ]
-    };
-    
-    // --- INIT & DUMMY DATA ---
-    // Sayfa açılır açılmaz çalışır ve veritabanı boşsa demo mesajları ekler.
-    function initStorage(){
-        try {
-            const raw = localStorage.getItem(LS.guestbook);
+        // --- CONFIGURATION ---
+        const CONFIG = {
+          accessPin: "2580",
+          adminPin: "9999",
+          databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec", 
+          monogram: "S",
+          celebrantName: "SOPHIA",
+          heroQuote: "\"A Night of Elegance & Memories\"",
+          eventStartISO: "2026-10-25T19:00:00-04:00",
+          eventEndISO:    "2026-10-26T01:00:00-04:00",
+          whenDateText: "Saturday, October 25th, 2026",
+          venueName: "The Plaza Hotel",
+          venueAddress: "768 5th Ave, New York, NY",
+          venueQuery: "The Plaza Hotel New York",
+          rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
+          guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
+          musicSrc: "assets/music.mp3",
+          galleryImages: [
+              "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=800&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1522673607200-1645062cd958?q=80&w=800&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1490750967868-58cb75069ed6?q=80&w=800&auto=format&fit=crop"
+          ],
+          timeline: [
+            { time: "19:00", title: "Cocktails", note: "Jazz & Champagne" },
+            { time: "20:00", title: "Dinner", note: "Three Courses" },
+            { time: "22:00", title: "Toast", note: "The Celebration" },
+            { time: "00:00", title: "After Party", note: "Until Dawn" },
+          ]
+        };
+        
+        // --- SAFE STORAGE WRAPPER (IOS PRIVATE MODE FIX) ---
+        const SafeStorage = {
+            getItem: (key) => {
+                try { return localStorage.getItem(key); } catch(e) { return null; }
+            },
+            setItem: (key, val) => {
+                try { localStorage.setItem(key, val); } catch(e) { console.warn("Storage restricted"); }
+            }
+        };
+
+        // --- INIT & DUMMY DATA ---
+        function initStorage(){
+            const raw = SafeStorage.getItem(LS.guestbook);
             let data = [];
             if(raw) data = JSON.parse(raw);
             
@@ -563,226 +572,199 @@
                     { name: "Alexander & Kate", message: "So excited to celebrate with you! The invitation is stunning.", date: "10/05/2026" },
                     { name: "Isabella R.", message: "Counting down the days! 🥂", date: "10/02/2026" }
                 ];
-                localStorage.setItem(LS.guestbook, JSON.stringify(dummies));
+                SafeStorage.setItem(LS.guestbook, JSON.stringify(dummies));
             }
-        } catch(e) { console.log("Storage reset due to error"); localStorage.removeItem(LS.guestbook); }
-    }
-    initStorage();
-
-    // --- CALENDAR LOGIC (Robust) ---
-    function buildGoogleCalendarLink(c) {
-      const start = new Date(c.eventStartISO).toISOString().replace(/-|:|\.\d+/g, "");
-      const end = new Date(c.eventEndISO).toISOString().replace(/-|:|\.\d+/g, "");
-      const url = new URL("https://calendar.google.com/calendar/render");
-      url.searchParams.set("action", "TEMPLATE");
-      url.searchParams.set("text", `${c.celebrantName} - ${c.monogram} Birthday`);
-      url.searchParams.set("dates", `${start}/${end}`);
-      url.searchParams.set("location", c.venueAddress);
-      url.searchParams.set("details", c.heroQuote + "\n\nRSVP: " + window.location.href);
-      return url.toString();
-    }
-
-    function downloadICS(c) {
-      const start = new Date(c.eventStartISO).toISOString().replace(/-|:|\.\d+/g, "");
-      const end = new Date(c.eventEndISO).toISOString().replace(/-|:|\.\d+/g, "");
-      const now = new Date().toISOString().replace(/-|:|\.\d+/g, "");
-      const icsBody = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//Royal Invite//EN",
-        "BEGIN:VEVENT",
-        `UID:${now}@royalinvite`,
-        `DTSTAMP:${now}`,
-        `DTSTART:${start}`,
-        `DTEND:${end}`,
-        `SUMMARY:${c.celebrantName} - Celebration`,
-        `LOCATION:${c.venueAddress}`,
-        `DESCRIPTION:${c.heroQuote}`,
-        "END:VEVENT",
-        "END:VCALENDAR"
-      ].join("\r\n");
-      const blob = new Blob([icsBody], { type: 'text/calendar;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'invitation.ics');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    // Bind Calendar Buttons
-    const gcalUrl = buildGoogleCalendarLink(CONFIG);
-    const $ = (id) => document.getElementById(id);
-    
-    // Main Page Buttons
-    if($("gcal-link")) $("gcal-link").href = gcalUrl;
-    if($("ics-btn")) $("ics-btn").addEventListener("click", () => downloadICS(CONFIG));
-    
-    // Success Page Buttons (Hidden initially)
-    if($("successGcal")) $("successGcal").href = gcalUrl;
-    if($("successIcs")) $("successIcs").addEventListener("click", () => downloadICS(CONFIG));
-
-    // PIN
-    const pinScreen = $("pin-screen");
-    const pinInput = $("pinInput");
-    if(!sessionStorage.getItem(LS.session) && !localStorage.getItem(LS.device)){
-       pinScreen.classList.remove("hidden");
-       pinScreen.classList.add("flex");
-       setTimeout(()=> pinInput.focus(), 500);
-    }
-    $("pinSubmit").addEventListener("click", validatePin);
-    pinInput.addEventListener("keyup", (e) => { if(e.key === "Enter" || pinInput.value.length === 4) validatePin(); });
-    function validatePin(){
-       if(pinInput.value === CONFIG.accessPin){
-          pinScreen.classList.add("hidden");
-          sessionStorage.setItem(LS.session, "1");
-          if($("rememberDevice")?.checked) localStorage.setItem(LS.device, "1");
-       } else {
-          $("pinError").classList.remove("hidden");
-          pinInput.value = "";
-       }
-    }
-
-    // Entrance
-    const openActions = () => {
-       const audio = $("bgMusic");
-       audio.volume = 0.6; audio.play().catch(()=>{});
-       $("entrance-screen").classList.add("envelope-open");
-       $("flash").classList.add("trigger");
-       var duration = 3000; var end = Date.now() + duration;
-       (function frame() {
-         confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#C6A664', '#FFF5C2'], shapes: ['circle'], scalar: 0.5, drift: 0, gravity: 1.5 });
-         confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#C6A664', '#FFF5C2'], shapes: ['circle'], scalar: 0.5, drift: 0, gravity: 1.5 });
-         if (Date.now() < end) requestAnimationFrame(frame);
-       }());
-       setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); revealAll(); }, 800);
-    };
-    $("open-btn").addEventListener("click", openActions);
-    $("sealBtn").addEventListener("click", openActions); 
-    $("music-btn").addEventListener("click", () => { const el = $("bgMusic"); if(el.paused) el.play(); else el.pause(); });
-
-    // Content
-    if($("monogram")) $("monogram").innerText = CONFIG.monogram;
-    if($("heroName")) $("heroName").innerText = CONFIG.celebrantName;
-    if($("heroQuote")) $("heroQuote").innerText = CONFIG.heroQuote;
-    if($("whenDateDisplay")) $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'});
-    if($("whenDate")) $("whenDate").innerText = CONFIG.whenDateText;
-    
-    const tlContainer = $("timeline");
-    CONFIG.timeline.forEach(item => {
-       tlContainer.innerHTML += `
-         <div class="relative group">
-            <span class="absolute -left-[55px] top-1 w-2 h-2 rounded-full bg-[#C6A664] shadow-[0_0_15px_#C6A664] group-hover:scale-150 transition"></span>
-            <span class="text-[10px] tracking-[0.2em] text-[#C6A664] block mb-1 font-sub">${item.time}</span>
-            <h4 class="font-luxury text-lg text-[#F2EBE5]">${item.title}</h4>
-            <p class="text-xs text-[#9C8C96] mt-1 italic font-elegant">${item.note}</p>
-         </div>`;
-    });
-
-    // Gallery (Dual Row Infinite Scroll)
-    function populateGallery(containerId) {
-        const container = $(containerId);
-        if(CONFIG.galleryImages.length > 0){
-             const images = [...CONFIG.galleryImages, ...CONFIG.galleryImages]; 
-             container.innerHTML = images.map(src => `
-               <div class="flex-shrink-0 relative w-64 aspect-[3/4] p-1 border border-[#C6A664]/30 grayscale hover:grayscale-0 transition duration-700">
-                  <div class="w-full h-full overflow-hidden relative">
-                     <img src="${src}" class="w-full h-full object-cover transform hover:scale-110 transition duration-1000" onerror="this.parentElement.parentElement.style.display='none'">
-                  </div>
-               </div>`).join("");
         }
-    }
-    populateGallery("galleryRow1");
-    populateGallery("galleryRow2");
+        initStorage();
 
-    // Countdown
-    const targetDate = new Date(CONFIG.eventStartISO).getTime();
-    setInterval(() => {
-       const now = new Date().getTime();
-       const dist = targetDate - now;
-       if(dist < 0) { $("eventStatusText").innerText = "Event Started"; return; }
-       $("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24)).toString().padStart(2,'0');
-       $("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
-       $("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
-       $("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2,'0');
-    }, 1000);
+        // --- CALENDAR LOGIC ---
+        function buildGoogleCalendarLink(c) {
+          const start = new Date(c.eventStartISO).toISOString().replace(/-|:|\.\d+/g, "");
+          const end = new Date(c.eventEndISO).toISOString().replace(/-|:|\.\d+/g, "");
+          const url = new URL("https://calendar.google.com/calendar/render");
+          url.searchParams.set("action", "TEMPLATE");
+          url.searchParams.set("text", `${c.celebrantName} - ${c.monogram} Birthday`);
+          url.searchParams.set("dates", `${start}/${end}`);
+          url.searchParams.set("location", c.venueAddress);
+          url.searchParams.set("details", c.heroQuote + "\n\nRSVP: " + window.location.href);
+          return url.toString();
+        }
 
-    // RSVP Form
-    const rsvpForm = $("rsvpForm");
-    const radios = document.querySelectorAll('input[name="attendance"]');
-    radios.forEach(r => r.addEventListener('change', (e) => {
-       $("extra-fields").style.display = e.target.value === 'Decline' ? 'none' : 'block';
-    }));
+        function downloadICS(c) {
+          const start = new Date(c.eventStartISO).toISOString().replace(/-|:|\.\d+/g, "");
+          const end = new Date(c.eventEndISO).toISOString().replace(/-|:|\.\d+/g, "");
+          const now = new Date().toISOString().replace(/-|:|\.\d+/g, "");
+          const icsBody = [
+            "BEGIN:VCALENDAR",
+            "VERSION:2.0",
+            "PRODID:-//Royal Invite//EN",
+            "BEGIN:VEVENT",
+            `UID:${now}@royalinvite`,
+            `DTSTAMP:${now}`,
+            `DTSTART:${start}`,
+            `DTEND:${end}`,
+            `SUMMARY:${c.celebrantName} - Celebration`,
+            `LOCATION:${c.venueAddress}`,
+            `DESCRIPTION:${c.heroQuote}`,
+            "END:VEVENT",
+            "END:VCALENDAR"
+          ].join("\r\n");
+          const blob = new Blob([icsBody], { type: 'text/calendar;charset=utf-8' });
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.setAttribute('download', 'invitation.ics');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
 
-    function jsonp(url){
-      return new Promise((resolve, reject)=>{
-        const cb = "__cb" + Date.now() + Math.floor(Math.random()*999);
-        window[cb] = (data)=>{ delete window[cb]; resolve(data); };
-        const script = document.createElement("script");
-        script.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cb;
-        script.onerror = () => reject();
-        document.body.appendChild(script);
-      });
-    }
+        // Bind Calendar Buttons
+        const gcalUrl = buildGoogleCalendarLink(CONFIG);
+        const $ = (id) => document.getElementById(id);
+        
+        if($("gcal-link")) $("gcal-link").href = gcalUrl;
+        if($("ics-btn")) $("ics-btn").addEventListener("click", () => downloadICS(CONFIG));
+        if($("successGcal")) $("successGcal").href = gcalUrl;
+        if($("successIcs")) $("successIcs").addEventListener("click", () => downloadICS(CONFIG));
 
-    rsvpForm.addEventListener("submit", async (e) => {
-       e.preventDefault();
-       const btn = $("submit-btn");
-       btn.innerText = "SENDING..."; btn.disabled = true;
-       const fd = new FormData(rsvpForm);
-       const entry = Object.fromEntries(fd.entries());
-       entry.date = new Date().toLocaleString();
-       
-       // SAĞLAM RSVP KAYIT LOGİĞİ
-       try {
-           const raw = localStorage.getItem(LS.rsvp);
+        // PIN
+        const pinScreen = $("pin-screen");
+        const pinInput = $("pinInput");
+        if(!sessionStorage.getItem(LS.session) && !localStorage.getItem(LS.device)){
+           pinScreen.classList.remove("hidden");
+           pinScreen.classList.add("flex");
+           setTimeout(()=> pinInput.focus(), 500);
+        }
+        $("pinSubmit").addEventListener("click", validatePin);
+        pinInput.addEventListener("keyup", (e) => { if(e.key === "Enter" || pinInput.value.length === 4) validatePin(); });
+        function validatePin(){
+           if(pinInput.value === CONFIG.accessPin){
+              pinScreen.classList.add("hidden");
+              sessionStorage.setItem(LS.session, "1");
+              if(document.getElementById("rememberDevice")?.checked) localStorage.setItem(LS.device, "1");
+           } else {
+              $("pinError").classList.remove("hidden");
+              pinInput.value = "";
+           }
+        }
+
+        // Entrance
+        const openActions = () => {
+           const audio = $("bgMusic");
+           audio.volume = 0.6; audio.play().catch(()=>{});
+           $("entrance-screen").classList.add("envelope-open");
+           $("flash").classList.add("trigger");
+           setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); revealAll(); }, 800);
+        };
+        $("open-btn").addEventListener("click", openActions);
+        $("sealBtn").addEventListener("click", openActions); 
+        $("music-btn").addEventListener("click", () => { const el = $("bgMusic"); if(el.paused) el.play(); else el.pause(); });
+
+        // Content
+        if($("monogram")) $("monogram").innerText = CONFIG.monogram;
+        if($("heroName")) $("heroName").innerText = CONFIG.celebrantName;
+        if($("heroQuote")) $("heroQuote").innerText = CONFIG.heroQuote;
+        if($("whenDateDisplay")) $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'});
+        if($("whenDate")) $("whenDate").innerText = CONFIG.whenDateText;
+        
+        const tlContainer = $("timeline");
+        CONFIG.timeline.forEach(item => {
+           tlContainer.innerHTML += `
+             <div class="relative group">
+                <span class="absolute -left-[55px] top-1 w-2 h-2 rounded-full bg-[#C6A664] shadow-[0_0_15px_#C6A664] group-hover:scale-150 transition"></span>
+                <span class="text-[10px] tracking-[0.2em] text-[#C6A664] block mb-1 font-sub">${item.time}</span>
+                <h4 class="font-luxury text-lg text-[#F2EBE5]">${item.title}</h4>
+                <p class="text-xs text-[#9C8C96] mt-1 italic font-elegant">${item.note}</p>
+             </div>`;
+        });
+
+        // Gallery
+        function populateGallery(containerId) {
+            const container = $(containerId);
+            if(CONFIG.galleryImages.length > 0){
+                 const images = [...CONFIG.galleryImages, ...CONFIG.galleryImages]; 
+                 container.innerHTML = images.map(src => `
+                   <div class="flex-shrink-0 relative w-64 aspect-[3/4] p-1 border border-[#C6A664]/30 grayscale hover:grayscale-0 transition duration-700">
+                      <div class="w-full h-full overflow-hidden relative">
+                         <img src="${src}" class="w-full h-full object-cover transform hover:scale-110 transition duration-1000" onerror="this.parentElement.parentElement.style.display='none'">
+                      </div>
+                   </div>`).join("");
+            }
+        }
+        populateGallery("galleryRow1");
+        populateGallery("galleryRow2");
+
+        // Countdown
+        const targetDate = new Date(CONFIG.eventStartISO).getTime();
+        setInterval(() => {
+           const now = new Date().getTime();
+           const dist = targetDate - now;
+           if(dist < 0) { $("eventStatusText").innerText = "Event Started"; return; }
+           $("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24)).toString().padStart(2,'0');
+           $("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
+           $("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
+           $("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2,'0');
+        }, 1000);
+
+        // RSVP Form
+        const rsvpForm = $("rsvpForm");
+        const radios = document.querySelectorAll('input[name="attendance"]');
+        radios.forEach(r => r.addEventListener('change', (e) => {
+           $("extra-fields").style.display = e.target.value === 'Decline' ? 'none' : 'block';
+        }));
+
+        rsvpForm.addEventListener("submit", async (e) => {
+           e.preventDefault();
+           const btn = $("submit-btn");
+           btn.innerText = "SENDING..."; btn.disabled = true;
+           const fd = new FormData(rsvpForm);
+           const entry = Object.fromEntries(fd.entries());
+           entry.date = new Date().toLocaleString();
+           
+           // SAFE SAVE
+           const raw = SafeStorage.getItem(LS.rsvp);
            const localData = raw ? JSON.parse(raw) : [];
            localData.push(entry);
-           localStorage.setItem(LS.rsvp, JSON.stringify(localData));
-       } catch(e){ console.error("Save failed", e); }
+           SafeStorage.setItem(LS.rsvp, JSON.stringify(localData));
 
-       try {
-          if(CONFIG.databaseURL.includes("script.google.com")){
-             await fetch(CONFIG.databaseURL, { method: 'POST', body: fd, mode: 'no-cors' });
-          } else {
-             await fetch(CONFIG.rsvpEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
-          }
-          rsvpForm.classList.add("hidden");
-          $("success-msg").classList.remove("hidden");
-          confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, colors: ['#C6A664', '#FFF5C2'] });
-       } catch (err) {
-          alert("Network error. Saved locally.");
-          btn.innerText = "RETRY"; btn.disabled = false;
-       }
-    });
+           try {
+              if(CONFIG.databaseURL.includes("script.google.com")){
+                 await fetch(CONFIG.databaseURL, { method: 'POST', body: fd, mode: 'no-cors' });
+              } else {
+                 await fetch(CONFIG.rsvpEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
+              }
+              rsvpForm.classList.add("hidden");
+              $("success-msg").classList.remove("hidden");
+              confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, colors: ['#C6A664', '#FFF5C2'] });
+           } catch (err) {
+              alert("Saved locally (Demo Mode)");
+              btn.innerText = "RETRY"; btn.disabled = false;
+           }
+        });
 
-    $("guestbookForm").addEventListener("submit", async (e) => {
-       e.preventDefault();
-       const fd = new FormData(e.target);
-       const entry = { name: fd.get("guest_name"), message: fd.get("guest_message"), date: new Date().toLocaleDateString() };
-       
-       // SAĞLAM GUESTBOOK KAYIT LOGİĞİ
-       try {
-           const raw = localStorage.getItem(LS.guestbook);
+        $("guestbookForm").addEventListener("submit", async (e) => {
+           e.preventDefault();
+           const fd = new FormData(e.target);
+           const entry = { name: fd.get("guest_name"), message: fd.get("guest_message"), date: new Date().toLocaleDateString() };
+           
+           // SAFE SAVE
+           const raw = SafeStorage.getItem(LS.guestbook);
            const msgs = raw ? JSON.parse(raw) : [];
            msgs.push(entry);
-           localStorage.setItem(LS.guestbook, JSON.stringify(msgs));
-           renderGuestbook(); // Ekrana hemen bas
+           SafeStorage.setItem(LS.guestbook, JSON.stringify(msgs));
            
-           // Formu temizle ve onayı göster
+           renderGuestbook();
            $("guestbookOk").classList.remove("hidden");
            e.target.reset();
            setTimeout(()=> $("guestbookOk").classList.add("hidden"), 3000);
-       } catch(err){ console.error("Guestbook error", err); }
 
-       try {
-          await fetch(CONFIG.guestbookEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
-       } catch {}
-    });
+           try {
+              await fetch(CONFIG.guestbookEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
+           } catch {}
+        });
 
-    function renderGuestbook(){
-       try {
-           const raw = localStorage.getItem(LS.guestbook);
+        function renderGuestbook(){
+           const raw = SafeStorage.getItem(LS.guestbook);
            const msgs = raw ? JSON.parse(raw) : [];
            
            if(msgs.length === 0) {
@@ -795,65 +777,56 @@
                  <div class="flex justify-between items-center mb-1"><span class="font-luxury text-sm text-[#C6A664]">${m.name}</span><span class="text-[9px] text-[#9C8C96]">${m.date}</span></div>
                  <p class="text-xs text-[#F2EBE5]/80 italic font-elegant">"${m.message}"</p>
               </div>`).join("");
-       } catch(e){ console.log("Render error"); }
-    }
-    // Sayfa yüklenince render et
-    renderGuestbook();
+        }
+        renderGuestbook();
 
-    // Admin
-    let adminUnlocked = false;
-    $("openAdmin").addEventListener("click", () => { $("adminModal").classList.remove("hidden"); $("adminModal").classList.add("flex"); renderAdminLists(); });
-    $("closeAdmin").addEventListener("click", () => { $("adminModal").classList.add("hidden"); $("adminModal").classList.remove("flex"); });
-    $("adminUnlock").addEventListener("click", async () => {
-       if($("adminCode").value === CONFIG.adminPin){
-          adminUnlocked = true;
-          $("adminState").innerText = "Syncing Sheets...";
-          try {
-             const data = await jsonp(CONFIG.databaseURL + "?action=read");
-             let html = "";
-             data.slice().reverse().forEach(row => {
-                html += `<div class="border-b border-[#C6A664]/20 pb-1 mb-1 font-mono text-[9px]"><span class="text-[#C6A664]">${row.Name}</span> <span class="text-[#9C8C96]">(${row.Attendance})</span></div>`;
-             });
-             $("rsvpLocalList").innerHTML = html || "Empty.";
-             $("adminState").innerText = `Synced: ${data.length}`;
-          } catch { $("adminState").innerText = "Offline Mode"; }
-       } else { $("adminState").innerText = "Invalid"; }
-    });
-    function renderAdminLists(){
-       const rsvps = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
-       $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-1 font-mono text-[9px]">${r.name} - ${r.attendance}</div>`).join("");
-       const gbs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
-       $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-1 font-mono text-[9px]">${g.name}: ${g.message}</div>`).join("");
-    }
-    function downloadCSV(content, filename){
-       const blob = new Blob([content], {type: 'text/csv'});
-       const url = window.URL.createObjectURL(blob);
-       const a = document.createElement("a");
-       a.href = url; a.download = filename; a.click();
-    }
-    $("exportRsvp").addEventListener("click", () => {
-       if(!adminUnlocked) return alert("Unlock admin first");
-       const data = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
-       if(!data.length) return alert("No data");
-       const keys = Object.keys(data[0]);
-       const csv = [keys.join(","), ...data.map(row => keys.map(k => `"${row[k]}"`).join(","))].join("\n");
-       downloadCSV(csv, "rsvp_vip.csv");
-    });
+        // Admin & CSV
+        let adminUnlocked = false;
+        $("openAdmin").addEventListener("click", () => { $("adminModal").classList.remove("hidden"); $("adminModal").classList.add("flex"); renderAdminLists(); });
+        $("closeAdmin").addEventListener("click", () => { $("adminModal").classList.add("hidden"); $("adminModal").classList.remove("flex"); });
+        $("adminUnlock").addEventListener("click", () => {
+           if($("adminCode").value === CONFIG.adminPin){
+              adminUnlocked = true;
+              $("adminState").innerText = "Unlocked";
+              renderAdminLists();
+           } else { $("adminState").innerText = "Invalid"; }
+        });
+        function renderAdminLists(){
+           const rsvps = JSON.parse(SafeStorage.getItem(LS.rsvp) || "[]");
+           $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-1 font-mono text-[9px]">${r.name} - ${r.attendance}</div>`).join("");
+           const gbs = JSON.parse(SafeStorage.getItem(LS.guestbook) || "[]");
+           $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-1 font-mono text-[9px]">${g.name}: ${g.message}</div>`).join("");
+        }
+        function downloadCSV(content, filename){
+           const blob = new Blob([content], {type: 'text/csv'});
+           const url = window.URL.createObjectURL(blob);
+           const a = document.createElement("a");
+           a.href = url; a.download = filename; a.click();
+        }
+        $("exportRsvp").addEventListener("click", () => {
+           if(!adminUnlocked) return alert("Unlock admin first");
+           const data = JSON.parse(SafeStorage.getItem(LS.rsvp) || "[]");
+           if(!data.length) return alert("No data");
+           const keys = Object.keys(data[0]);
+           const csv = [keys.join(","), ...data.map(row => keys.map(k => `"${row[k]}"`).join(","))].join("\n");
+           downloadCSV(csv, "rsvp_vip.csv");
+        });
 
-    // QR & Reveal
-    const pageUrl = window.location.href;
-    if(window.QRCode){
-       if($("qr-rsvp")) new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
-       if($("qr-map")) new QRCode($("qr-map"), { text: CONFIG.venueQuery, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
-       if($("qr-share")) new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
-    }
-    function revealAll(){
-       const observer = new IntersectionObserver((entries) => {
-         entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("active"); });
-       }, { threshold: 0.1 });
-       document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-    }
-    setTimeout(revealAll, 500);
+        // QR & Reveal
+        const pageUrl = window.location.href;
+        if(window.QRCode){
+           if($("qr-rsvp")) new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+           if($("qr-map")) new QRCode($("qr-map"), { text: CONFIG.venueQuery, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+           if($("qr-share")) new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+        }
+        function revealAll(){
+           const observer = new IntersectionObserver((entries) => {
+             entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("active"); });
+           }, { threshold: 0.1 });
+           document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        }
+        setTimeout(revealAll, 500);
+    });
   </script>
 </body>
 </html>
