@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>THE GRAND CELEBRATION | Royal Red Seal</title>
+  <title>THE GRAND CELEBRATION | Royal Demo</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -199,7 +199,7 @@
   <div class="flash-effect" id="flash"></div>
 
   <div class="ornamental-frame"></div>
-  
+   
   <svg style="display: none;">
     <symbol id="ornament-corner" viewBox="0 0 100 100">
       <path d="M10,90 Q10,10 90,10 M10,90 L10,60 M90,10 L60,10 M15,85 Q15,15 85,15" stroke="currentColor" fill="none"/>
@@ -297,9 +297,9 @@
         <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-[#C6A664]"></div>
         <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-[#C6A664]"></div>
         <div class="relative aspect-video overflow-hidden group bg-black">
-           <video id="momentVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-1000" playsinline controls>
-             <source src="assets/moment.mp4" type="video/mp4">
-           </video>
+           <div class="w-full h-full flex items-center justify-center bg-[#1A0B1C]">
+               <p class="text-[#C6A664] font-sub tracking-widest text-xs">CINEMATIC TRAILER</p>
+           </div>
         </div>
       </div>
     </section>
@@ -329,10 +329,10 @@
         </div>
         <div>
           <span class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] block mb-3">LOCATION</span>
-          <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1" id="whereName">Grand Ballroom</h3>
-          <p class="font-elegant text-xl text-[#9C8C96] italic" id="whereAddress">123 Luxury Ave, Manhattan</p>
+          <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1" id="whereName">The Plaza Hotel</h3>
+          <p class="font-elegant text-xl text-[#9C8C96] italic" id="whereAddress">768 5th Ave, New York, NY</p>
           <div class="flex justify-center md:justify-end gap-4 mt-4">
-             <a id="map-google" target="_blank" class="w-8 h-8 rounded-full border border-[#C6A664]/30 flex items-center justify-center text-[#C6A664] text-xs hover:bg-[#C6A664] hover:text-black transition"><i class="fa-solid fa-map-location"></i></a>
+             <a id="map-google" href="https://www.google.com/maps/search/The+Plaza+Hotel+New+York" target="_blank" class="w-8 h-8 rounded-full border border-[#C6A664]/30 flex items-center justify-center text-[#C6A664] text-xs hover:bg-[#C6A664] hover:text-black transition"><i class="fa-solid fa-map-location"></i></a>
           </div>
         </div>
       </div>
@@ -340,7 +340,7 @@
         <div>
           <span class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] block mb-3">DRESS CODE</span>
           <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1">BLACK TIE</h3>
-          <p class="font-elegant text-xl text-[#9C8C96] italic" id="dressCode">Strictly Formal</p>
+          <p class="font-elegant text-xl text-[#9C8C96] italic" id="dressCode">Strictly Formal & Velvet</p>
           <div class="flex justify-center md:justify-start gap-3 mt-4" id="palette">
             <div class="w-5 h-5 rounded-full bg-[#0D0208] border border-[#C6A664]/30"></div>
             <div class="w-5 h-5 rounded-full bg-[#C6A664] shadow-[0_0_10px_#C6A664]"></div>
@@ -351,15 +351,28 @@
           <span class="font-sub text-[10px] tracking-[0.3em] text-[#C6A664] block mb-3">GIFTING</span>
           <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1">REGISTRY</h3>
           <p class="font-elegant text-xl text-[#9C8C96] italic" id="registryNote">Your presence is our gift</p>
-          <a id="registryLink" href="#" target="_blank" class="inline-block mt-4 text-[10px] text-[#C6A664] hover:text-white border-b border-[#C6A664]/30 pb-1 transition tracking-widest uppercase">View Details</a>
+          <a id="registryLink" href="https://www.amazon.com/wedding/registry" target="_blank" class="inline-block mt-4 text-[10px] text-[#C6A664] hover:text-white border-b border-[#C6A664]/30 pb-1 transition tracking-widest uppercase">View Registry (Amazon)</a>
         </div>
       </div>
     </section>
 
     <section class="max-w-2xl mx-auto px-6 mb-32 reveal">
       <div class="glass-card divide-y divide-[#C6A664]/10">
-        <details class="group"><summary class="flex justify-between items-center p-6 cursor-pointer text-[#F2EBE5] hover:bg-[#C6A664]/5 transition"><span class="font-sub text-xs tracking-[0.2em]"><i class="fa-solid fa-car mr-4 text-[#C6A664]"></i> VALET & PARKING</span><span class="text-[#C6A664] group-open:rotate-180 transition">+</span></summary><div class="p-6 pt-0 text-[#9C8C96] text-sm leading-relaxed font-elegant italic" id="parkingInfo"></div></details>
-        <details class="group"><summary class="flex justify-between items-center p-6 cursor-pointer text-[#F2EBE5] hover:bg-[#C6A664]/5 transition"><span class="font-sub text-xs tracking-[0.2em]"><i class="fa-solid fa-phone mr-4 text-[#C6A664]"></i> CONTACT</span><span class="text-[#C6A664] group-open:rotate-180 transition">+</span></summary><div class="p-6 pt-0 text-[#9C8C96] text-sm leading-relaxed font-elegant italic" id="contactInfo"></div></details>
+        <details class="group"><summary class="flex justify-between items-center p-6 cursor-pointer text-[#F2EBE5] hover:bg-[#C6A664]/5 transition"><span class="font-sub text-xs tracking-[0.2em]"><i class="fa-solid fa-car mr-4 text-[#C6A664]"></i> VALET & PARKING</span><span class="text-[#C6A664] group-open:rotate-180 transition">+</span></summary>
+            <div class="p-6 pt-0 text-[#9C8C96] text-sm leading-relaxed font-elegant italic" id="parkingInfo">
+                Complimentary Valet Service is available at the main entrance of The Plaza Hotel. For guests preferring self-parking, the secure underground garage is accessible via 58th Street. Please present your invitation for validation.
+            </div>
+        </details>
+        
+        <details class="group"><summary class="flex justify-between items-center p-6 cursor-pointer text-[#F2EBE5] hover:bg-[#C6A664]/5 transition"><span class="font-sub text-xs tracking-[0.2em]"><i class="fa-solid fa-phone mr-4 text-[#C6A664]"></i> CONTACT</span><span class="text-[#C6A664] group-open:rotate-180 transition">+</span></summary>
+            <div class="p-6 pt-0 text-[#9C8C96] text-sm leading-relaxed font-elegant italic" id="contactInfo">
+                <p class="mb-2">For urgent inquiries or assistance on the day of the event:</p>
+                <p><strong>Event Planner:</strong> Sarah Jenkins</p>
+                <p><strong>Phone:</strong> +1 (212) 555-0199</p>
+                <p><strong>Email:</strong> concierge@thegrandcelebration.com</p>
+                <a href="https://wa.me/" class="text-[#C6A664] underline mt-2 inline-block">WhatsApp Support</a>
+            </div>
+        </details>
       </div>
     </section>
 
@@ -453,15 +466,21 @@
       celebrantName: "SOPHIA",
       heroQuote: "\"A Night of Elegance & Memories\"",
       eventStartISO: "2026-10-25T19:00:00-04:00",
-      eventEndISO:   "2026-10-26T01:00:00-04:00",
+      eventEndISO:    "2026-10-26T01:00:00-04:00",
       whenDateText: "Saturday, October 25th, 2026",
-      venueName: "The Grand Ballroom",
-      venueAddress: "123 Luxury Ave, Manhattan, NY",
-      venueQuery: "The Grand Ballroom, 123 Luxury Ave, Manhattan, NY",
+      venueName: "The Plaza Hotel",
+      venueAddress: "768 5th Ave, New York, NY",
+      venueQuery: "The Plaza Hotel New York",
       rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
       guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
       musicSrc: "assets/music.mp3",
-      galleryImages: ["assets/gallery/1.jpg", "assets/gallery/2.jpg", "assets/gallery/3.jpg", "assets/gallery/4.jpg"],
+      // DEMO GÖRSELLERİ (Placeholder Servisi Kullanıldı)
+      galleryImages: [
+          "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", 
+          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop", 
+          "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop", 
+          "https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=800&auto=format&fit=crop"
+      ],
       timeline: [
         { time: "19:00", title: "Cocktails", note: "Jazz & Champagne" },
         { time: "20:00", title: "Dinner", note: "Three Courses" },
@@ -540,7 +559,7 @@
        if(pinInput.value === CONFIG.accessPin){
           pinScreen.classList.add("hidden");
           sessionStorage.setItem(LS.session, "1");
-          if($("rememberDevice").checked) localStorage.setItem(LS.device, "1");
+          if($("rememberDevice")?.checked) localStorage.setItem(LS.device, "1");
        } else {
           $("pinError").classList.remove("hidden");
           pinInput.value = "";
@@ -566,11 +585,11 @@
     $("music-btn").addEventListener("click", () => { const el = $("bgMusic"); if(el.paused) el.play(); else el.pause(); });
 
     // Content
-    $("monogram").innerText = CONFIG.monogram;
-    $("heroName").innerText = CONFIG.celebrantName;
-    $("heroQuote").innerText = CONFIG.heroQuote;
-    $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'});
-    $("whenDate").innerText = CONFIG.whenDateText;
+    if($("monogram")) $("monogram").innerText = CONFIG.monogram;
+    if($("heroName")) $("heroName").innerText = CONFIG.celebrantName;
+    if($("heroQuote")) $("heroQuote").innerText = CONFIG.heroQuote;
+    if($("whenDateDisplay")) $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'});
+    if($("whenDate")) $("whenDate").innerText = CONFIG.whenDateText;
     
     const tlContainer = $("timeline");
     CONFIG.timeline.forEach(item => {
@@ -724,13 +743,13 @@
     // QR & Reveal
     const pageUrl = window.location.href;
     if(window.QRCode){
-       new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
-       new QRCode($("qr-map"), { text: CONFIG.mapEmbedUrl, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
-       new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+       if($("qr-rsvp")) new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+       if($("qr-map")) new QRCode($("qr-map"), { text: CONFIG.venueQuery, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+       if($("qr-share")) new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
     }
     function revealAll(){
        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("active"); });
+         entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("active"); });
        }, { threshold: 0.1 });
        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
     }
