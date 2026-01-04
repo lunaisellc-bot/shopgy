@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>THE GRAND CELEBRATION | Royal Baroque Invite</title>
+  <title>THE GRAND CELEBRATION | Royal Velvet Invite</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -49,85 +49,129 @@
 
   <style>
     :root {
-      /* ROYAL BAROQUE PALETTE */
-      --bg-deep: #050505;
-      --bg-gradient-start: #1a1a1a;
-      --bg-gradient-end: #020202;
+      /* --- YENİ KADİFEMSİ KRALİYET PALETİ (Kahve & Mor) --- */
       
+      /* En koyu kenarlar (Derin Erik/Kakao) */
+      --bg-deep: #1A0F1F; 
+      
+      /* Merkezdeki ışık (Zengin Mürdüm/Altın yansıması) */
+      --bg-gradient-center: #4A235A; 
+      
+      /* Altın Detaylar */
       --gold-light: #F2D06B;
       --gold: #D4AF37;
       --gold-dark: #8A7036;
       
-      --text-main: #EAEAEA;
-      --text-muted: #888888;
+      --text-main: #F0E6D2; /* Hafif krem rengi metin, mor üzerinde daha iyi durur */
+      --text-muted: #A8909C; /* Morumsu gri */
       
-      --panel: rgba(20, 20, 20, 0.6);
-      --border-soft: rgba(212, 175, 55, 0.15);
-      --border-accent: rgba(212, 175, 55, 0.4);
+      /* Panellerin rengini yeni arkaplana uydurduk */
+      --panel: rgba(40, 25, 45, 0.5); 
+      --border-soft: rgba(212, 175, 55, 0.25);
     }
 
     body {
       background-color: var(--bg-deep);
       color: var(--text-main);
       overflow-x: hidden;
-      background: radial-gradient(circle at top center, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 90%);
+      
+      /* YENİ: Kadifemsi Radyal Gradyan Arkaplan */
+      /* Merkezden dışa doğru mor ve kahve tonlarının zengin geçişi */
+      background: radial-gradient(circle at 50% 40%, var(--bg-gradient-center) 0%, #3E2723 50%, var(--bg-deep) 90%);
+      background-attachment: fixed; /* Kaydırırken arkaplan sabit kalsın (derinlik hissi) */
       min-height: 100vh;
     }
 
-    /* --- BAROQUE FRAME (Sabit Çerçeve) --- */
+    /* --- CSS KRALİYET MÜHRÜ (Wax Seal) --- */
+    .wax-seal-container {
+        position: relative;
+        width: 140px; height: 140px;
+        display: flex; align-items: center; justify-content: center;
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    }
+    .wax-seal-body {
+        position: absolute; inset: 0;
+        border-radius: 50%;
+        /* Düzensiz kenarlar için border-radius hilesi */
+        border-radius: 48% 52% 51% 49% / 51% 49% 52% 48%;
+        /* Altın/Mum dokusu gradyanı */
+        background: radial-gradient(circle at 30% 30%, #FFD700, #D4AF37, #B8860B, #8A7036);
+        /* Kalınlık ve 3D hissi için gölgeler */
+        box-shadow: 
+            inset 0 0 20px rgba(0,0,0,0.2),
+            inset 0 0 5px rgba(255,255,255,0.3), /* Parlama */
+            0 0 0 4px #B8860B, /* Dış kenar */
+            0 0 0 7px #D4AF37; /* İkinci dış kenar (erimiş efekti) */
+        border: 2px solid #C5A028;
+    }
+    /* Mühür içindeki kabartma yazı efekti */
+    .seal-text {
+        font-family: 'Cinzel', serif;
+        font-size: 3.5rem;
+        color: #B8860B;
+        /* İçeri gömülü (engraved) efekti */
+        text-shadow: 
+            1px 1px 2px rgba(255,255,255,0.3), 
+            -1px -1px 2px rgba(0,0,0,0.5);
+        z-index: 2;
+    }
+
+    /* --- BAROQUE FRAME --- */
     .vip-frame {
-      position: fixed; inset: 10px; z-index: 90; pointer-events: none;
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+      position: fixed; inset: 12px; z-index: 90; pointer-events: none;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      /* Çerçeve iç gölgesini yeni mor temaya uydurduk */
+      box-shadow: inset 0 0 120px rgba(20, 5, 25, 0.8); 
     }
     .vip-frame::before {
       content: ""; position: absolute; inset: 4px;
-      border: 1px solid rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.15);
     }
     .corner {
-      position: fixed; width: 40px; height: 40px; z-index: 91; pointer-events: none;
-      border: 2px solid var(--gold);
-      opacity: 0.8;
+      position: fixed; width: 45px; height: 45px; z-index: 91; pointer-events: none;
+      border: 2px solid var(--gold); opacity: 0.9;
     }
-    .c-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-    .c-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
-    .c-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
-    .c-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+    .c-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .c-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .c-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .c-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
     /* --- TEXTURE & EFFECTS --- */
     .texture-overlay {
       position: fixed; inset: 0; pointer-events: none; z-index: 1;
-      opacity: 0.05;
+      opacity: 0.2; /* Dokuyu biraz daha belirginleştirdik */
       background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-      mix-blend-mode: screen;
+      mix-blend-mode: overlay;
     }
 
     .flash-effect {
-      position: fixed; inset: 0; background: white; z-index: 150;
-      pointer-events: none; opacity: 0; transition: opacity 1.5s ease-out;
+      position: fixed; inset: 0; background: #FFF0C0; /* Flash rengini hafif altın sarısı yaptık */
+      z-index: 150; pointer-events: none; opacity: 0; transition: opacity 1.5s ease-out;
     }
-    .flash-effect.trigger { opacity: 0.4; animation: flashFade 1.2s forwards; }
+    .flash-effect.trigger { opacity: 0.5; animation: flashFade 1.2s forwards; }
     @keyframes flashFade { to { opacity: 0; } }
 
     .gold-text {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text; background-clip: text; color: transparent;
       background-size: 200% auto; animation: shine 6s linear infinite;
-      text-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
     }
 
     .glass-panel {
       background: var(--panel);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px); /* Bulanıklığı artırdık */
       border: 1px solid var(--border-soft);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 25px 70px rgba(10, 0, 15, 0.5); /* Gölgeleri morlaştırdık */
     }
 
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     #entrance-screen {
-      position: fixed; inset: 0; z-index: 110; background: #000;
+      position: fixed; inset: 0; z-index: 110; 
+      /* Giriş ekranı arkaplanı da ana tema ile uyumlu */
+      background: radial-gradient(circle at center, #3E1F47 0%, #1A0F1F 100%);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
@@ -135,18 +179,18 @@
 
     /* Inputs */
     input, select, textarea {
-      background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.2);
-      color: white; outline: none; transition: 0.3s;
+      background: rgba(30, 15, 35, 0.5); border-bottom: 1px solid rgba(255,255,255,0.15);
+      color: var(--text-main); outline: none; transition: 0.3s;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: var(--gold); background: rgba(0,0,0,0.5);
+      border-color: var(--gold); background: rgba(40, 20, 45, 0.7);
     }
 
     /* Scrollbar */
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #050505; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #1A0F1F; }
+    ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
     
     @keyframes shake {
       0%,100%{ transform: translateX(0); }
@@ -158,7 +202,7 @@
     #adminModal{
       position: fixed; inset:0; z-index: 200;
       display:none; align-items:center; justify-content:center;
-      background: rgba(0,0,0,.85); padding: 18px; backdrop-filter: blur(5px);
+      background: rgba(10, 5, 15, 0.9); padding: 18px; backdrop-filter: blur(8px);
     }
     #adminModal.open{ display:flex; }
   </style>
@@ -175,23 +219,24 @@
   <div class="corner c-bl"></div>
   <div class="corner c-br"></div>
 
-  <div id="pin-screen" class="fixed inset-0 z-[120] bg-black flex items-center justify-center hidden" role="dialog">
+  <div id="pin-screen" class="fixed inset-0 z-[120] bg-[#1A0F1F] flex items-center justify-center hidden" role="dialog">
     <div class="w-full max-w-sm px-8 relative z-10">
-      <div class="glass-panel rounded-xl p-10 text-center border border-white/10 shadow-2xl">
-        <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-white/20 flex items-center justify-center">
-          <span class="font-luxury text-2xl gold-text" id="pinMonogram">S</span>
+      <div class="glass-panel rounded-xl p-10 text-center border border-[#D4AF37]/20 shadow-2xl">
+        <div class="mx-auto mb-6 wax-seal-container">
+            <div class="wax-seal-body"></div>
+            <span class="seal-text" id="pinMonogram">S</span>
         </div>
         <p class="font-luxury text-[#D4AF37] tracking-[0.3em] text-lg mb-8">VIP ACCESS</p>
         <div id="pinBox">
           <input id="pinInput" type="tel" maxlength="10" 
-            class="text-center text-2xl font-luxury tracking-[0.5em] w-full bg-transparent border-b border-white/20 focus:border-[#D4AF37] text-white placeholder-white/10 py-3" 
+            class="text-center text-2xl font-luxury tracking-[0.5em] w-full bg-transparent border-b border-[#D4AF37]/30 focus:border-[#D4AF37] text-[#F0E6D2] placeholder-[#D4AF37]/20 py-3" 
             placeholder="••••" />
           <div class="mt-4 flex items-center justify-center gap-3">
-             <label class="text-[10px] text-white/40 uppercase tracking-wider cursor-pointer">
+             <label class="text-[10px] text-[#D4AF37]/60 uppercase tracking-wider cursor-pointer">
                 <input type="checkbox" id="rememberDevice" class="mr-2 align-middle accent-[#D4AF37]"> Remember
              </label>
           </div>
-          <button id="pinSubmit" class="mt-6 px-8 py-2 border border-white/20 rounded-full text-xs text-white/60 hover:text-white hover:border-[#D4AF37] transition uppercase tracking-widest">Enter</button>
+          <button id="pinSubmit" class="mt-6 px-8 py-2 border border-[#D4AF37]/30 rounded-full text-xs text-[#D4AF37]/80 hover:text-[#1A0F1F] hover:bg-[#D4AF37] transition uppercase tracking-widest">Enter</button>
           <p id="pinError" class="text-[10px] text-red-400 mt-4 hidden tracking-widest uppercase">Incorrect Code</p>
         </div>
       </div>
@@ -200,17 +245,18 @@
 
   <div id="entrance-screen">
     <div class="text-center px-6 relative z-10">
-      <div class="mb-8 animate-float">
-        <div class="w-32 h-32 mx-auto rounded-full border border-[#D4AF37]/30 flex items-center justify-center relative bg-black/40 backdrop-blur-md shadow-[0_0_50px_rgba(212,175,55,0.15)]">
-           <span class="font-luxury text-6xl gold-text" id="monogram">S</span>
-        </div>
+      <div class="mb-10 animate-float mx-auto wax-seal-container">
+         <div class="wax-seal-body"></div>
+         <span class="seal-text" id="monogram">S</span>
       </div>
-      <h2 class="font-luxury text-white text-xl tracking-[0.4em] mb-3" id="privateLabel">PRIVATE INVITATION</h2>
-      <p class="font-modern text-[10px] text-white/40 tracking-[0.2em] uppercase mb-10" id="clickLabel">Strictly Personal</p>
+      
+      <h2 class="font-luxury text-[#F0E6D2] text-xl tracking-[0.4em] mb-3" id="privateLabel">PRIVATE INVITATION</h2>
+      <p class="font-modern text-[10px] text-[#A8909C] tracking-[0.2em] uppercase mb-12" id="clickLabel">Strictly Personal</p>
+      
       <button id="open-btn" 
-        class="group relative px-12 py-5 overflow-hidden transition-all duration-500 hover:scale-105 border border-[#D4AF37]/40">
-        <div class="absolute inset-0 w-full h-full bg-[#D4AF37]/5 group-hover:bg-[#D4AF37]/20 transition-all duration-500"></div>
-        <span class="relative font-luxury tracking-[0.25em] text-[#D4AF37] group-hover:text-white text-xs z-10">OPEN ENVELOPE</span>
+        class="group relative px-12 py-5 overflow-hidden transition-all duration-500 hover:scale-105 border-2 border-[#D4AF37] rounded-sm">
+        <div class="absolute inset-0 w-full h-full bg-[#D4AF37]/10 group-hover:bg-[#D4AF37] transition-all duration-700"></div>
+        <span class="relative font-luxury tracking-[0.25em] text-[#D4AF37] group-hover:text-[#1A0F1F] text-xs z-10 font-bold">BREAK THE SEAL</span>
       </button>
     </div>
   </div>
@@ -222,54 +268,54 @@
     </audio>
 
     <button id="music-btn" 
-      class="fixed bottom-8 right-8 z-[100] w-12 h-12 rounded-full glass-panel border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] hover:scale-110 transition shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+      class="fixed bottom-8 right-8 z-[100] w-12 h-12 rounded-full glass-panel border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] hover:scale-110 transition shadow-[0_0_25px_rgba(212,175,55,0.3)]"
       aria-label="Music" aria-pressed="false" title="Music">
       <i class="fa-solid fa-music"></i>
     </button>
 
     <div class="fixed bottom-8 left-8 z-[100] hidden md:flex flex-col gap-3">
-      <button id="share-btn" class="px-5 py-3 glass-panel rounded-full text-xs text-white/80 hover:text-white hover:border-[#D4AF37] transition">
+      <button id="share-btn" class="px-5 py-3 glass-panel rounded-full text-xs text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition border border-[#D4AF37]/30">
         <i class="fa-solid fa-link mr-2"></i> Share
       </button>
-      <a href="#rsvp" class="px-5 py-3 glass-panel rounded-full text-xs text-white/80 hover:text-white hover:border-[#D4AF37] transition">
+      <a href="#rsvp" class="px-5 py-3 glass-panel rounded-full text-xs text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition border border-[#D4AF37]/30">
         <i class="fa-solid fa-pen-to-square mr-2"></i> RSVP
       </a>
     </div>
 
     <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden pt-20">
       <div class="absolute inset-0 -z-10">
-        <video id="bgVideo" class="w-full h-full object-cover opacity-20 grayscale" playsinline muted loop preload="metadata">
+        <video id="bgVideo" class="w-full h-full object-cover opacity-30 grayscale mix-blend-luminosity" playsinline muted loop preload="metadata">
           <source src="assets/bg.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#050505]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#1A0F1F]/80 via-transparent to-[#1A0F1F]"></div>
       </div>
 
-      <p class="font-modern text-[10px] tracking-[0.4em] uppercase text-white/50 mb-8 reveal" id="heroTop">
+      <p class="font-modern text-[10px] tracking-[0.4em] uppercase text-[#A8909C] mb-8 reveal" id="heroTop">
         You are cordially invited
       </p>
       <h1 class="font-luxury text-6xl md:text-9xl gold-text mb-2 reveal drop-shadow-2xl animate-float" id="heroName">
         SOPHIA
       </h1>
-      <p class="font-script text-4xl md:text-5xl text-white/90 reveal mb-10 drop-shadow-lg" id="heroQuote">
+      <p class="font-script text-4xl md:text-5xl text-[#F0E6D2] reveal mb-10 drop-shadow-lg" id="heroQuote">
         "A Night of Elegance & Memories"
       </p>
-      <div class="h-px w-24 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-10 reveal"></div>
+      <div class="h-px w-32 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-10 reveal"></div>
       <div class="reveal">
         <span id="eventStatusBadge" 
-          class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+          class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#D4AF37]/20 bg-[#4A235A]/30 backdrop-blur-md">
           <span class="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse"></span>
-          <span class="font-modern text-xs tracking-widest text-white/80 uppercase" id="eventStatusText">Counting down</span>
+          <span class="font-modern text-xs tracking-widest text-[#F0E6D2] uppercase" id="eventStatusText">Counting down</span>
         </span>
       </div>
-      <div class="absolute bottom-10 animate-bounce text-white/20 text-xl">
+      <div class="absolute bottom-10 animate-bounce text-[#D4AF37]/50 text-xl">
         <i class="fa-solid fa-chevron-down"></i>
       </div>
     </header>
 
     <section class="max-w-5xl mx-auto px-6 mb-24 mt-12 reveal">
-      <div class="relative aspect-video rounded-sm overflow-hidden border border-[#D4AF37]/30 shadow-[0_0_60px_rgba(0,0,0,0.8)] group" id="momentWrap">
-        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-700 z-10 pointer-events-none"></div>
+      <div class="relative aspect-video rounded-sm overflow-hidden border border-[#D4AF37]/40 shadow-[0_0_80px_rgba(74,35,90,0.4)] group" id="momentWrap">
+        <div class="absolute inset-0 bg-[#1A0F1F]/50 group-hover:bg-transparent transition duration-700 z-10 pointer-events-none"></div>
         <video id="momentVideo" class="w-full h-full object-cover relative z-0" playsinline controls preload="metadata">
           <source src="assets/moment.mp4" type="video/mp4">
         </video>
@@ -277,16 +323,16 @@
     </section>
 
     <section class="max-w-4xl mx-auto px-6 mb-32">
-      <div class="glass-panel rounded-lg p-8 reveal">
+      <div class="glass-panel rounded-lg p-8 reveal border-[#D4AF37]/20">
         <div class="grid grid-cols-4 gap-4 text-center">
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="days">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Days</span></div>
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="hours">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Hrs</span></div>
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="minutes">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Mins</span></div>
-          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="seconds">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Secs</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="days">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Days</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="hours">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Hrs</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="minutes">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Mins</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="seconds">00</span><span class="text-[10px] text-[#A8909C] uppercase tracking-widest">Secs</span></div>
         </div>
         <div class="text-center mt-8">
-           <button id="ics-btn" class="text-xs text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:text-white transition uppercase tracking-widest">Add to Calendar</button>
-           <a id="gcal-link" href="#" target="_blank" class="ml-6 text-xs text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:text-white transition uppercase tracking-widest">Google Calendar</a>
+           <button id="ics-btn" class="text-xs text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:text-[#F0E6D2] transition uppercase tracking-widest">Add to Calendar</button>
+           <a id="gcal-link" href="#" target="_blank" class="ml-6 text-xs text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:text-[#F0E6D2] transition uppercase tracking-widest">Google Calendar</a>
         </div>
       </div>
     </section>
@@ -295,63 +341,63 @@
       <div class="space-y-16 text-center md:text-right">
         <div class="group">
           <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">When</span>
-          <h3 class="font-luxury text-3xl text-white mb-2" id="whenDateDisplay">OCT 25</h3>
-          <p class="font-elegant text-2xl text-white/60 italic" id="whenDate">Saturday, October 25th</p>
-          <p class="font-modern text-sm text-white/40 mt-2 tracking-widest" id="whenTime">19:00 - Late</p>
+          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2" id="whenDateDisplay">OCT 25</h3>
+          <p class="font-elegant text-2xl text-[#A8909C] italic" id="whenDate">Saturday, October 25th</p>
+          <p class="font-modern text-sm text-[#A8909C]/70 mt-2 tracking-widest" id="whenTime">19:00 - Late</p>
         </div>
         <div class="group">
           <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Where</span>
-          <h3 class="font-luxury text-3xl text-white mb-2" id="whereName">The Grand Ballroom</h3>
-          <p class="font-elegant text-xl text-white/60 italic" id="whereAddress">123 Luxury Ave, Manhattan, NY</p>
+          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2" id="whereName">The Grand Ballroom</h3>
+          <p class="font-elegant text-xl text-[#A8909C] italic" id="whereAddress">123 Luxury Ave, Manhattan, NY</p>
           <div class="flex flex-wrap justify-center md:justify-end gap-4 mt-6">
-            <a id="map-google" target="_blank" class="text-xs border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">Maps</a>
-            <a id="map-waze" target="_blank" class="text-xs border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">Waze</a>
+            <a id="map-google" target="_blank" class="text-xs border border-[#D4AF37]/30 text-[#D4AF37] px-5 py-2 rounded-full hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition">Maps</a>
+            <a id="map-waze" target="_blank" class="text-xs border border-[#D4AF37]/30 text-[#D4AF37] px-5 py-2 rounded-full hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition">Waze</a>
           </div>
         </div>
       </div>
-      <div class="space-y-16 text-center md:text-left border-t md:border-t-0 md:border-l border-[#D4AF37]/20 pt-12 md:pt-0 md:pl-12">
+      <div class="space-y-16 text-center md:text-left border-t md:border-t-0 md:border-l border-[#D4AF37]/30 pt-12 md:pt-0 md:pl-12">
         <div class="group">
           <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Dress Code</span>
-          <h3 class="font-luxury text-3xl text-white mb-2">BLACK TIE</h3>
-          <p class="font-elegant text-xl text-white/60 italic" id="dressCode">Formal & Elegant</p>
+          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2">BLACK TIE</h3>
+          <p class="font-elegant text-xl text-[#A8909C] italic" id="dressCode">Formal & Elegant</p>
           <div class="flex justify-center md:justify-start gap-3 mt-6" id="palette">
-            <div class="w-6 h-6 rounded-full bg-black border border-white/20"></div>
-            <div class="w-6 h-6 rounded-full bg-[#D4AF37]"></div>
-            <div class="w-6 h-6 rounded-full bg-[#1B2430]"></div>
+            <div class="w-6 h-6 rounded-full bg-[#1A0F1F] border border-[#D4AF37]/30"></div>
+            <div class="w-6 h-6 rounded-full bg-[#D4AF37] shadow-[0_0_10px_#D4AF37]"></div>
+            <div class="w-6 h-6 rounded-full bg-[#4A235A] border border-[#D4AF37]/30"></div>
           </div>
-          <p class="text-[10px] text-white/30 mt-2 uppercase tracking-wider" id="paletteNote">Palette Guide</p>
+          <p class="text-[10px] text-[#A8909C] mt-3 uppercase tracking-wider" id="paletteNote">Royal Palette</p>
         </div>
         <div class="group">
           <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Gifts</span>
-          <h3 class="font-luxury text-3xl text-white mb-2">REGISTRY</h3>
-          <p class="font-elegant text-xl text-white/60 italic" id="registryNote">Your presence is enough</p>
-          <a id="registryLink" href="#" target="_blank" class="inline-block mt-6 text-xs border-b border-white/20 pb-1 hover:text-[#D4AF37] hover:border-[#D4AF37] transition uppercase tracking-widest">View Wishlist</a>
+          <h3 class="font-luxury text-3xl text-[#F0E6D2] mb-2">REGISTRY</h3>
+          <p class="font-elegant text-xl text-[#A8909C] italic" id="registryNote">Your presence is enough</p>
+          <a id="registryLink" href="#" target="_blank" class="inline-block mt-6 text-xs border-b border-[#D4AF37]/30 text-[#D4AF37] pb-1 hover:text-[#F0E6D2] hover:border-[#F0E6D2] transition uppercase tracking-widest">View Wishlist</a>
         </div>
       </div>
     </section>
 
     <section class="max-w-2xl mx-auto px-6 mb-32 reveal">
-      <div class="glass-panel rounded-lg overflow-hidden divide-y divide-white/10">
+      <div class="glass-panel rounded-lg overflow-hidden divide-y divide-[#D4AF37]/10 border-[#D4AF37]/20">
         <details class="group">
-          <summary class="flex justify-between items-center p-6 cursor-pointer text-white hover:bg-white/5 transition">
+          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F0E6D2] hover:bg-[#4A235A]/20 transition">
             <span class="font-luxury text-sm tracking-widest"><i class="fa-solid fa-car mr-3 text-[#D4AF37]"></i> PARKING</span>
             <span class="text-[#D4AF37] group-open:rotate-180 transition">+</span>
           </summary>
-          <div class="p-6 pt-0 text-white/60 text-sm leading-relaxed font-elegant italic" id="parkingInfo"></div>
+          <div class="p-6 pt-0 text-[#A8909C] text-sm leading-relaxed font-elegant italic" id="parkingInfo"></div>
         </details>
         <details class="group">
-          <summary class="flex justify-between items-center p-6 cursor-pointer text-white hover:bg-white/5 transition">
+          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F0E6D2] hover:bg-[#4A235A]/20 transition">
             <span class="font-luxury text-sm tracking-widest"><i class="fa-solid fa-phone mr-3 text-[#D4AF37]"></i> CONTACT</span>
             <span class="text-[#D4AF37] group-open:rotate-180 transition">+</span>
           </summary>
-          <div class="p-6 pt-0 text-white/60 text-sm leading-relaxed font-elegant italic" id="contactInfo"></div>
+          <div class="p-6 pt-0 text-[#A8909C] text-sm leading-relaxed font-elegant italic" id="contactInfo"></div>
         </details>
         <details class="group">
-          <summary class="flex justify-between items-center p-6 cursor-pointer text-white hover:bg-white/5 transition">
+          <summary class="flex justify-between items-center p-6 cursor-pointer text-[#F0E6D2] hover:bg-[#4A235A]/20 transition">
             <span class="font-luxury text-sm tracking-widest"><i class="fa-solid fa-info-circle mr-3 text-[#D4AF37]"></i> NOTES</span>
             <span class="text-[#D4AF37] group-open:rotate-180 transition">+</span>
           </summary>
-          <div class="p-6 pt-0 text-white/60 text-sm leading-relaxed font-elegant italic" id="policyInfo"></div>
+          <div class="p-6 pt-0 text-[#A8909C] text-sm leading-relaxed font-elegant italic" id="policyInfo"></div>
         </details>
       </div>
     </section>
@@ -360,57 +406,54 @@
       <div class="text-center mb-16">
         <h2 class="font-luxury text-3xl gold-text">The Evening</h2>
       </div>
-      <div class="relative border-l border-[#D4AF37]/30 ml-6 pl-10 space-y-16" id="timeline"></div>
+      <div class="relative border-l border-[#D4AF37]/40 ml-6 pl-10 space-y-16" id="timeline"></div>
     </section>
 
     <section class="mb-32 reveal relative overflow-hidden py-16" id="gallery">
-      <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none overflow-hidden">
-         <div class="whitespace-nowrap animate-scroll-text font-luxury text-9xl text-white">
-            FOREVER YOUNG • TIMELESS MEMORIES • CELEBRATION • MOMENTS • LOVE • FOREVER YOUNG • TIMELESS MEMORIES •
+      <div class="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none select-none overflow-hidden">
+         <div class="whitespace-nowrap animate-scroll-text font-luxury text-9xl text-[#D4AF37]">
+            ROYAL CELEBRATION • TIMELESS MEMORIES • ELEGANCE • LOVE • ROYAL CELEBRATION • TIMELESS MEMORIES •
          </div>
       </div>
-
       <div class="text-center mb-12 relative z-10">
-        <h2 class="font-luxury text-4xl text-white">Memories</h2>
+        <h2 class="font-luxury text-4xl text-[#F0E6D2]">Memories</h2>
         <p class="font-script text-2xl text-[#D4AF37] mt-2">Captured Moments</p>
       </div>
-      
-      <div class="flex overflow-x-auto gap-8 px-8 pb-16 snap-x hide-scrollbar relative z-10" id="galleryRow">
-         </div>
+      <div class="flex overflow-x-auto gap-8 px-8 pb-16 snap-x hide-scrollbar relative z-10" id="galleryRow"></div>
     </section>
 
     <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
-      <div class="glass-panel p-10 md:p-14 rounded-t-[40px] border-t-2 border-[#D4AF37]/50 relative">
-        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#050505] rounded-full border border-[#D4AF37]/50 flex items-center justify-center">
-           <i class="fa-solid fa-envelope text-[#D4AF37]"></i>
+      <div class="glass-panel p-10 md:p-14 rounded-t-[40px] border-t-2 border-[#D4AF37] relative shadow-[0_-10px_50px_rgba(74,35,90,0.3)]">
+        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-14 h-14 bg-[#1A0F1F] rounded-full border-2 border-[#D4AF37] flex items-center justify-center shadow-[0_0_20px_#D4AF37]">
+           <i class="fa-solid fa-envelope-open-text text-[#D4AF37] text-xl"></i>
         </div>
-        <div class="text-center mb-10 mt-4">
-          <h2 class="font-luxury text-4xl text-white mb-2">R.S.V.P</h2>
+        <div class="text-center mb-10 mt-6">
+          <h2 class="font-luxury text-4xl text-[#F0E6D2] mb-2">R.S.V.P</h2>
           <p class="font-modern text-[10px] tracking-[0.2em] text-[#D4AF37] uppercase" id="rsvpDeadline">By October 10th</p>
         </div>
         <div id="success-msg" class="hidden text-center py-10 animate-float">
-          <i class="fa-regular fa-circle-check text-6xl gold-text mb-6"></i>
-          <h3 class="text-white font-luxury text-2xl">Confirmed</h3>
-          <p class="text-white/50 mt-2 font-elegant italic text-lg" id="successText">See you on the dance floor.</p>
+          <div class="mx-auto mb-6 wax-seal-container scale-75"><div class="wax-seal-body"></div><span class="seal-text"><i class="fa-solid fa-check"></i></span></div>
+          <h3 class="text-[#F0E6D2] font-luxury text-2xl">Confirmed</h3>
+          <p class="text-[#A8909C] mt-2 font-elegant italic text-lg" id="successText">See you on the dance floor.</p>
           <div class="mt-8">
-             <button id="successIcs" class="px-6 py-2 border border-white/20 rounded-full text-xs text-white hover:bg-white hover:text-black transition uppercase tracking-widest">Add to Calendar</button>
+             <button id="successIcs" class="px-8 py-3 border border-[#D4AF37]/40 rounded-full text-xs text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition uppercase tracking-widest">Add to Calendar</button>
           </div>
         </div>
         <form id="rsvpForm" action="#" method="POST" class="space-y-8">
           <div class="group">
-            <input type="text" name="name" required placeholder=" " class="w-full bg-transparent border-b border-white/20 py-3 text-white text-lg focus:border-[#D4AF37] placeholder-transparent peer">
-            <label class="block text-[10px] tracking-widest text-white/40 uppercase mt-2 group-focus-within:text-[#D4AF37]">Guest Name(s)</label>
+            <input type="text" name="name" required placeholder=" " class="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-[#F0E6D2] text-lg focus:border-[#D4AF37] placeholder-transparent peer">
+            <label class="block text-[10px] tracking-widest text-[#A8909C] uppercase mt-2 group-focus-within:text-[#D4AF37]">Guest Name(s)</label>
           </div>
           <div class="flex gap-4 pt-4">
             <label class="flex-1 cursor-pointer group">
               <input type="radio" name="attendance" value="Attending" class="peer hidden" checked>
-              <div class="py-4 text-center border border-white/20 rounded-sm text-white/50 peer-checked:bg-[#D4AF37] peer-checked:text-black peer-checked:border-[#D4AF37] peer-checked:font-bold transition duration-300">
+              <div class="py-4 text-center border border-[#D4AF37]/30 rounded-sm text-[#A8909C] peer-checked:bg-[#D4AF37] peer-checked:text-[#1A0F1F] peer-checked:border-[#D4AF37] peer-checked:font-bold transition duration-300">
                 <span class="block font-luxury text-sm tracking-widest">ACCEPT</span>
               </div>
             </label>
             <label class="flex-1 cursor-pointer group">
               <input type="radio" name="attendance" value="Decline" class="peer hidden">
-              <div class="py-4 text-center border border-white/20 rounded-sm text-white/50 peer-checked:bg-white/10 peer-checked:text-white peer-checked:border-white/40 transition duration-300">
+              <div class="py-4 text-center border border-[#D4AF37]/30 rounded-sm text-[#A8909C] peer-checked:bg-[#1A0F1F]/50 peer-checked:text-[#F0E6D2] peer-checked:border-[#A8909C]/50 transition duration-300">
                 <span class="block font-luxury text-sm tracking-widest">DECLINE</span>
               </div>
             </label>
@@ -418,73 +461,73 @@
           <div id="extra-fields" class="space-y-6 pt-4">
             <div class="grid grid-cols-2 gap-6">
               <div>
-                <label class="text-[10px] uppercase tracking-widest text-white/40 block mb-2">Adults</label>
-                <select name="adults" class="w-full bg-[#111] text-white border-b border-white/20 py-2"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                <label class="text-[10px] uppercase tracking-widest text-[#A8909C] block mb-2">Adults</label>
+                <select name="adults" class="w-full bg-[#1A0F1F]/80 text-[#F0E6D2] border-b border-[#D4AF37]/30 py-2"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
               </div>
               <div>
-                <label class="text-[10px] uppercase tracking-widest text-white/40 block mb-2">Kids</label>
-                <select name="kids" class="w-full bg-[#111] text-white border-b border-white/20 py-2"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
+                <label class="text-[10px] uppercase tracking-widest text-[#A8909C] block mb-2">Kids</label>
+                <select name="kids" class="w-full bg-[#1A0F1F]/80 text-[#F0E6D2] border-b border-[#D4AF37]/30 py-2"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
               </div>
             </div>
             <div>
-               <label class="text-[10px] uppercase tracking-widest text-white/40 block mb-2">Dietary</label>
-               <select name="dietary" class="w-full bg-[#111] text-white border-b border-white/20 py-2"><option value="No preference">No preference</option><option value="Vegetarian">Vegetarian</option><option value="Vegan">Vegan</option><option value="Gluten-free">Gluten-free</option></select>
+               <label class="text-[10px] uppercase tracking-widest text-[#A8909C] block mb-2">Dietary</label>
+               <select name="dietary" class="w-full bg-[#1A0F1F]/80 text-[#F0E6D2] border-b border-[#D4AF37]/30 py-2"><option value="No preference">No preference</option><option value="Vegetarian">Vegetarian</option><option value="Vegan">Vegan</option><option value="Gluten-free">Gluten-free</option></select>
             </div>
-            <textarea name="note" placeholder="Message to the host..." class="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white text-sm focus:border-[#D4AF37]" rows="3"></textarea>
+            <textarea name="note" placeholder="Message to the host..." class="w-full bg-[#4A235A]/20 border border-[#D4AF37]/20 rounded-lg p-4 text-[#F0E6D2] text-sm focus:border-[#D4AF37] placeholder-[#A8909C]/50" rows="3"></textarea>
           </div>
-          <button type="submit" id="submit-btn" class="w-full py-4 mt-4 bg-gradient-to-r from-[#D4AF37] to-[#8A7036] text-black font-luxury tracking-[0.2em] text-sm hover:scale-[1.02] transition duration-500 shadow-[0_0_30px_rgba(212,175,55,0.3)]">CONFIRM ATTENDANCE</button>
+          <button type="submit" id="submit-btn" class="w-full py-4 mt-4 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#1A0F1F] font-luxury font-bold tracking-[0.2em] text-sm hover:scale-[1.02] transition duration-500 shadow-[0_0_40px_rgba(212,175,55,0.4)]">CONFIRM ATTENDANCE</button>
         </form>
       </div>
     </section>
 
     <section class="max-w-3xl mx-auto px-6 pb-32 reveal" id="guestbook">
       <div class="text-center mb-8">
-         <h2 class="font-luxury text-2xl text-white">Guestbook</h2>
+         <h2 class="font-luxury text-2xl text-[#F0E6D2]">Guestbook</h2>
       </div>
-      <div class="glass-panel p-8 rounded-lg mb-8">
+      <div class="glass-panel p-8 rounded-lg mb-8 border-[#D4AF37]/20">
         <form id="guestbookForm" class="space-y-4">
-           <input name="guest_name" required placeholder="Your Name" class="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-white/30">
-           <textarea name="guest_message" required placeholder="Write a note..." class="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-white/30" rows="2"></textarea>
-           <button type="submit" id="guestbookBtn" class="text-xs text-[#D4AF37] uppercase tracking-widest border border-[#D4AF37]/30 px-6 py-3 rounded-full hover:bg-[#D4AF37] hover:text-black transition mt-2">Send Note</button>
+           <input name="guest_name" required placeholder="Your Name" class="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-[#F0E6D2] placeholder-[#D4AF37]/30">
+           <textarea name="guest_message" required placeholder="Write a note..." class="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-[#F0E6D2] placeholder-[#D4AF37]/30" rows="2"></textarea>
+           <button type="submit" id="guestbookBtn" class="text-xs text-[#D4AF37] uppercase tracking-widest border border-[#D4AF37]/40 px-8 py-3 rounded-full hover:bg-[#D4AF37] hover:text-[#1A0F1F] transition mt-4">Send Note</button>
            <div id="guestbookOk" class="hidden text-xs text-green-400 mt-2">Sent successfully.</div>
         </form>
       </div>
-      <div class="flex justify-between items-end border-b border-white/10 pb-2 mb-6">
-         <span class="text-xs text-white/40 uppercase tracking-widest">Recent Notes</span>
-         <button id="openAdmin" class="text-[10px] text-white/20 hover:text-white transition">Admin</button>
+      <div class="flex justify-between items-end border-b border-[#D4AF37]/20 pb-2 mb-6">
+         <span class="text-xs text-[#A8909C] uppercase tracking-widest">Recent Notes</span>
+         <button id="openAdmin" class="text-[10px] text-[#D4AF37]/50 hover:text-[#D4AF37] transition">Admin</button>
       </div>
       <div id="guestbookList" class="grid gap-4"></div>
     </section>
 
-    <footer class="text-center py-10 text-[10px] text-white/20 uppercase tracking-widest border-t border-white/5">The Grand Celebration · 2026</footer>
+    <footer class="text-center py-10 text-[10px] text-[#A8909C]/50 uppercase tracking-widest border-t border-[#D4AF37]/10">The Grand Celebration · 2026</footer>
   </div>
 
   <div id="adminModal" role="dialog" aria-modal="true">
-    <div class="w-full max-w-3xl glass-panel rounded-xl p-8 border border-white/20">
+    <div class="w-full max-w-3xl glass-panel rounded-xl p-8 border border-[#D4AF37]/30">
       <div class="flex justify-between items-center mb-6">
         <h2 class="font-luxury text-xl gold-text">Admin Dashboard</h2>
-        <button id="closeAdmin" class="text-white hover:text-[#D4AF37]"><i class="fa-solid fa-xmark text-xl"></i></button>
+        <button id="closeAdmin" class="text-[#A8909C] hover:text-[#D4AF37]"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-black/50 p-4 rounded border border-white/10">
+        <div class="bg-[#1A0F1F]/60 p-4 rounded border border-[#D4AF37]/20">
           <div class="flex justify-between mb-4">
-             <h3 class="text-xs uppercase text-white/60 tracking-widest">RSVP Data</h3>
-             <button id="exportRsvp" class="text-[10px] text-[#D4AF37] border border-[#D4AF37]/30 px-2 py-1 rounded hover:bg-[#D4AF37] hover:text-black">Export CSV</button>
+             <h3 class="text-xs uppercase text-[#A8909C] tracking-widest">RSVP Data</h3>
+             <button id="exportRsvp" class="text-[10px] text-[#D4AF37] border border-[#D4AF37]/30 px-2 py-1 rounded hover:bg-[#D4AF37] hover:text-[#1A0F1F]">Export CSV</button>
           </div>
-          <div id="rsvpLocalList" class="h-40 overflow-y-auto text-[10px] text-white/70 space-y-2">Loading...</div>
+          <div id="rsvpLocalList" class="h-40 overflow-y-auto text-[10px] text-[#A8909C] space-y-2 font-mono">Loading...</div>
         </div>
-        <div class="bg-black/50 p-4 rounded border border-white/10">
+        <div class="bg-[#1A0F1F]/60 p-4 rounded border border-[#D4AF37]/20">
           <div class="flex justify-between mb-4">
-             <h3 class="text-xs uppercase text-white/60 tracking-widest">Guestbook</h3>
-             <button id="exportGuestbook" class="text-[10px] text-[#D4AF37] border border-[#D4AF37]/30 px-2 py-1 rounded hover:bg-[#D4AF37] hover:text-black">Export CSV</button>
+             <h3 class="text-xs uppercase text-[#A8909C] tracking-widest">Guestbook</h3>
+             <button id="exportGuestbook" class="text-[10px] text-[#D4AF37] border border-[#D4AF37]/30 px-2 py-1 rounded hover:bg-[#D4AF37] hover:text-[#1A0F1F]">Export CSV</button>
           </div>
-          <div id="guestbookLocalList" class="h-40 overflow-y-auto text-[10px] text-white/70 space-y-2">Loading...</div>
+          <div id="guestbookLocalList" class="h-40 overflow-y-auto text-[10px] text-[#A8909C] space-y-2 font-mono">Loading...</div>
         </div>
       </div>
-      <div class="mt-6 pt-6 border-t border-white/10 flex items-center gap-4">
-         <input id="adminCode" type="password" placeholder="Admin PIN" class="bg-black/50 border-b border-white/20 px-3 py-2 text-white text-sm w-32">
-         <button id="adminUnlock" class="px-4 py-2 bg-[#D4AF37] text-black text-xs font-bold rounded hover:bg-white transition">UNLOCK</button>
-         <span id="adminState" class="text-[10px] text-white/40">Locked</span>
+      <div class="mt-6 pt-6 border-t border-[#D4AF37]/20 flex items-center gap-4">
+         <input id="adminCode" type="password" placeholder="Admin PIN" class="bg-[#1A0F1F]/60 border-b border-[#D4AF37]/30 px-3 py-2 text-[#F0E6D2] text-sm w-32 font-mono">
+         <button id="adminUnlock" class="px-6 py-2 bg-[#D4AF37] text-[#1A0F1F] text-xs font-bold rounded-sm hover:bg-[#F2D06B] transition tracking-wider">UNLOCK</button>
+         <span id="adminState" class="text-[10px] text-[#A8909C]">Locked</span>
       </div>
     </div>
   </div>
@@ -552,10 +595,10 @@
        audio.play().catch(()=>{});
        $("entrance-screen").classList.add("envelope-open");
        $("flash").classList.add("trigger");
-       var duration = 3000; var end = Date.now() + duration;
+       var duration = 3500; var end = Date.now() + duration;
        (function frame() {
-         confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#D4AF37', '#F2D06B', '#FFFFFF'], shapes: ['circle'], scalar: 0.6, drift: 0, gravity: 1.2 });
-         confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#D4AF37', '#F2D06B', '#FFFFFF'], shapes: ['circle'], scalar: 0.6, drift: 0, gravity: 1.2 });
+         confetti({ particleCount: 6, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#D4AF37', '#B8860B', '#F2D06B'], shapes: ['circle'], scalar: 0.7, drift: 0, gravity: 1.1 });
+         confetti({ particleCount: 6, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#D4AF37', '#B8860B', '#F2D06B'], shapes: ['circle'], scalar: 0.7, drift: 0, gravity: 1.1 });
          if (Date.now() < end) requestAnimationFrame(frame);
        }());
        setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); revealAll(); }, 800);
@@ -574,29 +617,30 @@
     CONFIG.timeline.forEach(item => {
        tlContainer.innerHTML += `
          <div class="relative">
-            <span class="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-[#D4AF37] shadow-[0_0_10px_#D4AF37]"></span>
+            <span class="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-[#D4AF37] shadow-[0_0_15px_#D4AF37]"></span>
             <span class="text-xs tracking-widest text-[#D4AF37] block mb-1 font-modern">${item.time}</span>
-            <h4 class="font-luxury text-lg text-white">${item.title}</h4>
-            <p class="text-sm text-white/40 mt-1 italic font-elegant">${item.note}</p>
+            <h4 class="font-luxury text-lg text-[#F0E6D2]">${item.title}</h4>
+            <p class="text-sm text-[#A8909C] mt-1 italic font-elegant">${item.note}</p>
          </div>`;
     });
 
-    // Gallery Render (IMPROVED CARD STYLE)
+    // Gallery Render
     const galContainer = $("galleryRow");
     if(CONFIG.galleryImages.length > 0){
         CONFIG.galleryImages.forEach((src, idx) => {
            galContainer.innerHTML += `
-             <div class="flex-shrink-0 snap-center group relative w-64 aspect-[3/4] glass-panel p-2 rounded-sm border border-[#D4AF37]/30 hover:scale-[1.02] transition duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+             <div class="flex-shrink-0 snap-center group relative w-64 aspect-[3/4] glass-panel p-3 rounded-sm border border-[#D4AF37]/40 hover:scale-[1.02] transition duration-500 shadow-[0_15px_50px_rgba(10,0,20,0.6)]">
                 <div class="w-full h-[85%] overflow-hidden relative">
-                   <img src="${src}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" onerror="this.parentElement.parentElement.style.display='none'">
+                   <img src="${src}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700 grayscale-[30%] group-hover:grayscale-0" onerror="this.parentElement.parentElement.style.display='none'">
+                   <div class="absolute inset-0 border-2 border-[#D4AF37]/20 pointer-events-none"></div>
                 </div>
                 <div class="h-[15%] flex items-center justify-center">
-                   <span class="font-script text-[#D4AF37] text-lg">Memory ${idx+1}</span>
+                   <span class="font-script text-[#D4AF37] text-xl">Memory ${idx+1}</span>
                 </div>
              </div>`;
         });
     } else {
-        galContainer.innerHTML = `<div class="w-full text-center text-white/30 text-sm italic py-10">Photos coming soon...</div>`;
+        galContainer.innerHTML = `<div class="w-full text-center text-[#A8909C] text-sm italic py-10 font-elegant">Photos coming soon...</div>`;
     }
 
     // Countdown
@@ -647,7 +691,7 @@
           }
           rsvpForm.classList.add("hidden");
           $("success-msg").classList.remove("hidden");
-          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#D4AF37'] });
+          confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#D4AF37', '#B8860B'] });
        } catch (err) {
           alert("Connection error. Saved locally.");
           btn.innerText = "TRY AGAIN"; btn.disabled = false;
@@ -673,9 +717,9 @@
     function renderGuestbook(){
        const msgs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
        $("guestbookList").innerHTML = msgs.slice().reverse().map(m => `
-          <div class="glass-panel p-4 rounded border border-white/5">
-             <div class="flex justify-between items-center mb-2"><span class="font-luxury text-sm gold-text">${m.name}</span><span class="text-[10px] text-white/30">${m.date}</span></div>
-             <p class="text-xs text-white/70 italic">"${m.message}"</p>
+          <div class="glass-panel p-5 rounded border border-[#D4AF37]/20">
+             <div class="flex justify-between items-center mb-3"><span class="font-luxury text-lg gold-text">${m.name}</span><span class="text-[10px] text-[#A8909C]">${m.date}</span></div>
+             <p class="text-sm text-[#F0E6D2]/80 italic font-elegant">"${m.message}"</p>
           </div>`).join("");
     }
     renderGuestbook();
@@ -692,7 +736,7 @@
              const data = await jsonp(CONFIG.databaseURL + "?action=read");
              let html = "";
              data.slice().reverse().forEach(row => {
-                html += `<div class="border-b border-white/10 pb-1 mb-1"><span class="text-[#D4AF37] font-bold">${row.Name}</span> <span class="text-white/50">(${row.Attendance})</span><div class="text-white/30">${row.Note || ''}</div></div>`;
+                html += `<div class="border-b border-[#D4AF37]/20 pb-2 mb-2 font-mono text-xs"><span class="text-[#D4AF37] font-bold">${row.Name}</span> <span class="text-[#A8909C]">(${row.Attendance})</span><div class="text-[#F0E6D2]/50 mt-1">${row.Note || ''}</div></div>`;
              });
              $("rsvpLocalList").innerHTML = html || "No entries found.";
              $("adminState").innerText = `Synced: ${data.length} entries`;
@@ -701,9 +745,9 @@
     });
     function renderAdminLists(){
        const rsvps = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
-       $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-2">${r.name} - ${r.attendance}</div>`).join("");
+       $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-2 font-mono text-xs">${r.name} - ${r.attendance}</div>`).join("");
        const gbs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
-       $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-2">${g.name}: ${g.message}</div>`).join("");
+       $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-2 font-mono text-xs">${g.name}: ${g.message}</div>`).join("");
     }
     function downloadCSV(content, filename){
        const blob = new Blob([content], {type: 'text/csv'});
@@ -723,9 +767,9 @@
     // QR & Reveal
     const pageUrl = window.location.href;
     if(window.QRCode){
-       new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#000000" });
-       new QRCode($("qr-map"), { text: CONFIG.mapEmbedUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#000000" });
-       new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#000000" });
+       new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#1A0F1F" });
+       new QRCode($("qr-map"), { text: CONFIG.mapEmbedUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#1A0F1F" });
+       new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#1A0F1F" });
     }
     function revealAll(){
        const observer = new IntersectionObserver((entries) => {
