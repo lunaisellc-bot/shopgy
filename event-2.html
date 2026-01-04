@@ -508,6 +508,15 @@
   </div>
 
   <script>
+    // --- GÜÇLENDİRİLMİŞ VERİ YÖNETİMİ ---
+    // Yeni Key: 'royal_guestbook_v1' ile temiz başlangıç.
+    const LS = { 
+        rsvp: "royal_rsvp_v1", 
+        guestbook: "royal_guestbook_v1", 
+        session: "vip_session", 
+        device: "vip_device" 
+    };
+
     // --- CONFIGURATION ---
     const CONFIG = {
       accessPin: "2580",
@@ -525,7 +534,6 @@
       rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
       guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
       musicSrc: "assets/music.mp3",
-      // DEMO GÖRSELLERİ (Placeholder Servisi Kullanıldı)
       galleryImages: [
           "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", 
           "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop", 
@@ -542,6 +550,25 @@
       ]
     };
     
+    // --- INIT & DUMMY DATA ---
+    // Sayfa açılır açılmaz çalışır ve veritabanı boşsa demo mesajları ekler.
+    function initStorage(){
+        try {
+            const raw = localStorage.getItem(LS.guestbook);
+            let data = [];
+            if(raw) data = JSON.parse(raw);
+            
+            if(!data || data.length === 0){
+                const dummies = [
+                    { name: "Alexander & Kate", message: "So excited to celebrate with you! The invitation is stunning.", date: "10/05/2026" },
+                    { name: "Isabella R.", message: "Counting down the days! 🥂", date: "10/02/2026" }
+                ];
+                localStorage.setItem(LS.guestbook, JSON.stringify(dummies));
+            }
+        } catch(e) { console.log("Storage reset due to error"); localStorage.removeItem(LS.guestbook); }
+    }
+    initStorage();
+
     // --- CALENDAR LOGIC (Robust) ---
     function buildGoogleCalendarLink(c) {
       const start = new Date(c.eventStartISO).toISOString().replace(/-|:|\.\d+/g, "");
@@ -594,9 +621,6 @@
     // Success Page Buttons (Hidden initially)
     if($("successGcal")) $("successGcal").href = gcalUrl;
     if($("successIcs")) $("successIcs").addEventListener("click", () => downloadICS(CONFIG));
-
-    // --- CORE LOGIC ---
-    const LS = { rsvp: "vip_rsvp", guestbook: "vip_guestbook", session: "vip_session", device: "vip_device" };
 
     // PIN
     const pinScreen = $("pin-screen");
@@ -659,7 +683,6 @@
     function populateGallery(containerId) {
         const container = $(containerId);
         if(CONFIG.galleryImages.length > 0){
-             // İki katına çıkararak döngüyü pürüzsüz yapıyoruz
              const images = [...CONFIG.galleryImages, ...CONFIG.galleryImages]; 
              container.innerHTML = images.map(src => `
                <div class="flex-shrink-0 relative w-64 aspect-[3/4] p-1 border border-[#C6A664]/30 grayscale hover:grayscale-0 transition duration-700">
@@ -671,7 +694,6 @@
     }
     populateGallery("galleryRow1");
     populateGallery("galleryRow2");
-
 
     // Countdown
     const targetDate = new Date(CONFIG.eventStartISO).getTime();
@@ -711,9 +733,13 @@
        const entry = Object.fromEntries(fd.entries());
        entry.date = new Date().toLocaleString();
        
-       const localData = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
-       localData.push(entry);
-       localStorage.setItem(LS.rsvp, JSON.stringify(localData));
+       // SAĞLAM RSVP KAYIT LOGİĞİ
+       try {
+           const raw = localStorage.getItem(LS.rsvp);
+           const localData = raw ? JSON.parse(raw) : [];
+           localData.push(entry);
+           localStorage.setItem(LS.rsvp, JSON.stringify(localData));
+       } catch(e){ console.error("Save failed", e); }
 
        try {
           if(CONFIG.databaseURL.includes("script.google.com")){
@@ -734,36 +760,44 @@
        e.preventDefault();
        const fd = new FormData(e.target);
        const entry = { name: fd.get("guest_name"), message: fd.get("guest_message"), date: new Date().toLocaleDateString() };
-       const msgs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
-       msgs.push(entry);
-       localStorage.setItem(LS.guestbook, JSON.stringify(msgs));
-       renderGuestbook();
+       
+       // SAĞLAM GUESTBOOK KAYIT LOGİĞİ
+       try {
+           const raw = localStorage.getItem(LS.guestbook);
+           const msgs = raw ? JSON.parse(raw) : [];
+           msgs.push(entry);
+           localStorage.setItem(LS.guestbook, JSON.stringify(msgs));
+           renderGuestbook(); // Ekrana hemen bas
+           
+           // Formu temizle ve onayı göster
+           $("guestbookOk").classList.remove("hidden");
+           e.target.reset();
+           setTimeout(()=> $("guestbookOk").classList.add("hidden"), 3000);
+       } catch(err){ console.error("Guestbook error", err); }
+
        try {
           await fetch(CONFIG.guestbookEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
-          $("guestbookOk").classList.remove("hidden");
-          e.target.reset();
-          setTimeout(()=> $("guestbookOk").classList.add("hidden"), 3000);
        } catch {}
     });
 
-    // --- DUMMY DATA (DEMO İÇİN SAHTE MESAJLAR) ---
-    // Eğer localStorage boşsa, demo dolu görünsün diye 2 tane sahte mesaj ekliyoruz.
-    if(!localStorage.getItem(LS.guestbook)){
-        const dummies = [
-            { name: "Alexander & Kate", message: "So excited to celebrate with you! The invitation is stunning.", date: "10/05/2026" },
-            { name: "Isabella R.", message: "Counting down the days! 🥂", date: "10/02/2026" }
-        ];
-        localStorage.setItem(LS.guestbook, JSON.stringify(dummies));
-    }
-
     function renderGuestbook(){
-       const msgs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
-       $("guestbookList").innerHTML = msgs.slice().reverse().map(m => `
-          <div class="p-4 border-l-2 border-[#C6A664]/30 bg-[#1A0B1C]/40">
-             <div class="flex justify-between items-center mb-1"><span class="font-luxury text-sm text-[#C6A664]">${m.name}</span><span class="text-[9px] text-[#9C8C96]">${m.date}</span></div>
-             <p class="text-xs text-[#F2EBE5]/80 italic font-elegant">"${m.message}"</p>
-          </div>`).join("");
+       try {
+           const raw = localStorage.getItem(LS.guestbook);
+           const msgs = raw ? JSON.parse(raw) : [];
+           
+           if(msgs.length === 0) {
+               $("guestbookList").innerHTML = '<div class="text-center text-[#9C8C96] text-[10px] italic">No messages yet. Be the first.</div>';
+               return;
+           }
+
+           $("guestbookList").innerHTML = msgs.slice().reverse().map(m => `
+              <div class="p-4 border-l-2 border-[#C6A664]/30 bg-[#1A0B1C]/40">
+                 <div class="flex justify-between items-center mb-1"><span class="font-luxury text-sm text-[#C6A664]">${m.name}</span><span class="text-[9px] text-[#9C8C96]">${m.date}</span></div>
+                 <p class="text-xs text-[#F2EBE5]/80 italic font-elegant">"${m.message}"</p>
+              </div>`).join("");
+       } catch(e){ console.log("Render error"); }
     }
+    // Sayfa yüklenince render et
     renderGuestbook();
 
     // Admin
