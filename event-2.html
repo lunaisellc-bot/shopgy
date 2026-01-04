@@ -26,7 +26,7 @@
           animation: {
             'float': 'float 6s ease-in-out infinite',
             'shine': 'shine 8s linear infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'scroll-text': 'scrollText 30s linear infinite',
           },
           keyframes: {
             float: {
@@ -36,6 +36,10 @@
             shine: {
               '0%': { backgroundPosition: '200% center' },
               '100%': { backgroundPosition: '-200% center' },
+            },
+            scrollText: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
             }
           }
         }
@@ -66,7 +70,6 @@
       background-color: var(--bg-deep);
       color: var(--text-main);
       overflow-x: hidden;
-      /* Dark Velvet Gradient Arkaplan */
       background: radial-gradient(circle at top center, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 90%);
       min-height: 100vh;
     }
@@ -81,7 +84,6 @@
       content: ""; position: absolute; inset: 4px;
       border: 1px solid rgba(212, 175, 55, 0.1);
     }
-    /* Köşe Süslemeleri */
     .corner {
       position: fixed; width: 40px; height: 40px; z-index: 91; pointer-events: none;
       border: 2px solid var(--gold);
@@ -107,7 +109,6 @@
     .flash-effect.trigger { opacity: 0.4; animation: flashFade 1.2s forwards; }
     @keyframes flashFade { to { opacity: 0; } }
 
-    /* Gold Shine Text Class */
     .gold-text {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -115,7 +116,6 @@
       text-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
     }
 
-    /* Glass Panels */
     .glass-panel {
       background: var(--panel);
       backdrop-filter: blur(12px);
@@ -123,11 +123,9 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     }
 
-    /* --- ANIMATIONS (Reveal) --- */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* Entrance */
     #entrance-screen {
       position: fixed; inset: 0; z-index: 110; background: #000;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -150,7 +148,6 @@
     ::-webkit-scrollbar-track { background: #050505; }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
     
-    /* Pin Shake */
     @keyframes shake {
       0%,100%{ transform: translateX(0); }
       20%{ transform: translateX(-6px); } 40%{ transform: translateX(6px); }
@@ -158,7 +155,6 @@
     }
     .shake{ animation: shake .35s ease-in-out; }
 
-    /* Admin Modal */
     #adminModal{
       position: fixed; inset:0; z-index: 200;
       display:none; align-items:center; justify-content:center;
@@ -186,19 +182,16 @@
           <span class="font-luxury text-2xl gold-text" id="pinMonogram">S</span>
         </div>
         <p class="font-luxury text-[#D4AF37] tracking-[0.3em] text-lg mb-8">VIP ACCESS</p>
-        
         <div id="pinBox">
           <input id="pinInput" type="tel" maxlength="10" 
             class="text-center text-2xl font-luxury tracking-[0.5em] w-full bg-transparent border-b border-white/20 focus:border-[#D4AF37] text-white placeholder-white/10 py-3" 
             placeholder="••••" />
-          
           <div class="mt-4 flex items-center justify-center gap-3">
              <label class="text-[10px] text-white/40 uppercase tracking-wider cursor-pointer">
                 <input type="checkbox" id="rememberDevice" class="mr-2 align-middle accent-[#D4AF37]"> Remember
              </label>
           </div>
           <button id="pinSubmit" class="mt-6 px-8 py-2 border border-white/20 rounded-full text-xs text-white/60 hover:text-white hover:border-[#D4AF37] transition uppercase tracking-widest">Enter</button>
-          
           <p id="pinError" class="text-[10px] text-red-400 mt-4 hidden tracking-widest uppercase">Incorrect Code</p>
         </div>
       </div>
@@ -212,10 +205,8 @@
            <span class="font-luxury text-6xl gold-text" id="monogram">S</span>
         </div>
       </div>
-      
       <h2 class="font-luxury text-white text-xl tracking-[0.4em] mb-3" id="privateLabel">PRIVATE INVITATION</h2>
       <p class="font-modern text-[10px] text-white/40 tracking-[0.2em] uppercase mb-10" id="clickLabel">Strictly Personal</p>
-      
       <button id="open-btn" 
         class="group relative px-12 py-5 overflow-hidden transition-all duration-500 hover:scale-105 border border-[#D4AF37]/40">
         <div class="absolute inset-0 w-full h-full bg-[#D4AF37]/5 group-hover:bg-[#D4AF37]/20 transition-all duration-500"></div>
@@ -246,7 +237,6 @@
     </div>
 
     <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden pt-20">
-      
       <div class="absolute inset-0 -z-10">
         <video id="bgVideo" class="w-full h-full object-cover opacity-20 grayscale" playsinline muted loop preload="metadata">
           <source src="assets/bg.mp4" type="video/mp4">
@@ -258,17 +248,13 @@
       <p class="font-modern text-[10px] tracking-[0.4em] uppercase text-white/50 mb-8 reveal" id="heroTop">
         You are cordially invited
       </p>
-
       <h1 class="font-luxury text-6xl md:text-9xl gold-text mb-2 reveal drop-shadow-2xl animate-float" id="heroName">
         SOPHIA
       </h1>
-      
       <p class="font-script text-4xl md:text-5xl text-white/90 reveal mb-10 drop-shadow-lg" id="heroQuote">
         "A Night of Elegance & Memories"
       </p>
-
       <div class="h-px w-24 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-10 reveal"></div>
-
       <div class="reveal">
         <span id="eventStatusBadge" 
           class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
@@ -276,7 +262,6 @@
           <span class="font-modern text-xs tracking-widest text-white/80 uppercase" id="eventStatusText">Counting down</span>
         </span>
       </div>
-
       <div class="absolute bottom-10 animate-bounce text-white/20 text-xl">
         <i class="fa-solid fa-chevron-down"></i>
       </div>
@@ -294,22 +279,10 @@
     <section class="max-w-4xl mx-auto px-6 mb-32">
       <div class="glass-panel rounded-lg p-8 reveal">
         <div class="grid grid-cols-4 gap-4 text-center">
-          <div>
-            <span class="block font-luxury text-3xl md:text-5xl gold-text" id="days">00</span>
-            <span class="text-[10px] text-white/40 uppercase tracking-widest">Days</span>
-          </div>
-          <div>
-            <span class="block font-luxury text-3xl md:text-5xl gold-text" id="hours">00</span>
-            <span class="text-[10px] text-white/40 uppercase tracking-widest">Hrs</span>
-          </div>
-          <div>
-            <span class="block font-luxury text-3xl md:text-5xl gold-text" id="minutes">00</span>
-            <span class="text-[10px] text-white/40 uppercase tracking-widest">Mins</span>
-          </div>
-          <div>
-            <span class="block font-luxury text-3xl md:text-5xl gold-text" id="seconds">00</span>
-            <span class="text-[10px] text-white/40 uppercase tracking-widest">Secs</span>
-          </div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="days">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Days</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="hours">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Hrs</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="minutes">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Mins</span></div>
+          <div><span class="block font-luxury text-3xl md:text-5xl gold-text" id="seconds">00</span><span class="text-[10px] text-white/40 uppercase tracking-widest">Secs</span></div>
         </div>
         <div class="text-center mt-8">
            <button id="ics-btn" class="text-xs text-[#D4AF37] border-b border-[#D4AF37]/30 pb-1 hover:text-white transition uppercase tracking-widest">Add to Calendar</button>
@@ -326,7 +299,6 @@
           <p class="font-elegant text-2xl text-white/60 italic" id="whenDate">Saturday, October 25th</p>
           <p class="font-modern text-sm text-white/40 mt-2 tracking-widest" id="whenTime">19:00 - Late</p>
         </div>
-
         <div class="group">
           <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Where</span>
           <h3 class="font-luxury text-3xl text-white mb-2" id="whereName">The Grand Ballroom</h3>
@@ -337,13 +309,11 @@
           </div>
         </div>
       </div>
-
       <div class="space-y-16 text-center md:text-left border-t md:border-t-0 md:border-l border-[#D4AF37]/20 pt-12 md:pt-0 md:pl-12">
         <div class="group">
           <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Dress Code</span>
           <h3 class="font-luxury text-3xl text-white mb-2">BLACK TIE</h3>
           <p class="font-elegant text-xl text-white/60 italic" id="dressCode">Formal & Elegant</p>
-          
           <div class="flex justify-center md:justify-start gap-3 mt-6" id="palette">
             <div class="w-6 h-6 rounded-full bg-black border border-white/20"></div>
             <div class="w-6 h-6 rounded-full bg-[#D4AF37]"></div>
@@ -351,7 +321,6 @@
           </div>
           <p class="text-[10px] text-white/30 mt-2 uppercase tracking-wider" id="paletteNote">Palette Guide</p>
         </div>
-
         <div class="group">
           <span class="font-modern text-[10px] tracking-[0.3em] text-[#D4AF37] uppercase mb-4 block">Gifts</span>
           <h3 class="font-luxury text-3xl text-white mb-2">REGISTRY</h3>
@@ -391,16 +360,23 @@
       <div class="text-center mb-16">
         <h2 class="font-luxury text-3xl gold-text">The Evening</h2>
       </div>
-      <div class="relative border-l border-[#D4AF37]/30 ml-6 pl-10 space-y-16" id="timeline">
-        </div>
+      <div class="relative border-l border-[#D4AF37]/30 ml-6 pl-10 space-y-16" id="timeline"></div>
     </section>
 
-    <section class="mb-24 reveal" id="gallery">
-      <div class="text-center mb-10">
-        <h2 class="font-luxury text-3xl text-white">Memories</h2>
-        <p class="font-elegant text-white/40 italic mt-2">Swipe to view</p>
+    <section class="mb-32 reveal relative overflow-hidden py-16" id="gallery">
+      <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none overflow-hidden">
+         <div class="whitespace-nowrap animate-scroll-text font-luxury text-9xl text-white">
+            FOREVER YOUNG • TIMELESS MEMORIES • CELEBRATION • MOMENTS • LOVE • FOREVER YOUNG • TIMELESS MEMORIES •
+         </div>
       </div>
-      <div class="flex overflow-x-auto gap-6 px-8 pb-10 snap-x hide-scrollbar" id="galleryRow"></div>
+
+      <div class="text-center mb-12 relative z-10">
+        <h2 class="font-luxury text-4xl text-white">Memories</h2>
+        <p class="font-script text-2xl text-[#D4AF37] mt-2">Captured Moments</p>
+      </div>
+      
+      <div class="flex overflow-x-auto gap-8 px-8 pb-16 snap-x hide-scrollbar relative z-10" id="galleryRow">
+         </div>
     </section>
 
     <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
@@ -408,12 +384,10 @@
         <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-[#050505] rounded-full border border-[#D4AF37]/50 flex items-center justify-center">
            <i class="fa-solid fa-envelope text-[#D4AF37]"></i>
         </div>
-
         <div class="text-center mb-10 mt-4">
           <h2 class="font-luxury text-4xl text-white mb-2">R.S.V.P</h2>
           <p class="font-modern text-[10px] tracking-[0.2em] text-[#D4AF37] uppercase" id="rsvpDeadline">By October 10th</p>
         </div>
-
         <div id="success-msg" class="hidden text-center py-10 animate-float">
           <i class="fa-regular fa-circle-check text-6xl gold-text mb-6"></i>
           <h3 class="text-white font-luxury text-2xl">Confirmed</h3>
@@ -422,14 +396,11 @@
              <button id="successIcs" class="px-6 py-2 border border-white/20 rounded-full text-xs text-white hover:bg-white hover:text-black transition uppercase tracking-widest">Add to Calendar</button>
           </div>
         </div>
-
         <form id="rsvpForm" action="#" method="POST" class="space-y-8">
           <div class="group">
-            <input type="text" name="name" required placeholder=" " 
-              class="w-full bg-transparent border-b border-white/20 py-3 text-white text-lg focus:border-[#D4AF37] placeholder-transparent peer">
+            <input type="text" name="name" required placeholder=" " class="w-full bg-transparent border-b border-white/20 py-3 text-white text-lg focus:border-[#D4AF37] placeholder-transparent peer">
             <label class="block text-[10px] tracking-widest text-white/40 uppercase mt-2 group-focus-within:text-[#D4AF37]">Guest Name(s)</label>
           </div>
-
           <div class="flex gap-4 pt-4">
             <label class="flex-1 cursor-pointer group">
               <input type="radio" name="attendance" value="Attending" class="peer hidden" checked>
@@ -444,41 +415,24 @@
               </div>
             </label>
           </div>
-
           <div id="extra-fields" class="space-y-6 pt-4">
             <div class="grid grid-cols-2 gap-6">
               <div>
                 <label class="text-[10px] uppercase tracking-widest text-white/40 block mb-2">Adults</label>
-                <select name="adults" class="w-full bg-[#111] text-white border-b border-white/20 py-2">
-                  <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
-                </select>
+                <select name="adults" class="w-full bg-[#111] text-white border-b border-white/20 py-2"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
               </div>
               <div>
                 <label class="text-[10px] uppercase tracking-widest text-white/40 block mb-2">Kids</label>
-                <select name="kids" class="w-full bg-[#111] text-white border-b border-white/20 py-2">
-                  <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-                </select>
+                <select name="kids" class="w-full bg-[#111] text-white border-b border-white/20 py-2"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select>
               </div>
             </div>
-
             <div>
                <label class="text-[10px] uppercase tracking-widest text-white/40 block mb-2">Dietary</label>
-               <select name="dietary" class="w-full bg-[#111] text-white border-b border-white/20 py-2">
-                 <option value="No preference">No preference</option>
-                 <option value="Vegetarian">Vegetarian</option>
-                 <option value="Vegan">Vegan</option>
-                 <option value="Gluten-free">Gluten-free</option>
-               </select>
+               <select name="dietary" class="w-full bg-[#111] text-white border-b border-white/20 py-2"><option value="No preference">No preference</option><option value="Vegetarian">Vegetarian</option><option value="Vegan">Vegan</option><option value="Gluten-free">Gluten-free</option></select>
             </div>
-
-            <textarea name="note" placeholder="Message to the host..." 
-              class="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white text-sm focus:border-[#D4AF37]" rows="3"></textarea>
+            <textarea name="note" placeholder="Message to the host..." class="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white text-sm focus:border-[#D4AF37]" rows="3"></textarea>
           </div>
-
-          <button type="submit" id="submit-btn"
-            class="w-full py-4 mt-4 bg-gradient-to-r from-[#D4AF37] to-[#8A7036] text-black font-luxury tracking-[0.2em] text-sm hover:scale-[1.02] transition duration-500 shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-            CONFIRM ATTENDANCE
-          </button>
+          <button type="submit" id="submit-btn" class="w-full py-4 mt-4 bg-gradient-to-r from-[#D4AF37] to-[#8A7036] text-black font-luxury tracking-[0.2em] text-sm hover:scale-[1.02] transition duration-500 shadow-[0_0_30px_rgba(212,175,55,0.3)]">CONFIRM ATTENDANCE</button>
         </form>
       </div>
     </section>
@@ -487,7 +441,6 @@
       <div class="text-center mb-8">
          <h2 class="font-luxury text-2xl text-white">Guestbook</h2>
       </div>
-      
       <div class="glass-panel p-8 rounded-lg mb-8">
         <form id="guestbookForm" class="space-y-4">
            <input name="guest_name" required placeholder="Your Name" class="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-white/30">
@@ -496,20 +449,14 @@
            <div id="guestbookOk" class="hidden text-xs text-green-400 mt-2">Sent successfully.</div>
         </form>
       </div>
-
       <div class="flex justify-between items-end border-b border-white/10 pb-2 mb-6">
          <span class="text-xs text-white/40 uppercase tracking-widest">Recent Notes</span>
          <button id="openAdmin" class="text-[10px] text-white/20 hover:text-white transition">Admin</button>
       </div>
-      
-      <div id="guestbookList" class="grid gap-4">
-         </div>
+      <div id="guestbookList" class="grid gap-4"></div>
     </section>
 
-    <footer class="text-center py-10 text-[10px] text-white/20 uppercase tracking-widest border-t border-white/5">
-      The Grand Celebration · 2026
-    </footer>
-
+    <footer class="text-center py-10 text-[10px] text-white/20 uppercase tracking-widest border-t border-white/5">The Grand Celebration · 2026</footer>
   </div>
 
   <div id="adminModal" role="dialog" aria-modal="true">
@@ -518,7 +465,6 @@
         <h2 class="font-luxury text-xl gold-text">Admin Dashboard</h2>
         <button id="closeAdmin" class="text-white hover:text-[#D4AF37]"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
-
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-black/50 p-4 rounded border border-white/10">
           <div class="flex justify-between mb-4">
@@ -535,7 +481,6 @@
           <div id="guestbookLocalList" class="h-40 overflow-y-auto text-[10px] text-white/70 space-y-2">Loading...</div>
         </div>
       </div>
-
       <div class="mt-6 pt-6 border-t border-white/10 flex items-center gap-4">
          <input id="adminCode" type="password" placeholder="Admin PIN" class="bg-black/50 border-b border-white/20 px-3 py-2 text-white text-sm w-32">
          <button id="adminUnlock" class="px-4 py-2 bg-[#D4AF37] text-black text-xs font-bold rounded hover:bg-white transition">UNLOCK</button>
@@ -545,42 +490,24 @@
   </div>
 
   <script>
-    /* =========================
-       CONFIG (EDIT ONLY THIS)
-    ========================== */
+    // CONFIG
     const CONFIG = {
       accessPin: "2580",
       adminPin: "9999",
-      
-      // Live Google Sheets Web App URL
       databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec",
-
-      // Text Content
       monogram: "S",
       celebrantName: "SOPHIA",
       heroQuote: "\"A Night of Elegance & Memories\"",
-      
-      // Dates
       eventStartISO: "2026-10-25T19:00:00-04:00",
       eventEndISO:   "2026-10-26T01:00:00-04:00",
       whenDateText: "Saturday, October 25th, 2026",
-      
-      // Venue
       venueName: "The Grand Ballroom",
       venueAddress: "123 Luxury Ave, Manhattan, NY",
       venueQuery: "The Grand Ballroom, 123 Luxury Ave, Manhattan, NY",
-
-      // Endpoints
       rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
       guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
-
-      // Media
       musicSrc: "assets/music.mp3",
-      
-      // Gallery
       galleryImages: ["assets/gallery/1.jpg", "assets/gallery/2.jpg", "assets/gallery/3.jpg", "assets/gallery/4.jpg"],
-
-      // Timeline Data
       timeline: [
         { time: "19:00", title: "Welcome Cocktails", note: "Champagne & Jazz" },
         { time: "20:00", title: "Gala Dinner", note: "Three-course meal" },
@@ -588,30 +515,21 @@
         { time: "00:00", title: "After Party", note: "Until dawn" },
       ]
     };
-
-    // Helper: Map URL
     CONFIG.mapEmbedUrl = "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.venueQuery) + "&output=embed";
 
-    /* =========================
-       CORE LOGIC
-    ========================== */
     const $ = (id) => document.getElementById(id);
     const LS = { rsvp: "vip_rsvp", guestbook: "vip_guestbook", session: "vip_session", device: "vip_device" };
 
-    // --- 1. PIN GATE ---
+    // PIN
     const pinScreen = $("pin-screen");
     const pinInput = $("pinInput");
-    
-    // Check Auth
     if(!sessionStorage.getItem(LS.session) && !localStorage.getItem(LS.device)){
        pinScreen.classList.remove("hidden");
        pinScreen.classList.add("flex");
        setTimeout(()=> pinInput.focus(), 500);
     }
-
     $("pinSubmit").addEventListener("click", validatePin);
     pinInput.addEventListener("keyup", (e) => { if(e.key === "Enter" || pinInput.value.length === 4) validatePin(); });
-
     function validatePin(){
        if(pinInput.value === CONFIG.accessPin){
           pinScreen.classList.add("hidden");
@@ -627,64 +545,24 @@
        }
     }
 
-    // --- 2. ENTRANCE (Gold Dust Effect) ---
+    // Entrance
     $("open-btn").addEventListener("click", () => {
-       // Play Music
        const audio = $("bgMusic");
        audio.volume = 0.6;
        audio.play().catch(()=>{});
-       
-       // Animations
        $("entrance-screen").classList.add("envelope-open");
        $("flash").classList.add("trigger");
-
-       // GOLD DUST LOOP (Instead of confetti burst)
-       var duration = 3000;
-       var end = Date.now() + duration;
-
+       var duration = 3000; var end = Date.now() + duration;
        (function frame() {
-         confetti({
-           particleCount: 4,
-           angle: 60,
-           spread: 55,
-           origin: { x: 0 },
-           colors: ['#D4AF37', '#F2D06B', '#FFFFFF'],
-           shapes: ['circle'],
-           scalar: 0.6, // Dust size
-           drift: 0,
-           gravity: 1.2
-         });
-         confetti({
-           particleCount: 4,
-           angle: 120,
-           spread: 55,
-           origin: { x: 1 },
-           colors: ['#D4AF37', '#F2D06B', '#FFFFFF'],
-           shapes: ['circle'],
-           scalar: 0.6,
-           drift: 0,
-           gravity: 1.2
-         });
-       
-         if (Date.now() < end) {
-           requestAnimationFrame(frame);
-         }
+         confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#D4AF37', '#F2D06B', '#FFFFFF'], shapes: ['circle'], scalar: 0.6, drift: 0, gravity: 1.2 });
+         confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#D4AF37', '#F2D06B', '#FFFFFF'], shapes: ['circle'], scalar: 0.6, drift: 0, gravity: 1.2 });
+         if (Date.now() < end) requestAnimationFrame(frame);
        }());
-
-       // Scroll to top after animation
-       setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          revealAll();
-       }, 800);
+       setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); revealAll(); }, 800);
     });
+    $("music-btn").addEventListener("click", () => { const el = $("bgMusic"); if(el.paused) el.play(); else el.pause(); });
 
-    // Music Toggle
-    $("music-btn").addEventListener("click", () => {
-       const el = $("bgMusic");
-       if(el.paused) el.play(); else el.pause();
-    });
-
-    // --- 3. DYNAMIC CONTENT & COUNTDOWN ---
+    // Content
     $("pinMonogram").innerText = CONFIG.monogram;
     $("monogram").innerText = CONFIG.monogram;
     $("heroName").innerText = CONFIG.celebrantName;
@@ -692,7 +570,6 @@
     $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'});
     $("whenDate").innerText = CONFIG.whenDateText;
     
-    // Timeline Render
     const tlContainer = $("timeline");
     CONFIG.timeline.forEach(item => {
        tlContainer.innerHTML += `
@@ -701,44 +578,46 @@
             <span class="text-xs tracking-widest text-[#D4AF37] block mb-1 font-modern">${item.time}</span>
             <h4 class="font-luxury text-lg text-white">${item.title}</h4>
             <p class="text-sm text-white/40 mt-1 italic font-elegant">${item.note}</p>
-         </div>
-       `;
+         </div>`;
     });
 
-    // Gallery Render
+    // Gallery Render (IMPROVED CARD STYLE)
     const galContainer = $("galleryRow");
-    CONFIG.galleryImages.forEach(src => {
-       galContainer.innerHTML += `
-         <div class="flex-shrink-0 snap-center w-64 aspect-[3/4] border border-white/10 p-1 rounded-sm">
-            <img src="${src}" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-700" onerror="this.parentElement.style.display='none'">
-         </div>
-       `;
-    });
+    if(CONFIG.galleryImages.length > 0){
+        CONFIG.galleryImages.forEach((src, idx) => {
+           galContainer.innerHTML += `
+             <div class="flex-shrink-0 snap-center group relative w-64 aspect-[3/4] glass-panel p-2 rounded-sm border border-[#D4AF37]/30 hover:scale-[1.02] transition duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+                <div class="w-full h-[85%] overflow-hidden relative">
+                   <img src="${src}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" onerror="this.parentElement.parentElement.style.display='none'">
+                </div>
+                <div class="h-[15%] flex items-center justify-center">
+                   <span class="font-script text-[#D4AF37] text-lg">Memory ${idx+1}</span>
+                </div>
+             </div>`;
+        });
+    } else {
+        galContainer.innerHTML = `<div class="w-full text-center text-white/30 text-sm italic py-10">Photos coming soon...</div>`;
+    }
 
-    // Countdown Logic
+    // Countdown
     const targetDate = new Date(CONFIG.eventStartISO).getTime();
     setInterval(() => {
        const now = new Date().getTime();
        const dist = targetDate - now;
-       
        if(dist < 0) { $("eventStatusText").innerText = "Event Started"; return; }
-       
        $("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24)).toString().padStart(2,'0');
        $("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
        $("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
        $("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2,'0');
     }, 1000);
 
-    // --- 4. RSVP & FORMS (Preserving Google Sheets Logic) ---
+    // RSVP & Forms
     const rsvpForm = $("rsvpForm");
-    
-    // Toggle Extra Fields
     const radios = document.querySelectorAll('input[name="attendance"]');
     radios.forEach(r => r.addEventListener('change', (e) => {
        $("extra-fields").style.display = e.target.value === 'Decline' ? 'none' : 'block';
     }));
 
-    // JSONP Helper
     function jsonp(url){
       return new Promise((resolve, reject)=>{
         const cb = "__cb" + Date.now() + Math.floor(Math.random()*999);
@@ -750,55 +629,39 @@
       });
     }
 
-    // Submit Handler
     rsvpForm.addEventListener("submit", async (e) => {
        e.preventDefault();
        const btn = $("submit-btn");
-       const originalText = btn.innerText;
-       btn.innerText = "SENDING...";
-       btn.disabled = true;
-
+       btn.innerText = "SENDING..."; btn.disabled = true;
        const fd = new FormData(rsvpForm);
-       
-       // 1. Local Save
        const entry = Object.fromEntries(fd.entries());
        entry.date = new Date().toLocaleString();
        const localData = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
        localData.push(entry);
        localStorage.setItem(LS.rsvp, JSON.stringify(localData));
-
-       // 2. Network Send (Google Sheets / Formspree)
        try {
           if(CONFIG.databaseURL.includes("script.google.com")){
              await fetch(CONFIG.databaseURL, { method: 'POST', body: fd, mode: 'no-cors' });
           } else {
              await fetch(CONFIG.rsvpEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
           }
-          
           rsvpForm.classList.add("hidden");
           $("success-msg").classList.remove("hidden");
           confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#D4AF37'] });
-
        } catch (err) {
           alert("Connection error. Saved locally.");
-          btn.innerText = "TRY AGAIN";
-          btn.disabled = false;
+          btn.innerText = "TRY AGAIN"; btn.disabled = false;
        }
     });
 
-    // Guestbook Handler
     $("guestbookForm").addEventListener("submit", async (e) => {
        e.preventDefault();
        const fd = new FormData(e.target);
        const entry = { name: fd.get("guest_name"), message: fd.get("guest_message"), date: new Date().toLocaleDateString() };
-       
-       // Local
        const msgs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
        msgs.push(entry);
        localStorage.setItem(LS.guestbook, JSON.stringify(msgs));
        renderGuestbook();
-
-       // Network
        try {
           await fetch(CONFIG.guestbookEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
           $("guestbookOk").classList.remove("hidden");
@@ -811,66 +674,43 @@
        const msgs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
        $("guestbookList").innerHTML = msgs.slice().reverse().map(m => `
           <div class="glass-panel p-4 rounded border border-white/5">
-             <div class="flex justify-between items-center mb-2">
-                <span class="font-luxury text-sm gold-text">${m.name}</span>
-                <span class="text-[10px] text-white/30">${m.date}</span>
-             </div>
+             <div class="flex justify-between items-center mb-2"><span class="font-luxury text-sm gold-text">${m.name}</span><span class="text-[10px] text-white/30">${m.date}</span></div>
              <p class="text-xs text-white/70 italic">"${m.message}"</p>
-          </div>
-       `).join("");
+          </div>`).join("");
     }
     renderGuestbook();
 
-    // --- 5. ADMIN & EXPORT ---
+    // Admin
     let adminUnlocked = false;
-    $("openAdmin").addEventListener("click", () => {
-       $("adminModal").classList.add("open");
-       renderAdminLists();
-    });
+    $("openAdmin").addEventListener("click", () => { $("adminModal").classList.add("open"); renderAdminLists(); });
     $("closeAdmin").addEventListener("click", () => $("adminModal").classList.remove("open"));
-
     $("adminUnlock").addEventListener("click", async () => {
        if($("adminCode").value === CONFIG.adminPin){
           adminUnlocked = true;
           $("adminState").innerText = "Fetching Live Data...";
-          
           try {
-             // Fetch from Sheets
              const data = await jsonp(CONFIG.databaseURL + "?action=read");
              let html = "";
              data.slice().reverse().forEach(row => {
-                html += `<div class="border-b border-white/10 pb-1 mb-1">
-                   <span class="text-[#D4AF37] font-bold">${row.Name}</span> <span class="text-white/50">(${row.Attendance})</span>
-                   <div class="text-white/30">${row.Note || ''}</div>
-                </div>`;
+                html += `<div class="border-b border-white/10 pb-1 mb-1"><span class="text-[#D4AF37] font-bold">${row.Name}</span> <span class="text-white/50">(${row.Attendance})</span><div class="text-white/30">${row.Note || ''}</div></div>`;
              });
              $("rsvpLocalList").innerHTML = html || "No entries found.";
              $("adminState").innerText = `Synced: ${data.length} entries`;
-          } catch {
-             $("adminState").innerText = "Offline Mode (Local Data Only)";
-          }
-       } else {
-          $("adminState").innerText = "Invalid PIN";
-       }
+          } catch { $("adminState").innerText = "Offline Mode"; }
+       } else { $("adminState").innerText = "Invalid PIN"; }
     });
-
     function renderAdminLists(){
-       // Simple render of local data initially
        const rsvps = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
        $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-2">${r.name} - ${r.attendance}</div>`).join("");
-       
        const gbs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
        $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-2">${g.name}: ${g.message}</div>`).join("");
     }
-
-    // Export Helpers
     function downloadCSV(content, filename){
        const blob = new Blob([content], {type: 'text/csv'});
        const url = window.URL.createObjectURL(blob);
        const a = document.createElement("a");
        a.href = url; a.download = filename; a.click();
     }
-
     $("exportRsvp").addEventListener("click", () => {
        if(!adminUnlocked) return alert("Unlock admin first");
        const data = JSON.parse(localStorage.getItem(LS.rsvp) || "[]");
@@ -880,28 +720,20 @@
        downloadCSV(csv, "rsvp_backup.csv");
     });
 
-    // --- 6. UTILS (QR, Reveal) ---
-    // QR
+    // QR & Reveal
     const pageUrl = window.location.href;
     if(window.QRCode){
        new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#000000" });
        new QRCode($("qr-map"), { text: CONFIG.mapEmbedUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#000000" });
        new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#D4AF37", colorLight: "#000000" });
     }
-
-    // Scroll Reveal
     function revealAll(){
        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-             if(entry.isIntersecting) entry.target.classList.add("active");
-          });
+          entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("active"); });
        }, { threshold: 0.1 });
        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
     }
-    
-    // Initial Reveal (Failsafe)
     setTimeout(revealAll, 500);
-
   </script>
 </body>
 </html>
