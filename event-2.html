@@ -1,23 +1,18 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>THE GRAND CELEBRATION | VIP Invite</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <!-- QR -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
   <script>
@@ -127,9 +122,6 @@
 
 <body class="font-modern">
 
-  <!-- =======================
-      PIN SCREEN (VIP ACCESS)
-  ======================== -->
   <div id="pin-screen" aria-modal="true" role="dialog">
     <div class="w-full max-w-md mx-auto px-6">
       <div class="panel border soft-line rounded-2xl p-8 shadow-[0_30px_80px_rgba(0,0,0,.55)]">
@@ -174,9 +166,6 @@
     </div>
   </div>
 
-  <!-- =======================
-       ENTRANCE SCREEN
-  ======================== -->
   <div id="entrance-screen">
     <div class="text-center relative px-6">
       <div class="w-24 h-24 mx-auto mb-8 rounded-full border-2 soft-line flex items-center justify-center relative">
@@ -191,7 +180,6 @@
         OPEN ENVELOPE
       </button>
 
-      <!-- Theme selector (optional) -->
       <div class="mt-10 flex flex-wrap justify-center gap-2">
         <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="vip">
           Dark VIP
@@ -210,27 +198,20 @@
     </div>
   </div>
 
-  <!-- texture -->
   <div class="texture"></div>
 
-  <!-- =======================
-       MAIN CONTENT
-  ======================== -->
   <div id="main-content" class="relative min-h-screen">
 
-    <!-- LOCAL MUSIC -->
     <audio id="bgMusic" loop preload="metadata">
       <source src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Music button -->
     <button id="music-btn"
       class="fixed bottom-6 right-6 z-50 w-12 h-12 panel-strong backdrop-blur border accent-border rounded-full accent-text flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:scale-110 transition"
       aria-label="Music" aria-pressed="false" title="Music">
       <i class="fa-solid fa-music"></i>
     </button>
 
-    <!-- Quick actions -->
     <div class="fixed bottom-6 left-6 z-50 hidden md:flex flex-col gap-3">
       <button id="share-btn" class="px-4 py-3 panel-strong border soft-line rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition backdrop-blur">
         <i class="fa-solid fa-link mr-2"></i> Share Link
@@ -243,19 +224,14 @@
       </a>
     </div>
 
-    <!-- Add to Home Screen hint -->
     <div id="a2hs"
       class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block px-4 py-3 panel-strong border soft-line rounded-full text-[11px] text-white/70 backdrop-blur">
       Tip: On iPhone, tap <span class="accent-text font-semibold">Share</span> → <span class="accent-text font-semibold">Add to Home Screen</span>
       <button id="a2hsClose" class="ml-3 opacity-70 hover:opacity-100"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- =======================
-         HERO
-    ======================== -->
     <header class="relative pt-24 pb-16 text-center px-4 overflow-hidden">
 
-      <!-- optional bg video -->
       <div class="absolute inset-0 -z-10">
         <video id="bgVideo" class="w-full h-full object-cover opacity-20" playsinline muted loop preload="metadata">
           <source src="assets/bg.mp4" type="video/mp4">
@@ -277,7 +253,6 @@
         "A Night of Elegance & Memories"
       </p>
 
-      <!-- Event status -->
       <div class="mt-8 reveal">
         <span id="eventStatusBadge"
           class="inline-flex items-center gap-2 px-4 py-2 rounded-full border soft-line panel-strong text-xs text-white/80 backdrop-blur">
@@ -286,7 +261,6 @@
         </span>
       </div>
 
-      <!-- QR strip -->
       <div class="max-w-4xl mx-auto mt-10 px-6 reveal">
         <div class="grid md:grid-cols-3 gap-4">
           <div class="panel border soft-line rounded-xl p-4 text-center">
@@ -317,9 +291,6 @@
       </div>
     </header>
 
-    <!-- =======================
-         VIDEO MOMENT (LOCAL)
-    ======================== -->
     <section class="max-w-4xl mx-auto px-6 mb-12">
       <div class="relative aspect-video rounded-xl overflow-hidden border accent-border shadow-2xl reveal group" id="momentWrap">
         <div class="absolute inset-0" style="background: rgba(212,175,55,.06);"></div>
@@ -334,9 +305,6 @@
       </div>
     </section>
 
-    <!-- =======================
-         COUNTDOWN + CALENDAR
-    ======================== -->
     <section class="max-w-4xl mx-auto px-6 mb-24">
       <div class="grid grid-cols-4 gap-4 text-center border-y soft-line py-8 reveal">
         <div>
@@ -371,9 +339,6 @@
       </div>
     </section>
 
-    <!-- =======================
-         DETAILS + DRESS CODE + REGISTRY
-    ======================== -->
     <section class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 mb-24 reveal" id="details">
       <div class="space-y-12 text-center md:text-right">
         <div>
@@ -430,9 +395,6 @@
       </div>
     </section>
 
-    <!-- =======================
-         GUEST GUIDE
-    ======================== -->
     <section class="max-w-2xl mx-auto px-6 mb-24 reveal">
       <h2 class="font-luxury text-2xl accent-text mb-6 text-center">Guest Guide</h2>
 
@@ -463,21 +425,14 @@
       </div>
     </section>
 
-    <!-- =======================
-         PROGRAM TIMELINE
-    ======================== -->
     <section class="max-w-3xl mx-auto px-6 mb-24 reveal">
       <div class="text-center mb-12">
         <h2 class="font-luxury text-3xl text-gold-shine">The Evening Program</h2>
       </div>
 
-      <!-- FIX: Tailwind CDN friendly line -->
       <div class="relative border-l accent-border ml-6" id="timeline"></div>
     </section>
 
-    <!-- =======================
-         PHOTO ALBUM
-    ======================== -->
     <section class="mb-16 reveal" id="gallery">
       <div class="text-center mb-8">
         <h2 class="font-luxury text-3xl text-white">Through The Years</h2>
@@ -486,9 +441,6 @@
       <div class="flex overflow-x-auto gap-4 px-6 pb-8 snap-x hide-scrollbar" id="galleryRow"></div>
     </section>
 
-    <!-- =======================
-         PHOTO UPLOAD (STANDARD)
-    ======================== -->
     <section class="max-w-3xl mx-auto px-6 mb-24 reveal" id="photoUpload">
       <div class="panel border soft-line rounded-2xl p-8">
         <div class="text-center">
@@ -510,9 +462,6 @@
       </div>
     </section>
 
-    <!-- =======================
-         MAP EMBED
-    ======================== -->
     <section class="max-w-4xl mx-auto px-6 mb-24 reveal" id="map">
       <div class="panel border soft-line rounded-xl overflow-hidden">
         <div class="p-6 border-b soft-line flex items-center justify-between gap-3 flex-wrap">
@@ -538,9 +487,6 @@
       </div>
     </section>
 
-    <!-- =======================
-         RSVP (UPGRADED)
-    ======================== -->
     <section id="rsvp" class="max-w-xl mx-auto px-6 pb-16 reveal">
       <div class="relative panel border accent-border p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.45)]">
         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 rounded-b-full border-b accent-border" style="background: var(--bg);"></div>
@@ -575,7 +521,6 @@
           </div>
         </div>
 
-        <!-- RSVP form -->
         <form id="rsvpForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-5">
           <div>
             <input type="text" name="name" required placeholder="Guest Name(s)"
@@ -657,9 +602,6 @@
       </div>
     </section>
 
-    <!-- =======================
-         GUESTBOOK (STANDARD + LOCAL PREVIEW + ADMIN EXPORT)
-    ======================== -->
     <section class="max-w-3xl mx-auto px-6 pb-24 reveal" id="guestbook">
       <div class="panel border soft-line rounded-2xl p-8">
         <div class="text-center">
@@ -691,7 +633,6 @@
           </div>
         </form>
 
-        <!-- Local preview list (client-side) -->
         <div class="mt-10 border-t soft-line pt-8">
           <div class="flex items-center justify-between flex-wrap gap-3">
             <h3 class="font-luxury text-lg text-white">Messages (Preview)</h3>
@@ -714,13 +655,9 @@
       <div class="mt-2 opacity-0 select-none" aria-hidden="true">admin</div>
     </footer>
 
-    <!-- Analytics embed (optional) -->
     <div id="analyticsMount"></div>
   </div>
 
-  <!-- =======================
-      ADMIN MODAL (CLIENT-SIDE)
-  ======================== -->
   <div id="adminModal" role="dialog" aria-modal="true">
     <div class="w-full max-w-3xl panel border soft-line rounded-2xl p-6 shadow-[0_30px_80px_rgba(0,0,0,.55)]">
       <div class="flex items-start justify-between gap-4">
@@ -1000,7 +937,7 @@ END:VCALENDAR`;
 
     function escapeHtml(s){
       return String(s ?? "").replace(/[&<>"']/g, (c)=>({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+        "&":"&","<":"<",">":">",'"':""","'":"'"
       }[c]));
     }
 
@@ -1423,42 +1360,22 @@ END:VCALENDAR`;
       submitBtn.disabled = true;
 
       const fd = new FormData(rsvpForm);
-      const localEntry = {
-        ts: new Date().toISOString(),
-        name: fd.get("name") || "",
-        attendance: fd.get("attendance") || "",
-        adults: fd.get("adults") || "",
-        kids: fd.get("kids") || "",
-        dietary: fd.get("dietary") || "",
-        allergies: fd.get("allergies") || "",
-        song: fd.get("song_request") || "",
-        note: fd.get("note") || ""
-      };
 
       try {
-        const res = await fetch(rsvpForm.action, {
+        await fetch(CONFIG.databaseURL, {
           method: 'POST',
-          body: fd,
-          headers: { 'Accept': 'application/json' }
+          body: new URLSearchParams(fd), // Apps Script prefers URLSearchParams for simple POSTs
+          mode: 'no-cors' // Google Script requires no-cors for direct browser-to-script POST
         });
 
-        if(res.ok) {
-          const list = loadJSON(LS.rsvpKey, []);
-          list.unshift(localEntry);
-          saveJSON(LS.rsvpKey, list);
+        // Since no-cors doesn't return response, we assume success after fetch completes
+        rsvpForm.classList.add('hidden');
+        successMsg.classList.remove('hidden');
 
-          rsvpForm.classList.add('hidden');
-          successMsg.classList.remove('hidden');
-
-          confetti({
-            particleCount: 120, spread: 60, origin: { y: 0.75 },
-            colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
-          });
-        } else {
-          alert("Error. Try again.");
-          submitBtn.innerText = "CONFIRM";
-          submitBtn.disabled = false;
-        }
+        confetti({
+          particleCount: 120, spread: 60, origin: { y: 0.75 },
+          colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
+        });
       } catch {
         alert("Connection Error");
         submitBtn.innerText = "CONFIRM";
@@ -1467,85 +1384,58 @@ END:VCALENDAR`;
     });
 
     /* =========================
-       Guestbook logic (+ local preview)
+       Admin Panel (Google Sheets Linked)
     ========================== */
-    const guestbookForm = $("guestbookForm");
-    const guestbookBtn = $("guestbookBtn");
-    const guestbookOk = $("guestbookOk");
-    const guestbookList = $("guestbookList");
+    async function fetchAndRenderAdminData() {
+      const rsvpLocalList = document.getElementById("rsvpLocalList");
+      rsvpLocalList.innerHTML = `<div class="text-white/50 text-xs animate-pulse">Loading live data from Google Sheets...</div>`;
+      
+      try {
+        const res = await fetch(CONFIG.databaseURL + "?action=read");
+        const data = await res.json();
+        
+        const totalAttending = data.filter(r => r.Attendance === "Attending").length;
+        const totalAdults = data.reduce((acc, curr) => acc + (parseInt(curr.Adults) || 0), 0);
+        const totalKids = data.reduce((acc, curr) => acc + (parseInt(curr.Kids) || 0), 0);
+        
+        document.getElementById("adminState").innerHTML = `
+          <span class="text-[10px] text-white/60">
+            Entries: <b>${data.length}</b> | Attending: <b>${totalAttending}</b> (Adults: ${totalAdults}, Kids: ${totalKids})
+          </span>`;
 
-    function renderGuestbook(){
-      const entries = loadJSON(LS.guestbookKey, []);
-      guestbookList.innerHTML = "";
-      if(entries.length === 0){
-        guestbookList.innerHTML = `<div class="text-[12px] text-gray-500">No messages yet.</div>`;
-        return;
-      }
-      entries.slice(0, 10).forEach(m=>{
-        const card = document.createElement("div");
-        card.className = "panel-strong border soft-line rounded-xl p-4";
-        card.innerHTML = `
-          <div class="flex items-center justify-between gap-3">
-            <div class="text-[12px] text-white/90"><span class="accent-text font-semibold">${escapeHtml(m.name)}</span> <span class="text-white/50">${m.city ? "· " + escapeHtml(m.city) : ""}</span></div>
-            <div class="text-[10px] text-white/40">${new Date(m.ts).toLocaleString()}</div>
-          </div>
-          <div class="mt-2 text-[13px] text-white/75 leading-relaxed">${escapeHtml(m.message)}</div>
-        `;
-        guestbookList.appendChild(card);
-      });
-    }
+        rsvpLocalList.innerHTML = "";
 
-    renderGuestbook();
+        if (data.length === 0) {
+          rsvpLocalList.innerHTML = `<div class="text-white/40 text-xs">No entries found.</div>`;
+          return;
+        }
 
-    guestbookForm.addEventListener("submit", async (e)=>{
-      e.preventDefault();
-      guestbookBtn.innerText = "SENDING...";
-      guestbookBtn.disabled = true;
-
-      const fd = new FormData(guestbookForm);
-      const localMsg = {
-        ts: new Date().toISOString(),
-        name: fd.get("guest_name") || "",
-        city: fd.get("guest_city") || "",
-        message: fd.get("guest_message") || ""
-      };
-
-      try{
-        const res = await fetch(guestbookForm.action, {
-          method:"POST",
-          body: fd,
-          headers:{ "Accept":"application/json" }
+        data.reverse().forEach(row => {
+          const colorClass = row.Attendance === "Attending" ? "text-green-400" : "text-red-400";
+          const el = document.createElement("div");
+          el.className = "border-b border-white/10 pb-2 mb-2 text-[11px]";
+          el.innerHTML = `
+            <div class="flex justify-between">
+              <span class="accent-text font-bold">${row.Name || 'Anonymous'}</span>
+              <span class="${colorClass} font-mono uppercase">${row.Attendance}</span>
+            </div>
+            <div class="text-white/50 mt-1">
+               Guests: ${row.Adults} Adults, ${row.Kids} Kids | Dietary: ${row.Dietary || '-'}
+            </div>
+            ${row.Note ? `<div class="text-white/70 italic mt-1 bg-white/5 p-1 rounded">"${row.Note}"</div>` : ""}
+            <div class="text-right text-[9px] text-white/20 mt-1">${row.Date || ''}</div>
+          `;
+          rsvpLocalList.appendChild(el);
         });
 
-        if(res.ok){
-          const list = loadJSON(LS.guestbookKey, []);
-          list.unshift(localMsg);
-          saveJSON(LS.guestbookKey, list);
-
-          guestbookForm.reset();
-          guestbookOk.classList.remove("hidden");
-          setTimeout(()=>guestbookOk.classList.add("hidden"), 2200);
-
-          renderGuestbook();
-
-          confetti({
-            particleCount: 80, spread: 55, origin: { y: 0.75 },
-            colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
-          });
-
-        } else {
-          alert("Error. Try again.");
-        }
-      } catch {
-        alert("Connection Error");
-      } finally {
-        guestbookBtn.innerText = "SEND MESSAGE";
-        guestbookBtn.disabled = false;
+      } catch (error) {
+        rsvpLocalList.innerHTML = `<div class="text-red-400 text-xs">Error connecting to Google Sheets.</div>`;
+        console.error("Fetch Error:", error);
       }
-    });
+    }
 
     /* =========================
-       Admin modal
+       Admin modal logic
     ========================== */
     const adminModal = $("adminModal");
     const openAdmin = $("openAdmin");
@@ -1553,80 +1443,26 @@ END:VCALENDAR`;
     const adminUnlock = $("adminUnlock");
     const adminCode = $("adminCode");
     const adminState = $("adminState");
-    const exportRsvp = $("exportRsvp");
-    const exportGuestbook = $("exportGuestbook");
-    const rsvpLocalList = $("rsvpLocalList");
-    const guestbookLocalList = $("guestbookLocalList");
 
     let adminUnlocked = false;
 
-    function renderAdminLists(){
-      const rsvp = loadJSON(LS.rsvpKey, []);
-      const gb = loadJSON(LS.guestbookKey, []);
-
-      rsvpLocalList.innerHTML = rsvp.length ? "" : `<div class="text-white/40">No RSVP entries.</div>`;
-      rsvp.slice(0, 12).forEach(x=>{
-        const row = document.createElement("div");
-        row.className = "border-b border-white/10 pb-2";
-        row.innerHTML = `<div><span class="accent-text font-semibold">${escapeHtml(x.name)}</span> · <span class="text-white/60">${escapeHtml(x.attendance)}</span></div>
-                         <div class="text-white/45 text-[11px]">Adults: ${escapeHtml(x.adults)} · Kids: ${escapeHtml(x.kids)} · Dietary: ${escapeHtml(x.dietary)}</div>`;
-        rsvpLocalList.appendChild(row);
-      });
-
-      guestbookLocalList.innerHTML = gb.length ? "" : `<div class="text-white/40">No guestbook entries.</div>`;
-      gb.slice(0, 12).forEach(x=>{
-        const row = document.createElement("div");
-        row.className = "border-b border-white/10 pb-2";
-        row.innerHTML = `<div><span class="accent-text font-semibold">${escapeHtml(x.name)}</span> <span class="text-white/50">${x.city ? "· " + escapeHtml(x.city) : ""}</span></div>
-                         <div class="text-white/60 text-[11px]">${escapeHtml(x.message)}</div>`;
-        guestbookLocalList.appendChild(row);
-      });
-    }
-
-    function setAdminState(){
-      adminState.textContent = adminUnlocked ? "Unlocked" : "Locked";
-      adminState.style.color = adminUnlocked ? "rgba(255,255,255,.85)" : "rgba(255,255,255,.55)";
-      exportRsvp.disabled = !adminUnlocked;
-      exportGuestbook.disabled = !adminUnlocked;
-      exportRsvp.style.opacity = adminUnlocked ? "1" : "0.4";
-      exportGuestbook.style.opacity = adminUnlocked ? "1" : "0.4";
-    }
-
     openAdmin.addEventListener("click", ()=>{
       adminModal.classList.add("open");
-      renderAdminLists();
-      setAdminState();
       setTimeout(()=>adminCode.focus(), 150);
     });
     closeAdmin.addEventListener("click", ()=> adminModal.classList.remove("open"));
-    adminModal.addEventListener("click", (e)=>{ if(e.target === adminModal) adminModal.classList.remove("open"); });
 
     adminUnlock.addEventListener("click", ()=>{
-      adminUnlocked = (adminCode.value || "").trim() === CONFIG.adminPin;
-      setAdminState();
-      if(!adminUnlocked){
+      if((adminCode.value || "").trim() === CONFIG.adminPin){
+        adminUnlocked = true;
+        fetchAndRenderAdminData();
+      } else {
         adminState.textContent = "Wrong code";
-        adminState.style.color = "rgba(255,255,255,.75)";
       }
     });
 
-    exportRsvp.addEventListener("click", ()=>{
-      if(!adminUnlocked) return;
-      const rsvp = loadJSON(LS.rsvpKey, []);
-      const csv = toCSV(rsvp);
-      downloadText("rsvp_export.csv", csv, "text/csv;charset=utf-8");
-    });
-
-    exportGuestbook.addEventListener("click", ()=>{
-      if(!adminUnlocked) return;
-      const gb = loadJSON(LS.guestbookKey, []);
-      const csv = toCSV(gb);
-      downloadText("guestbook_export.csv", csv, "text/csv;charset=utf-8");
-    });
-
     /* =========================
-       Final failsafe:
-       If user already scrolled/loaded and reveal didn't trigger, activate near-viewport
+       Final failsafe: Reveal
     ========================== */
     setTimeout(()=>{
       document.querySelectorAll(".reveal").forEach(el=>{
@@ -1638,3 +1474,4 @@ END:VCALENDAR`;
   </script>
 </body>
 </html>
+
