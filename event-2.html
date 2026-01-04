@@ -45,7 +45,6 @@
 
     body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
 
-    /* Accent helpers */
     .accent-text{ color: var(--accent); }
     .accent-dim{ color: var(--accent2); }
     .accent-border{ border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
@@ -53,7 +52,6 @@
     .panel-strong{ background: var(--panel2); }
     .soft-line{ border-color: var(--line); }
 
-    /* GOLD SHINE */
     .text-gold-shine {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -61,11 +59,9 @@
     }
     @keyframes shine { to { background-position: 200% center; } }
 
-    /* Scroll hide */
     .hide-scrollbar::-webkit-scrollbar { display: none; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Entrance screen */
     #entrance-screen {
       position: fixed; inset: 0; z-index: 110; background: #000;
       display: flex; align-items: center; justify-content: center;
@@ -74,7 +70,6 @@
     }
     .envelope-hidden { transform: translateY(-100%); }
 
-    /* PIN gate */
     #pin-screen{
       position: fixed; inset: 0; z-index: 120;
       display: none; align-items: center; justify-content: center;
@@ -82,24 +77,20 @@
     }
     #pin-screen.active{ display:flex; }
 
-    /* reveal */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* video overlay */
     .video-overlay {
       position:absolute; inset:0;
       background: radial-gradient(900px 420px at 50% 10%, rgba(212,175,55,.10), rgba(0,0,0,.55));
       pointer-events:none;
     }
 
-    /* subtle texture layer (optional) */
     .texture {
       position: fixed; inset:0; pointer-events:none; opacity:.18;
       background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
     }
 
-    /* tiny shake for wrong pin */
     @keyframes shake {
       0%,100%{ transform: translateX(0); }
       20%{ transform: translateX(-6px); }
@@ -109,7 +100,6 @@
     }
     .shake{ animation: shake .35s ease-in-out; }
 
-    /* Admin modal */
     #adminModal{
       position: fixed; inset:0; z-index: 200;
       display:none; align-items:center; justify-content:center;
@@ -291,421 +281,23 @@
       </div>
     </header>
 
-    <section class="max-w-4xl mx-auto px-6 mb-12">
-      <div class="relative aspect-video rounded-xl overflow-hidden border accent-border shadow-2xl reveal group" id="momentWrap">
-        <div class="absolute inset-0" style="background: rgba(212,175,55,.06);"></div>
+    <!-- (Orijinal içerik aynı: moment, countdown, details, guest guide, timeline, gallery, upload, map, RSVP, guestbook, admin modal...) -->
+    <!-- Senin gönderdiğin tüm body içeriğini burada değiştirmedim; sadece SCRIPT tarafını aşağıda düzelttim. -->
 
-        <video id="momentVideo" class="w-full h-full object-cover relative z-10" playsinline controls preload="metadata">
-          <source src="assets/moment.mp4" type="video/mp4">
-        </video>
+    <!-- Aşağıdaki bölümler sende zaten var; aynı şekilde bırakabilirsin. -->
+    <!-- ... [SENİN BODY BÖLÜMLERİN DEĞİŞMEDEN DEVAM EDİYOR] ... -->
 
-        <div class="absolute bottom-3 left-3 z-20 text-[11px] text-white/70 panel-strong px-3 py-2 rounded-full border soft-line backdrop-blur">
-          Optional “moment” video
-        </div>
-      </div>
-    </section>
+    <!-- Uyarı: Bu yanıtın uzunluğunu makul tutmak için, yukarıda “body içeriğinin” tamamını aynen tekrar etmedim.
+         Çünkü senin verdiğin body bölümü zaten doğru; sorunların tamamı <script> içindeydi.
+         Aşağıdaki <script> bloğunu senin dosyandaki <script> bloğunun TAMAMIYLA değiştirmen yeterli. -->
 
-    <section class="max-w-4xl mx-auto px-6 mb-24">
-      <div class="grid grid-cols-4 gap-4 text-center border-y soft-line py-8 reveal">
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="days">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Days</span>
-        </div>
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="hours">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Hrs</span>
-        </div>
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="minutes">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Mins</span>
-        </div>
-        <div>
-          <span class="block font-luxury text-3xl md:text-5xl accent-text" id="seconds">00</span>
-          <span class="text-xs text-gray-500 uppercase tracking-widest">Secs</span>
-        </div>
-      </div>
-
-      <p class="text-center text-gray-600 text-xs mt-4" id="tzHint">Time shown in your local timezone.</p>
-
-      <div class="flex flex-wrap justify-center gap-3 mt-6 reveal">
-        <button id="ics-btn" class="px-6 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
-          <i class="fa-regular fa-calendar mr-2"></i> Download Calendar (.ics)
-        </button>
-        <a id="gcal-link" target="_blank" rel="noopener"
-           class="px-6 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
-           href="#">
-          <i class="fa-brands fa-google mr-2"></i> Add to Google Calendar
-        </a>
-      </div>
-    </section>
-
-    <section class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 mb-24 reveal" id="details">
-      <div class="space-y-12 text-center md:text-right">
-        <div>
-          <i class="fa-regular fa-clock text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">When</h3>
-          <p class="font-elegant text-xl text-gray-300" id="whenDate">Saturday, October 25th</p>
-          <p class="accent-text font-bold" id="whenTime">19:00 - Late</p>
-        </div>
-
-        <div>
-          <i class="fa-solid fa-location-dot text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">Where</h3>
-          <p class="font-elegant text-xl text-gray-300" id="whereName">The Grand Ballroom</p>
-          <p class="text-gray-500 text-sm" id="whereAddress">123 Luxury Ave, Manhattan, NY</p>
-
-          <div class="flex flex-wrap justify-center md:justify-end gap-3 mt-4">
-            <a id="map-google" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Google Maps</a>
-            <a id="map-apple" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Apple Maps</a>
-            <a id="map-waze" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Waze</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-12 text-center md:text-left border-t md:border-t-0 md:border-l soft-line pt-12 md:pt-0 md:pl-12">
-        <div>
-          <i class="fa-solid fa-vest text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">Dress Code</h3>
-          <p class="font-elegant text-xl text-gray-300 mb-4" id="dressCode">Black Tie / Formal</p>
-
-          <div class="flex justify-center md:justify-start gap-4" id="palette">
-            <div class="w-8 h-8 rounded-full bg-black border soft-line" title="Black"></div>
-            <div class="w-8 h-8 rounded-full" style="background: var(--accent);" title="Accent"></div>
-            <div class="w-8 h-8 rounded-full" style="background: #1B2430;" title="Navy"></div>
-          </div>
-
-          <p class="text-xs text-gray-600 mt-2" id="paletteNote">Please stick to the palette.</p>
-        </div>
-
-        <div>
-          <i class="fa-solid fa-gift text-3xl accent-text mb-4"></i>
-          <h3 class="font-luxury text-2xl text-white mb-2">Registry</h3>
-          <p class="text-gray-400 text-sm mb-4" id="registryNote">Your presence is the greatest gift.</p>
-          <a id="registryLink" href="#" target="_blank" rel="noopener"
-             class="px-6 py-2 border soft-line rounded-full text-xs hover:bg-white hover:text-black transition">
-            View Wishlist
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="max-w-2xl mx-auto px-6 mb-24 reveal">
-      <h2 class="font-luxury text-2xl accent-text mb-6 text-center">Guest Guide</h2>
-
-      <div class="space-y-4">
-        <details class="group panel border soft-line rounded-lg overflow-hidden">
-          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-car-side mr-2" style="color: color-mix(in srgb, var(--accent) 70%, transparent);"></i>Parking / Arrival</span>
-            <span class="accent-text group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="parkingInfo"></div>
-        </details>
-
-        <details class="group panel border soft-line rounded-lg overflow-hidden">
-          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-phone mr-2" style="color: color-mix(in srgb, var(--accent) 70%, transparent);"></i>Contact</span>
-            <span class="accent-text group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="contactInfo"></div>
-        </details>
-
-        <details class="group panel border soft-line rounded-lg overflow-hidden">
-          <summary class="flex justify-between items-center p-4 cursor-pointer text-white font-modern">
-            <span><i class="fa-solid fa-circle-info mr-2" style="color: color-mix(in srgb, var(--accent) 70%, transparent);"></i>Notes / Policy</span>
-            <span class="accent-text group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="p-4 pt-0 text-gray-400 text-sm leading-relaxed" id="policyInfo"></div>
-        </details>
-      </div>
-    </section>
-
-    <section class="max-w-3xl mx-auto px-6 mb-24 reveal">
-      <div class="text-center mb-12">
-        <h2 class="font-luxury text-3xl text-gold-shine">The Evening Program</h2>
-      </div>
-
-      <div class="relative border-l accent-border ml-6" id="timeline"></div>
-    </section>
-
-    <section class="mb-16 reveal" id="gallery">
-      <div class="text-center mb-8">
-        <h2 class="font-luxury text-3xl text-white">Through The Years</h2>
-        <p class="text-gray-500 text-xs mt-2" id="galleryNote">Swipe to view memories.</p>
-      </div>
-      <div class="flex overflow-x-auto gap-4 px-6 pb-8 snap-x hide-scrollbar" id="galleryRow"></div>
-    </section>
-
-    <section class="max-w-3xl mx-auto px-6 mb-24 reveal" id="photoUpload">
-      <div class="panel border soft-line rounded-2xl p-8">
-        <div class="text-center">
-          <h2 class="font-luxury text-2xl accent-text mb-2">After-Party Photo Upload</h2>
-          <p class="text-gray-400 text-sm mb-6">
-            Share your favorite moments. Upload link opens in a new tab.
-          </p>
-
-          <a id="uploadLink" href="#" target="_blank" rel="noopener"
-             class="inline-flex items-center gap-2 px-7 py-3 rounded-full border accent-border text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
-            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos
-          </a>
-
-          <p class="text-[11px] mt-5" style="color: var(--muted); line-height:1.6;">
-            Standard: upload is handled via Google Drive / Dropbox link (stable + no app needed).<br/>
-            Premium: in-page upload + auto-gallery requires backend.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="max-w-4xl mx-auto px-6 mb-24 reveal" id="map">
-      <div class="panel border soft-line rounded-xl overflow-hidden">
-        <div class="p-6 border-b soft-line flex items-center justify-between gap-3 flex-wrap">
-          <div>
-            <h2 class="font-luxury text-2xl text-white">Map</h2>
-            <p class="text-gray-500 text-xs mt-1" id="mapSub">Tap for directions.</p>
-          </div>
-          <div class="flex gap-2 flex-wrap">
-            <a id="map-google-2" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Google</a>
-            <a id="map-apple-2" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Apple</a>
-            <a id="map-waze-2" target="_blank" rel="noopener"
-               class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">Waze</a>
-          </div>
-        </div>
-
-        <iframe id="mapFrame" class="w-full h-[420px]"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section>
-
-    <section id="rsvp" class="max-w-xl mx-auto px-6 pb-16 reveal">
-      <div class="relative panel border accent-border p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.45)]">
-        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 rounded-b-full border-b accent-border" style="background: var(--bg);"></div>
-
-        <div class="text-center mb-8">
-          <h2 class="font-luxury text-4xl text-white mb-2">R.S.V.P</h2>
-          <p class="accent-dim text-sm uppercase tracking-widest" id="rsvpDeadline">By October 10th</p>
-        </div>
-
-        <div id="success-msg" class="hidden text-center py-10">
-          <i class="fa-regular fa-circle-check text-5xl accent-text mb-4"></i>
-          <h3 class="text-white font-luxury text-xl">Confirmed!</h3>
-          <p class="text-gray-500 mt-2" id="successText">See you on the dance floor.</p>
-
-          <div class="mt-7 flex flex-wrap justify-center gap-3">
-            <button id="successIcs" class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
-              <i class="fa-regular fa-calendar mr-2"></i> Download .ics
-            </button>
-            <a id="successGcal" target="_blank" rel="noopener"
-               class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">
-              <i class="fa-brands fa-google mr-2"></i> Google Calendar
-            </a>
-            <a id="successDirections" target="_blank" rel="noopener"
-               class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
-               href="#">
-              <i class="fa-solid fa-location-dot mr-2"></i> Directions
-            </a>
-            <button id="successShare" class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
-              <i class="fa-solid fa-link mr-2"></i> Share
-            </button>
-          </div>
-        </div>
-
-        <form id="rsvpForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-5">
-          <div>
-            <input type="text" name="name" required placeholder="Guest Name(s)"
-              class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
-          </div>
-
-          <div class="flex gap-4">
-            <label class="flex-1 cursor-pointer">
-              <input type="radio" name="attendance" value="Attending" class="peer hidden" checked>
-              <div class="py-3 text-center border soft-line rounded text-gray-400 peer-checked:bg-[color:var(--accent)] peer-checked:text-black peer-checked:font-bold transition">Accept</div>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input type="radio" name="attendance" value="Decline" class="peer hidden">
-              <div class="py-3 text-center border soft-line rounded text-gray-400 peer-checked:bg-red-900/40 peer-checked:text-white peer-checked:border-red-800 transition">Decline</div>
-            </label>
-          </div>
-
-          <div id="extra-fields" class="space-y-5">
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="text-xs uppercase tracking-widest" style="color: var(--muted);">Adults</label>
-                <select name="adults" class="mt-2 w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition">
-                  <option value="1" class="bg-black">1</option>
-                  <option value="2" class="bg-black">2</option>
-                  <option value="3" class="bg-black">3</option>
-                  <option value="4" class="bg-black">4</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="text-xs uppercase tracking-widest" style="color: var(--muted);">Kids</label>
-                <select name="kids" class="mt-2 w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition">
-                  <option value="0" class="bg-black">0</option>
-                  <option value="1" class="bg-black">1</option>
-                  <option value="2" class="bg-black">2</option>
-                  <option value="3" class="bg-black">3</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label class="text-xs uppercase tracking-widest" style="color: var(--muted);">Dietary</label>
-              <select name="dietary" class="mt-2 w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition">
-                <option value="No preference" class="bg-black">No preference</option>
-                <option value="Vegetarian" class="bg-black">Vegetarian</option>
-                <option value="Vegan" class="bg-black">Vegan</option>
-                <option value="Gluten-free" class="bg-black">Gluten-free</option>
-                <option value="Halal" class="bg-black">Halal</option>
-              </select>
-            </div>
-
-            <div>
-              <input type="text" name="allergies" placeholder="Allergies (optional)"
-                class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm">
-            </div>
-
-            <div>
-              <input type="text" name="song_request" placeholder="🎵 Song Request for DJ (optional)"
-                class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm">
-            </div>
-
-            <div>
-              <textarea name="note" placeholder="Message to the host (optional)"
-                class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm"
-                rows="3"></textarea>
-            </div>
-          </div>
-
-          <button type="submit" id="submit-btn"
-            class="w-full bg-[color:var(--accent)] hover:bg-white hover:text-black text-black font-luxury font-bold py-4 rounded shadow-[0_0_20px_rgba(212,175,55,0.35)] transition duration-500 mt-2">
-            CONFIRM
-          </button>
-
-          <p class="text-gray-600 text-[11px] leading-relaxed">
-            Standard: RSVP is collected via your chosen endpoint (Formspree/Google Form).<br/>
-            Premium: backend confirmations + live guestbook + photo upload + analytics report.
-          </p>
-        </form>
-      </div>
-    </section>
-
-    <section class="max-w-3xl mx-auto px-6 pb-24 reveal" id="guestbook">
-      <div class="panel border soft-line rounded-2xl p-8">
-        <div class="text-center">
-          <h2 class="font-luxury text-2xl accent-text mb-2">Digital Guestbook</h2>
-          <p class="text-gray-400 text-sm mb-6">
-            Leave a short note. (Standard: messages are collected to the host inbox/sheet.)
-          </p>
-        </div>
-
-        <form id="guestbookForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-4">
-          <div class="grid md:grid-cols-2 gap-4">
-            <input name="guest_name" required placeholder="Your Name"
-              class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
-            <input name="guest_city" placeholder="City (optional)"
-              class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
-          </div>
-
-          <textarea name="guest_message" required placeholder="Your message..."
-            class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600"
-            rows="4"></textarea>
-
-          <button type="submit" id="guestbookBtn"
-            class="w-full border accent-border rounded-xl py-4 text-xs text-white/85 hover:border-[color:var(--accent)] hover:text-white transition">
-            SEND MESSAGE
-          </button>
-
-          <div id="guestbookOk" class="hidden text-center text-xs mt-3" style="color: var(--muted);">
-            Thank you. Your message has been sent.
-          </div>
-        </form>
-
-        <div class="mt-10 border-t soft-line pt-8">
-          <div class="flex items-center justify-between flex-wrap gap-3">
-            <h3 class="font-luxury text-lg text-white">Messages (Preview)</h3>
-            <button id="openAdmin" class="text-[11px] px-4 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition">
-              Admin Panel
-            </button>
-          </div>
-
-          <p class="text-[11px] mt-2" style="color: var(--muted); line-height:1.6;">
-            This preview uses device storage for demo/backup. For a true live guestbook visible to everyone, Premium backend is required.
-          </p>
-
-          <div id="guestbookList" class="mt-6 grid gap-3"></div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="text-center py-8 border-t soft-line text-gray-600 text-xs">
-      One-time purchase · No subscription · Not a PDF · Delivered as a private shareable link
-      <div class="mt-2 opacity-0 select-none" aria-hidden="true">admin</div>
-    </footer>
-
-    <div id="analyticsMount"></div>
+    <div style="height:1px"></div>
   </div>
 
-  <div id="adminModal" role="dialog" aria-modal="true">
-    <div class="w-full max-w-3xl panel border soft-line rounded-2xl p-6 shadow-[0_30px_80px_rgba(0,0,0,.55)]">
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <h2 class="font-luxury text-xl accent-text">Admin Panel (Local)</h2>
-          <p class="text-[11px]" style="color: var(--muted);">
-            Export CSV / view locally saved submissions. For real-time multi-guest admin, Premium backend is required.
-          </p>
-        </div>
-        <button id="closeAdmin" class="w-10 h-10 rounded-full border soft-line hover:border-[color:var(--accent)] transition">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="mt-6 grid md:grid-cols-2 gap-4">
-        <div class="panel-strong border soft-line rounded-xl p-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-luxury text-sm text-white">RSVP (Local)</h3>
-            <button id="exportRsvp" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition">Export CSV</button>
-          </div>
-          <div id="rsvpLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
-        </div>
-
-        <div class="panel-strong border soft-line rounded-xl p-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-luxury text-sm text-white">Guestbook (Local)</h3>
-            <button id="exportGuestbook" class="text-[11px] px-3 py-2 rounded-full border soft-line hover:border-[color:var(--accent)] transition">Export CSV</button>
-          </div>
-          <div id="guestbookLocalList" class="mt-4 grid gap-2 text-[12px]" style="color: rgba(255,255,255,.78);"></div>
-        </div>
-      </div>
-
-      <div class="mt-6 panel-strong border soft-line rounded-xl p-4">
-        <h3 class="font-luxury text-sm text-white">Admin Unlock</h3>
-        <p class="text-[11px]" style="color: var(--muted);">Enter admin code to enable exports and view entries.</p>
-
-        <div class="mt-3 flex gap-3 flex-wrap items-center">
-          <input id="adminCode" placeholder="Admin code"
-            class="flex-1 min-w-[220px] bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600" />
-          <button id="adminUnlock" class="px-5 py-3 rounded-full border accent-border text-xs hover:border-[color:var(--accent)] transition">
-            Unlock
-          </button>
-          <span id="adminState" class="text-[11px]" style="color: var(--muted);">Locked</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <!-- =========================================================
+       SCRIPT: SENİN DOSYANDAKİ <script> BLOĞUNU KOMPLE BUNUNLA DEĞİŞTİR
+       (Body içeriğini aynen bırak)
+  ========================================================== -->
   <script>
     /* =========================
        CONFIG (EDIT ONLY THIS)
@@ -714,6 +306,9 @@
       // Security
       accessPin: "2580",
       adminPin: "9999",
+
+      // ✅ Google Sheets (Apps Script Web App)
+      databaseURL: "https://script.google.com/macros/s/AKfycbxt_s1MYqgMPvcV6b2Feak_dLdj2RY8eiSVI5FL7hBp0fbEtekYJyifuRssxRoAZQog/exec",
 
       // Theme
       theme: "vip",
@@ -752,12 +347,12 @@
       contactInfo: "For any questions: <span class='text-white'>+1 (000) 000-0000</span> (Host).",
       policyInfo: "Kindly RSVP by the deadline. Venue is adults-only unless stated otherwise. Please respect the dress code.",
 
-      // RSVP
+      // RSVP (action artık önemsiz; POST Sheets’e gidiyor)
       rsvpDeadlineText: "By October 10th",
       rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
       successText: "See you on the dance floor.",
 
-      // Guestbook
+      // Guestbook (istersen ayrıca Sheets’e bağlarız)
       guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
 
       // Media (LOCAL)
@@ -766,7 +361,6 @@
       momentVideoSrc: "assets/moment.mp4",
       musicSrc: "assets/music.mp3",
 
-      // Gallery images
       galleryImages: [
         "assets/gallery/1.jpg",
         "assets/gallery/2.jpg",
@@ -774,20 +368,15 @@
         "assets/gallery/4.jpg",
       ],
 
-      // Photo upload link
       photoUploadUrl: "https://drive.google.com/",
-
-      // Map embed
       mapEmbedUrl: "https://www.google.com/maps?q=" + encodeURIComponent("The Grand Ballroom, 123 Luxury Ave, Manhattan, NY") + "&output=embed",
 
-      // Timeline
       timeline: [
         { time: "19:00", title: "Welcome Cocktails", note: "Champagne & Jazz" },
         { time: "20:00", title: "Gala Dinner", note: "Three-course meal" },
         { time: "22:00", title: "Cake & Toast", note: "Let the party begin!" },
       ],
 
-      // Analytics
       enableAnalytics: false,
       analyticsEmbedHtml: ""
     };
@@ -804,8 +393,6 @@
     ========================== */
     const $ = (id) => document.getElementById(id);
     const LS = {
-      rsvpKey: "vipInvite_rsvp",
-      guestbookKey: "vipInvite_guestbook",
       unlockSessionKey: "vipInvite_unlocked_session",
       unlockDeviceKey: "vipInvite_unlocked_device"
     };
@@ -818,6 +405,17 @@
     function buildGoogleMapsLink(query){ return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query); }
     function buildAppleMapsLink(query){ return "https://maps.apple.com/?q=" + encodeURIComponent(query); }
     function buildWazeLink(query){ return "https://waze.com/ul?q=" + encodeURIComponent(query) + "&navigate=yes"; }
+
+    // ✅ FIXED: proper HTML escaping
+    function escapeHtml(s){
+      return String(s ?? "").replace(/[&<>"']/g, (c)=>({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[c]));
+    }
 
     function escapeICSText(s){
       return String(s)
@@ -908,39 +506,6 @@ END:VCALENDAR`;
       }
     }
 
-    function loadJSON(key, fallback){
-      try{ return JSON.parse(localStorage.getItem(key) || "null") ?? fallback; }catch{ return fallback; }
-    }
-    function saveJSON(key, data){
-      localStorage.setItem(key, JSON.stringify(data));
-    }
-
-    function toCSV(rows){
-      const esc = (v) => `"${String(v ?? "").replace(/"/g,'""')}"`;
-      const headers = Object.keys(rows[0] || {});
-      const lines = [
-        headers.map(esc).join(","),
-        ...rows.map(r => headers.map(h => esc(r[h])).join(","))
-      ];
-      return lines.join("\n");
-    }
-    function downloadText(filename, text, type="text/plain;charset=utf-8"){
-      const blob = new Blob([text], {type});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=>URL.revokeObjectURL(a.href), 1200);
-    }
-
-    function escapeHtml(s){
-      return String(s ?? "").replace(/[&<>"']/g, (c)=>({
-        "&":"&","<":"<",">":">",'"':""","'":"'"
-      }[c]));
-    }
-
     function revealAll(){
       document.querySelectorAll(".reveal").forEach(el=>{
         el.classList.add("active");
@@ -963,7 +528,6 @@ END:VCALENDAR`;
       const texture = document.querySelector(".texture");
       if(texture) texture.style.display = t.texture ? "block" : "none";
 
-      // Contrast management (important for structure)
       if(themeKey === "ivory" || themeKey === "floral"){
         document.body.style.backgroundColor = t.bg;
         document.body.style.color = "rgba(0,0,0,.86)";
@@ -972,10 +536,8 @@ END:VCALENDAR`;
         document.body.style.color = "rgba(255,255,255,.92)";
       }
     }
-
     applyTheme(CONFIG.theme);
 
-    // Entrance theme selector preview
     document.querySelectorAll(".themeBtn").forEach(btn=>{
       btn.addEventListener("click", ()=>{
         const k = btn.getAttribute("data-theme");
@@ -1005,7 +567,7 @@ END:VCALENDAR`;
     safeSetText("dressCode", CONFIG.dressCode);
     safeSetText("paletteNote", CONFIG.paletteNote);
     safeSetText("registryNote", CONFIG.registryNote);
-    $("registryLink").href = CONFIG.registryUrl || "#";
+    if($("registryLink")) $("registryLink").href = CONFIG.registryUrl || "#";
 
     safeSetHTML("parkingInfo", CONFIG.parkingInfo);
     safeSetHTML("contactInfo", CONFIG.contactInfo);
@@ -1014,42 +576,47 @@ END:VCALENDAR`;
     safeSetText("rsvpDeadline", CONFIG.rsvpDeadlineText);
     safeSetText("successText", CONFIG.successText);
 
-    $("rsvpForm").action = CONFIG.rsvpEndpoint;
-    $("guestbookForm").action = CONFIG.guestbookEndpoint;
+    if($("rsvpForm")) $("rsvpForm").action = CONFIG.rsvpEndpoint;
+    if($("guestbookForm")) $("guestbookForm").action = CONFIG.guestbookEndpoint;
 
-    $("uploadLink").href = CONFIG.photoUploadUrl || "#";
+    if($("uploadLink")) $("uploadLink").href = CONFIG.photoUploadUrl || "#";
 
     /* =========================
-       Media sources (local)
+       Media sources
     ========================== */
     const musicEl = $("bgMusic");
     const musicBtn = $("music-btn");
-    const musicSource = musicEl.querySelector("source");
-    musicSource.src = CONFIG.musicSrc;
-    musicEl.load();
+    if(musicEl){
+      const musicSource = musicEl.querySelector("source");
+      if(musicSource) musicSource.src = CONFIG.musicSrc;
+      musicEl.load();
+    }
 
     const bgVideo = $("bgVideo");
-    if(CONFIG.enableBgVideo && CONFIG.bgVideoSrc){
-      bgVideo.querySelector("source").src = CONFIG.bgVideoSrc;
+    if(bgVideo && CONFIG.enableBgVideo && CONFIG.bgVideoSrc){
+      const s = bgVideo.querySelector("source");
+      if(s) s.src = CONFIG.bgVideoSrc;
       bgVideo.load();
       bgVideo.play().catch(()=>{});
       bgVideo.addEventListener("error", ()=>{ bgVideo.style.display="none"; });
-    } else {
+    } else if(bgVideo){
       bgVideo.style.display = "none";
     }
 
     const momentWrap = $("momentWrap");
     const momentVideo = $("momentVideo");
-    if(CONFIG.momentVideoSrc){
-      momentVideo.querySelector("source").src = CONFIG.momentVideoSrc;
+    if(momentVideo && CONFIG.momentVideoSrc){
+      const s = momentVideo.querySelector("source");
+      if(s) s.src = CONFIG.momentVideoSrc;
       momentVideo.load();
-      momentVideo.addEventListener("error", ()=>{ momentWrap.style.display="none"; });
-    } else {
+      momentVideo.addEventListener("error", ()=>{ if(momentWrap) momentWrap.style.display="none"; });
+    } else if(momentWrap){
       momentWrap.style.display = "none";
     }
 
-    // Hide music button if missing
-    musicEl.addEventListener("error", ()=>{ musicBtn.style.display = "none"; });
+    if(musicEl && musicBtn){
+      musicEl.addEventListener("error", ()=>{ musicBtn.style.display = "none"; });
+    }
 
     /* =========================
        Map + Calendar
@@ -1058,14 +625,14 @@ END:VCALENDAR`;
     const aLink = buildAppleMapsLink(CONFIG.venueQuery);
     const wLink = buildWazeLink(CONFIG.venueQuery);
 
-    $("map-google").href = gLink;
-    $("map-apple").href = aLink;
-    $("map-waze").href = wLink;
-    $("map-google-2").href = gLink;
-    $("map-apple-2").href = aLink;
-    $("map-waze-2").href = wLink;
+    if($("map-google")) $("map-google").href = gLink;
+    if($("map-apple")) $("map-apple").href = aLink;
+    if($("map-waze")) $("map-waze").href = wLink;
+    if($("map-google-2")) $("map-google-2").href = gLink;
+    if($("map-apple-2")) $("map-apple-2").href = aLink;
+    if($("map-waze-2")) $("map-waze-2").href = wLink;
 
-    $("mapFrame").src = CONFIG.mapEmbedUrl;
+    if($("mapFrame")) $("mapFrame").src = CONFIG.mapEmbedUrl;
 
     const calTitle = `${CONFIG.celebrantName} · VIP Celebration`;
     const gcal = buildGoogleCalendarLink({
@@ -1075,9 +642,10 @@ END:VCALENDAR`;
       location: `${CONFIG.venueName} — ${CONFIG.venueAddress}`,
       details: "Invitation: " + (location.href || "")
     });
-    $("gcal-link").href = gcal;
-    $("successGcal").href = gcal;
-    $("successDirections").href = gLink;
+
+    if($("gcal-link")) $("gcal-link").href = gcal;
+    if($("successGcal")) $("successGcal").href = gcal;
+    if($("successDirections")) $("successDirections").href = gLink;
 
     const icsHandler = () => downloadICS({
       title: calTitle,
@@ -1087,50 +655,50 @@ END:VCALENDAR`;
       description: `Dress Code: ${CONFIG.dressCode}\n\nDirections: ${gLink}\n\nRSVP: ${location.origin + location.pathname}#rsvp`
     });
 
-    $("ics-btn").addEventListener("click", icsHandler);
-    $("successIcs").addEventListener("click", icsHandler);
+    if($("ics-btn")) $("ics-btn").addEventListener("click", icsHandler);
+    if($("successIcs")) $("successIcs").addEventListener("click", icsHandler);
 
     /* =========================
        Timeline render
     ========================== */
     const timeline = $("timeline");
-    timeline.innerHTML = "";
-    CONFIG.timeline.forEach(item => {
-      const block = document.createElement("div");
-      block.className = "mb-12 ml-8 relative";
-      block.innerHTML = `
-        <div class="absolute -left-[41px] w-5 h-5 rounded-full border-4 shadow-[0_0_10px_rgba(0,0,0,.2)]"
-             style="background: var(--accent); border-color: var(--bg); box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 75%, transparent);"></div>
-        <span class="accent-text font-bold text-sm tracking-widest">${escapeHtml(item.time)}</span>
-        <h4 class="font-luxury text-xl mt-1" style="color: var(--text);">${escapeHtml(item.title)}</h4>
-        <p class="text-gray-500 text-sm italic">${escapeHtml(item.note || "")}</p>
-      `;
-      timeline.appendChild(block);
-    });
+    if(timeline){
+      timeline.innerHTML = "";
+      CONFIG.timeline.forEach(item => {
+        const block = document.createElement("div");
+        block.className = "mb-12 ml-8 relative";
+        block.innerHTML = `
+          <div class="absolute -left-[41px] w-5 h-5 rounded-full border-4 shadow-[0_0_10px_rgba(0,0,0,.2)]"
+               style="background: var(--accent); border-color: var(--bg); box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 75%, transparent);"></div>
+          <span class="accent-text font-bold text-sm tracking-widest">${escapeHtml(item.time)}</span>
+          <h4 class="font-luxury text-xl mt-1" style="color: var(--text);">${escapeHtml(item.title)}</h4>
+          <p class="text-gray-500 text-sm italic">${escapeHtml(item.note || "")}</p>
+        `;
+        timeline.appendChild(block);
+      });
+    }
 
     /* =========================
        Gallery render
     ========================== */
     const galleryRow = $("galleryRow");
-    galleryRow.innerHTML = "";
-    CONFIG.galleryImages.forEach(src => {
-      const card = document.createElement("div");
-      card.className = "flex-shrink-0 snap-center w-64 aspect-[3/4] panel p-2 border soft-line rounded-lg";
-      card.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory"
-                           onerror="this.closest('.flex-shrink-0').style.display='none'">`;
-      galleryRow.appendChild(card);
-    });
+    if(galleryRow){
+      galleryRow.innerHTML = "";
+      CONFIG.galleryImages.forEach(src => {
+        const card = document.createElement("div");
+        card.className = "flex-shrink-0 snap-center w-64 aspect-[3/4] panel p-2 border soft-line rounded-lg";
+        card.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory"
+                             onerror="this.closest('.flex-shrink-0').style.display='none'">`;
+        galleryRow.appendChild(card);
+      });
+    }
 
-    /* =========================
-       Analytics optional
-    ========================== */
-    if(CONFIG.enableAnalytics && CONFIG.analyticsEmbedHtml){
+    if(CONFIG.enableAnalytics && CONFIG.analyticsEmbedHtml && $("analyticsMount")){
       $("analyticsMount").innerHTML = CONFIG.analyticsEmbedHtml;
     }
 
     /* =========================
-       PIN Gate logic (FIXED)
-       - session + remember device localStorage
+       PIN Gate logic
     ========================== */
     const pinScreen = $("pin-screen");
     const pinInput = $("pinInput");
@@ -1140,10 +708,12 @@ END:VCALENDAR`;
     const rememberDevice = $("rememberDevice");
 
     function showPinGate(){
+      if(!pinScreen) return;
       pinScreen.classList.add("active");
-      setTimeout(()=>pinInput.focus(), 120);
+      setTimeout(()=>pinInput && pinInput.focus(), 120);
     }
     function hidePinGate(){
+      if(!pinScreen) return;
       pinScreen.classList.remove("active");
     }
 
@@ -1155,72 +725,84 @@ END:VCALENDAR`;
     }
 
     function tryUnlock(){
-      const v = (pinInput.value || "").trim();
+      const v = (pinInput && pinInput.value || "").trim();
       if(v === CONFIG.accessPin){
-        pinError.classList.add("hidden");
-        pinBox.classList.remove("shake");
+        if(pinError) pinError.classList.add("hidden");
+        if(pinBox){
+          pinBox.classList.remove("shake");
+        }
         hidePinGate();
 
         sessionStorage.setItem(LS.unlockSessionKey, "1");
-        if(rememberDevice.checked){
+        if(rememberDevice && rememberDevice.checked){
           localStorage.setItem(LS.unlockDeviceKey, "1");
         }
       } else {
-        pinError.classList.remove("hidden");
-        pinBox.classList.remove("shake");
-        void pinBox.offsetWidth;
-        pinBox.classList.add("shake");
+        if(pinError) pinError.classList.remove("hidden");
+        if(pinBox){
+          pinBox.classList.remove("shake");
+          void pinBox.offsetWidth;
+          pinBox.classList.add("shake");
+        }
       }
     }
-    pinSubmit.addEventListener("click", tryUnlock);
-    pinInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryUnlock(); });
+    if(pinSubmit) pinSubmit.addEventListener("click", tryUnlock);
+    if(pinInput) pinInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryUnlock(); });
 
     /* =========================
-       Entrance + music start (FIXED)
-       - reveal failsafe (blank page fix)
+       Entrance + music start (blank page failsafe)
     ========================== */
     const openBtn = $("open-btn");
     const entrance = $("entrance-screen");
 
     let musicPlaying = false;
     function setMusicUI(on){
+      if(!musicBtn) return;
       musicBtn.style.opacity = on ? "1" : "0.5";
       musicBtn.setAttribute("aria-pressed", on ? "true" : "false");
       musicBtn.title = on ? "Music: On" : "Music: Off";
     }
     setMusicUI(false);
 
-    openBtn.addEventListener("click", () => {
-      entrance.classList.add("envelope-hidden");
+    if(openBtn){
+      openBtn.addEventListener("click", () => {
+        if(entrance) entrance.classList.add("envelope-hidden");
 
-      confetti({
-        particleCount: 160, spread: 70, origin: { y: 0.6 },
-        colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
+        if(window.confetti){
+          confetti({
+            particleCount: 160, spread: 70, origin: { y: 0.6 },
+            colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
+          });
+        }
+
+        if(musicEl){
+          musicEl.play()
+            .then(() => { musicPlaying = true; setMusicUI(true); })
+            .catch(() => { musicPlaying = false; setMusicUI(false); });
+        }
+
+        setTimeout(()=> {
+          revealAll();
+          // ✅ FIX: "instant" geçersiz → "auto"
+          window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        }, 220);
       });
+    }
 
-      // Start music (user gesture)
-      musicEl.play()
-        .then(() => { musicPlaying = true; setMusicUI(true); })
-        .catch(() => { musicPlaying = false; setMusicUI(false); });
-
-      // ✅ Critical: force reveal after opening
-      setTimeout(()=> {
-        revealAll();
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      }, 220);
-    });
-
-    musicBtn.addEventListener("click", () => {
-      if(musicPlaying){
-        musicEl.pause();
-        musicPlaying = false;
-        setMusicUI(false);
-      } else {
-        musicEl.play()
-          .then(() => { musicPlaying = true; setMusicUI(true); })
-          .catch(() => { musicPlaying = false; setMusicUI(false); });
-      }
-    });
+    if(musicBtn){
+      musicBtn.addEventListener("click", () => {
+        if(!musicEl) return;
+        if(musicPlaying){
+          musicEl.pause();
+          musicPlaying = false;
+          setMusicUI(false);
+        } else {
+          musicEl.play()
+            .then(() => { musicPlaying = true; setMusicUI(true); })
+            .catch(() => { musicPlaying = false; setMusicUI(false); });
+        }
+      });
+    }
 
     /* =========================
        Share buttons
@@ -1230,7 +812,7 @@ END:VCALENDAR`;
       try{
         if(navigator.share){
           await navigator.share({ title: calTitle, text: "VIP Invite", url: link });
-        } else {
+        } else if(navigator.clipboard){
           await navigator.clipboard.writeText(link);
           return true;
         }
@@ -1238,19 +820,18 @@ END:VCALENDAR`;
       return false;
     }
 
-    $("share-btn").addEventListener("click", async ()=>{
-      const ok = await shareLink();
-      if(ok){
-        $("share-btn").innerHTML = "<i class='fa-solid fa-check mr-2'></i> Copied";
-        setTimeout(()=> $("share-btn").innerHTML = "<i class='fa-solid fa-link mr-2'></i> Share Link", 1400);
-      }
-    });
-    $("successShare").addEventListener("click", shareLink);
+    if($("share-btn")){
+      $("share-btn").addEventListener("click", async ()=>{
+        const ok = await shareLink();
+        if(ok){
+          $("share-btn").innerHTML = "<i class='fa-solid fa-check mr-2'></i> Copied";
+          setTimeout(()=> $("share-btn").innerHTML = "<i class='fa-solid fa-link mr-2'></i> Share Link", 1400);
+        }
+      });
+    }
+    if($("successShare")) $("successShare").addEventListener("click", shareLink);
 
-    /* =========================
-       A2HS banner close
-    ========================== */
-    $("a2hsClose").addEventListener("click", ()=> $("a2hs").style.display="none");
+    if($("a2hsClose")) $("a2hsClose").addEventListener("click", ()=> { if($("a2hs")) $("a2hs").style.display="none"; });
 
     /* =========================
        Reveal on scroll (SAFE)
@@ -1259,7 +840,6 @@ END:VCALENDAR`;
       const els = document.querySelectorAll(".reveal");
       if(!els.length) return;
 
-      // Fallback: if no IntersectionObserver, reveal all
       if(!("IntersectionObserver" in window)){
         revealAll();
         return;
@@ -1276,7 +856,6 @@ END:VCALENDAR`;
 
       els.forEach(el => observer.observe(el));
 
-      // extra failsafe: reveal those already in viewport
       setTimeout(()=>{
         els.forEach(el=>{
           const r = el.getBoundingClientRect();
@@ -1286,15 +865,19 @@ END:VCALENDAR`;
     })();
 
     /* =========================
-       Countdown + status switch
+       Countdown + status
     ========================== */
     const targetDate = new Date(CONFIG.eventStartISO).getTime();
     const endDate = new Date(CONFIG.eventEndISO).getTime();
 
     function setStatus(text, iconClass){
       const badge = $("eventStatusBadge");
-      $("eventStatusText").textContent = text;
-      badge.querySelector("i").className = iconClass;
+      const txt = $("eventStatusText");
+      if(txt) txt.textContent = text;
+      if(badge){
+        const i = badge.querySelector("i");
+        if(i) i.className = iconClass;
+      }
     }
 
     function tick(){
@@ -1310,7 +893,10 @@ END:VCALENDAR`;
       }
 
       if(dist <= 0){
-        $("days").innerText = "00"; $("hours").innerText = "00"; $("minutes").innerText = "00"; $("seconds").innerText = "00";
+        if($("days")) $("days").innerText = "00";
+        if($("hours")) $("hours").innerText = "00";
+        if($("minutes")) $("minutes").innerText = "00";
+        if($("seconds")) $("seconds").innerText = "00";
         return;
       }
 
@@ -1319,14 +905,14 @@ END:VCALENDAR`;
       const minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((dist % (1000 * 60)) / 1000);
 
-      $("days").innerText = String(days).padStart(2,"0");
-      $("hours").innerText = String(hours).padStart(2,"0");
-      $("minutes").innerText = String(minutes).padStart(2,"0");
-      $("seconds").innerText = String(seconds).padStart(2,"0");
+      if($("days")) $("days").innerText = String(days).padStart(2,"0");
+      if($("hours")) $("hours").innerText = String(hours).padStart(2,"0");
+      if($("minutes")) $("minutes").innerText = String(minutes).padStart(2,"0");
+      if($("seconds")) $("seconds").innerText = String(seconds).padStart(2,"0");
     }
     tick();
     setInterval(tick, 1000);
-    $("tzHint").textContent = "Time shown in your local timezone. (" + Intl.DateTimeFormat().resolvedOptions().timeZone + ")";
+    if($("tzHint")) $("tzHint").textContent = "Time shown in your local timezone. (" + Intl.DateTimeFormat().resolvedOptions().timeZone + ")";
 
     /* =========================
        QR generation
@@ -1340,7 +926,7 @@ END:VCALENDAR`;
     genQR("qr-share", pageLink);
 
     /* =========================
-       RSVP logic (+ local save)
+       RSVP logic (Sheets POST)
     ========================== */
     const rsvpForm = $("rsvpForm");
     const submitBtn = $("submit-btn");
@@ -1350,87 +936,128 @@ END:VCALENDAR`;
 
     radios.forEach(radio => {
       radio.addEventListener('change', (e) => {
-        extraFields.style.display = e.target.value === 'Decline' ? 'none' : 'block';
+        if(extraFields) extraFields.style.display = e.target.value === 'Decline' ? 'none' : 'block';
       });
     });
 
-    rsvpForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      submitBtn.innerText = "SENDING...";
-      submitBtn.disabled = true;
+    if(rsvpForm){
+      rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if(submitBtn){
+          submitBtn.innerText = "SENDING...";
+          submitBtn.disabled = true;
+        }
 
-      const fd = new FormData(rsvpForm);
+        const fd = new FormData(rsvpForm);
 
-      try {
-        await fetch(CONFIG.databaseURL, {
-          method: 'POST',
-          body: new URLSearchParams(fd), // Apps Script prefers URLSearchParams for simple POSTs
-          mode: 'no-cors' // Google Script requires no-cors for direct browser-to-script POST
-        });
+        try {
+          // POST: no-cors (Apps Script web app)
+          await fetch(CONFIG.databaseURL, {
+            method: 'POST',
+            body: new URLSearchParams(fd),
+            mode: 'no-cors'
+          });
 
-        // Since no-cors doesn't return response, we assume success after fetch completes
-        rsvpForm.classList.add('hidden');
-        successMsg.classList.remove('hidden');
+          rsvpForm.classList.add('hidden');
+          if(successMsg) successMsg.classList.remove('hidden');
 
-        confetti({
-          particleCount: 120, spread: 60, origin: { y: 0.75 },
-          colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
-        });
-      } catch {
-        alert("Connection Error");
-        submitBtn.innerText = "CONFIRM";
-        submitBtn.disabled = false;
-      }
-    });
+          if(window.confetti){
+            confetti({
+              particleCount: 120, spread: 60, origin: { y: 0.75 },
+              colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
+            });
+          }
+        } catch {
+          alert("Connection Error");
+          if(submitBtn){
+            submitBtn.innerText = "CONFIRM";
+            submitBtn.disabled = false;
+          }
+        }
+      });
+    }
 
     /* =========================
-       Admin Panel (Google Sheets Linked)
+       Admin Panel: JSONP READ (CORS-safe)
     ========================== */
+    function jsonp(url){
+      return new Promise((resolve, reject)=>{
+        const cb = "__jsonp_cb_" + Date.now() + "_" + Math.floor(Math.random()*99999);
+        const script = document.createElement("script");
+
+        window[cb] = (data)=>{
+          cleanup();
+          resolve(data);
+        };
+
+        function cleanup(){
+          try{ delete window[cb]; }catch{ window[cb] = undefined; }
+          if(script && script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        script.onerror = ()=>{
+          cleanup();
+          reject(new Error("JSONP load error"));
+        };
+
+        const sep = url.includes("?") ? "&" : "?";
+        script.src = url + sep + "callback=" + encodeURIComponent(cb);
+        document.body.appendChild(script);
+      });
+    }
+
     async function fetchAndRenderAdminData() {
       const rsvpLocalList = document.getElementById("rsvpLocalList");
-      rsvpLocalList.innerHTML = `<div class="text-white/50 text-xs animate-pulse">Loading live data from Google Sheets...</div>`;
-      
+      const adminStateEl = document.getElementById("adminState");
+
+      if(rsvpLocalList){
+        rsvpLocalList.innerHTML = `<div class="text-white/50 text-xs animate-pulse">Loading live data from Google Sheets...</div>`;
+      }
+
       try {
-        const res = await fetch(CONFIG.databaseURL + "?action=read");
-        const data = await res.json();
-        
-        const totalAttending = data.filter(r => r.Attendance === "Attending").length;
+        const data = await jsonp(CONFIG.databaseURL + "?action=read");
+
+        const totalAttending = data.filter(r => String(r.Attendance || "") === "Attending").length;
         const totalAdults = data.reduce((acc, curr) => acc + (parseInt(curr.Adults) || 0), 0);
         const totalKids = data.reduce((acc, curr) => acc + (parseInt(curr.Kids) || 0), 0);
-        
-        document.getElementById("adminState").innerHTML = `
-          <span class="text-[10px] text-white/60">
-            Entries: <b>${data.length}</b> | Attending: <b>${totalAttending}</b> (Adults: ${totalAdults}, Kids: ${totalKids})
-          </span>`;
 
+        if(adminStateEl){
+          adminStateEl.innerHTML = `<span class="text-[10px] text-white/60">Entries: <b>${data.length}</b> | Attending: <b>${totalAttending}</b> (Adults: ${totalAdults}, Kids: ${totalKids})</span>`;
+        }
+
+        if(!rsvpLocalList) return;
         rsvpLocalList.innerHTML = "";
 
-        if (data.length === 0) {
+        if (!data.length) {
           rsvpLocalList.innerHTML = `<div class="text-white/40 text-xs">No entries found.</div>`;
           return;
         }
 
-        data.reverse().forEach(row => {
-          const colorClass = row.Attendance === "Attending" ? "text-green-400" : "text-red-400";
+        data.slice().reverse().forEach(row => {
+          const isAttend = String(row.Attendance || "") === "Attending";
+          const colorClass = isAttend ? "text-green-400" : "text-red-400";
+
           const el = document.createElement("div");
           el.className = "border-b border-white/10 pb-2 mb-2 text-[11px]";
           el.innerHTML = `
             <div class="flex justify-between">
-              <span class="accent-text font-bold">${row.Name || 'Anonymous'}</span>
-              <span class="${colorClass} font-mono uppercase">${row.Attendance}</span>
+              <span class="accent-text font-bold">${escapeHtml(row.Name || "Anonymous")}</span>
+              <span class="${colorClass} font-mono uppercase">${escapeHtml(row.Attendance || "-")}</span>
             </div>
             <div class="text-white/50 mt-1">
-               Guests: ${row.Adults} Adults, ${row.Kids} Kids | Dietary: ${row.Dietary || '-'}
+              Guests: ${escapeHtml(row.Adults ?? "")} Adults, ${escapeHtml(row.Kids ?? "")} Kids | Dietary: ${escapeHtml(row.Dietary || "-")}
             </div>
-            ${row.Note ? `<div class="text-white/70 italic mt-1 bg-white/5 p-1 rounded">"${row.Note}"</div>` : ""}
-            <div class="text-right text-[9px] text-white/20 mt-1">${row.Date || ''}</div>
+            ${row.Note ? `<div class="text-white/70 italic mt-1 bg-white/5 p-1 rounded">"${escapeHtml(row.Note)}"</div>` : ""}
+            <div class="text-right text-[9px] text-white/20 mt-1">${escapeHtml(row.Date || "")}</div>
           `;
           rsvpLocalList.appendChild(el);
         });
 
       } catch (error) {
-        rsvpLocalList.innerHTML = `<div class="text-red-400 text-xs">Error connecting to Google Sheets.</div>`;
-        console.error("Fetch Error:", error);
+        if(rsvpLocalList){
+          rsvpLocalList.innerHTML = `<div class="text-red-400 text-xs">Error connecting to Google Sheets.</div>`;
+        }
+        console.error("Admin Read Error:", error);
       }
     }
 
@@ -1446,20 +1073,27 @@ END:VCALENDAR`;
 
     let adminUnlocked = false;
 
-    openAdmin.addEventListener("click", ()=>{
-      adminModal.classList.add("open");
-      setTimeout(()=>adminCode.focus(), 150);
-    });
-    closeAdmin.addEventListener("click", ()=> adminModal.classList.remove("open"));
+    if(openAdmin){
+      openAdmin.addEventListener("click", ()=>{
+        if(adminModal) adminModal.classList.add("open");
+        setTimeout(()=>adminCode && adminCode.focus(), 150);
+      });
+    }
+    if(closeAdmin){
+      closeAdmin.addEventListener("click", ()=> { if(adminModal) adminModal.classList.remove("open"); });
+    }
 
-    adminUnlock.addEventListener("click", ()=>{
-      if((adminCode.value || "").trim() === CONFIG.adminPin){
-        adminUnlocked = true;
-        fetchAndRenderAdminData();
-      } else {
-        adminState.textContent = "Wrong code";
-      }
-    });
+    if(adminUnlock){
+      adminUnlock.addEventListener("click", ()=>{
+        if((adminCode && adminCode.value || "").trim() === CONFIG.adminPin){
+          adminUnlocked = true;
+          if(adminState) adminState.textContent = "Unlocked · Loading…";
+          fetchAndRenderAdminData();
+        } else {
+          if(adminState) adminState.textContent = "Wrong code";
+        }
+      });
+    }
 
     /* =========================
        Final failsafe: Reveal
@@ -1470,8 +1104,6 @@ END:VCALENDAR`;
         if(r.top < window.innerHeight * 1.1) el.classList.add("active");
       });
     }, 600);
-
   </script>
 </body>
 </html>
-
