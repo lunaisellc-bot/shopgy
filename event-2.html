@@ -8,11 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
   <script>
@@ -31,21 +29,22 @@
 
   <style>
     :root{
+      /* Varsayılan Değerler (JS ile ezilecek) */
       --bg: #050505;
       --panel: rgba(255,255,255,.05);
       --panel2: rgba(0,0,0,.35);
       --line: rgba(255,255,255,.10);
       --muted: rgba(255,255,255,.55);
       --text: rgba(255,255,255,.92);
-      --accent: #D4AF37;  /* gold */
-      --accent2: #8A7036; /* gold-dim */
+      --accent: #D4AF37;  
+      --accent2: #8A7036; 
       --shadow: 0 30px 80px rgba(0,0,0,.55);
       --radius: 18px;
     }
 
-    body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+    body { background-color: var(--bg); color: var(--text); overflow-x: hidden; transition: background-color 0.8s ease, color 0.8s ease; }
 
-    /* Accent helpers */
+    /* Helper Classes */
     .accent-text{ color: var(--accent); }
     .accent-dim{ color: var(--accent2); }
     .accent-border{ border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
@@ -53,7 +52,58 @@
     .panel-strong{ background: var(--panel2); }
     .soft-line{ border-color: var(--line); }
 
-    /* GOLD SHINE */
+    /* --- YENİ EKLENEN LÜKS STİLLER --- */
+
+    /* 1. Kağıt Dokusu */
+    .paper-texture {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      opacity: 0.4;
+      background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+      mix-blend-mode: overlay;
+    }
+
+    /* 2. Baroque Çerçeve (Sadece VIP temada görünür) */
+    .baroque-frame {
+      display: none; 
+      position: fixed; inset: 10px; pointer-events: none; z-index: 100;
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      box-shadow: inset 0 0 60px rgba(0,0,0,0.8);
+    }
+    .baroque-frame::before {
+      content: ""; position: absolute; inset: 4px;
+      border: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+    }
+    .baroque-frame::after {
+      content: ""; position: absolute; inset: -10px;
+      background: 
+        radial-gradient(circle at top left, transparent 65%, var(--accent) 66%, transparent 67%),
+        radial-gradient(circle at top right, transparent 65%, var(--accent) 66%, transparent 67%),
+        radial-gradient(circle at bottom left, transparent 65%, var(--accent) 66%, transparent 67%),
+        radial-gradient(circle at bottom right, transparent 65%, var(--accent) 66%, transparent 67%);
+      background-size: 60px 60px;
+      background-repeat: no-repeat;
+      background-position: top left, top right, bottom left, bottom right;
+      opacity: 0.8;
+    }
+    body.theme-vip .baroque-frame { display: block; }
+
+    /* 3. Light Mode Override (Ivory/Floral temalar için okunaklılık) */
+    body.light-mode .panel { background: rgba(0,0,0, 0.03); border-color: rgba(0,0,0, 0.08); }
+    body.light-mode .panel-strong { background: rgba(0,0,0, 0.06); }
+    body.light-mode input, body.light-mode select, body.light-mode textarea {
+      background: rgba(255,255,255, 0.6); color: #000; border-color: rgba(0,0,0, 0.2);
+    }
+    body.light-mode input::placeholder, body.light-mode textarea::placeholder { color: rgba(0,0,0, 0.5); }
+    body.light-mode .text-gray-300 { color: rgba(0,0,0, 0.75) !important; }
+    body.light-mode .text-gray-400 { color: rgba(0,0,0, 0.65) !important; }
+    body.light-mode .text-gray-500 { color: rgba(0,0,0, 0.55) !important; }
+    body.light-mode .text-white { color: rgba(0,0,0, 0.9) !important; }
+    body.light-mode .text-white\/80 { color: rgba(0,0,0, 0.8) !important; }
+    body.light-mode .text-white\/70 { color: rgba(0,0,0, 0.7) !important; }
+    
+    /* ------------------------------------- */
+
+    /* GOLD SHINE TEXT */
     .text-gold-shine {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -93,12 +143,6 @@
       pointer-events:none;
     }
 
-    /* subtle texture layer (optional) */
-    .texture {
-      position: fixed; inset:0; pointer-events:none; opacity:.18;
-      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-    }
-
     /* tiny shake for wrong pin */
     @keyframes shake {
       0%,100%{ transform: translateX(0); }
@@ -121,9 +165,12 @@
 </head>
 
 <body class="font-modern">
+  
+  <div class="paper-texture"></div>
+  <div class="baroque-frame"></div>
 
   <div id="pin-screen" aria-modal="true" role="dialog">
-    <div class="w-full max-w-md mx-auto px-6">
+    <div class="w-full max-w-md mx-auto px-6 relative z-50">
       <div class="panel border soft-line rounded-2xl p-8 shadow-[0_30px_80px_rgba(0,0,0,.55)]">
         <div class="text-center">
           <div class="w-20 h-20 mx-auto mb-5 rounded-full border soft-line flex items-center justify-center relative">
@@ -138,7 +185,7 @@
 
         <div class="mt-8" id="pinBox">
           <label class="text-xs uppercase tracking-widest" style="color: var(--muted);">Access Code</label>
-          <input id="pinInput" inputmode="numeric" maxlength="10"
+          <input id="pinInput" inputmode="numeric" maxlength="10" 
                  class="mt-2 w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600"
                  placeholder="••••" />
           <div class="mt-3 flex items-center justify-between gap-3">
@@ -146,7 +193,7 @@
               <input type="checkbox" id="rememberDevice" class="mr-2 align-middle" />
               Remember this device
             </label>
-            <button id="pinSubmit"
+            <button id="pinSubmit" 
               class="px-5 py-2 rounded-full border soft-line text-xs hover:border-[color:var(--accent)] transition"
               style="background: rgba(0,0,0,.35);">
               Unlock
@@ -167,7 +214,7 @@
   </div>
 
   <div id="entrance-screen">
-    <div class="text-center relative px-6">
+    <div class="text-center relative px-6 z-50">
       <div class="w-24 h-24 mx-auto mb-8 rounded-full border-2 soft-line flex items-center justify-center relative">
         <div class="absolute inset-0 rounded-full" style="background: rgba(212,175,55,.10);"></div>
         <span class="font-luxury text-4xl accent-text" id="monogram">S</span>
@@ -175,22 +222,22 @@
       <h2 class="font-luxury text-white text-xl tracking-[0.4em] mb-2" id="privateLabel">PRIVATE EVENT</h2>
       <p class="text-gray-500 text-xs mb-10 tracking-widest uppercase" id="clickLabel">Click to Reveal Invitation</p>
 
-      <button id="open-btn"
+      <button id="open-btn" 
         class="group relative px-8 py-4 bg-transparent border accent-border text-[color:var(--accent)] font-luxury tracking-widest hover:bg-[color:var(--accent)] hover:text-black transition duration-500">
         OPEN ENVELOPE
       </button>
 
       <div class="mt-10 flex flex-wrap justify-center gap-2">
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="vip">
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition text-white" data-theme="vip">
           Dark VIP
         </button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="ivory">
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition text-white" data-theme="ivory">
           Minimal Ivory
         </button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="floral">
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition text-white" data-theme="floral">
           Soft Floral
         </button>
-        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition" data-theme="boho">
+        <button class="themeBtn px-4 py-2 rounded-full text-[11px] border soft-line hover:border-[color:var(--accent)] transition text-white" data-theme="boho">
           Boho Earth
         </button>
       </div>
@@ -198,15 +245,13 @@
     </div>
   </div>
 
-  <div class="texture"></div>
-
-  <div id="main-content" class="relative min-h-screen">
+  <div id="main-content" class="relative min-h-screen z-10">
 
     <audio id="bgMusic" loop preload="metadata">
       <source src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="music-btn"
+    <button id="music-btn" 
       class="fixed bottom-6 right-6 z-50 w-12 h-12 panel-strong backdrop-blur border accent-border rounded-full accent-text flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.25)] hover:scale-110 transition"
       aria-label="Music" aria-pressed="false" title="Music">
       <i class="fa-solid fa-music"></i>
@@ -224,14 +269,14 @@
       </a>
     </div>
 
-    <div id="a2hs"
+    <div id="a2hs" 
       class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block px-4 py-3 panel-strong border soft-line rounded-full text-[11px] text-white/70 backdrop-blur">
       Tip: On iPhone, tap <span class="accent-text font-semibold">Share</span> → <span class="accent-text font-semibold">Add to Home Screen</span>
       <button id="a2hsClose" class="ml-3 opacity-70 hover:opacity-100"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <header class="relative pt-24 pb-16 text-center px-4 overflow-hidden">
-
+      
       <div class="absolute inset-0 -z-10">
         <video id="bgVideo" class="w-full h-full object-cover opacity-20" playsinline muted loop preload="metadata">
           <source src="assets/bg.mp4" type="video/mp4">
@@ -239,7 +284,7 @@
         <div class="video-overlay"></div>
       </div>
 
-      <p class="tracking-[0.3em] text-xs uppercase mb-6 reveal" style="color: rgba(212,175,55,.8);" id="heroTop">
+      <p class="tracking-[0.3em] text-xs uppercase mb-6 reveal" style="color: var(--muted);" id="heroTop">
         Join us for the 30th Birthday of
       </p>
 
@@ -254,9 +299,9 @@
       </p>
 
       <div class="mt-8 reveal">
-        <span id="eventStatusBadge"
+        <span id="eventStatusBadge" 
           class="inline-flex items-center gap-2 px-4 py-2 rounded-full border soft-line panel-strong text-xs text-white/80 backdrop-blur">
-          <i class="fa-regular fa-clock"></i>
+          <i class="fa-regular fa-clock"></i> 
           <span id="eventStatusText">Counting down</span>
         </span>
       </div>
@@ -264,21 +309,21 @@
       <div class="max-w-4xl mx-auto mt-10 px-6 reveal">
         <div class="grid md:grid-cols-3 gap-4">
           <div class="panel border soft-line rounded-xl p-4 text-center">
-            <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · RSVP</div>
+            <div class="text-xs tracking-widest uppercase text-gray-500 mb-2">QR · RSVP</div>
             <div class="mx-auto w-[120px] h-[120px] panel-strong rounded-lg border soft-line flex items-center justify-center" id="qr-rsvp">
               <span class="text-gray-600 text-xs">Loading…</span>
             </div>
           </div>
-
+          
           <div class="panel border soft-line rounded-xl p-4 text-center">
-            <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · Map</div>
+            <div class="text-xs tracking-widest uppercase text-gray-500 mb-2">QR · Map</div>
             <div class="mx-auto w-[120px] h-[120px] panel-strong rounded-lg border soft-line flex items-center justify-center" id="qr-map">
               <span class="text-gray-600 text-xs">Loading…</span>
             </div>
           </div>
 
           <div class="panel border soft-line rounded-xl p-4 text-center">
-            <div class="text-xs tracking-widest uppercase text-gray-400 mb-2">QR · Share</div>
+            <div class="text-xs tracking-widest uppercase text-gray-500 mb-2">QR · Share</div>
             <div class="mx-auto w-[120px] h-[120px] panel-strong rounded-lg border soft-line flex items-center justify-center" id="qr-share">
               <span class="text-gray-600 text-xs">Loading…</span>
             </div>
@@ -294,7 +339,7 @@
     <section class="max-w-4xl mx-auto px-6 mb-12">
       <div class="relative aspect-video rounded-xl overflow-hidden border accent-border shadow-2xl reveal group" id="momentWrap">
         <div class="absolute inset-0" style="background: rgba(212,175,55,.06);"></div>
-
+        
         <video id="momentVideo" class="w-full h-full object-cover relative z-10" playsinline controls preload="metadata">
           <source src="assets/moment.mp4" type="video/mp4">
         </video>
@@ -326,7 +371,7 @@
       </div>
 
       <p class="text-center text-gray-600 text-xs mt-4" id="tzHint">Time shown in your local timezone.</p>
-
+      
       <div class="flex flex-wrap justify-center gap-3 mt-6 reveal">
         <button id="ics-btn" class="px-6 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
           <i class="fa-regular fa-calendar mr-2"></i> Download Calendar (.ics)
@@ -353,15 +398,15 @@
           <h3 class="font-luxury text-2xl text-white mb-2">Where</h3>
           <p class="font-elegant text-xl text-gray-300" id="whereName">The Grand Ballroom</p>
           <p class="text-gray-500 text-sm" id="whereAddress">123 Luxury Ave, Manhattan, NY</p>
-
+          
           <div class="flex flex-wrap justify-center md:justify-end gap-3 mt-4">
-            <a id="map-google" target="_blank" rel="noopener"
+            <a id="map-google" target="_blank" rel="noopener" 
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Google Maps</a>
-            <a id="map-apple" target="_blank" rel="noopener"
+            <a id="map-apple" target="_blank" rel="noopener" 
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Apple Maps</a>
-            <a id="map-waze" target="_blank" rel="noopener"
+            <a id="map-waze" target="_blank" rel="noopener" 
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Waze</a>
           </div>
@@ -373,13 +418,13 @@
           <i class="fa-solid fa-vest text-3xl accent-text mb-4"></i>
           <h3 class="font-luxury text-2xl text-white mb-2">Dress Code</h3>
           <p class="font-elegant text-xl text-gray-300 mb-4" id="dressCode">Black Tie / Formal</p>
-
+          
           <div class="flex justify-center md:justify-start gap-4" id="palette">
             <div class="w-8 h-8 rounded-full bg-black border soft-line" title="Black"></div>
             <div class="w-8 h-8 rounded-full" style="background: var(--accent);" title="Accent"></div>
             <div class="w-8 h-8 rounded-full" style="background: #1B2430;" title="Navy"></div>
           </div>
-
+          
           <p class="text-xs text-gray-600 mt-2" id="paletteNote">Please stick to the palette.</p>
         </div>
 
@@ -387,7 +432,7 @@
           <i class="fa-solid fa-gift text-3xl accent-text mb-4"></i>
           <h3 class="font-luxury text-2xl text-white mb-2">Registry</h3>
           <p class="text-gray-400 text-sm mb-4" id="registryNote">Your presence is the greatest gift.</p>
-          <a id="registryLink" href="#" target="_blank" rel="noopener"
+          <a id="registryLink" href="#" target="_blank" rel="noopener" 
              class="px-6 py-2 border soft-line rounded-full text-xs hover:bg-white hover:text-black transition">
             View Wishlist
           </a>
@@ -448,8 +493,8 @@
           <p class="text-gray-400 text-sm mb-6">
             Share your favorite moments. Upload link opens in a new tab.
           </p>
-
-          <a id="uploadLink" href="#" target="_blank" rel="noopener"
+          
+          <a id="uploadLink" href="#" target="_blank" rel="noopener" 
              class="inline-flex items-center gap-2 px-7 py-3 rounded-full border accent-border text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
             <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos
           </a>
@@ -470,19 +515,19 @@
             <p class="text-gray-500 text-xs mt-1" id="mapSub">Tap for directions.</p>
           </div>
           <div class="flex gap-2 flex-wrap">
-            <a id="map-google-2" target="_blank" rel="noopener"
+            <a id="map-google-2" target="_blank" rel="noopener" 
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Google</a>
-            <a id="map-apple-2" target="_blank" rel="noopener"
+            <a id="map-apple-2" target="_blank" rel="noopener" 
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Apple</a>
-            <a id="map-waze-2" target="_blank" rel="noopener"
+            <a id="map-waze-2" target="_blank" rel="noopener" 
                class="px-5 py-2 border soft-line rounded-full text-[11px] text-white/70 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">Waze</a>
           </div>
         </div>
-
-        <iframe id="mapFrame" class="w-full h-[420px]"
+        
+        <iframe id="mapFrame" class="w-full h-[420px]" 
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
@@ -490,7 +535,7 @@
     <section id="rsvp" class="max-w-xl mx-auto px-6 pb-16 reveal">
       <div class="relative panel border accent-border p-8 md:p-12 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.45)]">
         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-32 h-6 rounded-b-full border-b accent-border" style="background: var(--bg);"></div>
-
+        
         <div class="text-center mb-8">
           <h2 class="font-luxury text-4xl text-white mb-2">R.S.V.P</h2>
           <p class="accent-dim text-sm uppercase tracking-widest" id="rsvpDeadline">By October 10th</p>
@@ -505,12 +550,12 @@
             <button id="successIcs" class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition">
               <i class="fa-regular fa-calendar mr-2"></i> Download .ics
             </button>
-            <a id="successGcal" target="_blank" rel="noopener"
+            <a id="successGcal" target="_blank" rel="noopener" 
                class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">
               <i class="fa-brands fa-google mr-2"></i> Google Calendar
             </a>
-            <a id="successDirections" target="_blank" rel="noopener"
+            <a id="successDirections" target="_blank" rel="noopener" 
                class="px-5 py-3 border accent-border rounded-full text-xs text-white/80 hover:text-white hover:border-[color:var(--accent)] transition"
                href="#">
               <i class="fa-solid fa-location-dot mr-2"></i> Directions
@@ -523,7 +568,7 @@
 
         <form id="rsvpForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-5">
           <div>
-            <input type="text" name="name" required placeholder="Guest Name(s)"
+            <input type="text" name="name" required placeholder="Guest Name(s)" 
               class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
           </div>
 
@@ -573,17 +618,17 @@
             </div>
 
             <div>
-              <input type="text" name="allergies" placeholder="Allergies (optional)"
+              <input type="text" name="allergies" placeholder="Allergies (optional)" 
                 class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm">
             </div>
 
             <div>
-              <input type="text" name="song_request" placeholder="🎵 Song Request for DJ (optional)"
+              <input type="text" name="song_request" placeholder="🎵 Song Request for DJ (optional)" 
                 class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm">
             </div>
 
             <div>
-              <textarea name="note" placeholder="Message to the host (optional)"
+              <textarea name="note" placeholder="Message to the host (optional)" 
                 class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600 text-sm"
                 rows="3"></textarea>
             </div>
@@ -613,17 +658,17 @@
 
         <form id="guestbookForm" action="https://formspree.io/f/XXXXXXXX" method="POST" class="space-y-4">
           <div class="grid md:grid-cols-2 gap-4">
-            <input name="guest_name" required placeholder="Your Name"
+            <input name="guest_name" required placeholder="Your Name" 
               class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
-            <input name="guest_city" placeholder="City (optional)"
+            <input name="guest_city" placeholder="City (optional)" 
               class="w-full bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600">
           </div>
 
-          <textarea name="guest_message" required placeholder="Your message..."
+          <textarea name="guest_message" required placeholder="Your message..." 
             class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600"
             rows="4"></textarea>
 
-          <button type="submit" id="guestbookBtn"
+          <button type="submit" id="guestbookBtn" 
             class="w-full border accent-border rounded-xl py-4 text-xs text-white/85 hover:border-[color:var(--accent)] hover:text-white transition">
             SEND MESSAGE
           </button>
@@ -695,7 +740,7 @@
         <p class="text-[11px]" style="color: var(--muted);">Enter admin code to enable exports and view entries.</p>
 
         <div class="mt-3 flex gap-3 flex-wrap items-center">
-          <input id="adminCode" placeholder="Admin code"
+          <input id="adminCode" placeholder="Admin code" 
             class="flex-1 min-w-[220px] bg-black/30 border-b border-white/20 py-3 text-white focus:outline-none focus:border-[color:var(--accent)] transition placeholder-gray-600" />
           <button id="adminUnlock" class="px-5 py-3 rounded-full border accent-border text-xs hover:border-[color:var(--accent)] transition">
             Unlock
@@ -715,9 +760,7 @@
       accessPin: "2580",
       adminPin: "9999",
 
-      // Google Sheets (Apps Script Web App) — optional
-      // If set, RSVP submits to Sheets. If empty, RSVP falls back to Formspree.
-      // ✅ UPDATED: your live Apps Script /exec endpoint
+      // Google Sheets (Apps Script Web App)
       databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec",
 
       // Theme
@@ -737,7 +780,7 @@
       // Event datetime
       eventStartISO: "2026-10-25T19:00:00-04:00",
       eventEndISO:   "2026-10-26T01:00:00-04:00",
-
+      
       whenDateText: "Saturday, October 25th, 2026",
       whenTimeText: "19:00 - Late",
 
@@ -770,7 +813,7 @@
       bgVideoSrc: "assets/bg.mp4",
       momentVideoSrc: "assets/moment.mp4",
       musicSrc: "assets/music.mp3",
-
+      
       // Gallery images
       galleryImages: [
         "assets/gallery/1.jpg",
@@ -778,7 +821,7 @@
         "assets/gallery/3.jpg",
         "assets/gallery/4.jpg",
       ],
-
+      
       // Photo upload link
       photoUploadUrl: "https://drive.google.com/",
 
@@ -800,11 +843,50 @@
     // Keep map embed always in sync with venueQuery (structure preserved)
     CONFIG.mapEmbedUrl = "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.venueQuery) + "&output=embed";
 
+    /* =========================
+       GELİŞMİŞ TEMA AYARLARI
+    ========================== */
     const THEMES = {
-      vip:   { bg:"#050505", panel:"rgba(255,255,255,.05)", line:"rgba(255,255,255,.10)", accent:"#D4AF37", accent2:"#8A7036", texture: true },
-      ivory: { bg:"#f6f0e7", panel:"rgba(255,255,255,.75)", line:"rgba(0,0,0,.10)",     accent:"#1a1a1a", accent2:"#6b6b6b", texture: false },
-      floral:{ bg:"#fbf7f2", panel:"rgba(255,255,255,.78)", line:"rgba(0,0,0,.10)",     accent:"#B06B7A", accent2:"#7A4A56", texture: false },
-      boho:  { bg:"#1a1713", panel:"rgba(255,255,255,.06)", line:"rgba(255,255,255,.10)", accent:"#C99B6C", accent2:"#8F6B49", texture: true }
+      vip: { 
+        type: "dark",
+        bg: "#080808", 
+        text: "rgba(255,255,255,0.95)",
+        muted: "rgba(255,255,255,0.6)",
+        panel: "rgba(255,255,255,0.05)", 
+        line: "rgba(255,255,255,0.15)", 
+        accent: "#D4AF37", /* Kraliyet Altını */
+        accent2: "#8A7036"
+      },
+      ivory: { 
+        type: "light",
+        bg: "#F2F0E9", /* Kırık Beyaz / Krem */
+        text: "#2C2C2C", /* Koyu Antrasit */
+        muted: "#666666",
+        panel: "rgba(0,0,0,0.03)", 
+        line: "rgba(0,0,0,0.1)", 
+        accent: "#8B7E66", /* Vizon / Taupe */
+        accent2: "#5C5343"
+      },
+      floral: { 
+        type: "light",
+        bg: "#FFF5F7", /* Çok uçuk pudra */
+        text: "#4A2C32", /* Koyu Bordo/Kahve */
+        muted: "#8C6A72",
+        panel: "rgba(74,44,50,0.04)", 
+        line: "rgba(74,44,50,0.1)", 
+        accent: "#D48BA1", /* Gül Kurusu */
+        accent2: "#A65C70"
+      },
+      boho: { 
+        type: "dark",
+        bg: "#1E1B18", /* Koyu Espresso */
+        text: "#E6DCCA", /* Kemik Rengi */
+        muted: "#9C8E7E",
+        panel: "rgba(255,255,255,0.04)", 
+        line: "rgba(255,255,255,0.1)", 
+        accent: "#C66B3D", /* Yanık Turuncu / Terracotta */
+        accent2: "#8F4620"
+      }
     };
 
     /* =========================
@@ -849,7 +931,7 @@
         return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
       };
       const uid = `invite-${Math.random().toString(16).slice(2)}@invite`;
-      const ics =
+      const ics = 
 `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//VIP Invite//EN
@@ -944,12 +1026,11 @@ END:VCALENDAR`;
       setTimeout(()=>URL.revokeObjectURL(a.href), 1200);
     }
 
-    // ✅ FIXED: correct HTML escaping (this was breaking the page before)
     function escapeHtml(s){
       return String(s ?? "").replace(/[&<>"']/g, (c)=>({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
+        "&": "&",
+        "<": "<",
+        ">": ">",
         '"': "&quot;",
         "'": "&#39;"
       }[c]));
@@ -993,26 +1074,37 @@ END:VCALENDAR`;
     }
 
     /* =========================
-       Theme apply
+       Theme apply (UPDATED LOGIC)
     ========================== */
     function applyTheme(themeKey){
       const t = THEMES[themeKey] || THEMES.vip;
+      
+      // 1. Renk Değişkenlerini Ata
       setRootVar("--bg", t.bg);
+      setRootVar("--text", t.text);
+      setRootVar("--muted", t.muted);
       setRootVar("--panel", t.panel);
       setRootVar("--line", t.line);
       setRootVar("--accent", t.accent);
       setRootVar("--accent2", t.accent2);
 
-      const texture = document.querySelector(".texture");
-      if(texture) texture.style.display = t.texture ? "block" : "none";
+      // 2. Body Rengi ve Metin Rengini Zorla
+      document.body.style.backgroundColor = t.bg;
+      document.body.style.color = t.text;
 
-      // Contrast management (important for structure)
-      if(themeKey === "ivory" || themeKey === "floral"){
-        document.body.style.backgroundColor = t.bg;
-        document.body.style.color = "rgba(0,0,0,.86)";
+      // 3. Mod Sınıflarını Yönet (Light/Dark Mode ve VIP Çerçeve)
+      // Önce temizle
+      document.body.classList.remove("theme-vip", "theme-ivory", "theme-floral", "theme-boho", "light-mode");
+      
+      // Yeni sınıfları ekle
+      document.body.classList.add(`theme-${themeKey}`);
+      
+      if(t.type === "light"){
+        document.body.classList.add("light-mode");
+        // İkonları ve diğer öğeleri koyulaştır
+        document.documentElement.style.setProperty('--shadow', '0 30px 80px rgba(0,0,0,0.15)');
       } else {
-        document.body.style.backgroundColor = t.bg;
-        document.body.style.color = "rgba(255,255,255,.92)";
+        document.documentElement.style.setProperty('--shadow', '0 30px 80px rgba(0,0,0,0.55)');
       }
     }
 
@@ -1159,8 +1251,8 @@ END:VCALENDAR`;
     CONFIG.galleryImages.forEach(src => {
       const card = document.createElement("div");
       card.className = "flex-shrink-0 snap-center w-64 aspect-[3/4] panel p-2 border soft-line rounded-lg";
-      card.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory"
-                           onerror="this.closest('.flex-shrink-0').style.display='none'">`;
+      card.innerHTML = `<img src="${src}" class="w-full h-full object-cover rounded opacity-80 hover:opacity-100 transition" alt="Memory" 
+                          onerror="this.closest('.flex-shrink-0').style.display='none'">`;
       galleryRow.appendChild(card);
     });
 
@@ -1172,8 +1264,7 @@ END:VCALENDAR`;
     }
 
     /* =========================
-       PIN Gate logic (FIXED)
-       - session + remember device localStorage
+       PIN Gate logic
     ========================== */
     const pinScreen = $("pin-screen");
     const pinInput = $("pinInput");
@@ -1203,7 +1294,7 @@ END:VCALENDAR`;
         pinError.classList.add("hidden");
         pinBox.classList.remove("shake");
         hidePinGate();
-
+        
         sessionStorage.setItem(LS.unlockSessionKey, "1");
         if(rememberDevice.checked){
           localStorage.setItem(LS.unlockDeviceKey, "1");
@@ -1219,8 +1310,7 @@ END:VCALENDAR`;
     pinInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") tryUnlock(); });
 
     /* =========================
-       Entrance + music start (FIXED)
-       - reveal failsafe (blank page fix)
+       Entrance + music start
     ========================== */
     const openBtn = $("open-btn");
     const entrance = $("entrance-screen");
@@ -1235,7 +1325,7 @@ END:VCALENDAR`;
 
     openBtn.addEventListener("click", () => {
       entrance.classList.add("envelope-hidden");
-
+      
       confetti({
         particleCount: 160, spread: 70, origin: { y: 0.6 },
         colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
@@ -1246,10 +1336,9 @@ END:VCALENDAR`;
         .then(() => { musicPlaying = true; setMusicUI(true); })
         .catch(() => { musicPlaying = false; setMusicUI(false); });
 
-      // ✅ Critical: force reveal after opening
+      // Reveal content
       setTimeout(()=> {
         revealAll();
-        // ✅ FIXED: "instant" is not valid; use "auto"
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       }, 220);
     });
@@ -1297,13 +1386,12 @@ END:VCALENDAR`;
     $("a2hsClose").addEventListener("click", ()=> $("a2hs").style.display="none");
 
     /* =========================
-       Reveal on scroll (SAFE)
+       Reveal on scroll
     ========================== */
     (function initReveal(){
       const els = document.querySelectorAll(".reveal");
       if(!els.length) return;
 
-      // Fallback: if no IntersectionObserver, reveal all
       if(!("IntersectionObserver" in window)){
         revealAll();
         return;
@@ -1319,8 +1407,7 @@ END:VCALENDAR`;
       }, { threshold: 0.12 });
 
       els.forEach(el => observer.observe(el));
-
-      // extra failsafe: reveal those already in viewport
+      
       setTimeout(()=>{
         els.forEach(el=>{
           const r = el.getBoundingClientRect();
@@ -1330,7 +1417,7 @@ END:VCALENDAR`;
     })();
 
     /* =========================
-       Countdown + status switch
+       Countdown
     ========================== */
     const targetDate = new Date(CONFIG.eventStartISO).getTime();
     const endDate = new Date(CONFIG.eventEndISO).getTime();
@@ -1384,7 +1471,7 @@ END:VCALENDAR`;
     genQR("qr-share", pageLink);
 
     /* =========================
-       RSVP logic (+ local save + Sheets/Formspree fallback)
+       RSVP logic
     ========================== */
     const rsvpForm = $("rsvpForm");
     const submitBtn = $("submit-btn");
@@ -1431,8 +1518,8 @@ END:VCALENDAR`;
       submitBtn.disabled = true;
 
       const fd = new FormData(rsvpForm);
-
-      // Local save (always)
+      
+      // Local save
       const localRow = {
         name: fd.get("name"),
         attendance: fd.get("attendance"),
@@ -1472,7 +1559,7 @@ END:VCALENDAR`;
         // assume success
         rsvpForm.classList.add('hidden');
         successMsg.classList.remove('hidden');
-
+        
         confetti({
           particleCount: 120, spread: 60, origin: { y: 0.75 },
           colors: [getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#D4AF37", "#ffffff"]
@@ -1485,7 +1572,7 @@ END:VCALENDAR`;
     });
 
     /* =========================
-       Guestbook (Local Preview + endpoint send)
+       Guestbook logic
     ========================== */
     const guestbookForm = $("guestbookForm");
     const guestbookBtn = $("guestbookBtn");
@@ -1537,7 +1624,7 @@ END:VCALENDAR`;
           message: fd.get("guest_message"),
           date: new Date().toLocaleString()
         };
-
+        
         // local save
         const items = loadJSON(LS.guestbookKey, []);
         items.push(entry);
@@ -1581,9 +1668,8 @@ END:VCALENDAR`;
       }
 
       try {
-        // JSONP to avoid CORS (Apps Script must support callback=)
         const data = await jsonp(CONFIG.databaseURL + "?action=read");
-
+        
         const totalAttending = data.filter(r => r.Attendance === "Attending").length;
         const totalAdults = data.reduce((acc, curr) => acc + (parseInt(curr.Adults) || 0), 0);
         const totalKids = data.reduce((acc, curr) => acc + (parseInt(curr.Kids) || 0), 0);
@@ -1639,7 +1725,6 @@ END:VCALENDAR`;
     openAdmin.addEventListener("click", ()=>{
       adminModal.classList.add("open");
       setTimeout(()=>adminCode.focus(), 150);
-      // show local lists on open
       renderLocalRsvp();
       renderGuestbook();
     });
