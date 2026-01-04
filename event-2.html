@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  
   <title>THE GRAND CELEBRATION | Royal Demo</title>
+  <meta property="og:title" content="SOPHIA - The Grand Celebration">
+  <meta property="og:description" content="You are strictly invited to a night of timeless elegance. RSVP Required.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0D0208">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -30,7 +36,6 @@
             'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'grain': 'grain 8s steps(10) infinite',
             'scroll-text': 'scrollText 30s linear infinite',
-            // YENİ GALERİ ANİMASYONLARI
             'marquee-left': 'marqueeLeft 40s linear infinite',
             'marquee-right': 'marqueeRight 40s linear infinite',
           },
@@ -59,7 +64,6 @@
               '0%': { transform: 'translateX(100%)' },
               '100%': { transform: 'translateX(-100%)' }
             },
-            // CSS İLE SONSUZ DÖNGÜ (GPU Accelerated)
             marqueeLeft: {
               '0%': { transform: 'translateX(0)' },
               '100%': { transform: 'translateX(-50%)' }
@@ -314,8 +318,16 @@
         <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b border-l border-[#C6A664]"></div>
         <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b border-r border-[#C6A664]"></div>
         <div class="relative aspect-video overflow-hidden group bg-black">
-           <div class="w-full h-full flex items-center justify-center bg-[#1A0B1C]">
-               <p class="text-[#C6A664] font-sub tracking-widest text-xs">CINEMATIC TRAILER</p>
+           <video id="momentVideo" 
+                  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-1000" 
+                  playsinline controls
+                  poster="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1600&auto=format&fit=crop"> 
+             <source src="assets/moment.mp4" type="video/mp4">
+           </video>
+           <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="w-16 h-16 rounded-full border border-[#C6A664]/50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+                    <i class="fa-solid fa-play text-[#C6A664] ml-1"></i>
+                </div>
            </div>
         </div>
       </div>
@@ -733,6 +745,16 @@
           setTimeout(()=> $("guestbookOk").classList.add("hidden"), 3000);
        } catch {}
     });
+
+    // --- DUMMY DATA (DEMO İÇİN SAHTE MESAJLAR) ---
+    // Eğer localStorage boşsa, demo dolu görünsün diye 2 tane sahte mesaj ekliyoruz.
+    if(!localStorage.getItem(LS.guestbook)){
+        const dummies = [
+            { name: "Alexander & Kate", message: "So excited to celebrate with you! The invitation is stunning.", date: "10/05/2026" },
+            { name: "Isabella R.", message: "Counting down the days! 🥂", date: "10/02/2026" }
+        ];
+        localStorage.setItem(LS.guestbook, JSON.stringify(dummies));
+    }
 
     function renderGuestbook(){
        const msgs = JSON.parse(localStorage.getItem(LS.guestbook) || "[]");
