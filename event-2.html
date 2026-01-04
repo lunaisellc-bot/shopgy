@@ -30,6 +30,9 @@
             'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'grain': 'grain 8s steps(10) infinite',
             'scroll-text': 'scrollText 30s linear infinite',
+            // YENİ GALERİ ANİMASYONLARI
+            'marquee-left': 'marqueeLeft 40s linear infinite',
+            'marquee-right': 'marqueeRight 40s linear infinite',
           },
           keyframes: {
             float: {
@@ -55,6 +58,15 @@
             scrollText: {
               '0%': { transform: 'translateX(100%)' },
               '100%': { transform: 'translateX(-100%)' }
+            },
+            // CSS İLE SONSUZ DÖNGÜ (GPU Accelerated)
+            marqueeLeft: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' }
+            },
+            marqueeRight: {
+              '0%': { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0)' }
             }
           }
         }
@@ -399,8 +411,19 @@
 
     <section class="mb-32 reveal relative overflow-hidden py-20" id="gallery">
       <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none"><div class="whitespace-nowrap animate-scroll-text font-luxury text-[10rem] text-[#C6A664]">MEMORIES • TIMELESS • ELEGANCE • LOVE •</div></div>
-      <div class="text-center mb-16 relative z-10"><h2 class="font-luxury text-4xl text-[#F2EBE5]">Gallery</h2><p class="font-script text-3xl text-[#C6A664] mt-2 opacity-80">Captured Moments</p></div>
-      <div class="flex overflow-x-auto gap-8 px-10 pb-10 snap-x hide-scrollbar relative z-10" id="galleryRow"></div>
+      <div class="text-center mb-12 relative z-10"><h2 class="font-luxury text-4xl text-[#F2EBE5]">Gallery</h2><p class="font-script text-3xl text-[#C6A664] mt-2 opacity-80">Captured Moments</p></div>
+      
+      <div class="relative w-full overflow-hidden mb-8 group/row">
+         <div class="flex gap-4 w-max animate-marquee-left group-hover/row:pause" id="galleryRow1"></div>
+         <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0D0208] to-transparent z-10"></div>
+         <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0D0208] to-transparent z-10"></div>
+      </div>
+
+      <div class="relative w-full overflow-hidden group/row">
+         <div class="flex gap-4 w-max animate-marquee-right group-hover/row:pause" id="galleryRow2"></div>
+         <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0D0208] to-transparent z-10"></div>
+         <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0D0208] to-transparent z-10"></div>
+      </div>
     </section>
 
     <section id="rsvp" class="max-w-xl mx-auto px-6 pb-24 reveal">
@@ -495,7 +518,9 @@
           "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", 
           "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop", 
           "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop", 
-          "https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=800&auto=format&fit=crop"
+          "https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1522673607200-1645062cd958?q=80&w=800&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1490750967868-58cb75069ed6?q=80&w=800&auto=format&fit=crop"
       ],
       timeline: [
         { time: "19:00", title: "Cocktails", note: "Jazz & Champagne" },
@@ -618,20 +643,23 @@
          </div>`;
     });
 
-    // Gallery
-    const galContainer = $("galleryRow");
-    if(CONFIG.galleryImages.length > 0){
-        CONFIG.galleryImages.forEach((src, idx) => {
-           galContainer.innerHTML += `
-             <div class="flex-shrink-0 snap-center group relative w-64 aspect-[3/4] p-1 border border-[#C6A664]/30 grayscale hover:grayscale-0 transition duration-700">
-                <div class="w-full h-full overflow-hidden relative">
-                   <img src="${src}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000" onerror="this.parentElement.parentElement.style.display='none'">
-                </div>
-             </div>`;
-        });
-    } else {
-        galContainer.innerHTML = `<div class="w-full text-center text-[#9C8C96] text-xs italic py-10">Memories Loading...</div>`;
+    // Gallery (Dual Row Infinite Scroll)
+    function populateGallery(containerId) {
+        const container = $(containerId);
+        if(CONFIG.galleryImages.length > 0){
+             // İki katına çıkararak döngüyü pürüzsüz yapıyoruz
+             const images = [...CONFIG.galleryImages, ...CONFIG.galleryImages]; 
+             container.innerHTML = images.map(src => `
+               <div class="flex-shrink-0 relative w-64 aspect-[3/4] p-1 border border-[#C6A664]/30 grayscale hover:grayscale-0 transition duration-700">
+                  <div class="w-full h-full overflow-hidden relative">
+                     <img src="${src}" class="w-full h-full object-cover transform hover:scale-110 transition duration-1000" onerror="this.parentElement.parentElement.style.display='none'">
+                  </div>
+               </div>`).join("");
+        }
     }
+    populateGallery("galleryRow1");
+    populateGallery("galleryRow2");
+
 
     // Countdown
     const targetDate = new Date(CONFIG.eventStartISO).getTime();
