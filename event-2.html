@@ -204,44 +204,6 @@
     input:focus, select:focus, textarea:focus { border-color: var(--gold); background: rgba(198, 166, 100, 0.08); }
     
     #adminModal { background: rgba(13, 2, 8, 0.95); }
-
-    /* Gallery hover pause (reliable, no Tailwind variant dependency) */
-    .marquee-wrap:hover .animate-marquee-left,
-    .marquee-wrap:hover .animate-marquee-right {
-      animation-play-state: paused;
-    }
-
-    /* Map filter hover fix (no inline filter) */
-    .map-iframe {
-      filter: grayscale(100%) invert(92%) contrast(83%);
-      transition: filter 700ms ease;
-    }
-    .map-wrap:hover .map-iframe {
-      filter: none;
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 999;
-      background: rgba(13,2,8,0.92);
-      border: 1px solid rgba(198,166,100,0.25);
-      color: #C6A664;
-      padding: 10px 14px;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 250ms ease;
-    }
-    .toast.show { opacity: 1; }
   </style>
 </head>
 
@@ -253,8 +215,6 @@
   <div class="flash-effect" id="flash"></div>
 
   <div class="ornamental-frame"></div>
-
-  <div id="toast" class="toast">LINK COPIED</div>
    
   <svg style="display: none;">
     <symbol id="ornament-corner" viewBox="0 0 100 100">
@@ -279,16 +239,10 @@
         </div>
         <p class="font-sub text-[#9C8C96] tracking-[0.3em] text-xs mb-8 uppercase">Private Access</p>
         <div id="pinBox">
-          <input id="pinInput" type="tel" maxlength="4" inputmode="numeric" pattern="[0-9]*"
+          <input id="pinInput" type="tel" maxlength="10" 
             class="text-center text-2xl font-sub tracking-[0.5em] w-full bg-transparent py-3 text-[#F2EBE5] placeholder-[#9C8C96]/20" 
             placeholder="••••" />
-          
-          <div class="mt-5 flex items-center justify-center gap-2 text-[9px] text-[#9C8C96] tracking-[0.2em] uppercase">
-            <input id="rememberDevice" type="checkbox" class="accent-[#C6A664]">
-            <label for="rememberDevice" class="cursor-pointer">Remember this device</label>
-          </div>
-
-          <button id="pinSubmit" class="mt-6 px-8 py-3 border border-[#C6A664]/30 text-[#C6A664] text-xs tracking-[0.2em] hover:bg-[#C6A664] hover:text-[#0D0208] transition duration-500 uppercase">Enter</button>
+          <button id="pinSubmit" class="mt-8 px-8 py-3 border border-[#C6A664]/30 text-[#C6A664] text-xs tracking-[0.2em] hover:bg-[#C6A664] hover:text-[#0D0208] transition duration-500 uppercase">Enter</button>
           <p id="pinError" class="text-[10px] text-red-400 mt-4 hidden tracking-widest uppercase">Incorrect Code</p>
         </div>
       </div>
@@ -323,10 +277,10 @@
     </button>
 
     <div class="fixed bottom-8 left-8 z-[100] hidden md:flex flex-col gap-3">
-      <button id="share-btn" class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-[#C6A664] hover:bg-[#C6A664] hover:text-black transition" aria-label="Copy link">
+      <button id="share-btn" class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-[#C6A664] hover:bg-[#C6A664] hover:text-black transition">
         <i class="fa-solid fa-link"></i>
       </button>
-      <a href="#rsvp" class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-[#C6A664] hover:bg-[#C6A664] hover:text-black transition" aria-label="Go to RSVP">
+      <a href="#rsvp" class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-[#C6A664] hover:bg-[#C6A664] hover:text-black transition">
         <i class="fa-solid fa-envelope"></i>
       </a>
     </div>
@@ -402,11 +356,11 @@
           <h3 class="font-luxury text-3xl text-[#F2EBE5] mb-1" id="whereName">The Plaza Hotel</h3>
           <p class="font-elegant text-xl text-[#9C8C96] italic mb-6" id="whereAddress">768 5th Ave, New York, NY</p>
           
-          <div class="map-wrap w-full h-48 rounded-sm border border-[#C6A664]/30 overflow-hidden relative group shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+          <div class="w-full h-48 rounded-sm border border-[#C6A664]/30 overflow-hidden relative group shadow-[0_0_30px_rgba(0,0,0,0.5)]">
              <iframe 
                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.026733220757!2d-73.9763980242637!3d40.76192257138615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258f97bdb102b%3A0xea6f780dc97d22d3!2sThe%20Plaza!5e0!3m2!1sen!2sus!4v1709229000000!5m2!1sen!2sus" 
-               width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-               class="map-iframe">
+               width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+               class="group-hover:filter-none transition duration-700">
              </iframe>
           </div>
           
@@ -466,14 +420,14 @@
       <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none"><div class="whitespace-nowrap animate-scroll-text font-luxury text-[10rem] text-[#C6A664]">MEMORIES • TIMELESS • ELEGANCE • LOVE •</div></div>
       <div class="text-center mb-12 relative z-10"><h2 class="font-luxury text-4xl text-[#F2EBE5]">Gallery</h2><p class="font-script text-3xl text-[#C6A664] mt-2 opacity-80">Captured Moments</p></div>
       
-      <div class="marquee-wrap relative w-full overflow-hidden mb-8">
-         <div class="flex gap-4 w-max animate-marquee-left" id="galleryRow1"></div>
+      <div class="relative w-full overflow-hidden mb-8 group/row">
+         <div class="flex gap-4 w-max animate-marquee-left group-hover/row:pause" id="galleryRow1"></div>
          <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0D0208] to-transparent z-10"></div>
          <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0D0208] to-transparent z-10"></div>
       </div>
 
-      <div class="marquee-wrap relative w-full overflow-hidden">
-         <div class="flex gap-4 w-max animate-marquee-right" id="galleryRow2"></div>
+      <div class="relative w-full overflow-hidden group/row">
+         <div class="flex gap-4 w-max animate-marquee-right group-hover/row:pause" id="galleryRow2"></div>
          <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0D0208] to-transparent z-10"></div>
          <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0D0208] to-transparent z-10"></div>
       </div>
@@ -537,20 +491,8 @@
     <div class="w-full max-w-3xl glass-card p-8 border border-[#C6A664]/30 m-4">
       <div class="flex justify-between items-center mb-6"><h2 class="font-luxury text-xl text-[#C6A664]">Admin Dashboard</h2><button id="closeAdmin" class="text-[#9C8C96] hover:text-[#C6A664]"><i class="fa-solid fa-xmark text-xl"></i></button></div>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-[#1A0B1C] p-4 border border-[#C6A664]/20">
-          <div class="flex justify-between mb-4">
-            <h3 class="text-[10px] uppercase text-[#C6A664] tracking-widest">RSVP</h3>
-            <button id="exportRsvp" class="text-[9px] border border-[#C6A664]/30 px-2 py-1 text-[#F2EBE5] hover:bg-[#C6A664] hover:text-black">CSV</button>
-          </div>
-          <div id="rsvpLocalList" class="h-40 overflow-y-auto text-[10px] text-[#9C8C96] space-y-2 font-mono">Loading...</div>
-        </div>
-        <div class="bg-[#1A0B1C] p-4 border border-[#C6A664]/20">
-          <div class="flex justify-between mb-4">
-            <h3 class="text-[10px] uppercase text-[#C6A664] tracking-widest">Guestbook</h3>
-            <button id="exportGuestbook" class="text-[9px] border border-[#C6A664]/30 px-2 py-1 text-[#F2EBE5] hover:bg-[#C6A664] hover:text-black">CSV</button>
-          </div>
-          <div id="guestbookLocalList" class="h-40 overflow-y-auto text-[10px] text-[#9C8C96] space-y-2 font-mono">Loading...</div>
-        </div>
+        <div class="bg-[#1A0B1C] p-4 border border-[#C6A664]/20"><div class="flex justify-between mb-4"><h3 class="text-[10px] uppercase text-[#C6A664] tracking-widest">RSVP</h3><button id="exportRsvp" class="text-[9px] border border-[#C6A664]/30 px-2 py-1 text-[#F2EBE5] hover:bg-[#C6A664] hover:text-black">CSV</button></div><div id="rsvpLocalList" class="h-40 overflow-y-auto text-[10px] text-[#9C8C96] space-y-2 font-mono">Loading...</div></div>
+        <div class="bg-[#1A0B1C] p-4 border border-[#C6A664]/20"><div class="flex justify-between mb-4"><h3 class="text-[10px] uppercase text-[#C6A664] tracking-widest">Guestbook</h3><button id="exportGuestbook" class="text-[9px] border border-[#C6A664]/30 px-2 py-1 text-[#F2EBE5] hover:bg-[#C6A664] hover:text-black">CSV</button></div><div id="guestbookLocalList" class="h-40 overflow-y-auto text-[10px] text-[#9C8C96] space-y-2 font-mono">Loading...</div></div>
       </div>
       <div class="mt-6 pt-6 border-t border-[#C6A664]/10 flex items-center gap-4">
          <input id="adminCode" type="password" placeholder="PIN" class="bg-[#1A0B1C] border-b border-[#C6A664]/30 px-3 py-2 text-[#F2EBE5] text-sm w-24 font-mono">
@@ -562,6 +504,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // --- GÜÇLENDİRİLMİŞ VERİ YÖNETİMİ ---
         const LS = { 
             rsvp: "royal_rsvp_v2", 
             guestbook: "royal_guestbook_v2", 
@@ -569,10 +512,15 @@
             device: "vip_device" 
         };
 
+        // --- CONFIGURATION ---
         const CONFIG = {
           accessPin: "2580",
           adminPin: "9999",
-          databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec", 
+
+          // ✅ EKLENDİ: Apps Script Dağıtım Kimliği + URL
+          databaseDeploymentId: "AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09",
+          databaseURL: "https://script.google.com/macros/s/AKfycbz3LWBMHEboYV4xKhfc7_VkFzDDc8y5rPpewRE-hGpLD3RbyicPXjWKRTsPrgUWuE09/exec",
+
           monogram: "S",
           celebrantName: "SOPHIA",
           heroQuote: "\"A Night of Elegance & Memories\"",
@@ -582,8 +530,11 @@
           venueName: "The Plaza Hotel",
           venueAddress: "768 5th Ave, New York, NY",
           venueQuery: "The Plaza Hotel New York",
+
+          // (Opsiyonel) Formspree fallback: istersen doldur
           rsvpEndpoint: "https://formspree.io/f/XXXXXXXX",
           guestbookEndpoint: "https://formspree.io/f/XXXXXXXX",
+
           musicSrc: "assets/music.mp3",
           galleryImages: [
               "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", 
@@ -601,6 +552,7 @@
           ]
         };
         
+        // --- SAFE STORAGE WRAPPER (IOS PRIVATE MODE FIX) ---
         const SafeStorage = {
             getItem: (key) => {
                 try { return localStorage.getItem(key); } catch(e) { return null; }
@@ -610,21 +562,7 @@
             }
         };
 
-        const SafeSession = {
-          getItem: (key) => { try { return sessionStorage.getItem(key); } catch(e){ return null; } },
-          setItem: (key, val) => { try { sessionStorage.setItem(key, val); } catch(e){ console.warn("Session storage restricted"); } }
-        };
-
-        const $ = (id) => document.getElementById(id);
-
-        function toast(msg){
-          const el = $("toast");
-          if(!el) return;
-          el.textContent = msg;
-          el.classList.add("show");
-          setTimeout(()=> el.classList.remove("show"), 1500);
-        }
-
+        // --- INIT & DUMMY DATA ---
         function initStorage(){
             const raw = SafeStorage.getItem(LS.guestbook);
             let data = [];
@@ -633,21 +571,20 @@
             if(!data || data.length === 0){
                 const dummies = [
                     { name: "Alexander & Kate", message: "So excited to celebrate with you! The invitation is stunning.", date: "10/05/2026" },
-                    { name: "Isabella R.", message: "Counting down the days!", date: "10/02/2026" }
+                    { name: "Isabella R.", message: "Counting down the days! 🥂", date: "10/02/2026" }
                 ];
                 SafeStorage.setItem(LS.guestbook, JSON.stringify(dummies));
             }
         }
         initStorage();
 
-        document.querySelectorAll(".seal-initial").forEach(el => el.textContent = CONFIG.monogram);
-
+        // --- CALENDAR LOGIC ---
         function buildGoogleCalendarLink(c) {
           const start = new Date(c.eventStartISO).toISOString().replace(/-|:|\.\d+/g, "");
           const end = new Date(c.eventEndISO).toISOString().replace(/-|:|\.\d+/g, "");
           const url = new URL("https://calendar.google.com/calendar/render");
           url.searchParams.set("action", "TEMPLATE");
-          url.searchParams.set("text", `${c.celebrantName} - Celebration`);
+          url.searchParams.set("text", `${c.celebrantName} - ${c.monogram} Birthday`);
           url.searchParams.set("dates", `${start}/${end}`);
           url.searchParams.set("location", c.venueAddress);
           url.searchParams.set("details", c.heroQuote + "\n\nRSVP: " + window.location.href);
@@ -682,110 +619,75 @@
           document.body.removeChild(link);
         }
 
+        // Bind Calendar Buttons
         const gcalUrl = buildGoogleCalendarLink(CONFIG);
+        const $ = (id) => document.getElementById(id);
         
         if($("gcal-link")) $("gcal-link").href = gcalUrl;
         if($("ics-btn")) $("ics-btn").addEventListener("click", () => downloadICS(CONFIG));
         if($("successGcal")) $("successGcal").href = gcalUrl;
         if($("successIcs")) $("successIcs").addEventListener("click", () => downloadICS(CONFIG));
 
-        const shareBtn = $("share-btn");
-        if(shareBtn){
-          shareBtn.addEventListener("click", async () => {
-            const link = window.location.href;
-            try {
-              await navigator.clipboard.writeText(link);
-              toast("LINK COPIED");
-            } catch(e){
-              window.prompt("Copy this link:", link);
-            }
-          });
-        }
-
+        // PIN
         const pinScreen = $("pin-screen");
         const pinInput = $("pinInput");
-
-        const hasSession = !!SafeSession.getItem(LS.session);
-        let hasDevice = false;
-        try { hasDevice = !!localStorage.getItem(LS.device); } catch(e){ hasDevice = false; }
-
-        if(!hasSession && !hasDevice){
+        if(!sessionStorage.getItem(LS.session) && !localStorage.getItem(LS.device)){
            pinScreen.classList.remove("hidden");
            pinScreen.classList.add("flex");
-           setTimeout(()=> pinInput?.focus(), 500);
+           setTimeout(()=> pinInput.focus(), 500);
         }
-
-        $("pinSubmit")?.addEventListener("click", validatePin);
-        pinInput?.addEventListener("keyup", (e) => { 
-          if(e.key === "Enter" || pinInput.value.length === 4) validatePin(); 
-        });
-
+        $("pinSubmit").addEventListener("click", validatePin);
+        pinInput.addEventListener("keyup", (e) => { if(e.key === "Enter" || pinInput.value.length === 4) validatePin(); });
         function validatePin(){
            if(pinInput.value === CONFIG.accessPin){
               pinScreen.classList.add("hidden");
-              SafeSession.setItem(LS.session, "1");
-              if($("rememberDevice")?.checked){
-                try { localStorage.setItem(LS.device, "1"); } catch(e){}
-              }
-              $("pinError")?.classList.add("hidden");
+              sessionStorage.setItem(LS.session, "1");
+              if(document.getElementById("rememberDevice")?.checked) localStorage.setItem(LS.device, "1");
            } else {
-              $("pinError")?.classList.remove("hidden");
+              $("pinError").classList.remove("hidden");
               pinInput.value = "";
-              setTimeout(()=> $("pinError")?.classList.add("hidden"), 1800);
            }
         }
 
+        // Entrance
         const openActions = () => {
            const audio = $("bgMusic");
-           if(audio){
-             audio.volume = 0.6; 
-             audio.play().catch(()=>{});
-           }
-           $("entrance-screen")?.classList.add("envelope-open");
-           $("flash")?.classList.add("trigger");
+           audio.volume = 0.6; audio.play().catch(()=>{});
+           $("entrance-screen").classList.add("envelope-open");
+           $("flash").classList.add("trigger");
            setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); revealAll(); }, 800);
         };
-        $("open-btn")?.addEventListener("click", openActions);
-        $("sealBtn")?.addEventListener("click", openActions); 
-        $("music-btn")?.addEventListener("click", () => { 
-          const el = $("bgMusic"); 
-          if(!el) return;
-          if(el.paused) el.play().catch(()=>{}); else el.pause(); 
-        });
+        $("open-btn").addEventListener("click", openActions);
+        $("sealBtn").addEventListener("click", openActions); 
+        $("music-btn").addEventListener("click", () => { const el = $("bgMusic"); if(el.paused) el.play(); else el.pause(); });
 
+        // Content
+        if($("monogram")) $("monogram").innerText = CONFIG.monogram;
         if($("heroName")) $("heroName").innerText = CONFIG.celebrantName;
         if($("heroQuote")) $("heroQuote").innerText = CONFIG.heroQuote;
-
-        if($("whenDateDisplay")) {
-          $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'}).toUpperCase();
-        }
+        if($("whenDateDisplay")) $("whenDateDisplay").innerText = new Date(CONFIG.eventStartISO).toLocaleDateString('en-US', {month:'short', day:'numeric'});
         if($("whenDate")) $("whenDate").innerText = CONFIG.whenDateText;
-        if($("whereName")) $("whereName").innerText = CONFIG.venueName;
-        if($("whereAddress")) $("whereAddress").innerText = CONFIG.venueAddress;
-
+        
         const tlContainer = $("timeline");
-        if(tlContainer){
-          tlContainer.innerHTML = "";
-          CONFIG.timeline.forEach(item => {
-             tlContainer.innerHTML += `
-               <div class="relative group">
-                  <span class="absolute -left-[55px] top-1 w-2 h-2 rounded-full bg-[#C6A664] shadow-[0_0_15px_#C6A664] group-hover:scale-150 transition"></span>
-                  <span class="text-[10px] tracking-[0.2em] text-[#C6A664] block mb-1 font-sub">${item.time}</span>
-                  <h4 class="font-luxury text-lg text-[#F2EBE5]">${item.title}</h4>
-                  <p class="text-xs text-[#9C8C96] mt-1 italic font-elegant">${item.note}</p>
-               </div>`;
-          });
-        }
+        CONFIG.timeline.forEach(item => {
+           tlContainer.innerHTML += `
+             <div class="relative group">
+                <span class="absolute -left-[55px] top-1 w-2 h-2 rounded-full bg-[#C6A664] shadow-[0_0_15px_#C6A664] group-hover:scale-150 transition"></span>
+                <span class="text-[10px] tracking-[0.2em] text-[#C6A664] block mb-1 font-sub">${item.time}</span>
+                <h4 class="font-luxury text-lg text-[#F2EBE5]">${item.title}</h4>
+                <p class="text-xs text-[#9C8C96] mt-1 italic font-elegant">${item.note}</p>
+             </div>`;
+        });
 
+        // Gallery
         function populateGallery(containerId) {
             const container = $(containerId);
-            if(!container) return;
             if(CONFIG.galleryImages.length > 0){
                  const images = [...CONFIG.galleryImages, ...CONFIG.galleryImages]; 
                  container.innerHTML = images.map(src => `
                    <div class="flex-shrink-0 relative w-64 aspect-[3/4] p-1 border border-[#C6A664]/30 grayscale hover:grayscale-0 transition duration-700">
                       <div class="w-full h-full overflow-hidden relative">
-                         <img src="${src}" class="w-full h-full object-cover transform hover:scale-110 transition duration-1000" onerror="this.closest('div.flex-shrink-0').style.display='none'">
+                         <img src="${src}" class="w-full h-full object-cover transform hover:scale-110 transition duration-1000" onerror="this.parentElement.parentElement.style.display='none'">
                       </div>
                    </div>`).join("");
             }
@@ -793,69 +695,88 @@
         populateGallery("galleryRow1");
         populateGallery("galleryRow2");
 
+        // Countdown
         const targetDate = new Date(CONFIG.eventStartISO).getTime();
         setInterval(() => {
            const now = new Date().getTime();
            const dist = targetDate - now;
-           if(dist < 0) { if($("eventStatusText")) $("eventStatusText").innerText = "Event Started"; return; }
-           if($("days")) $("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24)).toString().padStart(2,'0');
-           if($("hours")) $("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
-           if($("minutes")) $("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
-           if($("seconds")) $("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2,'0');
+           if(dist < 0) { $("eventStatusText").innerText = "Event Started"; return; }
+           $("days").innerText = Math.floor(dist / (1000 * 60 * 60 * 24)).toString().padStart(2,'0');
+           $("hours").innerText = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2,'0');
+           $("minutes").innerText = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2,'0');
+           $("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000).toString().padStart(2,'0');
         }, 1000);
 
+        // RSVP Form
         const rsvpForm = $("rsvpForm");
         const radios = document.querySelectorAll('input[name="attendance"]');
         radios.forEach(r => r.addEventListener('change', (e) => {
-           const extra = $("extra-fields");
-           if(extra) extra.style.display = e.target.value === 'Decline' ? 'none' : 'block';
+           $("extra-fields").style.display = e.target.value === 'Decline' ? 'none' : 'block';
         }));
 
-        rsvpForm?.addEventListener("submit", async (e) => {
+        rsvpForm.addEventListener("submit", async (e) => {
            e.preventDefault();
            const btn = $("submit-btn");
-           if(btn){ btn.innerText = "SENDING..."; btn.disabled = true; }
+           btn.innerText = "SENDING..."; btn.disabled = true;
+
            const fd = new FormData(rsvpForm);
+           fd.append("formType", "rsvp"); // ✅ eklendi: Apps Script tarafında ayırt etmek için
+           fd.append("deploymentId", CONFIG.databaseDeploymentId); // ✅ eklendi: istersen log/validation
+
            const entry = Object.fromEntries(fd.entries());
            entry.date = new Date().toLocaleString();
            
+           // SAFE SAVE
            const raw = SafeStorage.getItem(LS.rsvp);
            const localData = raw ? JSON.parse(raw) : [];
            localData.push(entry);
            SafeStorage.setItem(LS.rsvp, JSON.stringify(localData));
 
            try {
-              if(CONFIG.databaseURL.includes("script.google.com")){
+              if(CONFIG.databaseURL && CONFIG.databaseURL.includes("script.google.com")){
                  await fetch(CONFIG.databaseURL, { method: 'POST', body: fd, mode: 'no-cors' });
               } else {
                  await fetch(CONFIG.rsvpEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
               }
               rsvpForm.classList.add("hidden");
-              $("success-msg")?.classList.remove("hidden");
+              $("success-msg").classList.remove("hidden");
               confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, colors: ['#C6A664', '#FFF5C2'] });
            } catch (err) {
               alert("Saved locally (Demo Mode)");
-              if(btn){ btn.innerText = "RETRY"; btn.disabled = false; }
+              btn.innerText = "RETRY"; btn.disabled = false;
            }
         });
 
-        $("guestbookForm")?.addEventListener("submit", async (e) => {
+        // Guestbook Form
+        $("guestbookForm").addEventListener("submit", async (e) => {
            e.preventDefault();
            const fd = new FormData(e.target);
-           const entry = { name: fd.get("guest_name"), message: fd.get("guest_message"), date: new Date().toLocaleDateString() };
+           fd.append("formType", "guestbook"); // ✅ eklendi
+           fd.append("deploymentId", CONFIG.databaseDeploymentId); // ✅ eklendi
+
+           const entry = { 
+             name: fd.get("guest_name"), 
+             message: fd.get("guest_message"), 
+             date: new Date().toLocaleDateString() 
+           };
            
+           // SAFE SAVE
            const raw = SafeStorage.getItem(LS.guestbook);
            const msgs = raw ? JSON.parse(raw) : [];
            msgs.push(entry);
            SafeStorage.setItem(LS.guestbook, JSON.stringify(msgs));
            
            renderGuestbook();
-           $("guestbookOk")?.classList.remove("hidden");
+           $("guestbookOk").classList.remove("hidden");
            e.target.reset();
-           setTimeout(()=> $("guestbookOk")?.classList.add("hidden"), 3000);
+           setTimeout(()=> $("guestbookOk").classList.add("hidden"), 3000);
 
            try {
-              await fetch(CONFIG.guestbookEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
+              if(CONFIG.databaseURL && CONFIG.databaseURL.includes("script.google.com")){
+                 await fetch(CONFIG.databaseURL, { method: 'POST', body: fd, mode: 'no-cors' });
+              } else {
+                 await fetch(CONFIG.guestbookEndpoint, { method: 'POST', body: fd, headers: {'Accept': 'application/json'} });
+              }
            } catch {}
         });
 
@@ -876,61 +797,53 @@
         }
         renderGuestbook();
 
+        // Admin & CSV
         let adminUnlocked = false;
-        $("openAdmin")?.addEventListener("click", () => { 
-          $("adminModal")?.classList.remove("hidden"); 
-          $("adminModal")?.classList.add("flex"); 
-          renderAdminLists(); 
-        });
-        $("closeAdmin")?.addEventListener("click", () => { 
-          $("adminModal")?.classList.add("hidden"); 
-          $("adminModal")?.classList.remove("flex"); 
-        });
-        $("adminUnlock")?.addEventListener("click", () => {
-           if($("adminCode")?.value === CONFIG.adminPin){
+        $("openAdmin").addEventListener("click", () => { $("adminModal").classList.remove("hidden"); $("adminModal").classList.add("flex"); renderAdminLists(); });
+        $("closeAdmin").addEventListener("click", () => { $("adminModal").classList.add("hidden"); $("adminModal").classList.remove("flex"); });
+        $("adminUnlock").addEventListener("click", () => {
+           if($("adminCode").value === CONFIG.adminPin){
               adminUnlocked = true;
               $("adminState").innerText = "Unlocked";
               renderAdminLists();
            } else { $("adminState").innerText = "Invalid"; }
         });
-
         function renderAdminLists(){
            const rsvps = JSON.parse(SafeStorage.getItem(LS.rsvp) || "[]");
-           $("rsvpLocalList").innerHTML = rsvps.length
-             ? rsvps.map(r => `<div class="mb-1 font-mono text-[9px]">${(r.name||"-")} - ${(r.attendance||"-")}</div>`).join("")
-             : `<div class="text-[9px] text-[#9C8C96]/70 font-mono">No RSVPs yet</div>`;
-
+           $("rsvpLocalList").innerHTML = rsvps.map(r => `<div class="mb-1 font-mono text-[9px]">${r.name} - ${r.attendance}</div>`).join("");
            const gbs = JSON.parse(SafeStorage.getItem(LS.guestbook) || "[]");
-           $("guestbookLocalList").innerHTML = gbs.length
-             ? gbs.map(g => `<div class="mb-1 font-mono text-[9px]">${(g.name||"-")}: ${(g.message||"-")}</div>`).join("")
-             : `<div class="text-[9px] text-[#9C8C96]/70 font-mono">No messages yet</div>`;
+           $("guestbookLocalList").innerHTML = gbs.map(g => `<div class="mb-1 font-mono text-[9px]">${g.name}: ${g.message}</div>`).join("");
         }
-
         function downloadCSV(content, filename){
            const blob = new Blob([content], {type: 'text/csv'});
            const url = window.URL.createObjectURL(blob);
            const a = document.createElement("a");
            a.href = url; a.download = filename; a.click();
         }
-
-        $("exportRsvp")?.addEventListener("click", () => {
+        $("exportRsvp").addEventListener("click", () => {
            if(!adminUnlocked) return alert("Unlock admin first");
            const data = JSON.parse(SafeStorage.getItem(LS.rsvp) || "[]");
            if(!data.length) return alert("No data");
            const keys = Object.keys(data[0]);
-           const csv = [keys.join(","), ...data.map(row => keys.map(k => `"${String(row[k] ?? "").replace(/"/g,'""')}"`).join(","))].join("\n");
+           const csv = [keys.join(","), ...data.map(row => keys.map(k => `"${row[k]}"`).join(","))].join("\n");
            downloadCSV(csv, "rsvp_vip.csv");
         });
-
-        $("exportGuestbook")?.addEventListener("click", () => {
+        $("exportGuestbook").addEventListener("click", () => {
            if(!adminUnlocked) return alert("Unlock admin first");
            const data = JSON.parse(SafeStorage.getItem(LS.guestbook) || "[]");
            if(!data.length) return alert("No data");
            const keys = Object.keys(data[0]);
-           const csv = [keys.join(","), ...data.map(row => keys.map(k => `"${String(row[k] ?? "").replace(/"/g,'""')}"`).join(","))].join("\n");
+           const csv = [keys.join(","), ...data.map(row => keys.map(k => `"${row[k]}"`).join(","))].join("\n");
            downloadCSV(csv, "guestbook_vip.csv");
         });
 
+        // QR & Reveal
+        const pageUrl = window.location.href;
+        if(window.QRCode){
+           if($("qr-rsvp")) new QRCode($("qr-rsvp"), { text: pageUrl + "#rsvp", width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+           if($("qr-map")) new QRCode($("qr-map"), { text: CONFIG.venueQuery, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+           if($("qr-share")) new QRCode($("qr-share"), { text: pageUrl, width: 100, height: 100, colorDark: "#C6A664", colorLight: "#0D0208" });
+        }
         function revealAll(){
            const observer = new IntersectionObserver((entries) => {
              entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("active"); });
