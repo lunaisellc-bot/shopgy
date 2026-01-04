@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>THE GRAND CELEBRATION | Royal Masterpiece</title>
+  <title>THE GRAND CELEBRATION | Royal Red Seal</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -18,7 +18,7 @@
       theme: {
         extend: {
           fontFamily: {
-            'luxury': ['Cinzel Decorative', 'serif'], /* Başlık fontu değişti */
+            'luxury': ['Cinzel Decorative', 'serif'],
             'sub': ['Cinzel', 'serif'],
             'elegant': ['Cormorant Garamond', 'serif'],
             'script': ['Pinyon Script', 'cursive'],
@@ -61,16 +61,11 @@
     :root {
       /* DERİN KADİFE PALETİ */
       --bg-deep: #0D0208;
-      --bg-purple: #1A0B1C;
-      --bg-coffee: #241318;
-      
       --gold-light: #FFF5C2;
       --gold: #C6A664;
       --gold-dark: #806330;
-      
       --text-main: #F2EBE5;
       --text-muted: #9C8C96;
-      
       --glass: rgba(255, 255, 255, 0.03);
       --border-gold: rgba(198, 166, 100, 0.3);
     }
@@ -82,16 +77,16 @@
       min-height: 100vh;
     }
 
-    /* --- 1. SİNEMATİK ARKAPLAN (Noise & Vignette) --- */
+    /* --- SİNEMATİK ARKAPLAN (Kadife Dokusu) --- */
     .bg-cinema {
         position: fixed; inset: 0; z-index: -2;
-        /* Zengin Mor-Kahve Gradyan */
-        background: radial-gradient(circle at 50% 30%, #3a1c2e 0%, #180a14 50%, #050103 100%);
+        /* Zengin Mor-Kahve-Bordo Karışımı Gradyan */
+        background: radial-gradient(circle at 50% 40%, #4a192c 0%, #1f0b15 60%, #080205 100%);
     }
     
     .noise-overlay {
         position: fixed; inset: -50%; width: 200%; height: 200%; z-index: -1;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
         animation: grain 8s steps(10) infinite;
         pointer-events: none;
         mix-blend-mode: overlay;
@@ -99,13 +94,14 @@
 
     .vignette {
         position: fixed; inset: 0; z-index: 0; pointer-events: none;
-        background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.8) 100%);
+        background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.85) 100%);
     }
 
-    /* --- 2. GELİŞMİŞ SÜSLÜ ÇERÇEVE (SVG ORNAMENTS) --- */
+    /* --- SÜSLÜ ÇERÇEVE --- */
     .ornamental-frame {
         position: fixed; inset: 15px; pointer-events: none; z-index: 50;
         border: 1px solid rgba(198, 166, 100, 0.15);
+        box-shadow: inset 0 0 80px rgba(0,0,0,0.5);
     }
     .corner-ornament {
         position: fixed; width: 80px; height: 80px; z-index: 51; pointer-events: none;
@@ -117,23 +113,64 @@
     .c-bl { bottom: 15px; left: 15px; transform: scaleY(-1); }
     .c-br { bottom: 15px; right: 15px; transform: scale(-1, -1); }
 
-    /* --- 4. ALTIN VARAKLI YAZILAR --- */
+    /* --- YENİ KIRMIZI WAX SEAL (CSS İle Gerçekçi Mühür) --- */
+    .red-wax-wrapper {
+        position: relative; width: 150px; height: 150px;
+        display: flex; align-items: center; justify-content: center;
+        filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7));
+        cursor: pointer;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .red-wax-wrapper:hover { transform: scale(1.05); }
+    
+    .red-wax-blob {
+        position: absolute; inset: 0;
+        /* Kırmızı Balmumu Gradyanı */
+        background: radial-gradient(circle at 30% 30%, #D93838, #9E1B1B, #660000);
+        border-radius: 46% 54% 49% 51% / 52% 48% 52% 48%; /* Düzensiz, doğal şekil */
+        box-shadow: 
+            inset 3px 3px 10px rgba(255,255,255,0.3), /* Parlama */
+            inset -5px -5px 15px rgba(0,0,0,0.5), /* İç Gölge */
+            0 0 0 3px #850000; /* Dış Sınır */
+    }
+    
+    .red-wax-inner {
+        position: absolute; width: 72%; height: 72%;
+        border-radius: 50%;
+        border: 2px solid rgba(100, 0, 0, 0.4);
+        background: radial-gradient(circle at 40% 40%, #B31E1E, #800000);
+        box-shadow: 
+            inset 2px 2px 5px rgba(0,0,0,0.4), 
+            1px 1px 2px rgba(255,255,255,0.2);
+        display: flex; align-items: center; justify-content: center;
+    }
+    
+    .seal-initial {
+        font-family: 'Cinzel Decorative', serif;
+        font-size: 4.5rem; 
+        color: #600000; /* Koyu Bordo Harf */
+        /* Harfi içeri gömme efekti (Embossed) */
+        text-shadow: 
+            1px 1px 1px rgba(255,255,255,0.2), 
+            -1px -1px 2px rgba(0,0,0,0.6);
+        transform: translateY(2px); /* Optik hizalama */
+    }
+
+    /* --- TYPOGRAPHY & GLASS --- */
     .text-gradient-gold {
         background: linear-gradient(to bottom, #FFF5C2 0%, #C6A664 40%, #806330 100%);
         -webkit-background-clip: text; background-clip: text; color: transparent;
         text-shadow: 0 0 40px rgba(198,166,100, 0.3);
     }
     
-    /* --- 5. CAM (GLASS) PANELLER --- */
     .glass-card {
-        background: rgba(20, 10, 20, 0.4);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: rgba(30, 10, 20, 0.4); /* Hafif kırmızı/mor tint */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(198, 166, 100, 0.15);
         box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(198, 166, 100, 0.05);
     }
 
-    /* Entrance Flash */
     .flash-effect {
         position: fixed; inset: 0; background: #FFF; z-index: 150;
         pointer-events: none; opacity: 0; transition: opacity 1.5s ease-out;
@@ -141,14 +178,12 @@
     .flash-effect.trigger { opacity: 0.6; animation: flashFade 1.2s forwards; }
     @keyframes flashFade { to { opacity: 0; } }
 
-    /* Reveal Animations */
     .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* Giriş Ekranı */
     #entrance-screen {
         position: fixed; inset: 0; z-index: 110; 
-        background: radial-gradient(circle at center, #2E1A26 0%, #0D0208 100%);
+        background: radial-gradient(circle at center, #351220 0%, #0F0308 100%);
         display: flex; flex-direction: column; align-items: center; justify-content: center;
         transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
@@ -156,32 +191,20 @@
 
     /* Custom Scrollbar */
     .hide-scrollbar::-webkit-scrollbar { display: none; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0D0208; }
+    ::-webkit-scrollbar-thumb { background: #C6A664; border-radius: 4px; }
     
-    /* Form Elements */
+    /* Inputs */
     input, select, textarea {
-        background: rgba(0,0,0,0.2); border-bottom: 1px solid rgba(198, 166, 100, 0.3);
+        background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(198, 166, 100, 0.3);
         color: var(--text-main); outline: none; transition: 0.3s;
     }
     input:focus, select:focus, textarea:focus {
-        border-color: var(--gold); background: rgba(198, 166, 100, 0.05);
+        border-color: var(--gold); background: rgba(198, 166, 100, 0.08);
     }
     
-    /* Admin Modal */
-    #adminModal {
-        background: rgba(13, 2, 8, 0.95);
-    }
-
-    /* Yeni Eklenen Kırmızı Mühür Stili */
-    .red-wax-seal {
-      width: 180px;
-      height: auto;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .red-wax-seal:hover {
-      transform: scale(1.05);
-    }
+    #adminModal { background: rgba(13, 2, 8, 0.95); }
   </style>
 </head>
 
@@ -210,8 +233,11 @@
 
   <div id="pin-screen" class="fixed inset-0 z-[120] bg-[#0D0208] flex items-center justify-center hidden">
     <div class="w-full max-w-sm px-8 relative z-10">
-      <div class="glass-card rounded-sm p-10 text-center">
-        <div class="mb-6 font-luxury text-3xl text-gradient-gold animate-pulse">S</div>
+      <div class="glass-card rounded-sm p-10 text-center border border-[#C6A664]/20">
+        <div class="red-wax-wrapper w-20 h-20 mx-auto mb-6 scale-75">
+            <div class="red-wax-blob"></div>
+            <div class="red-wax-inner"><span class="seal-initial text-3xl">S</span></div>
+        </div>
         <p class="font-sub text-[#9C8C96] tracking-[0.3em] text-xs mb-8 uppercase">Private Access</p>
         <div id="pinBox">
           <input id="pinInput" type="tel" maxlength="10" 
@@ -227,7 +253,12 @@
   <div id="entrance-screen">
     <div class="text-center px-6 relative z-10 flex flex-col items-center">
       
-      <img src="assets/red-wax-seal.png" alt="Royal Wax Seal" class="red-wax-seal mb-12" id="sealBtn">
+      <div class="red-wax-wrapper mb-12" id="sealBtn">
+         <div class="red-wax-blob"></div>
+         <div class="red-wax-inner">
+            <span class="seal-initial">S</span>
+         </div>
+      </div>
       
       <h2 class="font-luxury text-gradient-gold text-2xl tracking-[0.2em] mb-4" id="privateLabel">PRIVATE INVITATION</h2>
       <p class="font-elegant text-[#9C8C96] text-lg italic mb-12" id="clickLabel">Strictly Personal & Confidential</p>
