@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinY Studio | Premium Digital Assets</title>
+  <meta name="description" content="High-end mockups, AI prompt engineering packages, and video templates for ambitious creators and brands." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          colors: {
+            bgdark: '#0B0B15',
+            surface: '#12121A',
+            neon: '#00DC82',
+            purple: '#7B61FF',
+            gold: '#D4AF37'
+          },
+          animation: {
+            'float-slow': 'float 8s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-15px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    
+    /* Studio Işıklandırması */
+    .studio-light { position: fixed; pointer-events: none; z-index: -1; opacity: 0.4; filter: blur(120px); }
+    .light-top-left { top: -20%; left: -20%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(123,97,255,0.2), transparent 70%); }
+    .light-bottom-right { bottom: -20%; right: -20%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(0,220,130,0.15), transparent 70%); }
+
+    /* Ürün Kartı Efektleri */
+    .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-card img { transition: all 0.6s ease; }
+    .product-card:hover img { transform: scale(1.05); }
+    .product-overlay { background: linear-gradient(to top, #0B0B15 10%, transparent); opacity: 0.8; transition: 0.4s; }
+    .product-card:hover .product-overlay { opacity: 0.95; background: linear-gradient(to top, #0B0B15 30%, rgba(123,97,255,0.2)); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body class="font-sans selection:bg-purple selection:text-white">
+
+  <div class="studio-light light-top-left"></div>
+  <div class="studio-light light-bottom-right"></div>
+
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-purple to-gold p-[1px]">
+            <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
+                <span class="font-bold text-lg text-white">V</span>
+            </div>
+        </div>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-purple">STUDIO</span></span>
+    </a>
+    
+    <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+      <a href="#mockups" class="hover:text-white transition" data-i18n="nav_mock">Mockups</a>
+      <a href="#prompts" class="hover:text-white transition" data-i18n="nav_ai">AI Prompts</a>
+      <a href="#bundles" class="hover:text-white transition" data-i18n="nav_bundle">Bundles</a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+      <a href="#" class="relative group">
+          <i class="fa-solid fa-bag-shopping text-xl text-gray-400 group-hover:text-white transition"></i>
+          <span class="absolute -top-2 -right-2 w-4 h-4 bg-neon text-black text-[9px] font-bold rounded-full flex items-center justify-center">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="pt-40 pb-24 px-6">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div class="reveal active">
+              <span class="text-purple text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="hero_badge">Digital Atelier</span>
+              <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
+                  <span data-i18n="hero_t1">Engineered</span> <br>
+                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple via-white to-gold font-serif italic" data-i18n="hero_t2">Aesthetics.</span>
+              </h1>
+              <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg border-l-2 border-white/10 pl-6" data-i18n="hero_desc">
+                  Stop using generic assets. Elevate your brand with studio-grade mockups and AI prompts designed for the algorithmic era. Crafted for perfectionists.
+              </p>
+              <div class="flex gap-4">
+                  <a href="#shop" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-purple hover:text-white transition shadow-lg shadow-purple/20">
+                      <span data-i18n="btn_shop">Explore The Collection</span>
+                  </a>
+              </div>
+          </div>
+
+          <div class="relative reveal delay-200 h-[500px] grid grid-cols-2 grid-rows-2 gap-4">
+               <div class="rounded-3xl overflow-hidden relative group animate-float-slow" style="animation-delay: 0s;">
+                   <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=600" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700">
+                   <div class="absolute inset-0 bg-purple/20 mix-blend-overlay"></div>
+                   <div class="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-widest">Neural Prompts</div>
+               </div>
+               <div class="rounded-3xl overflow-hidden relative group animate-float-slow" style="animation-delay: 1s; margin-top: 2rem;">
+                   <img src="https://images.unsplash.com/photo-1558303141-80f614b4026d?q=80&w=600" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700">
+                   <div class="absolute inset-0 bg-gold/10 mix-blend-overlay"></div>
+                   <div class="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-widest">Vogue Apparel</div>
+               </div>
+               <div class="rounded-3xl overflow-hidden relative group animate-float-slow col-span-2" style="animation-delay: 2s; margin-top: -2rem;">
+                   <img src="https://images.unsplash.com/photo-1633412802942-52547824230c?q=80&w=1200" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition duration-700">
+                   <div class="absolute inset-0 bg-neon/10 mix-blend-overlay"></div>
+                   <div class="absolute center-center inset-0 flex items-center justify-center">
+                       <i class="fa-solid fa-play-circle text-4xl text-white/80"></i>
+                   </div>
+                   <div class="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-widest">Motion Cinematics</div>
+               </div>
+          </div>
+      </div>
+  </header>
+
+  <section id="shop" class="py-24 bg-surface/50 border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-6">
+          
+          <div id="mockups" class="mb-24 reveal">
+              <div class="flex justify-between items-end mb-12">
+                  <div>
+                      <h2 class="text-3xl font-bold mb-2" data-i18n="cat1_title">The Vogue Atelier / Mockups</h2>
+                      <p class="text-gray-400 text-sm" data-i18n="cat1_desc">High-fashion aesthetics. Ultra-realistic textures. 4K Resolution.</p>
+                  </div>
+                  <a href="#" class="text-xs font-bold uppercase tracking-widest text-gold hover:underline">View All <i class="fa-solid fa-arrow-right ml-1"></i></a>
+              </div>
+
+              <div class="grid md:grid-cols-3 gap-8">
+                  <div class="product-card group relative rounded-2xl overflow-hidden bg-bgdark border border-white/10 cursor-pointer">
+                      <div class="aspect-[4/5] overflow-hidden relative">
+                          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800" class="w-full h-full object-cover">
+                          <div class="absolute inset-0 product-overlay"></div>
+                          <div class="absolute bottom-0 p-6 w-full">
+                              <div class="flex gap-2 mb-3">
+                                  <span class="px-2 py-1 bg-white/10 text-[9px] font-bold uppercase tracking-widest rounded-md">PSD</span>
+                                  <span class="px-2 py-1 bg-white/10 text-[9px] font-bold uppercase tracking-widest rounded-md">4K</span>
+                              </div>
+                              <h3 class="text-xl font-serif text-white mb-1">Silk & Shadow T-Shirt</h3>
+                              <div class="flex justify-between items-center">
+                                  <span class="text-gold font-bold">$39</span>
+                                  <button class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition hover:bg-gold"><i class="fa-solid fa-plus"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="product-card group relative rounded-2xl overflow-hidden bg-bgdark border border-white/10 cursor-pointer">
+                      <div class="aspect-[4/5] overflow-hidden relative">
+                          <img src="https://images.unsplash.com/photo-1603252109360-909baaf261c7?q=80&w=800" class="w-full h-full object-cover">
+                          <div class="absolute inset-0 product-overlay"></div>
+                          <div class="absolute bottom-0 p-6 w-full">
+                              <div class="flex gap-2 mb-3">
+                                  <span class="px-2 py-1 bg-white/10 text-[9px] font-bold uppercase tracking-widest rounded-md">PSD</span>
+                                  <span class="px-2 py-1 bg-white/10 text-[9px] font-bold uppercase tracking-widest rounded-md">Smart Object</span>
+                              </div>
+                              <h3 class="text-xl font-serif text-white mb-1">Minimalist Hoodie Stack</h3>
+                              <div class="flex justify-between items-center">
+                                  <span class="text-gold font-bold">$45</span>
+                                  <button class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition hover:bg-gold"><i class="fa-solid fa-plus"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="product-card group relative rounded-2xl overflow-hidden bg-bgdark border border-white/10 cursor-pointer">
+                      <div class="aspect-[4/5] overflow-hidden relative">
+                          <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800" class="w-full h-full object-cover">
+                          <div class="absolute inset-0 product-overlay"></div>
+                          <div class="absolute bottom-0 p-6 w-full">
+                              <div class="flex gap-2 mb-3">
+                                  <span class="px-2 py-1 bg-white/10 text-[9px] font-bold uppercase tracking-widest rounded-md">PSD</span>
+                                  <span class="px-2 py-1 bg-white/10 text-[9px] font-bold uppercase tracking-widest rounded-md">Scene Creator</span>
+                              </div>
+                              <h3 class="text-xl font-serif text-white mb-1">Branding Concrete V.1</h3>
+                              <div class="flex justify-between items-center">
+                                  <span class="text-gold font-bold">$59</span>
+                                  <button class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition hover:bg-gold"><i class="fa-solid fa-plus"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div id="prompts" class="mb-24 reveal">
+              <div class="flex justify-between items-end mb-12">
+                  <div>
+                      <h2 class="text-3xl font-bold mb-2" data-i18n="cat2_title">Neural Engines / AI Prompts</h2>
+                      <p class="text-gray-400 text-sm" data-i18n="cat2_desc">Engineered for Gemini, OpenGPT & Midjourney. Copy-paste brilliance.</p>
+                  </div>
+                  <a href="#" class="text-xs font-bold uppercase tracking-widest text-purple hover:underline">View All <i class="fa-solid fa-arrow-right ml-1"></i></a>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                  <div class="product-card group relative rounded-2xl overflow-hidden bg-[#090910] border border-purple/20 cursor-pointer p-8">
+                      <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl text-purple group-hover:rotate-12 transition"><i class="fa-solid fa-brain"></i></div>
+                      <div class="mb-6">
+                          <span class="px-3 py-1 bg-purple/10 text-purple text-[10px] font-bold uppercase tracking-widest rounded-full">Text Gen</span>
+                      </div>
+                      <h3 class="text-2xl font-bold text-white mb-4">The Etsy Description Architect</h3>
+                      <p class="text-gray-400 text-sm mb-8">A massive prompt system to generate SEO-optimized, persuasive product descriptions in seconds. Works with Gemini & GPT-4.</p>
+                      
+                      <div class="p-4 bg-bgdark rounded-lg border border-white/5 font-mono text-xs text-gray-500 mb-6 relative overflow-hidden">
+                          <div class="absolute top-2 right-2 text-[9px] uppercase text-gray-600">Snippet</div>
+                          <span class="text-purple">/imagine</span> a persuasive product description for a [handmade ceramic mug] targeting [minimalist decor lovers]. Use keywords: [earthy, wabi-sabi]...
+                      </div>
+
+                      <div class="flex justify-between items-center pt-6 border-t border-white/5">
+                          <span class="text-white font-bold text-xl">$49</span>
+                          <button class="px-6 py-2 bg-purple text-white rounded-full text-xs font-bold uppercase hover:bg-white hover:text-black transition">Add to Cart</button>
+                      </div>
+                  </div>
+                  
+                  <div class="product-card group relative rounded-2xl overflow-hidden bg-[#050A08] border border-neon/20 cursor-pointer p-8">
+                      <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl text-neon group-hover:rotate-12 transition"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                      <div class="mb-6">
+                          <span class="px-3 py-1 bg-neon/10 text-neon text-[10px] font-bold uppercase tracking-widest rounded-full">Image Gen</span>
+                      </div>
+                      <h3 class="text-2xl font-bold text-white mb-4">Midjourney V6: Luxury Product Photography</h3>
+                      <p class="text-gray-400 text-sm mb-8">Generate hyper-realistic, editorial-style product photos without a camera. Perfect for jewelry, cosmetics, and tech.</p>
+                      
+                      <div class="grid grid-cols-3 gap-2 mb-6">
+                          <img src="https://images.unsplash.com/photo-1615655406736-b37c4fabf923?q=80&w=200" class="rounded-lg opacity-60 grayscale group-hover:grayscale-0 transition">
+                          <img src="https://images.unsplash.com/photo-1600857062241-98e5dba03b14?q=80&w=200" class="rounded-lg opacity-60 grayscale group-hover:grayscale-0 transition">
+                          <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=200" class="rounded-lg opacity-60 grayscale group-hover:grayscale-0 transition">
+                      </div>
+
+                      <div class="flex justify-between items-center pt-6 border-t border-white/5">
+                          <span class="text-white font-bold text-xl">$59</span>
+                          <button class="px-6 py-2 bg-neon text-black rounded-full text-xs font-bold uppercase hover:bg-white transition">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+  </section>
+
+  <section class="py-24 bg-bgdark border-t border-white/5">
+      <div class="max-w-4xl mx-auto text-center px-6 reveal">
+          <h2 class="text-3xl md:text-4xl font-serif text-white mb-8">Why The Studio Exists.</h2>
+          <div class="grid md:grid-cols-3 gap-8">
+              <div>
+                  <i class="fa-solid fa-gem text-gold text-3xl mb-4"></i>
+                  <h4 class="font-bold mb-2">Vogue Aesthetics</h4>
+                  <p class="text-gray-400 text-sm">We don't do basic. Our assets are curated for high-end brands that need to stand out.</p>
+              </div>
+              <div>
+                  <i class="fa-solid fa-microchip text-purple text-3xl mb-4"></i>
+                  <h4 class="font-bold mb-2">Engineered Intelligence</h4>
+                  <p class="text-gray-400 text-sm">Our AI prompts aren't guesses. They are tested, refined, and proven to generate results.</p>
+              </div>
+              <div>
+                  <i class="fa-solid fa-bolt text-neon text-3xl mb-4"></i>
+                  <h4 class="font-bold mb-2">Instant Elevation</h4>
+                  <p class="text-gray-400 text-sm">Download instantly. Apply immediately. See your brand value increase in minutes.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5 relative z-10">
+      <div class="mb-4 text-white font-serif tracking-widest uppercase">VitrinY Studio</div>
+      <p>&copy; 2026 Lunaise LLC. Digital Assets Division.</p>
+  </footer>
+
+  <script>
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Translations
+    const translations = {
+      en: {
+        nav_mock: "Mockups", nav_ai: "AI Prompts", nav_bundle: "Bundles",
+        hero_badge: "Digital Atelier",
+        hero_t1: "Engineered", hero_t2: "Aesthetics.",
+        hero_desc: "Stop using generic assets. Elevate your brand with studio-grade mockups and AI prompts designed for the algorithmic era. Crafted for perfectionists.",
+        btn_shop: "Explore The Collection",
+        cat1_title: "The Vogue Atelier / Mockups", cat1_desc: "High-fashion aesthetics. Ultra-realistic textures. 4K Resolution.",
+        cat2_title: "Neural Engines / AI Prompts", cat2_desc: "Engineered for Gemini, OpenGPT & Midjourney. Copy-paste brilliance."
+      },
+      tr: {
+        nav_mock: "Mockup'lar", nav_ai: "AI Promptları", nav_bundle: "Paketler",
+        hero_badge: "Dijital Atölye",
+        hero_t1: "Tasarlanmış", hero_t2: "Estetik.",
+        hero_desc: "Sıradan varlıkları kullanmayı bırakın. Algoritmik çağ için tasarlanmış stüdyo kalitesinde mockup'lar ve AI promptları ile markanızı yükseltin. Mükemmeliyetçiler için üretildi.",
+        btn_shop: "Koleksiyonu Keşfet",
+        cat1_title: "Vogue Atölyesi / Mockup'lar", cat1_desc: "Yüksek moda estetiği. Ultra gerçekçi dokular. 4K Çözünürlük.",
+        cat2_title: "Nöral Motorlar / AI Promptları", cat2_desc: "Gemini, OpenGPT & Midjourney için mühendislik harikası. Kopyala-yapıştır parlaklık."
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    
+    function applyLang() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+        });
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    }
+
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        localStorage.setItem('lang', currentLang);
+        applyLang();
+    }
+    applyLang();
+  </script>
+
+</body>
+</html>
