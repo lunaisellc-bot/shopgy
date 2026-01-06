@@ -65,7 +65,7 @@
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* Anchor Fix */
-    section { scroll-margin-top: 100px; }
+    section { scroll-margin-top: 110px; }
 
     /* Cart Drawer Transition */
     #cart-drawer { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -95,11 +95,11 @@
               <span class="text-gray-400" data-i18n="cart_total">Total</span>
               <span id="cart-total" class="text-2xl font-bold text-white">$0</span>
           </div>
-          <button onclick="checkoutWhatsApp()" class="w-full py-4 bg-neon text-black font-bold uppercase tracking-widest rounded-full hover:bg-white transition mb-3">
-              <i class="fa-brands fa-whatsapp mr-2"></i> <span data-i18n="btn_checkout_wa">Request via WhatsApp</span>
+          <button onclick="checkoutEtsy()" class="w-full py-4 bg-[#F1641E] text-white font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-[#F1641E] transition mb-3">
+              <span data-i18n="btn_checkout_etsy">Complete on Etsy</span> <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
           </button>
           <div class="text-center">
-             <span class="text-[10px] text-gray-600 uppercase" data-i18n="cart_note">Instant Download Links Sent After Confirmation</span>
+             <span class="text-[10px] text-gray-500 uppercase" data-i18n="cart_note">You will complete your purchase securely on Etsy.</span>
           </div>
       </div>
   </div>
@@ -141,26 +141,36 @@
               <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg border-l-2 border-white/10 pl-6" data-i18n="hero_desc">
                   Stop using generic assets. Elevate your brand with studio-grade mockups and AI prompts designed for the algorithmic era.
               </p>
-              <div class="flex gap-4">
-                  <a href="#mockups" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-purple hover:text-white transition shadow-lg shadow-purple/20">
-                      <span data-i18n="btn_shop">Explore The Collection</span>
-                  </a>
+              
+              <div class="glass-card p-6 rounded-2xl grid grid-cols-3 gap-4 text-center border-l-4 border-l-purple/50">
+                  <div>
+                      <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1" data-i18n="qs_what_t">What you get</div>
+                      <div class="text-xs font-bold text-white" data-i18n="qs_what_d">Mockups & Prompts</div>
+                  </div>
+                  <div class="border-l border-white/10">
+                      <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1" data-i18n="qs_del_t">Delivery</div>
+                      <div class="text-xs font-bold text-white" data-i18n="qs_del_d">Instant Download</div>
+                  </div>
+                  <div class="border-l border-white/10">
+                      <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1" data-i18n="qs_lic_t">License</div>
+                      <div class="text-xs font-bold text-white" data-i18n="qs_lic_d">Personal & Comm.</div>
+                  </div>
               </div>
           </div>
 
           <div class="relative reveal delay-200 h-[500px] grid grid-cols-2 grid-rows-2 gap-4">
                <div class="rounded-3xl overflow-hidden relative group animate-float-slow" style="animation-delay: 0s;">
-                   <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=600" alt="AI Art" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700">
+                   <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=600" alt="AI Art" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700">
                    <div class="absolute inset-0 bg-purple/20 mix-blend-overlay"></div>
                    <div class="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-widest">Neural Prompts</div>
                </div>
                <div class="rounded-3xl overflow-hidden relative group animate-float-slow" style="animation-delay: 1s; margin-top: 2rem;">
-                   <img src="https://images.unsplash.com/photo-1558303141-80f614b4026d?q=80&w=600" alt="Mockup" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700">
+                   <img src="https://images.unsplash.com/photo-1558303141-80f614b4026d?q=80&w=600" alt="Mockup" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700">
                    <div class="absolute inset-0 bg-gold/10 mix-blend-overlay"></div>
                    <div class="absolute bottom-4 left-4 text-xs font-bold uppercase tracking-widest">Vogue Apparel</div>
                </div>
                <div class="rounded-3xl overflow-hidden relative group animate-float-slow col-span-2" style="animation-delay: 2s; margin-top: -2rem;">
-                   <img src="https://images.unsplash.com/photo-1633412802942-52547824230c?q=80&w=1200" alt="Video" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition duration-700">
+                   <img src="https://images.unsplash.com/photo-1633412802942-52547824230c?q=80&w=1200" alt="Video" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition duration-700">
                    <div class="absolute inset-0 bg-neon/10 mix-blend-overlay"></div>
                    <div class="absolute center-center inset-0 flex items-center justify-center">
                        <i class="fa-solid fa-play-circle text-4xl text-white/80"></i>
@@ -171,7 +181,33 @@
       </div>
   </header>
 
-  <section id="mockups" class="py-24 bg-surface/50 border-y border-white/5">
+  <section class="py-16 bg-surface/30 border-y border-white/5">
+      <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+          <div class="flex items-start gap-4 reveal">
+              <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-purple text-lg shrink-0 border border-white/5">1</div>
+              <div>
+                  <h4 class="font-bold text-white mb-1" data-i18n="hw_1_t">Choose Assets</h4>
+                  <p class="text-xs text-gray-400" data-i18n="hw_1_d">Browse our collection of studio-grade mockups and engineered prompts.</p>
+              </div>
+          </div>
+          <div class="flex items-start gap-4 reveal delay-100">
+              <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#F1641E] text-lg shrink-0 border border-white/5">2</div>
+              <div>
+                  <h4 class="font-bold text-white mb-1" data-i18n="hw_2_t">Secure Checkout</h4>
+                  <p class="text-xs text-gray-400" data-i18n="hw_2_d">Complete your purchase securely via Etsy's trusted payment platform.</p>
+              </div>
+          </div>
+          <div class="flex items-start gap-4 reveal delay-200">
+              <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-neon text-lg shrink-0 border border-white/5">3</div>
+              <div>
+                  <h4 class="font-bold text-white mb-1" data-i18n="hw_3_t">Instant Access</h4>
+                  <p class="text-xs text-gray-400" data-i18n="hw_3_d">Download your files immediately after payment confirmation.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section id="mockups" class="py-24">
       <div class="max-w-7xl mx-auto px-6">
           <div class="flex justify-between items-end mb-12 reveal">
               <div>
@@ -183,7 +219,7 @@
       </div>
   </section>
 
-  <section id="prompts" class="py-24">
+  <section id="prompts" class="py-24 bg-surface/50">
       <div class="max-w-7xl mx-auto px-6">
           <div class="flex justify-between items-end mb-12 reveal">
               <div>
@@ -213,28 +249,22 @@
               <div class="reveal">
                   <i class="fa-solid fa-layer-group text-purple text-2xl mb-4"></i>
                   <h3 class="text-lg font-bold text-white mb-2" data-i18n="t_comp_t">Compatibility</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="t_comp_d">
-                      Mockups: Adobe Photoshop CC (Smart Objects). <br>
-                      Prompts: Tested on GPT-4, Gemini Advanced, Midjourney v6.
-                  </p>
+                  <div class="text-sm text-gray-400 leading-relaxed" data-i18n-html="t_comp_d">
+                      </div>
               </div>
               
               <div class="reveal delay-100">
                   <i class="fa-solid fa-file-contract text-neon text-2xl mb-4"></i>
                   <h3 class="text-lg font-bold text-white mb-2" data-i18n="t_lic_t">Standard License</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="t_lic_d">
-                      Use for personal and commercial projects. Client work is permitted. 
-                      Reselling source files is strictly prohibited.
-                  </p>
+                  <div class="text-sm text-gray-400 leading-relaxed" data-i18n-html="t_lic_d">
+                      </div>
               </div>
 
               <div class="reveal delay-200">
                   <i class="fa-solid fa-bolt text-gold text-2xl mb-4"></i>
                   <h3 class="text-lg font-bold text-white mb-2" data-i18n="t_del_t">Instant Delivery</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="t_del_d">
-                      Digital files are sent immediately to your email upon payment confirmation. 
-                      Lifetime access to download links.
-                  </p>
+                  <div class="text-sm text-gray-400 leading-relaxed" data-i18n-html="t_del_d">
+                      </div>
               </div>
           </div>
 
@@ -242,16 +272,20 @@
               <h3 class="text-2xl font-serif text-center mb-10" data-i18n="faq_title">Common Questions</h3>
               <div class="space-y-4">
                   <div class="glass-card p-6 rounded-xl">
-                      <h4 class="font-bold text-white text-sm mb-2" data-i18n="q1_t">What is the refund policy?</h4>
-                      <p class="text-gray-400 text-xs leading-relaxed" data-i18n="q1_a">Due to the nature of digital products, all sales are final. However, if a file is corrupt, we will replace it immediately.</p>
+                      <h4 class="font-bold text-white text-sm mb-2" data-i18n="q1_t">What exactly do I receive?</h4>
+                      <p class="text-gray-400 text-xs leading-relaxed" data-i18n="q1_a">You will receive a digital download link immediately after checkout containing the PSD files, PDF guides, or text prompts.</p>
                   </div>
                   <div class="glass-card p-6 rounded-xl">
-                      <h4 class="font-bold text-white text-sm mb-2" data-i18n="q2_t">Do I need Photoshop?</h4>
-                      <p class="text-gray-400 text-xs leading-relaxed" data-i18n="q2_a">For Mockups, yes. You need Photoshop CC to use the Smart Object layers. For Prompts, you only need the AI platform account.</p>
+                      <h4 class="font-bold text-white text-sm mb-2" data-i18n="q2_t">Is this an Etsy product?</h4>
+                      <p class="text-gray-400 text-xs leading-relaxed" data-i18n="q2_a">Yes. We use Etsy for secure payment processing and file delivery. All transactions are handled by Etsy.</p>
                   </div>
                   <div class="glass-card p-6 rounded-xl">
-                      <h4 class="font-bold text-white text-sm mb-2" data-i18n="q3_t">Can I use this for my clients?</h4>
-                      <p class="text-gray-400 text-xs leading-relaxed" data-i18n="q3_a">Yes. You can use our mockups to present work to clients. You cannot sell the blank mockup file itself.</p>
+                      <h4 class="font-bold text-white text-sm mb-2" data-i18n="q3_t">What is the refund policy?</h4>
+                      <p class="text-gray-400 text-xs leading-relaxed" data-i18n="q3_a">Due to the nature of digital products, all sales are final. However, if a file is corrupt, we will replace it immediately.</p>
+                  </div>
+                  <div class="glass-card p-6 rounded-xl">
+                      <h4 class="font-bold text-white text-sm mb-2" data-i18n="q4_t">Can I use this for clients?</h4>
+                      <p class="text-gray-400 text-xs leading-relaxed" data-i18n="q4_a">Yes. You can use our mockups to present work to clients. You cannot resell the blank mockup file itself.</p>
                   </div>
               </div>
           </div>
@@ -261,6 +295,7 @@
   <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5 relative z-10">
       <div class="mb-4 text-white font-serif tracking-widest uppercase">VitrinY Studio</div>
       <p>&copy; 2026 Lunaise LLC. Digital Assets Division.</p>
+      <p class="mt-2 text-gray-700" data-i18n="footer_usd">Prices shown in USD.</p>
   </footer>
 
   <script>
@@ -273,7 +308,10 @@
             tags: ['PSD', '4K'],
             desc: 'Ultra-realistic silk texture with dramatic lighting control.',
             img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=600',
-            link: '#'
+            includes: ['1 High-Res PSD', 'Smart Objects', 'Video Tutorial'],
+            etsyUrl: 'ETSY_LISTING_URL',
+            license: 'commercial',
+            delivery: 'instant'
         },
         {
             id: 'm2', category: 'mockup',
@@ -281,7 +319,10 @@
             tags: ['PSD', 'Smart Object'],
             desc: 'Clean folded presentation for streetwear brands.',
             img: 'https://images.unsplash.com/photo-1603252109360-909baaf261c7?q=80&w=600',
-            link: '#'
+            includes: ['3 Angles', 'Color Changeable', 'Displacement Map'],
+            etsyUrl: 'ETSY_LISTING_URL',
+            license: 'commercial',
+            delivery: 'instant'
         },
         {
             id: 'm3', category: 'mockup',
@@ -289,7 +330,10 @@
             tags: ['Scene Creator'],
             desc: 'Business card and stationery on raw concrete surfaces.',
             img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600',
-            link: '#'
+            includes: ['5 Scenes', 'Foil Stamp Effect', 'Shadow Overlays'],
+            etsyUrl: 'ETSY_LISTING_URL',
+            license: 'commercial',
+            delivery: 'instant'
         },
         // Prompts
         {
@@ -299,7 +343,10 @@
             desc: 'Generate SEO-optimized product descriptions in seconds.',
             img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600',
             snippet: '/imagine a persuasive description...',
-            link: '#'
+            includes: ['Master Prompt PDF', '5 Variations', 'Keyword Guide'],
+            etsyUrl: 'ETSY_LISTING_URL',
+            license: 'personal',
+            delivery: 'instant'
         },
         {
             id: 'p2', category: 'prompt',
@@ -308,7 +355,10 @@
             desc: 'Hyper-realistic product photography without a camera.',
             img: 'https://images.unsplash.com/photo-1600857062241-98e5dba03b14?q=80&w=600',
             snippet: '--v 6.0 --style raw --ar 4:5',
-            link: '#'
+            includes: ['50+ Prompt Formulas', 'Lighting Guide', 'V6 Parameters'],
+            etsyUrl: 'ETSY_LISTING_URL',
+            license: 'personal',
+            delivery: 'instant'
         },
         // Bundles
         {
@@ -317,7 +367,10 @@
             tags: ['12 Mockups', '5 Prompts'],
             desc: 'Everything you need to launch a clothing brand. Includes T-shirt, Hoodie, and Hat mockups plus Social Media prompts.',
             img: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=800',
-            link: '#'
+            includes: ['12 PSD Files', '5 AI Prompt Sets', 'Launch Checklist'],
+            etsyUrl: 'ETSY_LISTING_URL',
+            license: 'commercial',
+            delivery: 'instant'
         },
         {
             id: 'b2', category: 'bundle',
@@ -325,7 +378,10 @@
             tags: ['SEO Guide', 'Shop Banner'],
             desc: 'Storefront mockup templates and ChatGPT prompts for customer service replies and listing optimization.',
             img: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=800',
-            link: '#'
+            includes: ['Banner Templates', 'CS Prompts', 'SEO Keywords'],
+            etsyUrl: 'ETSY_LISTING_URL',
+            license: 'commercial',
+            delivery: 'instant'
         }
     ];
 
@@ -335,27 +391,39 @@
             nav_mock: "Mockups", nav_ai: "AI Prompts", nav_bundle: "Bundles", nav_info: "Info",
             hero_badge: "Digital Atelier",
             hero_t1: "Engineered", hero_t2: "Aesthetics.",
-            hero_desc: "Stop using generic assets. Elevate your brand with studio-grade mockups and AI prompts designed for the algorithmic era.",
+            hero_desc: "Stop using generic assets. Elevate your brand with studio-grade mockups and AI prompts designed for the algorithmic era. Crafted for perfectionists.",
             btn_shop: "Explore The Collection",
             
+            qs_what_t: "What you get", qs_what_d: "Mockups & Prompts",
+            qs_del_t: "Delivery", qs_del_d: "Instant Download",
+            qs_lic_t: "License", qs_lic_d: "Personal & Comm.",
+
+            hw_1_t: "Choose Assets", hw_1_d: "Browse our collection of studio-grade mockups and engineered prompts.",
+            hw_2_t: "Secure Checkout", hw_2_d: "Complete your purchase securely via Etsy's trusted payment platform.",
+            hw_3_t: "Instant Access", hw_3_d: "Download your files immediately after payment confirmation.",
+
             cat1_title: "The Vogue Atelier / Mockups", cat1_desc: "High-fashion aesthetics. Ultra-realistic textures. 4K Resolution.",
             cat2_title: "Neural Engines / AI Prompts", cat2_desc: "Engineered for Gemini, OpenGPT & Midjourney. Copy-paste brilliance.",
             
             bundle_badge: "Full Access", bundle_title: "Curated Collections", bundle_desc: "Complete toolkits for brands ready to dominate. Save up to 40%.",
             
             cart_title: "Your Selection", cart_empty: "Your cart is empty.", cart_total: "Total",
-            btn_checkout_wa: "Request via WhatsApp", cart_note: "Instant Download Links Sent After Confirmation",
+            btn_checkout_etsy: "Complete on Etsy", cart_note: "You will complete your purchase securely on Etsy.",
             
-            t_comp_t: "Compatibility", t_comp_d: "Mockups: Adobe Photoshop CC (Smart Objects). Prompts: Tested on GPT-4, Gemini Advanced, Midjourney v6.",
-            t_lic_t: "Standard License", t_lic_d: "Use for personal and commercial projects. Client work permitted. Reselling source files prohibited.",
-            t_del_t: "Instant Delivery", t_del_d: "Digital files sent immediately to email upon payment. Lifetime access.",
+            t_comp_t: "Compatibility", t_comp_d: "<p><strong>Mockups:</strong> Require Adobe Photoshop CC (Smart Objects enabled).</p><p><strong>Prompts:</strong> Tested on GPT-4, Gemini Advanced, and Midjourney v6.</p>",
+            t_lic_t: "Standard License", t_lic_d: "<p>You may use these assets for personal and commercial projects, including client work.</p><p class='text-gray-500 mt-1'>Reselling the source files or sharing download links is strictly prohibited.</p>",
+            t_del_t: "Instant Delivery", t_del_d: "<p>Digital files are sent immediately to your email upon payment confirmation by Etsy.</p><p>You receive lifetime access to future updates for that file.</p>",
             
             faq_title: "Common Questions",
-            q1_t: "Refund Policy?", q1_a: "Digital sales are final. If a file is corrupt, we replace it.",
-            q2_t: "Do I need Photoshop?", q2_a: "For Mockups, yes. For Prompts, no.",
-            q3_t: "Commercial Use?", q3_a: "Yes, you can use these for client projects.",
+            q1_t: "What exactly do I receive?", q1_a: "You will receive a digital download link immediately after checkout containing the PSD files, PDF guides, or text prompts.",
+            q2_t: "Is this an Etsy product?", q2_a: "Yes. We use Etsy for secure payment processing and file delivery. All transactions are handled by Etsy.",
+            q3_t: "What is the refund policy?", q3_a: "Due to the nature of digital products, all sales are final. However, if a file is corrupt, we will replace it immediately.",
+            q4_t: "Can I use this for clients?", q4_a: "Yes. You can use our mockups to present work to clients. You cannot resell the blank mockup file itself.",
             
-            lbl_add: "Add to Cart", lbl_added: "Added"
+            footer_usd: "Prices shown in USD.",
+            
+            lbl_add_to_cart: "Add to Cart", lbl_add_bundle: "Add Bundle",
+            lbl_includes: "Includes:", lbl_onetime: "One-time · Digital download"
         },
         tr: {
             nav_mock: "Mockup", nav_ai: "AI Prompt", nav_bundle: "Paketler", nav_info: "Bilgi",
@@ -364,24 +432,36 @@
             hero_desc: "Sıradan varlıkları kullanmayı bırakın. Algoritmik çağ için tasarlanmış stüdyo kalitesinde mockup'lar ile markanızı yükseltin.",
             btn_shop: "Koleksiyonu Keşfet",
             
+            qs_what_t: "İçerik", qs_what_d: "Mockup & Prompt",
+            qs_del_t: "Teslimat", qs_del_d: "Anında İndirme",
+            qs_lic_t: "Lisans", qs_lic_d: "Bireysel & Ticari",
+
+            hw_1_t: "Seçim Yapın", hw_1_d: "Stüdyo kalitesindeki mockup ve prompt koleksiyonumuzu inceleyin.",
+            hw_2_t: "Güvenli Ödeme", hw_2_d: "Satın almayı Etsy'nin güvenli ödeme altyapısı üzerinden tamamlayın.",
+            hw_3_t: "Hemen İndirin", hw_3_d: "Ödeme onayından hemen sonra dosyalarınıza erişin.",
+
             cat1_title: "Vogue Atölyesi / Mockuplar", cat1_desc: "Yüksek moda estetiği. Ultra gerçekçi dokular. 4K Çözünürlük.",
             cat2_title: "Nöral Motorlar / AI Promptları", cat2_desc: "Gemini, OpenGPT & Midjourney için mühendislik harikası.",
             
             bundle_badge: "Tam Erişim", bundle_title: "Küratörlü Koleksiyonlar", bundle_desc: "Markanızı domine edecek eksiksiz setler. %40 Tasarruf.",
             
             cart_title: "Sepetiniz", cart_empty: "Sepetiniz boş.", cart_total: "Toplam",
-            btn_checkout_wa: "WhatsApp ile Satın Al", cart_note: "Onaydan Sonra İndirme Linkleri Gönderilir",
+            btn_checkout_etsy: "Etsy'de Tamamla", cart_note: "Satın alma işlemi güvenli şekilde Etsy üzerinden tamamlanır.",
             
-            t_comp_t: "Uyumluluk", t_comp_d: "Mockup: Adobe Photoshop CC. Promptlar: GPT-4, Gemini, Midjourney v6 test edildi.",
-            t_lic_t: "Standart Lisans", t_lic_d: "Kişisel ve ticari projelerde kullanım. Müşteri işleri serbest. Dosya satışı yasak.",
-            t_del_t: "Anında Teslimat", t_del_d: "Ödeme sonrası dosyalar e-postanıza gönderilir. Ömür boyu erişim.",
+            t_comp_t: "Uyumluluk", t_comp_d: "<p><strong>Mockup:</strong> Adobe Photoshop CC (Akıllı Nesneler) gerektirir.</p><p><strong>Prompt:</strong> GPT-4, Gemini ve Midjourney v6 üzerinde test edilmiştir.</p>",
+            t_lic_t: "Standart Lisans", t_lic_d: "<p>Kişisel ve ticari projelerde (müşteri işleri dahil) kullanabilirsiniz.</p><p class='text-gray-500 mt-1'>Kaynak dosyaların satışı veya paylaşımı kesinlikle yasaktır.</p>",
+            t_del_t: "Anında Teslimat", t_del_d: "<p>Dosyalar, Etsy ödeme onayından hemen sonra e-postanıza gönderilir.</p><p>Satın aldığınız dosyaya ömür boyu erişim hakkınız vardır.</p>",
             
             faq_title: "Sıkça Sorulanlar",
-            q1_t: "İade Politikası?", q1_a: "Dijital ürünlerde iade yoktur. Dosya bozuksa yenisiyle değiştirilir.",
-            q2_t: "Photoshop Gerekli mi?", q2_a: "Mockuplar için evet. Promptlar için hayır.",
-            q3_t: "Ticari Kullanım?", q3_a: "Evet, müşteri projelerinizde kullanabilirsiniz.",
+            q1_t: "Tam olarak ne alıyorum?", q1_a: "Ödeme sonrası PSD dosyalarını, PDF rehberleri veya metin promptlarını içeren bir indirme linki alacaksınız.",
+            q2_t: "Bu bir Etsy ürünü mü?", q2_a: "Evet. Güvenli ödeme ve dosya teslimatı için Etsy altyapısını kullanıyoruz.",
+            q3_t: "İade politikanız nedir?", q3_a: "Dijital ürün doğası gereği iade yoktur. Ancak dosya bozuksa derhal yenisiyle değiştirilir.",
+            q4_t: "Müşterilerim için kullanabilir miyim?", q4_a: "Evet. Mockupları müşterilerinize sunum yaparken kullanabilirsiniz. Boş mockup dosyasını satamazsınız.",
             
-            lbl_add: "Sepete Ekle", lbl_added: "Eklendi"
+            footer_usd: "Fiyatlar USD cinsindendir.",
+            
+            lbl_add_to_cart: "Sepete Ekle", lbl_add_bundle: "Paketi Ekle",
+            lbl_includes: "İçerik:", lbl_onetime: "Tek seferlik · Dijital ürün"
         }
     };
 
@@ -389,7 +469,6 @@
     let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
     let cart = JSON.parse(localStorage.getItem('vitriny_cart')) || [];
 
-    // Render Products
     function renderProducts() {
         const mockups = products.filter(p => p.category === 'mockup');
         const prompts = products.filter(p => p.category === 'prompt');
@@ -401,23 +480,26 @@
     }
 
     function createCard(p, isPrompt = false) {
-        const btnText = translations[currentLang].lbl_add;
+        const labels = translations[currentLang];
         const tagsHtml = p.tags.map(t => `<span class="px-2 py-1 bg-white/10 text-[9px] font-bold uppercase tracking-widest rounded-md mr-1">${t}</span>`).join('');
         const snippetHtml = isPrompt ? `<div class="p-3 bg-bgdark rounded-lg border border-white/5 font-mono text-[10px] text-gray-500 mb-4 relative overflow-hidden"><span class="text-purple">${p.snippet}</span></div>` : '';
+        const includesHtml = p.includes ? `<div class="text-[10px] text-gray-500 mb-3"><strong class="text-gray-400">${labels.lbl_includes}</strong> ${p.includes.join(', ')}</div>` : '';
 
         return `
         <div class="product-card group relative rounded-2xl overflow-hidden bg-bgdark border border-white/10 flex flex-col h-full">
              <div class="aspect-[4/5] overflow-hidden relative">
-                  <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover">
+                  <img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" class="w-full h-full object-cover">
                   <div class="absolute inset-0 product-overlay"></div>
-                  <div class="absolute bottom-0 p-6 w-full">
+                  <div class="absolute bottom-0 p-6 w-full bg-gradient-to-t from-[#0B0B15] to-transparent">
                       <div class="mb-2">${tagsHtml}</div>
                       <h3 class="text-lg font-serif text-white mb-1 leading-tight">${p.title}</h3>
-                      <div class="text-xs text-gray-400 mb-3 line-clamp-2">${p.desc}</div>
+                      <div class="text-xs text-gray-400 mb-2 line-clamp-2">${p.desc}</div>
                       ${snippetHtml}
+                      ${includesHtml}
+                      <div class="text-[9px] text-gray-600 uppercase tracking-wide mb-3">${labels.lbl_onetime}</div>
                       <div class="flex justify-between items-center mt-auto">
                           <span class="text-gold font-bold text-lg">$${p.price}</span>
-                          <button onclick="addToCart('${p.id}')" aria-label="Add to cart" class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gold transition shadow-lg"><i class="fa-solid fa-plus"></i></button>
+                          <button onclick="addToCart('${p.id}')" aria-label="${labels.lbl_add_to_cart}" class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gold transition shadow-lg"><i class="fa-solid fa-plus"></i></button>
                       </div>
                   </div>
              </div>
@@ -425,20 +507,24 @@
     }
 
     function createBundleCard(p) {
+        const labels = translations[currentLang];
         const tagsHtml = p.tags.map(t => `<span class="px-2 py-1 bg-gold/10 text-gold text-[9px] font-bold uppercase tracking-widest rounded-md mr-2">${t}</span>`).join('');
+        const includesHtml = p.includes ? `<div class="text-xs text-gray-500 mb-4"><strong class="text-gray-400">${labels.lbl_includes}</strong> ${p.includes.join(' • ')}</div>` : '';
+
         return `
         <div class="group relative rounded-2xl overflow-hidden bg-[#15151E] border border-gold/20 flex flex-col md:flex-row hover:border-gold/50 transition duration-500">
              <div class="md:w-1/2 aspect-square md:aspect-auto relative overflow-hidden">
-                 <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                 <img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                  <div class="absolute inset-0 bg-black/30"></div>
              </div>
              <div class="md:w-1/2 p-8 flex flex-col justify-center">
                  <div class="mb-4">${tagsHtml}</div>
                  <h3 class="text-2xl font-serif text-white mb-3">${p.title}</h3>
-                 <p class="text-sm text-gray-400 mb-6 leading-relaxed">${p.desc}</p>
+                 <p class="text-sm text-gray-400 mb-4 leading-relaxed">${p.desc}</p>
+                 ${includesHtml}
                  <div class="flex items-center justify-between mt-auto">
                      <span class="text-3xl font-bold text-white">$${p.price}</span>
-                     <button onclick="addToCart('${p.id}')" class="px-6 py-3 bg-white text-black font-bold uppercase text-xs rounded-full hover:bg-gold transition">Add Bundle</button>
+                     <button onclick="addToCart('${p.id}')" class="px-6 py-3 bg-white text-black font-bold uppercase text-xs rounded-full hover:bg-gold transition">${labels.lbl_add_bundle}</button>
                  </div>
              </div>
         </div>`;
@@ -450,7 +536,7 @@
             cart.push(id);
             localStorage.setItem('vitriny_cart', JSON.stringify(cart));
             updateCartUI();
-            toggleCart(); // Open drawer
+            toggleCart(); 
         }
     }
 
@@ -465,11 +551,9 @@
         const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
 
-        // Update Badge
         cartCount.innerText = cart.length;
         cartCount.style.opacity = cart.length > 0 ? 1 : 0;
 
-        // Render Items
         if (cart.length === 0) {
             cartItems.innerHTML = `<div class="text-center text-gray-500 mt-10">${translations[currentLang].cart_empty}</div>`;
             cartTotal.innerText = "$0";
@@ -483,12 +567,12 @@
             total += product.price;
             return `
             <div class="flex items-center gap-4 bg-white/5 p-3 rounded-lg border border-white/5 animate-fade-in">
-                <img src="${product.img}" class="w-16 h-16 object-cover rounded-md opacity-80">
+                <img src="${product.img}" alt="${product.title}" class="w-16 h-16 object-cover rounded-md opacity-80">
                 <div class="flex-1">
                     <h4 class="text-sm text-white font-serif line-clamp-1">${product.title}</h4>
                     <div class="text-xs text-gold font-bold">$${product.price}</div>
                 </div>
-                <button onclick="removeFromCart('${product.id}')" class="text-gray-500 hover:text-red-400 p-2"><i class="fa-solid fa-trash-can"></i></button>
+                <button onclick="removeFromCart('${product.id}')" aria-label="Remove" class="text-gray-500 hover:text-red-400 p-2"><i class="fa-solid fa-trash-can"></i></button>
             </div>`;
         }).join('');
 
@@ -502,38 +586,37 @@
         backdrop.classList.toggle('backdrop-open');
     }
 
-    function checkoutWhatsApp() {
+    function checkoutEtsy() {
         if (cart.length === 0) return;
-        
-        let msg = "Hi VitrinY Studio! I would like to purchase the following assets:\n\n";
-        let total = 0;
         
         cart.forEach(id => {
             const p = products.find(prod => prod.id === id);
-            if (p) {
-                msg += `- ${p.title} ($${p.price})\n`;
-                total += p.price;
+            if (p && p.etsyUrl) {
+                window.open(p.etsyUrl, '_blank');
             }
         });
-        
-        msg += `\nTotal: $${total}\nPlease send payment link.`;
-        
-        const url = `https://wa.me/905419787726?text=${encodeURIComponent(msg)}`;
-        window.open(url, '_blank');
     }
 
     // i18n Logic
     function applyLang() {
         document.documentElement.lang = currentLang;
+        
+        // Text Content
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
         });
+        
+        // HTML Content (for breaks etc)
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+        });
+
         document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
         
-        // Re-render products to update button text
         renderProducts(); 
-        updateCartUI(); // Update cart empty text
+        updateCartUI(); 
     }
 
     function toggleLang() {
@@ -547,7 +630,6 @@
         applyLang();
         updateCartUI();
         
-        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
