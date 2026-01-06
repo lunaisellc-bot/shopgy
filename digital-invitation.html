@@ -4,12 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>VitrinY Atelier | Exclusive Digital Invitations</title>
-  <meta name="description" content="Düğün, Nişan, Doğum Günü ve Özel Davetleriniz için LCV takipli, interaktif web siteleri. PDF'ten fazlası." />
+  <title>VitrinY Events | Next-Gen Digital Invitations</title>
+  <meta name="description" content="Premium digital invitations for global events. Seamless RSVP, Wedding Websites, and Party Landings. Teknoloji ve zarafetin buluştuğu yeni nesil dijital davetiyeler." />
   
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
@@ -17,17 +16,25 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Lato', 'sans-serif'],        /* Okunabilir gövde metni */
-            serif: ['Playfair Display', 'serif'], /* Başlıklar */
-            script: ['Great Vibes', 'cursive']    /* Türkçe uyumlu el yazısı */
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
           },
           colors: {
-            // Yeni Renk Paleti: Daha sıcak ve dengeli
-            darkbase: '#1A0F14',   /* Simsiyah değil, çok koyu sıcak mürdüm/kahve tonu */
-            panel: '#261C21',      /* Kartlar için biraz daha açık ton */
-            cream: '#FDFBF7',      /* Metinler için yumuşak beyaz */
-            gold: '#C5A059',       /* Altın detaylar */
-            rose: '#D4B8B8'        /* Soluk Gül */
+            bgdark: '#0B0B15', // Ana Sayfa Rengi
+            neon: '#00DC82',   // VitrinY İmzası
+            purple: '#7B61FF', // Teknoloji
+            gold: '#D4AF37',   // Lüks/Etkinlik
+            surface: '#12121A'
+          },
+          animation: {
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
           }
         }
       }
@@ -35,245 +42,265 @@
   </script>
 
   <style>
-    body { background-color: #1A0F14; color: #FDFBF7; }
+    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     
-    /* Hafif Doku */
-    .noise-bg {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 50;
-    }
+    /* Ortam Işıkları (Ana Sayfa ile Tutarlı) */
+    .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+    .light-orb-1 { position: absolute; top: 10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 8s infinite alternate; }
+    .light-orb-2 { position: absolute; bottom: 10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(123,97,255,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 12s infinite alternate-reverse; }
 
-    /* Tipografi Sınıfları */
-    .font-script-lg { font-family: 'Great Vibes', cursive; font-size: 3.5rem; line-height: 1.2; font-weight: 400; }
-    
-    /* Animasyon */
-    .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
+    .glass-card:hover { border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05); }
 
-    /* Kart Hover Efekti */
-    .detail-card { transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.05); }
-    .detail-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.03); border-color: #C5A059; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 
-<body>
+<body class="font-sans selection:bg-purple selection:text-white">
 
-  <div class="noise-bg"></div>
+  <div class="ambient-light">
+      <div class="light-orb-1"></div> <div class="light-orb-2"></div> </div>
 
-  <nav class="fixed w-full z-[100] top-0 bg-darkbase/90 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
-    <a href="index.html" class="flex items-center gap-2 group">
-        <span class="font-serif text-xl tracking-widest text-cream">VITRINY <span class="text-xs italic text-gold align-top">Atelier</span></span>
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center transition-all duration-300">
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-purple to-neon p-[1px]">
+            <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
+                <span class="font-bold text-lg text-white">V</span>
+            </div>
+        </div>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY</span>
     </a>
     
+    <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+      <a href="index.html" class="hover:text-white transition">Home</a>
+      <a href="#themes" class="hover:text-white transition" data-i18n="nav_themes">Themes</a>
+      <a href="#features" class="hover:text-white transition" data-i18n="nav_features">Tech</a>
+      <a href="#faq" class="hover:text-white transition" data-i18n="nav_faq">FAQ</a>
+    </div>
+
     <div class="flex items-center gap-6">
-      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-serif italic text-white/60 border border-white/10 px-4 py-2 rounded-full hover:border-gold hover:text-gold transition">EN</button>
-      <a href="https://wa.me/905419787726" class="text-xs font-bold uppercase tracking-widest text-gold hover:text-white transition">
-        <i class="fa-brands fa-whatsapp mr-1"></i> <span data-i18n="nav_contact">Contact</span>
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+      <a href="https://wa.me/905419787726" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-lg hover:shadow-neon/20">
+        <span data-i18n="btn_create">Start Project</span>
       </a>
     </div>
   </nav>
 
-  <header class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
-      <div class="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000" class="w-full h-full object-cover opacity-20">
-          <div class="absolute inset-0 bg-gradient-to-t from-darkbase via-darkbase/60 to-transparent"></div>
+  <header class="relative pt-40 pb-20 px-6 min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-20">
+        <img src="https://images.unsplash.com/photo-1514525253440-b393452e3383?q=80&w=2000" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/80 to-transparent"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="reveal active">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple/30 bg-purple/10 text-[10px] font-bold tracking-[0.2em] text-purple uppercase mb-8">
+            <i class="fa-solid fa-bolt"></i> <span data-i18n="hero_badge">Interactive Event Systems</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
+            <span data-i18n="hero_t1">Your Event.</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple via-white to-gold" data-i18n="hero_t2">Digital & Limitless.</span>
+        </h1>
+        <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg" data-i18n="hero_desc">
+            Paper invitations get lost. PDFs are boring. We build cinematic, mobile-first websites for Weddings, Birthdays, and VIP Parties.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#themes" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-purple hover:text-white transition flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                <span data-i18n="btn_view">View Examples</span> <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <div class="flex items-center gap-2 px-4 py-2 text-xs text-gray-500 uppercase tracking-widest border-l border-white/10 ml-2">
+                <i class="fa-brands fa-whatsapp text-green-500 text-lg"></i> <span data-i18n="easy_share">1-Click Share</span>
+            </div>
+        </div>
       </div>
 
-      <div class="relative z-10 text-center max-w-4xl mx-auto fade-in-up">
-          <p class="text-xs md:text-sm tracking-[0.3em] text-rose mb-4 uppercase" data-i18n="hero_subtitle">Digital Event Experience</p>
-          <h1 class="text-4xl md:text-7xl font-serif text-cream mb-6 leading-tight">
-              <span data-i18n="hero_t1">Your Special Moments,</span> <br>
-              <span class="font-script-lg text-gold block mt-2" data-i18n="hero_t2">Beautifully Curated.</span>
-          </h1>
-          <p class="text-lg text-white/70 font-light leading-relaxed max-w-2xl mx-auto mb-10" data-i18n="hero_desc">
-              Forget boring PDFs and lost paper invitations. Create a stunning, mobile-friendly website for your wedding, birthday, or party. Collect RSVPs instantly and impress your guests from the very first click.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#services" class="px-8 py-4 bg-gold text-darkbase font-serif italic text-lg rounded-full hover:bg-cream transition duration-300">
-                  <span data-i18n="btn_explore">Explore Collection</span>
-              </a>
+      <div class="relative reveal delay-200 flex justify-center lg:justify-end">
+          <div class="relative w-[300px] h-[600px] border-4 border-gray-800 rounded-[40px] bg-black shadow-2xl animate-float overflow-hidden">
+              <div class="absolute inset-0 bg-black">
+                  <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=600" class="w-full h-full object-cover opacity-80">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                  <div class="absolute bottom-10 left-6 right-6 text-center">
+                      <div class="text-gold font-serif text-3xl mb-2">Sarah & Tom</div>
+                      <div class="text-xs uppercase tracking-[0.3em] text-white/70 mb-6">Are getting married</div>
+                      <div class="bg-white/20 backdrop-blur-md border border-white/30 text-white py-3 rounded-full text-xs font-bold uppercase cursor-pointer">RSVP Now</div>
+                  </div>
+              </div>
+              <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-xl"></div>
+          </div>
+          <div class="absolute top-20 -left-10 glass-card p-4 rounded-xl animate-bounce" style="animation-duration: 3s;">
+              <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center"><i class="fa-solid fa-check"></i></div>
+                  <div>
+                      <div class="text-[10px] text-gray-400 uppercase tracking-widest">New RSVP</div>
+                      <div class="text-sm font-bold text-white">Ahmet Y. is attending</div>
+                  </div>
+              </div>
           </div>
       </div>
+    </div>
   </header>
 
-  <section class="py-24 px-6 md:px-12 max-w-6xl mx-auto">
-      <div class="text-center mb-16 fade-in-up">
-          <span class="font-script-lg text-gold" data-i18n="why_script">Why Go Digital?</span>
-          <h2 class="text-3xl md:text-5xl font-serif mt-2 mb-6" data-i18n="why_title">More Than Just An Invite</h2>
-          <p class="text-white/60 max-w-2xl mx-auto" data-i18n="why_desc">
-              Digital invitations are not just eco-friendly; they are smarter. They solve the logistical headaches of organizing an event, leaving you to enjoy the excitement.
-          </p>
-      </div>
+  <section id="themes" class="py-24 bg-surface/50 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4" data-i18n="theme_title">Not Just For Weddings</h2>
+            <p class="text-gray-400 max-w-xl mx-auto" data-i18n="theme_sub">We design digital experiences for every major milestone in your life.</p>
+        </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-panel p-8 rounded-2xl detail-card fade-in-up">
-              <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-gold mb-6 text-xl"><i class="fa-solid fa-clipboard-check"></i></div>
-              <h3 class="text-xl font-serif text-cream mb-4" data-i18n="b1_title">Zero Friction RSVP</h3>
-              <p class="text-sm text-white/60 leading-relaxed mb-4" data-i18n="b1_desc">
-                  Guests hate mailing back RSVP cards. With our system, they simply click "Attend", select their meal preference, and mention allergies in seconds.
-              </p>
-              <div class="text-xs text-rose italic border-t border-white/5 pt-4" data-i18n="b1_note">
-                  *You get a neat list of everyone attending.
-              </div>
-          </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-3xl group hover:bg-white/5 transition reveal">
+                <div class="h-48 overflow-hidden rounded-2xl mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                </div>
+                <h3 class="text-2xl font-serif text-white mb-2" data-i18n="t1_t">Wedding & Engagement</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="t1_d">
+                    Full websites with "Our Story," Photo Gallery, and Hotel Info.
+                </p>
+                <ul class="text-xs text-gray-500 space-y-2 mb-6">
+                    <li><i class="fa-solid fa-check text-purple mr-2"></i> RSVP Tracking</li>
+                    <li><i class="fa-solid fa-check text-purple mr-2"></i> Map Integration</li>
+                </ul>
+            </div>
 
-          <div class="bg-panel p-8 rounded-2xl detail-card fade-in-up" style="transition-delay: 100ms">
-              <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-gold mb-6 text-xl"><i class="fa-solid fa-map-location-dot"></i></div>
-              <h3 class="text-xl font-serif text-cream mb-4" data-i18n="b2_title">No One Gets Lost</h3>
-              <p class="text-sm text-white/60 leading-relaxed mb-4" data-i18n="b2_desc">
-                  "Where is the venue?" "Where do I park?" Stop answering these calls. We integrate Google/Apple Maps directly. One click navigates them to your door.
-              </p>
-              <div class="text-xs text-rose italic border-t border-white/5 pt-4" data-i18n="b2_note">
-                  *Works perfectly on all mobile phones.
-              </div>
-          </div>
+            <div class="glass-card p-8 rounded-3xl group hover:bg-white/5 transition reveal delay-100">
+                <div class="h-48 overflow-hidden rounded-2xl mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                </div>
+                <h3 class="text-2xl font-serif text-white mb-2" data-i18n="t2_t">Parties & Corporate</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="t2_d">
+                    For Birthdays (30, 40, 50), Galas, and Product Launches.
+                </p>
+                <ul class="text-xs text-gray-500 space-y-2 mb-6">
+                    <li><i class="fa-solid fa-check text-neon mr-2"></i> QR Check-in</li>
+                    <li><i class="fa-solid fa-check text-neon mr-2"></i> Dress Code Info</li>
+                </ul>
+            </div>
 
-          <div class="bg-panel p-8 rounded-2xl detail-card fade-in-up" style="transition-delay: 200ms">
-              <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-gold mb-6 text-xl"><i class="fa-solid fa-gift"></i></div>
-              <h3 class="text-xl font-serif text-cream mb-4" data-i18n="b3_title">The "Gift" Question</h3>
-              <p class="text-sm text-white/60 leading-relaxed mb-4" data-i18n="b3_desc">
-                  Asking for money or specific gifts can feel awkward. We include a subtle, elegant section for your Registry, IBAN, or Charity preference.
-              </p>
-              <div class="text-xs text-rose italic border-t border-white/5 pt-4" data-i18n="b3_note">
-                  *Discrete and professional presentation.
-              </div>
-          </div>
-      </div>
+            <div class="glass-card p-8 rounded-3xl group hover:bg-white/5 transition reveal delay-200">
+                <div class="h-48 overflow-hidden rounded-2xl mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                </div>
+                <h3 class="text-2xl font-serif text-white mb-2" data-i18n="t3_t">Baby Shower & Reveal</h3>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="t3_d">
+                    Interactive Gender Reveal voting and Gift List centralization.
+                </p>
+                <ul class="text-xs text-gray-500 space-y-2 mb-6">
+                    <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Interactive Polls</li>
+                    <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Gift Registry</li>
+                </ul>
+            </div>
+        </div>
+    </div>
   </section>
 
-  <section id="services" class="py-24 bg-[#150B10] border-t border-white/5">
-      <div class="px-6 md:px-12 max-w-7xl mx-auto">
-          <div class="flex flex-col md:flex-row justify-between items-end mb-16 fade-in-up">
-              <div>
-                  <span class="text-rose text-xs tracking-[0.2em] uppercase mb-2 block" data-i18n="serv_badge">Our Expertise</span>
-                  <h2 class="text-4xl md:text-5xl font-serif text-cream" data-i18n="serv_title">For Every Celebration</h2>
+  <section id="features" class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+          <div class="reveal">
+              <span class="text-neon text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="feat_badge">Why Go Digital?</span>
+              <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+                  <span data-i18n="feat_t1">Solve The</span> <br>
+                  <span class="text-purple italic" data-i18n="feat_t2">Logistics Nightmare.</span>
+              </h2>
+              <div class="space-y-8">
+                  <div class="flex gap-4">
+                      <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white text-xl shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                      <div>
+                          <h4 class="text-white font-bold mb-2" data-i18n="f1_t">Google Maps Integration</h4>
+                          <p class="text-gray-400 text-sm" data-i18n="f1_d">Stop sending location pins. One click takes your guests directly to the venue entrance. No one gets lost.</p>
+                      </div>
+                  </div>
+                  <div class="flex gap-4">
+                      <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white text-xl shrink-0"><i class="fa-solid fa-gift"></i></div>
+                      <div>
+                          <h4 class="text-white font-bold mb-2" data-i18n="f2_t">The Polite Way to Ask</h4>
+                          <p class="text-gray-400 text-sm" data-i18n="f2_d">Sharing IBAN or Gift Registry can be awkward. We present it elegantly in a dedicated section.</p>
+                      </div>
+                  </div>
+                  <div class="flex gap-4">
+                      <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white text-xl shrink-0"><i class="fa-brands fa-whatsapp"></i></div>
+                      <div>
+                          <h4 class="text-white font-bold mb-2" data-i18n="f3_t">Instant WhatsApp Sharing</h4>
+                          <p class="text-gray-400 text-sm" data-i18n="f3_d">We give you a custom link (e.g., sarah-tom.com). You send it. They click. No app download needed.</p>
+                      </div>
+                  </div>
               </div>
           </div>
-
-          <div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
-              
-              <div class="fade-in-up">
-                  <div class="flex items-center gap-4 mb-6 pb-2 border-b border-white/10">
-                      <i class="fa-solid fa-rings-wedding text-gold text-2xl"></i>
-                      <h3 class="text-2xl font-serif text-cream" data-i18n="cat_wed">Weddings & Love</h3>
-                  </div>
-                  <ul class="space-y-6 pl-2">
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-gold transition font-serif" data-i18n="w_1_t">Full Wedding Website</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="w_1_d">The complete package. Our Story, Photo Gallery, Schedule, Hotel Recommendations for out-of-town guests, and RSVP.</p>
-                      </li>
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-gold transition font-serif" data-i18n="w_2_t">Engagement & Save The Date</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="w_2_d">Announce your news with style. A simple, striking page to block the calendar.</p>
-                      </li>
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-gold transition font-serif" data-i18n="w_3_t">Bachelor / Bachelorette</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="w_3_d">Private itinerary, dress codes, and payment links for group activities. Keep the drama out.</p>
-                      </li>
-                  </ul>
-              </div>
-
-              <div class="fade-in-up">
-                  <div class="flex items-center gap-4 mb-6 pb-2 border-b border-white/10">
-                      <i class="fa-solid fa-baby-carriage text-rose text-2xl"></i>
-                      <h3 class="text-2xl font-serif text-cream" data-i18n="cat_baby">New Beginnings</h3>
-                  </div>
-                  <ul class="space-y-6 pl-2">
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-rose transition font-serif" data-i18n="b_1_t">Gender Reveal (Interactive)</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="b_1_d">Let guests vote "Boy or Girl" before they arrive. Display the live results on a screen at the party!</p>
-                      </li>
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-rose transition font-serif" data-i18n="b_2_t">Baby Shower</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="b_2_d">Centralize your Gift Registry links (Amazon, etc.) so you don't get 3 of the same stroller.</p>
-                      </li>
-                  </ul>
-              </div>
-
-              <div class="fade-in-up">
-                  <div class="flex items-center gap-4 mb-6 pb-2 border-b border-white/10">
-                      <i class="fa-solid fa-champagne-glasses text-blue-300 text-2xl"></i>
-                      <h3 class="text-2xl font-serif text-cream" data-i18n="cat_life">Milestones & Parties</h3>
-                  </div>
-                  <ul class="space-y-6 pl-2">
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-blue-300 transition font-serif" data-i18n="m_1_t">Birthday Jubilees (30, 40, 50)</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="m_1_d">Adult birthdays deserve elegance. Share theme details, dress codes, and location clearly.</p>
-                      </li>
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-blue-300 transition font-serif" data-i18n="m_2_t">Anniversaries</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="m_2_d">A "Timeline" feature showing photos from your years together. A digital walk down memory lane.</p>
-                      </li>
-                  </ul>
-              </div>
-
-              <div class="fade-in-up">
-                  <div class="flex items-center gap-4 mb-6 pb-2 border-b border-white/10">
-                      <i class="fa-solid fa-building text-white/80 text-2xl"></i>
-                      <h3 class="text-2xl font-serif text-cream" data-i18n="cat_corp">Corporate & Exclusive</h3>
-                  </div>
-                  <ul class="space-y-6 pl-2">
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-white transition font-serif" data-i18n="c_1_t">Gala & Launch Events</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="c_1_d">Professional RSVP for headcount. Sponsor logo areas. QR Code check-in integration.</p>
-                      </li>
-                      <li class="group">
-                          <h4 class="text-lg text-cream group-hover:text-white transition font-serif" data-i18n="c_2_t">Private House Parties</h4>
-                          <p class="text-sm text-white/50 mt-1" data-i18n="c_2_d">Password Protected. Only people with the code can see the address and details.</p>
-                      </li>
-                  </ul>
-              </div>
-
-          </div>
-      </div>
-  </section>
-
-  <section class="py-24 px-6 md:px-12 max-w-5xl mx-auto">
-      <div class="bg-panel rounded-3xl p-8 md:p-16 border border-white/5 relative overflow-hidden fade-in-up">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
           
-          <div class="relative z-10 text-center">
-              <h2 class="text-3xl font-serif text-cream mb-8" data-i18n="faq_title">Common Questions</h2>
-              
-              <div class="grid md:grid-cols-2 gap-8 text-left">
-                  <div>
-                      <h4 class="text-gold font-bold mb-2 text-sm uppercase tracking-wider" data-i18n="q1_t">Is it hard to share?</h4>
-                      <p class="text-white/60 text-sm leading-relaxed" data-i18n="q1_a">Not at all. We give you a unique link (e.g., sarahandtom.com). You just send it via WhatsApp, SMS, or Email. That's it.</p>
-                  </div>
-                  <div>
-                      <h4 class="text-gold font-bold mb-2 text-sm uppercase tracking-wider" data-i18n="q2_t">Can older guests use it?</h4>
-                      <p class="text-white/60 text-sm leading-relaxed" data-i18n="q2_a">Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.</p>
-                  </div>
-                  <div>
-                      <h4 class="text-gold font-bold mb-2 text-sm uppercase tracking-wider" data-i18n="q3_t">What about privacy?</h4>
-                      <p class="text-white/60 text-sm leading-relaxed" data-i18n="q3_a">Your event is private. We can add a password so only your guests can access the details.</p>
-                  </div>
-                  <div>
-                      <h4 class="text-gold font-bold mb-2 text-sm uppercase tracking-wider" data-i18n="q4_t">Turnaround Time?</h4>
-                      <p class="text-white/60 text-sm leading-relaxed" data-i18n="q4_a">Standard designs are ready in 48 hours. Custom designs take 3-5 days. We move fast.</p>
-                  </div>
+          <div class="relative reveal delay-200">
+               <div class="glass-card p-6 rounded-2xl border border-white/10 relative z-10 bg-[#050505]">
+                   <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+                       <span class="text-xs font-bold text-gray-500 uppercase">Admin Panel</span>
+                       <span class="text-xs text-neon"><i class="fa-solid fa-circle text-[6px] mr-1"></i> Live</span>
+                   </div>
+                   <div class="grid grid-cols-2 gap-4 mb-6">
+                       <div class="bg-white/5 p-4 rounded-xl">
+                           <div class="text-2xl font-bold text-white mb-1">142</div>
+                           <div class="text-[10px] text-gray-400 uppercase">Confirmed Guests</div>
+                       </div>
+                       <div class="bg-white/5 p-4 rounded-xl">
+                           <div class="text-2xl font-bold text-purple mb-1">12</div>
+                           <div class="text-[10px] text-gray-400 uppercase">Dietary Requests</div>
+                       </div>
+                   </div>
+                   <div class="space-y-3">
+                       <div class="flex items-center gap-3 text-sm text-gray-400">
+                           <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-8 h-8 rounded-full">
+                           <span><strong>Lisa M.</strong> confirmed attendance.</span>
+                           <span class="ml-auto text-xs text-gray-600">2m ago</span>
+                       </div>
+                       <div class="flex items-center gap-3 text-sm text-gray-400">
+                           <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-8 h-8 rounded-full">
+                           <span><strong>John D.</strong> selected "Vegan Menu".</span>
+                           <span class="ml-auto text-xs text-gray-600">15m ago</span>
+                       </div>
+                   </div>
+               </div>
+               <div class="absolute -top-10 -right-10 w-64 h-64 bg-purple/20 rounded-full blur-[80px] -z-10"></div>
+          </div>
+      </div>
+  </section>
+
+  <section id="faq" class="py-24 bg-bgdark border-t border-white/5">
+      <div class="max-w-4xl mx-auto px-6">
+          <div class="text-center mb-12 reveal">
+              <h2 class="text-3xl font-bold mb-4" data-i18n="faq_title">Common Questions</h2>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8 reveal">
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2" data-i18n="q1_t">Can older people use this?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n="q1_a">Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.</p>
+              </div>
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2" data-i18n="q2_t">Is it private?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n="q2_a">Absolutely. We can add password protection so only your invited guests can see the details and photos.</p>
               </div>
           </div>
       </div>
   </section>
 
-  <footer class="py-24 text-center border-t border-white/5 bg-darkbase relative z-10">
-      <div class="max-w-xl mx-auto px-6 fade-in-up">
-          <span class="font-script-lg text-gold mb-2 block" data-i18n="cta_script">Let's Celebrate</span>
-          <h2 class="text-3xl md:text-5xl font-serif text-cream mb-8 leading-tight" data-i18n="cta_title">Ready to Design Your<br>Digital Masterpiece?</h2>
-          
-          <div class="flex flex-col gap-4">
-              <a href="https://wa.me/905419787726?text=I%20am%20interested%20in%20a%20digital%20invitation." class="block w-full py-4 bg-cream text-darkbase font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition duration-300">
-                  <span data-i18n="btn_start">Start Project via WhatsApp</span>
+  <footer class="py-24 bg-surface text-center relative z-10">
+      <div class="max-w-2xl mx-auto px-6 reveal">
+          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+              <span data-i18n="cta_t1">Make Your Event</span> <br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-purple" data-i18n="cta_t2">Unforgettable.</span>
+          </h2>
+          <p class="text-gray-400 mb-10" data-i18n="cta_desc">Ready in 48 hours. Works on every device. Impresses everyone.</p>
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+              <a href="https://wa.me/905419787726?text=I%20want%20a%20digital%20invitation." class="px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                  <i class="fa-brands fa-whatsapp mr-2"></i> <span data-i18n="btn_start">Start via WhatsApp</span>
               </a>
-              <a href="index.html" class="block w-full py-4 border border-white/10 text-white/60 uppercase tracking-widest hover:text-white hover:border-white/30 transition duration-300 text-xs">
+              <a href="index.html" class="px-10 py-4 border border-white/20 rounded-full hover:bg-white/5 transition font-bold text-gray-300">
                   <span data-i18n="btn_home">Back to Home</span>
               </a>
           </div>
       </div>
-      <div class="mt-16 text-[10px] text-white/20 uppercase tracking-widest">
-          © 2026 VitrinY Atelier by Lunaise LLC.
+      <div class="mt-20 text-xs text-gray-600">
+          © 2026 VitrinY Digital Solutions by Lunaise LLC.
       </div>
   </footer>
 
@@ -281,93 +308,53 @@
     // Scroll Reveal
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-    
-    // TRANSLATIONS
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Translations
     const translations = {
-        en: {
-            nav_contact: "Contact",
-            hero_subtitle: "Digital Event Experience",
-            hero_t1: "Your Special Moments,", hero_t2: "Beautifully Curated.",
-            hero_desc: "Forget boring PDFs and lost paper invitations. Create a stunning, mobile-friendly website for your wedding, birthday, or party. Collect RSVPs instantly and impress your guests from the very first click.",
-            btn_explore: "Explore Collection",
-            
-            why_script: "Why Go Digital?", why_title: "More Than Just An Invite",
-            why_desc: "Digital invitations are not just eco-friendly; they are smarter. They solve the logistical headaches of organizing an event, leaving you to enjoy the excitement.",
-            b1_title: "Zero Friction RSVP", b1_desc: "Guests hate mailing back RSVP cards. With our system, they simply click 'Attend', select their meal preference, and mention allergies in seconds.", b1_note: "*You get a neat list of everyone attending.",
-            b2_title: "No One Gets Lost", b2_desc: "'Where is the venue?' 'Where do I park?' Stop answering these calls. We integrate Google/Apple Maps directly. One click navigates them to your door.", b2_note: "*Works perfectly on all mobile phones.",
-            b3_title: "The 'Gift' Question", b3_desc: "Asking for money or specific gifts can feel awkward. We include a subtle, elegant section for your Registry, IBAN, or Charity preference.", b3_note: "*Discrete and professional presentation.",
-
-            serv_badge: "Our Expertise", serv_title: "For Every Celebration",
-            cat_wed: "Weddings & Love",
-            w_1_t: "Full Wedding Website", w_1_d: "The complete package. Our Story, Photo Gallery, Schedule, Hotel Recommendations, and RSVP.",
-            w_2_t: "Engagement & Save The Date", w_2_d: "Announce your news with style. A simple, striking page to block the calendar.",
-            w_3_t: "Bachelor / Bachelorette", w_3_d: "Private itinerary, dress codes, and payment links for group activities. Keep the drama out.",
-            
-            cat_baby: "New Beginnings",
-            b_1_t: "Gender Reveal (Interactive)", b_1_d: "Let guests vote 'Boy or Girl' before they arrive. Display the live results on a screen at the party!",
-            b_2_t: "Baby Shower", b_2_d: "Centralize your Gift Registry links (Amazon, etc.) so you don't get 3 of the same stroller.",
-            
-            cat_life: "Milestones & Parties",
-            m_1_t: "Birthday Jubilees (30, 40, 50)", m_1_d: "Adult birthdays deserve elegance. Share theme details, dress codes, and location clearly.",
-            m_2_t: "Anniversaries", m_2_d: "A 'Timeline' feature showing photos from your years together. A digital walk down memory lane.",
-            
-            cat_corp: "Corporate & Exclusive",
-            c_1_t: "Gala & Launch Events", c_1_d: "Professional RSVP for headcount. Sponsor logo areas. QR Code check-in integration.",
-            c_2_t: "Private House Parties", c_2_d: "Password Protected. Only people with the code can see the address and details.",
-
-            faq_title: "Common Questions",
-            q1_t: "Is it hard to share?", q1_a: "Not at all. We give you a unique link. You just send it via WhatsApp, SMS, or Email.",
-            q2_t: "Can older guests use it?", q2_a: "Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use this.",
-            q3_t: "What about privacy?", q3_a: "Your event is private. We can add a password so only your guests can access the details.",
-            q4_t: "Turnaround Time?", q4_a: "Standard designs are ready in 48 hours. Custom designs take 3-5 days.",
-
-            cta_script: "Let's Celebrate", cta_title: "Ready to Design Your<br>Digital Masterpiece?",
-            btn_start: "Start Project via WhatsApp", btn_home: "Back to Home"
-        },
-        tr: {
-            nav_contact: "İletişim",
-            hero_subtitle: "Dijital Etkinlik Deneyimi",
-            hero_t1: "En Özel Anlarınız,", hero_t2: "Zarafetle Tasarlandı.",
-            hero_desc: "Sıkıcı PDF'leri ve kaybolan kağıt davetiyeleri unutun. Düğün, doğum günü veya partiniz için mobil uyumlu, büyüleyici bir web sitesi kurun. LCV'leri anında toplayın ve misafirlerinizi ilk tıklamada etkileyin.",
-            btn_explore: "Koleksiyonu Keşfet",
-            
-            why_script: "Neden Dijital?", why_title: "Bir Davetiyeden Fazlası",
-            why_desc: "Dijital davetiyeler sadece çevreci değildir; daha akıllıdır. Organizasyonun lojistik baş ağrılarını çözer, size sadece heyecanı yaşamak kalır.",
-            b1_title: "Zahmetsiz LCV", b1_desc: "Misafirler LCV için aramayı veya mail atmayı sevmez. Sistemimizle saniyeler içinde 'Katılıyorum' derler, yemek tercihlerini ve alerjilerini seçerler.", b1_note: "*Size düzenli bir katılımcı listesi sunulur.",
-            b2_title: "Kimse Kaybolmaz", b2_desc: "'Mekan nerede?', 'Nereye park edeyim?' telefonlarına son. Google/Apple Haritalar entegrasyonu yapıyoruz. Tek tıkla kapınıza gelirler.", b2_note: "*Tüm telefonlarda sorunsuz çalışır.",
-            b3_title: "Hediye Meselesi", b3_desc: "Para veya belirli bir hediye istemek bazen garip kaçabilir. Hediye Listeniz, IBAN veya Bağış tercihiniz için zarif ve ince düşünülmüş bir bölüm ekliyoruz.", b3_note: "*Nazik ve profesyonel sunum.",
-
-            serv_badge: "Uzmanlık Alanımız", serv_title: "Her Kutlama İçin",
-            cat_wed: "Düğün & Aşk",
-            w_1_t: "Tam Kapsamlı Düğün Sitesi", w_1_d: "Eksiksiz paket. Hikayemiz, Foto Galeri, Akış, Şehir dışından gelenler için Otel Önerileri ve LCV.",
-            w_2_t: "Nişan & Save The Date", w_2_d: "Haberinizi tarzla duyurun. Takvimleri kapatmak için sade ve çarpıcı bir sayfa.",
-            w_3_t: "Bekarlığa Veda", w_3_d: "Özel program akışı, kıyafet kodları (Dress Code) ve grup aktiviteleri için ödeme linkleri.",
-            
-            cat_baby: "Yeni Başlangıçlar",
-            b_1_t: "Cinsiyet Partisi (İnteraktif)", b_1_d: "Misafirler gelmeden 'Kız mı Erkek mi?' oylaması yapsın. Parti anında canlı sonuçları ekrana yansıtın!",
-            b_2_t: "Baby Shower", b_2_d: "Hediye listesi linklerinizi (Amazon vb.) tek yerde toplayın, böylece 3 tane aynı bebek arabası gelmesin.",
-            
-            cat_life: "Dönüm Noktaları",
-            m_1_t: "Yaş Jübileleri (30, 40, 50)", m_1_d: "Yetişkin doğum günleri zarafet hak eder. Tema detaylarını, konumu ve kıyafet kodunu netçe paylaşın.",
-            m_2_t: "Yıldönümleri", m_2_d: "Birlikte geçen yıllarınızın fotoğraflarından oluşan bir 'Zaman Çizelgesi' (Timeline). Dijital bir anı yolculuğu.",
-            
-            cat_corp: "Kurumsal & Özel",
-            c_1_t: "Gala & Lansman", c_1_d: "Profesyonel LCV takibi. Sponsor logo alanları. QR Kod ile giriş (Check-in) entegrasyonu.",
-            c_2_t: "Özel Ev Partileri", c_2_d: "Şifre Korumalı. Sadece şifresi olanlar adresi ve detayları görebilir.",
-
-            faq_title: "Sıkça Sorulanlar",
-            q1_t: "Paylaşması zor mu?", q1_a: "Asla. Size özel bir link veriyoruz. WhatsApp, SMS veya Mail ile tek tıkla gönderiyorsunuz.",
-            q2_t: "Yaşlılar kullanabilir mi?", q2_a: "Evet. Tasarımı sade tutuyoruz. Büyük butonlar, net yazılar. WhatsApp kullanabilen herkes davetiyenizi kullanabilir.",
-            q3_t: "Gizlilik ne olacak?", q3_a: "Etkinliğiniz size özeldir. İsterseniz şifre koyarız, böylece sadece davetlileriniz detayları görür.",
-            q4_t: "Teslim süresi?", q4_a: "Standart tasarımlar 48 saatte hazır. Özel tasarım talepleri 3-5 gün sürer.",
-
-            cta_script: "Kutlama Başlasın", cta_title: "Dijital Şaheserinizi<br>Tasarlamaya Hazır Mısınız?",
-            btn_start: "WhatsApp ile Başlat", btn_home: "Ana Sayfaya Dön"
-        }
+      en: {
+        nav_themes: "Themes", nav_features: "Tech", nav_faq: "FAQ", btn_create: "Start Project",
+        hero_badge: "Interactive Event Systems",
+        hero_t1: "Your Event.", hero_t2: "Digital & Limitless.",
+        hero_desc: "Paper invitations get lost. PDFs are boring. We build cinematic, mobile-first websites for Weddings, Birthdays, and VIP Parties.",
+        btn_view: "View Examples", easy_share: "1-Click Share",
+        theme_title: "Not Just For Weddings", theme_sub: "We design digital experiences for every major milestone in your life.",
+        t1_t: "Wedding & Engagement", t1_d: "Full websites with 'Our Story,' Photo Gallery, and Hotel Info.",
+        t2_t: "Parties & Corporate", t2_d: "For Birthdays (30, 40, 50), Galas, and Product Launches.",
+        t3_t: "Baby Shower & Reveal", t3_d: "Interactive Gender Reveal voting and Gift List centralization.",
+        feat_badge: "Why Go Digital?", feat_t1: "Solve The", feat_t2: "Logistics Nightmare.",
+        f1_t: "Google Maps Integration", f1_d: "Stop sending location pins. One click takes your guests directly to the venue entrance. No one gets lost.",
+        f2_t: "The Polite Way to Ask", f2_d: "Sharing IBAN or Gift Registry can be awkward. We present it elegantly in a dedicated section.",
+        f3_t: "Instant WhatsApp Sharing", f3_d: "We give you a custom link. You send it. They click. No app download needed.",
+        faq_title: "Common Questions",
+        q1_t: "Can older people use this?", q1_a: "Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.",
+        q2_t: "Is it private?", q2_a: "Absolutely. We can add password protection so only your invited guests can see the details.",
+        cta_t1: "Make Your Event", cta_t2: "Unforgettable.", cta_desc: "Ready in 48 hours. Works on every device. Impresses everyone.",
+        btn_start: "Start via WhatsApp", btn_home: "Back to Home"
+      },
+      tr: {
+        nav_themes: "Temalar", nav_features: "Teknoloji", nav_faq: "SSS", btn_create: "Projeye Başla",
+        hero_badge: "İnteraktif Etkinlik Sistemleri",
+        hero_t1: "Etkinliğiniz.", hero_t2: "Dijital & Sınırsız.",
+        hero_desc: "Kağıt davetiyeler kaybolur. PDF'ler sıkıcıdır. Düğün, Doğum Günü ve VIP Partiler için sinematik, mobil uyumlu web siteleri kuruyoruz.",
+        btn_view: "Örnekleri Gör", easy_share: "Tek Tıkla Paylaş",
+        theme_title: "Sadece Düğün Değil", theme_sub: "Hayatınızdaki her önemli dönüm noktası için dijital deneyimler tasarlıyoruz.",
+        t1_t: "Düğün & Nişan", t1_d: "'Hikayemiz', Foto Galeri ve Otel Bilgileri içeren tam kapsamlı siteler.",
+        t2_t: "Parti & Kurumsal", t2_d: "30, 40, 50 Yaş Partileri, Galalar ve Ürün Lansmanları için.",
+        t3_t: "Baby Shower & Cinsiyet", t3_d: "İnteraktif Cinsiyet Oylaması ve Hediye Listesi yönetimi.",
+        feat_badge: "Neden Dijital?", feat_t1: "Lojistik Kabusunu", feat_t2: "Sona Erdirin.",
+        f1_t: "Google Haritalar Entegrasyonu", f1_d: "Konum atmaya son. Tek tıklama misafirlerinizi mekanın kapısına kadar götürür. Kimse kaybolmaz.",
+        f2_t: "İstemenin Zarif Yolu", f2_d: "IBAN veya Hediye Listesi paylaşmak bazen zor olabilir. Bunu özel bir bölümde zarifçe sunuyoruz.",
+        f3_t: "WhatsApp ile Hızlı Paylaşım", f3_d: "Size özel bir link veriyoruz. Siz gönderiyorsunuz, onlar tıklıyor. Uygulama indirmek yok.",
+        faq_title: "Sıkça Sorulanlar",
+        q1_t: "Yaşlılar kullanabilir mi?", q1_a: "Evet. Tasarımı sade tutuyoruz. Büyük butonlar, net yazılar. WhatsApp kullanabilen herkes davetiyenizi kullanabilir.",
+        q2_t: "Gizli mi?", q2_a: "Kesinlikle. İsterseniz şifre koruması ekleriz, böylece sadece davetlileriniz detayları görebilir.",
+        cta_t1: "Etkinliğinizi", cta_t2: "Unutulmaz Kılın.", cta_desc: "48 saatte hazır. Her cihazda çalışır. Herkesi etkiler.",
+        btn_start: "WhatsApp ile Başlat", btn_home: "Ana Sayfaya Dön"
+      }
     };
 
     let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
@@ -387,5 +374,6 @@
     }
     applyLang();
   </script>
+
 </body>
 </html>
