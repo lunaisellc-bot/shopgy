@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinY Journal | E-Commerce & Mindset</title>
+  <meta name="description" content="Insights on Etsy trends, digital strategy, and the entrepreneur mindset. The editorial voice of VitrinY." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          colors: {
+            bgdark: '#0B0B15',
+            surface: '#12121A',
+            neon: '#00DC82',
+            purple: '#7B61FF',
+            gold: '#D4AF37',
+            rose: '#E0B0FF'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #0B0B15; color: #E5E7EB; -webkit-font-smoothing: antialiased; }
+    
+    /* Editorial Grid Lines */
+    .journal-grid {
+        background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 20% 100%;
+    }
+
+    .article-card { transition: all 0.5s ease; }
+    .article-card:hover .article-img { transform: scale(1.05); }
+    .article-card:hover .article-title { color: #D4AF37; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body class="font-sans selection:bg-gold selection:text-black">
+
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition duration-500">
+            <span class="font-serif font-bold text-lg">V</span>
+        </div>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-gold font-serif italic">Journal</span></span>
+    </a>
+    
+    <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+      <a href="#trends" class="hover:text-white transition" data-i18n="nav_trends">Trends</a>
+      <a href="#strategy" class="hover:text-white transition" data-i18n="nav_strategy">Strategy</a>
+      <a href="#mindset" class="hover:text-white transition" data-i18n="nav_mindset">Mindset</a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+    </div>
+  </nav>
+
+  <header class="pt-32 pb-16 px-6 border-b border-white/5">
+      <div class="max-w-7xl mx-auto reveal active">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+              <div class="order-2 lg:order-1">
+                  <span class="text-gold text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="feat_tag">Editor's Pick · 2026 Trends</span>
+                  <h1 class="text-4xl md:text-6xl font-serif text-white mb-6 leading-tight hover:text-gray-200 transition duration-300 cursor-pointer">
+                      <span data-i18n="feat_title">The Death of Dropshipping: Why Branding is the New Survival Skill.</span>
+                  </h1>
+                  <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-xl" data-i18n="feat_desc">
+                      The era of quick flips is over. Discover how the Etsy algorithm has shifted to favor authentic brand stories and high-quality visuals.
+                  </p>
+                  <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest border-b border-gold pb-1 hover:text-gold transition">
+                      <span data-i18n="btn_read">Read Article</span> <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+              </div>
+              <div class="order-1 lg:order-2 h-[400px] lg:h-[500px] overflow-hidden rounded-2xl relative group cursor-pointer">
+                  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                  <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="grid md:grid-cols-3 gap-x-12 gap-y-16 journal-grid">
+          
+          <div class="article-card group cursor-pointer reveal" id="strategy">
+              <div class="h-64 overflow-hidden rounded-xl mb-6 relative">
+                  <img src="https://images.unsplash.com/photo-1553877606-3c2386e7a0dd?q=80&w=600" class="article-img w-full h-full object-cover">
+                  <div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white border border-white/10">Strategy</div>
+              </div>
+              <div class="text-xs text-gray-500 mb-2">5 Min Read · Oct 12</div>
+              <h3 class="article-title text-2xl font-serif text-white mb-3 leading-tight" data-i18n="a1_t">How to Set Up a US LLC from Turkey (Without Visiting)</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3" data-i18n="a1_d">Stop letting payment gateways block your growth. A complete guide to Stripe, Wise, and legal formation.</p>
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-white transition">Read More</span>
+          </div>
+
+          <div class="article-card group cursor-pointer reveal delay-100" id="mindset">
+              <div class="h-64 overflow-hidden rounded-xl mb-6 relative">
+                  <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600" class="article-img w-full h-full object-cover">
+                  <div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white border border-white/10">Mindset</div>
+              </div>
+              <div class="text-xs text-gray-500 mb-2">3 Min Read · Oct 10</div>
+              <h3 class="article-title text-2xl font-serif text-white mb-3 leading-tight" data-i18n="a2_t">The "Imposter Syndrome" of Selling Your First Product</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3" data-i18n="a2_d">Why you feel like a fraud before your first sale, and how to rewrite that mental script to scale faster.</p>
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-white transition">Read More</span>
+          </div>
+
+          <div class="bg-[#0F1115] border border-white/10 rounded-xl p-8 flex flex-col justify-center items-center text-center reveal delay-200 group hover:border-purple/50 transition duration-500">
+              <div class="w-12 h-12 bg-purple/10 rounded-full flex items-center justify-center text-purple text-2xl mb-4"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <h4 class="font-serif text-xl text-white mb-2" data-i18n="ad_t">Need Better Visuals?</h4>
+              <p class="text-xs text-gray-400 mb-6 leading-relaxed" data-i18n="ad_d">Don't let bad photos kill your great product. Check out our AI Mockup Studio.</p>
+              <a href="studio.html" class="px-6 py-3 bg-purple text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-black transition">
+                  <span data-i18n="btn_shop">Visit Studio</span>
+              </a>
+          </div>
+
+          <div class="article-card group cursor-pointer reveal" id="trends">
+              <div class="h-64 overflow-hidden rounded-xl mb-6 relative">
+                  <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600" class="article-img w-full h-full object-cover">
+                  <div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white border border-white/10">Trends</div>
+              </div>
+              <div class="text-xs text-gray-500 mb-2">4 Min Read · Oct 08</div>
+              <h3 class="article-title text-2xl font-serif text-white mb-3 leading-tight" data-i18n="a3_t">Digital Weddings: Why 2026 Brides Are Ditching Paper</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3" data-i18n="a3_d">Sustainability and convenience are driving a massive shift toward digital invitations. Here is the data.</p>
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-white transition">Read More</span>
+          </div>
+
+          <div class="article-card group cursor-pointer reveal delay-100">
+              <div class="h-64 overflow-hidden rounded-xl mb-6 relative">
+                  <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=600" class="article-img w-full h-full object-cover">
+                  <div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white border border-white/10">Strategy</div>
+              </div>
+              <div class="text-xs text-gray-500 mb-2">6 Min Read · Oct 05</div>
+              <h3 class="article-title text-2xl font-serif text-white mb-3 leading-tight" data-i18n="a4_t">Pinterest SEO: The Secret Weapon for Etsy Traffic</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3" data-i18n="a4_d">Stop relying solely on Etsy search. How to build an automated traffic funnel using Pinterest pins.</p>
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-white transition">Read More</span>
+          </div>
+
+          <div class="bg-[#0F1115] border border-white/10 rounded-xl p-8 flex flex-col justify-center items-center text-center reveal delay-200 group hover:border-blue-500/50 transition duration-500">
+              <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-2xl mb-4"><i class="fa-solid fa-chess-knight"></i></div>
+              <h4 class="font-serif text-xl text-white mb-2" data-i18n="ad2_t">Stuck at 10 Sales?</h4>
+              <p class="text-xs text-gray-400 mb-6 leading-relaxed" data-i18n="ad2_d">You need a strategy audit. Let's look at your shop together and fix the leaks.</p>
+              <a href="consulting.html" class="px-6 py-3 bg-blue-600 text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-blue-500 transition">
+                  <span data-i18n="btn_acad">Book Audit</span>
+              </a>
+          </div>
+
+      </div>
+  </section>
+
+  <section class="py-24 border-t border-white/5 bg-gradient-to-b from-bgdark to-[#0F1115]">
+      <div class="max-w-xl mx-auto px-6 text-center reveal">
+          <h2 class="text-3xl font-serif text-white mb-4" data-i18n="news_t">Join The Inner Circle</h2>
+          <p class="text-gray-400 text-sm mb-8" data-i18n="news_d">Weekly insights on e-commerce strategy, design trends, and mindset hacks. No spam, just value.</p>
+          <form class="flex flex-col sm:flex-row gap-4">
+              <input type="email" placeholder="you@example.com" class="flex-1 bg-white/5 border border-white/10 rounded-full px-6 py-3 text-white focus:border-gold outline-none transition text-sm">
+              <button type="submit" class="bg-white text-black px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition">
+                  <span data-i18n="btn_sub">Subscribe</span>
+              </button>
+          </form>
+      </div>
+  </section>
+
+  <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
+      <div class="mb-4">
+          <span class="font-serif text-white tracking-widest uppercase">VitrinY Journal</span>
+      </div>
+      <p>&copy; 2026 VitrinY / Lunaise LLC. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Translations
+    const translations = {
+      en: {
+        nav_trends: "Trends", nav_strategy: "Strategy", nav_mindset: "Mindset",
+        feat_tag: "Editor's Pick · 2026 Trends",
+        feat_title: "The Death of Dropshipping: Why Branding is the New Survival Skill.",
+        feat_desc: "The era of quick flips is over. Discover how the Etsy algorithm has shifted to favor authentic brand stories and high-quality visuals.",
+        btn_read: "Read Article",
+        
+        a1_t: "How to Set Up a US LLC from Turkey", a1_d: "Stop letting payment gateways block your growth. A complete guide to Stripe, Wise, and legal formation.",
+        a2_t: "The 'Imposter Syndrome' of Selling", a2_d: "Why you feel like a fraud before your first sale, and how to rewrite that mental script to scale faster.",
+        a3_t: "Digital Weddings: 2026 Shift", a3_d: "Sustainability and convenience are driving a massive shift toward digital invitations. Here is the data.",
+        a4_t: "Pinterest SEO: Secret Weapon", a4_d: "Stop relying solely on Etsy search. How to build an automated traffic funnel using Pinterest pins.",
+        
+        ad_t: "Need Better Visuals?", ad_d: "Don't let bad photos kill your great product. Check out our AI Mockup Studio.", btn_shop: "Visit Studio",
+        ad2_t: "Stuck at 10 Sales?", ad2_d: "You need a strategy audit. Let's look at your shop together and fix the leaks.", btn_acad: "Book Audit",
+        
+        news_t: "Join The Inner Circle", news_d: "Weekly insights on e-commerce strategy, design trends, and mindset hacks. No spam, just value.", btn_sub: "Subscribe"
+      },
+      tr: {
+        nav_trends: "Trendler", nav_strategy: "Strateji", nav_mindset: "Zihniyet",
+        feat_tag: "Editörün Seçimi · 2026 Trendleri",
+        feat_title: "Dropshipping'in Ölümü: Markalaşmak Neden Yeni Hayatta Kalma Becerisi?",
+        feat_desc: "Hızlı al-sat devri bitti. Etsy algoritmasının neden artık otantik marka hikayelerini ve yüksek kaliteli görselleri tercih ettiğini keşfedin.",
+        btn_read: "Makaleyi Oku",
+        
+        a1_t: "Türkiye'den ABD Şirketi (LLC) Nasıl Kurulur?", a1_d: "Ödeme altyapılarının büyümenizi engellemesine izin vermeyin. Stripe, Wise ve yasal kurulum rehberi.",
+        a2_t: "İlk Satışın 'Sahtekarlık Sendromu'", a2_d: "İlk satıştan önce neden kendinizi yetersiz hissediyorsunuz ve daha hızlı büyümek için bu zihniyeti nasıl değiştirirsiniz?",
+        a3_t: "Dijital Düğünler: 2026 Dönüşümü", a3_d: "Sürdürülebilirlik ve kolaylık, dijital davetiyelere doğru büyük bir kayma yaratıyor. İşte veriler.",
+        a4_t: "Pinterest SEO: Gizli Silah", a4_d: "Sadece Etsy aramalarına güvenmeyin. Pinterest pinlerini kullanarak nasıl otomatik bir trafik hunisi kurarsınız?",
+        
+        ad_t: "Görselleriniz Yetersiz mi?", ad_d: "Kötü fotoğrafların harika ürününüzü öldürmesine izin vermeyin. AI Mockup Stüdyomuza göz atın.", btn_shop: "Stüdyoyu Gez",
+        ad2_t: "Satışlarınız Durdu mu?", ad2_d: "Stratejik bir analize ihtiyacınız var. Mağazanızı birlikte inceleyelim ve eksikleri giderelim.", btn_acad: "Analiz Al",
+        
+        news_t: "İç Çembere Katılın", news_d: "E-ticaret stratejisi, tasarım trendleri ve zihniyet üzerine haftalık içgörüler. Spam yok, sadece değer var.", btn_sub: "Abone Ol"
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    
+    function applyLang() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+        });
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    }
+
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        localStorage.setItem('lang', currentLang);
+        applyLang();
+    }
+    applyLang();
+  </script>
+
+</body>
+</html>
