@@ -40,7 +40,7 @@
   </script>
 
   <style>
-    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; }
+    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     
     /* Studio Atmosphere */
     .ambient-light { position: fixed; pointer-events: none; z-index: -1; opacity: 0.4; filter: blur(120px); }
@@ -51,13 +51,18 @@
     .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease; }
     .glass-card:hover { border-color: rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); transform: translateY(-3px); }
 
-    /* Reveal Animation */
+    /* Reveal Animation & Delays */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
 
     /* Drawer */
     #cart-drawer { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     .drawer-open { transform: translateX(0) !important; }
+
+    /* Utility */
+    .clamp-1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   </style>
 </head>
 
@@ -66,24 +71,30 @@
   <div class="ambient-light light-1"></div>
   <div class="ambient-light light-2"></div>
 
-  <div id="cart-backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] hidden"></div>
+  <div id="cart-backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] hidden transition-opacity duration-300"></div>
   <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0F0F16] border-l border-white/10 z-[100] transform translate-x-full shadow-2xl flex flex-col">
       <div class="p-6 border-b border-white/10 flex justify-between items-center">
           <h2 class="text-xl font-serif text-white" data-i18n="cart_title">Your Systems</h2>
-          <button onclick="toggleCart()" class="text-gray-400 hover:text-white transition"><i class="fa-solid fa-xmark text-xl"></i></button>
+          <button onclick="toggleCart()" class="text-gray-400 hover:text-white transition" id="btn-close-cart"><i class="fa-solid fa-xmark text-xl"></i></button>
       </div>
-      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+      
+      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+          </div>
+
       <div class="p-6 border-t border-white/10 bg-[#0B0B15]">
-          <button onclick="checkoutAll()" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full hover:bg-neon hover:text-black transition mb-3 shadow-lg">
-              <span data-i18n="btn_checkout_etsy">Proceed to Etsy Checkout</span> <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+          <div class="mb-4 text-center">
+             <p class="text-xs text-gray-400 mb-2" data-i18n="cart_checkout_info">You'll be redirected to Etsy listings to complete purchase securely.</p>
+          </div>
+          <button onclick="checkoutAll()" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full hover:bg-neon hover:text-black transition mb-3 shadow-lg flex items-center justify-center gap-2">
+              <span data-i18n="btn_open_etsy_listings">Open Etsy Listings</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </button>
           <div class="text-center">
-             <span class="text-[10px] text-gray-500 uppercase" data-i18n="cart_secure_note">Secure Payment via Etsy</span>
+             <span class="text-[10px] text-gray-600 uppercase" data-i18n="cart_secure_note">Secure Payment via Etsy</span>
           </div>
       </div>
   </div>
 
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center transition-all duration-300">
     <a href="#" class="flex items-center gap-3 group">
         <div class="w-8 h-8 rounded bg-gradient-to-tr from-purple to-neon p-[1px]">
             <div class="w-full h-full bg-bgdark rounded flex items-center justify-center">
@@ -93,11 +104,17 @@
         <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-neon">STUDIO</span></span>
     </a>
     
+    <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+        <a href="#systems" class="hover:text-white transition" data-i18n="nav_systems">Systems</a>
+        <a href="#how" class="hover:text-white transition" data-i18n="nav_how">How it Works</a>
+        <a href="#why" class="hover:text-white transition" data-i18n="nav_why">Why Etsy</a>
+    </div>
+
     <div class="flex items-center gap-6">
       <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
-      <button onclick="toggleCart()" class="relative group">
+      <button onclick="toggleCart()" class="relative group" id="btn-open-cart">
           <i class="fa-solid fa-bag-shopping text-xl text-gray-400 group-hover:text-white transition"></i>
-          <span id="cart-count" class="absolute -top-2 -right-2 w-4 h-4 bg-neon text-black text-[9px] font-bold rounded-full flex items-center justify-center opacity-0">0</span>
+          <span id="cart-count" class="absolute -top-2 -right-2 w-4 h-4 bg-neon text-black text-[9px] font-bold rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300">0</span>
       </button>
     </div>
   </nav>
@@ -106,8 +123,8 @@
       <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div class="reveal active">
               <div class="inline-flex items-center gap-3 mb-6 px-4 py-2 border border-white/10 rounded-full bg-white/5">
-                  <i class="fa-brands fa-etsy text-[#F1641E]"></i>
-                  <span class="text-[10px] font-bold uppercase tracking-widest text-gray-300" data-i18n="hero_badge">Purchased via Etsy · Used Everywhere</span>
+                  <i class="fa-solid fa-layer-group text-purple"></i>
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-gray-300" data-i18n="hero_works_on">Works for: Etsy · Shopify · Social · Web</span>
               </div>
               
               <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
@@ -115,15 +132,24 @@
                   <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple via-white to-neon font-serif italic" data-i18n="hero_t2">Without a Studio.</span>
               </h1>
               
-              <div class="flex flex-wrap gap-4 mb-8 text-sm font-bold text-gray-400 uppercase tracking-wider">
+              <div class="flex flex-wrap gap-4 mb-6 text-sm font-bold text-gray-400 uppercase tracking-wider">
                   <span class="flex items-center gap-2"><i class="fa-solid fa-xmark text-red-500"></i> <span data-i18n="no_cam">No Camera</span></span>
                   <span class="flex items-center gap-2"><i class="fa-solid fa-xmark text-red-500"></i> <span data-i18n="no_studio">No Studio</span></span>
                   <span class="flex items-center gap-2"><i class="fa-solid fa-xmark text-red-500"></i> <span data-i18n="no_model">No Model</span></span>
               </div>
 
-              <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg border-l-2 border-neon/50 pl-6" data-i18n="hero_desc">
+              <p class="text-gray-300 text-lg mb-6 leading-relaxed max-w-lg border-l-2 border-neon/50 pl-6" data-i18n="hero_desc">
                   We don't sell random prompts. We build professional AI Visual & Video Systems that automate your content creation for Etsy, Shopify, and Ads.
               </p>
+
+              <div class="bg-white/5 border border-white/10 rounded-xl p-5 mb-8 backdrop-blur-sm">
+                  <p class="text-neon text-sm font-medium mb-3" data-i18n="one_line_clarity">You’re buying a reusable production system (prompts + workflow + examples) — not a finished file.</p>
+                  <ul class="text-xs text-gray-400 space-y-1">
+                      <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="hero_deliver_1">Prompt Pack (copy-paste)</span></li>
+                      <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="hero_deliver_2">Workflow Guide (step-by-step)</span></li>
+                      <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="hero_deliver_3">Examples + Settings (ready-to-use)</span></li>
+                  </ul>
+              </div>
               
               <div class="flex gap-4">
                   <a href="#systems" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neon transition shadow-[0_0_20px_rgba(255,255,255,0.1)]">
@@ -220,7 +246,7 @@
       </div>
   </section>
 
-  <section class="py-24">
+  <section id="how" class="py-24">
       <div class="max-w-7xl mx-auto px-6">
           <div class="text-center mb-16 reveal">
               <h2 class="text-3xl font-serif text-white mb-4" data-i18n="how_title">How The System Works</h2>
@@ -257,7 +283,7 @@
       </div>
   </section>
 
-  <footer class="py-20 bg-bgdark border-t border-white/5">
+  <footer id="why" class="py-20 bg-bgdark border-t border-white/5">
       <div class="max-w-3xl mx-auto px-6 text-center">
           <div class="mb-8 flex justify-center items-center gap-3 opacity-70">
               <i class="fa-brands fa-etsy text-4xl text-white"></i>
@@ -282,31 +308,38 @@
             type: 'video',
             price: 59,
             image: 'https://images.unsplash.com/photo-1622737133809-d95047b9e673?q=80&w=600',
-            etsyUrl: 'YOUR_ETSY_LINK_HERE'
+            etsyUrl: 'YOUR_ETSY_LINK_HERE_VIDEO'
         },
         {
             id: 'sys_img_1',
             type: 'image',
             price: 49,
             image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600',
-            etsyUrl: 'YOUR_ETSY_LINK_HERE'
+            etsyUrl: 'YOUR_ETSY_LINK_HERE_IMAGE'
         },
         {
             id: 'sys_bundle',
             type: 'bundle',
             price: 89,
             image: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?q=80&w=600',
-            etsyUrl: 'YOUR_ETSY_LINK_HERE'
+            etsyUrl: 'YOUR_ETSY_LINK_HERE_BUNDLE'
         }
     ];
 
     const translations = {
         en: {
-            nav_cart: "Cart",
+            nav_systems: "Systems", nav_how: "How it Works", nav_why: "Why Etsy",
+            aria_open_cart: "Open Cart", aria_close_cart: "Close Cart", aria_toggle_lang: "Switch Language",
+            
             hero_badge: "Purchased via Etsy · Used Everywhere",
             hero_t1: "Generate Studio Quality", hero_t2: "Without a Studio.",
             no_cam: "No Camera", no_studio: "No Studio", no_model: "No Model",
             hero_desc: "We don't sell random prompts. We build professional AI Visual & Video Systems that automate your content creation for Etsy, Shopify, and Ads.",
+            one_line_clarity: "You’re buying a reusable production system (prompts + workflow + examples) — not a finished file.",
+            hero_deliver_1: "Prompt Pack (copy-paste)",
+            hero_deliver_2: "Workflow Guide (step-by-step)",
+            hero_deliver_3: "Examples + Settings (ready-to-use)",
+            hero_works_on: "Works for: Etsy · Shopify · Instagram · TikTok · Website",
             btn_explore: "Explore Systems",
             
             not_title: "What You Are NOT Buying",
@@ -331,23 +364,37 @@
             // Product Specifics (Data-Driven)
             p_sys_vid_1_t: "AI Product Video System", p_sys_vid_1_d: "Generate cinematic product videos from static images. Includes Veo/Runway workflow.",
             p_sys_img_1_t: "AI Photography System", p_sys_img_1_d: "Generate editorial product photography. Control lighting, texture, and background.",
-            p_sys_bundle_t: "The Complete Studio Bundle", p_sys_bundle_d: "Both Video and Image systems. The ultimate toolkit for digital brands.",
+            p_sys_bundle_t: "The Complete Studio Bundle", p_sys_bundle_d: "Video and Image systems. The ultimate toolkit for digital brands.",
             
             lbl_system: "SYSTEM", lbl_instant: "Instant Delivery",
-            btn_add: "Add to System Cart", btn_view: "View Details",
+            btn_add: "Add to System Cart", btn_view: "View System",
+            
+            tag_prompt_pack: "Prompt Pack", tag_workflow_pdf: "Workflow PDF", tag_examples: "Examples",
+            badge_best_value: "BEST VALUE",
             
             cart_title: "Your Systems", cart_empty: "No systems selected.",
-            btn_checkout_etsy: "Proceed to Etsy Checkout", cart_secure_note: "Secure Payment via Etsy",
+            btn_open_etsy_listings: "Open Etsy Listings (Secure Checkout)", 
+            cart_checkout_info: "You'll be redirected to Etsy listings to complete purchase securely.",
+            cart_secure_note: "Secure Payment via Etsy",
+            btn_open_on_etsy: "Open on Etsy",
+            multi_tab_note: "Etsy will open each selected listing in a new tab.",
             
             footer_title: "Why Etsy Checkout?",
             footer_desc: "We handle all transactions through Etsy to ensure your security, buyer protection, and automatic file delivery. Once you purchase the system, it works independently on any platform you choose."
         },
         tr: {
-            nav_cart: "Sepet",
+            nav_systems: "Sistemler", nav_how: "Nasıl Çalışır", nav_why: "Neden Etsy",
+            aria_open_cart: "Sepeti Aç", aria_close_cart: "Sepeti Kapat", aria_toggle_lang: "Dili Değiştir",
+
             hero_badge: "Etsy ile Satın Al · Her Yerde Kullan",
             hero_t1: "Stüdyo Kalitesi Üretin,", hero_t2: "Stüdyo Olmadan.",
             no_cam: "Kamera Yok", no_studio: "Stüdyo Yok", no_model: "Manken Yok",
             hero_desc: "Rastgele prompt satmıyoruz. Etsy, Shopify ve Reklamlarınız için içerik üretimini otomatize eden profesyonel AI Görsel & Video Sistemleri kuruyoruz.",
+            one_line_clarity: "Hazır dosya değil; prompt + iş akışı + örneklerden oluşan tekrar kullanılabilir bir üretim sistemi satın alıyorsunuz.",
+            hero_deliver_1: "Prompt Paketi (kopyala-yapıştır)",
+            hero_deliver_2: "İş Akışı Rehberi (adım adım)",
+            hero_deliver_3: "Örnekler + Ayarlar (kullanıma hazır)",
+            hero_works_on: "Şunlar için uygundur: Etsy · Shopify · Instagram · TikTok · Web",
             btn_explore: "Sistemleri Keşfet",
             
             not_title: "Ne Satın ALMIYORSUNUZ?",
@@ -375,10 +422,17 @@
             p_sys_bundle_t: "Tam Stüdyo Paketi", p_sys_bundle_d: "Video ve Görsel sistemleri bir arada. Dijital markalar için nihai set.",
             
             lbl_system: "SİSTEM", lbl_instant: "Anında Teslimat",
-            btn_add: "Sistemi Sepete Ekle", btn_view: "İncele",
+            btn_add: "Sistemi Sepete Ekle", btn_view: "Sistemi İncele",
+            
+            tag_prompt_pack: "Prompt Paketi", tag_workflow_pdf: "İş Akışı PDF", tag_examples: "Örnekler",
+            badge_best_value: "EN AVANTAJLI",
             
             cart_title: "Sistemleriniz", cart_empty: "Sepetiniz boş.",
-            btn_checkout_etsy: "Etsy'de Ödemeyi Tamamla", cart_secure_note: "Etsy Üzerinden Güvenli Ödeme",
+            btn_open_etsy_listings: "Etsy İlanlarını Aç (Güvenli Ödeme)", 
+            cart_checkout_info: "Güvenli satın alma için Etsy ilanlarına yönlendirileceksiniz.",
+            cart_secure_note: "Etsy Üzerinden Güvenli Ödeme",
+            btn_open_on_etsy: "Etsy'de Aç",
+            multi_tab_note: "Etsy, seçtiğiniz her ilanı yeni sekmede açacaktır.",
             
             footer_title: "Neden Etsy Checkout?",
             footer_desc: "Güvenliğiniz ve otomatik dosya teslimatı için tüm işlemleri Etsy üzerinden yürütüyoruz. Sistemi satın aldıktan sonra, dilediğiniz platformda bağımsız olarak çalışır."
@@ -399,7 +453,7 @@
             
             return `
             <div class="glass-card rounded-3xl overflow-hidden flex flex-col group ${isBundle ? 'border-neon/30 relative' : ''}">
-                ${isBundle ? `<div class="absolute top-4 right-4 bg-neon text-black text-[10px] font-bold px-3 py-1 rounded-full z-10">BEST VALUE</div>` : ''}
+                ${isBundle ? `<div class="absolute top-4 right-4 bg-neon text-black text-[10px] font-bold px-3 py-1 rounded-full z-10">${t.badge_best_value}</div>` : ''}
                 <div class="aspect-[4/3] overflow-hidden relative">
                     <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-black/40"></div>
@@ -408,11 +462,19 @@
                     </div>
                 </div>
                 <div class="p-8 flex-1 flex flex-col">
-                    <h3 class="text-2xl font-serif text-white mb-3">${title}</h3>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">${desc}</p>
-                    <div class="mt-auto flex items-center justify-between border-t border-white/10 pt-6">
+                    <h3 class="text-2xl font-serif text-white mb-2">${title}</h3>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 uppercase tracking-wide">${t.tag_prompt_pack}</span>
+                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 uppercase tracking-wide">${t.tag_workflow_pdf}</span>
+                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 uppercase tracking-wide">${t.tag_examples}</span>
+                    </div>
+
+                    <p class="text-sm text-gray-400 mb-6 leading-relaxed flex-1 clamp-1">${desc}</p>
+                    
+                    <div class="mt-auto flex items-center justify-between border-t border-white/10 pt-6 gap-3">
                         <span class="text-xl font-bold text-white">$${p.price}</span>
-                        <button onclick="addToCart('${p.id}')" class="px-6 py-3 ${isBundle ? 'bg-neon text-black' : 'bg-white text-black'} text-xs font-bold uppercase rounded-full hover:scale-105 transition shadow-lg">
+                        <button onclick="addToCart('${p.id}')" class="flex-1 px-4 py-3 ${isBundle ? 'bg-neon text-black' : 'bg-white text-black'} text-xs font-bold uppercase rounded-full hover:scale-105 transition shadow-lg">
                             ${t.btn_add}
                         </button>
                     </div>
@@ -455,14 +517,18 @@
         cartItems.innerHTML = cart.map(id => {
             const p = products.find(item => item.id === id);
             const title = translations[currentLang][`p_${p.id}_t`];
+            const btnOpenText = translations[currentLang].btn_open_on_etsy;
             return `
             <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
                 <img src="${p.image}" class="w-16 h-16 object-cover rounded-lg">
-                <div class="flex-1">
-                    <h4 class="text-sm font-bold text-white line-clamp-1">${title}</h4>
-                    <span class="text-xs text-neon">$${p.price}</span>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-sm font-bold text-white clamp-1 mb-1">${title}</h4>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-neon">$${p.price}</span>
+                        <a href="${p.etsyUrl}" target="_blank" class="text-[10px] text-purple hover:text-white underline">${btnOpenText} <i class="fa-solid fa-external-link-alt ml-1"></i></a>
+                    </div>
                 </div>
-                <button onclick="removeFromCart('${p.id}')" class="text-gray-500 hover:text-red-400"><i class="fa-solid fa-trash"></i></button>
+                <button onclick="removeFromCart('${p.id}')" class="text-gray-500 hover:text-red-400 p-2"><i class="fa-solid fa-trash"></i></button>
             </div>
             `;
         }).join('');
@@ -483,7 +549,12 @@
 
     function checkoutAll() {
         if(cart.length === 0) return;
-        // Open all etsy links
+        
+        if(cart.length > 1) {
+            const note = translations[currentLang].multi_tab_note;
+            if(!confirm(note)) return;
+        }
+
         cart.forEach(id => {
             const p = products.find(item => item.id === id);
             if(p && p.etsyUrl) window.open(p.etsyUrl, '_blank');
@@ -494,9 +565,15 @@
         document.documentElement.lang = currentLang;
         document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
         
+        // Aria labels
+        const t = translations[currentLang];
+        document.getElementById('btn-open-cart').setAttribute('aria-label', t.aria_open_cart);
+        document.getElementById('btn-close-cart').setAttribute('aria-label', t.aria_close_cart);
+        document.getElementById('lang-btn').setAttribute('aria-label', t.aria_toggle_lang);
+
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[currentLang][key]) el.innerText = translations[currentLang][key];
+            if (t[key]) el.innerText = t[key];
         });
         
         renderProducts();
