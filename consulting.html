@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinY Academy | Strategy & Consulting</title>
+  <meta name="description" content="Expert consulting for Etsy growth, US LLC formation, and Dropshipping strategies. Stop guessing, start scaling." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          colors: {
+            bgdark: '#0B0B15',
+            surface: '#12121A',
+            blue: '#3B82F6',    /* Güven Rengi */
+            platinum: '#E5E7EB', /* Bilgelik Rengi */
+            gold: '#D4AF37'
+          },
+          animation: {
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #0B0B15; color: #F3F4F6; -webkit-font-smoothing: antialiased; }
+    
+    /* Arkaplan Efektleri - Daha Ciddi ve Stabil */
+    .net-grid {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
+        background-image: linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.5;
+    }
+    
+    .glow-spot { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; }
+    .glow-1 { top: -200px; left: -200px; }
+    .glow-2 { bottom: -200px; right: -200px; }
+
+    .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease; }
+    .glass-card:hover { border-color: rgba(59, 130, 246, 0.3); background: rgba(255, 255, 255, 0.04); transform: translateY(-5px); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body class="font-sans selection:bg-blue-500 selection:text-white">
+
+  <div class="net-grid"></div>
+  <div class="glow-spot glow-1"></div>
+  <div class="glow-spot glow-2"></div>
+
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded bg-gradient-to-tr from-blue-600 to-gray-400 p-[1px]">
+            <div class="w-full h-full bg-bgdark rounded flex items-center justify-center group-hover:bg-transparent transition duration-500">
+                <span class="font-bold text-lg text-white">V</span>
+            </div>
+        </div>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-blue-400">ACADEMY</span></span>
+    </a>
+    
+    <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+      <a href="#path" class="hover:text-white transition" data-i18n="nav_path">The Path</a>
+      <a href="#services" class="hover:text-white transition" data-i18n="nav_services">Consulting</a>
+      <a href="#llc" class="hover:text-white transition" data-i18n="nav_llc">LLC Setup</a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+      <a href="https://wa.me/905419787726" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-blue-500 hover:text-white transition shadow-lg shadow-blue-500/20">
+        <span data-i18n="btn_book">Book Strategy</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="pt-40 pb-24 px-6 min-h-[85vh] flex items-center">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal active">
+              <div class="inline-flex items-center gap-3 mb-6 px-4 py-2 border border-blue-500/30 rounded-full bg-blue-500/10">
+                  <i class="fa-solid fa-chess-knight text-blue-400"></i>
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-blue-200" data-i18n="hero_badge">Strategic Growth Partner</span>
+              </div>
+              
+              <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
+                  <span data-i18n="hero_t1">Stop Guessing.</span> <br>
+                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-gray-400" data-i18n="hero_t2">Start Knowing.</span>
+              </h1>
+              
+              <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg border-l-2 border-blue-500/50 pl-6" data-i18n="hero_desc">
+                  Building a global business isn't about luck. It's about architecture. We provide the blueprint for US Company Formation, Etsy Scaling, and Crisis Management.
+              </p>
+              
+              <div class="flex flex-col sm:flex-row gap-4">
+                  <a href="#services" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-blue-500 hover:text-white transition shadow-[0_0_20px_rgba(255,255,255,0.1)] text-center">
+                      <span data-i18n="btn_explore">View Programs</span>
+                  </a>
+                  <a href="#proof" class="px-8 py-4 border border-white/20 text-white font-bold rounded-full hover:bg-white/5 transition text-center">
+                      <span data-i18n="btn_proof">Why Us?</span>
+                  </a>
+              </div>
+          </div>
+
+          <div class="relative reveal delay-200 lg:h-[500px] flex items-center justify-center">
+               <div class="relative w-full max-w-md aspect-square">
+                   <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl animate-pulse-slow"></div>
+                   <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#0F172A] border border-blue-500/30 p-6 rounded-2xl text-center z-10 shadow-2xl">
+                       <i class="fa-solid fa-globe text-3xl text-blue-400 mb-2"></i>
+                       <div class="text-xs font-bold uppercase tracking-widest text-white">Global Empire</div>
+                   </div>
+
+                   <div class="absolute top-0 right-10 bg-surface border border-white/10 p-3 rounded-lg animate-bounce" style="animation-duration: 3s">
+                       <div class="text-[10px] text-gray-400 uppercase">Legal</div>
+                       <div class="font-bold text-white text-sm"><i class="fa-solid fa-building-columns mr-1 text-gray-400"></i> US LLC</div>
+                   </div>
+                   <div class="absolute bottom-10 left-0 bg-surface border border-white/10 p-3 rounded-lg animate-bounce" style="animation-duration: 4s">
+                       <div class="text-[10px] text-gray-400 uppercase">Finance</div>
+                       <div class="font-bold text-white text-sm"><i class="fa-brands fa-stripe mr-1 text-blue-400"></i> Stripe/Wise</div>
+                   </div>
+                   <div class="absolute bottom-20 right-0 bg-surface border border-white/10 p-3 rounded-lg animate-bounce" style="animation-duration: 5s">
+                       <div class="text-[10px] text-gray-400 uppercase">Platform</div>
+                       <div class="font-bold text-white text-sm"><i class="fa-brands fa-etsy mr-1 text-[#F1641E]"></i> Etsy Scale</div>
+                   </div>
+                   
+                   <svg class="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-30">
+                       <line x1="50%" y1="50%" x2="80%" y2="20%" stroke="#3B82F6" stroke-dasharray="4"/>
+                       <line x1="50%" y1="50%" x2="20%" y2="80%" stroke="#3B82F6" stroke-dasharray="4"/>
+                       <line x1="50%" y1="50%" x2="80%" y2="70%" stroke="#3B82F6" stroke-dasharray="4"/>
+                   </svg>
+               </div>
+          </div>
+      </div>
+  </header>
+
+  <section id="path" class="py-24 bg-surface/50 border-y border-white/5">
+      <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-16 reveal">
+              <h2 class="text-3xl md:text-4xl font-serif text-white mb-4" data-i18n="path_title">The E-Commerce Ceiling</h2>
+              <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="path_desc">Most sellers hit a wall not because of bad products, but because of bad infrastructure. We fix the foundation.</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+              <div class="p-8 border border-white/5 rounded-2xl bg-bgdark hover:border-red-500/30 transition duration-500 reveal">
+                  <div class="text-red-400 text-3xl mb-4"><i class="fa-solid fa-ban"></i></div>
+                  <h3 class="text-lg font-bold text-white mb-2" data-i18n="p1_t">Payment Barriers</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="p1_d">"I can't open Stripe because I live in a restricted country." This kills 90% of global ambitions.</p>
+              </div>
+              <div class="p-8 border border-white/5 rounded-2xl bg-bgdark hover:border-red-500/30 transition duration-500 reveal delay-100">
+                  <div class="text-red-400 text-3xl mb-4"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                  <h3 class="text-lg font-bold text-white mb-2" data-i18n="p2_t">Account Suspension</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="p2_d">Waking up to a suspended Etsy account because of a minor IP violation or verification error.</p>
+              </div>
+              <div class="p-8 border border-white/5 rounded-2xl bg-bgdark hover:border-red-500/30 transition duration-500 reveal delay-200">
+                  <div class="text-red-400 text-3xl mb-4"><i class="fa-solid fa-chart-line-down"></i></div>
+                  <h3 class="text-lg font-bold text-white mb-2" data-i18n="p3_t">Scaling Cap</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="p3_d">Stuck at 5 sales a week? You don't have a traffic problem; you have a brand authority problem.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section id="services" class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+              <div>
+                  <span class="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="serv_badge">Our Solutions</span>
+                  <h2 class="text-4xl md:text-5xl font-serif text-white" data-i18n="serv_title">Strategic Consulting</h2>
+              </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+              
+              <div class="glass-card p-1 rounded-3xl relative group reveal">
+                  <div class="absolute inset-0 bg-gradient-to-b from-blue-500/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div class="bg-[#0F1115] rounded-[22px] p-8 h-full relative z-10 flex flex-col">
+                      <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 text-2xl mb-6"><i class="fa-solid fa-passport"></i></div>
+                      <h3 class="text-2xl font-bold text-white mb-2" data-i18n="s1_t">US LLC Formation</h3>
+                      <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="s1_d">
+                          The golden key to global trade. We guide you through opening a legit US Company, getting an EIN, and unlocking Stripe/Wise.
+                      </p>
+                      <ul class="text-xs text-gray-500 space-y-2 mb-8">
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-blue-500"></i> <span data-i18n="s1_l1">Company Registration</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-blue-500"></i> <span data-i18n="s1_l2">EIN (Tax ID) Procurement</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-blue-500"></i> <span data-i18n="s1_l3">Bank Account Setup</span></li>
+                      </ul>
+                      <a href="https://wa.me/905419787726?text=I%20need%20help%20with%20US%20LLC%20Setup." class="mt-auto block w-full py-3 bg-blue-600 text-white text-center font-bold rounded-lg hover:bg-blue-500 transition text-sm">
+                          <span data-i18n="btn_consult">Start Formation</span>
+                      </a>
+                  </div>
+              </div>
+
+              <div class="glass-card p-1 rounded-3xl relative group reveal delay-100">
+                  <div class="absolute inset-0 bg-gradient-to-b from-[#F1641E]/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div class="bg-[#0F1115] rounded-[22px] p-8 h-full relative z-10 flex flex-col">
+                      <div class="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center text-[#F1641E] text-2xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
+                      <h3 class="text-2xl font-bold text-white mb-2" data-i18n="s2_t">Etsy Audit & Scale</h3>
+                      <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="s2_d">
+                          Your shop isn't growing because of 'luck'. It's SEO, Photography, and Policy Compliance. We fix the leaks in your bucket.
+                      </p>
+                      <ul class="text-xs text-gray-500 space-y-2 mb-8">
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-orange-500"></i> <span data-i18n="s2_l1">SEO Keyword Overhaul</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-orange-500"></i> <span data-i18n="s2_l2">Policy Compliance Check</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-orange-500"></i> <span data-i18n="s2_l3">Ad Strategy Optimization</span></li>
+                      </ul>
+                      <a href="https://wa.me/905419787726?text=I%20want%20an%20Etsy%20Shop%20Audit." class="mt-auto block w-full py-3 border border-white/10 text-white text-center font-bold rounded-lg hover:bg-white/5 transition text-sm">
+                          <span data-i18n="btn_audit">Book Audit</span>
+                      </a>
+                  </div>
+              </div>
+
+              <div class="glass-card p-1 rounded-3xl relative group reveal delay-200">
+                  <div class="absolute inset-0 bg-gradient-to-b from-purple/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div class="bg-[#0F1115] rounded-[22px] p-8 h-full relative z-10 flex flex-col">
+                      <div class="w-14 h-14 bg-purple/10 rounded-xl flex items-center justify-center text-purple text-2xl mb-6"><i class="fa-solid fa-user-astronaut"></i></div>
+                      <h3 class="text-2xl font-bold text-white mb-2" data-i18n="s3_t">1:1 Mentorship</h3>
+                      <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="s3_d">
+                          Direct access to our expertise. Ask about dropshipping, digital products, or brand positioning. No generic advice, only tactics.
+                      </p>
+                      <ul class="text-xs text-gray-500 space-y-2 mb-8">
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="s3_l1">1 Hour Strategy Call</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="s3_l2">Screen Sharing & Analysis</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="s3_l3">Action Plan PDF</span></li>
+                      </ul>
+                      <a href="https://wa.me/905419787726?text=I%20want%20to%20book%20a%201:1%20Session." class="mt-auto block w-full py-3 border border-white/10 text-white text-center font-bold rounded-lg hover:bg-white/5 transition text-sm">
+                          <span data-i18n="btn_session">Book Session</span>
+                      </a>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </section>
+
+  <section id="proof" class="py-24 bg-bgdark border-t border-white/5">
+      <div class="max-w-4xl mx-auto px-6 text-center reveal">
+          <i class="fa-solid fa-quote-left text-4xl text-white/10 mb-6"></i>
+          <h2 class="text-2xl md:text-4xl font-serif text-white mb-8 leading-relaxed italic">
+              <span data-i18n="quote_t">"E-commerce isn't about finding a winning product. It's about building a system that can sell *any* product."</span>
+          </h2>
+          <div class="flex items-center justify-center gap-4">
+              <div class="text-right">
+                  <div class="text-white font-bold">VitrinY Academy</div>
+                  <div class="text-blue-400 text-xs uppercase tracking-widest">Est. 2026</div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="py-24 px-6 bg-surface">
+      <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold mb-10 text-center text-white" data-i18n="faq_title">Frequently Asked Questions</h2>
+          <div class="space-y-4 reveal">
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2 text-sm" data-i18n="q1_t">Can I open an LLC from outside US?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n="q1_a">Yes, absolutely. 100% legal. You don't need to visit the US. We handle the paperwork remotely.</p>
+              </div>
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2 text-sm" data-i18n="q2_t">Does this guarantee sales?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n="q2_a">No honest consultant guarantees sales. We guarantee a professional, verified infrastructure that makes sales *possible* and scalable.</p>
+              </div>
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2 text-sm" data-i18n="q3_t">How do sessions work?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n="q3_a">We use Google Meet or Zoom. You can record the session for later reference.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <footer class="py-24 bg-bgdark text-center border-t border-white/5 relative z-10">
+      <div class="max-w-2xl mx-auto px-6 reveal">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white" data-i18n="cta_t">Ready to Scale?</h2>
+          <p class="text-gray-400 mb-10" data-i18n="cta_d">Stop watching tutorials. Start building your empire.</p>
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+              <a href="https://wa.me/905419787726?text=Hi,%20I'm%20ready%20to%20consult." class="px-10 py-4 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-500 transition shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+                  <i class="fa-brands fa-whatsapp mr-2"></i> <span data-i18n="btn_start">Book via WhatsApp</span>
+              </a>
+              <a href="index.html" class="px-10 py-4 border border-white/20 text-gray-300 font-bold rounded-full hover:bg-white/5 transition">
+                  <span data-i18n="btn_home">Back to Home</span>
+              </a>
+          </div>
+      </div>
+      <div class="mt-20 text-xs text-gray-600">
+          © 2026 VitrinY Academy.
+      </div>
+  </footer>
+
+  <script>
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Translations
+    const translations = {
+      en: {
+        nav_path: "The Path", nav_services: "Consulting", nav_llc: "LLC Setup", btn_book: "Book Strategy",
+        hero_badge: "Strategic Growth Partner",
+        hero_t1: "Stop Guessing.", hero_t2: "Start Knowing.",
+        hero_desc: "Building a global business isn't about luck. It's about architecture. We provide the blueprint for US Company Formation, Etsy Scaling, and Crisis Management.",
+        btn_explore: "View Programs", btn_proof: "Why Us?",
+        
+        path_title: "The E-Commerce Ceiling", path_desc: "Most sellers hit a wall not because of bad products, but because of bad infrastructure. We fix the foundation.",
+        p1_t: "Payment Barriers", p1_d: "\"I can't open Stripe because I live in a restricted country.\" This kills 90% of global ambitions.",
+        p2_t: "Account Suspension", p2_d: "Waking up to a suspended Etsy account because of a minor IP violation or verification error.",
+        p3_t: "Scaling Cap", p3_d: "Stuck at 5 sales a week? You don't have a traffic problem; you have a brand authority problem.",
+
+        serv_badge: "Our Solutions", serv_title: "Strategic Consulting",
+        s1_t: "US LLC Formation", s1_d: "The golden key to global trade. We guide you through opening a legit US Company, getting an EIN, and unlocking Stripe/Wise.",
+        s1_l1: "Company Registration", s1_l2: "EIN (Tax ID) Procurement", s1_l3: "Bank Account Setup", btn_consult: "Start Formation",
+        
+        s2_t: "Etsy Audit & Scale", s2_d: "Your shop isn't growing because of 'luck'. It's SEO, Photography, and Policy Compliance. We fix the leaks in your bucket.",
+        s2_l1: "SEO Keyword Overhaul", s2_l2: "Policy Compliance Check", s2_l3: "Ad Strategy Optimization", btn_audit: "Book Audit",
+        
+        s3_t: "1:1 Mentorship", s3_d: "Direct access to our expertise. Ask about dropshipping, digital products, or brand positioning. No generic advice, only tactics.",
+        s3_l1: "1 Hour Strategy Call", s3_l2: "Screen Sharing & Analysis", s3_l3: "Action Plan PDF", btn_session: "Book Session",
+
+        quote_t: "\"E-commerce isn't about finding a winning product. It's about building a system that can sell *any* product.\"",
+        
+        faq_title: "Frequently Asked Questions",
+        q1_t: "Can I open an LLC from outside US?", q1_a: "Yes, absolutely. 100% legal. You don't need to visit the US. We handle the paperwork remotely.",
+        q2_t: "Does this guarantee sales?", q2_a: "No honest consultant guarantees sales. We guarantee a professional, verified infrastructure that makes sales *possible* and scalable.",
+        q3_t: "How do sessions work?", q3_a: "We use Google Meet or Zoom. You can record the session for later reference.",
+
+        cta_t: "Ready to Scale?", cta_d: "Stop watching tutorials. Start building your empire.",
+        btn_start: "Book via WhatsApp", btn_home: "Back to Home"
+      },
+      tr: {
+        nav_path: "Sorunlar", nav_services: "Danışmanlık", nav_llc: "Şirket Kurulumu", btn_book: "Randevu Al",
+        hero_badge: "Stratejik Büyüme Ortağı",
+        hero_t1: "Tahmin Etme.", hero_t2: "Bilmeyi Seç.",
+        hero_desc: "Global bir iş kurmak şans değil, mimari işidir. Amerika'da Şirket Kurulumu, Etsy Büyütme ve Kriz Yönetimi için gereken planı size veriyoruz.",
+        btn_explore: "Programları Gör", btn_proof: "Neden Biz?",
+        
+        path_title: "E-Ticaret Tavanı", path_desc: "Çoğu satıcı kötü ürün yüzünden değil, kötü altyapı yüzünden duvara toslar. Biz temeli düzeltiyoruz.",
+        p1_t: "Ödeme Engelleri", p1_d: "\"Türkiye'de yaşadığım için Stripe açamıyorum.\" Bu cümle global hayallerin %90'ını öldürür. Bunu aşıyoruz.",
+        p2_t: "Hesap Kapanması (Suspend)", p2_d: "Küçük bir IP hatası veya doğrulama eksiği yüzünden Etsy hesabınızın kapandığı bir sabaha uyanmak.",
+        p3_t: "Büyüme Sancısı", p3_d: "Haftada 5 satışta takıldınız mı? Trafik sorununuz yok; marka otoritesi sorununuz var.",
+
+        serv_badge: "Çözümlerimiz", serv_title: "Stratejik Danışmanlık",
+        s1_t: "Amerika'da Şirket (LLC)", s1_d: "Global ticaretin altın anahtarı. Yasal bir ABD şirketi kurmanıza, EIN almanıza ve Stripe/Wise açmanıza rehberlik ediyoruz.",
+        s1_l1: "Şirket Tescili", s1_l2: "EIN (Vergi No) Temini", s1_l3: "Banka Hesabı Kurulumu", btn_consult: "Kuruluma Başla",
+        
+        s2_t: "Etsy Analiz & Büyüme", s2_d: "Mağazanız 'şans' eseri büyümüyor. SEO, Fotoğraf ve Politika Uyumu eksik. Kovanızdaki delikleri kapatıyoruz.",
+        s2_l1: "SEO Kelime Revizyonu", s2_l2: "Politika Uyumluluk Kontrolü", s2_l3: "Reklam Stratejisi", btn_audit: "Analiz İste",
+        
+        s3_t: "Birebir Mentorluk", s3_d: "Uzmanlığımıza doğrudan erişim. Dropshipping, dijital ürün veya marka konumu hakkında sorun. Genel tavsiye yok, sadece taktik.",
+        s3_l1: "1 Saatlik Strateji Görüşmesi", s3_l2: "Ekran Paylaşımı & Analiz", s3_l3: "Eylem Planı PDF'i", btn_session: "Seans Ayır",
+
+        quote_t: "\"E-ticaret kazanan ürünü bulmakla ilgili değildir. *Herhangi* bir ürünü satabilecek sistemi kurmakla ilgilidir.\"",
+        
+        faq_title: "Sıkça Sorulanlar",
+        q1_t: "Türkiye'den ABD şirketi açabilir miyim?", q1_a: "Evet, kesinlikle. %100 yasaldır. ABD'ye gitmenize gerek yok. Evrak işlerini uzaktan hallediyoruz.",
+        q2_t: "Satış garantisi var mı?", q2_a: "Hiçbir dürüst danışman satış garantisi vermez. Biz, satış yapmayı *mümkün* ve ölçeklenebilir kılan profesyonel altyapıyı garanti ediyoruz.",
+        q3_t: "Görüşmeler nasıl yapılıyor?", q3_a: "Google Meet veya Zoom kullanıyoruz. Görüşmeyi daha sonra izlemek üzere kaydedebilirsiniz.",
+
+        cta_t: "Büyümeye Hazır Mısın?", cta_d: "Video izlemeyi bırak. İmparatorluğunu kurmaya başla.",
+        btn_start: "WhatsApp ile Randevu", btn_home: "Ana Sayfaya Dön"
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    
+    function applyLang() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+        });
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    }
+
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        localStorage.setItem('lang', currentLang);
+        applyLang();
+    }
+    applyLang();
+  </script>
+
+</body>
+</html>
