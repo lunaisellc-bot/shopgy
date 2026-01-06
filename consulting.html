@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY Studio | AI Systems & Consulting</title>
-  <meta name="description" content="Professional AI Visual & Video Systems. Strategic Consulting. Secure checkout via Etsy." />
+  <title>VitrinY Academy | Strategy & Consulting</title>
+  <meta name="description" content="Expert consulting for Etsy growth, US LLC formation, and Dropshipping strategies. Secure purchase via Etsy." />
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -21,18 +21,12 @@
           colors: {
             bgdark: '#0B0B15',
             surface: '#12121A',
-            neon: '#00DC82',
-            purple: '#7B61FF',
+            blue: '#3B82F6',
+            platinum: '#E5E7EB',
             gold: '#D4AF37'
           },
           animation: {
-            'float': 'float 6s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' },
-            }
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
           }
         }
       }
@@ -40,533 +34,410 @@
   </script>
 
   <style>
-    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; }
+    body { background-color: #0B0B15; color: #F3F4F6; -webkit-font-smoothing: antialiased; }
     
-    /* Background Ambience */
-    .ambient-light { position: fixed; pointer-events: none; z-index: -1; opacity: 0.4; filter: blur(120px); }
-    .light-1 { top: -20%; left: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(123,97,255,0.15), transparent 70%); }
-    .light-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(0,220,130,0.1), transparent 70%); }
+    /* Background FX */
+    .net-grid {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
+        background-image: linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.5;
+    }
+    .glow-spot { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; }
+    .glow-1 { top: -200px; left: -200px; }
+    .glow-2 { bottom: -200px; right: -200px; }
 
-    /* UI Elements */
-    .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease; }
-    .glass-card:hover { border-color: rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); transform: translateY(-3px); }
+    .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease; }
+    .glass-card:hover { border-color: rgba(59, 130, 246, 0.3); background: rgba(255, 255, 255, 0.04); transform: translateY(-5px); }
 
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
-
-    /* Cart Drawer */
-    #cart-drawer { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-    .drawer-open { transform: translateX(0) !important; }
   </style>
 </head>
 
-<body class="font-sans selection:bg-purple selection:text-white">
+<body class="font-sans selection:bg-blue-500 selection:text-white">
 
-  <div class="ambient-light light-1"></div>
-  <div class="ambient-light light-2"></div>
+  <div class="net-grid"></div>
+  <div class="glow-spot glow-1"></div>
+  <div class="glow-spot glow-2"></div>
 
-  <div id="cart-backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] hidden transition-opacity duration-300"></div>
-  <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0F0F16] border-l border-white/10 z-[100] transform translate-x-full shadow-2xl flex flex-col">
-      <div class="p-6 border-b border-white/10 flex justify-between items-center">
-          <h2 class="text-xl font-serif text-white" data-i18n="cart_title">Selected Systems</h2>
-          <button onclick="toggleCart()" class="text-gray-400 hover:text-white transition"><i class="fa-solid fa-xmark text-xl"></i></button>
-      </div>
-      
-      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
-          </div>
-
-      <div class="p-6 border-t border-white/10 bg-[#0B0B15]">
-          <div class="mb-4 text-center">
-             <p class="text-xs text-neon mb-1 font-bold" data-i18n="cart_checkout_info">You will be redirected to Etsy for payment.</p>
-             <p class="text-[10px] text-gray-500" data-i18n="etsy_secure_line">Secure payment on Etsy. Buyer protection included.</p>
-          </div>
-          <button onclick="checkoutAll()" class="w-full py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full hover:bg-neon hover:text-black transition mb-3 shadow-lg flex items-center justify-center gap-2">
-              <span data-i18n="btn_checkout_etsy">Proceed to Etsy Checkout</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </button>
-      </div>
-  </div>
-
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center transition-all duration-300">
-    <a href="#" class="flex items-center gap-3 group">
-        <div class="w-8 h-8 rounded bg-gradient-to-tr from-purple to-neon p-[1px]">
-            <div class="w-full h-full bg-bgdark rounded flex items-center justify-center">
-                <span class="font-bold text-white">V</span>
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded bg-gradient-to-tr from-blue-600 to-gray-400 p-[1px]">
+            <div class="w-full h-full bg-bgdark rounded flex items-center justify-center group-hover:bg-transparent transition duration-500">
+                <span class="font-bold text-lg text-white">V</span>
             </div>
         </div>
-        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-neon">STUDIO</span></span>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-blue-400">ACADEMY</span></span>
     </a>
     
     <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
-        <a href="#systems" class="hover:text-white transition" data-i18n="nav_systems">Systems</a>
-        <a href="#how" class="hover:text-white transition" data-i18n="nav_how">Process</a>
-        <a href="#trust" class="hover:text-white transition" data-i18n="nav_trust">Why Etsy</a>
+      <a href="#path" class="hover:text-white transition" data-i18n="nav_path">The Path</a>
+      <a href="#services" class="hover:text-white transition" data-i18n="nav_services">Consulting</a>
+      <a href="#llc" class="hover:text-white transition" data-i18n="nav_llc">LLC Setup</a>
     </div>
 
     <div class="flex items-center gap-6">
       <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
-      <button onclick="toggleCart()" class="relative group">
-          <i class="fa-solid fa-bag-shopping text-xl text-gray-400 group-hover:text-white transition"></i>
-          <span id="cart-count" class="absolute -top-2 -right-2 w-4 h-4 bg-neon text-black text-[9px] font-bold rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300">0</span>
-      </button>
+      <a href="#services" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-blue-500 hover:text-white transition shadow-lg shadow-blue-500/20">
+        <span data-i18n="btn_header_cta">View Programs</span>
+      </a>
     </div>
   </nav>
 
-  <header class="pt-40 pb-20 px-6 min-h-[90vh] flex items-center">
-      <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+  <header class="pt-40 pb-24 px-6 min-h-[85vh] flex items-center">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div class="reveal active">
-              <div class="inline-flex items-center gap-3 mb-6 px-4 py-2 border border-white/10 rounded-full bg-white/5">
-                  <i class="fa-brands fa-etsy text-[#F1641E]"></i>
-                  <span class="text-[10px] font-bold uppercase tracking-widest text-gray-300" data-i18n="hero_badge">Purchased via Etsy · Used Everywhere</span>
+              <div class="inline-flex items-center gap-3 mb-6 px-4 py-2 border border-blue-500/30 rounded-full bg-blue-500/10">
+                  <i class="fa-solid fa-chess-knight text-blue-400"></i>
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-blue-200" data-i18n="hero_badge">Strategic Growth Partner</span>
               </div>
               
-              <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
-                  <span data-i18n="hero_t1">Generate Studio Quality</span> <br>
-                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple via-white to-neon font-serif italic" data-i18n="hero_t2">Without a Studio.</span>
+              <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
+                  <span data-i18n="hero_t1">Stop Guessing.</span> <br>
+                  <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-gray-400" data-i18n="hero_t2">Start Knowing.</span>
               </h1>
               
-              <div class="flex flex-wrap gap-4 mb-6 text-sm font-bold text-gray-400 uppercase tracking-wider">
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-ban text-red-500"></i> <span data-i18n="no_cam">No Camera</span></span>
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-ban text-red-500"></i> <span data-i18n="no_studio">No Studio</span></span>
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-ban text-red-500"></i> <span data-i18n="no_model">No Model</span></span>
-              </div>
-
-              <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-lg border-l-2 border-neon/50 pl-6" data-i18n="hero_desc">
-                  We create professional AI Visual & Video Systems that automate your content creation. Purchase securely via Etsy, use freely on Shopify, Instagram, and Ads.
+              <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-lg border-l-2 border-blue-500/50 pl-6" data-i18n="hero_desc">
+                  Building a global business isn't about luck. It's about architecture. We provide the blueprint for US Company Formation, Etsy Scaling, and Crisis Management.
               </p>
 
-              <div class="bg-white/5 border border-white/10 rounded-xl p-4 mb-8 backdrop-blur-sm">
-                  <p class="text-neon text-sm font-medium mb-1" data-i18n="one_line_clarity">You’re buying a reusable production system (prompts + workflow + examples) — not a finished file.</p>
-                  <p class="text-[10px] text-gray-500 mt-2 flex items-center gap-2">
-                      <i class="fa-solid fa-lock text-gold"></i> <span data-i18n="checkout_note_inline">Checkout completed securely on Etsy.</span>
+              <div class="bg-blue-900/20 border border-blue-500/20 p-5 rounded-xl mb-10 backdrop-blur-sm">
+                  <p class="text-sm text-gray-300 flex gap-3">
+                      <i class="fa-solid fa-shield-halved text-blue-400 mt-1"></i>
+                      <span data-i18n="hero_logic">Programs are purchased via Etsy checkout for buyer protection and secure payment. After purchase, you receive scheduling + onboarding instructions automatically.</span>
                   </p>
               </div>
               
-              <div class="flex gap-4">
-                  <a href="#systems" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neon transition shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                      <span data-i18n="btn_explore">Explore Systems</span>
+              <div class="flex flex-col sm:flex-row gap-4">
+                  <a href="#services" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-blue-500 hover:text-white transition shadow-[0_0_20px_rgba(255,255,255,0.1)] text-center">
+                      <span data-i18n="btn_explore">View Programs</span>
                   </a>
               </div>
           </div>
 
-          <div class="relative reveal delay-200">
-               <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 bg-[#0A0A0A] shadow-2xl animate-float">
-                   <div class="absolute inset-0 p-8 flex flex-col justify-center">
-                       <div class="flex items-center gap-4 mb-6 opacity-50">
-                           <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                           <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                           <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                       </div>
-                       <div class="space-y-4 opacity-80">
-                           <div class="h-2 w-3/4 bg-white/10 rounded"></div>
-                           <div class="h-2 w-1/2 bg-white/10 rounded"></div>
-                           <div class="p-4 bg-purple/10 border border-purple/20 rounded-xl mt-4">
-                               <div class="text-xs text-purple font-mono mb-2">System Processing...</div>
-                               <div class="w-full bg-black h-1 rounded-full overflow-hidden">
-                                   <div class="bg-purple h-full w-2/3"></div>
-                               </div>
-                           </div>
-                       </div>
+          <div class="relative reveal delay-200 lg:h-[500px] flex items-center justify-center">
+               <div class="relative w-full max-w-md aspect-square">
+                   <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl animate-pulse-slow"></div>
+                   <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#0F172A] border border-blue-500/30 p-6 rounded-2xl text-center z-10 shadow-2xl">
+                       <i class="fa-solid fa-globe text-3xl text-blue-400 mb-2"></i>
+                       <div class="text-xs font-bold uppercase tracking-widest text-white">Global Empire</div>
                    </div>
-                   <div class="absolute bottom-6 right-6 px-4 py-2 bg-neon/10 border border-neon/30 rounded-lg backdrop-blur">
-                       <div class="flex items-center gap-2">
-                           <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
-                           <span class="text-xs font-bold text-neon uppercase tracking-widest">Workflow Active</span>
-                       </div>
+
+                   <div class="absolute top-0 right-10 bg-surface border border-white/10 p-3 rounded-lg animate-bounce" style="animation-duration: 3s">
+                       <div class="text-[10px] text-gray-400 uppercase">Legal</div>
+                       <div class="font-bold text-white text-sm"><i class="fa-solid fa-building-columns mr-1 text-gray-400"></i> US LLC</div>
                    </div>
+                   <div class="absolute bottom-10 left-0 bg-surface border border-white/10 p-3 rounded-lg animate-bounce" style="animation-duration: 4s">
+                       <div class="text-[10px] text-gray-400 uppercase">Finance</div>
+                       <div class="font-bold text-white text-sm"><i class="fa-brands fa-stripe mr-1 text-blue-400"></i> Stripe/Wise</div>
+                   </div>
+                   <div class="absolute bottom-20 right-0 bg-surface border border-white/10 p-3 rounded-lg animate-bounce" style="animation-duration: 5s">
+                       <div class="text-[10px] text-gray-400 uppercase">Platform</div>
+                       <div class="font-bold text-white text-sm"><i class="fa-brands fa-etsy mr-1 text-[#F1641E]"></i> Etsy Scale</div>
+                   </div>
+                   
+                   <svg class="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-30">
+                       <line x1="50%" y1="50%" x2="80%" y2="20%" stroke="#3B82F6" stroke-dasharray="4"/>
+                       <line x1="50%" y1="50%" x2="20%" y2="80%" stroke="#3B82F6" stroke-dasharray="4"/>
+                       <line x1="50%" y1="50%" x2="80%" y2="70%" stroke="#3B82F6" stroke-dasharray="4"/>
+                   </svg>
                </div>
           </div>
       </div>
   </header>
 
-  <section class="py-20 bg-surface border-y border-white/5">
-      <div class="max-w-5xl mx-auto px-6">
-          <div class="grid md:grid-cols-2 gap-12 items-center">
-              <div class="p-8 rounded-3xl bg-red-500/5 border border-red-500/10 reveal">
-                  <h3 class="text-xl font-bold text-red-400 mb-6 flex items-center gap-3">
-                      <i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="not_title">What You Are NOT Buying</span>
-                  </h3>
-                  <ul class="space-y-4 text-gray-400 text-sm">
-                      <li class="flex items-start gap-3">
-                          <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
-                          <span data-i18n="not_1">You are NOT buying a finished MP4/JPG file.</span>
-                      </li>
-                      <li class="flex items-start gap-3">
-                          <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
-                          <span data-i18n="not_2">You are NOT buying a software subscription.</span>
-                      </li>
-                      <li class="flex items-start gap-3">
-                          <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
-                          <span data-i18n="not_3">You are NOT buying a physical product.</span>
-                      </li>
-                  </ul>
-              </div>
-
-              <div class="p-8 rounded-3xl bg-neon/5 border border-neon/10 reveal delay-100 relative overflow-hidden">
-                  <div class="absolute top-0 right-0 w-32 h-32 bg-neon/10 blur-[50px]"></div>
-                  <h3 class="text-xl font-bold text-neon mb-6 flex items-center gap-3">
-                      <i class="fa-solid fa-circle-check"></i> <span data-i18n="is_title">What You ARE Buying</span>
-                  </h3>
-                  <ul class="space-y-4 text-gray-300 text-sm relative z-10">
-                      <li class="flex items-start gap-3">
-                          <i class="fa-solid fa-check text-neon mt-1"></i>
-                          <span data-i18n="is_1">A complete AI Generation System (Prompts + Workflow).</span>
-                      </li>
-                      <li class="flex items-start gap-3">
-                          <i class="fa-solid fa-check text-neon mt-1"></i>
-                          <span data-i18n="is_2">Step-by-step PDF Studio Guide to create unlimited assets.</span>
-                      </li>
-                      <li class="flex items-start gap-3">
-                          <i class="fa-solid fa-check text-neon mt-1"></i>
-                          <span data-i18n="is_3">Instant Digital Download after Etsy payment.</span>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          
-          <div class="mt-12 text-center reveal">
-              <p class="text-sm text-gray-500 font-mono border border-white/10 inline-block px-4 py-2 rounded-lg">
-                  <i class="fa-solid fa-layer-group mr-2"></i> <span data-i18n="works_on">Works for: Etsy · Shopify · Instagram · TikTok · Website</span>
-              </p>
-          </div>
-      </div>
-  </section>
-
-  <section id="how" class="py-24">
-      <div class="max-w-7xl mx-auto px-6">
+  <section id="path" class="py-24 bg-surface/50 border-y border-white/5">
+      <div class="max-w-6xl mx-auto px-6">
           <div class="text-center mb-16 reveal">
-              <h2 class="text-3xl font-serif text-white mb-4" data-i18n="how_title">The Process</h2>
+              <h2 class="text-3xl md:text-4xl font-serif text-white mb-4" data-i18n="path_title">The E-Commerce Ceiling</h2>
+              <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="path_desc">Most sellers hit a wall not because of bad products, but because of bad infrastructure. We fix the foundation.</p>
           </div>
+
           <div class="grid md:grid-cols-3 gap-8">
-              <div class="glass-card p-8 rounded-3xl text-center reveal">
-                  <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-purple text-2xl mb-6"><i class="fa-brands fa-etsy"></i></div>
-                  <h4 class="font-bold text-white mb-2" data-i18n="step1_t">Purchase via Etsy</h4>
-                  <p class="text-sm text-gray-400" data-i18n="step1_d">Proceed to Etsy for secure payment and buyer protection.</p>
+              <div class="p-8 border border-white/5 rounded-2xl bg-bgdark hover:border-red-500/30 transition duration-500 reveal">
+                  <div class="text-red-400 text-3xl mb-4"><i class="fa-solid fa-ban"></i></div>
+                  <h3 class="text-lg font-bold text-white mb-2" data-i18n="p1_t">Payment Barriers</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="p1_d">"I can't open Stripe because I live in a restricted country." This kills 90% of global ambitions.</p>
               </div>
-              <div class="glass-card p-8 rounded-3xl text-center reveal delay-100">
-                  <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-gold text-2xl mb-6"><i class="fa-solid fa-download"></i></div>
-                  <h4 class="font-bold text-white mb-2" data-i18n="step2_t">Download System</h4>
-                  <p class="text-sm text-gray-400" data-i18n="step2_d">Get the Prompt Pack and Workflow PDF instantly.</p>
+              <div class="p-8 border border-white/5 rounded-2xl bg-bgdark hover:border-red-500/30 transition duration-500 reveal delay-100">
+                  <div class="text-red-400 text-3xl mb-4"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                  <h3 class="text-lg font-bold text-white mb-2" data-i18n="p2_t">Account Suspension</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="p2_d">Waking up to a suspended Etsy account because of a minor IP violation or verification error.</p>
               </div>
-              <div class="glass-card p-8 rounded-3xl text-center reveal delay-200">
-                  <div class="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-neon text-2xl mb-6"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                  <h4 class="font-bold text-white mb-2" data-i18n="step3_t">Generate Assets</h4>
-                  <p class="text-sm text-gray-400" data-i18n="step3_d">Use the system to create unlimited visuals for any platform.</p>
+              <div class="p-8 border border-white/5 rounded-2xl bg-bgdark hover:border-red-500/30 transition duration-500 reveal delay-200">
+                  <div class="text-red-400 text-3xl mb-4"><i class="fa-solid fa-chart-line-down"></i></div>
+                  <h3 class="text-lg font-bold text-white mb-2" data-i18n="p3_t">Scaling Cap</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="p3_d">Stuck at 5 sales a week? You don't have a traffic problem; you have a brand authority problem.</p>
               </div>
           </div>
       </div>
   </section>
 
-  <section id="systems" class="py-24 bg-surface/50 border-t border-white/5">
+  <section id="services" class="py-24 relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-6">
-          <div class="text-center mb-16 reveal">
-              <span class="text-purple text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="prod_badge">Production Ready</span>
-              <h2 class="text-3xl md:text-5xl font-serif text-white" data-i18n="prod_title">Choose Your System</h2>
-          </div>
-          
-          <div id="products-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+          <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+              <div>
+                  <span class="text-blue-400 text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="serv_badge">Our Solutions</span>
+                  <h2 class="text-4xl md:text-5xl font-serif text-white" data-i18n="serv_title">Strategic Consulting</h2>
               </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+              
+              <div class="glass-card p-1 rounded-3xl relative group reveal" id="llc">
+                  <div class="absolute inset-0 bg-gradient-to-b from-blue-500/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div class="bg-[#0F1115] rounded-[22px] p-8 h-full relative z-10 flex flex-col">
+                      <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 text-2xl mb-6"><i class="fa-solid fa-passport"></i></div>
+                      <h3 class="text-2xl font-bold text-white mb-2" data-i18n="s1_t">US LLC Formation</h3>
+                      <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="s1_d">
+                          The golden key to global trade. We guide you through opening a legit US Company, getting an EIN, and unlocking Stripe/Wise.
+                      </p>
+                      <ul class="text-xs text-gray-500 space-y-2 mb-8">
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-blue-500"></i> <span data-i18n="s1_l1">Company Registration</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-blue-500"></i> <span data-i18n="s1_l2">EIN (Tax ID) Procurement</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-blue-500"></i> <span data-i18n="s1_l3">Bank Account Setup</span></li>
+                      </ul>
+                      
+                      <div class="mt-auto space-y-3">
+                          <div class="text-[10px] text-center text-gray-600 uppercase tracking-widest"><i class="fa-solid fa-lock text-gold mr-1"></i> <span data-i18n="badge_etsy">Purchased via Etsy</span></div>
+                          <button onclick="redirectToEtsy('llc_consult')" class="block w-full py-3 bg-blue-600 text-white text-center font-bold rounded-lg hover:bg-blue-500 transition text-sm">
+                              <span data-i18n="btn_consult_etsy">Purchase on Etsy</span> <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                          </button>
+                          <button onclick="contactWhatsApp('LLC Setup')" class="block w-full py-3 border border-white/10 text-gray-400 text-center font-bold rounded-lg hover:text-white hover:bg-white/5 transition text-sm">
+                              <span data-i18n="btn_ask_wa">Ask via WhatsApp</span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="glass-card p-1 rounded-3xl relative group reveal delay-100">
+                  <div class="absolute inset-0 bg-gradient-to-b from-[#F1641E]/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div class="bg-[#0F1115] rounded-[22px] p-8 h-full relative z-10 flex flex-col">
+                      <div class="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center text-[#F1641E] text-2xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
+                      <h3 class="text-2xl font-bold text-white mb-2" data-i18n="s2_t">Etsy Audit & Scale</h3>
+                      <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="s2_d">
+                          Your shop isn't growing because of 'luck'. It's SEO, Photography, and Policy Compliance. We fix the leaks in your bucket.
+                      </p>
+                      <ul class="text-xs text-gray-500 space-y-2 mb-8">
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-orange-500"></i> <span data-i18n="s2_l1">SEO Keyword Overhaul</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-orange-500"></i> <span data-i18n="s2_l2">Policy Compliance Check</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-orange-500"></i> <span data-i18n="s2_l3">Ad Strategy Optimization</span></li>
+                      </ul>
+                      
+                      <div class="mt-auto space-y-3">
+                          <div class="text-[10px] text-center text-gray-600 uppercase tracking-widest"><i class="fa-solid fa-lock text-gold mr-1"></i> <span data-i18n="badge_etsy">Purchased via Etsy</span></div>
+                          <button onclick="redirectToEtsy('audit_consult')" class="block w-full py-3 bg-[#F1641E] text-white text-center font-bold rounded-lg hover:bg-orange-600 transition text-sm">
+                              <span data-i18n="btn_audit_etsy">Purchase on Etsy</span> <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                          </button>
+                          <button onclick="contactWhatsApp('Etsy Audit')" class="block w-full py-3 border border-white/10 text-gray-400 text-center font-bold rounded-lg hover:text-white hover:bg-white/5 transition text-sm">
+                              <span data-i18n="btn_ask_wa">Ask via WhatsApp</span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="glass-card p-1 rounded-3xl relative group reveal delay-200">
+                  <div class="absolute inset-0 bg-gradient-to-b from-purple/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div class="bg-[#0F1115] rounded-[22px] p-8 h-full relative z-10 flex flex-col">
+                      <div class="w-14 h-14 bg-purple/10 rounded-xl flex items-center justify-center text-purple text-2xl mb-6"><i class="fa-solid fa-user-astronaut"></i></div>
+                      <h3 class="text-2xl font-bold text-white mb-2" data-i18n="s3_t">1:1 Mentorship</h3>
+                      <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="s3_d">
+                          Direct access to our expertise. Ask about dropshipping, digital products, or brand positioning. No generic advice, only tactics.
+                      </p>
+                      <ul class="text-xs text-gray-500 space-y-2 mb-8">
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="s3_l1">1 Hour Strategy Call</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="s3_l2">Screen Sharing & Analysis</span></li>
+                          <li class="flex gap-2"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="s3_l3">Action Plan PDF</span></li>
+                      </ul>
+                      
+                      <div class="mt-auto space-y-3">
+                          <div class="text-[10px] text-center text-gray-600 uppercase tracking-widest"><i class="fa-solid fa-lock text-gold mr-1"></i> <span data-i18n="badge_etsy">Purchased via Etsy</span></div>
+                          <button onclick="redirectToEtsy('mentor_consult')" class="block w-full py-3 bg-purple-600 text-white text-center font-bold rounded-lg hover:bg-purple-500 transition text-sm">
+                              <span data-i18n="btn_session_etsy">Purchase on Etsy</span> <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                          </button>
+                          <button onclick="contactWhatsApp('Mentorship')" class="block w-full py-3 border border-white/10 text-gray-400 text-center font-bold rounded-lg hover:text-white hover:bg-white/5 transition text-sm">
+                              <span data-i18n="btn_ask_wa">Ask via WhatsApp</span>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
       </div>
   </section>
 
-  <footer id="trust" class="py-20 bg-bgdark border-t border-white/5">
-      <div class="max-w-3xl mx-auto px-6 text-center">
-          <div class="mb-8 flex justify-center items-center gap-3 opacity-70">
-              <i class="fa-brands fa-etsy text-4xl text-white"></i>
-              <span class="text-2xl text-gray-600">×</span>
-              <span class="font-bold text-xl tracking-widest">VITRINY</span>
+  <section id="proof" class="py-24 bg-bgdark border-t border-white/5">
+      <div class="max-w-4xl mx-auto px-6 text-center reveal">
+          <i class="fa-solid fa-quote-left text-4xl text-white/10 mb-6"></i>
+          <h2 class="text-2xl md:text-4xl font-serif text-white mb-8 leading-relaxed italic">
+              <span data-i18n-html="quote_t">"E-commerce isn't about finding a winning product. It's about building a system that can sell <em>any</em> product."</span>
+          </h2>
+          <div class="flex items-center justify-center gap-4">
+              <div class="text-right">
+                  <div class="text-white font-bold">VitrinY Academy</div>
+                  <div class="text-blue-400 text-xs uppercase tracking-widest">Est. 2026</div>
+              </div>
           </div>
-          <h3 class="text-2xl font-serif text-white mb-4" data-i18n="footer_title">Why Etsy Checkout?</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-8" data-i18n="footer_desc">
-              We handle all transactions through Etsy to ensure your security, buyer protection, and automatic file delivery. This website is a professional showcase; all payments and downloads are processed by Etsy.
-          </p>
-          <div class="text-xs text-gray-600 uppercase tracking-widest">
-              © 2026 VitrinY Studio.
+      </div>
+  </section>
+
+  <section class="py-24 px-6 bg-surface">
+      <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold mb-10 text-center text-white" data-i18n="faq_title">Frequently Asked Questions</h2>
+          <div class="space-y-4 reveal">
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2 text-sm" data-i18n="q1_t">Can I open an LLC from outside US?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n="q1_a">Yes, absolutely. 100% legal. You don't need to visit the US. We handle the paperwork remotely.</p>
+              </div>
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2 text-sm" data-i18n="q2_t">Does this guarantee sales?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n-html="q2_a">No honest consultant guarantees sales. We guarantee a professional infrastructure that makes sales <em>possible</em> and scalable.</p>
+              </div>
+              <div class="glass-card p-6 rounded-2xl">
+                  <h4 class="text-white font-bold mb-2 text-sm" data-i18n="q3_t">How is the service delivered?</h4>
+                  <p class="text-gray-400 text-sm" data-i18n="q3_a">After your secure payment on Etsy, you will instantly download a PDF with the scheduling link and onboarding requirements.</p>
+              </div>
           </div>
+      </div>
+  </section>
+
+  <footer class="py-24 bg-bgdark text-center border-t border-white/5 relative z-10">
+      <div class="max-w-2xl mx-auto px-6 reveal">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white" data-i18n="cta_t">Ready to Scale?</h2>
+          <p class="text-gray-400 mb-10" data-i18n="cta_d">Stop watching tutorials. Start building your empire.</p>
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+              <a href="#services" class="px-10 py-4 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-500 transition shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+                  <span data-i18n="btn_header_cta">View Programs</span>
+              </a>
+              <a href="index.html" class="px-10 py-4 border border-white/20 text-gray-300 font-bold rounded-full hover:bg-white/5 transition">
+                  <span data-i18n="btn_home">Back to Home</span>
+              </a>
+          </div>
+      </div>
+      <div class="mt-20 text-xs text-gray-600">
+          © 2026 VitrinY Academy.
       </div>
   </footer>
 
   <script>
     /* --- CONFIG: ETSY URLS --- */
     const ETSY_URLS = {
-        video_system: "https://www.etsy.com/shop/YourShopName?section_id=VIDEO_SYSTEM_ID", // Placeholder
-        image_system: "https://www.etsy.com/shop/YourShopName?section_id=IMAGE_SYSTEM_ID", // Placeholder
-        bundle_system: "https://www.etsy.com/shop/YourShopName?section_id=BUNDLE_ID", // Placeholder
         llc_consult: "https://www.etsy.com/shop/YourShopName?section_id=LLC_ID", // Placeholder
         audit_consult: "https://www.etsy.com/shop/YourShopName?section_id=AUDIT_ID", // Placeholder
         mentor_consult: "https://www.etsy.com/shop/YourShopName?section_id=MENTOR_ID" // Placeholder
     };
 
-    /* --- DATA & CONTENT --- */
-    const products = [
-        {
-            id: 'sys_vid_1',
-            type: 'video',
-            price: 59,
-            image: 'https://images.unsplash.com/photo-1622737133809-d95047b9e673?q=80&w=600',
-            linkKey: 'video_system'
-        },
-        {
-            id: 'sys_img_1',
-            type: 'image',
-            price: 49,
-            image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600',
-            linkKey: 'image_system'
-        },
-        {
-            id: 'sys_bundle',
-            type: 'bundle',
-            price: 89,
-            image: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?q=80&w=600',
-            linkKey: 'bundle_system'
-        }
-    ];
-
-    const translations = {
-        en: {
-            nav_systems: "Systems", nav_how: "Process", nav_trust: "Why Etsy",
-            hero_badge: "Purchased via Etsy · Used Everywhere",
-            hero_t1: "Generate Studio Quality", hero_t2: "Without a Studio.",
-            no_cam: "No Camera", no_studio: "No Studio", no_model: "No Model",
-            hero_desc: "We don't sell random prompts. We build professional AI Visual & Video Systems that automate your content creation for Etsy, Shopify, and Ads.",
-            btn_explore: "Explore Systems",
-            one_line_clarity: "You’re buying a reusable production system (prompts + workflow + examples) — not a finished file.",
-            checkout_note_inline: "Checkout completed securely on Etsy.",
-            
-            not_title: "What You Are NOT Buying",
-            not_1: "You are NOT buying a finished MP4/JPG file.",
-            not_2: "You are NOT buying a software subscription.",
-            not_3: "You are NOT buying a physical product.",
-            
-            is_title: "What You ARE Buying",
-            is_1: "A complete AI Generation System (Prompts + Workflow).",
-            is_2: "Step-by-step PDF Studio Guide to create unlimited assets.",
-            is_3: "Instant Digital Download after Etsy payment.",
-            
-            works_on: "Works for: Etsy · Shopify · Instagram · TikTok · Website",
-            
-            how_title: "The Process",
-            step1_t: "Purchase via Etsy", step1_d: "Proceed to Etsy for secure payment and buyer protection.",
-            step2_t: "Download System", step2_d: "Get the Prompt Pack and Workflow PDF instantly.",
-            step3_t: "Generate Assets", step3_d: "Use the system to create unlimited visuals for any platform.",
-            
-            prod_badge: "Production Ready", prod_title: "Choose Your System",
-            
-            // Products
-            p_sys_vid_1_t: "AI Product Video System", p_sys_vid_1_d: "Generate cinematic product videos from static images. Includes Veo/Runway workflow guide.",
-            p_sys_img_1_t: "AI Photography System", p_sys_img_1_d: "Generate editorial product photography. Control lighting, texture, and background via prompts.",
-            p_sys_bundle_t: "The Complete Studio Bundle", p_sys_bundle_d: "Video and Image systems combined. The ultimate toolkit for digital brands.",
-            
-            lbl_system: "SYSTEM", 
-            tag_prompt: "Prompt Pack", tag_workflow: "Workflow PDF", tag_examples: "Examples",
-            
-            btn_checkout_etsy: "Proceed to Etsy Checkout", 
-            btn_question_wa: "Ask Question on WhatsApp",
-            etsy_secure_line: "Secure payment on Etsy. Buyer protection included.",
-            
-            cart_title: "Selected Systems", cart_checkout_info: "You will be redirected to Etsy for payment.",
-            cart_secure_note: "Secure Payment via Etsy",
-            btn_open_on_etsy: "Open on Etsy",
-            
-            footer_title: "Why Etsy Checkout?",
-            footer_desc: "We handle all transactions through Etsy to ensure your security, buyer protection, and automatic file delivery. This website is a professional showcase; all payments and downloads are processed by Etsy."
-        },
-        tr: {
-            nav_systems: "Sistemler", nav_how: "Süreç", nav_trust: "Neden Etsy",
-            hero_badge: "Etsy ile Satın Al · Her Yerde Kullan",
-            hero_t1: "Stüdyo Kalitesi Üretin,", hero_t2: "Stüdyo Olmadan.",
-            no_cam: "Kamera Yok", no_studio: "Stüdyo Yok", no_model: "Manken Yok",
-            hero_desc: "Rastgele prompt satmıyoruz. Etsy, Shopify ve Reklamlarınız için içerik üretimini otomatize eden profesyonel AI Görsel & Video Sistemleri kuruyoruz.",
-            btn_explore: "Sistemleri Keşfet",
-            one_line_clarity: "Hazır dosya değil; prompt + iş akışı + örneklerden oluşan tekrar kullanılabilir bir üretim sistemi satın alıyorsunuz.",
-            checkout_note_inline: "Ödeme güvenli şekilde Etsy'de tamamlanır.",
-            
-            not_title: "Ne Satın ALMIYORSUNUZ?",
-            not_1: "Hazır bir MP4/JPG dosyası satın ALMIYORSUNUZ.",
-            not_2: "Bir yazılım aboneliği satın ALMIYORSUNUZ.",
-            not_3: "Fiziksel bir ürün satın ALMIYORSUNUZ.",
-            
-            is_title: "Ne Satın ALIYORSUNUZ?",
-            is_1: "Tam Kapsamlı AI Üretim Sistemi (Prompt + İş Akışı).",
-            is_2: "Sınırsız içerik üretmek için Adım Adım Stüdyo Rehberi (PDF).",
-            is_3: "Etsy ödemesinden sonra Anında Dijital İndirme.",
-            
-            works_on: "Şunlar için uygundur: Etsy · Shopify · Instagram · TikTok · Web",
-            
-            how_title: "Süreç Nasıl İşler?",
-            step1_t: "Etsy ile Güvenli Alım", step1_d: "Güvenli ödeme ve alıcı koruması için Etsy'ye yönlendirilirsiniz.",
-            step2_t: "Sistemi İndirin", step2_d: "Prompt Paketi ve İş Akışı PDF'ini anında indirin.",
-            step3_t: "İçerik Üretin", step3_d: "Sistemi kullanarak her platform için sınırsız görsel üretin.",
-            
-            prod_badge: "Kullanıma Hazır", prod_title: "Sisteminizi Seçin",
-            
-            // Products
-            p_sys_vid_1_t: "AI Ürün Video Sistemi", p_sys_vid_1_d: "Durgun görsellerden sinematik videolar üretin. Veo/Runway iş akışı rehberi dahil.",
-            p_sys_img_1_t: "AI Fotoğrafçılık Sistemi", p_sys_img_1_d: "Editoryal ürün fotoğrafları üretin. Işık, doku ve arka planı prompt ile kontrol edin.",
-            p_sys_bundle_t: "Tam Stüdyo Paketi", p_sys_bundle_d: "Video ve Görsel sistemleri bir arada. Dijital markalar için nihai set.",
-            
-            lbl_system: "SİSTEM", 
-            tag_prompt: "Prompt Paketi", tag_workflow: "İş Akışı PDF", tag_examples: "Örnekler",
-            
-            btn_checkout_etsy: "Etsy'de Ödemeye Geç", 
-            btn_question_wa: "WhatsApp'tan Sor",
-            etsy_secure_line: "Güvenli ödeme Etsy'de. Alıcı koruması dahildir.",
-            
-            cart_title: "Seçilen Sistemler", cart_checkout_info: "Ödeme için Etsy'ye yönlendirileceksiniz.",
-            cart_secure_note: "Etsy Üzerinden Güvenli Ödeme",
-            btn_open_on_etsy: "Etsy'de Aç",
-            
-            footer_title: "Neden Etsy Checkout?",
-            footer_desc: "Güvenliğiniz ve otomatik dosya teslimatı için tüm işlemleri Etsy üzerinden yürütüyoruz. Bu web sitesi profesyonel bir vitrindir; tüm ödemeler ve indirmeler Etsy tarafından işlenir."
-        }
-    };
-
-    /* --- REDIRECT LOGIC --- */
-    function redirectToEtsy(linkKey) {
-        const url = ETSY_URLS[linkKey];
-        if (url) {
-            window.open(url, '_blank');
-        } else {
-            console.warn("Etsy link not defined for:", linkKey);
-        }
+    function redirectToEtsy(key) {
+        const url = ETSY_URLS[key];
+        if (url) window.open(url, '_blank');
     }
 
-    function contactWhatsApp(productKey) {
-        // Simple generic message or specific
-        const url = `https://wa.me/905419787726?text=Hi, I have a question about the ${productKey} system.`;
+    function contactWhatsApp(topic) {
+        const url = `https://wa.me/905419787726?text=Hi, I have a question about ${topic}.`;
         window.open(url, '_blank');
     }
 
-    /* --- CART LOGIC (Selection) --- */
-    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
-    let cart = JSON.parse(localStorage.getItem('vitriny_sys_cart')) || [];
-
-    function renderProducts() {
-        const grid = document.getElementById('products-grid');
-        grid.innerHTML = products.map(p => {
-            const t = translations[currentLang];
-            const title = t[`p_${p.id}_t`];
-            const desc = t[`p_${p.id}_d`];
-            const isBundle = p.type === 'bundle';
-            
-            return `
-            <div class="glass-card rounded-3xl overflow-hidden flex flex-col group ${isBundle ? 'border-neon/30 relative' : ''}">
-                <div class="aspect-[4/3] overflow-hidden relative">
-                    <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <div class="absolute inset-0 bg-black/40"></div>
-                    <div class="absolute bottom-4 left-4">
-                        <span class="text-[10px] font-bold bg-white/10 text-white px-2 py-1 rounded border border-white/10 backdrop-blur">${t.lbl_system}</span>
-                    </div>
-                </div>
-                <div class="p-8 flex-1 flex flex-col">
-                    <h3 class="text-2xl font-serif text-white mb-2">${title}</h3>
-                    
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 uppercase tracking-wide">${t.tag_prompt}</span>
-                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 uppercase tracking-wide">${t.tag_workflow}</span>
-                        <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-gray-400 uppercase tracking-wide">${t.tag_examples}</span>
-                    </div>
-
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed flex-1 clamp-1">${desc}</p>
-                    
-                    <div class="mt-auto pt-6 border-t border-white/10">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xl font-bold text-white">$${p.price}</span>
-                            <div class="text-[10px] text-gray-500">${t.etsy_secure_line}</div>
-                        </div>
-                        <div class="grid gap-3">
-                            <button onclick="redirectToEtsy('${p.linkKey}')" class="w-full px-6 py-3 ${isBundle ? 'bg-neon text-black' : 'bg-white text-black'} text-xs font-bold uppercase rounded-full hover:scale-105 transition shadow-lg flex items-center justify-center gap-2">
-                                ${t.btn_checkout_etsy} <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </button>
-                            <button onclick="addToCart('${p.id}')" class="w-full px-6 py-2 border border-white/10 text-white text-xs font-bold uppercase rounded-full hover:bg-white/5 transition">
-                                Add to Selection +
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-        }).join('');
-    }
-
-    function addToCart(id) {
-        if (!cart.includes(id)) {
-            cart.push(id);
-            localStorage.setItem('vitriny_sys_cart', JSON.stringify(cart));
-            updateCartUI();
-            toggleCart();
-        }
-    }
-
-    function removeFromCart(id) {
-        cart = cart.filter(item => item !== id);
-        localStorage.setItem('vitriny_sys_cart', JSON.stringify(cart));
-        updateCartUI();
-    }
-
-    function updateCartUI() {
-        const cartCount = document.getElementById('cart-count');
-        const cartItems = document.getElementById('cart-items');
-        
-        cartCount.innerText = cart.length;
-        cartCount.style.opacity = cart.length > 0 ? 1 : 0;
-
-        if(cart.length === 0) {
-            cartItems.innerHTML = `<div class="text-center text-gray-500 mt-10">Empty.</div>`;
-            return;
-        }
-
-        cartItems.innerHTML = cart.map(id => {
-            const p = products.find(item => item.id === id);
-            const title = translations[currentLang][`p_${p.id}_t`];
-            const btnOpenText = translations[currentLang].btn_open_on_etsy;
-            return `
-            <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
-                <img src="${p.image}" class="w-16 h-16 object-cover rounded-lg">
-                <div class="flex-1 min-w-0">
-                    <h4 class="text-sm font-bold text-white clamp-1 mb-1">${title}</h4>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-neon">$${p.price}</span>
-                        <button onclick="redirectToEtsy('${p.linkKey}')" class="text-[10px] text-purple hover:text-white underline">${btnOpenText} <i class="fa-solid fa-external-link-alt ml-1"></i></button>
-                    </div>
-                </div>
-                <button onclick="removeFromCart('${p.id}')" class="text-gray-500 hover:text-red-400 p-2"><i class="fa-solid fa-trash"></i></button>
-            </div>
-            `;
-        }).join('');
-    }
-
-    function toggleCart() {
-        const drawer = document.getElementById('cart-drawer');
-        const backdrop = document.getElementById('cart-backdrop');
-        
-        if (drawer.classList.contains('drawer-open')) {
-            drawer.classList.remove('drawer-open');
-            backdrop.classList.add('hidden');
-        } else {
-            drawer.classList.add('drawer-open');
-            backdrop.classList.remove('hidden');
-        }
-    }
-
-    function checkoutAll() {
-        if(cart.length === 0) return;
-        cart.forEach(id => {
-            const p = products.find(item => item.id === id);
-            if(p) redirectToEtsy(p.linkKey);
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
-    }
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    function applyLang() {
-        document.documentElement.lang = currentLang;
-        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    // Translations
+    const translations = {
+      en: {
+        nav_path: "The Path", nav_services: "Consulting", nav_llc: "LLC Setup", btn_header_cta: "View Programs",
+        hero_badge: "Strategic Growth Partner",
+        hero_t1: "Stop Guessing.", hero_t2: "Start Knowing.",
+        hero_desc: "Building a global business isn't about luck. It's about architecture. We provide the blueprint for US Company Formation, Etsy Scaling, and Crisis Management.",
+        hero_logic: "Programs are purchased via Etsy checkout for buyer protection and secure payment. After purchase, you receive scheduling + onboarding instructions.",
+        btn_explore: "View Programs", btn_proof: "Why Us?",
         
+        path_title: "The E-Commerce Ceiling", path_desc: "Most sellers hit a wall not because of bad products, but because of bad infrastructure. We fix the foundation.",
+        p1_t: "Payment Barriers", p1_d: "\"I can't open Stripe because I live in a restricted country.\" This kills 90% of global ambitions.",
+        p2_t: "Account Suspension", p2_d: "Waking up to a suspended Etsy account because of a minor IP violation or verification error.",
+        p3_t: "Scaling Cap", p3_d: "Stuck at 5 sales a week? You don't have a traffic problem; you have a brand authority problem.",
+
+        serv_badge: "Our Solutions", serv_title: "Strategic Consulting",
+        badge_etsy: "Purchased via Etsy",
+        btn_ask_wa: "Ask via WhatsApp",
+
+        s1_t: "US LLC Formation", s1_d: "The golden key to global trade. We guide you through opening a legit US Company, getting an EIN, and unlocking Stripe/Wise.",
+        s1_l1: "Company Registration", s1_l2: "EIN (Tax ID) Procurement", s1_l3: "Bank Account Setup", btn_consult_etsy: "Purchase on Etsy",
+        
+        s2_t: "Etsy Audit & Scale", s2_d: "Your shop isn't growing because of 'luck'. It's SEO, Photography, and Policy Compliance. We fix the leaks in your bucket.",
+        s2_l1: "SEO Keyword Overhaul", s2_l2: "Policy Compliance Check", s2_l3: "Ad Strategy Optimization", btn_audit_etsy: "Purchase on Etsy",
+        
+        s3_t: "1:1 Mentorship", s3_d: "Direct access to our expertise. Ask about dropshipping, digital products, or brand positioning. No generic advice, only tactics.",
+        s3_l1: "1 Hour Strategy Call", s3_l2: "Screen Sharing & Analysis", s3_l3: "Action Plan PDF", btn_session_etsy: "Purchase on Etsy",
+
+        quote_t: "\"E-commerce isn't about finding a winning product. It's about building a system that can sell <em>any</em> product.\"",
+        
+        faq_title: "Frequently Asked Questions",
+        q1_t: "Can I open an LLC from outside US?", q1_a: "Yes, absolutely. 100% legal. You don't need to visit the US. We handle the paperwork remotely.",
+        q2_t: "Does this guarantee sales?", q2_a: "No honest consultant guarantees sales. We guarantee a professional infrastructure that makes sales <em>possible</em> and scalable.",
+        q3_t: "How is the service delivered?", q3_a: "After your secure payment on Etsy, you will instantly download a PDF with the scheduling link and onboarding requirements.",
+
+        cta_t: "Ready to Scale?", cta_d: "Stop watching tutorials. Start building your empire.",
+        btn_home: "Back to Home"
+      },
+      tr: {
+        nav_path: "Sorunlar", nav_services: "Danışmanlık", nav_llc: "Şirket Kurulumu", btn_header_cta: "Programları Gör",
+        hero_badge: "Stratejik Büyüme Ortağı",
+        hero_t1: "Tahmin Etme.", hero_t2: "Bilmeyi Seç.",
+        hero_desc: "Global bir iş kurmak şans değil, mimari işidir. Amerika'da Şirket Kurulumu, Etsy Büyütme ve Kriz Yönetimi için gereken planı size veriyoruz.",
+        hero_logic: "Programlar Etsy checkout üzerinden satın alınır (güvenli ödeme + alıcı koruması). Satın alımdan sonra randevu ve onboarding adımları otomatik iletilir.",
+        btn_explore: "Programları Gör", btn_proof: "Neden Biz?",
+        
+        path_title: "E-Ticaret Tavanı", path_desc: "Çoğu satıcı kötü ürün yüzünden değil, kötü altyapı yüzünden duvara toslar. Biz temeli düzeltiyoruz.",
+        p1_t: "Ödeme Engelleri", p1_d: "\"Türkiye'de yaşadığım için Stripe açamıyorum.\" Bu cümle global hayallerin %90'ını öldürür. Bunu aşıyoruz.",
+        p2_t: "Hesap Kapanması (Suspend)", p2_d: "Küçük bir IP hatası veya doğrulama eksiği yüzünden Etsy hesabınızın kapandığı bir sabaha uyanmak.",
+        p3_t: "Büyüme Sancısı", p3_d: "Haftada 5 satışta takıldınız mı? Trafik sorununuz yok; marka otoritesi sorununuz var.",
+
+        serv_badge: "Çözümlerimiz", serv_title: "Stratejik Danışmanlık",
+        badge_etsy: "Etsy ile Satın Alınır",
+        btn_ask_wa: "WhatsApp'tan Sor",
+
+        s1_t: "Amerika'da Şirket (LLC)", s1_d: "Global ticaretin altın anahtarı. Yasal bir ABD şirketi kurmanıza, EIN almanıza ve Stripe/Wise açmanıza rehberlik ediyoruz.",
+        s1_l1: "Şirket Tescili", s1_l2: "EIN (Vergi No) Temini", s1_l3: "Banka Hesabı Kurulumu", btn_consult_etsy: "Etsy'de Satın Al",
+        
+        s2_t: "Etsy Analiz & Büyüme", s2_d: "Mağazanız 'şans' eseri büyümüyor. SEO, Fotoğraf ve Politika Uyumu eksik. Kovanızdaki delikleri kapatıyoruz.",
+        s2_l1: "SEO Kelime Revizyonu", s2_l2: "Politika Uyumluluk Kontrolü", s2_l3: "Reklam Stratejisi", btn_audit_etsy: "Etsy'de Satın Al",
+        
+        s3_t: "Birebir Mentorluk", s3_d: "Uzmanlığımıza doğrudan erişim. Dropshipping, dijital ürün veya marka konumu hakkında sorun. Genel tavsiye yok, sadece taktik.",
+        s3_l1: "1 Saatlik Strateji Görüşmesi", s3_l2: "Ekran Paylaşımı & Analiz", s3_l3: "Eylem Planı PDF'i", btn_session_etsy: "Etsy'de Satın Al",
+
+        quote_t: "\"E-ticaret kazanan ürünü bulmakla ilgili değildir. <em>Herhangi</em> bir ürünü satabilecek sistemi kurmakla ilgilidir.\"",
+        
+        faq_title: "Sıkça Sorulanlar",
+        q1_t: "Türkiye'den ABD şirketi açabilir miyim?", q1_a: "Evet, kesinlikle. %100 yasaldır. ABD'ye gitmenize gerek yok. Evrak işlerini uzaktan hallediyoruz.",
+        q2_t: "Satış garantisi var mı?", q2_a: "Hiçbir dürüst danışman satış garantisi vermez. Biz, satış yapmayı <em>mümkün</em> ve ölçeklenebilir kılan profesyonel altyapıyı garanti ediyoruz.",
+        q3_t: "Hizmet nasıl teslim ediliyor?", q3_a: "Etsy üzerinden güvenli ödeme yaptıktan sonra, randevu linkini ve ön hazırlık dosyasını içeren bir PDF anında iner.",
+
+        cta_t: "Büyümeye Hazır Mısın?", cta_d: "Video izlemeyi bırak. İmparatorluğunu kurmaya başla.",
+        btn_home: "Ana Sayfaya Dön"
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    
+    function applyLang() {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[currentLang][key]) el.innerText = translations[currentLang][key];
+            if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
         });
         
-        renderProducts();
-        updateCartUI();
+        // Handle HTML specific keys safely
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+        });
+
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
     }
 
     function toggleLang() {
@@ -574,18 +445,8 @@
         localStorage.setItem('lang', currentLang);
         applyLang();
     }
-
-    // Init
-    window.addEventListener('DOMContentLoaded', () => {
-        applyLang();
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    });
+    applyLang();
   </script>
+
 </body>
 </html>
