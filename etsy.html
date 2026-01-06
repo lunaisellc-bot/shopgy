@@ -3,295 +3,281 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY | Etsy Solutions</title>
-  <meta name="description" content="Turn your Etsy shop into a standalone professional website. Commission-free." />
-
+  <title>Etsy Brand Authority | VitrinY Digital</title>
+  <meta name="description" content="Etsy mağazanızı global bir markaya dönüştürün. Otomatik ürün ve yorum senkronizasyonu." />
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { heading: ['Space Grotesk', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
-          colors: { neon: '#00ff9d', purple: '#bd00ff', dark: '#050505', surface: '#0F1115' },
-          animation: { 'float': 'float 8s ease-in-out infinite' },
-          keyframes: { float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } } }
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          colors: {
+            bgdark: '#0B0B15',
+            neon: '#00DC82',
+            purple: '#7B61FF',
+            gold: '#D4AF37',
+            surface: '#12121A'
+          },
+          animation: {
+             'spin-slow': 'spin 12s linear infinite',
+          }
         }
       }
     }
   </script>
 
   <style>
-    html, body { background-color: #050505; color: white; -webkit-font-smoothing: antialiased; }
-    .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
-    .glass:hover { border-color: rgba(0, 255, 157, 0.3); transform: translateY(-5px); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; }
+    .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
-    .check-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.9rem; color: #9ca3af; }
-    .highlight-row:hover { background: rgba(255,255,255,0.03); }
-    details > summary { list-style: none; cursor: pointer; }
-    details[open] summary ~ * { animation: sweep .3s ease-out; }
-    @keyframes sweep { 0% {opacity: 0; transform: translateY(-5px)} 100% {opacity: 1; transform: translateY(0)} }
+    .dashed-circle { border: 2px dashed rgba(255,255,255,0.1); }
   </style>
 </head>
 
-<body class="font-sans selection:bg-neon selection:text-black">
+<body class="font-sans selection:bg-purple selection:text-white">
 
-  <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="flex items-center gap-2 group">
-        <div class="w-8 h-8 bg-gradient-to-br from-neon to-emerald-800 rounded-lg flex items-center justify-center font-bold text-black"><i class="fa-solid fa-arrow-left"></i></div>
-        <span class="font-heading text-xl font-bold tracking-tight">VitrinY <span class="text-xs text-gray-500 font-normal">| Etsy Solutions</span></span>
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center transition-all">
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-purple to-neon p-[1px]">
+            <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
+                <span class="font-bold text-lg text-white">V</span>
+            </div>
+        </div>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY</span>
+    </a>
+    
+    <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+      <a href="index.html" class="hover:text-white transition">Home</a>
+      <a href="#strategy" class="hover:text-white transition" data-i18n="nav_strat">Strategy</a>
+      <a href="#sync" class="hover:text-white transition" data-i18n="nav_sync">Sync</a>
+      <a href="#growth" class="hover:text-white transition" data-i18n="nav_growth">Growth</a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+      <a href="https://wa.me/905419787726" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-lg hover:shadow-neon/20">
+        <span data-i18n="btn_talk">Free Consult</span>
       </a>
-      <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-        <a href="#comparison" class="hover:text-neon" data-i18n="nav_why">Why VitrinY?</a>
-        <a href="#templates" class="hover:text-white" data-i18n="nav_designs">Designs</a>
-        <a href="#pricing" class="hover:text-white" data-i18n="nav_price">Pricing</a>
-      </div>
-      <div class="flex items-center gap-4">
-        <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-500 border border-white/10 px-3 py-2 rounded hover:text-white transition">EN</button>
-        <a href="#pricing" class="bg-neon text-black px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white transition" data-i18n="nav_cta">Start Now</a>
-      </div>
     </div>
   </nav>
 
-  <header class="relative pt-32 pb-20 text-center px-4 overflow-hidden">
-    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-neon rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-float pointer-events-none"></div>
+  <header class="pt-40 pb-20 px-6 relative overflow-hidden">
+    <div class="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-purple/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-neon/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <div class="inline-flex items-center gap-2 border border-neon/30 bg-neon/5 px-4 py-2 rounded-full text-[10px] font-bold text-neon mb-8 tracking-widest">
-        <i class="fa-solid fa-check-circle"></i> <span data-i18n="hero_badge">OFFICIAL ETSY API PARTNER</span>
-    </div>
-    
-    <h1 class="font-heading text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
-      <span data-i18n="hero_t1">Say Goodbye to Etsy Fees</span> <br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple" data-i18n="hero_t2">Forever.</span>
-    </h1>
-    
-    <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero_sub">
-        No need to close your shop. We automatically sync your products from Etsy and let you sell them commission-free on your own domain.
-    </p>
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div class="lg:col-span-7 reveal active">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.2em] text-gray-300 uppercase mb-8">
+            <i class="fa-solid fa-link text-neon"></i> <span data-i18n="hero_badge">Etsy Open API Integration</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
+            <span data-i18n="hero_t1">From Etsy Seller</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple" data-i18n="hero_t2">To Global Brand Owner.</span>
+        </h1>
+        <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-xl" data-i18n="hero_desc">
+            Keep your Etsy traffic, but build your own castle. Establish trust, secure your customer data, and create a "Plan B" that you fully own.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#strategy" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neon hover:text-white transition flex items-center justify-center gap-2">
+                <span data-i18n="btn_start">Elevate My Brand</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <div class="flex items-center gap-4 px-6 text-sm text-gray-400">
+                <i class="fa-solid fa-shield-halved text-neon"></i>
+                <span data-i18n="safe_badge">100% Etsy Safe</span>
+            </div>
+        </div>
+      </div>
 
-    <div class="flex justify-center gap-4">
-        <a href="#pricing" class="px-8 py-4 bg-neon text-black font-bold rounded-xl hover:scale-105 transition shadow-[0_0_30px_rgba(0,255,157,0.3)]" data-i18n="btn_start">
-            Build My Site
-        </a>
-        <a href="#templates" class="px-8 py-4 border border-white/10 rounded-xl hover:bg-white/10 transition flex items-center gap-2" data-i18n="btn_demo">
-            <i class="fa-solid fa-eye"></i> View Examples
-        </a>
+      <div class="lg:col-span-5 relative reveal delay-200">
+        <div class="relative z-10 glass-card p-2 rounded-3xl border border-white/10 shadow-2xl">
+            <div class="bg-[#050505] rounded-2xl p-6 relative overflow-hidden aspect-square flex flex-col items-center justify-center">
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center z-20 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                    <span class="font-bold text-black text-center text-xs uppercase tracking-widest">Your<br>Brand</span>
+                </div>
+                
+                <div class="absolute w-64 h-64 border border-white/10 rounded-full animate-spin-slow dashed-circle"></div>
+                
+                <div class="absolute top-10 right-10 p-3 glass-card rounded-xl flex items-center gap-2 animate-bounce" style="animation-duration: 4s">
+                    <i class="fa-brands fa-etsy text-[#F1641E] text-xl"></i>
+                    <div class="text-[10px] leading-tight text-gray-400"><strong class="text-white block">Marketplace</strong>Traffic Source</div>
+                </div>
+
+                <div class="absolute bottom-10 left-10 p-3 glass-card rounded-xl flex items-center gap-2 animate-bounce" style="animation-duration: 5s">
+                    <i class="fa-brands fa-instagram text-pink-500 text-xl"></i>
+                    <div class="text-[10px] leading-tight text-gray-400"><strong class="text-white block">Social Ads</strong>External Traffic</div>
+                </div>
+
+                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+                    <line x1="50%" y1="50%" x2="80%" y2="20%" stroke="white" stroke-dasharray="4"/>
+                    <line x1="50%" y1="50%" x2="20%" y2="80%" stroke="white" stroke-dasharray="4"/>
+                </svg>
+            </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section id="comparison" class="py-24 bg-surface border-y border-white/5">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <h2 class="font-heading text-3xl font-bold mb-4" data-i18n="comp_title">True Independence</h2>
-            <p class="text-gray-400" data-i18n="comp_sub">Why settle for just Etsy?</p>
-        </div>
-
-        <div class="overflow-x-auto rounded-2xl border border-white/10 reveal">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-white/5 text-xs uppercase tracking-widest text-gray-400 border-b border-white/10">
-                        <th class="p-6" data-i18n="th_feat">Feature</th>
-                        <th class="p-6 text-center w-1/4" data-i18n="th_etsy">Only Etsy</th>
-                        <th class="p-6 text-center w-1/4 bg-neon/10 text-neon font-bold" data-i18n="th_vitriny">VitrinY Site</th>
-                    </tr>
-                </thead>
-                <tbody class="text-sm">
-                    <tr class="border-b border-white/5 highlight-row">
-                        <td class="p-6 font-bold text-white" data-i18n="td_list">Listing Fee</td>
-                        <td class="p-6 text-center text-red-400" data-i18n="td_list_e">$0.20 / item</td>
-                        <td class="p-6 text-center text-neon font-bold" data-i18n="td_free">FREE</td>
-                    </tr>
-                    <tr class="border-b border-white/5 highlight-row">
-                        <td class="p-6 font-bold text-white" data-i18n="td_comm">Transaction Fee</td>
-                        <td class="p-6 text-center text-red-400" data-i18n="td_comm_e">%6.5 + Cuts</td>
-                        <td class="p-6 text-center text-neon font-bold">%0</td>
-                    </tr>
-                    <tr class="border-b border-white/5 highlight-row">
-                        <td class="p-6 font-bold text-white" data-i18n="td_comp">Competitors</td>
-                        <td class="p-6 text-center text-gray-400" data-i18n="td_comp_e">Ads on your page</td>
-                        <td class="p-6 text-center text-white" data-i18n="td_comp_v">Only YOUR products</td>
-                    </tr>
-                    <tr class="border-b border-white/5 highlight-row">
-                        <td class="p-6 font-bold text-white" data-i18n="td_data">Customer Email</td>
-                        <td class="p-6 text-center text-gray-400" data-i18n="td_data_e">Restricted</td>
-                        <td class="p-6 text-center text-white" data-i18n="td_data_v">100% Yours</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-  </section>
-
-  <section id="templates" class="py-24 bg-black relative">
-     <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
-            <div>
-                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4" data-i18n="tmpl_title">Industry Specific Themes</h2>
-                <p class="text-gray-400 max-w-md" data-i18n="tmpl_sub">No coding. No drag and drop. We build it for you.</p>
-            </div>
-            <a href="portfolio.html" class="mt-4 md:mt-0 text-neon font-bold text-sm uppercase tracking-widest border-b border-neon pb-1" data-i18n="tmpl_link">View All</a>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="group relative rounded-xl overflow-hidden border border-white/10 reveal">
-                <img src="assets/img/preview-art.jpg.png" alt="Etsy Starter" class="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                <div class="absolute bottom-6 left-6">
-                    <span class="text-[10px] bg-neon text-black px-2 py-1 rounded font-bold uppercase tracking-widest mb-2 inline-block">BEST SELLER</span>
-                    <h3 class="text-xl font-bold text-white">Starter Theme</h3>
-                    <p class="text-xs text-gray-400 mt-1">Perfect for Jewelry & Accessories.</p>
-                </div>
-            </div>
-            <div class="group relative rounded-xl overflow-hidden border border-white/10 reveal delay-100">
-                <img src="assets/img/preview-business.jpg.png" alt="Furniture" class="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                <div class="absolute bottom-6 left-6">
-                    <span class="text-[10px] bg-blue-400 text-black px-2 py-1 rounded font-bold uppercase tracking-widest mb-2 inline-block">FURNITURE</span>
-                    <h3 class="text-xl font-bold text-white">Business Elite</h3>
-                    <p class="text-xs text-gray-400 mt-1">Large inventory & gallery mode.</p>
-                </div>
-            </div>
-            <div class="group relative rounded-xl overflow-hidden border border-white/10 reveal delay-200">
-                <img src="assets/img/preview-fashion2.jpg.png" alt="Fashion" class="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                <div class="absolute bottom-6 left-6">
-                    <span class="text-[10px] bg-purple-400 text-black px-2 py-1 rounded font-bold uppercase tracking-widest mb-2 inline-block">FASHION</span>
-                    <h3 class="text-xl font-bold text-white">Atelier Mode</h3>
-                    <p class="text-xs text-gray-400 mt-1">Variation focus for boutiques.</p>
-                </div>
-            </div>
-        </div>
-     </div>
-  </section>
-
-  <section id="pricing" class="py-24 bg-black relative z-10 border-t border-white/5">
+  <section id="strategy" class="py-24 bg-surface border-y border-white/5">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="font-heading text-4xl font-bold mb-4" data-i18n="price_title">Investment Plans</h2>
-        <p class="text-gray-400" data-i18n="price_sub">One-time payment. Own your platform.</p>
-      </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 group hover:bg-white/5 rounded-3xl transition duration-500 reveal">
+                <div class="text-4xl text-gold mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-crown"></i></div>
+                <h3 class="text-xl font-bold mb-4 text-white" data-i18n="s1_t">Premium Perception</h3>
+                <p class="text-gray-400 leading-relaxed" data-i18n="s1_d">
+                    Buyers trust brands with their own .com domain. A professional website validates your Etsy shop, allowing you to charge higher prices.
+                </p>
+            </div>
 
-      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <div class="glass p-8 rounded-3xl flex flex-col">
-          <div class="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-4">STARTER</div>
-          <div class="text-4xl font-heading font-bold text-white mb-2">$149</div>
-          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6" data-i18n="p_one_time">One-Time Setup</div>
-          <ul class="check-list flex-1">
-            <li data-i18n="p1_f1"><i class="fa-solid fa-check"></i> Up to 100 Products</li>
-            <li data-i18n="p1_f2"><i class="fa-solid fa-check"></i> Basic Sync</li>
-            <li data-i18n="p1_f3"><i class="fa-solid fa-check"></i> Domain Connection</li>
-          </ul>
-          <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl border border-white/10 hover:bg-white hover:text-black transition font-bold text-xs uppercase tracking-widest mt-8" data-i18n="btn_buy">Buy Now</a>
+            <div class="p-8 group hover:bg-white/5 rounded-3xl transition duration-500 reveal delay-100">
+                <div class="text-4xl text-neon mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-lock"></i></div>
+                <h3 class="text-xl font-bold mb-4 text-white" data-i18n="s2_t">Safety & Ownership</h3>
+                <p class="text-gray-400 leading-relaxed" data-i18n="s2_d">
+                    Never rely on a single platform. If your Etsy shop gets paused, your website keeps running. You own your customer data (emails), not Etsy.
+                </p>
+            </div>
+
+            <div class="p-8 group hover:bg-white/5 rounded-3xl transition duration-500 reveal delay-200">
+                <div class="text-4xl text-purple mb-6 group-hover:scale-110 transition"><i class="fa-solid fa-bullhorn"></i></div>
+                <h3 class="text-xl font-bold mb-4 text-white" data-i18n="s3_t">Smart Marketing</h3>
+                <p class="text-gray-400 leading-relaxed" data-i18n="s3_d">
+                    You can't use Meta Pixel on Etsy. But on your site, you can retarget visitors who left the cart. Drive external traffic to where you pay 0% fees.
+                </p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="sync" class="py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+        <div class="w-full md:w-1/2 relative reveal">
+            <div class="bg-white rounded-xl overflow-hidden shadow-2xl relative z-10">
+                <div class="bg-gray-100 p-3 flex gap-2 border-b">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <div class="text-sm font-bold text-black">Sarah M.</div>
+                            <div class="flex text-yellow-500 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="ml-auto text-xs text-gray-400 flex items-center gap-1">
+                            <i class="fa-brands fa-etsy text-orange-500"></i> <span data-i18n="verified">Verified Buyer</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Absolutely stunning dress! The quality is even better than the photos. Will definitely buy again."</p>
+                </div>
+                <div class="absolute bottom-4 right-4 bg-green-100 text-green-700 px-3 py-1 rounded text-xs font-bold flex items-center gap-1">
+                    <i class="fa-solid fa-check-circle"></i> Imported via API
+                </div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-tr from-purple/40 to-neon/40 blur-[80px] -z-10"></div>
         </div>
 
-        <div class="p-[1px] rounded-3xl bg-gradient-to-b from-neon to-emerald-900 shadow-[0_0_60px_rgba(0,255,157,0.1)] relative transform md:-translate-y-4">
-           <div class="bg-surface rounded-[23px] h-full w-full p-8 flex flex-col">
-            <div class="absolute top-0 right-0 bg-neon text-black text-[9px] font-bold px-4 py-2 rounded-bl-xl tracking-widest" data-i18n="pop_badge">MOST POPULAR</div>
-            <div class="text-[10px] font-bold tracking-[0.2em] text-neon mb-4">PROFESSIONAL</div>
-            <div class="text-5xl font-heading font-bold text-white mb-2">$299</div>
-            <div class="text-xs text-gray-400 mb-8 border-b border-white/10 pb-6" data-i18n="p_one_time">One-Time Setup</div>
-            <ul class="check-list flex-1">
-              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p2_f1">Up to 1000 Products</span></li>
-              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> <strong data-i18n="p2_f2">Daily Auto-Sync</strong></li>
-              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p2_f3">Google & Meta Pixel</span></li>
-              <li class="text-white"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="p2_f4">Multi-Language (TR/EN)</span></li>
+        <div class="w-full md:w-1/2 reveal">
+            <h2 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">
+                <span data-i18n="sync_t1">Transfer Your</span> <br>
+                <span class="text-neon" data-i18n="sync_t2">Reputation.</span>
+            </h2>
+            <p class="text-gray-400 text-lg mb-8" data-i18n="sync_desc">
+                Starting a new website is hard because it looks "empty". We solved this.
+                <br><br>
+                Our Open API engine pulls your <strong>Products, Descriptions, Photos, and Reviews</strong> instantly. Your new site launches looking established and trustworthy from Day 1.
+            </p>
+            <ul class="space-y-4 text-gray-300 mb-8">
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="li_sync1">Sync 500+ Products in minutes</span></li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="li_sync2">Import 5-Star Reviews automatically</span></li>
+                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-purple"></i> <span data-i18n="li_sync3">Real-time Inventory updates</span></li>
             </ul>
-            <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl bg-neon text-black hover:bg-emerald-400 transition font-bold text-xs uppercase tracking-widest shadow-lg mt-8" data-i18n="btn_start_now">Start Now</a>
-           </div>
         </div>
-
-        <div class="glass p-8 rounded-3xl flex flex-col border-purple/30">
-          <div class="text-[10px] font-bold tracking-[0.2em] text-purple-400 mb-4">ELITE AGENCY</div>
-          <div class="text-4xl font-heading font-bold text-white mb-2">$599</div>
-          <div class="text-xs text-gray-500 mb-8 border-b border-white/5 pb-6" data-i18n="p_yearly">Includes Yearly Maintenance</div>
-          <ul class="check-list flex-1">
-            <li><i class="fa-solid fa-check text-purple-400"></i> <strong data-i18n="p3_f1">Unlimited Products</strong></li>
-            <li><i class="fa-solid fa-check text-purple-400"></i> <span data-i18n="p3_f2">Real-time Webhook Sync</span></li>
-            <li><i class="fa-solid fa-check text-purple-400"></i> <span data-i18n="p3_f3">Custom Coding</span></li>
-            <li><i class="fa-solid fa-check text-purple-400"></i> <span data-i18n="p3_f4">VIP WhatsApp Support</span></li>
-          </ul>
-          <a href="https://wa.me/905419787726" class="block w-full text-center py-4 rounded-xl border border-purple/50 text-purple-300 hover:bg-purple hover:text-white transition font-bold text-xs uppercase tracking-widest mt-8" data-i18n="btn_contact">Contact Us</a>
-        </div>
-      </div>
     </div>
   </section>
 
-  <section class="py-24 border-t border-white/5">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-heading text-3xl font-bold mb-10 text-center" data-i18n="faq_title">FAQ</h2>
-      <div class="space-y-4">
-        <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="q1">Is the Domain included?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="a1">No, you purchase your domain (e.g. yourbrand.com) separately (GoDaddy, etc). We connect it for free.</p>
-        </details>
-        <details class="glass rounded-xl p-6 group">
-          <summary class="font-bold text-sm flex justify-between"><span data-i18n="q2">How do I get paid?</span> <i class="fa-solid fa-plus text-gray-500 group-open:rotate-45 transition"></i></summary>
-          <p class="mt-4 text-gray-400 text-sm pl-4 border-l border-neon/50" data-i18n="a2">We integrate Stripe, Wise or Shopier. Money goes directly to your bank account instantly.</p>
-        </details>
-      </div>
+  <section id="growth" class="py-24 bg-bgdark border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-6 text-center reveal">
+        <h2 class="text-3xl md:text-5xl font-bold mb-6" data-i18n="cta_title">Don't Leave Money on the Table.</h2>
+        <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto" data-i18n="cta_sub">
+            The top 1% of Etsy sellers all have their own websites. It's time to join them. We handle the tech, you handle the orders.
+        </p>
+        
+        <div class="glass-card p-8 rounded-3xl inline-block text-left w-full max-w-lg relative overflow-hidden group hover:border-neon/50 transition duration-500">
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition duration-500">
+                <i class="fa-solid fa-rocket text-neon text-6xl transform rotate-45"></i>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-white mb-2">Authority Package</h3>
+            <div class="text-4xl font-serif text-neon mb-4">$499 <span class="text-sm text-gray-500 font-sans font-normal">/ One Time</span></div>
+            <p class="text-gray-500 text-sm mb-8">Includes Design, API Setup, Domain Connection, and Launch Support.</p>
+            
+            <a href="https://wa.me/905419787726?text=Hi,%20I'm%20interested%20in%20the%20Authority%20Package%20for%20my%20Etsy%20shop." class="block w-full bg-white text-black text-center py-4 rounded-xl font-bold hover:bg-neon hover:scale-[1.02] transition">
+                <i class="fa-brands fa-whatsapp mr-2"></i> <span data-i18n="btn_book">Book Consultation</span>
+            </a>
+        </div>
     </div>
   </section>
 
-  <footer class="py-10 text-center text-xs text-gray-600 border-t border-white/5">
-    <p>&copy; 2025 VitrinY. Etsy is a trademark of Etsy, Inc. This application uses the Etsy API but is not endorsed or certified by Etsy, Inc.</p>
+  <footer class="py-12 bg-black text-center border-t border-white/10 text-gray-600 text-sm relative z-10">
+     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+         <div>&copy; 2026 Lunaise LLC. <span class="hidden md:inline">|</span> Sheridan, WY</div>
+         <div class="flex gap-6">
+             <a href="index.html" class="hover:text-white transition">Home</a>
+             <a href="https://wa.me/905419787726" class="hover:text-white transition">Support</a>
+         </div>
+     </div>
   </footer>
 
   <script>
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Translations
     const translations = {
       en: {
-        nav_why: "Why VitrinY?", nav_designs: "Designs", nav_price: "Pricing", nav_cta: "Start Now",
-        hero_badge: "OFFICIAL ETSY API PARTNER",
-        hero_t1: "Say Goodbye to Etsy Fees", hero_t2: "Forever.",
-        hero_sub: "No need to close your shop. We automatically sync your products from Etsy and let you sell them commission-free on your own domain.",
-        btn_start: "Build My Site", btn_demo: "View Examples",
-        comp_title: "True Independence", comp_sub: "Why settle for just Etsy?",
-        th_feat: "Feature", th_etsy: "Only Etsy", th_vitriny: "VitrinY Site",
-        td_list: "Listing Fee", td_list_e: "$0.20 / item", td_free: "FREE",
-        td_comm: "Transaction Fee", td_comm_e: "%6.5 + Cuts",
-        td_comp: "Competitors", td_comp_e: "Ads on your page", td_comp_v: "Only YOUR products",
-        td_data: "Customer Email", td_data_e: "Restricted", td_data_v: "100% Yours",
-        tmpl_title: "Industry Specific Themes", tmpl_sub: "No coding. No drag and drop. We build it for you.", tmpl_link: "View All",
-        price_title: "Investment Plans", price_sub: "One-time payment. Own your platform.",
-        p_one_time: "One-Time Setup",
-        p1_f1: "Up to 100 Products", p1_f2: "Basic Sync", p1_f3: "Domain Connection",
-        btn_buy: "Buy Now",
-        pop_badge: "MOST POPULAR", btn_start_now: "Start Now",
-        p2_f1: "Up to 1000 Products", p2_f2: "Daily Auto-Sync", p2_f3: "Google & Meta Pixel", p2_f4: "Multi-Language (TR/EN)",
-        p_yearly: "Includes Yearly Maintenance",
-        p3_f1: "Unlimited Products", p3_f2: "Real-time Webhook Sync", p3_f3: "Custom Coding", p3_f4: "VIP WhatsApp Support", btn_contact: "Contact Us",
-        faq_title: "FAQ",
-        q1: "Is the Domain included?", a1: "No, you purchase your domain (e.g. yourbrand.com) separately (GoDaddy, etc). We connect it for free.",
-        q2: "How do I get paid?", a2: "We integrate Stripe, Wise or Shopier. Money goes directly to your bank account instantly."
+        nav_strat: "Strategy", nav_sync: "Sync", nav_growth: "Growth", nav_talk: "Free Consult",
+        hero_badge: "Etsy Open API Integration",
+        hero_t1: "From Etsy Seller", hero_t2: "To Global Brand Owner.",
+        hero_desc: "Keep your Etsy traffic, but build your own castle. Establish trust, secure your customer data, and create a 'Plan B' that you fully own.",
+        btn_start: "Elevate My Brand", safe_badge: "100% Etsy Safe",
+        s1_t: "Premium Perception", s1_d: "Buyers trust brands with their own .com domain. A professional website validates your Etsy shop, allowing you to charge higher prices.",
+        s2_t: "Safety & Ownership", s2_d: "Never rely on a single platform. If your Etsy shop gets paused, your website keeps running. You own your customer data (emails), not Etsy.",
+        s3_t: "Smart Marketing", s3_d: "You can't use Meta Pixel on Etsy. But on your site, you can retarget visitors who left the cart. Drive external traffic to where you pay 0% fees.",
+        sync_t1: "Transfer Your", sync_t2: "Reputation.",
+        sync_desc: "Starting a new website is hard because it looks 'empty'. We solved this. Our Open API engine pulls your Products, Descriptions, Photos, and Reviews instantly.",
+        li_sync1: "Sync 500+ Products in minutes", li_sync2: "Import 5-Star Reviews automatically", li_sync3: "Real-time Inventory updates", verified: "Verified Buyer",
+        cta_title: "Don't Leave Money on the Table.", cta_sub: "The top 1% of Etsy sellers all have their own websites. It's time to join them.",
+        btn_book: "Book Consultation"
       },
       tr: {
-        nav_why: "Neden VitrinY?", nav_designs: "Tasarımlar", nav_price: "Fiyatlar", nav_cta: "Hemen Başla",
-        hero_badge: "RESMİ ETSY API PARTNERİ",
-        hero_t1: "Etsy Komisyonlarına", hero_t2: "Sonsuza Dek Veda Edin.",
-        hero_sub: "Mağazanızı kapatmanıza gerek yok. Ürünlerinizi Etsy'den otomatik çekip, kendi alan adınızda (sizinsiteniz.com) komisyonsuz satmanızı sağlıyoruz.",
-        btn_start: "Kendi Siteni Kur", btn_demo: "Örnekleri İncele",
-        comp_title: "Gerçek Bağımsızlık", comp_sub: "Neden sadece Etsy ile yetinmemelisiniz?",
-        th_feat: "Özellik", th_etsy: "Sadece Etsy", th_vitriny: "VitrinY Sitesi",
-        td_list: "Listeleme Ücreti", td_list_e: "$0.20 / ürün", td_free: "ÜCRETSİZ",
-        td_comm: "İşlem Komisyonu", td_comm_e: "%6.5 + Kesintiler",
-        td_comp: "Rakip Ürünler", td_comp_e: "Sayfanızda rakip reklamları var", td_comp_v: "Sadece SİZİN ürünleriniz",
-        td_data: "Müşteri Verisi (Email)", td_data_e: "Etsy vermez (Yasaklı)", td_data_v: "Tamamen size ait",
-        tmpl_title: "Sektörünüze Özel Temalar", tmpl_sub: "Etsy'deki ürünlerinizi bu tasarımlara giydiriyoruz. Kodlama yok, sürükle bırak yok.", tmpl_link: "Tümünü Gör",
-        price_title: "Yatırım Planları", price_sub: "Aylık kira öder gibi ödemeyin. Siteniz sizin olsun.",
-        p_one_time: "Tek Seferlik Kurulum",
-        p1_f1: "100 Ürüne Kadar", p1_f2: "Temel Senkronizasyon", p1_f3: "Domain Bağlama",
-        btn_buy: "Satın Al",
-        pop_badge: "EN ÇOK TERCİH EDİLEN", btn_start_now: "Hemen Başla",
-        p2_f1: "1000 Ürüne Kadar", p2_f2: "Günlük Otomatik Stok Sync", p2_f3: "Google Analytics & Pixel", p2_f4: "Çoklu Dil (TR/EN)",
-        p_yearly: "Yıllık Bakım Dahil",
-        p3_f1: "Sınırsız Ürün", p3_f2: "Anlık (Real-time) Webhook", p3_f3: "Özel Tasarım Kodlama", p3_f4: "7/24 VIP WhatsApp Desteği", btn_contact: "İletişime Geç",
-        faq_title: "Merak Edilenler",
-        q1: "Domain (Alan Adı) fiyata dahil mi?", a1: "Hayır, markaniz.com gibi alan adınızı siz satın alırsınız (GoDaddy vb). Biz bağlantısını ücretsiz yaparız.",
-        q2: "Ödemeleri nasıl alacağım?", a2: "Shopier, Iyzico, Stripe veya Wise hesabınızı sitenize entegre ediyoruz. Para doğrudan sizin hesabınıza yatar."
+        nav_strat: "Strateji", nav_sync: "Entegrasyon", nav_growth: "Büyüme", nav_talk: "Ücretsiz Danış",
+        hero_badge: "Etsy Open API Entegrasyonu",
+        hero_t1: "Etsy Satıcılığından", hero_t2: "Global Marka Sahipliğine.",
+        hero_desc: "Etsy trafiğinizi koruyun, ama kendi kalenizi inşa edin. Güven oluşturun, müşteri datanızı yedekleyin ve tamamen size ait bir 'B Planı' oluşturun.",
+        btn_start: "Markamı Yükselt", safe_badge: "%100 Etsy Uyumlu",
+        s1_t: "Premium Algı", s1_d: "Alıcılar .com uzantılı markalara güvenir. Profesyonel bir site Etsy mağazanızı onaylar ve daha yüksek fiyatlar talep etmenizi sağlar.",
+        s2_t: "Güvenlik & Sahiplik", s2_d: "Asla tek bir platforma bel bağlamayın. Etsy mağazanız dursa bile siteniz çalışmaya devam eder. Müşteri datası (epostalar) Etsy'nin değil, sizindir.",
+        s3_t: "Akıllı Pazarlama", s3_d: "Etsy'de Meta Pixel kullanamazsınız. Ama sitenizde sepeti terk edenleri yakalayabilirsiniz. Dış trafiği komisyon ödemediğiniz yere çekin.",
+        sync_t1: "İtibarınızı", sync_t2: "Transfer Edin.",
+        sync_desc: "Yeni bir site açmak zordur çünkü 'boş' görünür. Bunu çözdük. API motorumuz Ürünlerinizi, Açıklamalarınızı ve Yorumlarınızı anında çeker.",
+        li_sync1: "Dakikalar içinde 500+ Ürün aktarımı", li_sync2: "5 Yıldızlı Yorumları otomatik çekme", li_sync3: "Gerçek zamanlı Stok güncellemesi", verified: "Doğrulanmış Alıcı",
+        cta_title: "Parayı Masada Bırakmayın.", cta_sub: "En iyi %1'lik Etsy satıcılarının hepsinin kendi sitesi var. Onlara katılma zamanı.",
+        btn_book: "Danışmanlık Al"
       }
     };
 
@@ -300,9 +286,7 @@
     function applyLang() {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[currentLang][key]) {
-                el.innerHTML = translations[currentLang][key];
-            }
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
         });
         document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
     }
@@ -312,13 +296,7 @@
         localStorage.setItem('lang', currentLang);
         applyLang();
     }
-
     applyLang();
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 
 </body>
