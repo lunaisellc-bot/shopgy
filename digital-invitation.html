@@ -1,346 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Event Websites</title>
+    <title>VitrinY Atelier | Premium Event Websites</title>
+    <meta name="description" content="Premium digital invitations and event websites. Seamless RSVP, maps, and elegant design.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    },
+                    colors: {
+                        bgdark: '#0B0B15',
+                        surface: '#12121A',
+                        gold: '#D4AF37',
+                        subtle: '#9CA3AF'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Base typography setup for premium feel */
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .glass-panel:hover { border-color: rgba(212, 175, 55, 0.3); background: rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-slate-200 selection:text-slate-900">
+<body class="font-sans selection:bg-gold selection:text-black">
 
-    <section class="relative w-full py-24 md:py-32 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-light tracking-tight text-slate-900 mb-2" data-i18n="hero.title">
+    <nav class="fixed top-0 w-full z-50 py-6 px-8 flex justify-end">
+        <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-4 py-2 rounded-full hover:text-white hover:border-white transition uppercase tracking-widest bg-bgdark/50 backdrop-blur-md">
+            EN
+        </button>
+    </nav>
+
+    <header class="relative min-h-[90vh] flex flex-col justify-center px-6 md:px-20 max-w-7xl mx-auto">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="relative z-10 max-w-3xl">
+            <span class="inline-block px-3 py-1 mb-6 text-[10px] font-bold tracking-[0.2em] uppercase text-gold border border-gold/20 rounded-full bg-gold/5" data-i18n="hero_badge">Digital Atelier</span>
+            
+            <h1 class="text-5xl md:text-7xl font-semibold leading-tight mb-4 text-white">
+                <span data-i18n="hero_title">Your Event, <br> Digitally Curated.</span>
             </h1>
-        <p class="font-serif italic tracking-wide text-lg text-slate-500 mb-8" data-i18n="hero.subtitle">
+            
+            <p class="font-serif italic tracking-wide text-xl text-gold opacity-80 mb-8" data-i18n="hero_accent">
+                Beyond the paper invite.
             </p>
-        <p class="text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed mb-10" data-i18n="hero.desc">
+            
+            <p class="text-lg text-gray-400 leading-relaxed max-w-xl mb-12 border-l-2 border-white/10 pl-6" data-i18n="hero_desc">
+                We craft fully functional, mobile-responsive websites for your special occasions. Not a static file, but a living hub for your RSVPs, maps, and memories.
             </p>
-        <div class="flex flex-col md:flex-row gap-4">
-            <button class="bg-slate-900 text-white px-8 py-3 text-sm tracking-widest uppercase hover:bg-slate-800 transition-colors duration-300" data-i18n="hero.cta">
-                </button>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#packages" class="px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-gold transition duration-300 text-center">
+                    <span data-i18n="btn_start">Start Project</span>
+                </a>
+                <a href="#details" class="px-8 py-4 border border-white/20 text-white font-medium rounded-full hover:bg-white/5 transition duration-300 text-center">
+                    <span data-i18n="btn_learn">How It Works</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="details" class="py-24 bg-surface border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-20">
+            <div class="mb-16">
+                <h2 class="text-3xl font-medium mb-2" data-i18n="how_title">The Process</h2>
+                <p class="font-serif italic tracking-wide text-lg text-gold opacity-60" data-i18n="how_accent">Simple. Transparent. Organized.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="relative">
+                    <span class="text-6xl text-white/5 font-serif absolute -top-8 -left-4">01</span>
+                    <h3 class="text-xl font-medium text-white mb-4 relative z-10" data-i18n="step1_t">Brief & Content</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="step1_d">
+                        Share your event details, photos, and preferences via our structured form. We gather everything needed to begin.
+                    </p>
+                </div>
+                <div class="relative">
+                    <span class="text-6xl text-white/5 font-serif absolute -top-8 -left-4">02</span>
+                    <h3 class="text-xl font-medium text-white mb-4 relative z-10" data-i18n="step2_t">Curating & Design</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="step2_d">
+                        Our studio builds your site. We arrange your story and logistics into a cohesive, elegant digital experience.
+                    </p>
+                </div>
+                <div class="relative">
+                    <span class="text-6xl text-white/5 font-serif absolute -top-8 -left-4">03</span>
+                    <h3 class="text-xl font-medium text-white mb-4 relative z-10" data-i18n="step3_t">Review & Launch</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="step3_d">
+                        We present the draft. After your approval, we activate your link, ready to be shared with your guest list.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-slate-50">
-        <div class="max-w-6xl mx-auto">
+    <section class="py-24 bg-bgdark">
+        <div class="max-w-7xl mx-auto px-6 md:px-20">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-light text-slate-900 mb-2" data-i18n="process.title"></h2>
-                <p class="font-serif italic tracking-wide text-lg text-slate-500 opacity-80" data-i18n="process.subtitle"></p>
+                <h2 class="text-3xl font-medium mb-3" data-i18n="feat_title">Curated Features</h2>
+                <p class="font-serif italic tracking-wide text-lg text-gold opacity-80" data-i18n="feat_accent">Designed for modern hosting.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-                <div class="flex flex-col items-center">
-                    <span class="text-5xl font-thin text-slate-300 mb-6">01</span>
-                    <h3 class="text-lg font-medium uppercase tracking-wide mb-3" data-i18n="process.step1.title"></h3>
-                    <p class="text-slate-600 text-sm leading-relaxed max-w-xs" data-i18n="process.step1.desc"></p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-panel p-8 rounded-xl">
+                    <i class="fa-regular fa-envelope-open text-gold text-2xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2" data-i18n="f1_t">Smart RSVP System</h3>
+                    <p class="text-sm text-gray-500" data-i18n="f1_d">Collect attendances, meal preferences, and dietary restrictions seamlessly.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-5xl font-thin text-slate-300 mb-6">02</span>
-                    <h3 class="text-lg font-medium uppercase tracking-wide mb-3" data-i18n="process.step2.title"></h3>
-                    <p class="text-slate-600 text-sm leading-relaxed max-w-xs" data-i18n="process.step2.desc"></p>
+                <div class="glass-panel p-8 rounded-xl">
+                    <i class="fa-solid fa-map-location-dot text-gold text-2xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2" data-i18n="f2_t">Location Integration</h3>
+                    <p class="text-sm text-gray-500" data-i18n="f2_d">Direct Google/Apple Maps links. Ensure your guests arrive at the right venue effortlessly.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-5xl font-thin text-slate-300 mb-6">03</span>
-                    <h3 class="text-lg font-medium uppercase tracking-wide mb-3" data-i18n="process.step3.title"></h3>
-                    <p class="text-slate-600 text-sm leading-relaxed max-w-xs" data-i18n="process.step3.desc"></p>
+                <div class="glass-panel p-8 rounded-xl">
+                    <i class="fa-regular fa-images text-gold text-2xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2" data-i18n="f3_t">Visual Storytelling</h3>
+                    <p class="text-sm text-gray-500" data-i18n="f3_d">A dedicated section for your pre-event photos or timeline story.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-light text-slate-900 mb-2" data-i18n="features.title"></h2>
-                <p class="font-serif italic tracking-wide text-lg text-slate-500 opacity-80" data-i18n="features.subtitle"></p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                <div class="flex flex-col border-l border-slate-200 pl-6">
-                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.rsvp.title"></h4>
-                    <p class="text-slate-600 text-sm" data-i18n="features.rsvp.desc"></p>
+                <div class="glass-panel p-8 rounded-xl">
+                    <i class="fa-solid fa-gift text-gold text-2xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2" data-i18n="f4_t">The Art of Gifting</h3>
+                    <p class="text-sm text-gray-500" data-i18n="f4_d">Elegant presentation of your Registry, Charity choices, or IBAN details.</p>
                 </div>
-                <div class="flex flex-col border-l border-slate-200 pl-6">
-                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.maps.title"></h4>
-                    <p class="text-slate-600 text-sm" data-i18n="features.maps.desc"></p>
+                <div class="glass-panel p-8 rounded-xl">
+                    <i class="fa-regular fa-clock text-gold text-2xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2" data-i18n="f5_t">Live Countdown</h3>
+                    <p class="text-sm text-gray-500" data-i18n="f5_d">Build anticipation with a stylish timer ticking down to the celebration.</p>
                 </div>
-                <div class="flex flex-col border-l border-slate-200 pl-6">
-                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.gallery.title"></h4>
-                    <p class="text-slate-600 text-sm" data-i18n="features.gallery.desc"></p>
-                </div>
-                <div class="flex flex-col border-l border-slate-200 pl-6">
-                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.gift.title"></h4>
-                    <p class="text-slate-600 text-sm" data-i18n="features.gift.desc"></p>
-                </div>
-                <div class="flex flex-col border-l border-slate-200 pl-6">
-                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.countdown.title"></h4>
-                    <p class="text-slate-600 text-sm" data-i18n="features.countdown.desc"></p>
-                </div>
-                <div class="flex flex-col border-l border-slate-200 pl-6">
-                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.mobile.title"></h4>
-                    <p class="text-slate-600 text-sm" data-i18n="features.mobile.desc"></p>
+                <div class="glass-panel p-8 rounded-xl">
+                    <i class="fa-solid fa-mobile-screen text-gold text-2xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2" data-i18n="f6_t">Device Agnostic</h3>
+                    <p class="text-sm text-gray-500" data-i18n="f6_d">Flawless experience on Mobile, Tablet, and Desktop screens.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 px-6 bg-slate-50">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-2xl font-light text-slate-900 mb-6" data-i18n="privacy.title"></h2>
-            <div class="flex flex-wrap justify-center gap-4 md:gap-8 text-sm text-slate-600">
-                <span class="bg-white px-4 py-2 shadow-sm rounded-sm" data-i18n="privacy.no_app"></span>
-                <span class="bg-white px-4 py-2 shadow-sm rounded-sm" data-i18n="privacy.no_account"></span>
-                <span class="bg-white px-4 py-2 shadow-sm rounded-sm" data-i18n="privacy.optional_pass"></span>
-            </div>
-            <p class="mt-8 text-slate-500 font-serif italic tracking-wide opacity-80" data-i18n="privacy.note"></p>
+    <section class="py-20 bg-surface border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <i class="fa-solid fa-shield-halved text-3xl text-gray-600 mb-6"></i>
+            <h2 class="text-2xl font-medium mb-4" data-i18n="priv_title">Guest Experience First</h2>
+            <p class="text-gray-400 leading-relaxed mb-8" data-i18n="priv_desc">
+                Your guests do not need to download any apps or create accounts. 
+                We provide a direct link. For added privacy, optional password protection 
+                is available upon request.
+            </p>
         </div>
     </section>
 
-    <section class="py-20 px-6 border-t border-slate-100">
-        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <section class="py-24 bg-bgdark relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 md:px-20 grid md:grid-cols-2 gap-16 items-center">
             <div>
-                <h3 class="text-xl font-light text-slate-900 mb-4" data-i18n="delivery.title"></h3>
-                <p class="font-serif italic tracking-wide text-slate-500 opacity-80 mb-6" data-i18n="delivery.subtitle"></p>
-                <ul class="space-y-4 text-sm text-slate-600">
-                    <li class="flex items-start">
-                        <span class="mr-3 text-slate-400">•</span>
-                        <span data-i18n="delivery.point1"></span>
+                <span class="text-gold text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="del_badge">Timeline & Quality</span>
+                <h2 class="text-3xl font-medium mb-6" data-i18n="del_title">Delivery Standards</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-1 h-full bg-white/10"></div>
+                        <div>
+                            <h4 class="text-white font-medium" data-i18n="d1_t">48-Hour Turnaround</h4>
+                            <p class="text-sm text-gray-500 mt-1" data-i18n="d1_d">Timing begins once we receive your complete content and assets.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1 h-full bg-white/10"></div>
+                        <div>
+                            <h4 class="text-white font-medium" data-i18n="d2_t">Refinement Round</h4>
+                            <p class="text-sm text-gray-500 mt-1" data-i18n="d2_d">One comprehensive revision session is included to ensure accuracy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-panel p-8 rounded-2xl relative">
+                <div class="absolute -top-4 -right-4 w-20 h-20 bg-gold/10 rounded-full blur-xl"></div>
+                <h3 class="text-xl font-medium mb-4" data-i18n="link_title">Link & Hosting</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-link text-gold mt-1"></i>
+                        <span data-i18n="link_1">Standard secure link included (e.g., vitriny.com/names).</span>
                     </li>
-                    <li class="flex items-start">
-                        <span class="mr-3 text-slate-400">•</span>
-                        <span data-i18n="delivery.point2"></span>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-globe text-gold mt-1"></i>
+                        <span data-i18n="link_2">Custom domains (e.g., yourname.com) are optional upgrades.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-server text-gold mt-1"></i>
+                        <span data-i18n="link_3">Hosting and maintenance are handled by us.</span>
                     </li>
                 </ul>
             </div>
-            <div class="bg-slate-50 p-8 rounded-sm">
-                <h4 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="delivery.terms_header"></h4>
-                <p class="text-sm text-slate-600 leading-relaxed mb-4" data-i18n="delivery.revision_policy"></p>
-                <p class="text-xs text-slate-400" data-i18n="delivery.extra_note"></p>
+        </div>
+    </section>
+
+    <section class="py-24 bg-surface border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-20 grid md:grid-cols-2 gap-12">
+            <div class="glass-panel p-10 rounded-2xl text-center md:text-left">
+                <h3 class="text-xl font-medium text-white mb-2" data-i18n="supp_title">Boutique Support</h3>
+                <p class="font-serif italic text-gold opacity-70 mb-4" data-i18n="supp_acc">Real humans, not bots.</p>
+                <p class="text-sm text-gray-400 leading-relaxed" data-i18n="supp_desc">
+                    We understand last-minute changes happen. Our team is accessible via WhatsApp or Email to assist with urgent updates before your event.
+                </p>
+            </div>
+            <div class="glass-panel p-10 rounded-2xl text-center md:text-left">
+                <h3 class="text-xl font-medium text-white mb-2" data-i18n="glob_title">Global Standard</h3>
+                <p class="font-serif italic text-gold opacity-70 mb-4" data-i18n="glob_acc">Respecting traditions.</p>
+                <p class="text-sm text-gray-400 leading-relaxed" data-i18n="glob_desc">
+                    Whether you need a traditional RSVP flow or a modern WhatsApp-based response system, we adapt the technology to fit your cultural etiquette.
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="py-12 px-6 bg-slate-900 text-slate-300">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left">
-                <h3 class="text-white text-lg font-medium mb-1" data-i18n="domain.title"></h3>
-                <p class="text-sm opacity-80" data-i18n="domain.desc"></p>
-            </div>
-            <div class="text-xs border border-slate-700 px-4 py-2 rounded text-slate-400" data-i18n="domain.note">
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 px-6">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-2xl font-light text-slate-900 mb-2" data-i18n="extra1.title"></h2>
-            <p class="font-serif italic tracking-wide text-lg text-slate-500 opacity-80 mb-6" data-i18n="extra1.subtitle"></p>
-            <p class="text-slate-600 leading-relaxed" data-i18n="extra1.desc"></p>
-        </div>
-    </section>
-
-    <section class="py-16 px-6 bg-slate-50 mb-12">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-2xl font-light text-slate-900 mb-2" data-i18n="extra2.title"></h2>
-            <p class="text-slate-600 max-w-xl mx-auto mb-8" data-i18n="extra2.desc"></p>
-            <div class="inline-block border-b border-slate-300 pb-1 text-sm text-slate-500 italic" data-i18n="extra2.quote">
-            </div>
-        </div>
-    </section>
-
-    <div class="fixed bottom-4 right-4 bg-white shadow-lg p-2 rounded z-50 flex gap-2">
-        <button onclick="setLang('en')" class="px-3 py-1 text-xs font-bold bg-slate-100 hover:bg-slate-200">EN</button>
-        <button onclick="setLang('tr')" class="px-3 py-1 text-xs font-bold bg-slate-100 hover:bg-slate-200">TR</button>
-    </div>
+    <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
+        <div class="mb-4 text-white font-serif tracking-widest">VITRINY ATELIER</div>
+        <p>&copy; 2026 Lunaise LLC. All rights reserved.</p>
+    </footer>
 
     <script>
         const translations = {
             en: {
-                hero: {
-                    title: "Your Event, Beautifully Online.",
-                    subtitle: "Beyond paper, into the moment.",
-                    desc: "A fully responsive, custom-designed website for your special occasion. Manage RSVPs, guide your guests via maps, and share your story through a single, elegant link.",
-                    cta: "View Sample Designs"
-                },
-                process: {
-                    title: "How It Works",
-                    subtitle: "Simple, transparent, and refined.",
-                    step1: {
-                        title: "The Brief",
-                        desc: "Share your event details, photos, and specific requests through our streamlined content form."
-                    },
-                    step2: {
-                        title: "The Design",
-                        desc: "We curate and code your dedicated website, ensuring every detail aligns with your aesthetic."
-                    },
-                    step3: {
-                        title: "The Launch",
-                        desc: "Review your draft, approve the design, and receive your live link ready to share with guests."
-                    }
-                },
-                features: {
-                    title: "Curated Features",
-                    subtitle: "Everything you need, nothing you don't.",
-                    rsvp: {
-                        title: "Seamless RSVP",
-                        desc: "Digital attendance tracking with dietary preferences and +1 management."
-                    },
-                    maps: {
-                        title: "Integrated Navigation",
-                        desc: "Direct Google Maps integration to guide guests effortlessly to your venue."
-                    },
-                    gallery: {
-                        title: "Visual Storytelling",
-                        desc: "A dedicated section to showcase your pre-event photos or love story."
-                    },
-                    gift: {
-                        title: "Registry & Gifts",
-                        desc: "Elegant presentation of your registry links or bank details for contributions."
-                    },
-                    countdown: {
-                        title: "Live Countdown",
-                        desc: "Build anticipation with a stylish counter ticking down to the big day."
-                    },
-                    mobile: {
-                        title: "Fully Responsive",
-                        desc: "Flawless experience on mobile, tablet, and desktop devices."
-                    }
-                },
-                privacy: {
-                    title: "Effortless for Guests",
-                    no_app: "No App Download",
-                    no_account: "No Account Creation",
-                    optional_pass: "Optional Password Protection",
-                    note: "Just a link, simply click and view."
-                },
-                delivery: {
-                    title: "Timeline & Delivery",
-                    subtitle: "Crafted with care, delivered with speed.",
-                    point1: "Standard delivery is typically 48 hours after we receive your complete content.",
-                    point2: "One round of comprehensive revisions is included to perfect the details.",
-                    terms_header: "Important Note",
-                    revision_policy: "The timeline begins once all texts and photos are submitted. The included revision covers text corrections and photo swaps.",
-                    extra_note: "Structural layout changes or additional rounds may incur a separate fee."
-                },
-                domain: {
-                    title: "Your Personal Link",
-                    desc: "Includes a shareable link (e.g., yourname.service.com). Custom domains available.",
-                    note: "Hosting Included"
-                },
-                extra1: {
-                    title: "A Modern, Sustainable Choice",
-                    subtitle: "Elegant footprint.",
-                    desc: "Reduce paper waste without compromising on luxury. A digital invitation offers unlimited reach and instant updates, blending environmental consciousness with modern convenience."
-                },
-                extra2: {
-                    title: "The Guest Experience",
-                    desc: "We prioritize your guests' convenience. Information is presented clearly, ensuring they have every detail needed to attend your celebration stress-free.",
-                    quote: "Hospitality begins with the invitation."
-                }
+                hero_badge: "Digital Atelier",
+                hero_title: "Your Event, <br> Digitally Curated.",
+                hero_accent: "Beyond the paper invite.",
+                hero_desc: "We craft fully functional, mobile-responsive websites for your special occasions. Not a static file, but a living hub for your RSVPs, maps, and memories.",
+                btn_start: "Start Project",
+                btn_learn: "How It Works",
+                
+                how_title: "The Process",
+                how_accent: "Simple. Transparent. Organized.",
+                step1_t: "Brief & Content",
+                step1_d: "Share your event details, photos, and preferences via our structured form. We gather everything needed to begin.",
+                step2_t: "Curating & Design",
+                step2_d: "Our studio builds your site. We arrange your story and logistics into a cohesive, elegant digital experience.",
+                step3_t: "Review & Launch",
+                step3_d: "We present the draft. After your approval, we activate your link, ready to be shared with your guest list.",
+
+                feat_title: "Curated Features",
+                feat_accent: "Designed for modern hosting.",
+                f1_t: "Smart RSVP System", f1_d: "Collect attendances, meal preferences, and dietary restrictions seamlessly.",
+                f2_t: "Location Integration", f2_d: "Direct Google/Apple Maps links. Ensure your guests arrive at the venue effortlessly.",
+                f3_t: "Visual Storytelling", f3_d: "A dedicated section for your pre-event photos or timeline story.",
+                f4_t: "The Art of Gifting", f4_d: "Elegant presentation of your Registry, Charity choices, or IBAN details.",
+                f5_t: "Live Countdown", f5_d: "Build anticipation with a stylish timer ticking down to the celebration.",
+                f6_t: "Device Agnostic", f6_d: "Flawless experience on Mobile, Tablet, and Desktop screens.",
+
+                priv_title: "Guest Experience First",
+                priv_desc: "Your guests do not need to download any apps or create accounts. We provide a direct link. For added privacy, optional password protection is available upon request.",
+
+                del_badge: "Timeline & Quality",
+                del_title: "Delivery Standards",
+                d1_t: "48-Hour Turnaround", d1_d: "Timing begins once we receive your complete content and assets.",
+                d2_t: "Refinement Round", d2_d: "One comprehensive revision session is included to ensure accuracy.",
+                
+                link_title: "Link & Hosting",
+                link_1: "Standard secure link included (e.g., vitriny.com/names).",
+                link_2: "Custom domains (e.g., yourname.com) are optional upgrades.",
+                link_3: "Hosting and maintenance are handled by us.",
+
+                supp_title: "Boutique Support",
+                supp_acc: "Real humans, not bots.",
+                supp_desc: "We understand last-minute changes happen. Our team is accessible via WhatsApp or Email to assist with urgent updates before your event.",
+                
+                glob_title: "Global Standard",
+                glob_acc: "Respecting traditions.",
+                glob_desc: "Whether you need a traditional RSVP flow or a modern WhatsApp-based response system, we adapt the technology to fit your cultural etiquette."
             },
             tr: {
-                hero: {
-                    title: "Etkinliğiniz, Zarifçe Çevrimiçi.",
-                    subtitle: "Kağıdın ötesinde, anın içinde.",
-                    desc: "Özel gününüz için tasarlanmış, mobil uyumlu ve etkileşimli bir web sitesi. LCV yönetimi, harita entegrasyonu ve tüm detaylar tek bir zarif linkte.",
-                    cta: "Örnek Tasarımları İncele"
-                },
-                process: {
-                    title: "Nasıl Çalışır?",
-                    subtitle: "Sade, şeffaf ve özenli.",
-                    step1: {
-                        title: "İçerik Paylaşımı",
-                        desc: "Etkinlik detaylarını, fotoğraflarınızı ve özel notlarınızı size ileteceğimiz form üzerinden paylaşın."
-                    },
-                    step2: {
-                        title: "Tasarım & Hazırlık",
-                        desc: "Web sitenizi estetik anlayışınıza uygun olarak kodluyor ve yayına hazırlıyoruz."
-                    },
-                    step3: {
-                        title: "Yayın & Paylaşım",
-                        desc: "Taslağı inceleyin, onaylayın ve misafirlerinizle paylaşmaya hazır linkinizi teslim alın."
-                    },
-                },
-                features: {
-                    title: "Özellikler",
-                    subtitle: "İhtiyacınız olan her şey, fazlası değil.",
-                    rsvp: {
-                        title: "Dijital LCV",
-                        desc: "Katılım durumu, özel beslenme tercihleri ve kişi sayısı takibi."
-                    },
-                    maps: {
-                        title: "Navigasyon Entegrasyonu",
-                        desc: "Konuklarınızın mekanı kolayca bulması için Google Haritalar bağlantısı."
-                    },
-                    gallery: {
-                        title: "Görsel Hikaye",
-                        desc: "Etkinlik öncesi fotoğraflarınız veya hikayeniz için özel galeri alanı."
-                    },
-                    gift: {
-                        title: "Hediye & Katkı",
-                        desc: "Hediye listenizin veya katkı detaylarının nazik ve şık sunumu."
-                    },
-                    countdown: {
-                        title: "Geri Sayım",
-                        desc: "Büyük güne kalan zamanı gösteren şık bir sayaç."
-                    },
-                    mobile: {
-                        title: "Tam Uyumluluk",
-                        desc: "Mobil, tablet ve masaüstü cihazlarda kusursuz görüntüleme."
-                    }
-                },
-                privacy: {
-                    title: "Misafirleriniz İçin Zahmetsiz",
-                    no_app: "Uygulama İndirme Yok",
-                    no_account: "Üyelik / Giriş Yok",
-                    optional_pass: "İsteğe Bağlı Şifre",
-                    note: "Sadece bir link; tıklayın ve görüntüleyin."
-                },
-                delivery: {
-                    title: "Süreç & Teslimat",
-                    subtitle: "Özenle tasarlandı, hızla teslim edildi.",
-                    point1: "Standart teslimat süresi, tüm içerikler tarafımıza ulaştıktan sonra ortalama 48 saattir.",
-                    point2: "Detayları mükemmelleştirmek adına 1 tur revizyon hizmete dahildir.",
-                    terms_header: "Önemli Bilgi",
-                    revision_policy: "Teslim süresi, metin ve görseller eksiksiz iletildiğinde başlar. Dahil olan revizyon; metin düzeltmeleri ve fotoğraf değişimlerini kapsar.",
-                    extra_note: "Yapısal değişiklikler veya ek revizyon turları ayrıca değerlendirilir."
-                },
-                domain: {
-                    title: "Size Özel Bağlantı",
-                    desc: "Paylaşılabilir link dahildir (örn: isminiz.servis.com). Özel domain opsiyoneldir.",
-                    note: "Hosting Dahil"
-                },
-                extra1: {
-                    title: "Modern ve Sürdürülebilir",
-                    subtitle: "Zarif bir iz bırakın.",
-                    desc: "Lüksten ödün vermeden kağıt tüketimini azaltın. Dijital davetiye, çevresel duyarlılığı modern kolaylıklarla birleştirerek sınırsız erişim ve anlık güncelleme imkanı sunar."
-                },
-                extra2: {
-                    title: "Misafir Deneyimi",
-                    desc: "Konuklarınızın konforunu önemsiyoruz. Bilgiler net ve sade bir şekilde sunulur, böylece kutlamanıza stressiz bir şekilde katılabilirler.",
-                    quote: "Misafirperverlik davetle başlar."
-                }
+                hero_badge: "Dijital Atölye",
+                hero_title: "Davetiyeniz, <br> Teknolojiyle Buluştu.",
+                hero_accent: "Kağıdın ve PDF'in ötesinde.",
+                hero_desc: "Özel günleriniz için tam donanımlı, mobil uyumlu web siteleri tasarlıyoruz. Sıradan bir dosya değil; LCV takibi, haritalar ve anılarınız için canlı bir platform.",
+                btn_start: "Projeyi Başlat",
+                btn_learn: "Süreç Nasıl İşler?",
+
+                how_title: "Çalışma Süreci",
+                how_accent: "Sade. Şeffaf. Düzenli.",
+                step1_t: "İçerik Paylaşımı",
+                step1_d: "Etkinlik detaylarınızı ve fotoğraflarınızı formumuz aracılığıyla iletin. Başlamak için gereken her şeyi toparlıyoruz.",
+                step2_t: "Tasarım & Kurgu",
+                step2_d: "Stüdyomuz sitenizi inşa eder. Hikayenizi ve organizasyon detaylarını zarif bir dijital deneyime dönüştürürüz.",
+                step3_t: "Onay & Yayın",
+                step3_d: "Taslağı sunarız. Onayınızın ardından linkinizi aktif hale getirir, misafirlerinizle paylaşmaya hazır hale getiririz.",
+
+                feat_title: "Seçkin Özellikler",
+                feat_accent: "Modern ev sahipliği için tasarlandı.",
+                f1_t: "Akıllı LCV Sistemi", f1_d: "Katılım durumunu, yemek tercihlerini ve varsa alerji notlarını kolayca toplayın.",
+                f2_t: "Konum Entegrasyonu", f2_d: "Direkt Google/Apple Harita bağlantıları. Misafirleriniz mekanı ararken kaybolmasın.",
+                f3_t: "Görsel Hikaye", f3_d: "Fotoğraflarınız veya tanışma hikayeniz için ayrılmış özel galeri alanı.",
+                f4_t: "Hediyeleşme Zarafeti", f4_d: "Hediye listeniz, bağış tercihiniz veya IBAN bilgileriniz için nazik sunum alanı.",
+                f5_t: "Canlı Geri Sayım", f5_d: "Kutlama anına doğru işleyen şık bir sayaç ile heyecanı artırın.",
+                f6_t: "Tam Uyumluluk", f6_d: "Telefon, Tablet ve Bilgisayar ekranlarında kusursuz görünüm.",
+
+                priv_title: "Önce Misafir Deneyimi",
+                priv_desc: "Misafirlerinizin uygulama indirmesine veya üye olmasına gerek yoktur. Direkt link ile erişim sağlanır. Arzu edilirse şifre koruması eklenebilir.",
+
+                del_badge: "Süre & Kalite",
+                del_title: "Teslimat Standartları",
+                d1_t: "48 Saatte Teslim", d1_d: "Süre, siz tüm içerikleri bize ilettikten sonra başlar.",
+                d2_t: "Revizyon Hakkı", d2_d: "Tüm detayların doğruluğunu sağlamak için 1 kapsamlı düzenleme turu dahildir.",
+
+                link_title: "Link & Barındırma",
+                link_1: "Standart güvenli link dahildir (örn: vitriny.com/isimler).",
+                link_2: "Özel alan adı (domain) opsiyoneldir.",
+                link_3: "Sunucu ve teknik bakım tarafımızca yönetilir.",
+
+                supp_title: "Butik Destek",
+                supp_acc: "Robot değil, gerçek iletişim.",
+                supp_desc: "Son dakika değişikliklerinin olabileceğini biliyoruz. Etkinlik öncesi acil güncellemeler için ekibimize ulaşabilirsiniz.",
+
+                glob_title: "Kültürel Uyum",
+                glob_acc: "Geleneklere saygı.",
+                glob_desc: "İster klasik form tabanlı LCV, ister WhatsApp üzerinden hızlı dönüş sistemi. Teknolojiyi alışkanlıklarınıza göre uyarlıyoruz."
             }
         };
 
-        function setLang(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const keys = element.getAttribute('data-i18n').split('.');
-                let value = translations[lang];
-                keys.forEach(key => {
-                    if (value) value = value[key];
-                });
-                if (value) element.textContent = value;
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyLang() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang] && translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
             });
+            document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
         }
 
-        // Initialize with English or Browser Language preference
-        const userLang = navigator.language || navigator.userLanguage; 
-        setLang(userLang.startsWith('tr') ? 'tr' : 'en');
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'tr' : 'en';
+            localStorage.setItem('lang', currentLang);
+            applyLang();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', applyLang);
     </script>
 </body>
 </html>
