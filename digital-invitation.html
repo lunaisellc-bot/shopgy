@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luxury Digital Events | VitrinY</title>
-  <meta name="description" content="Düğünler, VIP partiler ve lansmanlar için sinematik, interaktif web siteleri. LCV takibi ve özel tasarım." />
+  <title>Eternal Moments | VitrinY Events</title>
+  <meta name="description" content="Sıradan bir davetiye değil, aşkınızın dijital yansıması. Düğün ve özel günler için sinematik web deneyimi." />
   
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Outfit:wght@300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
@@ -16,21 +16,27 @@
         extend: {
           fontFamily: {
             sans: ['Outfit', 'sans-serif'],
-            serif: ['Playfair Display', 'serif']
+            serif: ['Cormorant Garamond', 'serif'],
+            hand: ['Pinyon Script', 'cursive'] /* Yeni El Yazısı Fontu */
           },
           colors: {
             bgdark: '#0B0B15',
-            gold: '#D4AF37',       /* Lüks Hissi */
-            rose: '#E0B0FF',       /* Romantik Dokunuş */
-            surface: '#12121A'
+            champagne: '#F7E7CE',
+            rose: '#E6C0C0',
+            gold: '#D4AF37'
           },
           animation: {
-             'float': 'float 6s ease-in-out infinite',
+             'float-slow': 'float 8s ease-in-out infinite',
+             'pulse-glow': 'pulseGlow 4s ease-in-out infinite'
           },
           keyframes: {
             float: {
               '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
+              '50%': { transform: 'translateY(-15px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: 0.6 },
+              '50%': { opacity: 1 }
             }
           }
         }
@@ -39,210 +45,184 @@
   </script>
 
   <style>
-    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; }
-    .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    body { background-color: #0B0B15; color: #Eaeaea; -webkit-font-smoothing: antialiased; }
+    /* Daha yumuşak geçişler */
+    .soft-card { background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
-    /* Altın Gradient Metin */
-    .text-gold-gradient { background: linear-gradient(to right, #D4AF37, #F2E3BC, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    /* El yazısı vurgusu */
+    .script-highlight { font-family: 'Pinyon Script', cursive; color: #F7E7CE; letter-spacing: 1px; }
   </style>
 </head>
 
-<body class="font-sans selection:bg-gold selection:text-black">
+<body class="font-sans selection:bg-rose selection:text-black">
 
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-md border-b border-white/5 py-5 px-8 flex justify-between items-center">
     <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-gold to-rose p-[1px]">
-            <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
-                <span class="font-bold text-lg text-white">V</span>
+        <div class="w-9 h-9 rounded-lg bg-white/10 p-[1px]">
+            <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center">
+                <span class="font-serif italic text-xl text-rose">V</span>
             </div>
         </div>
-        <span class="font-bold tracking-widest text-sm uppercase">VITRINY</span>
+        <span class="font-serif tracking-widest text-sm text-gray-400">VITRINY <span class="text-[9px] align-top text-rose">ATELIER</span></span>
     </a>
     
-    <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
-      <a href="index.html" class="hover:text-white transition">Home</a>
-      <a href="#examples" class="hover:text-gold transition" data-i18n="nav_demo">Demos</a>
-      <a href="#features" class="hover:text-gold transition" data-i18n="nav_feat">Features</a>
-      <a href="#pricing" class="hover:text-gold transition" data-i18n="nav_price">Packages</a>
-    </div>
-
     <div class="flex items-center gap-6">
-      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
-      <a href="https://wa.me/905419787726" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition">
-        <span data-i18n="btn_create">Create Event</span>
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-serif italic text-gray-400 border border-white/10 px-4 py-2 rounded-full hover:border-rose hover:text-rose transition">EN</button>
+      <a href="https://wa.me/905419787726" class="text-xs font-bold uppercase tracking-widest text-rose hover:text-white transition" data-i18n="nav_contact">
+        Contact Studio
       </a>
     </div>
   </nav>
 
-  <header class="pt-40 pb-20 px-6 relative overflow-hidden min-h-screen flex items-center">
-    <div class="absolute top-0 right-0 w-[60vw] h-[60vw] bg-rose/5 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <header class="min-h-screen flex items-center justify-center relative overflow-hidden px-6 pt-20">
+    <div class="absolute top-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-rose/10 rounded-full blur-[120px] animate-pulse-glow"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-champagne/10 rounded-full blur-[100px] animate-pulse-glow" style="animation-delay: 2s;"></div>
 
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
-      <div class="reveal active order-2 lg:order-1">
-        <h1 class="text-5xl md:text-7xl font-serif font-bold leading-[1.1] mb-6">
-            <span data-i18n="hero_t1">Not Just an Invite.</span> <br>
-            <span class="text-gold-gradient italic" data-i18n="hero_t2">A Cinematic Experience.</span>
+    <div class="text-center relative z-10 max-w-4xl mx-auto reveal active">
+        <div class="mb-4">
+            <span class="font-hand text-4xl md:text-6xl text-rose opacity-90 block mb-2" data-i18n="hero_script">A Love Letter...</span>
+        </div>
+        <h1 class="font-serif text-5xl md:text-7xl leading-tight text-white mb-8">
+            <span data-i18n="hero_t1">Written in Code,</span><br>
+            <span class="italic text-gray-400" data-i18n="hero_t2">Felt in the Heart.</span>
         </h1>
-        <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg" data-i18n="hero_desc">
-            Paper gets lost. PDFs feel cheap. Create a permanent digital memory for your Wedding, Birthday, or VIP Launch. RSVP tracking included.
+        <p class="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-xl mx-auto mb-12" data-i18n="hero_desc">
+            Your story deserves more than a PDF. We craft cinematic digital experiences that begin the celebration long before the first glass is raised.
         </p>
         
-        <div class="flex flex-col sm:flex-row gap-4">
-            <a href="#examples" class="px-8 py-4 bg-gold text-black font-bold rounded-full hover:bg-white transition flex items-center justify-center gap-2">
-                <i class="fa-solid fa-play"></i> <span data-i18n="btn_demo">View Live Demos</span>
-            </a>
-            <a href="#features" class="px-8 py-4 border border-white/20 rounded-full hover:bg-white/5 transition flex items-center justify-center gap-2">
-                 <span data-i18n="btn_feat">Explore Features</span>
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+            <a href="#story" class="px-10 py-4 bg-rose/10 border border-rose/30 rounded-full text-rose hover:bg-rose hover:text-bgdark transition duration-500 font-serif text-lg italic">
+                <span data-i18n="btn_explore">Start the Journey</span>
             </a>
         </div>
-      </div>
-
-      <div class="relative reveal delay-200 order-1 lg:order-2 flex justify-center">
-         <div class="relative w-[280px] h-[580px] bg-black rounded-[40px] border-8 border-[#222] shadow-2xl transform -rotate-6 hover:rotate-0 transition duration-700 z-10 animate-float">
-            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-[#222] rounded-b-xl z-20"></div>
-            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000" class="w-full h-full object-cover rounded-[32px] opacity-80">
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                <h3 class="font-serif text-3xl text-white drop-shadow-lg mb-2">Sarah & Tom</h3>
-                <p class="text-xs tracking-[0.3em] uppercase text-white drop-shadow-md">Save The Date</p>
-                <button class="mt-8 px-6 py-2 bg-white/20 backdrop-blur-md border border-white/50 text-white rounded-full text-xs uppercase tracking-widest">RSVP Now</button>
-            </div>
-         </div>
-         
-         <div class="absolute top-12 right-0 lg:-right-12 w-[260px] h-[540px] bg-black rounded-[40px] border-8 border-[#222] shadow-xl transform rotate-12 opacity-60 z-0">
-             <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000" class="w-full h-full object-cover rounded-[32px]">
-             <div class="absolute inset-0 bg-black/40 rounded-[32px]"></div>
-         </div>
-      </div>
     </div>
   </header>
 
-  <section id="features" class="py-24 bg-surface/50 border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <h2 class="text-3xl md:text-4xl font-serif mb-4" data-i18n="feat_title">Smart Event Management</h2>
-            <p class="text-gray-400" data-i18n="feat_sub">We combined luxury aesthetics with powerful digital tools.</p>
+  <section id="story" class="py-32 relative">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+        <div class="reveal">
+            <span class="font-hand text-5xl text-champagne mb-4 block" data-i18n="s1_script">The Anticipation</span>
+            <h2 class="font-serif text-4xl text-white mb-8" data-i18n="s1_title">Your Guests Are Waiting.</h2>
+            <div class="space-y-6 text-gray-400 font-light text-lg">
+                <p data-i18n="s1_p1">
+                    Imagine sending a link. When they open it, soft music begins to play. Your engagement photos slowly drift across the screen like memories. 
+                </p>
+                <p data-i18n="s1_p2">
+                    It's not just date and time. It's the vibe. It's the promise of an unforgettable night. <strong class="text-rose font-normal">Don't just invite them. Enchant them.</strong>
+                </p>
+            </div>
         </div>
-
-        <div class="grid md:grid-cols-4 gap-6">
-            <div class="glass-card p-6 rounded-2xl text-center group hover:bg-gold/10 transition reveal">
-                <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-gold text-xl mb-4 group-hover:scale-110 transition"><i class="fa-solid fa-clipboard-check"></i></div>
-                <h3 class="font-bold mb-2 text-white">Smart RSVP</h3>
-                <p class="text-sm text-gray-400" data-i18n="f1_d">Collect guest names, meal preferences, and +1s automatically via WhatsApp or Form.</p>
+        <div class="relative reveal delay-200">
+            <div class="relative z-10 rounded-[100px_0_100px_0] overflow-hidden border border-white/10 shadow-2xl shadow-rose/5 animate-float-slow">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000" class="w-full h-[600px] object-cover opacity-80 hover:scale-105 transition duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-bgdark/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-10 left-0 right-0 text-center">
+                    <div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20">
+                        <i class="fa-solid fa-play text-white ml-1"></i>
+                    </div>
+                    <span class="font-serif italic text-white text-sm tracking-widest">Watch Example</span>
+                </div>
             </div>
-            <div class="glass-card p-6 rounded-2xl text-center group hover:bg-gold/10 transition reveal delay-100">
-                <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-rose text-xl mb-4 group-hover:scale-110 transition"><i class="fa-solid fa-gift"></i></div>
-                <h3 class="font-bold mb-2 text-white">Gift Registry</h3>
-                <p class="text-sm text-gray-400" data-i18n="f2_d">Politely share your IBAN, Amazon Registry, or Charity links for gifts.</p>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center group hover:bg-gold/10 transition reveal delay-200">
-                <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-blue-400 text-xl mb-4 group-hover:scale-110 transition"><i class="fa-solid fa-location-dot"></i></div>
-                <h3 class="font-bold mb-2 text-white">1-Click Map</h3>
-                <p class="text-sm text-gray-400" data-i18n="f3_d">Direct integration with Google/Apple Maps. No guest gets lost finding the venue.</p>
-            </div>
-            <div class="glass-card p-6 rounded-2xl text-center group hover:bg-gold/10 transition reveal delay-300">
-                <div class="w-12 h-12 mx-auto bg-white/5 rounded-full flex items-center justify-center text-green-400 text-xl mb-4 group-hover:scale-110 transition"><i class="fa-brands fa-spotify"></i></div>
-                <h3 class="font-bold mb-2 text-white">Music & Vibe</h3>
-                <p class="text-sm text-gray-400" data-i18n="f4_d">Embed your Spotify playlist or background music to set the mood before they arrive.</p>
-            </div>
+            <div class="absolute -bottom-10 -right-10 w-full h-full border border-rose/10 rounded-[100px_0_100px_0] -z-10"></div>
         </div>
     </div>
   </section>
 
-  <section id="examples" class="py-24 relative">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex justify-between items-end mb-12 reveal">
-            <div>
-                <h2 class="text-3xl md:text-5xl font-serif mb-2" data-i18n="demo_title">Curated Themes</h2>
-                <p class="text-gray-500" data-i18n="demo_sub">Choose a style that matches your event's soul.</p>
-            </div>
+  <section class="py-32 bg-bgdark relative">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-rose/5 via-bgdark to-bgdark"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-20 reveal">
+            <span class="font-hand text-4xl text-gray-500 block mb-2" data-i18n="feat_script">Curated Details</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-white" data-i18n="feat_title">The Art of Hospitality</h2>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/10 reveal cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40">
-                <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 p-8 w-full">
-                    <span class="text-xs font-bold text-gold uppercase tracking-widest mb-2 block">Wedding</span>
-                    <h3 class="text-2xl font-serif text-white mb-4">The Royal</h3>
-                    <div class="h-0 overflow-hidden group-hover:h-12 transition-all duration-300">
-                        <span class="text-sm text-gray-300">Classic, elegant, serif typography.</span>
-                    </div>
-                </div>
+            <div class="soft-card p-10 rounded-full md:rounded-[4rem] text-center group hover:bg-rose/5 transition duration-700 reveal">
+                <div class="text-3xl text-rose mb-6 font-serif italic">01.</div>
+                <h3 class="font-serif text-2xl text-white mb-4" data-i18n="f1_t">The RSVP Concierge</h3>
+                <p class="text-gray-400 leading-relaxed" data-i18n="f1_d">
+                    No more awkward phone calls. Your guests confirm their attendance, meal choice, and songs they love with a simple, elegant tap.
+                </p>
             </div>
-             <div class="group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/10 reveal delay-100 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1496337589254-7e19d01cec44?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40">
-                <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 p-8 w-full">
-                    <span class="text-xs font-bold text-rose uppercase tracking-widest mb-2 block">Party / Birthday</span>
-                    <h3 class="text-2xl font-serif text-white mb-4">Neon Night</h3>
-                    <div class="h-0 overflow-hidden group-hover:h-12 transition-all duration-300">
-                        <span class="text-sm text-gray-300">Bold, dark mode, high energy.</span>
-                    </div>
-                </div>
+            <div class="soft-card p-10 rounded-full md:rounded-[4rem] text-center group hover:bg-champagne/5 transition duration-700 reveal delay-100">
+                <div class="text-3xl text-champagne mb-6 font-serif italic">02.</div>
+                <h3 class="font-serif text-2xl text-white mb-4" data-i18n="f2_t">The Journey Guide</h3>
+                <p class="text-gray-400 leading-relaxed" data-i18n="f2_d">
+                    Ensure they arrive with ease. One-click navigation integration that guides them from their door to your venue's entrance.
+                </p>
             </div>
-             <div class="group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/10 reveal delay-200 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1605218427306-633ba8b93759?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40">
-                <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 p-8 w-full">
-                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 block">Minimal</span>
-                    <h3 class="text-2xl font-serif text-white mb-4">Pure White</h3>
-                    <div class="h-0 overflow-hidden group-hover:h-12 transition-all duration-300">
-                        <span class="text-sm text-gray-300">Clean, simple, focus on photography.</span>
-                    </div>
-                </div>
+            <div class="soft-card p-10 rounded-full md:rounded-[4rem] text-center group hover:bg-rose/5 transition duration-700 reveal delay-200">
+                <div class="text-3xl text-rose mb-6 font-serif italic">03.</div>
+                <h3 class="font-serif text-2xl text-white mb-4" data-i18n="f3_t">The Time Capsule</h3>
+                <p class="text-gray-400 leading-relaxed" data-i18n="f3_d">
+                    A digital gallery that stays forever. Upload your pre-wedding shoot now, and add the wedding photos later. A memory that never fades.
+                </p>
             </div>
         </div>
     </div>
   </section>
 
-  <section id="pricing" class="py-24 bg-surface border-t border-white/5">
-     <div class="max-w-4xl mx-auto px-6 reveal">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-5xl font-bold mb-6" data-i18n="price_title">Simple Pricing</h2>
-            <p class="text-gray-400">Delivery in 48 Hours.</p>
-        </div>
+  <section class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+              <div>
+                <span class="font-hand text-4xl text-rose block mb-2" data-i18n="col_script">The Collection</span>
+                <h2 class="font-serif text-5xl text-white">Choose Your Aesthetic</h2>
+              </div>
+              <div class="hidden md:block w-32 h-[1px] bg-white/20 mb-4"></div>
+          </div>
 
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="border border-white/10 p-8 rounded-3xl hover:border-white/30 transition bg-bgdark">
-                <h3 class="text-xl font-bold text-gray-300 mb-2">Single Scroll</h3>
-                <div class="text-4xl font-serif text-white mb-6">$149</div>
-                <ul class="space-y-3 text-sm text-gray-400 mb-8">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> One Page Design</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> RSVP Form</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Google Maps</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> 3 Months Hosting</li>
-                </ul>
-                <a href="https://wa.me/905419787726?text=I%20want%20the%20Single%20Scroll%20invite." class="block w-full text-center py-3 border border-white/20 rounded-xl hover:bg-white hover:text-black transition font-bold">Select</a>
+          <div class="flex gap-8 overflow-x-auto pb-10 scrollbar-hide snap-x">
+              <div class="min-w-[350px] md:min-w-[400px] snap-center reveal">
+                  <div class="aspect-[3/4] rounded-sm overflow-hidden relative group cursor-pointer">
+                      <img src="https://images.unsplash.com/photo-1544253106-96b01b672a9e?q=80&w=1000" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                      <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                      <div class="absolute bottom-8 left-8">
+                          <span class="font-hand text-3xl text-white drop-shadow-lg">Royal Romance</span>
+                          <p class="text-xs text-white/80 uppercase tracking-widest mt-2">Serif / Gold / Classic</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="min-w-[350px] md:min-w-[400px] snap-center reveal delay-100">
+                <div class="aspect-[3/4] rounded-sm overflow-hidden relative group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=1000" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-hand text-3xl text-white drop-shadow-lg">Bohemian Soul</span>
+                        <p class="text-xs text-white/80 uppercase tracking-widest mt-2">Earthy / Green / Natural</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="border border-gold p-8 rounded-3xl bg-gradient-to-b from-gold/10 to-bgdark relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-gold text-black text-[10px] font-bold px-3 py-1 uppercase">Best Seller</div>
-                <h3 class="text-xl font-bold text-white mb-2">Multi-Page Experience</h3>
-                <div class="text-4xl font-serif text-gold mb-6">$299</div>
-                <ul class="space-y-3 text-sm text-gray-300 mb-8">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> <span class="text-white font-bold">Everything in Basic +</span></li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Photo Gallery (Unlimited)</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Our Story / Timeline Page</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> Password Protection</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold"></i> 1 Year Hosting (Forever Memory)</li>
-                </ul>
-                <a href="https://wa.me/905419787726?text=I%20want%20the%20Multi-Page%20Premium%20invite." class="block w-full text-center py-3 bg-gold text-black rounded-xl hover:bg-white transition font-bold shadow-lg shadow-gold/20">Create Now</a>
+            <div class="min-w-[350px] md:min-w-[400px] snap-center reveal delay-200">
+                <div class="aspect-[3/4] rounded-sm overflow-hidden relative group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=1000" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span class="font-hand text-3xl text-white drop-shadow-lg">Modern Minimalist</span>
+                        <p class="text-xs text-white/80 uppercase tracking-widest mt-2">Clean / B&W / Bold</p>
+                    </div>
+                </div>
             </div>
-        </div>
-     </div>
+          </div>
+      </div>
   </section>
 
-  <footer class="py-12 bg-black text-center border-t border-white/10 text-gray-600 text-sm relative z-10">
-     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-         <div>&copy; 2026 Lunaise LLC.</div>
-         <div class="flex gap-6">
-             <a href="index.html" class="hover:text-white transition">Home</a>
-             <a href="etsy.html" class="hover:text-white transition">Etsy Services</a>
-             <a href="https://wa.me/905419787726" class="hover:text-white transition">WhatsApp</a>
-         </div>
-     </div>
+  <footer class="py-32 bg-bgdark text-center border-t border-white/5 relative">
+      <div class="max-w-2xl mx-auto px-6 reveal">
+          <i class="fa-solid fa-infinity text-rose text-2xl mb-8 opacity-50"></i>
+          <h2 class="font-serif text-4xl md:text-6xl text-white mb-8" data-i18n="cta_title">Let's Create Your Masterpiece.</h2>
+          <p class="text-gray-400 mb-10 font-light" data-i18n="cta_sub">Tell us your date, your style, and let us weave the digital thread of your event.</p>
+          <a href="https://wa.me/905419787726" class="inline-block px-12 py-5 bg-white text-black font-serif italic text-xl rounded-full hover:bg-rose hover:text-white transition duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+              <span data-i18n="btn_whatsapp">Design My Invitation</span>
+          </a>
+      </div>
+      <div class="mt-20 text-xs text-gray-600 font-serif tracking-widest">
+        A VITRINY ATELIER PRODUCTION
+      </div>
   </footer>
 
   <script>
@@ -257,30 +237,38 @@
     // Translations
     const translations = {
       en: {
-        nav_demo: "Demos", nav_feat: "Features", nav_price: "Packages", btn_create: "Create Event",
-        hero_t1: "Not Just an Invite.", hero_t2: "A Cinematic Experience.",
-        hero_desc: "Paper gets lost. PDFs feel cheap. Create a permanent digital memory for your Wedding, Birthday, or VIP Launch. RSVP tracking included.",
-        btn_demo: "View Live Demos", btn_feat: "Explore Features",
-        feat_title: "Smart Event Management", feat_sub: "We combined luxury aesthetics with powerful digital tools.",
-        f1_d: "Collect guest names, meal preferences, and +1s automatically via WhatsApp or Form.",
-        f2_d: "Politely share your IBAN, Amazon Registry, or Charity links for gifts.",
-        f3_d: "Direct integration with Google/Apple Maps. No guest gets lost finding the venue.",
-        f4_d: "Embed your Spotify playlist or background music to set the mood before they arrive.",
-        demo_title: "Curated Themes", demo_sub: "Choose a style that matches your event's soul.",
-        price_title: "Simple Pricing"
+        nav_contact: "Contact Studio",
+        hero_script: "A Love Letter...",
+        hero_t1: "Written in Code,", hero_t2: "Felt in the Heart.",
+        hero_desc: "Your story deserves more than a PDF. We craft cinematic digital experiences that begin the celebration long before the first glass is raised.",
+        btn_explore: "Start the Journey",
+        s1_script: "The Anticipation", s1_title: "Your Guests Are Waiting.",
+        s1_p1: "Imagine sending a link. When they open it, soft music begins to play. Your engagement photos slowly drift across the screen like memories.",
+        s1_p2: "It's not just date and time. It's the vibe. It's the promise of an unforgettable night. Don't just invite them. Enchant them.",
+        feat_script: "Curated Details", feat_title: "The Art of Hospitality",
+        f1_t: "The RSVP Concierge", f1_d: "No more awkward phone calls. Your guests confirm their attendance, meal choice, and songs they love with a simple, elegant tap.",
+        f2_t: "The Journey Guide", f2_d: "Ensure they arrive with ease. One-click navigation integration that guides them from their door to your venue's entrance.",
+        f3_t: "The Time Capsule", f3_d: "A digital gallery that stays forever. Upload your pre-wedding shoot now, and add the wedding photos later. A memory that never fades.",
+        col_script: "The Collection",
+        cta_title: "Let's Create Your Masterpiece.", cta_sub: "Tell us your date, your style, and let us weave the digital thread of your event.",
+        btn_whatsapp: "Design My Invitation"
       },
       tr: {
-        nav_demo: "Örnekler", nav_feat: "Özellikler", nav_price: "Paketler", btn_create: "Davetiye Oluştur",
-        hero_t1: "Sadece Bir Davetiye Değil.", hero_t2: "Sinematik Bir Deneyim.",
-        hero_desc: "Kağıt kaybolur. PDF ucuz hissettirir. Düğün, Doğum Günü veya VIP Lansmanınız için kalıcı bir dijital anı oluşturun. LCV takibi dahil.",
-        btn_demo: "Canlı Örnekleri Gör", btn_feat: "Özellikleri Keşfet",
-        feat_title: "Akıllı Etkinlik Yönetimi", feat_sub: "Lüks estetiği güçlü dijital araçlarla birleştirdik.",
-        f1_d: "Konuk isimlerini, yemek tercihlerini ve +1 durumlarını WhatsApp veya Form ile otomatik toplayın.",
-        f2_d: "IBAN, Amazon Listesi veya Bağış linklerinizi zarifçe paylaşın.",
-        f3_d: "Google/Apple Haritalar entegrasyonu. Hiçbir konuk mekanı bulurken kaybolmaz.",
-        f4_d: "Spotify listenizi veya fon müziğinizi ekleyin, misafirler gelmeden havaya girsin.",
-        demo_title: "Özel Temalar", demo_sub: "Etkinliğinizin ruhuna uygun stili seçin.",
-        price_title: "Basit Fiyatlandırma"
+        nav_contact: "Stüdyo İletişim",
+        hero_script: "Bir Aşk Mektubu...",
+        hero_t1: "Kodlarla Yazıldı,", hero_t2: "Kalple Hissedildi.",
+        hero_desc: "Hikayeniz bir PDF'ten fazlasını hak ediyor. İlk kadeh kaldırılmadan çok önce kutlamayı başlatan sinematik dijital deneyimler tasarlıyoruz.",
+        btn_explore: "Yolculuğa Başla",
+        s1_script: "Bekleyiş", s1_title: "Misafirleriniz Bekliyor.",
+        s1_p1: "Bir link gönderdiğinizi hayal edin. Açtıklarında hafif bir müzik başlıyor. Nişan fotoğraflarınız anılar gibi yavaşça ekranda süzülüyor.",
+        s1_p2: "Bu sadece tarih ve saat değil. Bu bir his. Unutulmaz bir gecenin vaadi. Onları sadece davet etmeyin. Onları büyüleyin.",
+        feat_script: "Özenli Detaylar", feat_title: "Misafirperverlik Sanatı",
+        f1_t: "LCV Asistanı", f1_d: "Garip telefon konuşmalarına son. Misafirleriniz katılımlarını, yemek tercihlerini ve sevdikleri şarkıları zarif bir dokunuşla bildirsin.",
+        f2_t: "Yolculuk Rehberi", f2_d: "Rahatça geldiklerinden emin olun. Kapılarından mekanın girişine kadar onları yönlendiren tek tıkla navigasyon.",
+        f3_t: "Zaman Kapsülü", f3_d: "Sonsuza dek kalan dijital bir galeri. Şimdi nişan fotoğraflarını yükleyin, sonra düğün fotoğraflarını ekleyin. Solmayan bir anı.",
+        col_script: "Koleksiyon",
+        cta_title: "Şaheserinizi Yaratalım.", cta_sub: "Bize tarihinizi ve tarzınızı söyleyin, etkinliğinizin dijital örgüsünü dokuyalım.",
+        btn_whatsapp: "Davetiyemi Tasarla"
       }
     };
 
