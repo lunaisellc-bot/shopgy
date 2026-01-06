@@ -1,379 +1,346 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>VitrinY Events | Next-Gen Digital Invitations</title>
-  <meta name="description" content="Premium digital invitations for global events. Seamless RSVP, Wedding Websites, and Party Landings. Teknoloji ve zarafetin buluştuğu yeni nesil dijital davetiyeler." />
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Outfit', 'sans-serif'],
-            serif: ['Playfair Display', 'serif']
-          },
-          colors: {
-            bgdark: '#0B0B15', // Ana Sayfa Rengi
-            neon: '#00DC82',   // VitrinY İmzası
-            purple: '#7B61FF', // Teknoloji
-            gold: '#D4AF37',   // Lüks/Etkinlik
-            surface: '#12121A'
-          },
-          animation: {
-            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 6s ease-in-out infinite'
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
-            }
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    
-    /* Ortam Işıkları (Ana Sayfa ile Tutarlı) */
-    .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
-    .light-orb-1 { position: absolute; top: 10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 8s infinite alternate; }
-    .light-orb-2 { position: absolute; bottom: 10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(123,97,255,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 12s infinite alternate-reverse; }
-
-    .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
-    .glass-card:hover { border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05); }
-
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Event Websites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base typography setup for premium feel */
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    </style>
 </head>
+<body class="bg-white text-slate-800 antialiased selection:bg-slate-200 selection:text-slate-900">
 
-<body class="font-sans selection:bg-purple selection:text-white">
+    <section class="relative w-full py-24 md:py-32 px-6 flex flex-col items-center text-center max-w-5xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-light tracking-tight text-slate-900 mb-2" data-i18n="hero.title">
+            </h1>
+        <p class="font-serif italic tracking-wide text-lg text-slate-500 mb-8" data-i18n="hero.subtitle">
+            </p>
+        <p class="text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed mb-10" data-i18n="hero.desc">
+            </p>
+        <div class="flex flex-col md:flex-row gap-4">
+            <button class="bg-slate-900 text-white px-8 py-3 text-sm tracking-widest uppercase hover:bg-slate-800 transition-colors duration-300" data-i18n="hero.cta">
+                </button>
+        </div>
+    </section>
 
-  <div class="ambient-light">
-      <div class="light-orb-1"></div> <div class="light-orb-2"></div> </div>
-
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center transition-all duration-300">
-    <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-purple to-neon p-[1px]">
-            <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
-                <span class="font-bold text-lg text-white">V</span>
+    <section class="py-20 px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light text-slate-900 mb-2" data-i18n="process.title"></h2>
+                <p class="font-serif italic tracking-wide text-lg text-slate-500 opacity-80" data-i18n="process.subtitle"></p>
             </div>
-        </div>
-        <span class="font-bold tracking-widest text-sm uppercase">VITRINY</span>
-    </a>
-    
-    <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
-      <a href="index.html" class="hover:text-white transition">Home</a>
-      <a href="#themes" class="hover:text-white transition" data-i18n="nav_themes">Themes</a>
-      <a href="#features" class="hover:text-white transition" data-i18n="nav_features">Tech</a>
-      <a href="#faq" class="hover:text-white transition" data-i18n="nav_faq">FAQ</a>
-    </div>
 
-    <div class="flex items-center gap-6">
-      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
-      <a href="https://wa.me/905419787726" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-lg hover:shadow-neon/20">
-        <span data-i18n="btn_create">Start Project</span>
-      </a>
-    </div>
-  </nav>
-
-  <header class="relative pt-40 pb-20 px-6 min-h-screen flex items-center overflow-hidden">
-    <div class="absolute inset-0 z-0 opacity-20">
-        <img src="https://images.unsplash.com/photo-1514525253440-b393452e3383?q=80&w=2000" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/80 to-transparent"></div>
-    </div>
-
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="reveal active">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple/30 bg-purple/10 text-[10px] font-bold tracking-[0.2em] text-purple uppercase mb-8">
-            <i class="fa-solid fa-bolt"></i> <span data-i18n="hero_badge">Interactive Event Systems</span>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
-            <span data-i18n="hero_t1">Your Event.</span> <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple via-white to-gold" data-i18n="hero_t2">Digital & Limitless.</span>
-        </h1>
-        <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-lg" data-i18n="hero_desc">
-            Paper invitations get lost. PDFs are boring. We build cinematic, mobile-first websites for Weddings, Birthdays, and VIP Parties.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4">
-            <a href="#themes" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-purple hover:text-white transition flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                <span data-i18n="btn_view">View Examples</span> <i class="fa-solid fa-arrow-down"></i>
-            </a>
-            <div class="flex items-center gap-2 px-4 py-2 text-xs text-gray-500 uppercase tracking-widest border-l border-white/10 ml-2">
-                <i class="fa-brands fa-whatsapp text-green-500 text-lg"></i> <span data-i18n="easy_share">1-Click Share</span>
-            </div>
-        </div>
-      </div>
-
-      <div class="relative reveal delay-200 flex justify-center lg:justify-end">
-          <div class="relative w-[300px] h-[600px] border-4 border-gray-800 rounded-[40px] bg-black shadow-2xl animate-float overflow-hidden">
-              <div class="absolute inset-0 bg-black">
-                  <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=600" class="w-full h-full object-cover opacity-80">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                  <div class="absolute bottom-10 left-6 right-6 text-center">
-                      <div class="text-gold font-serif text-3xl mb-2">Sarah & Tom</div>
-                      <div class="text-xs uppercase tracking-[0.3em] text-white/70 mb-6">Are getting married</div>
-                      <div class="bg-white/20 backdrop-blur-md border border-white/30 text-white py-3 rounded-full text-xs font-bold uppercase cursor-pointer">RSVP Now</div>
-                  </div>
-              </div>
-              <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-xl"></div>
-          </div>
-          <div class="absolute top-20 -left-10 glass-card p-4 rounded-xl animate-bounce" style="animation-duration: 3s;">
-              <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center"><i class="fa-solid fa-check"></i></div>
-                  <div>
-                      <div class="text-[10px] text-gray-400 uppercase tracking-widest">New RSVP</div>
-                      <div class="text-sm font-bold text-white">Ahmet Y. is attending</div>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-  </header>
-
-  <section id="themes" class="py-24 bg-surface/50 border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4" data-i18n="theme_title">Not Just For Weddings</h2>
-            <p class="text-gray-400 max-w-xl mx-auto" data-i18n="theme_sub">We design digital experiences for every major milestone in your life.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 rounded-3xl group hover:bg-white/5 transition reveal">
-                <div class="h-48 overflow-hidden rounded-2xl mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-black/20"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="flex flex-col items-center">
+                    <span class="text-5xl font-thin text-slate-300 mb-6">01</span>
+                    <h3 class="text-lg font-medium uppercase tracking-wide mb-3" data-i18n="process.step1.title"></h3>
+                    <p class="text-slate-600 text-sm leading-relaxed max-w-xs" data-i18n="process.step1.desc"></p>
                 </div>
-                <h3 class="text-2xl font-serif text-white mb-2" data-i18n="t1_t">Wedding & Engagement</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="t1_d">
-                    Full websites with "Our Story," Photo Gallery, and Hotel Info.
-                </p>
-                <ul class="text-xs text-gray-500 space-y-2 mb-6">
-                    <li><i class="fa-solid fa-check text-purple mr-2"></i> RSVP Tracking</li>
-                    <li><i class="fa-solid fa-check text-purple mr-2"></i> Map Integration</li>
+                <div class="flex flex-col items-center">
+                    <span class="text-5xl font-thin text-slate-300 mb-6">02</span>
+                    <h3 class="text-lg font-medium uppercase tracking-wide mb-3" data-i18n="process.step2.title"></h3>
+                    <p class="text-slate-600 text-sm leading-relaxed max-w-xs" data-i18n="process.step2.desc"></p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-5xl font-thin text-slate-300 mb-6">03</span>
+                    <h3 class="text-lg font-medium uppercase tracking-wide mb-3" data-i18n="process.step3.title"></h3>
+                    <p class="text-slate-600 text-sm leading-relaxed max-w-xs" data-i18n="process.step3.desc"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light text-slate-900 mb-2" data-i18n="features.title"></h2>
+                <p class="font-serif italic tracking-wide text-lg text-slate-500 opacity-80" data-i18n="features.subtitle"></p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                <div class="flex flex-col border-l border-slate-200 pl-6">
+                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.rsvp.title"></h4>
+                    <p class="text-slate-600 text-sm" data-i18n="features.rsvp.desc"></p>
+                </div>
+                <div class="flex flex-col border-l border-slate-200 pl-6">
+                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.maps.title"></h4>
+                    <p class="text-slate-600 text-sm" data-i18n="features.maps.desc"></p>
+                </div>
+                <div class="flex flex-col border-l border-slate-200 pl-6">
+                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.gallery.title"></h4>
+                    <p class="text-slate-600 text-sm" data-i18n="features.gallery.desc"></p>
+                </div>
+                <div class="flex flex-col border-l border-slate-200 pl-6">
+                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.gift.title"></h4>
+                    <p class="text-slate-600 text-sm" data-i18n="features.gift.desc"></p>
+                </div>
+                <div class="flex flex-col border-l border-slate-200 pl-6">
+                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.countdown.title"></h4>
+                    <p class="text-slate-600 text-sm" data-i18n="features.countdown.desc"></p>
+                </div>
+                <div class="flex flex-col border-l border-slate-200 pl-6">
+                    <h4 class="text-lg font-medium text-slate-800 mb-2" data-i18n="features.mobile.title"></h4>
+                    <p class="text-slate-600 text-sm" data-i18n="features.mobile.desc"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-slate-50">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-2xl font-light text-slate-900 mb-6" data-i18n="privacy.title"></h2>
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8 text-sm text-slate-600">
+                <span class="bg-white px-4 py-2 shadow-sm rounded-sm" data-i18n="privacy.no_app"></span>
+                <span class="bg-white px-4 py-2 shadow-sm rounded-sm" data-i18n="privacy.no_account"></span>
+                <span class="bg-white px-4 py-2 shadow-sm rounded-sm" data-i18n="privacy.optional_pass"></span>
+            </div>
+            <p class="mt-8 text-slate-500 font-serif italic tracking-wide opacity-80" data-i18n="privacy.note"></p>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div>
+                <h3 class="text-xl font-light text-slate-900 mb-4" data-i18n="delivery.title"></h3>
+                <p class="font-serif italic tracking-wide text-slate-500 opacity-80 mb-6" data-i18n="delivery.subtitle"></p>
+                <ul class="space-y-4 text-sm text-slate-600">
+                    <li class="flex items-start">
+                        <span class="mr-3 text-slate-400">•</span>
+                        <span data-i18n="delivery.point1"></span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-3 text-slate-400">•</span>
+                        <span data-i18n="delivery.point2"></span>
+                    </li>
                 </ul>
             </div>
-
-            <div class="glass-card p-8 rounded-3xl group hover:bg-white/5 transition reveal delay-100">
-                <div class="h-48 overflow-hidden rounded-2xl mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-black/20"></div>
-                </div>
-                <h3 class="text-2xl font-serif text-white mb-2" data-i18n="t2_t">Parties & Corporate</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="t2_d">
-                    For Birthdays (30, 40, 50), Galas, and Product Launches.
-                </p>
-                <ul class="text-xs text-gray-500 space-y-2 mb-6">
-                    <li><i class="fa-solid fa-check text-neon mr-2"></i> QR Check-in</li>
-                    <li><i class="fa-solid fa-check text-neon mr-2"></i> Dress Code Info</li>
-                </ul>
-            </div>
-
-            <div class="glass-card p-8 rounded-3xl group hover:bg-white/5 transition reveal delay-200">
-                <div class="h-48 overflow-hidden rounded-2xl mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-black/20"></div>
-                </div>
-                <h3 class="text-2xl font-serif text-white mb-2" data-i18n="t3_t">Baby Shower & Reveal</h3>
-                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-i18n="t3_d">
-                    Interactive Gender Reveal voting and Gift List centralization.
-                </p>
-                <ul class="text-xs text-gray-500 space-y-2 mb-6">
-                    <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Interactive Polls</li>
-                    <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Gift Registry</li>
-                </ul>
+            <div class="bg-slate-50 p-8 rounded-sm">
+                <h4 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4" data-i18n="delivery.terms_header"></h4>
+                <p class="text-sm text-slate-600 leading-relaxed mb-4" data-i18n="delivery.revision_policy"></p>
+                <p class="text-xs text-slate-400" data-i18n="delivery.extra_note"></p>
             </div>
         </div>
+    </section>
+
+    <section class="py-12 px-6 bg-slate-900 text-slate-300">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-medium mb-1" data-i18n="domain.title"></h3>
+                <p class="text-sm opacity-80" data-i18n="domain.desc"></p>
+            </div>
+            <div class="text-xs border border-slate-700 px-4 py-2 rounded text-slate-400" data-i18n="domain.note">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-2xl font-light text-slate-900 mb-2" data-i18n="extra1.title"></h2>
+            <p class="font-serif italic tracking-wide text-lg text-slate-500 opacity-80 mb-6" data-i18n="extra1.subtitle"></p>
+            <p class="text-slate-600 leading-relaxed" data-i18n="extra1.desc"></p>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-slate-50 mb-12">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl font-light text-slate-900 mb-2" data-i18n="extra2.title"></h2>
+            <p class="text-slate-600 max-w-xl mx-auto mb-8" data-i18n="extra2.desc"></p>
+            <div class="inline-block border-b border-slate-300 pb-1 text-sm text-slate-500 italic" data-i18n="extra2.quote">
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-4 right-4 bg-white shadow-lg p-2 rounded z-50 flex gap-2">
+        <button onclick="setLang('en')" class="px-3 py-1 text-xs font-bold bg-slate-100 hover:bg-slate-200">EN</button>
+        <button onclick="setLang('tr')" class="px-3 py-1 text-xs font-bold bg-slate-100 hover:bg-slate-200">TR</button>
     </div>
-  </section>
 
-  <section id="features" class="py-24 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <div class="reveal">
-              <span class="text-neon text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="feat_badge">Why Go Digital?</span>
-              <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-                  <span data-i18n="feat_t1">Solve The</span> <br>
-                  <span class="text-purple italic" data-i18n="feat_t2">Logistics Nightmare.</span>
-              </h2>
-              <div class="space-y-8">
-                  <div class="flex gap-4">
-                      <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white text-xl shrink-0"><i class="fa-solid fa-location-dot"></i></div>
-                      <div>
-                          <h4 class="text-white font-bold mb-2" data-i18n="f1_t">Google Maps Integration</h4>
-                          <p class="text-gray-400 text-sm" data-i18n="f1_d">Stop sending location pins. One click takes your guests directly to the venue entrance. No one gets lost.</p>
-                      </div>
-                  </div>
-                  <div class="flex gap-4">
-                      <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white text-xl shrink-0"><i class="fa-solid fa-gift"></i></div>
-                      <div>
-                          <h4 class="text-white font-bold mb-2" data-i18n="f2_t">The Polite Way to Ask</h4>
-                          <p class="text-gray-400 text-sm" data-i18n="f2_d">Sharing IBAN or Gift Registry can be awkward. We present it elegantly in a dedicated section.</p>
-                      </div>
-                  </div>
-                  <div class="flex gap-4">
-                      <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white text-xl shrink-0"><i class="fa-brands fa-whatsapp"></i></div>
-                      <div>
-                          <h4 class="text-white font-bold mb-2" data-i18n="f3_t">Instant WhatsApp Sharing</h4>
-                          <p class="text-gray-400 text-sm" data-i18n="f3_d">We give you a custom link (e.g., sarah-tom.com). You send it. They click. No app download needed.</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-          <div class="relative reveal delay-200">
-               <div class="glass-card p-6 rounded-2xl border border-white/10 relative z-10 bg-[#050505]">
-                   <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
-                       <span class="text-xs font-bold text-gray-500 uppercase">Admin Panel</span>
-                       <span class="text-xs text-neon"><i class="fa-solid fa-circle text-[6px] mr-1"></i> Live</span>
-                   </div>
-                   <div class="grid grid-cols-2 gap-4 mb-6">
-                       <div class="bg-white/5 p-4 rounded-xl">
-                           <div class="text-2xl font-bold text-white mb-1">142</div>
-                           <div class="text-[10px] text-gray-400 uppercase">Confirmed Guests</div>
-                       </div>
-                       <div class="bg-white/5 p-4 rounded-xl">
-                           <div class="text-2xl font-bold text-purple mb-1">12</div>
-                           <div class="text-[10px] text-gray-400 uppercase">Dietary Requests</div>
-                       </div>
-                   </div>
-                   <div class="space-y-3">
-                       <div class="flex items-center gap-3 text-sm text-gray-400">
-                           <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-8 h-8 rounded-full">
-                           <span><strong>Lisa M.</strong> confirmed attendance.</span>
-                           <span class="ml-auto text-xs text-gray-600">2m ago</span>
-                       </div>
-                       <div class="flex items-center gap-3 text-sm text-gray-400">
-                           <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-8 h-8 rounded-full">
-                           <span><strong>John D.</strong> selected "Vegan Menu".</span>
-                           <span class="ml-auto text-xs text-gray-600">15m ago</span>
-                       </div>
-                   </div>
-               </div>
-               <div class="absolute -top-10 -right-10 w-64 h-64 bg-purple/20 rounded-full blur-[80px] -z-10"></div>
-          </div>
-      </div>
-  </section>
+    <script>
+        const translations = {
+            en: {
+                hero: {
+                    title: "Your Event, Beautifully Online.",
+                    subtitle: "Beyond paper, into the moment.",
+                    desc: "A fully responsive, custom-designed website for your special occasion. Manage RSVPs, guide your guests via maps, and share your story through a single, elegant link.",
+                    cta: "View Sample Designs"
+                },
+                process: {
+                    title: "How It Works",
+                    subtitle: "Simple, transparent, and refined.",
+                    step1: {
+                        title: "The Brief",
+                        desc: "Share your event details, photos, and specific requests through our streamlined content form."
+                    },
+                    step2: {
+                        title: "The Design",
+                        desc: "We curate and code your dedicated website, ensuring every detail aligns with your aesthetic."
+                    },
+                    step3: {
+                        title: "The Launch",
+                        desc: "Review your draft, approve the design, and receive your live link ready to share with guests."
+                    }
+                },
+                features: {
+                    title: "Curated Features",
+                    subtitle: "Everything you need, nothing you don't.",
+                    rsvp: {
+                        title: "Seamless RSVP",
+                        desc: "Digital attendance tracking with dietary preferences and +1 management."
+                    },
+                    maps: {
+                        title: "Integrated Navigation",
+                        desc: "Direct Google Maps integration to guide guests effortlessly to your venue."
+                    },
+                    gallery: {
+                        title: "Visual Storytelling",
+                        desc: "A dedicated section to showcase your pre-event photos or love story."
+                    },
+                    gift: {
+                        title: "Registry & Gifts",
+                        desc: "Elegant presentation of your registry links or bank details for contributions."
+                    },
+                    countdown: {
+                        title: "Live Countdown",
+                        desc: "Build anticipation with a stylish counter ticking down to the big day."
+                    },
+                    mobile: {
+                        title: "Fully Responsive",
+                        desc: "Flawless experience on mobile, tablet, and desktop devices."
+                    }
+                },
+                privacy: {
+                    title: "Effortless for Guests",
+                    no_app: "No App Download",
+                    no_account: "No Account Creation",
+                    optional_pass: "Optional Password Protection",
+                    note: "Just a link, simply click and view."
+                },
+                delivery: {
+                    title: "Timeline & Delivery",
+                    subtitle: "Crafted with care, delivered with speed.",
+                    point1: "Standard delivery is typically 48 hours after we receive your complete content.",
+                    point2: "One round of comprehensive revisions is included to perfect the details.",
+                    terms_header: "Important Note",
+                    revision_policy: "The timeline begins once all texts and photos are submitted. The included revision covers text corrections and photo swaps.",
+                    extra_note: "Structural layout changes or additional rounds may incur a separate fee."
+                },
+                domain: {
+                    title: "Your Personal Link",
+                    desc: "Includes a shareable link (e.g., yourname.service.com). Custom domains available.",
+                    note: "Hosting Included"
+                },
+                extra1: {
+                    title: "A Modern, Sustainable Choice",
+                    subtitle: "Elegant footprint.",
+                    desc: "Reduce paper waste without compromising on luxury. A digital invitation offers unlimited reach and instant updates, blending environmental consciousness with modern convenience."
+                },
+                extra2: {
+                    title: "The Guest Experience",
+                    desc: "We prioritize your guests' convenience. Information is presented clearly, ensuring they have every detail needed to attend your celebration stress-free.",
+                    quote: "Hospitality begins with the invitation."
+                }
+            },
+            tr: {
+                hero: {
+                    title: "Etkinliğiniz, Zarifçe Çevrimiçi.",
+                    subtitle: "Kağıdın ötesinde, anın içinde.",
+                    desc: "Özel gününüz için tasarlanmış, mobil uyumlu ve etkileşimli bir web sitesi. LCV yönetimi, harita entegrasyonu ve tüm detaylar tek bir zarif linkte.",
+                    cta: "Örnek Tasarımları İncele"
+                },
+                process: {
+                    title: "Nasıl Çalışır?",
+                    subtitle: "Sade, şeffaf ve özenli.",
+                    step1: {
+                        title: "İçerik Paylaşımı",
+                        desc: "Etkinlik detaylarını, fotoğraflarınızı ve özel notlarınızı size ileteceğimiz form üzerinden paylaşın."
+                    },
+                    step2: {
+                        title: "Tasarım & Hazırlık",
+                        desc: "Web sitenizi estetik anlayışınıza uygun olarak kodluyor ve yayına hazırlıyoruz."
+                    },
+                    step3: {
+                        title: "Yayın & Paylaşım",
+                        desc: "Taslağı inceleyin, onaylayın ve misafirlerinizle paylaşmaya hazır linkinizi teslim alın."
+                    },
+                },
+                features: {
+                    title: "Özellikler",
+                    subtitle: "İhtiyacınız olan her şey, fazlası değil.",
+                    rsvp: {
+                        title: "Dijital LCV",
+                        desc: "Katılım durumu, özel beslenme tercihleri ve kişi sayısı takibi."
+                    },
+                    maps: {
+                        title: "Navigasyon Entegrasyonu",
+                        desc: "Konuklarınızın mekanı kolayca bulması için Google Haritalar bağlantısı."
+                    },
+                    gallery: {
+                        title: "Görsel Hikaye",
+                        desc: "Etkinlik öncesi fotoğraflarınız veya hikayeniz için özel galeri alanı."
+                    },
+                    gift: {
+                        title: "Hediye & Katkı",
+                        desc: "Hediye listenizin veya katkı detaylarının nazik ve şık sunumu."
+                    },
+                    countdown: {
+                        title: "Geri Sayım",
+                        desc: "Büyük güne kalan zamanı gösteren şık bir sayaç."
+                    },
+                    mobile: {
+                        title: "Tam Uyumluluk",
+                        desc: "Mobil, tablet ve masaüstü cihazlarda kusursuz görüntüleme."
+                    }
+                },
+                privacy: {
+                    title: "Misafirleriniz İçin Zahmetsiz",
+                    no_app: "Uygulama İndirme Yok",
+                    no_account: "Üyelik / Giriş Yok",
+                    optional_pass: "İsteğe Bağlı Şifre",
+                    note: "Sadece bir link; tıklayın ve görüntüleyin."
+                },
+                delivery: {
+                    title: "Süreç & Teslimat",
+                    subtitle: "Özenle tasarlandı, hızla teslim edildi.",
+                    point1: "Standart teslimat süresi, tüm içerikler tarafımıza ulaştıktan sonra ortalama 48 saattir.",
+                    point2: "Detayları mükemmelleştirmek adına 1 tur revizyon hizmete dahildir.",
+                    terms_header: "Önemli Bilgi",
+                    revision_policy: "Teslim süresi, metin ve görseller eksiksiz iletildiğinde başlar. Dahil olan revizyon; metin düzeltmeleri ve fotoğraf değişimlerini kapsar.",
+                    extra_note: "Yapısal değişiklikler veya ek revizyon turları ayrıca değerlendirilir."
+                },
+                domain: {
+                    title: "Size Özel Bağlantı",
+                    desc: "Paylaşılabilir link dahildir (örn: isminiz.servis.com). Özel domain opsiyoneldir.",
+                    note: "Hosting Dahil"
+                },
+                extra1: {
+                    title: "Modern ve Sürdürülebilir",
+                    subtitle: "Zarif bir iz bırakın.",
+                    desc: "Lüksten ödün vermeden kağıt tüketimini azaltın. Dijital davetiye, çevresel duyarlılığı modern kolaylıklarla birleştirerek sınırsız erişim ve anlık güncelleme imkanı sunar."
+                },
+                extra2: {
+                    title: "Misafir Deneyimi",
+                    desc: "Konuklarınızın konforunu önemsiyoruz. Bilgiler net ve sade bir şekilde sunulur, böylece kutlamanıza stressiz bir şekilde katılabilirler.",
+                    quote: "Misafirperverlik davetle başlar."
+                }
+            }
+        };
 
-  <section id="faq" class="py-24 bg-bgdark border-t border-white/5">
-      <div class="max-w-4xl mx-auto px-6">
-          <div class="text-center mb-12 reveal">
-              <h2 class="text-3xl font-bold mb-4" data-i18n="faq_title">Common Questions</h2>
-          </div>
-          <div class="grid md:grid-cols-2 gap-8 reveal">
-              <div class="glass-card p-6 rounded-2xl">
-                  <h4 class="text-white font-bold mb-2" data-i18n="q1_t">Can older people use this?</h4>
-                  <p class="text-gray-400 text-sm" data-i18n="q1_a">Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.</p>
-              </div>
-              <div class="glass-card p-6 rounded-2xl">
-                  <h4 class="text-white font-bold mb-2" data-i18n="q2_t">Is it private?</h4>
-                  <p class="text-gray-400 text-sm" data-i18n="q2_a">Absolutely. We can add password protection so only your invited guests can see the details and photos.</p>
-              </div>
-          </div>
-      </div>
-  </section>
+        function setLang(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const keys = element.getAttribute('data-i18n').split('.');
+                let value = translations[lang];
+                keys.forEach(key => {
+                    if (value) value = value[key];
+                });
+                if (value) element.textContent = value;
+            });
+        }
 
-  <footer class="py-24 bg-surface text-center relative z-10">
-      <div class="max-w-2xl mx-auto px-6 reveal">
-          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-              <span data-i18n="cta_t1">Make Your Event</span> <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-purple" data-i18n="cta_t2">Unforgettable.</span>
-          </h2>
-          <p class="text-gray-400 mb-10" data-i18n="cta_desc">Ready in 48 hours. Works on every device. Impresses everyone.</p>
-          <div class="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://wa.me/905419787726?text=I%20want%20a%20digital%20invitation." class="px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                  <i class="fa-brands fa-whatsapp mr-2"></i> <span data-i18n="btn_start">Start via WhatsApp</span>
-              </a>
-              <a href="index.html" class="px-10 py-4 border border-white/20 rounded-full hover:bg-white/5 transition font-bold text-gray-300">
-                  <span data-i18n="btn_home">Back to Home</span>
-              </a>
-          </div>
-      </div>
-      <div class="mt-20 text-xs text-gray-600">
-          © 2026 VitrinY Digital Solutions by Lunaise LLC.
-      </div>
-  </footer>
-
-  <script>
-    // Scroll Reveal
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Translations
-    const translations = {
-      en: {
-        nav_themes: "Themes", nav_features: "Tech", nav_faq: "FAQ", btn_create: "Start Project",
-        hero_badge: "Interactive Event Systems",
-        hero_t1: "Your Event.", hero_t2: "Digital & Limitless.",
-        hero_desc: "Paper invitations get lost. PDFs are boring. We build cinematic, mobile-first websites for Weddings, Birthdays, and VIP Parties.",
-        btn_view: "View Examples", easy_share: "1-Click Share",
-        theme_title: "Not Just For Weddings", theme_sub: "We design digital experiences for every major milestone in your life.",
-        t1_t: "Wedding & Engagement", t1_d: "Full websites with 'Our Story,' Photo Gallery, and Hotel Info.",
-        t2_t: "Parties & Corporate", t2_d: "For Birthdays (30, 40, 50), Galas, and Product Launches.",
-        t3_t: "Baby Shower & Reveal", t3_d: "Interactive Gender Reveal voting and Gift List centralization.",
-        feat_badge: "Why Go Digital?", feat_t1: "Solve The", feat_t2: "Logistics Nightmare.",
-        f1_t: "Google Maps Integration", f1_d: "Stop sending location pins. One click takes your guests directly to the venue entrance. No one gets lost.",
-        f2_t: "The Polite Way to Ask", f2_d: "Sharing IBAN or Gift Registry can be awkward. We present it elegantly in a dedicated section.",
-        f3_t: "Instant WhatsApp Sharing", f3_d: "We give you a custom link. You send it. They click. No app download needed.",
-        faq_title: "Common Questions",
-        q1_t: "Can older people use this?", q1_a: "Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.",
-        q2_t: "Is it private?", q2_a: "Absolutely. We can add password protection so only your invited guests can see the details.",
-        cta_t1: "Make Your Event", cta_t2: "Unforgettable.", cta_desc: "Ready in 48 hours. Works on every device. Impresses everyone.",
-        btn_start: "Start via WhatsApp", btn_home: "Back to Home"
-      },
-      tr: {
-        nav_themes: "Temalar", nav_features: "Teknoloji", nav_faq: "SSS", btn_create: "Projeye Başla",
-        hero_badge: "İnteraktif Etkinlik Sistemleri",
-        hero_t1: "Etkinliğiniz.", hero_t2: "Dijital & Sınırsız.",
-        hero_desc: "Kağıt davetiyeler kaybolur. PDF'ler sıkıcıdır. Düğün, Doğum Günü ve VIP Partiler için sinematik, mobil uyumlu web siteleri kuruyoruz.",
-        btn_view: "Örnekleri Gör", easy_share: "Tek Tıkla Paylaş",
-        theme_title: "Sadece Düğün Değil", theme_sub: "Hayatınızdaki her önemli dönüm noktası için dijital deneyimler tasarlıyoruz.",
-        t1_t: "Düğün & Nişan", t1_d: "'Hikayemiz', Foto Galeri ve Otel Bilgileri içeren tam kapsamlı siteler.",
-        t2_t: "Parti & Kurumsal", t2_d: "30, 40, 50 Yaş Partileri, Galalar ve Ürün Lansmanları için.",
-        t3_t: "Baby Shower & Cinsiyet", t3_d: "İnteraktif Cinsiyet Oylaması ve Hediye Listesi yönetimi.",
-        feat_badge: "Neden Dijital?", feat_t1: "Lojistik Kabusunu", feat_t2: "Sona Erdirin.",
-        f1_t: "Google Haritalar Entegrasyonu", f1_d: "Konum atmaya son. Tek tıklama misafirlerinizi mekanın kapısına kadar götürür. Kimse kaybolmaz.",
-        f2_t: "İstemenin Zarif Yolu", f2_d: "IBAN veya Hediye Listesi paylaşmak bazen zor olabilir. Bunu özel bir bölümde zarifçe sunuyoruz.",
-        f3_t: "WhatsApp ile Hızlı Paylaşım", f3_d: "Size özel bir link veriyoruz. Siz gönderiyorsunuz, onlar tıklıyor. Uygulama indirmek yok.",
-        faq_title: "Sıkça Sorulanlar",
-        q1_t: "Yaşlılar kullanabilir mi?", q1_a: "Evet. Tasarımı sade tutuyoruz. Büyük butonlar, net yazılar. WhatsApp kullanabilen herkes davetiyenizi kullanabilir.",
-        q2_t: "Gizli mi?", q2_a: "Kesinlikle. İsterseniz şifre koruması ekleriz, böylece sadece davetlileriniz detayları görebilir.",
-        cta_t1: "Etkinliğinizi", cta_t2: "Unutulmaz Kılın.", cta_desc: "48 saatte hazır. Her cihazda çalışır. Herkesi etkiler.",
-        btn_start: "WhatsApp ile Başlat", btn_home: "Ana Sayfaya Dön"
-      }
-    };
-
-    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
-    
-    function applyLang() {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-        });
-        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
-    }
-
-    function toggleLang() {
-        currentLang = currentLang === 'en' ? 'tr' : 'en';
-        localStorage.setItem('lang', currentLang);
-        applyLang();
-    }
-    applyLang();
-  </script>
-
+        // Initialize with English or Browser Language preference
+        const userLang = navigator.language || navigator.userLanguage; 
+        setLang(userLang.startsWith('tr') ? 'tr' : 'en');
+    </script>
 </body>
 </html>
