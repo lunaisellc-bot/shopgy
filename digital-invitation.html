@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth cursor-none">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eternal Moments | VitrinY Masterpiece</title>
+  
+  <title>Luxury Digital Invitations & Wedding Websites | Dijital Davetiye | VitrinY</title>
+  <meta name="description" content="Premium digital invitations for Weddings, Birthdays, and Gender Reveals. Smart RSVP, Maps, and Gift Registry. Düğün, nişan ve partiler için LCV takipli, haritalı lüks dijital davetiye siteleri." />
+  <meta name="keywords" content="digital invitation, wedding website, dijital davetiye, düğün sitesi, online lcv, rsvp tracking, gender reveal voting, cinsiyet partisi, birthday website" />
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
@@ -23,9 +26,6 @@
             paper: '#F0EFEB',
             gold: '#C5A059',
             rose: '#E0B0FF'
-          },
-          cursor: {
-            'none': 'none',
           }
         }
       }
@@ -39,15 +39,9 @@
     .grain-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-      opacity: 0.07; pointer-events: none; z-index: 9999;
+      opacity: 0.07; pointer-events: none; z-index: 50;
       filter: contrast(170%) brightness(100%);
     }
-
-    /* Custom Cursor */
-    .cursor-dot, .cursor-circle { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
-    .cursor-dot { width: 8px; height: 8px; background-color: #C5A059; }
-    .cursor-circle { width: 40px; height: 40px; border: 1px solid rgba(197, 160, 89, 0.5); transition: width 0.3s, height 0.3s, border-color 0.3s; }
-    body:hover .cursor-circle { width: 60px; height: 60px; border-color: #C5A059; }
 
     /* Typography Classes */
     .text-script { font-family: 'Monsieur La Doulaise', cursive; font-size: 4rem; line-height: 1; }
@@ -57,35 +51,38 @@
     .fade-up { opacity: 0; transform: translateY(50px); transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
     .fade-up.active { opacity: 1; transform: translateY(0); }
 
-    /* Service List Item Hover Effect */
-    .service-item:hover .service-img { opacity: 0.4; transform: scale(1.1); }
-    .service-item:hover .service-text { color: #C5A059; padding-left: 20px; }
+    .service-item:hover .service-text { color: #C5A059; padding-left: 10px; }
   </style>
 </head>
 
 <body>
 
   <div class="grain-overlay"></div>
-  <div class="cursor-dot" id="cursor-dot"></div>
-  <div class="cursor-circle" id="cursor-circle"></div>
 
-  <div class="fixed top-8 right-8 z-50 flex items-center gap-4 mix-blend-difference text-paper cursor-pointer group">
-      <span class="text-xs tracking-[0.2em] hidden md:block opacity-0 group-hover:opacity-100 transition duration-500">SOUND ON</span>
-      <div class="w-10 h-10 border border-paper/30 rounded-full flex items-center justify-center animate-spin-slow">
-        <i class="fa-solid fa-music text-xs"></i>
-      </div>
-  </div>
+  <nav class="fixed w-full z-[100] top-0 bg-void/80 backdrop-blur-md border-b border-white/5 py-5 px-8 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3 group">
+        <span class="font-display tracking-widest text-sm text-gray-400">VITRINY <span class="text-[9px] align-top text-gold">ATELIER</span></span>
+    </a>
+    
+    <div class="flex items-center gap-6">
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-serif italic text-gray-400 border border-white/10 px-4 py-2 rounded-full hover:border-gold hover:text-gold transition">EN</button>
+      <a href="https://wa.me/905419787726" class="text-xs font-bold uppercase tracking-widest text-gold hover:text-white transition">
+        <i class="fa-brands fa-whatsapp mr-1"></i> <span data-i18n="nav_contact">Contact</span>
+      </a>
+    </div>
+  </nav>
 
   <header class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000" class="w-full h-full object-cover opacity-30 scale-110 animate-pulse-slow">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000" class="w-full h-full object-cover opacity-30 scale-110 animate-pulse" style="animation-duration: 10s">
           <div class="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-void/20"></div>
       </div>
 
       <div class="relative z-10 text-center px-4 mix-blend-screen fade-up active">
           <p class="text-xs md:text-sm tracking-[0.4em] text-gold mb-6 uppercase border-b border-gold/30 inline-block pb-2">VitrinY Atelier</p>
           <h1 class="text-5xl md:text-8xl text-paper font-display leading-none mb-6">
-              YOUR MOMENT <br> <span class="text-script text-gold block mt-2 lowercase text-[5rem] md:text-[7rem]">Immortalized</span>
+              <span data-i18n="hero_t1">YOUR MOMENT</span> <br> 
+              <span class="text-script text-gold block mt-2 lowercase text-[5rem] md:text-[7rem]" data-i18n="hero_t2">Immortalized</span>
           </h1>
           <p class="text-xl text-paper/60 italic font-light max-w-lg mx-auto" data-i18n="hero_desc">
               From "Yes" to "I Do", from Baby Showers to Golden Jubilees. We craft digital experiences for every chapter of your life.
@@ -93,18 +90,18 @@
       </div>
 
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-paper/30 text-xs tracking-[0.3em] flex flex-col items-center gap-4 fade-up active delay-1000">
-          <span>EXPLORE THE COLLECTION</span>
+          <span data-i18n="scroll_text">EXPLORE THE COLLECTION</span>
           <div class="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent"></div>
       </div>
   </header>
 
-  <section class="py-32 px-6 md:px-20 max-w-[1400px] mx-auto">
+  <section class="py-32 px-6 md:px-20 max-w-[1400px] mx-auto relative z-10">
       <div class="flex flex-col md:flex-row justify-between items-end mb-20 fade-up">
           <div>
-              <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4">The Repertoire</span>
-              <h2 class="text-4xl md:text-6xl text-paper font-display">Whatever You Celebrate</h2>
+              <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4" data-i18n="rep_badge">The Repertoire</span>
+              <h2 class="text-4xl md:text-6xl text-paper font-display" data-i18n="rep_title">Whatever You Celebrate</h2>
           </div>
-          <p class="text-paper/50 max-w-md text-right mt-6 md:mt-0 font-light italic">
+          <p class="text-paper/50 max-w-md text-right mt-6 md:mt-0 font-light italic" data-i18n="rep_quote">
               "We don't just build websites. We build anticipation. Explore our suite of luxury digital invitations."
           </p>
       </div>
@@ -114,95 +111,83 @@
           <div class="fade-up">
               <div class="flex items-center gap-4 mb-8">
                   <span class="text-6xl text-gold/20 font-display">I.</span>
-                  <h3 class="text-3xl text-paper font-display">Union & Love</h3>
+                  <h3 class="text-3xl text-paper font-display" data-i18n="cat1_title">Union & Love</h3>
               </div>
               <ul class="space-y-6">
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
                       <div class="flex justify-between items-center">
-                          <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic">Wedding Suites</span>
+                          <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic" data-i18n="c1_i1_t">Wedding Suites</span>
                           <i class="fa-solid fa-arrow-right text-gold opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
                       </div>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Save the Date • Full Website • RSVP • Photo Gallery</p>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c1_i1_d">Save the Date • Full Website • RSVP • Photo Gallery</p>
                   </li>
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic">Engagement & Proposal</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Announcement Sites • Proposal Videos</p>
+                      <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic" data-i18n="c1_i2_t">Engagement & Proposal</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c1_i2_d">Announcement Sites • Proposal Videos</p>
                   </li>
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic">Bachelor & Bachelorette</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Itinerary • Private Info • Payment Links</p>
+                      <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic" data-i18n="c1_i3_t">Bachelor & Bachelorette</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c1_i3_d">Itinerary • Private Info • Payment Links</p>
                   </li>
               </ul>
           </div>
 
-          <div class="fade-up transition-delay-200">
+          <div class="fade-up">
               <div class="flex items-center gap-4 mb-8">
                   <span class="text-6xl text-rose/20 font-display">II.</span>
-                  <h3 class="text-3xl text-paper font-display">New Beginnings</h3>
+                  <h3 class="text-3xl text-paper font-display" data-i18n="cat2_title">New Beginnings</h3>
               </div>
               <ul class="space-y-6">
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
                       <div class="flex justify-between items-center">
-                          <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic">Gender Reveal Parties</span>
+                          <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic" data-i18n="c2_i1_t">Gender Reveal Parties</span>
                           <i class="fa-solid fa-arrow-right text-rose opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
                       </div>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Interactive Voting • Blue/Pink Themes • Live Countdown</p>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c2_i1_d">Interactive Voting • Blue/Pink Themes • Live Countdown</p>
                   </li>
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic">Baby Shower</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Gift Registry Integration • Location Maps</p>
-                  </li>
-                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic">Birth Announcement</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">"Hello World" Pages • Photo Album</p>
+                      <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic" data-i18n="c2_i2_t">Baby Shower</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c2_i2_d">Gift Registry Integration • Location Maps</p>
                   </li>
               </ul>
           </div>
 
-          <div class="fade-up transition-delay-400">
+          <div class="fade-up">
               <div class="flex items-center gap-4 mb-8">
                   <span class="text-6xl text-blue-400/20 font-display">III.</span>
-                  <h3 class="text-3xl text-paper font-display">Life Milestones</h3>
+                  <h3 class="text-3xl text-paper font-display" data-i18n="cat3_title">Life Milestones</h3>
               </div>
               <ul class="space-y-6">
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
                       <div class="flex justify-between items-center">
-                          <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic">Birthday Jubilees</span>
+                          <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic" data-i18n="c3_i1_t">Birthday Jubilees</span>
                           <i class="fa-solid fa-arrow-right text-blue-300 opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
                       </div>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">1st, 18th, 30th, 50th Parties • Themed Designs</p>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c3_i1_d">1st, 18th, 30th, 50th Parties • Themed Designs</p>
                   </li>
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic">Graduation</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Party Details • Digital Yearbook Style</p>
-                  </li>
-                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic">Anniversaries</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">"Through the Years" Timeline Gallery</p>
+                      <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic" data-i18n="c3_i2_t">Anniversaries</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c3_i2_d">"Through the Years" Timeline Gallery</p>
                   </li>
               </ul>
           </div>
 
-          <div class="fade-up transition-delay-600">
+          <div class="fade-up">
               <div class="flex items-center gap-4 mb-8">
                   <span class="text-6xl text-white/10 font-display">IV.</span>
-                  <h3 class="text-3xl text-paper font-display">Elite & Corporate</h3>
+                  <h3 class="text-3xl text-paper font-display" data-i18n="cat4_title">Elite & Corporate</h3>
               </div>
               <ul class="space-y-6">
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
                       <div class="flex justify-between items-center">
-                          <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic">Gala & Charity Balls</span>
+                          <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic" data-i18n="c4_i1_t">Gala & Charity Balls</span>
                           <i class="fa-solid fa-arrow-right text-white opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
                       </div>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Ticket Sales • Sponsor Highlights • Dress Code Info</p>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c4_i1_d">Ticket Sales • Sponsor Highlights • Dress Code Info</p>
                   </li>
                   <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic">Product Launch</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Countdown Timer • Media Kit Download</p>
-                  </li>
-                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
-                      <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic">Private House Parties</span>
-                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Password Protected • Exclusive Access</p>
+                      <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic" data-i18n="c4_i2_t">Private House Parties</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide" data-i18n="c4_i2_d">Password Protected • Exclusive Access</p>
                   </li>
               </ul>
           </div>
@@ -210,11 +195,11 @@
       </div>
   </section>
 
-  <section class="py-24 bg-paper text-void relative overflow-hidden">
+  <section class="py-24 bg-paper text-void relative overflow-hidden z-10">
       <div class="max-w-7xl mx-auto px-6">
           <div class="text-center mb-16 fade-up">
-              <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4">Behind The Beauty</span>
-              <h2 class="text-4xl md:text-5xl font-display">Intelligent Features</h2>
+              <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4" data-i18n="feat_badge">Behind The Beauty</span>
+              <h2 class="text-4xl md:text-5xl font-display" data-i18n="feat_title">Intelligent Features</h2>
           </div>
 
           <div class="grid md:grid-cols-4 gap-8">
@@ -222,47 +207,47 @@
                   <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold group-hover:text-white group-hover:border-gold transition duration-500">
                       <i class="fa-solid fa-envelope-open-text text-xl"></i>
                   </div>
-                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">Smart RSVP</h3>
-                  <p class="text-void/60 text-sm">Automated guest list management. Know exactly who is coming and what they eat.</p>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm" data-i18n="f1_t">Smart RSVP</h3>
+                  <p class="text-void/60 text-sm" data-i18n="f1_d">Automated guest list management. Know exactly who is coming and what they eat.</p>
               </div>
-               <div class="text-center group fade-up transition-delay-200">
+               <div class="text-center group fade-up">
                   <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-rose group-hover:text-white group-hover:border-rose transition duration-500">
                       <i class="fa-solid fa-gift text-xl"></i>
                   </div>
-                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">Registry & IBAN</h3>
-                  <p class="text-void/60 text-sm">Elegantly display gift preferences, Amazon lists, or charity donation links.</p>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm" data-i18n="f2_t">Registry & IBAN</h3>
+                  <p class="text-void/60 text-sm" data-i18n="f2_d">Elegantly display gift preferences, Amazon lists, or charity donation links.</p>
               </div>
-               <div class="text-center group fade-up transition-delay-400">
+               <div class="text-center group fade-up">
                   <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-400 group-hover:text-white group-hover:border-blue-400 transition duration-500">
                       <i class="fa-solid fa-map-location-dot text-xl"></i>
                   </div>
-                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">One-Click Nav</h3>
-                  <p class="text-void/60 text-sm">Integration with Google & Apple Maps. Guests arrive at the venue without hassle.</p>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm" data-i18n="f3_t">One-Click Nav</h3>
+                  <p class="text-void/60 text-sm" data-i18n="f3_d">Integration with Google & Apple Maps. Guests arrive at the venue without hassle.</p>
               </div>
-               <div class="text-center group fade-up transition-delay-600">
+               <div class="text-center group fade-up">
                   <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-void group-hover:text-white group-hover:border-void transition duration-500">
                       <i class="fa-solid fa-lock text-xl"></i>
                   </div>
-                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">Privacy First</h3>
-                  <p class="text-void/60 text-sm">Password protection available. Keep your private moments truly private.</p>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm" data-i18n="f4_t">Privacy First</h3>
+                  <p class="text-void/60 text-sm" data-i18n="f4_d">Password protection available. Keep your private moments truly private.</p>
               </div>
           </div>
       </div>
   </section>
 
-  <footer class="py-32 bg-void text-center border-t border-white/5 relative">
+  <footer class="py-32 bg-void text-center border-t border-white/5 relative z-10">
       <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none"></div>
       <div class="max-w-2xl mx-auto px-6 fade-up">
-          <span class="text-script text-6xl text-gold mb-4 block">Let's Celebrate</span>
-          <h2 class="font-serif text-3xl md:text-5xl text-paper mb-8 leading-tight">
+          <span class="text-script text-6xl text-gold mb-4 block" data-i18n="cta_script">Let's Celebrate</span>
+          <h2 class="font-serif text-3xl md:text-5xl text-paper mb-8 leading-tight" data-i18n="cta_title">
               Ready to Design Your<br>Digital Masterpiece?
           </h2>
           <div class="flex flex-col md:flex-row gap-6 justify-center">
-              <a href="https://wa.me/905419787726?text=I%20have%20an%20event%20coming%20up..." class="px-10 py-4 bg-paper text-void font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition duration-500">
-                  Start Project
+              <a href="https://wa.me/905419787726?text=I%20want%20to%20create%20a%20digital%20invitation." class="px-10 py-4 bg-paper text-void font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition duration-500">
+                  <span data-i18n="btn_start">Start Project</span>
               </a>
               <a href="index.html" class="px-10 py-4 border border-white/20 text-paper font-bold uppercase tracking-widest hover:bg-white/5 transition duration-500">
-                  Back to Home
+                  <span data-i18n="btn_home">Back to Home</span>
               </a>
           </div>
       </div>
@@ -272,18 +257,6 @@
   </footer>
 
   <script>
-    // Custom Cursor
-    const cursorDot = document.getElementById("cursor-dot");
-    const cursorCircle = document.getElementById("cursor-circle");
-
-    window.addEventListener("mousemove", (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-        cursorCircle.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-    });
-
     // Scroll Reveal
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -292,19 +265,94 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     
-    // Auto Translation (Simplified)
+    // FULL TRANSLATION SYSTEM
     const translations = {
+        en: {
+            nav_contact: "Contact",
+            hero_t1: "YOUR MOMENT", hero_t2: "Immortalized",
+            hero_desc: "From 'Yes' to 'I Do', from Baby Showers to Golden Jubilees. We craft digital experiences for every chapter of your life.",
+            scroll_text: "EXPLORE THE COLLECTION",
+            rep_badge: "The Repertoire", rep_title: "Whatever You Celebrate",
+            rep_quote: "\"We don't just build websites. We build anticipation. Explore our suite of luxury digital invitations.\"",
+            // Cat 1
+            cat1_title: "Union & Love",
+            c1_i1_t: "Wedding Suites", c1_i1_d: "Save the Date • Full Website • RSVP • Photo Gallery",
+            c1_i2_t: "Engagement & Proposal", c1_i2_d: "Announcement Sites • Proposal Videos",
+            c1_i3_t: "Bachelor & Bachelorette", c1_i3_d: "Itinerary • Private Info • Payment Links",
+            // Cat 2
+            cat2_title: "New Beginnings",
+            c2_i1_t: "Gender Reveal Parties", c2_i1_d: "Interactive Voting • Blue/Pink Themes • Live Countdown",
+            c2_i2_t: "Baby Shower", c2_i2_d: "Gift Registry Integration • Location Maps",
+            // Cat 3
+            cat3_title: "Life Milestones",
+            c3_i1_t: "Birthday Jubilees", c3_i1_d: "1st, 18th, 30th, 50th Parties • Themed Designs",
+            c3_i2_t: "Anniversaries", c3_i2_d: "\"Through the Years\" Timeline Gallery",
+            // Cat 4
+            cat4_title: "Elite & Corporate",
+            c4_i1_t: "Gala & Charity Balls", c4_i1_d: "Ticket Sales • Sponsor Highlights • Dress Code Info",
+            c4_i2_t: "Private House Parties", c4_i2_d: "Password Protected • Exclusive Access",
+            // Features
+            feat_badge: "Behind The Beauty", feat_title: "Intelligent Features",
+            f1_t: "Smart RSVP", f1_d: "Automated guest list management. Know exactly who is coming and what they eat.",
+            f2_t: "Registry & IBAN", f2_d: "Elegantly display gift preferences, Amazon lists, or charity donation links.",
+            f3_t: "One-Click Nav", f3_d: "Integration with Google & Apple Maps. Guests arrive at the venue without hassle.",
+            f4_t: "Privacy First", f4_d: "Password protection available. Keep your private moments truly private.",
+            // Footer
+            cta_script: "Let's Celebrate", cta_title: "Ready to Design Your<br>Digital Masterpiece?",
+            btn_start: "Start Project", btn_home: "Back to Home"
+        },
         tr: {
+            nav_contact: "İletişim",
+            hero_t1: "ANINIZ ARTIK", hero_t2: "Ölümsüzleşti",
             hero_desc: "'Evet' demekten 'Sonsuza Dek'e, Baby Shower'dan Altın Jübilelere. Hayatınızın her bölümü için dijital deneyimler tasarlıyoruz.",
+            scroll_text: "KOLEKSİYONU KEŞFET",
+            rep_badge: "Repertuar", rep_title: "Neyi Kutluyorsunuz?",
+            rep_quote: "\"Biz sadece web sitesi yapmıyoruz. Heyecan inşa ediyoruz. Lüks dijital davetiye serimizi keşfedin.\"",
+            // Cat 1
+            cat1_title: "Birlik & Aşk",
+            c1_i1_t: "Düğün Serisi", c1_i1_d: "Tarihi Kaydet • Tam Kapsamlı Site • LCV • Foto Galeri",
+            c1_i2_t: "Nişan & Evlilik Teklifi", c1_i2_d: "Duyuru Siteleri • Teklif Videoları",
+            c1_i3_t: "Bekarlığa Veda", c1_i3_d: "Program Akışı • Özel Bilgiler • Ödeme Linkleri",
+            // Cat 2
+            cat2_title: "Yeni Başlangıçlar",
+            c2_i1_t: "Cinsiyet Partisi", c2_i1_d: "İnteraktif Oylama • Mavi/Pembe Temalar • Canlı Geri Sayım",
+            c2_i2_t: "Baby Shower", c2_i2_d: "Hediye Listesi Entegrasyonu • Konum Haritaları",
+            // Cat 3
+            cat3_title: "Dönüm Noktaları",
+            c3_i1_t: "Doğum Günü Jübileleri", c3_i1_d: "1, 18, 30, 50. Yaş Partileri • Temalı Tasarımlar",
+            c3_i2_t: "Yıldönümleri", c3_i2_d: "\"Yıllar İçinde\" Zaman Çizelgesi Galerisi",
+            // Cat 4
+            cat4_title: "Elit & Kurumsal",
+            c4_i1_t: "Gala & Yardım Baloları", c4_i1_d: "Bilet Satışı • Sponsor Alanları • Kıyafet Kodu",
+            c4_i2_t: "Özel Ev Partileri", c4_i2_d: "Şifre Korumalı • Sadece Davetlilere Özel",
+            // Features
+            feat_badge: "Güzelliğin Arkası", feat_title: "Akıllı Özellikler",
+            f1_t: "Akıllı LCV", f1_d: "Otomatik konuk listesi yönetimi. Kimin geldiğini ve ne yediğini tam olarak bilin.",
+            f2_t: "Hediye & IBAN", f2_d: "Hediye tercihlerinizi, Amazon listelerinizi veya bağış linklerinizi zarifçe sunun.",
+            f3_t: "Tek Tıkla Navigasyon", f3_d: "Google & Apple Haritalar entegrasyonu. Konuklar mekana sorunsuz ulaşır.",
+            f4_t: "Önce Gizlilik", f4_d: "Şifre koruması mevcuttur. Özel anlarınızı gerçekten özel tutun.",
+            // Footer
+            cta_script: "Kutlayalım", cta_title: "Dijital Şaheserinizi<br>Tasarlamaya Hazır Mısınız?",
+            btn_start: "Projeye Başla", btn_home: "Ana Sayfaya Dön"
         }
     };
-    const lang = navigator.language.startsWith('tr') ? 'tr' : 'en';
-    if(translations[lang]) {
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    
+    function applyLang() {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if(translations[lang][key]) el.innerHTML = translations[lang][key];
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
         });
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
     }
+
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        localStorage.setItem('lang', currentLang);
+        applyLang();
+    }
+    applyLang();
   </script>
 </body>
 </html>
