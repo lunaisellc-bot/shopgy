@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth cursor-none"> <head>
+<html lang="en" class="scroll-smooth cursor-none">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L'Amour Éternel | VitrinY Masterpiece</title>
+  <title>Eternal Moments | VitrinY Masterpiece</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
@@ -13,7 +14,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Cormorant Garamond', 'serif'], /* Ana metin de Serif oldu */
+            sans: ['Cormorant Garamond', 'serif'],
             display: ['Cinzel', 'serif'],
             script: ['Monsieur La Doulaise', 'cursive']
           },
@@ -21,7 +22,7 @@
             void: '#030303',
             paper: '#F0EFEB',
             gold: '#C5A059',
-            faded: 'rgba(240, 239, 235, 0.4)'
+            rose: '#E0B0FF'
           },
           cursor: {
             'none': 'none',
@@ -34,7 +35,7 @@
   <style>
     body { background-color: #030303; color: #F0EFEB; overflow-x: hidden; }
     
-    /* Film Grain Texture - Sinematik Doku */
+    /* Film Grain Texture */
     .grain-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background-image: url("https://grainy-gradients.vercel.app/noise.svg");
@@ -49,28 +50,27 @@
     body:hover .cursor-circle { width: 60px; height: 60px; border-color: #C5A059; }
 
     /* Typography Classes */
-    .text-script { font-family: 'Monsieur La Doulaise', cursive; font-size: 5rem; line-height: 1; }
+    .text-script { font-family: 'Monsieur La Doulaise', cursive; font-size: 4rem; line-height: 1; }
     .text-cinematic { font-family: 'Cinzel', serif; letter-spacing: 0.2em; text-transform: uppercase; }
 
-    /* Image Reveal Animation */
-    .img-wrapper { overflow: hidden; position: relative; }
-    .img-wrapper img { transform: scale(1.3); transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1); }
-    .img-wrapper.active img { transform: scale(1); }
-    
+    /* Animations */
     .fade-up { opacity: 0; transform: translateY(50px); transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
     .fade-up.active { opacity: 1; transform: translateY(0); }
+
+    /* Service List Item Hover Effect */
+    .service-item:hover .service-img { opacity: 0.4; transform: scale(1.1); }
+    .service-item:hover .service-text { color: #C5A059; padding-left: 20px; }
   </style>
 </head>
 
 <body>
 
   <div class="grain-overlay"></div>
-
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-circle" id="cursor-circle"></div>
 
   <div class="fixed top-8 right-8 z-50 flex items-center gap-4 mix-blend-difference text-paper cursor-pointer group">
-      <span class="text-xs tracking-[0.2em] hidden md:block opacity-0 group-hover:opacity-100 transition duration-500">PLAY SOUND</span>
+      <span class="text-xs tracking-[0.2em] hidden md:block opacity-0 group-hover:opacity-100 transition duration-500">SOUND ON</span>
       <div class="w-10 h-10 border border-paper/30 rounded-full flex items-center justify-center animate-spin-slow">
         <i class="fa-solid fa-music text-xs"></i>
       </div>
@@ -78,206 +78,233 @@
 
   <header class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
-          <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=2000" class="w-full h-full object-cover opacity-30 scale-110 animate-pulse-slow">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000" class="w-full h-full object-cover opacity-30 scale-110 animate-pulse-slow">
           <div class="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-void/20"></div>
       </div>
 
-      <div class="relative z-10 text-center px-4 mix-blend-screen">
-          <div class="fade-up active delay-300">
-              <p class="text-xs md:text-sm tracking-[0.4em] text-gold mb-6 uppercase border-b border-gold/30 inline-block pb-2" data-i18n="hero_date">Est. September 15, 2026</p>
-          </div>
-          <div class="fade-up active delay-500">
-              <h1 class="text-6xl md:text-9xl text-paper font-display leading-none mb-2">
-                  SARAH <span class="text-script text-gold block md:inline md:text-[8rem] lowercase -mt-4 md:mt-0 relative md:-ml-8 md:-mr-8 transform md:-rotate-6"> & </span> THOMAS
-              </h1>
-          </div>
-          <div class="fade-up active delay-700 mt-8">
-               <p class="text-xl md:text-2xl text-paper/60 italic font-light max-w-lg mx-auto" data-i18n="hero_quote">
-                   "We loved with a love that was more than love."
-               </p>
-          </div>
+      <div class="relative z-10 text-center px-4 mix-blend-screen fade-up active">
+          <p class="text-xs md:text-sm tracking-[0.4em] text-gold mb-6 uppercase border-b border-gold/30 inline-block pb-2">VitrinY Atelier</p>
+          <h1 class="text-5xl md:text-8xl text-paper font-display leading-none mb-6">
+              YOUR MOMENT <br> <span class="text-script text-gold block mt-2 lowercase text-[5rem] md:text-[7rem]">Immortalized</span>
+          </h1>
+          <p class="text-xl text-paper/60 italic font-light max-w-lg mx-auto" data-i18n="hero_desc">
+              From "Yes" to "I Do", from Baby Showers to Golden Jubilees. We craft digital experiences for every chapter of your life.
+          </p>
       </div>
 
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-paper/30 text-xs tracking-[0.3em] flex flex-col items-center gap-4 fade-up active delay-1000">
-          <span>SCROLL TO ENTER</span>
+          <span>EXPLORE THE COLLECTION</span>
           <div class="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent"></div>
       </div>
   </header>
 
-  <section class="py-32 md:py-48 px-6 md:px-20 max-w-[1600px] mx-auto">
-      <div class="flex flex-col md:flex-row gap-20 items-center">
-          <div class="md:w-5/12 order-2 md:order-1 fade-up">
-              <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-6">Chapter I : The Beginning</span>
-              <h2 class="text-4xl md:text-6xl text-paper font-display mb-10 leading-tight">
-                  A Story Written<br>In <span class="italic text-gold font-sans">Starlight</span>
-              </h2>
-              <div class="w-12 h-[1px] bg-gold/50 mb-10"></div>
-              <p class="text-xl text-paper/70 leading-relaxed font-light mb-8" data-i18n="chap1_p">
-                  This isn't just a date on a calendar. It is the collision of two galaxies. We invite you to witness the moment our forever begins.
-              </p>
-              <p class="text-lg text-paper/50 italic" data-i18n="chap1_loc">
-                  — Lake Como, Italy
-              </p>
+  <section class="py-32 px-6 md:px-20 max-w-[1400px] mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-20 fade-up">
+          <div>
+              <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4">The Repertoire</span>
+              <h2 class="text-4xl md:text-6xl text-paper font-display">Whatever You Celebrate</h2>
           </div>
+          <p class="text-paper/50 max-w-md text-right mt-6 md:mt-0 font-light italic">
+              "We don't just build websites. We build anticipation. Explore our suite of luxury digital invitations."
+          </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-x-20 gap-y-12">
           
-          <div class="md:w-7/12 order-1 md:order-2">
-              <div class="img-wrapper aspect-[3/4] md:aspect-[16/9] relative z-10 group">
-                   <div class="absolute inset-0 border border-paper/10 z-20 m-4 transition duration-700 group-hover:m-8"></div>
-                   <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1500" class="w-full h-full object-cover opacity-80 filter grayscale hover:grayscale-0 transition duration-1000">
+          <div class="fade-up">
+              <div class="flex items-center gap-4 mb-8">
+                  <span class="text-6xl text-gold/20 font-display">I.</span>
+                  <h3 class="text-3xl text-paper font-display">Union & Love</h3>
+              </div>
+              <ul class="space-y-6">
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <div class="flex justify-between items-center">
+                          <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic">Wedding Suites</span>
+                          <i class="fa-solid fa-arrow-right text-gold opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
+                      </div>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Save the Date • Full Website • RSVP • Photo Gallery</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic">Engagement & Proposal</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Announcement Sites • Proposal Videos</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-gold transition duration-500 font-serif italic">Bachelor & Bachelorette</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Itinerary • Private Info • Payment Links</p>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="fade-up transition-delay-200">
+              <div class="flex items-center gap-4 mb-8">
+                  <span class="text-6xl text-rose/20 font-display">II.</span>
+                  <h3 class="text-3xl text-paper font-display">New Beginnings</h3>
+              </div>
+              <ul class="space-y-6">
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <div class="flex justify-between items-center">
+                          <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic">Gender Reveal Parties</span>
+                          <i class="fa-solid fa-arrow-right text-rose opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
+                      </div>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Interactive Voting • Blue/Pink Themes • Live Countdown</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic">Baby Shower</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Gift Registry Integration • Location Maps</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-rose transition duration-500 font-serif italic">Birth Announcement</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">"Hello World" Pages • Photo Album</p>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="fade-up transition-delay-400">
+              <div class="flex items-center gap-4 mb-8">
+                  <span class="text-6xl text-blue-400/20 font-display">III.</span>
+                  <h3 class="text-3xl text-paper font-display">Life Milestones</h3>
+              </div>
+              <ul class="space-y-6">
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <div class="flex justify-between items-center">
+                          <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic">Birthday Jubilees</span>
+                          <i class="fa-solid fa-arrow-right text-blue-300 opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
+                      </div>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">1st, 18th, 30th, 50th Parties • Themed Designs</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic">Graduation</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Party Details • Digital Yearbook Style</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-blue-300 transition duration-500 font-serif italic">Anniversaries</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">"Through the Years" Timeline Gallery</p>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="fade-up transition-delay-600">
+              <div class="flex items-center gap-4 mb-8">
+                  <span class="text-6xl text-white/10 font-display">IV.</span>
+                  <h3 class="text-3xl text-paper font-display">Elite & Corporate</h3>
+              </div>
+              <ul class="space-y-6">
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <div class="flex justify-between items-center">
+                          <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic">Gala & Charity Balls</span>
+                          <i class="fa-solid fa-arrow-right text-white opacity-0 group-hover:opacity-100 transition transform -translate-x-4 group-hover:translate-x-0"></i>
+                      </div>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Ticket Sales • Sponsor Highlights • Dress Code Info</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic">Product Launch</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Countdown Timer • Media Kit Download</p>
+                  </li>
+                  <li class="service-item group cursor-pointer border-b border-white/5 pb-4">
+                      <span class="text-xl text-paper/80 group-hover:text-white transition duration-500 font-serif italic">Private House Parties</span>
+                      <p class="text-sm text-paper/40 mt-2 font-sans tracking-wide">Password Protected • Exclusive Access</p>
+                  </li>
+              </ul>
+          </div>
+
+      </div>
+  </section>
+
+  <section class="py-24 bg-paper text-void relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-16 fade-up">
+              <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4">Behind The Beauty</span>
+              <h2 class="text-4xl md:text-5xl font-display">Intelligent Features</h2>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-8">
+              <div class="text-center group fade-up">
+                  <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold group-hover:text-white group-hover:border-gold transition duration-500">
+                      <i class="fa-solid fa-envelope-open-text text-xl"></i>
+                  </div>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">Smart RSVP</h3>
+                  <p class="text-void/60 text-sm">Automated guest list management. Know exactly who is coming and what they eat.</p>
+              </div>
+               <div class="text-center group fade-up transition-delay-200">
+                  <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-rose group-hover:text-white group-hover:border-rose transition duration-500">
+                      <i class="fa-solid fa-gift text-xl"></i>
+                  </div>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">Registry & IBAN</h3>
+                  <p class="text-void/60 text-sm">Elegantly display gift preferences, Amazon lists, or charity donation links.</p>
+              </div>
+               <div class="text-center group fade-up transition-delay-400">
+                  <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-400 group-hover:text-white group-hover:border-blue-400 transition duration-500">
+                      <i class="fa-solid fa-map-location-dot text-xl"></i>
+                  </div>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">One-Click Nav</h3>
+                  <p class="text-void/60 text-sm">Integration with Google & Apple Maps. Guests arrive at the venue without hassle.</p>
+              </div>
+               <div class="text-center group fade-up transition-delay-600">
+                  <div class="w-16 h-16 mx-auto border border-void/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-void group-hover:text-white group-hover:border-void transition duration-500">
+                      <i class="fa-solid fa-lock text-xl"></i>
+                  </div>
+                  <h3 class="font-bold uppercase tracking-widest mb-2 text-sm">Privacy First</h3>
+                  <p class="text-void/60 text-sm">Password protection available. Keep your private moments truly private.</p>
               </div>
           </div>
       </div>
   </section>
 
-  <div class="w-full h-[60vh] relative overflow-hidden flex items-center justify-center">
-      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-40 fixed-bg">
-      <div class="absolute inset-0 bg-void/40"></div>
-      <h2 class="relative z-10 text-center text-script text-white drop-shadow-2xl fade-up" style="font-size: 8vw;" data-i18n="div_text">Save The Date</h2>
-  </div>
-
-  <section class="py-32 md:py-48 px-6 bg-[#080808]">
-      <div class="max-w-4xl mx-auto text-center mb-24 fade-up">
-          <span class="text-gold text-xs tracking-[0.3em] uppercase block mb-4">Chapter II : The Experience</span>
-          <h2 class="text-4xl md:text-5xl text-paper font-display" data-i18n="det_title">The Schedule</h2>
-      </div>
-
-      <div class="max-w-3xl mx-auto space-y-20">
-          <div class="flex flex-col md:flex-row items-center justify-between group fade-up">
-              <div class="text-center md:text-left mb-4 md:mb-0">
-                  <span class="text-3xl text-gold font-display block">16:00</span>
-                  <span class="text-sm text-paper/40 tracking-widest uppercase">Ceremony</span>
-              </div>
-              <div class="w-[1px] h-12 bg-white/10 hidden md:block group-hover:bg-gold transition duration-500"></div>
-              <div class="text-center md:text-right">
-                  <h3 class="text-2xl text-paper italic">The Vows</h3>
-                  <p class="text-sm text-paper/50 mt-2">Villa Balbiano Gardens</p>
-              </div>
-          </div>
-
-          <div class="flex flex-col md:flex-row items-center justify-between group fade-up transition-delay-200">
-             <div class="text-center md:text-left mb-4 md:mb-0">
-                 <span class="text-3xl text-gold font-display block">18:30</span>
-                 <span class="text-sm text-paper/40 tracking-widest uppercase">Cocktail</span>
-             </div>
-             <div class="w-[1px] h-12 bg-white/10 hidden md:block group-hover:bg-gold transition duration-500"></div>
-             <div class="text-center md:text-right">
-                 <h3 class="text-2xl text-paper italic">Sunset Aperitivo</h3>
-                 <p class="text-sm text-paper/50 mt-2">Terrace Overlooking the Lake</p>
-             </div>
-         </div>
-
-         <div class="flex flex-col md:flex-row items-center justify-between group fade-up transition-delay-400">
-            <div class="text-center md:text-left mb-4 md:mb-0">
-                <span class="text-3xl text-gold font-display block">20:00</span>
-                <span class="text-sm text-paper/40 tracking-widest uppercase">Dinner</span>
-            </div>
-            <div class="w-[1px] h-12 bg-white/10 hidden md:block group-hover:bg-gold transition duration-500"></div>
-            <div class="text-center md:text-right">
-                <h3 class="text-2xl text-paper italic">Candlelight Feast</h3>
-                <p class="text-sm text-paper/50 mt-2">The Grand Hall</p>
-            </div>
-        </div>
-      </div>
-  </section>
-
-  <section class="py-32 relative flex items-center justify-center min-h-[80vh]">
-      <div class="absolute inset-0 opacity-20">
-          <img src="https://images.unsplash.com/photo-1522413452208-996ff3f3e740?q=80&w=2000" class="w-full h-full object-cover grayscale">
-      </div>
-      <div class="absolute inset-0 bg-void/80"></div>
-
-      <div class="relative z-10 max-w-2xl w-full px-8 text-center fade-up">
-          <div class="border border-gold/30 p-12 md:p-20 backdrop-blur-sm">
-              <span class="text-script text-6xl text-gold mb-2 block" data-i18n="rsvp_script">Répondez</span>
-              <p class="text-paper/60 mb-10 tracking-widest text-xs uppercase" data-i18n="rsvp_sub">s'il vous plaît</p>
-              
-              <div class="space-y-8">
-                  <a href="https://wa.me/905419787726?text=We%20would%20be%20honored%20to%20attend." class="group block w-full py-4 border-b border-paper/20 hover:border-gold transition duration-500 relative overflow-hidden">
-                      <span class="relative z-10 text-xl text-paper tracking-[0.2em] group-hover:text-gold transition" data-i18n="btn_accept">We Will Attend</span>
-                      <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gold transform -translate-x-full group-hover:translate-x-0 transition duration-500"></div>
-                  </a>
-                  
-                  <a href="#" class="group block w-full py-4 border-b border-paper/20 hover:border-paper/40 transition duration-500">
-                       <span class="text-sm text-paper/40 tracking-[0.2em] group-hover:text-paper/60 transition" data-i18n="btn_decline">Regretfully Decline</span>
-                  </a>
-              </div>
+  <footer class="py-32 bg-void text-center border-t border-white/5 relative">
+      <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none"></div>
+      <div class="max-w-2xl mx-auto px-6 fade-up">
+          <span class="text-script text-6xl text-gold mb-4 block">Let's Celebrate</span>
+          <h2 class="font-serif text-3xl md:text-5xl text-paper mb-8 leading-tight">
+              Ready to Design Your<br>Digital Masterpiece?
+          </h2>
+          <div class="flex flex-col md:flex-row gap-6 justify-center">
+              <a href="https://wa.me/905419787726?text=I%20have%20an%20event%20coming%20up..." class="px-10 py-4 bg-paper text-void font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition duration-500">
+                  Start Project
+              </a>
+              <a href="index.html" class="px-10 py-4 border border-white/20 text-paper font-bold uppercase tracking-widest hover:bg-white/5 transition duration-500">
+                  Back to Home
+              </a>
           </div>
       </div>
-  </section>
-
-  <footer class="bg-void text-paper py-20 px-6 border-t border-white/5 text-center">
-      <h2 class="text-cinematic text-4xl mb-6 tracking-[0.5em] opacity-80">VITRINY</h2>
-      <p class="text-xs text-paper/30 font-sans tracking-widest uppercase">
-          Curated Digital Events.<br>
-          Operated by Lunaise LLC.
-      </p>
+      <div class="mt-20 text-xs text-gray-600 font-sans tracking-widest uppercase">
+        © 2026 VitrinY Atelier by Lunaise LLC.
+      </div>
   </footer>
 
   <script>
-    // Custom Cursor Logic
+    // Custom Cursor
     const cursorDot = document.getElementById("cursor-dot");
     const cursorCircle = document.getElementById("cursor-circle");
 
     window.addEventListener("mousemove", (e) => {
         const posX = e.clientX;
         const posY = e.clientY;
-
-        // Dot follows instantly
         cursorDot.style.left = `${posX}px`;
         cursorDot.style.top = `${posY}px`;
-
-        // Circle follows with delay (animation logic via CSS transition mostly, providing smooth lag)
-        cursorCircle.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
+        cursorCircle.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
     });
 
-    // Intersection Observer for Reveal Animations
+    // Scroll Reveal
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                if(entry.target.classList.contains('img-wrapper')) {
-                    // Parallax effect trigger logic here conceptually
-                }
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     
-    document.querySelectorAll('.fade-up, .img-wrapper').forEach(el => observer.observe(el));
-
-    // Translation logic (Kept simple)
+    // Auto Translation (Simplified)
     const translations = {
-        en: {
-            hero_date: "Est. September 15, 2026",
-            hero_quote: "\"We loved with a love that was more than love.\"",
-            chap1_p: "This isn't just a date on a calendar. It is the collision of two galaxies. We invite you to witness the moment our forever begins.",
-            chap1_loc: "— Lake Como, Italy",
-            div_text: "Save The Date",
-            det_title: "The Schedule",
-            rsvp_script: "Répondez", rsvp_sub: "s'il vous plaît",
-            btn_accept: "We Will Attend", btn_decline: "Regretfully Decline"
-        },
         tr: {
-            hero_date: "Tarih: 15 Eylül 2026",
-            hero_quote: "\"Aşktan da öte bir aşkla sevdik birbirimizi.\"",
-            chap1_p: "Bu takvimdeki herhangi bir gün değil. Bu, iki galaksinin çarpışması. Sonsuzluğumuzun başladığı ana tanıklık etmeye davetlisiniz.",
-            chap1_loc: "— Lake Como, İtalya",
-            div_text: "Tarihi Kaydet",
-            det_title: "Akış",
-            rsvp_script: "Lütfen", rsvp_sub: "Cevap Veriniz",
-            btn_accept: "Katılacağım", btn_decline: "Maalesef Katılamayacağım"
+            hero_desc: "'Evet' demekten 'Sonsuza Dek'e, Baby Shower'dan Altın Jübilelere. Hayatınızın her bölümü için dijital deneyimler tasarlıyoruz.",
         }
     };
-    
-    // Auto-detect language (Simplified)
     const lang = navigator.language.startsWith('tr') ? 'tr' : 'en';
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) el.innerHTML = translations[lang][key];
-    });
-
+    if(translations[lang]) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang][key]) el.innerHTML = translations[lang][key];
+        });
+    }
   </script>
 </body>
 </html>
