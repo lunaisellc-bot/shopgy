@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Overcoming Imposter Syndrome | VitrinY Journal</title>
-  
+  <meta name="description" content="Why you feel like a fraud before your first sale, and how to rewrite that mental script to scale faster." />
+  <link rel="canonical" href="https://vitriny.com/imposter-syndrome.html" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,74 +22,188 @@
     }
   </script>
   <style>
-    body { background-color: #0B0B15; color: #E5E7EB; }
-    .prose p { margin-bottom: 1.5rem; line-height: 1.8; color: #D1D5DB; }
-    .prose h2 { font-family: 'Playfair Display', serif; color: white; font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1rem; }
-    .quote-box { border-left: 4px solid #7B61FF; padding-left: 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; color: white; margin: 2rem 0; }
+    body { background-color: #0B0B15; color: #E5E7EB; -webkit-font-smoothing: antialiased; }
+    #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: #7B61FF; z-index: 100; width: 0%; transition: width 0.1s; }
+
+    .prose p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #D1D5DB; }
+    .prose h2 { font-family: 'Playfair Display', serif; color: white; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; }
+    .prose ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #D1D5DB; }
+    .prose li { margin-bottom: 1rem; }
+    
+    .quote-box { border-left: 4px solid #7B61FF; padding: 2rem; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; color: white; margin: 2rem 0; background: rgba(123,97,255,0.05); border-radius: 0 8px 8px 0; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 
-<body class="font-sans">
+<body class="font-sans selection:bg-purple selection:text-white">
+
+  <div id="progress-bar"></div>
 
   <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
-    <a href="index.html" class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] text-gold font-serif italic">Journal</span></a>
-    <a href="blog.html" class="text-xs font-bold text-gray-400 hover:text-white transition"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Journal</a>
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition duration-500">
+            <span class="font-serif font-bold text-lg">V</span>
+        </div>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-gold font-serif italic">Journal</span></span>
+    </a>
+    <div class="flex items-center gap-6">
+      <a href="blog.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition hidden md:block" data-i18n="back_all"><i class="fa-solid fa-arrow-left mr-2"></i> All Articles</a>
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
   </nav>
 
-  <header class="pt-40 pb-10 px-6 text-center max-w-4xl mx-auto">
-      <span class="text-purple text-xs font-bold tracking-widest uppercase mb-4 block">Mindset · 3 Min Read</span>
-      <h1 class="text-3xl md:text-5xl font-serif text-white mb-6 leading-tight">The "Imposter Syndrome" of Selling Your First Product</h1>
-      <p class="text-gray-400 italic">Why you feel like a fraud, and how to fix it.</p>
+  <div id="mobile-menu" class="fixed inset-0 bg-bgdark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-serif text-white">
+    <button id="close-menu-btn" class="absolute top-6 right-8 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-3xl"></i></button>
+    <a href="blog.html" class="hover:text-purple transition">All Articles</a>
+    <a href="studio.html" class="hover:text-purple transition">Studio</a>
+    <a href="consulting.html" class="hover:text-purple transition">Consulting</a>
+  </div>
+
+  <header class="pt-40 pb-16 px-6 text-center max-w-4xl mx-auto reveal active">
+      <span class="text-purple text-xs font-bold tracking-widest uppercase mb-6 block" data-i18n="meta_top">Mindset · 5 Min Read</span>
+      <h1 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight" data-i18n="title">The "Imposter Syndrome" of Selling Your First Product</h1>
+      <p class="text-lg text-gray-400 font-serif italic mb-8" data-i18n="subtitle">Why you feel like a fraud, and how to fix it.</p>
+      <div class="flex items-center justify-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full grayscale border border-white/10" alt="Author">
+        <span data-i18n="byline">By Zayn Collective</span>
+        <span>·</span>
+        <span>Jan 06, 2026</span>
+    </div>
   </header>
 
-  <div class="px-6 mb-12">
-      <div class="max-w-4xl mx-auto h-[300px] md:h-[400px] rounded-2xl overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200" class="w-full h-full object-cover">
+  <div class="px-6 mb-20 reveal delay-100">
+      <div class="max-w-4xl mx-auto h-[400px] rounded-2xl overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-transparent to-transparent"></div>
       </div>
   </div>
 
-  <section class="max-w-3xl mx-auto px-6 pb-20 prose">
-      <p class="lead text-lg text-white">
-          You've designed the product. You've set up the shop. But when it's time to hit "Publish," you freeze. A voice in your head says: <em>"Who are you to charge $50 for this? Everyone else is doing it better."</em>
+  <section class="max-w-3xl mx-auto px-6 pb-32 prose reveal delay-200">
+      <p class="lead text-xl text-white font-serif" data-i18n="p_intro">
+          You've designed the product. You've set up the shop. But when it's time to hit "Publish," you freeze. A voice in your head says: <em>"Who are you to charge $50 for this? Everyone else is doing it better. People will think I'm a fake."</em>
       </p>
 
-      <h2>The "Expert" Trap</h2>
-      <p>
-          We often think we need to be the world's leading expert to sell something. This is false. You don't need to be a guru; you just need to be <strong>one step ahead</strong> of your customer. If you can save them time or make them feel good, you have earned your price.
+      <h2 data-i18n="h2_expert">The "Expert" Trap</h2>
+      <p data-i18n="p_expert_1">
+          We often think we need to be the world's leading expert or a certified artist to sell something. This is false. You don't need to be a guru; you just need to be <strong>one step ahead</strong> of your customer.
+      </p>
+      <p data-i18n="p_expert_2">
+          If your digital planner saves someone 2 hours a week, they don't care if you have an MBA or if you made it in your pajamas. They care about the result.
       </p>
 
-      <div class="quote-box">
+      <div class="quote-box" data-i18n="quote">
           "Money is simply a certificate of appreciation for value delivered."
       </div>
 
-      <h2>Reframing the Sale</h2>
-      <p>
-          Imposter syndrome comes from focusing on yourself ("Do I look good?"). The cure is focusing on the customer ("Does this help them?").
-      </p>
-      <p>
-          When you hesitate to sell, you are actually being selfish. You are withholding a solution that someone might desperately need because you are afraid of how <em>you</em> might look.
+      <h2 data-i18n="h2_reframe">Reframing the Sale</h2>
+      <p data-i18n="p_reframe">
+          Imposter syndrome comes from focusing on yourself ("Do I look good?"). The cure is focusing on the customer ("Does this help them?"). When you hesitate to sell, you are actually being selfish. You are withholding a solution that someone might desperately need because you are afraid of how <em>you</em> might look.
       </p>
 
-      <h2>The 3-Step Mindset Shift</h2>
+      <h2 data-i18n="h2_steps">The 3-Step Mindset Shift</h2>
       <ol>
-          <li><strong>Detach Worth from Price:</strong> The price tag is not a measure of your soul's value. It's simply the cost of logistics + profit.</li>
-          <li><strong>collect "No"s:</strong> Make it a game to get rejected. Every "no" brings you closer to the data you need to improve.</li>
-          <li><strong>Start Small:</strong> You don't need to launch a luxury empire on Day 1. Sell one thing to one person. Break the seal.</li>
+          <li data-i18n="li_step1"><strong>Detach Worth from Price:</strong> The price tag is not a measure of your soul's value. It's simply the cost of logistics plus profit. Charging money doesn't make you a bad person; it makes you sustainable.</li>
+          <li data-i18n="li_step2"><strong>Collect "No"s:</strong> Make it a game to get rejected. Every "no" brings you closer to the data you need to improve. A "no" isn't a personal attack; it's just market feedback.</li>
+          <li data-i18n="li_step3"><strong>Start Small:</strong> You don't need to launch a luxury empire on Day 1. Sell one thing to one person. Break the seal. The first sale kills the imposter instantly.</li>
       </ol>
 
       <div class="bg-[#0F1115] border border-purple/30 p-8 rounded-xl text-center mt-12">
-          <h4 class="font-serif text-white text-xl mb-2">Join the Inner Circle</h4>
-          <p class="text-xs text-gray-400 mb-4">Get weekly mindset hacks delivered to your inbox.</p>
-          <form class="flex justify-center gap-2">
-              <input type="email" placeholder="Email address" class="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs text-white outline-none">
-              <button class="bg-purple text-white px-6 py-2 rounded-full text-xs font-bold uppercase hover:bg-white hover:text-black transition">Join</button>
+          <h4 class="font-serif text-white text-xl mb-2" data-i18n="cta_t">Join the Inner Circle</h4>
+          <p class="text-xs text-gray-400 mb-4" data-i18n="cta_d">Get weekly mindset hacks and design trends delivered to your inbox.</p>
+          <form class="flex justify-center gap-2 max-w-sm mx-auto">
+              <input type="email" placeholder="Email address" class="w-full bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs text-white outline-none focus:border-purple transition">
+              <button class="bg-purple text-white px-6 py-2 rounded-full text-xs font-bold uppercase hover:bg-white hover:text-black transition" data-i18n="btn_sub">Join</button>
           </form>
       </div>
   </section>
 
-  <footer class="py-8 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
-      <p>&copy; 2026 VitrinY Journal.</p>
+  <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
+      <p>&copy; 2026 VitrinY / Lunaise LLC.</p>
   </footer>
 
+  <script>
+    // Logic (Scroll, Menu, Reveal)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
+
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    function toggleMenu() { mobileMenu.classList.toggle('translate-x-full'); }
+    if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+
+    // Translations
+    const translations = {
+      en: {
+        back_all: '<i class="fa-solid fa-arrow-left mr-2"></i> All Articles',
+        meta_top: "Mindset · 5 Min Read",
+        title: "The \"Imposter Syndrome\" of Selling Your First Product",
+        subtitle: "Why you feel like a fraud, and how to fix it.",
+        byline: "By Zayn Collective",
+        p_intro: "You've designed the product. You've set up the shop. But when it's time to hit \"Publish,\" you freeze. A voice in your head says: <em>\"Who are you to charge $50 for this? Everyone else is doing it better. People will think I'm a fake.\"</em>",
+        h2_expert: "The \"Expert\" Trap",
+        p_expert_1: "We often think we need to be the world's leading expert or a certified artist to sell something. This is false. You don't need to be a guru; you just need to be <strong>one step ahead</strong> of your customer.",
+        p_expert_2: "If your digital planner saves someone 2 hours a week, they don't care if you have an MBA or if you made it in your pajamas. They care about the result.",
+        quote: "\"Money is simply a certificate of appreciation for value delivered.\"",
+        h2_reframe: "Reframing the Sale",
+        p_reframe: "Imposter syndrome comes from focusing on yourself (\"Do I look good?\"). The cure is focusing on the customer (\"Does this help them?\"). When you hesitate to sell, you are actually being selfish. You are withholding a solution that someone might desperately need because you are afraid of how <em>you</em> might look.",
+        h2_steps: "The 3-Step Mindset Shift",
+        li_step1: "<strong>Detach Worth from Price:</strong> The price tag is not a measure of your soul's value. It's simply the cost of logistics plus profit. Charging money doesn't make you a bad person; it makes you sustainable.",
+        li_step2: "<strong>Collect \"No\"s:</strong> Make it a game to get rejected. Every \"no\" brings you closer to the data you need to improve. A \"no\" isn't a personal attack; it's just market feedback.",
+        li_step3: "<strong>Start Small:</strong> You don't need to launch a luxury empire on Day 1. Sell one thing to one person. Break the seal. The first sale kills the imposter instantly.",
+        cta_t: "Join the Inner Circle",
+        cta_d: "Get weekly mindset hacks and design trends delivered to your inbox.",
+        btn_sub: "Join"
+      },
+      tr: {
+        back_all: '<i class="fa-solid fa-arrow-left mr-2"></i> Tüm Yazılar',
+        meta_top: "Zihniyet · 5 Dakika",
+        title: "İlk Ürünü Satmanın Verdiği \"Sahtekarlık Sendromu\"",
+        subtitle: "Neden kendinizi sahtekar gibi hissediyorsunuz ve bunu nasıl çözersiniz?",
+        byline: "Yazan: Zayn Collective",
+        p_intro: "Ürünü tasarladınız. Mağazayı kurdunuz. Ancak \"Yayınla\" düğmesine basma zamanı geldiğinde donup kalıyorsunuz. Kafanızın içindeki bir ses şöyle diyor: <em>\"Sen kimsin ki buna 50 dolar istiyorsun? Herkes bunu senden daha iyi yapıyor. İnsanlar benim sahte olduğumu düşünecek.\"</em>",
+        h2_expert: "\"Uzmanlık\" Tuzağı",
+        p_expert_1: "Bir şey satmak için genellikle dünyanın önde gelen uzmanı veya sertifikalı bir sanatçı olmamız gerektiğini düşünürüz. Bu yanlıştır. Bir guru olmanıza gerek yok; sadece müşterinizden <strong>bir adım önde</strong> olmanız yeterlidir.",
+        p_expert_2: "Dijital planlayıcınız birine haftada 2 saat kazandırıyorsa, o kişi sizin MBA diplomanız olup olmadığını veya ürünü pijamalarınızla yapıp yapmadığınızı umursamaz. Sonuca bakarlar.",
+        quote: "\"Para, sunulan değer için verilen bir takdir belgesinden ibarettir.\"",
+        h2_reframe: "Satışı Yeniden Çerçevelemek",
+        p_reframe: "Imposter sendromu kendinize odaklanmaktan kaynaklanır (\"İyi görünüyor muyum?\"). Çaresi ise müşteriye odaklanmaktır (\"Bu onlara yardımcı oluyor mu?\"). Satış yapmaktan çekindiğinizde, aslında bencil davranıyorsunuz. Birinin umutsuzca ihtiyaç duyabileceği bir çözümü, sırf siz nasıl görüneceğinizden korktuğunuz için esirgiyorsunuz.",
+        h2_steps: "3 Adımlı Zihniyet Değişimi",
+        li_step1: "<strong>Değeri Fiyattan Ayırın:</strong> Fiyat etiketi, ruhunuzun değerinin bir ölçüsü değildir. Sadece lojistik maliyeti artı kârdır. Para talep etmek sizi kötü bir insan yapmaz; sizi sürdürülebilir kılar.",
+        li_step2: "<strong>\"Hayır\"ları Toplayın:</strong> Reddedilmeyi bir oyun haline getirin. Her \"hayır\", sizi gelişmek için ihtiyacınız olan verilere yaklaştırır. Bir \"hayır\" kişisel bir saldırı değildir; sadece piyasa geri bildirimidir.",
+        li_step3: "<strong>Küçük Başlayın:</strong> İlk günden bir lüks imparatorluğu kurmanıza gerek yok. Bir kişiye bir şey satın. O mührü kırın. İlk satış, sahtekarlık hissini anında öldürür.",
+        cta_t: "İç Çembere Katılın",
+        cta_d: "Haftalık zihniyet tüyoları ve tasarım trendleri gelen kutunuza gelsin.",
+        btn_sub: "Katıl"
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    function applyLang() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+        });
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    }
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        localStorage.setItem('lang', currentLang);
+        applyLang();
+    }
+    applyLang();
+  </script>
 </body>
 </html>
