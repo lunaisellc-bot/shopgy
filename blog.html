@@ -34,7 +34,6 @@
   <style>
     body { background-color: #0B0B15; color: #E5E7EB; -webkit-font-smoothing: antialiased; }
     
-    /* Editorial Grid Lines */
     .journal-grid {
         background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px);
         background-size: 20% 100%;
@@ -67,21 +66,33 @@
 
     <div class="flex items-center gap-6">
       <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </nav>
+
+  <div id="mobile-menu" class="fixed inset-0 bg-bgdark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-serif text-white">
+    <button id="close-menu-btn" class="absolute top-6 right-8 text-gray-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-3xl"></i>
+    </button>
+    <a href="#trends" class="hover:text-gold transition" onclick="toggleMenu()">Trends</a>
+    <a href="#strategy" class="hover:text-gold transition" onclick="toggleMenu()">Strategy</a>
+    <a href="#mindset" class="hover:text-gold transition" onclick="toggleMenu()">Mindset</a>
+  </div>
 
   <header class="pt-32 pb-16 px-6 border-b border-white/5">
       <div class="max-w-7xl mx-auto reveal active">
           <div class="grid lg:grid-cols-2 gap-12 items-center">
               <div class="order-2 lg:order-1">
-                  <span class="text-gold text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="feat_tag">Editor's Pick · 2026 Trends</span>
+                  <span class="text-gold text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="feat_tag">Editor's Pick · 2026 Strategy</span>
                   <a href="dropshipping.html">
                       <h1 class="text-4xl md:text-6xl font-serif text-white mb-6 leading-tight hover:text-gray-200 transition duration-300 cursor-pointer">
-                          <span data-i18n="feat_title">The Death of Dropshipping: Why Branding is the New Survival Skill.</span>
+                          <span data-i18n="feat_title">Dropshipping Is Not Dead — Bad Dropshipping Is.</span>
                       </h1>
                   </a>
                   <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-xl" data-i18n="feat_desc">
-                      The era of quick flips is over. Discover how the Etsy algorithm has shifted to favor authentic brand stories and high-quality visuals.
+                      The era of arbitrage is over. In 2026, dropshipping is just a fulfillment method for brand-first systems. Here is the new playbook.
                   </p>
                   <a href="dropshipping.html" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest border-b border-gold pb-1 hover:text-gold transition">
                       <span data-i18n="btn_read">Read Article</span> <i class="fa-solid fa-arrow-right"></i>
@@ -131,51 +142,7 @@
               </a>
           </div>
 
-          <a href="digital-weddings-2026.html" class="article-card group cursor-pointer reveal" id="trends">
-              <div class="h-64 overflow-hidden rounded-xl mb-6 relative">
-                  <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=600" alt="Digital Weddings" class="article-img w-full h-full object-cover">
-                  <div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white border border-white/10">Trends</div>
-              </div>
-              <div class="text-xs text-gray-500 mb-2">4 Min Read · Jan 05, 2026</div>
-              <h3 class="article-title text-2xl font-serif text-white mb-3 leading-tight" data-i18n="a3_t">Digital Weddings: Why 2026 Brides Are Ditching Paper</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3" data-i18n="a3_d">Sustainability and convenience are driving a massive shift toward digital invitations. Here is the data.</p>
-              <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-white transition" data-i18n="read_more">Read More</span>
-          </a>
-
-          <a href="pinterest-seo.html" class="article-card group cursor-pointer reveal delay-100">
-              <div class="h-64 overflow-hidden rounded-xl mb-6 relative">
-                  <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=600" alt="Pinterest Strategy" class="article-img w-full h-full object-cover">
-                  <div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white border border-white/10">Strategy</div>
-              </div>
-              <div class="text-xs text-gray-500 mb-2">6 Min Read · Jan 04, 2026</div>
-              <h3 class="article-title text-2xl font-serif text-white mb-3 leading-tight" data-i18n="a4_t">Pinterest SEO: The Secret Weapon for Etsy Traffic</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-3" data-i18n="a4_d">Stop relying solely on Etsy search. How to build an automated traffic funnel using Pinterest pins.</p>
-              <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-white transition" data-i18n="read_more">Read More</span>
-          </a>
-
-          <div class="bg-[#0F1115] border border-white/10 rounded-xl p-8 flex flex-col justify-center items-center text-center reveal delay-200 group hover:border-blue-500/50 transition duration-500">
-              <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-2xl mb-4"><i class="fa-solid fa-chess-knight"></i></div>
-              <h4 class="font-serif text-xl text-white mb-2" data-i18n="ad2_t">Stuck at 10 Sales?</h4>
-              <p class="text-xs text-gray-400 mb-6 leading-relaxed" data-i18n="ad2_d">You need a strategy audit. Let's look at your shop together and fix the leaks.</p>
-              <a href="consulting.html" class="px-6 py-3 bg-blue-600 text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-blue-500 transition">
-                  <span data-i18n="btn_acad">Book Audit</span>
-              </a>
           </div>
-
-      </div>
-  </section>
-
-  <section class="py-24 border-t border-white/5 bg-gradient-to-b from-bgdark to-[#0F1115]">
-      <div class="max-w-xl mx-auto px-6 text-center reveal">
-          <h2 class="text-3xl font-serif text-white mb-4" data-i18n="news_t">Join The Inner Circle</h2>
-          <p class="text-gray-400 text-sm mb-8" data-i18n="news_d">Weekly insights on e-commerce strategy, design trends, and mindset hacks. No spam, just value.</p>
-          <form class="flex flex-col sm:flex-row gap-4">
-              <input type="email" placeholder="you@example.com" class="flex-1 bg-white/5 border border-white/10 rounded-full px-6 py-3 text-white focus:border-gold outline-none transition text-sm">
-              <button type="submit" class="bg-white text-black px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition">
-                  <span data-i18n="btn_sub">Subscribe</span>
-              </button>
-          </form>
-      </div>
   </section>
 
   <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
@@ -194,42 +161,44 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Mobile Menu
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('translate-x-full');
+    }
+
+    if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+
     // Translations
     const translations = {
       en: {
         nav_trends: "Trends", nav_strategy: "Strategy", nav_mindset: "Mindset",
-        feat_tag: "Editor's Pick · 2026 Trends",
-        feat_title: "The Death of Dropshipping: Why Branding is the New Survival Skill.",
-        feat_desc: "The era of quick flips is over. Discover how the Etsy algorithm has shifted to favor authentic brand stories and high-quality visuals.",
+        feat_tag: "Editor's Pick · 2026 Strategy",
+        feat_title: "Dropshipping Is Not Dead — Bad Dropshipping Is.",
+        feat_desc: "The era of arbitrage is over. In 2026, dropshipping is just a fulfillment method for brand-first systems. Here is the new playbook.",
         btn_read: "Read Article",
         
         a1_t: "How to Set Up a US LLC from Turkey", a1_d: "Stop letting payment gateways block your growth. A complete guide to Stripe, Wise, and legal formation.",
         a2_t: "The 'Imposter Syndrome' of Selling", a2_d: "Why you feel like a fraud before your first sale, and how to rewrite that mental script to scale faster.",
-        a3_t: "Digital Weddings: 2026 Shift", a3_d: "Sustainability and convenience are driving a massive shift toward digital invitations. Here is the data.",
-        a4_t: "Pinterest SEO: Secret Weapon", a4_d: "Stop relying solely on Etsy search. How to build an automated traffic funnel using Pinterest pins.",
         
         ad_t: "Need Better Visuals?", ad_d: "Don't let bad photos kill your great product. Check out our AI Mockup Studio.", btn_shop: "Visit Studio",
-        ad2_t: "Stuck at 10 Sales?", ad2_d: "You need a strategy audit. Let's look at your shop together and fix the leaks.", btn_acad: "Book Audit",
-        
-        news_t: "Join The Inner Circle", news_d: "Weekly insights on e-commerce strategy, design trends, and mindset hacks. No spam, just value.", btn_sub: "Subscribe",
         read_more: "Read More"
       },
       tr: {
         nav_trends: "Trendler", nav_strategy: "Strateji", nav_mindset: "Zihniyet",
-        feat_tag: "Editörün Seçimi · 2026 Trendleri",
-        feat_title: "Dropshipping'in Ölümü: Markalaşmak Neden Yeni Hayatta Kalma Becerisi?",
-        feat_desc: "Hızlı al-sat devri bitti. Etsy algoritmasının neden artık otantik marka hikayelerini ve yüksek kaliteli görselleri tercih ettiğini keşfedin.",
+        feat_tag: "Editörün Seçimi · 2026 Stratejisi",
+        feat_title: "Dropshipping Ölmedi — Kötü Dropshipping Öldü.",
+        feat_desc: "Arbitraj devri bitti. 2026'da dropshipping, sadece markalar için bir lojistik yöntemidir. İşte yeni oyun planı.",
         btn_read: "Makaleyi Oku",
         
         a1_t: "Türkiye'den ABD Şirketi (LLC) Nasıl Kurulur?", a1_d: "Ödeme altyapılarının büyümenizi engellemesine izin vermeyin. Stripe, Wise ve yasal kurulum rehberi.",
         a2_t: "İlk Satışın 'Sahtekarlık Sendromu'", a2_d: "İlk satıştan önce neden kendinizi yetersiz hissediyorsunuz ve daha hızlı büyümek için bu zihniyeti nasıl değiştirirsiniz?",
-        a3_t: "Dijital Düğünler: 2026 Dönüşümü", a3_d: "Sürdürülebilirlik ve kolaylık, dijital davetiyelere doğru büyük bir kayma yaratıyor. İşte veriler.",
-        a4_t: "Pinterest SEO: Gizli Silah", a4_d: "Sadece Etsy aramalarına güvenmeyin. Pinterest pinlerini kullanarak nasıl otomatik bir trafik hunisi kurarsınız?",
         
         ad_t: "Görselleriniz Yetersiz mi?", ad_d: "Kötü fotoğrafların harika ürününüzü öldürmesine izin vermeyin. AI Mockup Stüdyomuza göz atın.", btn_shop: "Stüdyoyu Gez",
-        ad2_t: "Satışlarınız Durdu mu?", ad2_d: "Stratejik bir analize ihtiyacınız var. Mağazanızı birlikte inceleyelim ve eksikleri giderelim.", btn_acad: "Analiz Al",
-        
-        news_t: "İç Çembere Katılın", news_d: "E-ticaret stratejisi, tasarım trendleri ve zihniyet üzerine haftalık içgörüler. Spam yok, sadece değer var.", btn_sub: "Abone Ol",
         read_more: "Devamını Oku"
       }
     };
