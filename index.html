@@ -3,14 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VitrinY | Digital Design Agency by Lunaise LLC</title>
-  <meta name="description" content="High-end Etsy integrations, digital invitations, and corporate web design. Operated by Lunaise LLC, Sheridan, WY." />
+  
+  <title>VitrinY | Digital Design Agency & Etsy Integration</title>
+  <meta name="description" content="Premium Etsy integrations, digital wedding invitations, and strategic consulting for global entrepreneurs. Operated by Lunaise LLC, Sheridan, WY." />
+  <meta name="keywords" content="Etsy Integration, Digital Weddings, Web Design Agency, LLC Formation, Dropshipping Strategy, VitrinY, Lunaise LLC" />
   <meta name="author" content="Lunaise LLC">
+  <link rel="canonical" href="https://vitriny.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vitriny.com/" />
+  <meta property="og:title" content="VitrinY | Be The Rule Maker In The Digital World" />
+  <meta property="og:description" content="We build digital empires. High-end Etsy sync, VIP event websites, and global business consulting." />
+  <meta property="og:image" content="https://vitriny.com/assets/og-image.jpg" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://vitriny.com/" />
+  <meta property="twitter:title" content="VitrinY | Digital Design Agency" />
+  <meta property="twitter:description" content="Operated by Lunaise LLC. Web design, Etsy API strategies, and digital assets." />
+  <meta property="twitter:image" content="https://vitriny.com/assets/og-image.jpg" />
+
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VitrinY",
+    "alternateName": "Lunaise LLC",
+    "url": "https://vitriny.com",
+    "logo": "https://vitriny.com/assets/logo.png",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-307-205-9144",
+        "contactType": "customer service",
+        "areaServed": "US",
+        "availableLanguage": "English"
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+90-541-978-7726",
+        "contactType": "customer service",
+        "areaServed": "TR",
+        "availableLanguage": ["Turkish", "English"]
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "30 N Gould St Ste N",
+      "addressLocality": "Sheridan",
+      "addressRegion": "WY",
+      "postalCode": "82801",
+      "addressCountry": "US"
+    }
+  }
+  </script>
 
   <script>
     tailwind.config = {
@@ -39,23 +92,29 @@
   <style>
     body { background-color: #0B0B15; color: white; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     
-    /* Işıklar */
+    /* Lights */
     .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
-    .light-orb-1 { position: absolute; top: -20%; left: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(123,97,255,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 8s infinite alternate; }
-    .light-orb-2 { position: absolute; bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(0,220,130,0.08) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 12s infinite alternate-reverse; }
+    .light-orb-1 { position: absolute; top: -20%; left: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(123,97,255,0.1) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 8s infinite alternate; will-change: transform, opacity; }
+    .light-orb-2 { position: absolute; bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(0,220,130,0.08) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 12s infinite alternate-reverse; will-change: transform, opacity; }
 
-    /* AGENCY Panelleri (Expand Effect) */
+    /* AGENCY Panels */
     .service-panel { flex: 1; transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s; filter: grayscale(80%) brightness(0.7); position: relative; overflow: hidden; border-right: 1px solid rgba(255,255,255,0.05); }
     .service-panel:hover { flex: 2.5; filter: grayscale(0%) brightness(1); }
     .service-panel::before { content: ''; position: absolute; inset: 0; background: rgba(11,11,21,0.4); z-index: 10; transition: background 0.5s; }
     .service-panel:hover::before { background: rgba(11,11,21,0.1); }
     
-    /* HUB Grid Kartları */
+    /* HUB Cards */
     .hub-card { transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
     .hub-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
 
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    /* Horizontal Scroll Snap Fix */
+    .snap-mandatory { scroll-snap-type: x mandatory; }
+    .snap-center { scroll-snap-align: center; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 
@@ -66,8 +125,8 @@
       <div class="light-orb-2"></div>
   </div>
 
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center transition-all duration-300">
-    <a href="#" class="flex items-center gap-3 group">
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-4 px-6 md:px-8 flex justify-between items-center transition-all duration-300">
+    <a href="index.html" class="flex items-center gap-3 group">
         <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-purple to-neon p-[1px]">
             <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
                 <span class="font-bold text-lg text-white">V</span>
@@ -82,24 +141,24 @@
       <a href="#journal" class="hover:text-white transition" data-i18n="nav_journal">Journal</a>
     </div>
 
-    <div class="flex items-center gap-6">
+    <div class="flex items-center gap-4 md:gap-6">
       <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white hover:border-white/30 transition">EN</button>
-      <a href="#agency" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-lg hover:shadow-neon/20">
+      <a href="#agency" class="bg-white text-black px-5 py-2.5 md:px-6 md:py-3 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-lg hover:shadow-neon/20 whitespace-nowrap">
         <span data-i18n="nav_cta">Start Project</span>
       </a>
     </div>
   </nav>
 
   <header class="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-4">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-lighten pointer-events-none">
+    <video autoplay muted loop playsinline preload="none" poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-lighten pointer-events-none">
         <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-connection-lines-and-dots-33536-large.mp4" type="video/mp4">
     </video>
-    <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/70 to-transparent"></div>
 
     <div class="relative z-10 max-w-4xl mx-auto reveal active">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.3em] text-neon uppercase mb-8 backdrop-blur-md animate-bounce" style="animation-duration: 3s;">
             <span class="w-2 h-2 rounded-full bg-neon"></span>
-            <span data-i18n="hero_badge">Digital Authority Est. 2026</span>
+            <span data-i18n="hero_badge">Official 2026 Launch</span>
         </div>
 
         <h1 class="text-5xl md:text-8xl font-extrabold leading-[1.1] tracking-tighter mb-8">
@@ -115,21 +174,44 @@
             <a href="#agency" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition shadow-xl shadow-white/10 flex items-center justify-center gap-3">
                 <span data-i18n="btn_explore">Explore Services</span> <i class="fa-solid fa-arrow-down"></i>
             </a>
+            <a href="#hub" class="px-8 py-4 bg-transparent border border-white/20 text-white font-bold rounded-full hover:bg-white/5 hover:border-white/50 transition flex items-center justify-center gap-3">
+                <span data-i18n="btn_resources">Resource Hub</span>
+            </a>
         </div>
     </div>
   </header>
 
-  <section id="agency" class="h-[800px] md:h-[700px] w-full flex flex-col md:flex-row bg-bgdark border-y border-white/5 relative z-20">
+  <section class="border-y border-white/5 bg-[#0D0D14] py-12 relative z-20">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+          <div class="p-4 reveal">
+              <i class="fa-solid fa-flag-usa text-purple mb-4 text-xl"></i>
+              <h3 class="text-white font-bold text-sm uppercase tracking-widest mb-2" data-i18n="trust_1_title">USA HQ</h3>
+              <p class="text-gray-500 text-sm" data-i18n="trust_1_desc">Operated by Lunaise LLC.<br>Wyoming, USA.</p>
+          </div>
+          <div class="p-4 reveal transition delay-100">
+              <i class="fa-solid fa-code text-neon mb-4 text-xl"></i>
+              <h3 class="text-white font-bold text-sm uppercase tracking-widest mb-2" data-i18n="trust_2_title">Tech First</h3>
+              <p class="text-gray-500 text-sm" data-i18n="trust_2_desc">Etsy API v3 Ready.<br>Next-Gen Integrations.</p>
+          </div>
+          <div class="p-4 reveal transition delay-200">
+              <i class="fa-solid fa-globe text-blue-400 mb-4 text-xl"></i>
+              <h3 class="text-white font-bold text-sm uppercase tracking-widest mb-2" data-i18n="trust_3_title">Global Reach</h3>
+              <p class="text-gray-500 text-sm" data-i18n="trust_3_desc">Supporting entrepreneurs<br>from Turkey to the World.</p>
+          </div>
+      </div>
+  </section>
+
+  <section id="agency" class="h-[800px] md:h-[700px] w-full flex flex-col md:flex-row bg-bgdark relative z-20">
       
       <div class="service-panel flex flex-col justify-end p-10 relative group bg-[#050A08] hover:bg-[#081410]">
-          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100" alt="Etsy Integration">
           <div class="relative z-20 transform md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-20 md:left-20 group-hover:rotate-0 group-hover:static group-hover:translate-x-0 transition-all duration-500">
               <span class="text-neon font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-brands fa-etsy mr-2"></i> Commerce</span>
               <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="etsy_title">Etsy Sync</h2>
           </div>
           <div class="relative z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
               <p class="text-gray-300 max-w-sm mb-8 text-lg leading-relaxed" data-i18n="etsy_desc">
-                  Turn your Etsy shop into an empire. API integration, 0% commission, and full brand control.
+                  Turn your Etsy shop into a standalone empire. API integration, 0% commission on direct sales, and full brand control.
               </p>
               <a href="etsy.html" class="px-8 py-4 rounded-full bg-neon text-black font-bold text-sm uppercase tracking-widest hover:bg-white transition inline-flex items-center gap-2">
                   <span data-i18n="btn_explore_sys">Explore System</span> <i class="fa-solid fa-arrow-right"></i>
@@ -138,14 +220,14 @@
       </div>
 
       <div class="service-panel flex flex-col justify-end p-10 relative group bg-[#0A050E] hover:bg-[#15081C]">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100" alt="Luxury Wedding Website">
         <div class="relative z-20 transform md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-20 md:left-20 group-hover:rotate-0 group-hover:static group-hover:translate-x-0 transition-all duration-500">
             <span class="text-purple font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-solid fa-champagne-glasses mr-2"></i> Events</span>
             <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="wed_title">Wedding & VIP</h2>
         </div>
         <div class="relative z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
             <p class="text-gray-300 max-w-sm mb-8 text-lg leading-relaxed" data-i18n="wed_desc">
-                Cinematic websites for Weddings and Private VIP Parties. Password protection, RSVP, and Time Capsules.
+                Cinematic websites for Weddings and Private VIP Parties. Password protection, RSVP management, and Digital Time Capsules.
             </p>
             <a href="digital-invitation.html" class="px-8 py-4 rounded-full bg-purple text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-purple transition inline-flex items-center gap-2">
                 <span data-i18n="btn_view">View Examples</span> <i class="fa-solid fa-arrow-right"></i>
@@ -186,7 +268,7 @@
                   <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 text-3xl mb-8 border border-blue-500/20"><i class="fa-solid fa-graduation-cap"></i></div>
                   <h3 class="text-3xl font-serif text-white mb-4" data-i18n="acad_h">VitrinY Academy</h3>
                   <p class="text-gray-400 mb-8 leading-relaxed text-sm" data-i18n="acad_p">
-                      Strategic consulting for global expansion. US LLC formation, Etsy scale-up strategies, and 1-on-1 mentorship.
+                      Strategic consulting for global expansion. US LLC formation, modern dropshipping compliance, and 1-on-1 mentorship.
                   </p>
                   <ul class="text-xs text-gray-500 space-y-2 mb-8 uppercase tracking-wide">
                       <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> LLC Formation</li>
@@ -206,34 +288,37 @@
       <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end reveal">
           <div>
               <h2 class="text-3xl font-bold mb-2" data-i18n="blog_title">The Journal</h2>
-              <p class="text-gray-500" data-i18n="blog_sub">Insights on strategy and design.</p>
+              <p class="text-gray-500" data-i18n="blog_sub">Insights on strategy, law, and design.</p>
           </div>
           <a href="blog.html" class="text-xs font-bold uppercase tracking-widest text-gold hover:text-white transition">Read All <i class="fa-solid fa-arrow-right ml-1"></i></a>
       </div>
 
       <div class="flex gap-6 overflow-x-auto px-6 pb-12 snap-x snap-mandatory max-w-[100vw] scrollbar-hide reveal">
-          <a href="blog.html" class="min-w-[350px] snap-center group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/5">
-              <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70">
+          
+          <a href="pinterest-seo.html" class="min-w-[350px] snap-center group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/5 bg-surface">
+              <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1000&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70" alt="Pinterest SEO Strategy">
               <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/20 to-transparent"></div>
               <div class="absolute bottom-0 p-10">
-                  <span class="text-xs font-bold text-neon uppercase tracking-widest mb-3 block">Trends</span>
-                  <h3 class="font-serif text-3xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">The Future of Luxury E-Commerce</h3>
+                  <span class="text-xs font-bold text-neon uppercase tracking-widest mb-3 block">Traffic</span>
+                  <h3 class="font-serif text-2xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">Pinterest SEO 2026: The Hidden Traffic Source</h3>
               </div>
           </a>
-          <a href="blog.html" class="min-w-[350px] snap-center group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/5">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70">
+
+          <a href="digital-weddings-2026.html" class="min-w-[350px] snap-center group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/5 bg-surface">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70" alt="Digital Wedding Invitations">
             <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/20 to-transparent"></div>
             <div class="absolute bottom-0 p-10">
-                <span class="text-xs font-bold text-purple uppercase tracking-widest mb-3 block">Mindset</span>
-                <h3 class="font-serif text-3xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">Building a Brand, Not Just a Shop</h3>
+                <span class="text-xs font-bold text-purple uppercase tracking-widest mb-3 block">Trends</span>
+                <h3 class="font-serif text-2xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">Digital Weddings: Why Paper is Out in 2026</h3>
             </div>
         </a>
-        <a href="blog.html" class="min-w-[350px] snap-center group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/5">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70">
+
+        <a href="llc-from-turkey.html" class="min-w-[350px] snap-center group relative rounded-3xl overflow-hidden aspect-[4/5] border border-white/5 bg-surface">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-70" alt="LLC Formation from Turkey">
             <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/20 to-transparent"></div>
             <div class="absolute bottom-0 p-10">
-                <span class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3 block">Strategy</span>
-                <h3 class="font-serif text-3xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">High Conversion Design Secrets</h3>
+                <span class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3 block">Legal</span>
+                <h3 class="font-serif text-2xl text-white leading-tight group-hover:underline decoration-2 underline-offset-4">Opening a US LLC from Turkey: The Complete Guide</h3>
             </div>
         </a>
       </div>
@@ -241,6 +326,7 @@
 
   <footer class="py-20 bg-bgdark border-t border-white/5 text-center relative z-10">
       <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 text-left mb-12">
+          
           <div class="col-span-1 md:col-span-2">
               <span class="font-bold text-3xl tracking-widest block mb-6">VITRINY</span>
               <p class="text-gray-500 text-sm max-w-sm mb-6" data-i18n="footer_desc">
@@ -252,22 +338,25 @@
                   <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"><i class="fa-brands fa-linkedin"></i></a>
               </div>
           </div>
+
           <div>
               <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">HQ / Contact</h4>
               <ul class="space-y-4 text-sm text-gray-400">
-                  <li><i class="fa-solid fa-location-dot mr-2"></i> Sheridan, WY, USA</li>
-                  <li><a href="https://wa.me/905419787726" class="hover:text-neon"><i class="fa-brands fa-whatsapp mr-2"></i> +90 541 978 77 26</a></li>
+                  <li><i class="fa-solid fa-location-dot mr-2"></i> 30 N Gould St Ste N, Sheridan, WY 82801</li>
+                  <li><a href="tel:+13072059144" class="hover:text-neon"><i class="fa-solid fa-phone mr-2"></i> +1 307 205 9144 (US)</a></li>
+                  <li><a href="https://wa.me/905419787726" class="hover:text-neon"><i class="fa-brands fa-whatsapp mr-2"></i> +90 541 978 77 26 (TR)</a></li>
                   <li><a href="mailto:support@vitriny.com" class="hover:text-white"><i class="fa-solid fa-envelope mr-2"></i> support@vitriny.com</a></li>
               </ul>
           </div>
+
           <div>
               <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Ecosystem</h4>
               <ul class="space-y-3 text-sm text-gray-400">
                   <li><a href="etsy.html" class="hover:text-white transition">Etsy Integration</a></li>
                   <li><a href="digital-invitation.html" class="hover:text-white transition">Digital Events</a></li>
                   <li><a href="studio.html" class="hover:text-neon transition">VitrinY Studio</a></li>
-                  <li><a href="consulting.html" class="hover:text-blue-400 transition">Academy</a></li>
-                  <li><a href="legal.html" class="hover:text-white transition">Legal & Privacy</a></li>
+                  <li><a href="consulting.html" class="hover:text-blue-400 transition">Academy & LLC</a></li>
+                  <li><a href="legal.html" class="hover:text-white transition">Privacy & Terms</a></li>
               </ul>
           </div>
       </div>
@@ -276,7 +365,7 @@
       </div>
   </footer>
 
-  <a href="https://wa.me/905419787726" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 transition animate-bounce" style="animation-duration: 3s;">
+  <a href="https://wa.me/905419787726" target="_blank" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 transition animate-bounce" style="animation-duration: 3s;">
       <i class="fa-brands fa-whatsapp"></i>
   </a>
 
@@ -289,44 +378,52 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Translation
+    // Translation Dictionary
     const translations = {
       en: {
         nav_agency: "Agency", nav_hub: "Resources", nav_journal: "Journal", nav_cta: "Start Project",
-        hero_badge: "Digital Authority Est. 2026",
+        hero_badge: "Official 2026 Launch",
         hero_t1: "Be The Rule Maker", hero_t2: "In The Digital World.",
-        hero_desc: "Ordinary templates are not enough. We build digital assets that competitors envy and customers love.",
-        btn_explore: "Explore Services",
+        hero_desc: "We don't just build websites. We build digital empires for Etsy sellers, luxury events, and forward-thinking brands.",
+        btn_explore: "Explore Services", btn_resources: "Resource Hub",
         
-        etsy_title: "Etsy Sync", etsy_desc: "Turn your Etsy shop into an empire. API integration, 0% commission, and full brand control.",
+        trust_1_title: "USA HQ", trust_1_desc: "Operated by Lunaise LLC.<br>Wyoming, USA.",
+        trust_2_title: "Tech First", trust_2_desc: "Etsy API v3 Ready.<br>Next-Gen Integrations.",
+        trust_3_title: "Global Reach", trust_3_desc: "Supporting entrepreneurs<br>from Turkey to the World.",
+
+        etsy_title: "Etsy Sync", etsy_desc: "Turn your Etsy shop into a standalone empire. API integration, 0% commission on direct sales, and full brand control.",
         btn_explore_sys: "Explore System",
-        wed_title: "Events & Love", wed_desc: "Cinematic websites for Weddings and Private VIP Parties. Password protection, RSVP, and Time Capsules.",
+        wed_title: "Events & Love", wed_desc: "Cinematic websites for Weddings and Private VIP Parties. Password protection, RSVP management, and Digital Time Capsules.",
         btn_view: "View Examples",
         
         hub_badge: "The Resource Hub", hub_title: "Grow. Learn. Equip.", hub_sub: "You don't always need us to build it. Sometimes you just need the tools and the map.",
         studio_h: "VitrinY Studio", studio_p: "Premium digital assets for creators. Download high-fashion mockups, AI prompt engineering kits, and video templates.", btn_studio: "Enter Studio",
-        acad_h: "VitrinY Academy", acad_p: "Strategic consulting for global expansion. US LLC formation, Etsy scale-up strategies, and 1-on-1 mentorship.", btn_acad: "Book Strategy",
+        acad_h: "VitrinY Academy", acad_p: "Strategic consulting for global expansion. US LLC formation, modern dropshipping compliance, and 1-on-1 mentorship.", btn_acad: "Book Strategy",
         
-        blog_title: "The Journal", blog_sub: "Insights on strategy and design.",
+        blog_title: "The Journal", blog_sub: "Insights on strategy, law, and design.",
         footer_desc: "Operated by Lunaise LLC. Premium digital solutions for global entrepreneurs."
       },
       tr: {
         nav_agency: "Ajans", nav_hub: "Kaynaklar", nav_journal: "Günlük", nav_cta: "Projeye Başla",
-        hero_badge: "Dijital Otorite Kur. 2026",
+        hero_badge: "Resmi 2026 Lansmanı",
         hero_t1: "Dijital Dünyada", hero_t2: "Kural Koyucu Olun.",
-        hero_desc: "Sıradan şablonlar işletmenize yetmez. Biz, rakiplerinizin kıskanacağı, müşterilerinizin aşık olacağı dijital varlıklar inşa ediyoruz.",
-        btn_explore: "Hizmetleri Keşfet",
+        hero_desc: "Sadece web sitesi değil, dijital imparatorluklar kuruyoruz. Etsy satıcıları, lüks etkinlikler ve vizyoner markalar için.",
+        btn_explore: "Hizmetleri Keşfet", btn_resources: "Kaynak Merkezi",
         
-        etsy_title: "Etsy Entegrasyon", etsy_desc: "Etsy mağazanızı bir imparatorluğa dönüştürün. API entegrasyonu, %0 komisyon ve tam marka kontrolü.",
+        trust_1_title: "ABD MERKEZ", trust_1_desc: "Lunaise LLC Yönetiminde.<br>Wyoming, ABD.",
+        trust_2_title: "Teknoloji", trust_2_desc: "Etsy API v3 Hazır.<br>Yeni Nesil Entegrasyon.",
+        trust_3_title: "Global Erişim", trust_3_desc: "Türkiye'den Dünyaya<br>girişimci desteği.",
+
+        etsy_title: "Etsy Entegrasyon", etsy_desc: "Etsy mağazanızı bağımsız bir markaya dönüştürün. API entegrasyonu, satışlarda %0 komisyon ve tam kontrol.",
         btn_explore_sys: "Sistemi İncele",
-        wed_title: "Düğün & VIP", wed_desc: "Düğünler ve Yetişkin VIP Partileri için sinematik web siteleri. Şifreli giriş, Müzik, LCV ve Zaman Kapsülü.",
+        wed_title: "Düğün & VIP", wed_desc: "Düğünler ve VIP Partiler için sinematik web siteleri. Şifreli giriş, LCV yönetimi ve Dijital Zaman Kapsülü.",
         btn_view: "Örnekleri Gör",
         
         hub_badge: "Kaynak Merkezi", hub_title: "Büyü. Öğren. Donan.", hub_sub: "Her zaman bize ihtiyacınız yok. Bazen sadece doğru araçlara ve haritaya ihtiyacınız var.",
-        studio_h: "VitrinY Stüdyo", studio_p: "Yaratıcılar için premium dijital varlıklar. Moda mockup'ları, AI prompt kitleri ve video şablonlarını indirin.", btn_studio: "Stüdyoya Gir",
-        acad_h: "VitrinY Akademi", acad_p: "Global büyüme için stratejik danışmanlık. Amerika'da şirket kurulumu, Etsy büyütme stratejileri ve birebir mentorluk.", btn_acad: "Randevu Al",
+        studio_h: "VitrinY Stüdyo", studio_p: "Yaratıcılar için premium varlıklar. Moda mockup'ları, AI prompt kitleri ve video şablonları.", btn_studio: "Stüdyoya Gir",
+        acad_h: "VitrinY Akademi", acad_p: "Global büyüme için stratejik danışmanlık. Amerika'da şirket kurulumu, modern dropshipping uyumluluğu ve birebir mentorluk.", btn_acad: "Randevu Al",
         
-        blog_title: "Günlük", blog_sub: "Strateji ve tasarım üzerine içgörüler.",
+        blog_title: "Günlük", blog_sub: "Strateji, hukuk ve tasarım üzerine içgörüler.",
         footer_desc: "Lunaise LLC iştirakidir. Global girişimciler için premium dijital çözümler."
       }
     };
@@ -339,6 +436,7 @@
             if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
         });
         document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+        document.documentElement.lang = currentLang; // Update HTML lang attribute for SEO
     }
 
     function toggleLang() {
