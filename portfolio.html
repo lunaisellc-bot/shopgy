@@ -3,11 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitrinY Showcase | Premium Themes</title>
+    
+    <title>VitrinY Showcase | Live Demo Websites & Etsy-Ready Themes</title>
+    <meta name="description" content="Explore premium digital themes for Etsy sellers, weddings, and portfolios. Built by Lunaise LLC for high conversion and future Etsy API integration." />
+    <meta name="keywords" content="Etsy website themes, digital wedding invitations, portfolio templates, Shopify alternative, VitrinY demos" />
+    <meta name="author" content="Lunaise LLC">
+    <link rel="canonical" href="https://vitriny.com/portfolio.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vitriny.com/portfolio.html" />
+    <meta property="og:title" content="VitrinY Showcase | Premium Digital Themes" />
+    <meta property="og:description" content="Choose your identity. Premium themes for Etsy sellers and events, engineered for conversion." />
+    <meta property="og:image" content="https://vitriny.com/assets/og-showcase.jpg" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://vitriny.com/portfolio.html" />
+    <meta property="twitter:title" content="VitrinY Showcase | Premium Digital Themes" />
+    <meta property="twitter:description" content="Choose your identity. Premium themes for Etsy sellers and events." />
+    <meta property="twitter:image" content="https://vitriny.com/assets/og-showcase.jpg" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "VitrinY Showcase",
+      "description": "A collection of premium website themes for Etsy sellers, events, and portfolios.",
+      "url": "https://vitriny.com/portfolio.html",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://vitriny.com/demo-ultra.html",
+            "name": "Project X (Luxury)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://vitriny.com/demo-fashion2.html",
+            "name": "Atelier Noir (Fashion)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://vitriny.com/demo-business-2.html",
+            "name": "Naturel Home (Decor)"
+          }
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Lunaise LLC",
+        "logo": "https://vitriny.com/assets/logo.png"
+      }
+    }
+    </script>
 
     <script>
         tailwind.config = {
@@ -34,6 +90,617 @@
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: white; -webkit-font-smoothing: antialiased; }
+        
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass {
+            background: rgba(20, 20, 25, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .filter-btn {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .filter-btn.active {
+            color: #00ff9d;
+            background: rgba(0, 255, 157, 0.1);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+        .filter-btn.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 4px; border-radius: 50%; background: #00ff9d;
+        }
+
+        .portfolio-card {
+            background: #0F1115;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 157, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+        .portfolio-card:hover .card-img {
+            transform: scale(1.05);
+            opacity: 0.4;
+        }
+        .portfolio-card:hover .view-btn {
+            opacity: 1; transform: translateY(0);
+        }
+        
+        .feature-tag {
+            font-size: 10px; 
+            background: rgba(255,255,255,0.05); 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            color: #aaa;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-neon selection:text-black">
+
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-float"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-neon rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-float" style="animation-delay: 2s;"></div>
+    </div>
+
+    <nav class="fixed w-full z-50 glass-nav h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-neon group-hover:text-black transition duration-300">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <span class="font-head font-bold text-sm text-gray-400 group-hover:text-white transition" data-i18n="nav_back">Back to Home</span>
+            </a>
+            <div class="font-head text-xl font-bold tracking-tight">VitrinY <span class="text-neon" data-i18n="nav_title">Showcase</span></div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+                <a href="https://wa.me/905419787726" id="nav-cta" class="hidden md:block bg-neon text-black px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white transition" data-i18n="nav_cta">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 text-center relative z-10">
+        <h1 class="font-head text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+            <span data-i18n="hero_t1">Choose Your</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-purple" data-i18n="hero_t2">Identity.</span>
+        </h1>
+        <p class="text-gray-400 max-w-xl mx-auto mb-10 text-sm md:text-base animate-fade-in" style="animation-delay: 0.1s" data-i18n="hero_desc">
+            Built for conversion and prepared to be synced with your Etsy inventory via our Etsy Open API system.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-2 md:gap-4 animate-fade-in" style="animation-delay: 0.2s">
+            <button onclick="filterSelection('all', this)" class="filter-btn active px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300" data-i18n="filter_all">All Themes</button>
+            <button onclick="filterSelection('commerce', this)" class="filter-btn px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300" data-i18n="filter_store">Retail Store</button>
+            <button onclick="filterSelection('event', this)" class="filter-btn px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300" data-i18n="filter_event">Events & RSVP</button>
+            <button onclick="filterSelection('creative', this)" class="filter-btn px-6 py-2 rounded-full border border-white/5 text-sm font-medium hover:bg-white/5 text-gray-300" data-i18n="filter_creative">Portfolio</button>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-6 pb-20 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-ultra.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Project X Luxury Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-ultra.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Project X</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_luxury">LUXURY</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c1_desc">
+                            A brutalist, high-impact design for streetwear and premium brands. Uses large typography and full-width imagery to command attention.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-video mr-1"></i> Video Bg</span>
+                        <span class="feature-tag"><i class="fa-solid fa-bolt mr-1"></i> Fast Load</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-fashion2.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Atelier Noir Fashion Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-fashion2.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Atelier Noir</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_fashion">FASHION</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c2_desc">
+                            Editorial style layout inspired by Vogue. Perfect for boutique clothing lines that want to tell a story with their products.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-layer-group mr-1"></i> Parallax</span>
+                        <span class="feature-tag"><i class="fa-solid fa-camera mr-1"></i> Lookbook</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-fashion.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Vogue Standard Retail Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-fashion.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-pink-300 hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-pink-300 transition">Vogue Std.</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_classic">CLASSIC</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c3_desc">
+                            Clean, grid-based standard retail layout. High conversion rate, easy navigation. Ideal for shops with 50+ items.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-grid-2 mr-1"></i> Grid View</span>
+                        <span class="feature-tag"><i class="fa-solid fa-filter mr-1"></i> Filters</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-business-2.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Naturel Home Decor Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-business-2.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Naturel Home</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_decor">DECOR</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c4_desc">
+                            Organic, earthy, and spacious. Designed specifically for furniture, handmade ceramics, and home decor sellers.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-leaf mr-1"></i> Organic</span>
+                        <span class="feature-tag"><i class="fa-solid fa-expand mr-1"></i> Spacious</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-business.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Luma Corp B2B Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-business.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-blue-300 hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-blue-300 transition">Luma Corp</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400">B2B</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c5_desc">
+                            Professional and corporate. Builds trust for wholesale sellers, supplies, or service-based Etsy shops.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-briefcase mr-1"></i> Professional</span>
+                        <span class="feature-tag"><i class="fa-solid fa-check-double mr-1"></i> Clean</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-horizon.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Horizon Horizontal Scroll Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-horizon.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Horizon</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_concept">CONCEPT</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c6_desc">
+                            A revolutionary sideways-scrolling layout. Turns your shop into an art gallery walk-through. Unforgettable UX.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-arrows-left-right mr-1"></i> Horizontal</span>
+                        <span class="feature-tag"><i class="fa-solid fa-film mr-1"></i> Cinematic</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-vertex.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Vertex Mobile Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-vertex.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-purple-400 hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-purple-400 transition">Vertex</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_mobile">MOBILE</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c7_desc">
+                            TikTok/Reels style vertical snap scrolling. Optimized for Gen-Z audience and mobile-first shopping experiences.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-mobile-screen mr-1"></i> Snap Scroll</span>
+                        <span class="feature-tag"><i class="fa-solid fa-play mr-1"></i> Full Screen</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item event">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-event.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Velvet Wedding Invitation Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-event.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-pink-400 hover:text-white hover:scale-105" data-i18n="btn_view_inv">View Invitation</a>
+                    </div>
+                </div>
+                <div class="p-6 border-t border-pink-500/20 bg-pink-500/5 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-pink-300 group-hover:text-white transition">Velvet</h3>
+                            <span class="text-[10px] font-bold border border-pink-500/30 text-pink-400 px-2 py-1 rounded" data-i18n="tag_wedding">WEDDING</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c8_desc">
+                            Elegant digital wedding invitation. Includes RSVP tracking, Google Maps integration, and gift registry links.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-envelope-open mr-1"></i> RSVP</span>
+                        <span class="feature-tag"><i class="fa-solid fa-location-dot mr-1"></i> Maps</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-jewelry.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Aurora Jewelry Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-jewelry.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-yellow-400 hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-yellow-400 transition">Aurora</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_jewelry">JEWELRY</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c9_desc">
+                            Dark mode luxury designed to highlight sparkle. Macro-photography focus, perfect for gold, silver, and gemstones.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-gem mr-1"></i> High Contrast</span>
+                        <span class="feature-tag"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Zoom</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item event">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-event-2.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Little Bloom Shower Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="event-2.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-orange-400 hover:text-white hover:scale-105" data-i18n="btn_view_inv">View Invitation</a>
+                    </div>
+                </div>
+                <div class="p-6 border-t border-orange-500/20 bg-orange-500/5 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-orange-300 group-hover:text-white transition">Little Bloom</h3>
+                            <span class="text-[10px] font-bold border border-orange-500/30 text-orange-400 px-2 py-1 rounded" data-i18n="tag_shower">SHOWER</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c10_desc">
+                            Playful, animated, and boho style. Perfect for Baby Showers, First Birthdays, or Gender Reveal parties.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-shapes mr-1"></i> Animated</span>
+                        <span class="feature-tag"><i class="fa-solid fa-book-open mr-1"></i> Guestbook</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-kids.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Little Wonders Kids Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-kids.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-cyan-400 hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-cyan-400 transition">Little Wonders</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_kids">KIDS</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c11_desc">
+                            Vibrant colors, fun fonts, and easy navigation for parents. Ideal for selling toys, kids clothing, or educational tools.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-palette mr-1"></i> Colorful</span>
+                        <span class="feature-tag"><i class="fa-solid fa-child-reaching mr-1"></i> Fun</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item creative commerce">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-starter.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Iron Clad Digital Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-starter.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">Iron Clad</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_digital">DIGITAL</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c12_desc">
+                            High-energy layout designed for selling digital products like PDF workout plans, e-books, or coaching services.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-download mr-1"></i> Digital</span>
+                        <span class="feature-tag"><i class="fa-solid fa-file-pdf mr-1"></i> PDF Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-starter-1.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="Nexus Bio Link Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-starter-1.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-purple-400 hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-purple-400 transition">Nexus</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_creator">CREATOR</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c13_desc">
+                            The ultimate 'Link-in-Bio' website. Aggregate your Etsy shop, social media, and affiliate links in one professional hub.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-link mr-1"></i> Bio Link</span>
+                        <span class="feature-tag"><i class="fa-solid fa-hashtag mr-1"></i> Social</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card rounded-2xl group filter-item creative">
+                <div class="h-64 bg-black relative overflow-hidden">
+                    <img src="assets/img/preview-art.jpg.png" loading="lazy" class="card-img w-full h-full object-cover opacity-70 transition duration-700" alt="The Gallery Art Theme">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <a href="demo-art.html" target="_blank" class="view-btn opacity-0 transform translate-y-4 transition duration-300 bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-neon hover:scale-105" data-i18n="btn_view">View Demo</a>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col h-full justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="font-head text-lg font-bold text-white group-hover:text-neon transition">The Gallery</h3>
+                            <span class="text-[10px] font-bold border border-white/10 px-2 py-1 rounded text-gray-400" data-i18n="tag_art">ART</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed" data-i18n="c14_desc">
+                            Minimalist, museum-style white space layout. Designed to let photography, prints, and art pieces speak for themselves.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap border-t border-white/5 pt-4">
+                        <span class="feature-tag"><i class="fa-solid fa-crop-simple mr-1"></i> Minimal</span>
+                        <span class="feature-tag"><i class="fa-solid fa-image mr-1"></i> Gallery</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-10 text-center relative z-10">
+        <p class="text-gray-600 text-xs uppercase tracking-widest mb-4" data-i18n="footer_ready">Ready to launch?</p>
+        <a href="index.html#agency" class="inline-block bg-white/5 border border-white/10 px-8 py-3 rounded-full text-sm font-bold hover:bg-neon hover:text-black transition" data-i18n="footer_btn">
+            See Pricing Packages
+        </a>
+    </footer>
+
+    <div id="cookie-banner" class="fixed bottom-4 right-4 max-w-sm w-[calc(100%-2rem)] z-[60] transform translate-y-full transition-transform duration-500 hidden">
+        <div class="glass border border-white/10 p-6 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+          <div class="flex items-start gap-4">
+            <div class="min-w-[40px] h-10 rounded-full bg-neon/10 flex items-center justify-center text-neon">
+              <i class="fa-solid fa-cookie-bite text-xl"></i>
+            </div>
+            <div>
+              <h4 class="font-head font-bold text-white text-sm mb-2" data-i18n="cookie_t">Cookie Preferences</h4>
+              <p class="text-xs text-gray-400 leading-relaxed mb-4" data-i18n="cookie_d">
+                We use cookies to ensure you get the best experience on VitrinY. 
+                By continuing, you agree to our usage.
+              </p>
+              <div class="flex gap-3">
+                <button onclick="acceptCookies()" class="flex-1 bg-neon text-black text-xs font-bold py-2.5 rounded-lg hover:bg-white transition" data-i18n="cookie_y">
+                  Accept
+                </button>
+                <button onclick="declineCookies()" class="flex-1 border border-white/10 text-white text-xs font-bold py-2.5 rounded-lg hover:bg-white/5 transition" data-i18n="cookie_n">
+                  Decline
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+        function filterSelection(category, element) {
+            // Button styles
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+
+            // Filtering logic
+            const items = document.querySelectorAll('.filter-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'flex';
+                    item.classList.add('animate-fade-in');
+                } else if (item.classList.contains(category)) {
+                    item.style.display = 'flex';
+                    item.classList.add('animate-fade-in');
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('animate-fade-in');
+                }
+            });
+        }
+
+        // Translation Data
+        const translations = {
+            en: {
+                nav_back: "Back to Home", nav_title: "Showcase", nav_cta: "Get Started",
+                hero_t1: "Choose Your", hero_t2: "Identity.",
+                hero_desc: "Built for conversion and prepared to be synced with your Etsy inventory via our Etsy Open API system.",
+                filter_all: "All Themes", filter_store: "Retail Store", filter_event: "Events & RSVP", filter_creative: "Portfolio",
+                btn_view: "View Demo", btn_view_inv: "View Invitation",
+                tag_luxury: "LUXURY", c1_desc: "A brutalist, high-impact design for streetwear and premium brands. Uses large typography and full-width imagery to command attention.",
+                tag_fashion: "FASHION", c2_desc: "Editorial style layout inspired by Vogue. Perfect for boutique clothing lines that want to tell a story with their products.",
+                tag_classic: "CLASSIC", c3_desc: "Clean, grid-based standard retail layout. High conversion rate, easy navigation. Ideal for shops with 50+ items.",
+                tag_decor: "DECOR", c4_desc: "Organic, earthy, and spacious. Designed specifically for furniture, handmade ceramics, and home decor sellers.",
+                c5_desc: "Professional and corporate. Builds trust for wholesale sellers, supplies, or service-based Etsy shops.",
+                tag_concept: "CONCEPT", c6_desc: "A revolutionary sideways-scrolling layout. Turns your shop into an art gallery walk-through. Unforgettable UX.",
+                tag_mobile: "MOBILE", c7_desc: "TikTok/Reels style vertical snap scrolling. Optimized for Gen-Z audience and mobile-first shopping experiences.",
+                tag_wedding: "WEDDING", c8_desc: "Elegant digital wedding invitation. Includes RSVP tracking, Google Maps integration, and gift registry links.",
+                tag_jewelry: "JEWELRY", c9_desc: "Dark mode luxury designed to highlight sparkle. Macro-photography focus, perfect for gold, silver, and gemstones.",
+                tag_shower: "SHOWER", c10_desc: "Playful, animated, and boho style. Perfect for Baby Showers, First Birthdays, or Gender Reveal parties.",
+                tag_kids: "KIDS", c11_desc: "Vibrant colors, fun fonts, and easy navigation for parents. Ideal for selling toys, kids clothing, or educational tools.",
+                tag_digital: "DIGITAL", c12_desc: "High-energy layout designed for selling digital products like PDF workout plans, e-books, or coaching services.",
+                tag_creator: "CREATOR", c13_desc: "The ultimate 'Link-in-Bio' website. Aggregate your Etsy shop, social media, and affiliate links in one professional hub.",
+                tag_art: "ART", c14_desc: "Minimalist, museum-style white space layout. Designed to let photography, prints, and art pieces speak for themselves.",
+                footer_ready: "Ready to launch?", footer_btn: "See Pricing Packages",
+                cookie_t: "Cookie Preferences", cookie_d: "We use cookies to ensure you get the best experience on VitrinY. By continuing, you agree to our usage.", cookie_y: "Accept", cookie_n: "Decline"
+            },
+            tr: {
+                nav_back: "Ana Sayfaya Dön", nav_title: "Örnek Siteler", nav_cta: "Whatsapp'tan Yaz",
+                hero_t1: "Kimliğinizi", hero_t2: "Seçin.",
+                hero_desc: "Dönüşüm odaklı tasarlanır ve Etsy Open API sistemimizle envanterinize bağlanacak şekilde hazırlanır.",
+                filter_all: "Tümü", filter_store: "Mağaza Temaları", filter_event: "Davetiye & LCV", filter_creative: "Portfolyo",
+                btn_view: "Demoyu İncele", btn_view_inv: "Davetiyeyi Gör",
+                tag_luxury: "LÜKS", c1_desc: "Sokak modası ve premium markalar için brütalist, yüksek etkili tasarım. Dikkat çekmek için büyük tipografi kullanır.",
+                tag_fashion: "MODA", c2_desc: "Vogue'dan ilham alan editoryal düzen. Ürünleriyle hikaye anlatmak isteyen butik giyim markaları için mükemmel.",
+                tag_classic: "KLASİK", c3_desc: "Temiz, ızgara tabanlı standart perakende düzeni. Yüksek dönüşüm oranı, kolay gezinme. 50+ ürünlü mağazalar için ideal.",
+                tag_decor: "DEKOR", c4_desc: "Organik, doğal ve ferah. Mobilya, el yapımı seramik ve ev dekorasyonu satıcıları için özel tasarlandı.",
+                c5_desc: "Profesyonel ve kurumsal. Toptan satış yapanlar veya hizmet tabanlı Etsy mağazaları için güven inşa eder.",
+                tag_concept: "KONSEPT", c6_desc: "Devrim niteliğinde yatay kaydırmalı düzen. Mağazanızı bir sanat galerisi gezintisine dönüştürür. Unutulmaz UX.",
+                tag_mobile: "MOBİL", c7_desc: "TikTok/Reels tarzı dikey kaydırma. Z Kuşağı kitlesi ve mobil öncelikli alışveriş deneyimleri için optimize edildi.",
+                tag_wedding: "DÜĞÜN", c8_desc: "Zarif dijital düğün davetiyesi. LCV takibi, Google Haritalar entegrasyonu ve hediye listesi bağlantıları içerir.",
+                tag_jewelry: "TAKI", c9_desc: "Işıltıyı vurgulamak için tasarlanmış karanlık mod lüksü. Makro fotoğrafçılık odaklı, altın ve gümüş için mükemmel.",
+                tag_shower: "PARTİ", c10_desc: "Eğlenceli, animasyonlu ve boho tarzı. Baby Shower, İlk Yaş Günü veya Cinsiyet Belirleme partileri için mükemmel.",
+                tag_kids: "ÇOCUK", c11_desc: "Canlı renkler, eğlenceli yazı tipleri. Oyuncak, çocuk giyimi veya eğitim araçları satmak için ideal.",
+                tag_digital: "DİJİTAL", c12_desc: "PDF antrenman planları, e-kitaplar veya koçluk hizmetleri gibi dijital ürünleri satmak için yüksek enerjili düzen.",
+                tag_creator: "YARATICI", c13_desc: "Nihai 'Link-in-Bio' web sitesi. Etsy mağazanızı, sosyal medyanızı ve satış linklerinizi tek bir merkezde toplayın.",
+                tag_art: "SANAT", c14_desc: "Minimalist, müze tarzı beyaz alan düzeni. Fotoğraf, baskı ve sanat eserlerinin konuşmasına izin vermek için tasarlandı.",
+                footer_ready: "Başlamaya hazır mısınız?", footer_btn: "Paketleri Gör",
+                cookie_t: "Çerez Tercihleri", cookie_d: "VitrinY'de en iyi deneyimi yaşamanız için çerez kullanıyoruz. Devam ederek kullanımı kabul edersiniz.", cookie_y: "Kabul Et", cookie_n: "Reddet"
+            }
+        };
+
+        // Lang Logic
+        let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+        document.documentElement.lang = currentLang;
+
+        function applyLang() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+            });
+            document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+            document.documentElement.lang = currentLang;
+
+            // Dynamic Contact Logic
+            const ctaBtn = document.getElementById('nav-cta');
+            if(currentLang === 'tr') {
+                ctaBtn.href = "https://wa.me/905419787726";
+            } else {
+                ctaBtn.href = "tel:+13072059144";
+                ctaBtn.innerText = "Call Us"; // Override text for EN phone context if desired, or relying on translation key 'nav_cta' is safer if key is generic "Get Started"
+                if(translations.en.nav_cta === "Get Started") ctaBtn.innerText = "Get Started"; // Keeping generic based on key
+            }
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'tr' : 'en';
+            localStorage.setItem('lang', currentLang);
+            applyLang();
+        }
+        
+        // Init
+        applyLang();
+
+        // Cookie Logic
+        const banner = document.getElementById('cookie-banner');
+        if (!localStorage.getItem('cookieConsent')) {
+            banner.classList.remove('hidden');
+            setTimeout(() => { banner.classList.remove('translate-y-full'); }, 2000);
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            hideBanner();
+        }
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            hideBanner();
+        }
+        function hideBanner() {
+            banner.classList.add('translate-y-full');
+            setTimeout(() => { banner.classList.add('hidden'); }, 500);
+        }
+    </script>
+</body>
+</html>
                             '50%': { transform: 'translateY(-20px)' }
                         }
                     }
