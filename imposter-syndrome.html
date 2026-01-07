@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overcoming Imposter Syndrome | VitrinY Journal</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+          colors: { bgdark: '#0B0B15', surface: '#12121A', purple: '#7B61FF', gold: '#D4AF37' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0B0B15; color: #E5E7EB; }
+    .prose p { margin-bottom: 1.5rem; line-height: 1.8; color: #D1D5DB; }
+    .prose h2 { font-family: 'Playfair Display', serif; color: white; font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+    .quote-box { border-left: 4px solid #7B61FF; padding-left: 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; color: white; margin: 2rem 0; }
+  </style>
+</head>
+
+<body class="font-sans">
+
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
+    <a href="index.html" class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] text-gold font-serif italic">Journal</span></a>
+    <a href="blog.html" class="text-xs font-bold text-gray-400 hover:text-white transition"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Journal</a>
+  </nav>
+
+  <header class="pt-40 pb-10 px-6 text-center max-w-4xl mx-auto">
+      <span class="text-purple text-xs font-bold tracking-widest uppercase mb-4 block">Mindset · 3 Min Read</span>
+      <h1 class="text-3xl md:text-5xl font-serif text-white mb-6 leading-tight">The "Imposter Syndrome" of Selling Your First Product</h1>
+      <p class="text-gray-400 italic">Why you feel like a fraud, and how to fix it.</p>
+  </header>
+
+  <div class="px-6 mb-12">
+      <div class="max-w-4xl mx-auto h-[300px] md:h-[400px] rounded-2xl overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200" class="w-full h-full object-cover">
+      </div>
+  </div>
+
+  <section class="max-w-3xl mx-auto px-6 pb-20 prose">
+      <p class="lead text-lg text-white">
+          You've designed the product. You've set up the shop. But when it's time to hit "Publish," you freeze. A voice in your head says: <em>"Who are you to charge $50 for this? Everyone else is doing it better."</em>
+      </p>
+
+      <h2>The "Expert" Trap</h2>
+      <p>
+          We often think we need to be the world's leading expert to sell something. This is false. You don't need to be a guru; you just need to be <strong>one step ahead</strong> of your customer. If you can save them time or make them feel good, you have earned your price.
+      </p>
+
+      <div class="quote-box">
+          "Money is simply a certificate of appreciation for value delivered."
+      </div>
+
+      <h2>Reframing the Sale</h2>
+      <p>
+          Imposter syndrome comes from focusing on yourself ("Do I look good?"). The cure is focusing on the customer ("Does this help them?").
+      </p>
+      <p>
+          When you hesitate to sell, you are actually being selfish. You are withholding a solution that someone might desperately need because you are afraid of how <em>you</em> might look.
+      </p>
+
+      <h2>The 3-Step Mindset Shift</h2>
+      <ol>
+          <li><strong>Detach Worth from Price:</strong> The price tag is not a measure of your soul's value. It's simply the cost of logistics + profit.</li>
+          <li><strong>collect "No"s:</strong> Make it a game to get rejected. Every "no" brings you closer to the data you need to improve.</li>
+          <li><strong>Start Small:</strong> You don't need to launch a luxury empire on Day 1. Sell one thing to one person. Break the seal.</li>
+      </ol>
+
+      <div class="bg-[#0F1115] border border-purple/30 p-8 rounded-xl text-center mt-12">
+          <h4 class="font-serif text-white text-xl mb-2">Join the Inner Circle</h4>
+          <p class="text-xs text-gray-400 mb-4">Get weekly mindset hacks delivered to your inbox.</p>
+          <form class="flex justify-center gap-2">
+              <input type="email" placeholder="Email address" class="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs text-white outline-none">
+              <button class="bg-purple text-white px-6 py-2 rounded-full text-xs font-bold uppercase hover:bg-white hover:text-black transition">Join</button>
+          </form>
+      </div>
+  </section>
+
+  <footer class="py-8 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
+      <p>&copy; 2026 VitrinY Journal.</p>
+  </footer>
+
+</body>
+</html>
