@@ -4,13 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital Weddings 2026 | VitrinY Journal</title>
-  <meta name="description" content="Sustainability and convenience are driving a massive shift toward digital invitations. Why 2026 brides are ditching paper for pixels." />
+  <meta name="description" content="Sustainability and convenience are driving a massive shift toward digital invitations. Why 2026 couples are prioritizing wedding websites over paper." />
   <link rel="canonical" href="https://vitriny.com/digital-weddings-2026.html" />
 
-  <meta property="og:title" content="Digital Weddings: Why 2026 Brides Are Ditching Paper" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <meta property="og:title" content="Digital Weddings: Why 2026 Couples Are Ditching Paper" />
   <meta property="og:description" content="The paper invitation era is fading. Discover the rise of the 'Wedding Website' as the new standard." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200" />
   <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://vitriny.com/digital-weddings-2026.html" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Digital Weddings: Why 2026 Couples Are Ditching Paper">
+  <meta name="twitter:description" content="Sustainability and convenience are driving a massive shift toward digital invitations.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Digital Weddings: Why 2026 Couples Are Ditching Paper",
+    "image": [
+      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200"
+    ],
+    "datePublished": "2026-01-05T08:00:00+03:00",
+    "dateModified": "2026-01-07T10:00:00+03:00",
+    "author": [{
+        "@type": "Organization",
+        "name": "Zayn Collective",
+        "url": "https://vitriny.com"
+      }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "VitrinY Journal",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://vitriny.com/logo.png"
+      }
+    },
+    "description": "An analysis of the shift from paper invitations to wedding websites in the 2026 bridal market."
+  }
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -30,12 +67,20 @@
     body { background-color: #0B0B15; color: #E5E7EB; -webkit-font-smoothing: antialiased; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: #E0B0FF; z-index: 100; width: 0%; transition: width 0.1s; }
 
+    /* Editorial Typography */
     .prose p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #D1D5DB; }
     .prose h2 { font-family: 'Playfair Display', serif; color: white; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; }
-    .prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #D1D5DB; }
+    .prose h3 { font-family: 'Outfit', sans-serif; color: white; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; }
+    .prose ul, .prose ol { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #D1D5DB; }
+    .prose ol { list-style: decimal; }
     .prose li { margin-bottom: 0.75rem; }
+    .prose blockquote { border-left: 4px solid #E0B0FF; padding-left: 1.5rem; font-style: italic; color: #E5E7EB; font-family: 'Playfair Display', serif; font-size: 1.25rem; margin: 2rem 0; background: rgba(224, 176, 255, 0.05); padding: 2rem; border-radius: 0 8px 8px 0; }
+    .prose strong { color: white; font-weight: 700; }
     
+    /* Custom Components */
     .data-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-left: 3px solid #E0B0FF; padding: 1.5rem; margin: 2rem 0; border-radius: 0.5rem; }
+    .data-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #E0B0FF; margin-bottom: 0.5rem; display: block; font-weight: bold; }
+    
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
@@ -45,8 +90,8 @@
 
   <div id="progress-bar"></div>
 
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
-    <a href="index.html" class="flex items-center gap-3 group">
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="flex items-center gap-3 group" aria-label="Go to Homepage">
         <div class="w-9 h-9 rounded bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition duration-500">
             <span class="font-serif font-bold text-lg">V</span>
         </div>
@@ -57,21 +102,21 @@
       <a href="blog.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition hidden md:block" data-i18n="back_all">
         <i class="fa-solid fa-arrow-left mr-2"></i> All Articles
       </a>
-      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
-      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition" aria-label="Switch Language">EN</button>
+      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </nav>
 
-  <div id="mobile-menu" class="fixed inset-0 bg-bgdark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-serif text-white">
-    <button id="close-menu-btn" class="absolute top-6 right-8 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-3xl"></i></button>
-    <a href="blog.html" class="hover:text-rose transition" data-i18n="mob_all">All Articles</a>
-    <a href="studio.html" class="hover:text-rose transition" data-i18n="mob_studio">Studio</a>
-    <a href="consulting.html" class="hover:text-rose transition" data-i18n="mob_consulting">Consulting</a>
+  <div id="mobile-menu" class="fixed inset-0 bg-bgdark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-serif text-white invisible" aria-hidden="true">
+    <button id="close-menu-btn" class="absolute top-6 right-8 text-gray-400 hover:text-white" aria-label="Close Mobile Menu"><i class="fa-solid fa-xmark text-3xl"></i></button>
+    <a href="blog.html" class="hover:text-rose transition" data-i18n="mob_all" tabindex="-1">All Articles</a>
+    <a href="studio.html" class="hover:text-rose transition" data-i18n="mob_studio" tabindex="-1">Studio</a>
+    <a href="consulting.html" class="hover:text-rose transition" data-i18n="mob_consulting" tabindex="-1">Consulting</a>
   </div>
 
   <header class="pt-40 pb-16 px-6 text-center max-w-4xl mx-auto reveal active">
-      <span class="text-rose text-xs font-bold tracking-widest uppercase mb-6 block" data-i18n="meta_top">Trends · 4 Min Read</span>
-      <h1 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight" data-i18n="title">Digital Weddings: Why 2026 Brides Are Ditching Paper</h1>
+      <span class="text-rose text-xs font-bold tracking-widest uppercase mb-6 block" data-i18n="meta_top">Trends · 5 Min Read</span>
+      <h1 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight" data-i18n="title">Digital Weddings: Why 2026 Couples Are Ditching Paper</h1>
       <p class="text-lg text-gray-400 font-serif italic mb-8" data-i18n="subtitle">Sustainability and convenience are the new luxury.</p>
       <div class="flex items-center justify-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full grayscale border border-white/10" alt="Author">
@@ -83,7 +128,7 @@
 
   <div class="px-6 mb-20 reveal delay-100">
       <div class="max-w-4xl mx-auto h-[400px] rounded-2xl overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1600" class="w-full h-full object-cover">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1600" class="w-full h-full object-cover" alt="Modern Wedding Setting" fetchpriority="high">
           <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-transparent to-transparent"></div>
       </div>
   </div>
@@ -92,34 +137,74 @@
     <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-16">
         <div class="lg:col-span-8 prose reveal delay-200">
             
+            <p class="text-sm text-gray-500 mb-6 italic" data-i18n="credibility">
+                VitrinY Journal covers e-commerce and digital product systems for Etsy sellers.
+            </p>
+
             <p class="lead text-xl text-white font-serif" data-i18n="p_intro">
-                For decades, a heavy cardstock envelope was the ultimate status symbol for a wedding. But in 2026, Gen Z brides are prioritizing something else: <strong>Experience and Sustainability.</strong> The era of the "Wedding Website" as the primary invitation has arrived.
+                For decades, a heavy cardstock envelope was the ultimate status symbol for a wedding. But in 2026, many modern couples are prioritizing something else: <strong>Experience and Utility.</strong> The wedding website has evolved from an optional add-on to the primary invitation hub.
             </p>
 
             <h2 data-i18n="h2_shift">The Sustainability Shift</h2>
             <p data-i18n="p_shift">
-                The modern couple is eco-conscious. Sending 200 pieces of paper that will end up in a landfill is no longer seen as "traditional"—it's seen as wasteful. Digital invitations offer a zero-waste alternative that aligns with the values of the modern consumer.
+                The modern couple is increasingly eco-conscious. Sending 200 pieces of heavy paper that will eventually end up in a landfill is no longer seen as purely "traditional"—for many, it is seen as wasteful. Digital invitations and event websites offer a zero-waste alternative that aligns with contemporary values.
             </p>
 
             <div class="data-box">
-                <span class="text-xs font-bold text-rose uppercase block mb-2" data-i18n="lbl_stat">Market Data</span>
+                <span class="data-label" data-i18n="lbl_stat">Market Signal</span>
                 <p class="!mb-0 !text-sm text-gray-300" data-i18n="p_stat">
-                    Search volume for "Wedding Website Templates" has increased by <strong>140%</strong> year-over-year, while "Letterpress Invitations" has dropped by 20%. The market is speaking clearly.
+                    <strong>The Digital-First Preference:</strong> Leading wedding platforms report that the vast majority of couples now create a wedding website to manage logistics, regardless of whether they send physical save-the-dates. The trend is moving toward the website being the "single source of truth."
                 </p>
             </div>
 
             <h2 data-i18n="h2_utility">Function Over Formality</h2>
-            <p data-i18n="p_utility">
-                It's not just about saving trees; it's about utility. A paper card cannot give you Google Maps directions to the venue. It cannot collect dietary restrictions in real-time. It cannot link directly to your registry.
+            <p data-i18n="p_utility_1">
+                It's not just about saving trees; it's about utility. A paper card cannot give you live GPS directions to the venue. It cannot collect dietary restrictions in real-time or update guests if the schedule changes due to weather.
             </p>
             <p data-i18n="p_utility_2">
-                Digital invitations (built on platforms like Framer or Carrd) turn the invitation into a <strong>dynamic hub</strong> for the entire event.
+                Modern wedding websites turn the invitation into a <strong>dynamic hub</strong>. They allow for instant RSVP tracking, direct registry linking, and photo sharing—features that static paper simply cannot offer.
             </p>
 
-            <h2 data-i18n="h2_opp">The Opportunity for Sellers</h2>
-            <p data-i18n="p_opp">
-                This shift creates a massive opportunity for Etsy sellers. You don't need to ship physical goods. Selling high-end, customizable website templates is the new frontier of digital products. High margins, no shipping, global reach.
+            <h2 data-i18n="h2_opp">The Opportunity for Etsy Sellers</h2>
+            <p data-i18n="p_opp_1">
+                This shift creates a high-margin opportunity for Etsy sellers. You aren't just selling a "template"; you are selling a <strong>Wedding Website Service</strong>.
             </p>
+            <p data-i18n="p_opp_2">
+                By using no-code tools, you can deliver a fully personalized website as a private link. This is a premium digital product with no shipping costs, no inventory, and high perceived value.
+            </p>
+
+            <h2 data-i18n="h2_checklist">Premium Feature Checklist</h2>
+            <p data-i18n="p_checklist_intro">To sell a wedding website for a premium price, it must include more than just names and a date. Here is the standard for 2026:</p>
+            <ul data-i18n="ul_checklist">
+                <li><strong>Live Countdown:</strong> Creates anticipation.</li>
+                <li><strong>Digital RSVP:</strong> With meal selection forms.</li>
+                <li><strong>Our Story:</strong> A visual timeline of the couple.</li>
+                <li><strong>Venue Map:</strong> Integrated Google Maps pin.</li>
+                <li><strong>Registry Link:</strong> Direct click-to-buy integration.</li>
+            </ul>
+
+            <h2 data-i18n="h2_plan">7-Day Launch Plan</h2>
+            <ol class="space-y-4">
+                <li data-i18n="li_plan_1"><strong>Day 1-2:</strong> Choose a niche style (e.g., "Dark Moody Floral" or "Minimalist Beige"). Niche designs outsell generic ones.</li>
+                <li data-i18n="li_plan_2"><strong>Day 3-4:</strong> Build your Master Template using a no-code builder. Focus on mobile responsiveness first.</li>
+                <li data-i18n="li_plan_3"><strong>Day 5:</strong> Create lifestyle mockups showing the website on an iPhone and iPad. Visuals sell the dream.</li>
+                <li data-i18n="li_plan_4"><strong>Day 6:</strong> Write your listing copy focusing on "Stress-Free" and "Eco-Friendly" benefits.</li>
+                <li data-i18n="li_plan_5"><strong>Day 7:</strong> Publish to Etsy and pin your mockups to Pinterest boards related to "2026 Wedding Trends."</li>
+            </ol>
+
+            <h2 data-i18n="h2_vitriny">The VitrinY Advantage</h2>
+            <p data-i18n="p_vitriny">
+                Entering the digital wedding market requires more than just design skills; it requires a strong offer strategy. At VitrinY, we help sellers structure their digital services to maximize profit and minimize support time.
+            </p>
+
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <h3 class="!text-lg !mt-0 text-gray-500" data-i18n="h3_sources">Sources & Benchmarks</h3>
+                <ul class="!text-xs text-gray-600 !list-none !pl-0">
+                    <li data-i18n="li_source_1">1. The Knot: "Real Weddings Study" (Digital Adoption Trends)</li>
+                    <li data-i18n="li_source_2">2. Zola: "The State of Guest Experience"</li>
+                    <li data-i18n="li_source_3">3. WeddingWire: "Eco-Friendly Wedding Guide"</li>
+                </ul>
+            </div>
 
         </div>
 
@@ -127,9 +212,16 @@
             <div class="sticky top-32">
                 <div class="bg-[#0F1115] border border-rose/30 p-8 rounded-xl text-center mb-8 group hover:border-rose/60 transition">
                     <div class="w-12 h-12 bg-rose/10 rounded-full flex items-center justify-center text-rose text-2xl mx-auto mb-4"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h4 class="font-serif text-white text-xl mb-2" data-i18n="cta_t">Sell Digital Products?</h4>
-                    <p class="text-xs text-gray-400 mb-6" data-i18n="cta_d">Learn how to create and sell high-ticket digital templates without coding.</p>
-                    <a href="consulting.html" class="block w-full py-3 bg-rose text-black text-xs font-bold uppercase tracking-widest rounded-full hover:bg-white transition" data-i18n="btn_cta">Get The Guide</a>
+                    <h4 class="font-serif text-white text-xl mb-2" data-i18n="cta_t">Selling Digital Services?</h4>
+                    <p class="text-xs text-gray-400 mb-6" data-i18n="cta_d">Planning to sell wedding websites? Let's validate your offer and pricing structure.</p>
+                    <a href="consulting.html" class="block w-full py-3 bg-rose text-black text-xs font-bold uppercase tracking-widest rounded-full hover:bg-white transition" data-i18n="btn_cta">Book Strategy Session</a>
+                </div>
+                
+                <div class="bg-[#0F1115] border border-blue-500/30 p-8 rounded-xl text-center group hover:border-blue-500/60 transition">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-2xl mx-auto mb-4"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h4 class="font-serif text-white text-xl mb-2" data-i18n="cta_audit_t">Shop Audit</h4>
+                    <p class="text-xs text-gray-400 mb-6" data-i18n="cta_audit_d">Ensure your Etsy shop is ready for the 2026 wedding season.</p>
+                    <a href="consulting.html" class="block w-full py-3 border border-blue-500 text-blue-500 text-xs font-bold uppercase tracking-widest rounded-full hover:bg-blue-500 hover:text-white transition" data-i18n="btn_audit">Get Analyzed</a>
                 </div>
             </div>
         </aside>
@@ -142,7 +234,7 @@
   </footer>
 
   <script>
-    // Logic
+    // Scroll Reveal & Progress
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
@@ -155,12 +247,54 @@
         document.getElementById("progress-bar").style.width = scrolled + "%";
     };
 
+    // Mobile Menu Logic (Accessible)
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const closeBtn = document.getElementById('close-menu-btn');
-    function toggleMenu() { mobileMenu.classList.toggle('translate-x-full'); }
-    if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
-    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    const menuLinks = mobileMenu.querySelectorAll('a');
+
+    function openMenu() {
+        mobileMenu.classList.remove('invisible');
+        mobileMenu.classList.remove('translate-x-full');
+        mobileBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+        mobileMenu.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.add('translate-x-full');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        setTimeout(() => { mobileMenu.classList.add('invisible'); }, 300);
+        mobileBtn.focus();
+    }
+
+    if(mobileBtn) mobileBtn.addEventListener('click', openMenu);
+    if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+    
+    // Close on link click
+    menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // Focus Trap
+    mobileMenu.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Tab') {
+            const focusable = mobileMenu.querySelectorAll('button, a');
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault(); last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault(); first.focus();
+                }
+            }
+        }
+    });
 
     // Translations
     const translations = {
@@ -170,24 +304,49 @@
         mob_all: "All Articles",
         mob_studio: "Studio",
         mob_consulting: "Consulting",
-        meta_top: "Trends · 4 Min Read",
-        title: "Digital Weddings: Why 2026 Brides Are Ditching Paper",
+        meta_top: "Trends · 5 Min Read",
+        title: "Digital Weddings: Why 2026 Couples Are Ditching Paper",
         subtitle: "Sustainability and convenience are the new luxury.",
         byline: "By Zayn Collective",
         date: "Jan 05, 2026",
-        p_intro: "For decades, a heavy cardstock envelope was the ultimate status symbol for a wedding. But in 2026, Gen Z brides are prioritizing something else: <strong>Experience and Sustainability.</strong> The era of the \"Wedding Website\" as the primary invitation has arrived.",
+        credibility: "VitrinY Journal covers e-commerce and digital product systems for Etsy sellers.",
+        
+        // Body
+        p_intro: "For decades, a heavy cardstock envelope was the ultimate status symbol for a wedding. But in 2026, many modern couples are prioritizing something else: <strong>Experience and Utility.</strong> The wedding website has evolved from an optional add-on to the primary invitation hub.",
         h2_shift: "The Sustainability Shift",
-        p_shift: "The modern couple is eco-conscious. Sending 200 pieces of paper that will end up in a landfill is no longer seen as \"traditional\"—it's seen as wasteful. Digital invitations offer a zero-waste alternative that aligns with the values of the modern consumer.",
-        lbl_stat: "Market Data",
-        p_stat: "Search volume for \"Wedding Website Templates\" has increased by <strong>140%</strong> year-over-year, while \"Letterpress Invitations\" has dropped by 20%. The market is speaking clearly.",
+        p_shift: "The modern couple is increasingly eco-conscious. Sending 200 pieces of heavy paper that will eventually end up in a landfill is no longer seen as purely \"traditional\"—for many, it is seen as wasteful. Digital invitations and event websites offer a zero-waste alternative that aligns with contemporary values.",
+        lbl_stat: "Market Signal",
+        p_stat: "<strong>The Digital-First Preference:</strong> Leading wedding platforms report that the vast majority of couples now create a wedding website to manage logistics, regardless of whether they send physical save-the-dates. The trend is moving toward the website being the \"single source of truth.\"",
         h2_utility: "Function Over Formality",
-        p_utility: "It's not just about saving trees; it's about utility. A paper card cannot give you Google Maps directions to the venue. It cannot collect dietary restrictions in real-time. It cannot link directly to your registry.",
-        p_utility_2: "Digital invitations (built on platforms like Framer or Carrd) turn the invitation into a <strong>dynamic hub</strong> for the entire event.",
-        h2_opp: "The Opportunity for Sellers",
-        p_opp: "This shift creates a massive opportunity for Etsy sellers. You don't need to ship physical goods. Selling high-end, customizable website templates is the new frontier of digital products. High margins, no shipping, global reach.",
-        cta_t: "Sell Digital Products?",
-        cta_d: "Learn how to create and sell high-ticket digital templates without coding.",
-        btn_cta: "Get The Guide"
+        p_utility_1: "It's not just about saving trees; it's about utility. A paper card cannot give you live GPS directions to the venue. It cannot collect dietary restrictions in real-time or update guests if the schedule changes due to weather.",
+        p_utility_2: "Modern wedding websites turn the invitation into a <strong>dynamic hub</strong>. They allow for instant RSVP tracking, direct registry linking, and photo sharing—features that static paper simply cannot offer.",
+        h2_opp: "The Opportunity for Etsy Sellers",
+        p_opp_1: "This shift creates a high-margin opportunity for Etsy sellers. You aren't just selling a \"template\"; you are selling a <strong>Wedding Website Service</strong>.",
+        p_opp_2: "By using no-code tools, you can deliver a fully personalized website as a private link. This is a premium digital product with no shipping costs, no inventory, and high perceived value.",
+        h2_checklist: "Premium Feature Checklist",
+        p_checklist_intro: "To sell a wedding website for a premium price, it must include more than just names and a date. Here is the standard for 2026:",
+        ul_checklist: "<li><strong>Live Countdown:</strong> Creates anticipation.</li><li><strong>Digital RSVP:</strong> With meal selection forms.</li><li><strong>Our Story:</strong> A visual timeline of the couple.</li><li><strong>Venue Map:</strong> Integrated Google Maps pin.</li><li><strong>Registry Link:</strong> Direct click-to-buy integration.</li>",
+        h2_plan: "7-Day Launch Plan",
+        li_plan_1: "<strong>Day 1-2:</strong> Choose a niche style (e.g., \"Dark Moody Floral\" or \"Minimalist Beige\"). Niche designs outsell generic ones.",
+        li_plan_2: "<strong>Day 3-4:</strong> Build your Master Template using a no-code builder. Focus on mobile responsiveness first.",
+        li_plan_3: "<strong>Day 5:</strong> Create lifestyle mockups showing the website on an iPhone and iPad. Visuals sell the dream.",
+        li_plan_4: "<strong>Day 6:</strong> Write your listing copy focusing on \"Stress-Free\" and \"Eco-Friendly\" benefits.",
+        li_plan_5: "<strong>Day 7:</strong> Publish to Etsy and pin your mockups to Pinterest boards related to \"2026 Wedding Trends.\"",
+        h2_vitriny: "The VitrinY Advantage",
+        p_vitriny: "Entering the digital wedding market requires more than just design skills; it requires a strong offer strategy. At VitrinY, we help sellers structure their digital services to maximize profit and minimize support time.",
+        
+        // Sources & CTA
+        h3_sources: "Sources & Benchmarks",
+        li_source_1: "1. The Knot: \"Real Weddings Study\" (Digital Adoption Trends)",
+        li_source_2: "2. Zola: \"The State of Guest Experience\"",
+        li_source_3: "3. WeddingWire: \"Eco-Friendly Wedding Guide\"",
+        
+        cta_t: "Selling Digital Services?",
+        cta_d: "Planning to sell wedding websites? Let's validate your offer and pricing structure.",
+        btn_cta: "Book Strategy Session",
+        cta_audit_t: "Shop Audit",
+        cta_audit_d: "Ensure your Etsy shop is ready for the 2026 wedding season.",
+        btn_audit: "Get Analyzed"
       },
       tr: {
         page_title: "Dijital Düğünler 2026 | VitrinY Journal",
@@ -195,24 +354,49 @@
         mob_all: "Tüm Yazılar",
         mob_studio: "Stüdyo",
         mob_consulting: "Danışmanlık",
-        meta_top: "Trendler · 4 Dakika",
-        title: "Dijital Düğünler: 2026 Gelinleri Neden Kağıttan Vazgeçiyor?",
+        meta_top: "Trendler · 5 Dakika",
+        title: "Dijital Düğünler: 2026 Çiftleri Neden Kağıttan Vazgeçiyor?",
         subtitle: "Sürdürülebilirlik ve kolaylık, yeni lüks anlayışıdır.",
         byline: "Yazan: Zayn Collective",
-        date: "05 Oca, 2026",
-        p_intro: "Onlarca yıldır, ağır karton bir zarf düğünlerin nihai statü sembolüydü. Ancak 2026'da Z Kuşağı gelinleri başka bir şeye öncelik veriyor: <strong>Deneyim ve Sürdürülebilirlik.</strong> \"Düğün Web Sitesi\"nin birincil davetiye olduğu çağ başladı.",
+        date: "5 Ocak 2026",
+        credibility: "VitrinY Journal, Etsy satıcıları için e-ticaret ve dijital ürün sistemlerini inceler.",
+        
+        // Body
+        p_intro: "Onlarca yıldır, ağır karton bir zarf düğünlerin nihai statü sembolüydü. Ancak 2026'da birçok modern çift başka bir şeye öncelik veriyor: <strong>Deneyim ve Fayda.</strong> Düğün web sitesi, isteğe bağlı bir eklenti olmaktan çıkıp birincil davet merkezine dönüştü.",
         h2_shift: "Sürdürülebilirlik Dönüşümü",
-        p_shift: "Modern çiftler çevre bilincine sahip. Çöplükte son bulacak 200 parça kağıt göndermek artık \"geleneksel\" değil, israf olarak görülüyor. Dijital davetiyeler, modern tüketicinin değerleriyle örtüşen sıfır atıklı bir alternatif sunuyor.",
-        lbl_stat: "Pazar Verisi",
-        p_stat: "\"Düğün Web Sitesi Şablonları\" için arama hacmi yıllık <strong>%140</strong> artarken, \"Baskı Davetiyeler\" %20 düştü. Pazar çok net konuşuyor.",
+        p_shift: "Modern çiftler giderek daha fazla çevre bilincine sahip. Sonunda çöplüğe gidecek 200 parça ağır kağıt göndermek artık sadece \"geleneksel\" değil, birçok kişi için israf olarak görülüyor. Dijital davetiyeler ve etkinlik web siteleri, çağdaş değerlerle örtüşen sıfır atıklı bir alternatif sunuyor.",
+        lbl_stat: "Pazar Sinyali",
+        p_stat: "<strong>Önce-Dijital Tercihi:</strong> Önde gelen düğün platformları, çiftlerin büyük çoğunluğunun artık fiziksel davetiye gönderseler bile lojistiği yönetmek için bir düğün web sitesi oluşturduğunu bildiriyor. Trend, web sitesinin \"tek doğru bilgi kaynağı\" olması yönünde.",
         h2_utility: "Biçimden Önce İşlev",
-        p_utility: "Bu sadece ağaçları kurtarmakla ilgili değil; işlevsellikle ilgili. Kağıt bir kart size mekana Google Haritalar yol tarifini veremez. Diyet kısıtlamalarını gerçek zamanlı toplayamaz. Doğrudan hediye listenize bağlantı veremez.",
-        p_utility_2: "Dijital davetiyeler (Framer veya Carrd gibi platformlarda oluşturulan), davetiyeyi tüm etkinlik için <strong>dinamik bir merkeze</strong> dönüştürür.",
-        h2_opp: "Satıcılar İçin Fırsat",
-        p_opp: "Bu değişim Etsy satıcıları için devasa bir fırsat yaratıyor. Fiziksel ürün kargolamanıza gerek yok. Üst düzey, özelleştirilebilir web sitesi şablonları satmak, dijital ürünlerin yeni sınırıdır. Yüksek kar marjı, kargo yok, global erişim.",
-        cta_t: "Dijital Ürün mü Satacaksınız?",
-        cta_d: "Kodlama bilmeden yüksek fiyatlı dijital şablonlar oluşturup satmayı öğrenin.",
-        btn_cta: "Rehberi Al"
+        p_utility_1: "Bu sadece ağaçları kurtarmakla ilgili değil; işlevsellikle ilgili. Kağıt bir kart size mekana canlı GPS yol tarifi veremez. Diyet kısıtlamalarını gerçek zamanlı toplayamaz veya hava durumu nedeniyle program değişirse misafirleri güncelleyemez.",
+        p_utility_2: "Modern düğün web siteleri davetiyeyi <strong>dinamik bir merkeze</strong> dönüştürür. Anlık LCV (RSVP) takibi, doğrudan hediye listesi bağlantısı ve fotoğraf paylaşımı gibi özellikler sunar; statik kağıdın sunamayacağı özellikler.",
+        h2_opp: "Etsy Satıcıları İçin Fırsat",
+        p_opp_1: "Bu değişim Etsy satıcıları için yüksek kârlı bir fırsat yaratıyor. Sadece bir \"şablon\" satmıyorsunuz; bir <strong>Düğün Web Sitesi Hizmeti</strong> satıyorsunuz.",
+        p_opp_2: "Kodsuz (no-code) araçlar kullanarak, tamamen kişiselleştirilmiş bir web sitesini özel bir bağlantı olarak teslim edebilirsiniz. Bu, kargo maliyeti olmayan, stoğu bulunmayan ve yüksek algılanan değere sahip birinci sınıf bir dijital üründür.",
+        h2_checklist: "Premium Özellik Kontrol Listesi",
+        p_checklist_intro: "Bir düğün web sitesini premium fiyata satmak için isim ve tarihten fazlasını içermesi gerekir. İşte 2026 standardı:",
+        ul_checklist: "<li><strong>Canlı Geri Sayım:</strong> Heyecan yaratır.</li><li><strong>Dijital LCV:</strong> Yemek seçimi formları ile.</li><li><strong>Hikayemiz:</strong> Çiftin görsel zaman çizelgesi.</li><li><strong>Mekan Haritası:</strong> Entegre Google Haritalar pini.</li><li><strong>Hediye Listesi:</strong> Doğrudan satın alma entegrasyonu.</li>",
+        h2_plan: "7 Günlük Lansman Planı",
+        li_plan_1: "<strong>1-2. Gün:</strong> Niş bir tarz seçin (ör. \"Karanlık Moody Floral\" veya \"Minimalist Bej\"). Niş tasarımlar jenerik olanlardan daha çok satar.",
+        li_plan_2: "<strong>3-4. Gün:</strong> Ana Şablonunuzu kodsuz bir oluşturucuda hazırlayın. Önce mobil uyumluluğa odaklanın.",
+        li_plan_3: "<strong>5. Gün:</strong> Web sitesini iPhone ve iPad üzerinde gösteren yaşam tarzı mockup'ları oluşturun. Görseller hayali satar.",
+        li_plan_4: "<strong>6. Gün:</strong> \"Stressiz\" ve \"Çevre Dostu\" faydalarına odaklanan ilan metninizi yazın.",
+        li_plan_5: "<strong>7. Gün:</strong> Etsy'de yayınlayın ve mockup'larınızı \"2026 Düğün Trendleri\" ile ilgili Pinterest panolarına iğneleyin.",
+        h2_vitriny: "VitrinY Avantajı",
+        p_vitriny: "Dijital düğün pazarına girmek sadece tasarım becerisi değil, güçlü bir teklif stratejisi gerektirir. VitrinY'de, satıcıların dijital hizmetlerini kârı maksimize edecek ve destek süresini minimize edecek şekilde yapılandırmalarına yardımcı oluyoruz.",
+        
+        // Sources & CTA
+        h3_sources: "Kaynaklar ve Kriterler",
+        li_source_1: "1. The Knot: \"Gerçek Düğünler Araştırması\" (Dijital Benimseme Trendleri)",
+        li_source_2: "2. Zola: \"Misafir Deneyimi Raporu\"",
+        li_source_3: "3. WeddingWire: \"Çevre Dostu Düğün Rehberi\"",
+        
+        cta_t: "Dijital Hizmet mi Satacaksınız?",
+        cta_d: "Düğün web siteleri satmayı mı planlıyorsunuz? Teklifinizi ve fiyatlandırma yapınızı doğrulayalım.",
+        btn_cta: "Strateji Görüşmesi Al",
+        cta_audit_t: "Mağaza Analizi",
+        cta_audit_d: "Etsy mağazanızın 2026 düğün sezonuna hazır olduğundan emin olun.",
+        btn_audit: "Analiz Al"
       }
     };
 
@@ -225,6 +409,15 @@
             if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
         });
         document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+        
+        // Mobile menu Translation
+        const menuLinks = document.querySelectorAll('#mobile-menu a');
+        if (menuLinks.length > 0) {
+           const keys = ['mob_all', 'mob_studio', 'mob_consulting'];
+           menuLinks.forEach((link, index) => {
+               if(translations[currentLang][keys[index]]) link.innerText = translations[currentLang][keys[index]];
+           });
+        }
     }
 
     function toggleLang() {
