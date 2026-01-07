@@ -4,13 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pinterest SEO Secrets | VitrinY Journal</title>
-  <meta name="description" content="Stop relying solely on Etsy search. How to build an automated traffic funnel using Pinterest pins and visual SEO." />
+  <meta name="description" content="Stop treating Pinterest like social media. It is a visual search engine. A complete guide to visual SEO, keywords, and fresh pin strategies for Etsy sellers." />
   <link rel="canonical" href="https://vitriny.com/pinterest-seo.html" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
 
   <meta property="og:title" content="Pinterest SEO: The Secret Weapon for Etsy Traffic" />
   <meta property="og:description" content="Pinterest is not social media; it's a visual search engine. Here is how to master it." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200" />
   <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://vitriny.com/pinterest-seo.html" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pinterest SEO: The Secret Weapon for Etsy Traffic">
+  <meta name="twitter:description" content="Master visual search optimization to drive sustainable traffic to your Etsy shop.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pinterest SEO: The Secret Weapon for Etsy Traffic",
+    "image": [
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200"
+    ],
+    "datePublished": "2026-01-04T08:00:00+03:00",
+    "dateModified": "2026-01-07T10:00:00+03:00",
+    "author": [{
+        "@type": "Organization",
+        "name": "Zayn Collective",
+        "url": "https://vitriny.com"
+      }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "VitrinY Journal",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://vitriny.com/logo.png"
+      }
+    },
+    "description": "A comprehensive guide to Pinterest SEO for E-commerce and Etsy sellers in 2026."
+  }
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -30,12 +67,19 @@
     body { background-color: #0B0B15; color: #E5E7EB; -webkit-font-smoothing: antialiased; }
     #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: #E60023; z-index: 100; width: 0%; transition: width 0.1s; }
 
+    /* Editorial Typography */
     .prose p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #D1D5DB; }
     .prose h2 { font-family: 'Playfair Display', serif; color: white; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; }
-    .prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #D1D5DB; }
+    .prose h3 { font-family: 'Outfit', sans-serif; color: white; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; }
+    .prose ul, .prose ol { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #D1D5DB; }
+    .prose ol { list-style: decimal; }
     .prose li { margin-bottom: 0.75rem; }
+    .prose blockquote { border-left: 4px solid #E60023; padding-left: 1.5rem; font-style: italic; color: #E5E7EB; font-family: 'Playfair Display', serif; font-size: 1.25rem; margin: 2rem 0; background: rgba(230,0,35,0.05); padding: 2rem; border-radius: 0 8px 8px 0; }
+    .prose strong { color: white; font-weight: 700; }
     
     .data-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-left: 3px solid #E60023; padding: 1.5rem; margin: 2rem 0; border-radius: 0.5rem; }
+    .data-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #E60023; margin-bottom: 0.5rem; display: block; font-weight: bold; }
+    
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
@@ -45,8 +89,8 @@
 
   <div id="progress-bar"></div>
 
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
-    <a href="index.html" class="flex items-center gap-3 group">
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="flex items-center gap-3 group" aria-label="Go to Homepage">
         <div class="w-9 h-9 rounded bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition duration-500">
             <span class="font-serif font-bold text-lg">V</span>
         </div>
@@ -54,20 +98,20 @@
     </a>
     <div class="flex items-center gap-6">
       <a href="blog.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition hidden md:block" data-i18n="back_all"><i class="fa-solid fa-arrow-left mr-2"></i> All Articles</a>
-      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
-      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition" aria-label="Switch Language">EN</button>
+      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </nav>
 
-  <div id="mobile-menu" class="fixed inset-0 bg-bgdark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-serif text-white">
-    <button id="close-menu-btn" class="absolute top-6 right-8 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-3xl"></i></button>
-    <a href="blog.html" class="hover:text-red transition" data-i18n="mob_all">All Articles</a>
-    <a href="studio.html" class="hover:text-red transition" data-i18n="mob_studio">Studio</a>
-    <a href="consulting.html" class="hover:text-red transition" data-i18n="mob_consulting">Consulting</a>
+  <div id="mobile-menu" class="fixed inset-0 bg-bgdark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-serif text-white invisible" aria-hidden="true">
+    <button id="close-menu-btn" class="absolute top-6 right-8 text-gray-400 hover:text-white" aria-label="Close Mobile Menu"><i class="fa-solid fa-xmark text-3xl"></i></button>
+    <a href="blog.html" class="hover:text-red transition" data-i18n="mob_all" tabindex="-1">All Articles</a>
+    <a href="studio.html" class="hover:text-red transition" data-i18n="mob_studio" tabindex="-1">Studio</a>
+    <a href="consulting.html" class="hover:text-red transition" data-i18n="mob_consulting" tabindex="-1">Consulting</a>
   </div>
 
   <header class="pt-40 pb-16 px-6 text-center max-w-4xl mx-auto reveal active">
-      <span class="text-red text-xs font-bold tracking-widest uppercase mb-6 block" data-i18n="meta_top">Strategy · 6 Min Read</span>
+      <span class="text-red text-xs font-bold tracking-widest uppercase mb-6 block" data-i18n="meta_top">Strategy · 8 Min Read</span>
       <h1 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight" data-i18n="title">Pinterest SEO: The Secret Weapon for Etsy Traffic</h1>
       <p class="text-lg text-gray-400 font-serif italic mb-8" data-i18n="subtitle">Stop treating it like social media. It's a visual search engine.</p>
       <div class="flex items-center justify-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
@@ -80,7 +124,7 @@
 
   <div class="px-6 mb-20 reveal delay-100">
       <div class="max-w-4xl mx-auto h-[400px] rounded-2xl overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600" class="w-full h-full object-cover">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600" class="w-full h-full object-cover" alt="Pinterest Strategy Workspace" fetchpriority="high">
           <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-transparent to-transparent"></div>
       </div>
   </div>
@@ -90,29 +134,73 @@
         <div class="lg:col-span-8 prose reveal delay-200">
             
             <p class="lead text-xl text-white font-serif" data-i18n="p_intro">
-                Most Etsy sellers treat Pinterest like Instagram: they post once, get 5 likes, and give up. This is a fundamental mistake. Pinterest is not a social network; it is a <strong>Visual Search Engine</strong>. It is Google for images.
+                Most Etsy sellers treat Pinterest like Instagram: they post once, get a few likes, and move on. This is a fundamental mistake. Pinterest is not a social network; it is a <strong>Visual Search Engine</strong>. It operates closer to Google than TikTok.
             </p>
 
-            <h2 data-i18n="h2_longevity">The Power of Longevity</h2>
-            <p data-i18n="p_long">
-                An Instagram post dies in 24 hours. A Tweet dies in 15 minutes. A Pinterest Pin? It lasts forever. We have Pins from 2023 that still drive 500+ visitors per week to our shops. This is "passive traffic" in its truest form.
+            <h2 data-i18n="h2_engine">Pinterest is a Discovery Engine</h2>
+            <p data-i18n="p_engine">
+                An Instagram post has a lifespan of about 24 hours. A Tweet lasts 15 minutes. A Pinterest Pin? It has a shelf life of months or even years. We have Pins created in 2024 that still drive consistent traffic to our shops today. This is the definition of "passive traffic."
             </p>
 
-            <h2 data-i18n="h2_keywords">Keywords + Visuals = SEO</h2>
-            <p data-i18n="p_seo">
-                Pinterest's AI scans your image to understand what it is. If your photo is dark, blurry, or cluttered, the AI gets confused and buries your pin.
+            <h2 data-i18n="h2_keywords">Keyword + Creative = Distribution</h2>
+            <p data-i18n="p_keywords_1">
+                Pinterest's algorithm relies on visual signals and metadata. If your image is cluttered, dark, or low-resolution, the system struggles to categorize it. 
             </p>
+            <p data-i18n="p_keywords_2">
+                Your Pin title and description must be rich in "long-tail keywords." Don't just write "Gold Ring." Write "14k Gold Minimalist Stacking Ring for Daily Wear." This helps the search engine match your product with high-intent buyers.
+            </p>
+
             <div class="data-box">
-                <span class="text-xs font-bold text-red uppercase block mb-2" data-i18n="lbl_tip">Pro Tip</span>
+                <span class="data-label" data-i18n="lbl_tip">Official Spec</span>
                 <p class="!mb-0 !text-sm text-gray-300" data-i18n="p_tip">
-                    Always use a 2:3 aspect ratio (1000x1500px). Vertical pins take up more screen real estate on mobile, increasing click-through rates by 35%.
+                    <strong>Standard Pin Size:</strong> Always use a 2:3 aspect ratio (e.g., 1000 x 1500 pixels). Images taller than this ratio may get cut off in the feed, and square images (1:1) perform significantly worse on mobile screens.
                 </p>
             </div>
 
-            <h2 data-i18n="h2_strategy">The "Fresh Pin" Strategy</h2>
-            <p data-i18n="p_strat">
-                Pinterest rewards "Fresh Pins"—new images for existing URLs. You don't need new products to get traffic; you just need new photos of the same product. This is why having a library of diverse mockups is critical.
+            <h2 data-i18n="h2_fresh">The "Fresh Pin" Strategy</h2>
+            <p data-i18n="p_fresh_1">
+                Pinterest prioritizes "Fresh Pins." A Fresh Pin is defined as a new image pointing to a specific URL. You do not need a new product to create a Fresh Pin; you simply need a new visual perspective of the same product.
             </p>
+            <p data-i18n="p_fresh_2">
+                This is why successful sellers maintain a library of 20-30 different mockups for a single best-seller. It allows them to post daily without spamming the same image.
+            </p>
+
+            <h2 data-i18n="h2_funnel">The Etsy → Pinterest Funnel</h2>
+            <ul data-i18n="ul_funnel">
+                <li><strong>The Product:</strong> Your Etsy Listing URL (the destination).</li>
+                <li><strong>The Creative:</strong> A high-quality vertical image (the hook).</li>
+                <li><strong>The Board:</strong> Saved to a relevant board (e.g., "Boho Wedding Ideas").</li>
+                <li><strong>The Action:</strong> User clicks image → Lands on Etsy → Purchases.</li>
+            </ul>
+
+            <h2 data-i18n="h2_plan">14-Day Execution Plan</h2>
+            <p data-i18n="p_plan_intro">Do not overcomplicate this. Consistency beats intensity.</p>
+            <ol class="space-y-4">
+                <li data-i18n="li_plan_1"><strong>Day 1:</strong> Convert your personal account to a Business Account to access Analytics.</li>
+                <li data-i18n="li_plan_2"><strong>Day 2:</strong> Claim your website/Etsy shop in Pinterest settings to get attribution.</li>
+                <li data-i18n="li_plan_3"><strong>Day 3:</strong> Create 5 core boards with keyword-rich titles (not cute names).</li>
+                <li data-i18n="li_plan_4"><strong>Day 4-10:</strong> Create 5 "Fresh Pins" for your top-selling product using different mockups.</li>
+                <li data-i18n="li_plan_5"><strong>Day 11-14:</strong> Schedule 1 pin per day. Observe which visual style gets the most outbound clicks.</li>
+            </ol>
+
+            <h2 data-i18n="h2_trust">A Note on Authenticity</h2>
+            <p data-i18n="p_trust">
+                Pinterest users are looking for inspiration, not spam. Avoid using low-quality, misleading AI-generated images that don't represent the actual product. High-quality, clear visuals that show the product in use build trust and reduce bounce rates.
+            </p>
+
+            <h2 data-i18n="h2_vitriny">The VitrinY Advantage</h2>
+            <p data-i18n="p_vitriny">
+                Creating fresh content daily is exhausting. That's why we built <strong>VitrinY Studio</strong>. We provide the visual assets you need to feed the Pinterest algorithm without hiring a photographer.
+            </p>
+
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <h3 class="!text-lg !mt-0 text-gray-500" data-i18n="h3_sources">Sources & Benchmarks</h3>
+                <ul class="!text-xs text-gray-600 !list-none !pl-0">
+                    <li data-i18n="li_source_1">1. Pinterest Business: "Creative Best Practices" (2025 Guide)</li>
+                    <li data-i18n="li_source_2">2. Pinterest Engineering: "How We Define Fresh Content"</li>
+                    <li data-i18n="li_source_3">3. Etsy Seller Handbook: "Driving Traffic with Pinterest"</li>
+                </ul>
+            </div>
 
         </div>
 
@@ -123,6 +211,13 @@
                     <h4 class="font-serif text-white text-xl mb-2" data-i18n="cta_t">Need Fresh Pins?</h4>
                     <p class="text-xs text-gray-400 mb-6" data-i18n="cta_d">Generate unlimited "Fresh Pin" variations for Pinterest using our AI Studio.</p>
                     <a href="studio.html" class="block w-full py-3 bg-purple text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-black transition" data-i18n="btn_cta">Visit Studio</a>
+                </div>
+
+                <div class="bg-[#0F1115] border border-blue-500/30 p-8 rounded-xl text-center group hover:border-blue-500/60 transition">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-2xl mx-auto mb-4"><i class="fa-solid fa-chess-knight"></i></div>
+                    <h4 class="font-serif text-white text-xl mb-2" data-i18n="cta_audit_t">Traffic Audit</h4>
+                    <p class="text-xs text-gray-400 mb-6" data-i18n="cta_audit_d">Is your traffic converting? Let's analyze your shop architecture.</p>
+                    <a href="consulting.html" class="block w-full py-3 border border-blue-500 text-blue-500 text-xs font-bold uppercase tracking-widest rounded-full hover:bg-blue-500 hover:text-white transition" data-i18n="btn_audit">Book Audit</a>
                 </div>
             </div>
         </aside>
@@ -135,7 +230,7 @@
   </footer>
 
   <script>
-    // Logic
+    // Reveal & Scroll Logic
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
@@ -148,12 +243,54 @@
         document.getElementById("progress-bar").style.width = scrolled + "%";
     };
 
+    // Mobile Menu Logic (Accessible)
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const closeBtn = document.getElementById('close-menu-btn');
-    function toggleMenu() { mobileMenu.classList.toggle('translate-x-full'); }
-    if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
-    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    const menuLinks = mobileMenu.querySelectorAll('a');
+
+    function openMenu() {
+        mobileMenu.classList.remove('invisible');
+        mobileMenu.classList.remove('translate-x-full');
+        mobileBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+        mobileMenu.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.add('translate-x-full');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        setTimeout(() => { mobileMenu.classList.add('invisible'); }, 300);
+        mobileBtn.focus();
+    }
+
+    if(mobileBtn) mobileBtn.addEventListener('click', openMenu);
+    if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+    
+    // Close on link click
+    menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // Focus Trap & ESC key
+    mobileMenu.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Tab') {
+            const focusable = mobileMenu.querySelectorAll('button, a');
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault(); last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault(); first.focus();
+                }
+            }
+        }
+    });
 
     // Translations
     const translations = {
@@ -163,23 +300,48 @@
         mob_all: "All Articles",
         mob_studio: "Studio",
         mob_consulting: "Consulting",
-        meta_top: "Strategy · 6 Min Read",
+        meta_top: "Strategy · 8 Min Read",
         title: "Pinterest SEO: The Secret Weapon for Etsy Traffic",
         subtitle: "Stop treating it like social media. It's a visual search engine.",
         byline: "By Zayn Collective",
         date: "Jan 04, 2026",
-        p_intro: "Most Etsy sellers treat Pinterest like Instagram: they post once, get 5 likes, and give up. This is a fundamental mistake. Pinterest is not a social network; it is a <strong>Visual Search Engine</strong>. It is Google for images.",
-        h2_longevity: "The Power of Longevity",
-        p_long: "An Instagram post dies in 24 hours. A Tweet dies in 15 minutes. A Pinterest Pin? It lasts forever. We have Pins from 2023 that still drive 500+ visitors per week to our shops. This is \"passive traffic\" in its truest form.",
-        h2_keywords: "Keywords + Visuals = SEO",
-        p_seo: "Pinterest's AI scans your image to understand what it is. If your photo is dark, blurry, or cluttered, the AI gets confused and buries your pin.",
-        lbl_tip: "Pro Tip",
-        p_tip: "Always use a 2:3 aspect ratio (1000x1500px). Vertical pins take up more screen real estate on mobile, increasing click-through rates by 35%.",
-        h2_strategy: "The \"Fresh Pin\" Strategy",
-        p_strat: "Pinterest rewards \"Fresh Pins\"—new images for existing URLs. You don't need new products to get traffic; you just need new photos of the same product. This is why having a library of diverse mockups is critical.",
+        
+        // Body Content
+        p_intro: "Most Etsy sellers treat Pinterest like Instagram: they post once, get a few likes, and move on. This is a fundamental mistake. Pinterest is not a social network; it is a <strong>Visual Search Engine</strong>. It operates closer to Google than TikTok.",
+        h2_engine: "Pinterest is a Discovery Engine",
+        p_engine: "An Instagram post has a lifespan of about 24 hours. A Tweet lasts 15 minutes. A Pinterest Pin? It has a shelf life of months or even years. We have Pins created in 2024 that still drive consistent traffic to our shops today. This is the definition of \"passive traffic.\"",
+        h2_keywords: "Keyword + Creative = Distribution",
+        p_keywords_1: "Pinterest's algorithm relies on visual signals and metadata. If your image is cluttered, dark, or low-resolution, the system struggles to categorize it.",
+        p_keywords_2: "Your Pin title and description must be rich in \"long-tail keywords.\" Don't just write \"Gold Ring.\" Write \"14k Gold Minimalist Stacking Ring for Daily Wear.\" This helps the search engine match your product with high-intent buyers.",
+        lbl_tip: "Official Spec",
+        p_tip: "<strong>Standard Pin Size:</strong> Always use a 2:3 aspect ratio (e.g., 1000 x 1500 pixels). Images taller than this ratio may get cut off in the feed, and square images (1:1) perform significantly worse on mobile screens.",
+        h2_fresh: "The \"Fresh Pin\" Strategy",
+        p_fresh_1: "Pinterest prioritizes \"Fresh Pins.\" A Fresh Pin is defined as a new image pointing to a specific URL. You do not need a new product to create a Fresh Pin; you simply need a new visual perspective of the same product.",
+        p_fresh_2: "This is why successful sellers maintain a library of 20-30 different mockups for a single best-seller. It allows them to post daily without spamming the same image.",
+        h2_funnel: "The Etsy → Pinterest Funnel",
+        ul_funnel: "<li><strong>The Product:</strong> Your Etsy Listing URL (the destination).</li><li><strong>The Creative:</strong> A high-quality vertical image (the hook).</li><li><strong>The Board:</strong> Saved to a relevant board (e.g., \"Boho Wedding Ideas\").</li><li><strong>The Action:</strong> User clicks image → Lands on Etsy → Purchases.</li>",
+        h2_plan: "14-Day Execution Plan",
+        p_plan_intro: "Do not overcomplicate this. Consistency beats intensity.",
+        li_plan_1: "<strong>Day 1:</strong> Convert your personal account to a Business Account to access Analytics.",
+        li_plan_2: "<strong>Day 2:</strong> Claim your website/Etsy shop in Pinterest settings to get attribution.",
+        li_plan_3: "<strong>Day 3:</strong> Create 5 core boards with keyword-rich titles (not cute names).",
+        li_plan_4: "<strong>Day 4-10:</strong> Create 5 \"Fresh Pins\" for your top-selling product using different mockups.",
+        li_plan_5: "<strong>Day 11-14:</strong> Schedule 1 pin per day. Observe which visual style gets the most outbound clicks.",
+        h2_trust: "A Note on Authenticity",
+        p_trust: "Pinterest users are looking for inspiration, not spam. Avoid using low-quality, misleading AI-generated images that don't represent the actual product. High-quality, clear visuals that show the product in use build trust and reduce bounce rates.",
+        h2_vitriny: "The VitrinY Advantage",
+        p_vitriny: "Creating fresh content daily is exhausting. That's why we built <strong>VitrinY Studio</strong>. We provide the visual assets you need to feed the Pinterest algorithm without hiring a photographer.",
+        h3_sources: "Sources & Benchmarks",
+        li_source_1: "1. Pinterest Business: \"Creative Best Practices\" (2025 Guide)",
+        li_source_2: "2. Pinterest Engineering: \"How We Define Fresh Content\"",
+        li_source_3: "3. Etsy Seller Handbook: \"Driving Traffic with Pinterest\"",
+        
         cta_t: "Need Fresh Pins?",
         cta_d: "Generate unlimited \"Fresh Pin\" variations for Pinterest using our AI Studio.",
-        btn_cta: "Visit Studio"
+        btn_cta: "Visit Studio",
+        cta_audit_t: "Traffic Audit",
+        cta_audit_d: "Is your traffic converting? Let's analyze your shop architecture.",
+        btn_audit: "Book Audit"
       },
       tr: {
         page_title: "Pinterest SEO Sırları | VitrinY Journal",
@@ -187,23 +349,48 @@
         mob_all: "Tüm Yazılar",
         mob_studio: "Stüdyo",
         mob_consulting: "Danışmanlık",
-        meta_top: "Strateji · 6 Dakika",
+        meta_top: "Strateji · 8 Dakika",
         title: "Pinterest SEO: Etsy Trafiği İçin Gizli Silah",
         subtitle: "Ona sosyal medya muamelesi yapmayı bırakın. O bir görsel arama motoru.",
         byline: "Yazan: Zayn Collective",
-        date: "04 Oca, 2026",
-        p_intro: "Çoğu Etsy satıcısı Pinterest'e Instagram muamelesi yapar: bir kez paylaşır, 5 beğeni alır ve pes eder. Bu temel bir hatadır. Pinterest bir sosyal ağ değildir; bir <strong>Görsel Arama Motorudur</strong>. O, resimler için Google'dır.",
-        h2_longevity: "Uzun Ömürlülüğün Gücü",
-        p_long: "Bir Instagram gönderisi 24 saatte ölür. Bir Tweet 15 dakikada ölür. Bir Pinterest Pini? Sonsuza kadar yaşar. 2023'ten kalma, mağazalarımıza hala haftada 500+ ziyaretçi çeken Pinlerimiz var. Bu, en gerçek haliyle \"pasif trafik\"tir.",
-        h2_keywords: "Anahtar Kelimeler + Görseller = SEO",
-        p_seo: "Pinterest'in yapay zekası, ne olduğunu anlamak için görselinizi tarar. Fotoğrafınız karanlık, bulanık veya karmaşıksa, yapay zeka kafası karışır ve pininizi gömer.",
-        lbl_tip: "Profesyonel İpucu",
-        p_tip: "Daima 2:3 en boy oranı (1000x1500px) kullanın. Dikey pinler mobilde ekranda daha fazla yer kaplar ve tıklama oranlarını %35 artırır.",
-        h2_strategy: "\"Taze Pin\" Stratejisi",
-        p_strat: "Pinterest, mevcut URL'ler için yeni görseller olan \"Taze Pin\"leri ödüllendirir. Trafik almak için yeni ürünlere ihtiyacınız yok; aynı ürünün yeni fotoğraflarına ihtiyacınız var. İşte bu yüzden çeşitli mockup kütüphanesine sahip olmak kritiktir.",
+        date: "4 Oca 2026",
+        
+        // Body Content
+        p_intro: "Çoğu Etsy satıcısı Pinterest'e Instagram muamelesi yapar: bir kez paylaşır, birkaç beğeni alır ve pes eder. Bu temel bir hatadır. Pinterest bir sosyal ağ değildir; bir <strong>Görsel Arama Motorudur</strong>. İşleyişi TikTok'tan çok Google'a yakındır.",
+        h2_engine: "Pinterest Bir Keşif Motorudur",
+        p_engine: "Bir Instagram gönderisinin ömrü yaklaşık 24 saattir. Bir Tweet 15 dakika sürer. Bir Pinterest Pini? Aylarca hatta yıllarca raf ömrü vardır. 2024'te oluşturduğumuz ve bugün hala mağazalarımıza düzenli trafik çeken Pinlerimiz var. \"Pasif trafik\" tanımı tam olarak budur.",
+        h2_keywords: "Anahtar Kelime + Görsel = Dağıtım",
+        p_keywords_1: "Pinterest'in algoritması görsel sinyallere ve üst verilere (metadata) dayanır. Görseliniz karmaşık, karanlık veya düşük çözünürlüklü ise sistem onu kategorize etmekte zorlanır.",
+        p_keywords_2: "Pin başlığınız ve açıklamanız \"uzun kuyruklu anahtar kelimelerle\" (long-tail keywords) zengin olmalıdır. Sadece \"Altın Yüzük\" yazmayın. \"Günlük Kullanım İçin 14 Ayar Minimalist Altın Yüzük\" yazın. Bu, arama motorunun ürününüzü satın alma niyeti yüksek alıcılarla eşleştirmesine yardımcı olur.",
+        lbl_tip: "Resmi Özellikler",
+        p_tip: "<strong>Standart Pin Boyutu:</strong> Daima 2:3 en boy oranı kullanın (ör. 1000 x 1500 piksel). Bu orandan daha uzun görseller akışta kesilebilir ve kare görseller (1:1) mobil ekranlarda önemli ölçüde daha kötü performans gösterir.",
+        h2_fresh: "\"Taze Pin\" Stratejisi",
+        p_fresh_1: "Pinterest \"Taze Pinlere\" (Fresh Pins) öncelik verir. Taze Pin, belirli bir URL'ye işaret eden yeni bir görsel olarak tanımlanır. Taze Pin oluşturmak için yeni bir ürüne ihtiyacınız yoktur; sadece aynı ürünün yeni bir görsel perspektifine ihtiyacınız vardır.",
+        p_fresh_2: "Başarılı satıcıların tek bir çok satan ürün için 20-30 farklı mockup kütüphanesi tutmasının nedeni budur. Bu, aynı görseli spam yapmadan her gün paylaşım yapmalarını sağlar.",
+        h2_funnel: "Etsy → Pinterest Hunisi",
+        ul_funnel: "<li><strong>Ürün:</strong> Etsy İlan URL'niz (varış noktası).</li><li><strong>Kreatif:</strong> Yüksek kaliteli dikey görsel (kanca).</li><li><strong>Pano:</strong> İlgili bir panoya kaydedilir (ör. \"Bohem Düğün Fikirleri\").</li><li><strong>Eylem:</strong> Kullanıcı görsele tıklar → Etsy'ye gelir → Satın alır.</li>",
+        h2_plan: "14 Günlük Uygulama Planı",
+        p_plan_intro: "Bunu aşırı karmaşıklaştırmayın. İstikrar, yoğunluktan iyidir.",
+        li_plan_1: "<strong>1. Gün:</strong> Analitiklere erişmek için kişisel hesabınızı İşletme Hesabına (Business Account) dönüştürün.",
+        li_plan_2: "<strong>2. Gün:</strong> Pinterest ayarlarında web sitenizi/Etsy mağazanızı doğrulayın (claim ownership).",
+        li_plan_3: "<strong>3. Gün:</strong> Anahtar kelime odaklı başlıklara sahip 5 temel pano oluşturun (sevimli isimler kullanmayın).",
+        li_plan_4: "<strong>4-10. Gün:</strong> En çok satan ürününüz için farklı mockup'lar kullanarak 5 \"Taze Pin\" oluşturun.",
+        li_plan_5: "<strong>11-14. Gün:</strong> Günde 1 pin planlayın. Hangi görsel stilinin en çok dış bağlantı tıklaması (outbound click) aldığını gözlemleyin.",
+        h2_trust: "Otantiklik Üzerine Bir Not",
+        p_trust: "Pinterest kullanıcıları spam değil, ilham arıyor. Ürünü yansıtmayan, düşük kaliteli, yanıltıcı AI görselleri kullanmaktan kaçının. Ürünü kullanımda gösteren kaliteli ve net görseller güven oluşturur ve hemen çıkma oranlarını düşürür.",
+        h2_vitriny: "VitrinY Avantajı",
+        p_vitriny: "Her gün taze içerik üretmek yorucudur. İşte bu yüzden <strong>VitrinY Studio</strong>'yu kurduk. Bir fotoğrafçı tutmadan Pinterest algoritmasını beslemek için ihtiyacınız olan görsel varlıkları sağlıyoruz.",
+        h3_sources: "Kaynaklar ve Kriterler",
+        li_source_1: "1. Pinterest Business: \"Yaratıcı En İyi Uygulamalar\" (2025 Rehberi)",
+        li_source_2: "2. Pinterest Engineering: \"Taze İçeriği Nasıl Tanımlıyoruz\"",
+        li_source_3: "3. Etsy Satıcı El Kitabı: \"Pinterest ile Trafik Çekmek\"",
+        
         cta_t: "Taze Pin mi Lazım?",
         cta_d: "AI Stüdyomuzu kullanarak Pinterest için sınırsız \"Taze Pin\" varyasyonu üretin.",
-        btn_cta: "Stüdyoyu Gez"
+        btn_cta: "Stüdyoyu Gez",
+        cta_audit_t: "Trafik Analizi",
+        cta_audit_d: "Trafiğiniz satışa dönüyor mu? Mağaza mimarinizi analiz edelim.",
+        btn_audit: "Analiz Al"
       }
     };
 
@@ -216,6 +403,15 @@
             if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
         });
         document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+        
+        // Ensure menu links are translated immediately
+        const menuLinks = document.querySelectorAll('#mobile-menu a');
+        if (menuLinks.length > 0) {
+           const keys = ['mob_all', 'mob_studio', 'mob_consulting'];
+           menuLinks.forEach((link, index) => {
+               if(translations[currentLang][keys[index]]) link.innerText = translations[currentLang][keys[index]];
+           });
+        }
     }
 
     function toggleLang() {
@@ -223,6 +419,7 @@
         localStorage.setItem('lang', currentLang);
         applyLang();
     }
+    // Apply on load
     applyLang();
   </script>
 
