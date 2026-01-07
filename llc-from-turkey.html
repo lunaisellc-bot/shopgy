@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>US LLC Guide for Turkish Sellers | VitrinY Journal</title>
   <meta name="description" content="A complete guide for Turkish entrepreneurs to set up a US LLC, get an EIN, and open a Stripe account without visiting the USA." />
+  <link rel="canonical" href="https://vitriny.com/llc-from-turkey.html" />
   
+  <meta property="og:title" content="How to Set Up a US LLC from Turkey (Without Visiting)" />
+  <meta property="og:description" content="Stop letting payment gateways block your growth. The definitive guide to Stripe, Wise, and legal formation for Turkish sellers." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1553877606-3c2386e7a0dd?q=80&w=1200" />
+  <meta property="og:type" content="article" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,74 +27,230 @@
     }
   </script>
   <style>
-    body { background-color: #0B0B15; color: #E5E7EB; }
-    .prose p { margin-bottom: 1.5rem; line-height: 1.8; color: #D1D5DB; }
-    .prose h2 { font-family: 'Playfair Display', serif; color: white; font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1rem; }
-    .prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #D1D5DB; }
-    .data-box { background: rgba(255,255,255,0.03); border-left: 3px solid #00DC82; padding: 1.5rem; margin: 2rem 0; border-radius: 0.5rem; }
+    body { background-color: #0B0B15; color: #E5E7EB; -webkit-font-smoothing: antialiased; }
+    #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: #00DC82; z-index: 100; width: 0%; transition: width 0.1s; }
+
+    .prose p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #D1D5DB; }
+    .prose h2 { font-family: 'Playfair Display', serif; color: white; font-size: 2rem; margin-top: 3rem; margin-bottom: 1.5rem; }
+    .prose h3 { font-family: 'Outfit', sans-serif; color: white; font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; }
+    .prose ul, .prose ol { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #D1D5DB; }
+    .prose ol { list-style: decimal; }
+    .prose li { margin-bottom: 0.75rem; }
+    
+    .data-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-left: 3px solid #00DC82; padding: 1.5rem; margin: 2rem 0; border-radius: 0.5rem; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 
-<body class="font-sans">
+<body class="font-sans selection:bg-neon selection:text-black">
+
+  <div id="progress-bar"></div>
 
   <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center">
-    <a href="index.html" class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] text-gold font-serif italic">Journal</span></a>
-    <a href="blog.html" class="text-xs font-bold text-gray-400 hover:text-white transition"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Journal</a>
+    <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition duration-500">
+            <span class="font-serif font-bold text-lg">V</span>
+        </div>
+        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] align-top text-gold font-serif italic">Journal</span></span>
+    </a>
+    <div class="flex items-center gap-6">
+      <a href="blog.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition hidden md:block" data-i18n="back_all"><i class="fa-solid fa-arrow-left mr-2"></i> All Articles</a>
+      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white transition">EN</button>
+      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+    </div>
   </nav>
 
-  <header class="pt-40 pb-10 px-6 text-center max-w-4xl mx-auto">
-      <span class="text-neon text-xs font-bold tracking-widest uppercase mb-4 block">Strategy · 5 Min Read</span>
-      <h1 class="text-3xl md:text-5xl font-serif text-white mb-6 leading-tight">How to Set Up a US LLC from Turkey (Without Visiting)</h1>
-      <p class="text-gray-400 italic">Stop letting payment gateways block your growth.</p>
+  <div id="mobile-menu" class="fixed inset-0 bg-bgdark/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-2xl font-serif text-white">
+    <button id="close-menu-btn" class="absolute top-6 right-8 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-3xl"></i></button>
+    <a href="blog.html" class="hover:text-neon transition">All Articles</a>
+    <a href="studio.html" class="hover:text-neon transition">Studio</a>
+    <a href="consulting.html" class="hover:text-neon transition">Consulting</a>
+  </div>
+
+  <header class="pt-40 pb-16 px-6 text-center max-w-4xl mx-auto reveal active">
+      <span class="text-neon text-xs font-bold tracking-widest uppercase mb-6 block" data-i18n="meta_top">Strategy · 7 Min Read</span>
+      <h1 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight" data-i18n="title">How to Set Up a US LLC from Turkey (Without Visiting)</h1>
+      <p class="text-lg text-gray-400 font-serif italic mb-8" data-i18n="subtitle">Stop letting payment gateways block your growth.</p>
+      <div class="flex items-center justify-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full grayscale border border-white/10" alt="Author">
+        <span data-i18n="byline">By Zayn Collective</span>
+        <span>·</span>
+        <span>Jan 07, 2026</span>
+    </div>
   </header>
 
-  <div class="px-6 mb-12">
-      <div class="max-w-4xl mx-auto h-[300px] md:h-[400px] rounded-2xl overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1553877606-3c2386e7a0dd?q=80&w=1200" class="w-full h-full object-cover">
+  <div class="px-6 mb-20 reveal delay-100">
+      <div class="max-w-4xl mx-auto h-[400px] rounded-2xl overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1553877606-3c2386e7a0dd?q=80&w=1600" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-transparent to-transparent"></div>
       </div>
   </div>
 
-  <section class="max-w-3xl mx-auto px-6 pb-20 prose">
-      <p class="lead text-lg text-white">
-          If you are an entrepreneur in Turkey, you know the pain: PayPal is banned, and Stripe is unavailable. This is the single biggest barrier to scaling a global Etsy or Shopify brand. But there is a legal "cheat code": <strong>The US LLC.</strong>
-      </p>
+  <section class="px-6 pb-32">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-16">
+        <div class="lg:col-span-8 prose reveal delay-200">
+            
+            <p class="lead text-xl text-white font-serif" data-i18n="p_intro">
+                If you are an entrepreneur in Turkey, you know the pain: PayPal is banned, and Stripe is officially unavailable. This is the single biggest barrier to scaling a global Etsy or Shopify brand. But there is a legal "cheat code" used by thousands of successful sellers: <strong>The US LLC.</strong>
+            </p>
 
-      <h2>Why You Need an LLC</h2>
-      <p>
-          It's not just about looking professional. An LLC (Limited Liability Company) allows you to obtain an <strong>EIN (Employer Identification Number)</strong>. With an EIN, you are no longer just a person in Turkey; you are a US entity.
-      </p>
+            <h2 data-i18n="h2_why">Why You Need an LLC</h2>
+            <p data-i18n="p_why_1">
+                It's not just about looking professional. An LLC (Limited Liability Company) allows you to obtain an <strong>EIN (Employer Identification Number)</strong>. With an EIN, you are no longer just an individual in Istanbul or Ankara; you are a US-recognized entity.
+            </p>
+            <p data-i18n="p_why_2">
+                This distinction is crucial because US banking institutions (like Mercury) and payment processors (like Stripe) require an EIN to onboard non-resident founders.
+            </p>
 
-      <div class="data-box">
-          <span class="text-xs font-bold text-neon uppercase block mb-2">The "Holy Trinity" Stack</span>
-          <p class="!mb-0 text-sm">To run a global business from Istanbul/Ankara, you need three things connected: <strong>Wyoming LLC + Mercury/Wise Bank + Stripe.</strong></p>
-      </div>
+            <div class="data-box">
+                <span class="data-label" data-i18n="lbl_stack">The "Holy Trinity" Stack</span>
+                <p class="!mb-0 !text-sm text-gray-300" data-i18n="p_stack">
+                    To run a global business from Turkey, you need three things connected: <strong>Wyoming/NM LLC + Wise Business + Stripe.</strong> This setup allows you to accept credit cards in USD and withdraw funds to your Turkish bank account legally.
+                </p>
+            </div>
 
-      <h2>Step 1: Choose the Right State</h2>
-      <p>
-          Forget Delaware unless you plan to seek venture capital. For e-commerce solopreneurs, <strong>Wyoming</strong> or <strong>New Mexico</strong> are superior. They have low annual fees and strong privacy laws.
-      </p>
+            <h2 data-i18n="h2_step1">Step 1: Choose the Right State</h2>
+            <p data-i18n="p_step1">
+                Forget Delaware unless you plan to seek venture capital from Silicon Valley investors. For e-commerce solopreneurs and Etsy sellers, <strong>Wyoming</strong> or <strong>New Mexico</strong> are superior choices.
+            </p>
+            <ul class="text-gray-400">
+                <li data-i18n="li_wyo"><strong>Wyoming:</strong> Low annual fees, strong privacy laws (your name isn't on public record).</li>
+                <li data-i18n="li_nm"><strong>New Mexico:</strong> No annual report fees, very private, but slightly harder to open bank accounts compared to Wyoming.</li>
+            </ul>
 
-      <h2>Step 2: Get Your EIN</h2>
-      <p>
-          Once your LLC is formed (takes 2-5 days), you must apply for an EIN from the IRS. This is the "Social Security Number" for your business. <em>Note: As a non-US resident, this can take 15-30 days via fax processing. Patience is key.</em>
-      </p>
+            <h2 data-i18n="h2_step2">Step 2: Get Your EIN</h2>
+            <p data-i18n="p_step2">
+                Once your LLC is formed (which takes 2-5 days using services like Northwest or Incfile), you must apply for an EIN from the IRS. This is the "Social Security Number" for your business. <em>Note: As a non-US resident without an SSN, this process is done via fax and can take 15-30 days. Patience is key.</em>
+            </p>
 
-      <h2>Step 3: Banking & Payments</h2>
-      <ul>
-          <li><strong>Wise Business:</strong> Use your LLC docs to open a Wise USD account. This gives you a US routing number to receive Etsy payments.</li>
-          <li><strong>Stripe:</strong> Use your EIN and Wise account to activate Stripe. Now you can accept credit cards globally on your own website (Shopgy/Shopify).</li>
-      </ul>
+            <h2 data-i18n="h2_step3">Step 3: Banking & Payments</h2>
+            <p data-i18n="p_step3_intro">This is where the magic happens. Once you have your Articles of Organization and your EIN letter (CP575):</p>
+            <ol>
+                <li data-i18n="li_step3_1"><strong>Open Wise Business:</strong> Use your LLC docs to open a Wise USD account. This gives you a verified US routing number (ACH) to receive Etsy payments.</li>
+                <li data-i18n="li_step3_2"><strong>Activate Stripe:</strong> Apply for Stripe using your LLC details, EIN, and your Wise US bank details. For the phone number, use a service like Zadarma or OpenPhone.</li>
+            </ol>
 
-      <div class="bg-[#0F1115] border border-blue-500/30 p-8 rounded-xl text-center mt-12">
-          <h4 class="font-serif text-white text-xl mb-2">Need Help with the Setup?</h4>
-          <p class="text-xs text-gray-400 mb-4">We guide brand owners through this architectural phase.</p>
-          <a href="consulting.html" class="inline-block px-6 py-2 border border-blue-500 text-blue-500 text-xs font-bold uppercase rounded-full hover:bg-blue-500 hover:text-white transition">Book Strategy Call</a>
-      </div>
+            <h2 data-i18n="h2_warning">A Warning on Compliance</h2>
+            <p data-i18n="p_warning">
+                Having an LLC brings responsibility. You must file an annual report (in Wyoming) and a BOI (Beneficial Ownership Information) report to FinCEN. Failing to do so can lead to heavy fines ($500/day). Do not skip the paperwork.
+            </p>
+
+        </div>
+
+        <aside class="lg:col-span-4 space-y-8">
+            <div class="sticky top-32">
+                <div class="bg-[#0F1115] border border-blue-500/30 p-8 rounded-xl text-center">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-2xl mx-auto mb-4"><i class="fa-solid fa-file-signature"></i></div>
+                    <h4 class="font-serif text-white text-xl mb-2" data-i18n="cta_t">Confused by Paperwork?</h4>
+                    <p class="text-xs text-gray-400 mb-6" data-i18n="cta_d">We guide brand owners through this architectural phase. Don't risk a rejection.</p>
+                    <a href="consulting.html" class="block w-full py-3 bg-blue-600 text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-white hover:text-blue-600 transition" data-i18n="btn_cta">Book Strategy Call</a>
+                </div>
+            </div>
+        </aside>
+    </div>
   </section>
 
-  <footer class="py-8 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
-      <p>&copy; 2026 VitrinY Journal.</p>
+  <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5">
+      <p>&copy; 2026 VitrinY / Lunaise LLC.</p>
   </footer>
 
+  <script>
+    // Reveal & Scroll Logic
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
+
+    // Menu Logic
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    function toggleMenu() { mobileMenu.classList.toggle('translate-x-full'); }
+    if(mobileBtn) mobileBtn.addEventListener('click', toggleMenu);
+    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+
+    // Translations
+    const translations = {
+      en: {
+        back_all: '<i class="fa-solid fa-arrow-left mr-2"></i> All Articles',
+        meta_top: "Strategy · 7 Min Read",
+        title: "How to Set Up a US LLC from Turkey (Without Visiting)",
+        subtitle: "Stop letting payment gateways block your growth.",
+        byline: "By Zayn Collective",
+        p_intro: "If you are an entrepreneur in Turkey, you know the pain: PayPal is banned, and Stripe is officially unavailable. This is the single biggest barrier to scaling a global Etsy or Shopify brand. But there is a legal \"cheat code\" used by thousands of successful sellers: <strong>The US LLC.</strong>",
+        h2_why: "Why You Need an LLC",
+        p_why_1: "It's not just about looking professional. An LLC (Limited Liability Company) allows you to obtain an <strong>EIN (Employer Identification Number)</strong>. With an EIN, you are no longer just an individual in Istanbul or Ankara; you are a US-recognized entity.",
+        p_why_2: "This distinction is crucial because US banking institutions (like Mercury) and payment processors (like Stripe) require an EIN to onboard non-resident founders.",
+        lbl_stack: "The \"Holy Trinity\" Stack",
+        p_stack: "To run a global business from Turkey, you need three things connected: <strong>Wyoming/NM LLC + Wise Business + Stripe.</strong> This setup allows you to accept credit cards in USD and withdraw funds to your Turkish bank account legally.",
+        h2_step1: "Step 1: Choose the Right State",
+        p_step1: "Forget Delaware unless you plan to seek venture capital from Silicon Valley investors. For e-commerce solopreneurs and Etsy sellers, <strong>Wyoming</strong> or <strong>New Mexico</strong> are superior choices.",
+        li_wyo: "<strong>Wyoming:</strong> Low annual fees, strong privacy laws (your name isn't on public record).",
+        li_nm: "<strong>New Mexico:</strong> No annual report fees, very private, but slightly harder to open bank accounts compared to Wyoming.",
+        h2_step2: "Step 2: Get Your EIN",
+        p_step2: "Once your LLC is formed (which takes 2-5 days using services like Northwest or Incfile), you must apply for an EIN from the IRS. This is the \"Social Security Number\" for your business. <em>Note: As a non-US resident without an SSN, this process is done via fax and can take 15-30 days. Patience is key.</em>",
+        h2_step3: "Step 3: Banking & Payments",
+        p_step3_intro: "This is where the magic happens. Once you have your Articles of Organization and your EIN letter (CP575):",
+        li_step3_1: "<strong>Open Wise Business:</strong> Use your LLC docs to open a Wise USD account. This gives you a verified US routing number (ACH) to receive Etsy payments.",
+        li_step3_2: "<strong>Activate Stripe:</strong> Apply for Stripe using your LLC details, EIN, and your Wise US bank details. For the phone number, use a service like Zadarma or OpenPhone.",
+        h2_warning: "A Warning on Compliance",
+        p_warning: "Having an LLC brings responsibility. You must file an annual report (in Wyoming) and a BOI (Beneficial Ownership Information) report to FinCEN. Failing to do so can lead to heavy fines ($500/day). Do not skip the paperwork.",
+        cta_t: "Confused by Paperwork?",
+        cta_d: "We guide brand owners through this architectural phase. Don't risk a rejection.",
+        btn_cta: "Book Strategy Call"
+      },
+      tr: {
+        back_all: '<i class="fa-solid fa-arrow-left mr-2"></i> Tüm Yazılar',
+        meta_top: "Strateji · 7 Dakika",
+        title: "Türkiye'den ABD Şirketi (LLC) Nasıl Kurulur?",
+        subtitle: "Ödeme altyapılarının büyümenizi engellemesine izin vermeyin.",
+        byline: "Yazan: Zayn Collective",
+        p_intro: "Türkiye'de bir girişimciyseniz, acıyı bilirsiniz: PayPal yasak ve Stripe resmi olarak yok. Bu, global bir Etsy veya Shopify markasını büyütmenin önündeki en büyük engeldir. Ancak binlerce başarılı satıcının kullandığı yasal bir \"hile kodu\" var: <strong>ABD LLC Şirketi.</strong>",
+        h2_why: "Neden Bir LLC'ye İhtiyacınız Var?",
+        p_why_1: "Bu sadece profesyonel görünmekle ilgili değil. Bir LLC (Limited Şirket), bir <strong>EIN (İşveren Kimlik Numarası)</strong> almanızı sağlar. Bir EIN ile artık İstanbul veya Ankara'daki bir birey değilsiniz; ABD tarafından tanınan bir tüzel kişiliksiniz.",
+        p_why_2: "Bu ayrım hayati önem taşır çünkü ABD bankacılık kurumları (Mercury gibi) ve ödeme işlemcileri (Stripe gibi), ABD'de ikamet etmeyen kurucuları kabul etmek için bir EIN talep eder.",
+        lbl_stack: "\"Kutsal Üçlü\" Kurulumu",
+        p_stack: "Türkiye'den global bir iş yönetmek için birbirine bağlı üç şeye ihtiyacınız var: <strong>Wyoming/NM LLC + Wise Business + Stripe.</strong> Bu kurulum, kredi kartı ile Dolar (USD) ödemesi almanızı ve parayı yasal olarak Türk banka hesabınıza çekmenizi sağlar.",
+        h2_step1: "1. Adım: Doğru Eyaleti Seçin",
+        p_step1: "Silikon Vadisi yatırımcılarından fon aramayı planlamıyorsanız Delaware'i unutun. E-ticaret girişimcileri ve Etsy satıcıları için <strong>Wyoming</strong> veya <strong>New Mexico</strong> çok daha üstün seçeneklerdir.",
+        li_wyo: "<strong>Wyoming:</strong> Düşük yıllık ücretler, güçlü gizlilik yasaları (adınız halka açık kayıtlarda görünmez).",
+        li_nm: "<strong>New Mexico:</strong> Yıllık rapor ücreti yok, çok gizli, ancak Wyoming'e kıyasla banka hesabı açmak bir tık daha zor olabilir.",
+        h2_step2: "2. Adım: EIN Numaranızı Alın",
+        p_step2: "LLC'niz kurulduktan sonra (Northwest veya Incfile gibi hizmetlerle 2-5 gün sürer), IRS'den EIN başvurusu yapmalısınız. Bu, işletmenizin \"Sosyal Güvenlik Numarası\"dır. <em>Not: SSN'i olmayan bir yabancı olarak, bu işlem faks yoluyla yapılır ve 15-30 gün sürebilir. Sabır anahtardır.</em>",
+        h2_step3: "3. Adım: Bankacılık ve Ödemeler",
+        p_step3_intro: "Sihrin gerçekleştiği yer burasıdır. Kuruluş Belgeleriniz ve EIN mektubunuz (CP575) elinizde olduğunda:",
+        li_step3_1: "<strong>Wise Business Açın:</strong> LLC belgelerinizi kullanarak bir Wise USD hesabı açın. Bu size Etsy ödemelerini almak için doğrulanmış bir ABD yönlendirme numarası (routing number) verir.",
+        li_step3_2: "<strong>Stripe'ı Aktifleştirin:</strong> LLC detaylarınızı, EIN numaranızı ve Wise ABD banka bilgilerinizi kullanarak Stripe'a başvurun. Telefon numarası için Zadarma veya OpenPhone gibi bir servis kullanın.",
+        h2_warning: "Uyumluluk Uyarısı",
+        p_warning: "Bir LLC sahibi olmak sorumluluk getirir. Yıllık raporunuzu (Wyoming'de) ve BOI (Gerçek Faydalanıcı Bilgisi) raporunuzu FinCEN'e sunmalısınız. Bunu yapmamak ağır para cezalarına (günlük 500$) yol açabilir. Evrak işlerini atlamayın.",
+        cta_t: "Kafanız mı Karıştı?",
+        cta_d: "Marka sahiplerine bu mimari kurulum aşamasında rehberlik ediyoruz. Reddedilme riskini almayın.",
+        btn_cta: "Strateji Görüşmesi Al"
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
+    function applyLang() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+        });
+        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    }
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        localStorage.setItem('lang', currentLang);
+        applyLang();
+    }
+    applyLang();
+  </script>
 </body>
 </html>
