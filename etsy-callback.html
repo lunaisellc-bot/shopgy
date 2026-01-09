@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Etsy OAuth Callback</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;padding:24px;max-width:900px;margin:0 auto}
+    code,pre{background:#f6f8fa;padding:12px;border-radius:8px;display:block;overflow:auto}
+    .ok{color:#0a7b34;font-weight:700}
+    .bad{color:#b00020;font-weight:700}
+  </style>
+</head>
+<body>
+  <h1>Etsy OAuth Callback</h1>
+  <p>Bu sayfa Etsy’nin redirect sayfasıdır. Aşağıdaki <b>code</b> değerini kopyalayıp terminalde script’e yapıştıracağız.</p>
+
+  <div id="status"></div>
+  <pre id="out"></pre>
+
+  <script>
+    const qs = new URLSearchParams(location.search);
+    const code = qs.get("code");
+    const state = qs.get("state");
+    const error = qs.get("error");
+    const errorDesc = qs.get("error_description");
+
+    const status = document.getElementById("status");
+    const out = document.getElementById("out");
+
+    if (error) {
+      status.innerHTML = `<p class="bad">HATA: ${error}</p><p>${errorDesc || ""}</p>`;
+      out.textContent = location.href;
+    } else if (code) {
+      status.innerHTML = `<p class="ok">OK: code alındı.</p>`;
+      out.textContent =
+`CODE:
+${code}
+
+STATE:
+${state || "(yok)"}
+
+FULL URL:
+${location.href}
+`;
+    } else {
+      status.innerHTML = `<p class="bad">Code yok.</p><p>Yetkilendirme linkinden gelmediyseniz bu normaldir.</p>`;
+      out.textContent = location.href;
+    }
+  </script>
+</body>
+</html>
