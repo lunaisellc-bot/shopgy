@@ -100,8 +100,12 @@
     /* AGENCY Panels */
     .service-panel { flex: 1; transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s; filter: grayscale(80%) brightness(0.7); position: relative; overflow: hidden; border-right: 1px solid rgba(255,255,255,0.05); }
     .service-panel:hover { flex: 2.5; filter: grayscale(0%) brightness(1); }
-    .service-panel::before { content: ''; position: absolute; inset: 0; background: rgba(11,11,21,0.4); z-index: 10; transition: background 0.5s; }
-    .service-panel:hover::before { background: rgba(11,11,21,0.1); }
+    /* Mobile Fix: Make opacity visible on mobile, handle hover on desktop */
+    .service-panel::before { content: ''; position: absolute; inset: 0; background: rgba(11,11,21,0.6); z-index: 10; transition: background 0.5s; }
+    @media (min-width: 768px) {
+        .service-panel::before { background: rgba(11,11,21,0.4); }
+        .service-panel:hover::before { background: rgba(11,11,21,0.1); }
+    }
     
     /* HUB Cards */
     .hub-card { transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
@@ -126,7 +130,7 @@
   </div>
 
   <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-4 px-6 md:px-8 flex justify-between items-center transition-all duration-300">
-    <a href="index.html" class="flex items-center gap-3 group">
+    <a href="index.html" class="flex items-center gap-3 group relative z-50">
         <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-purple to-neon p-[1px]">
             <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
                 <span class="font-bold text-lg text-white">V</span>
@@ -142,13 +146,33 @@
       <a href="#journal" class="hover:text-white transition" data-i18n="nav_journal">Journal</a>
     </div>
 
-    <div class="flex items-center gap-4 md:gap-6">
+    <div class="flex items-center gap-3 md:gap-6 relative z-50">
       <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white hover:border-white/30 transition">EN</button>
-      <a href="etsy.html" class="bg-white text-black px-5 py-2.5 md:px-6 md:py-3 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-lg hover:shadow-neon/20 whitespace-nowrap">
+      <a href="etsy.html" class="bg-white text-black px-4 py-2 md:px-6 md:py-3 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-neon transition hover:shadow-lg hover:shadow-neon/20 whitespace-nowrap">
         <span data-i18n="nav_cta">Explore System</span>
       </a>
+      
+      <button id="mobile-menu-btn" class="md:hidden text-white text-xl ml-2 focus:outline-none" aria-label="Open Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </nav>
+
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-bgdark/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 md:hidden">
+    <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-400 hover:text-white text-2xl p-2">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="flex flex-col items-center gap-8 text-xl font-serif text-white">
+        <a href="#agency" onclick="toggleMenu()" class="hover:text-neon transition" data-i18n="nav_agency">Agency</a>
+        <a href="portfolio.html" onclick="toggleMenu()" class="hover:text-neon transition" data-i18n="nav_demos">Showcase</a>
+        <a href="#hub" onclick="toggleMenu()" class="hover:text-neon transition" data-i18n="nav_hub">Resources</a>
+        <a href="#journal" onclick="toggleMenu()" class="hover:text-neon transition" data-i18n="nav_journal">Journal</a>
+        <a href="etsy.html" onclick="toggleMenu()" class="text-neon text-base font-sans font-bold uppercase tracking-widest mt-4">
+           <i class="fa-solid fa-arrow-right mr-2"></i> <span data-i18n="nav_cta">Explore System</span>
+        </a>
+    </div>
+  </div>
 
   <header class="relative min-h-screen md:h-screen w-full flex flex-col items-center justify-center text-center px-4 pt-28 pb-12 md:pt-0 md:pb-0 md:overflow-hidden">
     <video autoplay muted loop playsinline preload="none" poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-lighten pointer-events-none">
@@ -181,36 +205,37 @@
         </div>
 
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-          <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
+          
+          <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-5 md:p-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-2 h-2 rounded-full bg-neon"></span>
               <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-300" data-i18n="for_who_title">For who?</p>
             </div>
-            <ul class="text-sm text-gray-300 space-y-2 leading-relaxed">
+            <ul class="text-sm text-gray-300 space-y-2 leading-snug md:leading-relaxed">
               <li data-i18n="for_who_1">Etsy sellers with real products and real intent to grow.</li>
               <li data-i18n="for_who_2">Creators who want owned traffic (SEO/content) and brand control.</li>
               <li data-i18n="for_who_3">Entrepreneurs tired of “random marketing” without a system.</li>
             </ul>
           </div>
 
-          <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
+          <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-5 md:p-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-2 h-2 rounded-full bg-purple"></span>
               <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-300" data-i18n="how_title">How it works</p>
             </div>
-            <ol class="text-sm text-gray-300 space-y-2 leading-relaxed list-decimal list-inside">
+            <ol class="text-sm text-gray-300 space-y-2 leading-snug md:leading-relaxed list-decimal list-inside">
               <li data-i18n="how_1">We map your sales + traffic flow (strategy layer).</li>
               <li data-i18n="how_2">We build the web infrastructure and connect Etsy (system layer).</li>
               <li data-i18n="how_3">We set up control: measurement, ownership, next steps (control layer).</li>
             </ol>
           </div>
 
-          <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6">
+          <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-5 md:p-6">
             <div class="flex items-center gap-2 mb-3">
               <span class="w-2 h-2 rounded-full bg-gold"></span>
               <p class="text-xs font-bold uppercase tracking-[0.2em] text-gray-300" data-i18n="not_for_title">Not for</p>
             </div>
-            <ul class="text-sm text-gray-300 space-y-2 leading-relaxed">
+            <ul class="text-sm text-gray-300 space-y-2 leading-snug md:leading-relaxed">
               <li data-i18n="not_for_1">People who only want a cheap website.</li>
               <li data-i18n="not_for_2">Those who want a theme setup, not a growth system.</li>
               <li data-i18n="not_for_3">Those who want design, not control.</li>
@@ -241,15 +266,17 @@
       </div>
   </section>
 
-  <section id="agency" class="h-[800px] md:h-[700px] w-full flex flex-col md:flex-row bg-bgdark relative z-20">
+  <section id="agency" class="h-auto md:h-[700px] w-full flex flex-col md:flex-row bg-bgdark relative z-20">
       
-      <div class="service-panel flex flex-col justify-end p-10 relative group bg-[#050A08] hover:bg-[#081410]">
-          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100" alt="Etsy Integration">
+      <div class="service-panel min-h-[400px] md:min-h-0 flex flex-col justify-end p-8 md:p-10 relative group bg-[#050A08] hover:bg-[#081410]">
+          <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-20 md:opacity-30 md:group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100" alt="Etsy Integration">
+          
           <div class="relative z-20 transform md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-20 md:left-20 group-hover:rotate-0 group-hover:static group-hover:translate-x-0 transition-all duration-500">
               <span class="text-neon font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-brands fa-etsy mr-2"></i> Commerce</span>
               <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="etsy_title">Etsy Sync</h2>
           </div>
-          <div class="relative z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
+          
+          <div class="relative z-20 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
               <p class="text-gray-300 max-w-sm mb-8 text-lg leading-relaxed" data-i18n="etsy_desc">
                   Turn your Etsy shop into a standalone empire. API integration, 0% commission on direct sales, and full brand control.
               </p>
@@ -259,13 +286,15 @@
           </div>
       </div>
 
-      <div class="service-panel flex flex-col justify-end p-10 relative group bg-[#0A050E] hover:bg-[#15081C]">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100" alt="Luxury Wedding Website">
+      <div class="service-panel min-h-[400px] md:min-h-0 flex flex-col justify-end p-8 md:p-10 relative group bg-[#0A050E] hover:bg-[#15081C]">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-20 md:opacity-30 md:group-hover:opacity-50 transition duration-700 scale-105 group-hover:scale-100" alt="Luxury Wedding Website">
+        
         <div class="relative z-20 transform md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-20 md:left-20 group-hover:rotate-0 group-hover:static group-hover:translate-x-0 transition-all duration-500">
             <span class="text-purple font-bold tracking-widest text-xs uppercase mb-3 block"><i class="fa-solid fa-champagne-glasses mr-2"></i> Events</span>
             <h2 class="font-serif text-4xl md:text-6xl text-white mb-4 whitespace-nowrap" data-i18n="wed_title">Wedding & VIP</h2>
         </div>
-        <div class="relative z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
+        
+        <div class="relative z-20 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
             <p class="text-gray-300 max-w-sm mb-8 text-lg leading-relaxed" data-i18n="wed_desc">
                 Cinematic websites for Weddings and Private VIP Parties. Password protection, RSVP management, and Digital Time Capsules.
             </p>
@@ -418,6 +447,18 @@
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile Menu Toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('translate-x-full');
+    }
+
+    mobileBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
 
     // Translation Dictionary
     const translations = {
