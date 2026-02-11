@@ -5,44 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reveal Invitation</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts (Luxe) -->
+  <!-- Premium fonts (light + editorial) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Icons + Confetti -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
     /**
      * ============================
-     * 1) EDIT ONLY THIS CONFIG
+     * EDIT ONLY THIS CONFIG
      * ============================
      */
     const CONFIG = {
       product: {
-        category: "reveal",               // reveal / baby
-        backend: "formspree",             // "formspree" | "apps_script"
-        themeDefault: "blackgold",        // "blackgold" | "ivory"
+        backend: "formspree",          // "formspree" | "apps_script"
         demoBanner: true,
       },
 
       event: {
-        // Parents or hosts
         hosts: "Ayla & Kerem",
-        title: "Baby Reveal Evening",
-        subtitle: "Join us for a luxe reveal moment",
-        // Countdown target (local time)
+        title: "Baby Reveal Celebration",
+        subtitle: "A sweet moment, a beautiful surprise",
         dateTimeISO: "2026-08-22 19:00:00",
-
         dateFull: "Saturday, August 22nd",
         year: "2026",
         time: "7:00 PM",
         endTime: "9:30 PM",
-
-        // Reveal moment time label (optional)
         revealTimeLabel: "Reveal at 8:00 PM"
       },
 
@@ -53,7 +44,7 @@
       },
 
       extras: {
-        dressCode: "Black & Ivory (optional)",
+        dressCode: "Soft Neutrals (optional)",
         note: "Please arrive 15 minutes early for the reveal moment."
       },
 
@@ -63,23 +54,17 @@
         registryText: "Your presence is our gift. If you’d like, we have a small registry.",
       },
 
-      // Reveal button behavior: "neutral" (gold confetti) OR "pink" OR "blue"
-      // For DEMO: keep "neutral". For real client: set after they tell the gender.
-      reveal: {
-        mode: "neutral", // "neutral" | "pink" | "blue"
-      },
+      // "neutral" for Etsy demo; client version can be "pink" or "blue"
+      reveal: { mode: "neutral" },
 
-      // Gallery images (replace with your own)
       gallery: [
         "https://images.unsplash.com/photo-1523438097201-512ae7d59b07?w=800&q=80",
         "https://images.unsplash.com/photo-1523437237164-d442d57cc3c9?w=800&q=80",
         "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?w=800&q=80"
       ],
 
-      // Forms
       formspree: {
         rsvp: "https://formspree.io/f/yourFormID",
-        wishes: "https://formspree.io/f/yourFormID2"
       },
 
       appsScript: {
@@ -87,7 +72,7 @@
       },
 
       branding: {
-        footerText: "© 2026 • Designed & built by VitrinY",
+        footerText: "© 2026 • Designed & built by VitrinY"
       }
     };
   </script>
@@ -96,13 +81,10 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            head: ["var(--font-head)", "Playfair Display", "serif"],
-            body: ["var(--font-body)", "Inter", "sans-serif"]
-          },
+          fontFamily: { head: ["Playfair Display", "serif"], body: ["Inter", "sans-serif"] },
           boxShadow: {
-            soft: "0 16px 30px -18px rgba(0,0,0,0.28)",
-            luxe: "0 28px 60px -40px rgba(0,0,0,0.55)"
+            soft: "0 16px 30px -18px rgba(0,0,0,0.18)",
+            luxe: "0 28px 70px -48px rgba(0,0,0,0.28)"
           }
         }
       }
@@ -110,182 +92,182 @@
   </script>
 
   <style>
-    /* ============================
-      2) THEME TOKENS (2 themes)
-     ============================ */
+    /* ===== Light Luxe Baby Reveal Theme (Ivory/Blush/Champagne) ===== */
     :root{
-      --bg:#0B0B0F;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
-      --text:#F6F1E8;
-      --muted: rgba(246,241,232,0.72);
+      --bg: #FBF8F3;
+      --text:#15131A;
+      --muted: rgba(21,19,26,0.60);
 
-      --primary:#D4AF37; /* gold */
-      --secondary:#F6F1E8; /* ivory */
-      --accent:#7A5C1A;
+      --card: rgba(255,255,255,0.72);
+      --card2: rgba(255,255,255,0.82);
 
-      --border: rgba(212,175,55,0.22);
-      --border2: rgba(246,241,232,0.14);
+      --primary:#C9A227;     /* champagne gold */
+      --blush:#F3C7C5;       /* soft blush */
+      --mint:#BFD8D2;        /* muted mint */
+      --ink:#15131A;
 
-      --font-head: "Playfair Display";
-      --font-body: "Inter";
+      --border: rgba(201,162,39,0.18);
+      --border2: rgba(21,19,26,0.10);
 
-      --texture: url('https://www.transparenttextures.com/patterns/black-linen.png');
-      --heroGlowA: rgba(212,175,55,0.16);
-      --heroGlowB: rgba(246,241,232,0.08);
-    }
-
-    [data-theme="ivory"]{
-      --bg:#FAF7F2;
-      --card: rgba(0,0,0,0.04);
-      --card2: rgba(0,0,0,0.06);
-      --text:#14131A;
-      --muted: rgba(20,19,26,0.62);
-
-      --primary:#B08A1D;
-      --secondary:#14131A;
-      --accent:#7A5C1A;
-
-      --border: rgba(176,138,29,0.18);
-      --border2: rgba(20,19,26,0.10);
-
-      --texture: url('https://www.transparenttextures.com/patterns/paper-1.png');
-      --heroGlowA: rgba(176,138,29,0.12);
-      --heroGlowB: rgba(20,19,26,0.06);
+      --heroGlowA: rgba(201,162,39,0.10);
+      --heroGlowB: rgba(243,199,197,0.14);
     }
 
     body{
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-body), sans-serif;
-      overflow-x: hidden;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      overflow-x:hidden;
     }
 
-    .bg-texture{
-      background-image: var(--texture);
-      background-repeat: repeat;
+    /* Subtle celebration dots (not busy) */
+    .bg-confetti{
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(201,162,39,0.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 25% 70%, rgba(243,199,197,0.14) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 25%, rgba(191,216,210,0.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 65%, rgba(201,162,39,0.10) 0 2px, transparent 3px);
+      background-size: 220px 220px;
     }
 
     .card{
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow, 0 16px 30px -18px rgba(0,0,0,0.28));
-    }
-
-    .cardStrong{
-      background: var(--card2);
       border: 1px solid var(--border2);
       border-radius: 26px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 30px -18px rgba(0,0,0,0.16);
+    }
+    .cardStrong{
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 30px;
       backdrop-filter: blur(12px);
-      box-shadow: 0 28px 60px -40px rgba(0,0,0,0.55);
+      box-shadow: 0 28px 70px -48px rgba(0,0,0,0.26);
     }
 
     .chip{
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
+      border: 1px solid rgba(21,19,26,0.10);
+      background: rgba(255,255,255,0.75);
+      color: var(--ink);
       padding: 10px 14px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 12px;
       letter-spacing: .08em;
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      backdrop-filter: blur(10px);
       white-space: nowrap;
     }
 
     .btnPrimary{
       background: var(--primary);
-      color: #0B0B0F;
+      color: #111;
       border-radius: 999px;
       font-weight: 900;
       transition: transform .18s ease, filter .18s ease;
-      box-shadow: 0 18px 34px -22px rgba(0,0,0,0.55);
+      box-shadow: 0 18px 34px -22px rgba(0,0,0,0.25);
     }
-    [data-theme="ivory"] .btnPrimary{ color: #111; }
     .btnPrimary:hover{ transform: translateY(-2px) scale(1.01); filter: brightness(0.98); }
 
     .btnGhost{
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
+      border: 1px solid rgba(21,19,26,0.12);
+      background: rgba(255,255,255,0.78);
+      color: var(--ink);
       border-radius: 999px;
       font-weight: 900;
       transition: transform .18s ease, background .18s ease;
-      backdrop-filter: blur(10px);
     }
-    .btnGhost:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.08); }
+    .btnGhost:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.92); }
 
     .muted{ color: var(--muted); }
 
     .countBox{
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(21,19,26,0.10);
       border-radius: 18px;
       padding: 12px 14px;
       min-width: 86px;
-      text-align: center;
+      text-align:center;
     }
 
     .input{
-      width: 100%;
+      width:100%;
       padding: 14px 16px;
       border-radius: 18px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,0.08);
-      outline: none;
+      border: 1px solid rgba(21,19,26,0.12);
+      background: rgba(255,255,255,0.90);
+      outline:none;
       font-weight: 700;
-      color: var(--text);
-      transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
-    }
-    [data-theme="ivory"] .input{
-      background: rgba(0,0,0,0.04);
-      color: var(--text);
+      color: var(--ink);
+      transition: box-shadow .2s ease, border-color .2s ease;
     }
     .input:focus{
-      border-color: var(--primary);
-      box-shadow: 0 0 0 6px rgba(212,175,55,0.10);
-      background: rgba(255,255,255,0.10);
+      border-color: rgba(201,162,39,0.6);
+      box-shadow: 0 0 0 6px rgba(201,162,39,0.14);
     }
 
-    #mobile-menu{ max-height: 0; opacity: 0; transition: all .35s cubic-bezier(0.4,0,0.2,1); }
-    #mobile-menu.open{ max-height: 420px; opacity: 1; }
+    #mobile-menu{ max-height:0; opacity:0; transition: all .35s cubic-bezier(0.4,0,0.2,1); }
+    #mobile-menu.open{ max-height:420px; opacity:1; }
 
     .demoBanner{
-      background: rgba(0,0,0,0.38);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.72);
+      border-bottom: 1px solid rgba(21,19,26,0.08);
       backdrop-filter: blur(10px);
     }
 
     .photo{
       border-radius: 22px;
-      border: 1px solid var(--border2);
-      overflow: hidden;
-      box-shadow: 0 18px 40px -32px rgba(0,0,0,0.65);
+      border: 1px solid rgba(21,19,26,0.10);
+      overflow:hidden;
+      box-shadow: 0 18px 40px -32px rgba(0,0,0,0.25);
+    }
+
+    /* Subtle, topic-related floating icons (not too much) */
+    .floaters{ position: fixed; inset:0; pointer-events:none; z-index: 0; overflow:hidden; }
+    .floater{
+      position:absolute;
+      opacity:0.12;
+      filter: blur(0.2px);
+      transform: translateY(0);
+      animation: floatY 10s ease-in-out infinite;
+    }
+    .floater:nth-child(2){ animation-duration: 12s; }
+    .floater:nth-child(3){ animation-duration: 14s; }
+    .floater:nth-child(4){ animation-duration: 16s; }
+    @keyframes floatY{
+      0%,100%{ transform: translateY(0) rotate(0deg); }
+      50%{ transform: translateY(-18px) rotate(6deg); }
     }
   </style>
 </head>
 
-<body class="bg-texture relative" data-theme="blackgold">
+<body class="bg-confetti relative">
+
+  <!-- subtle floating decor -->
+  <div class="floaters">
+    <i class="fa-solid fa-balloon floater text-7xl" style="top:12%; left:4%; color:var(--blush)"></i>
+    <i class="fa-solid fa-bow-ribbon floater text-6xl" style="top:18%; right:6%; color:var(--primary)"></i>
+    <i class="fa-solid fa-star floater text-6xl" style="bottom:14%; left:12%; color:var(--mint)"></i>
+    <i class="fa-solid fa-heart floater text-6xl" style="bottom:20%; right:10%; color:var(--blush)"></i>
+  </div>
+
   <!-- NAV -->
   <nav class="fixed w-full z-50">
     <div id="demo-banner" class="demoBanner hidden">
       <div class="max-w-6xl mx-auto px-5 py-2 text-sm font-extrabold flex flex-wrap items-center justify-center gap-3 text-center">
         <span>✨ Demo preview • Delivered as a private shareable link</span>
-        <span class="chip"><i class="fa-solid fa-file-pdf"></i> NOT A PDF</span>
+        <span class="chip"><i class="fa-solid fa-link"></i> NOT A PDF</span>
+        <span class="chip"><i class="fa-solid fa-circle-check"></i> LIVE RSVP</span>
       </div>
     </div>
 
-    <div class="bg-black/40 backdrop-blur-md border-b border-white/5">
+    <div class="bg-white/70 backdrop-blur-md border-b border-black/5">
       <div class="max-w-6xl mx-auto px-5 py-4 flex justify-between items-center">
         <a href="#" class="font-head font-black tracking-wide flex items-center gap-2">
           <span class="text-xl" style="color:var(--primary)"><i class="fa-solid fa-sparkles"></i></span>
-          <span class="text-xl" id="nav-title">Baby Reveal Evening</span>
+          <span class="text-xl" id="nav-title">Baby Reveal Celebration</span>
         </a>
 
         <div class="hidden md:flex gap-7 font-extrabold items-center">
@@ -296,10 +278,12 @@
           <a href="#rsvp" class="px-6 py-3 btnPrimary">RSVP</a>
         </div>
 
-        <button id="menu-btn" class="md:hidden text-3xl" style="color:var(--primary)"><i class="fa-solid fa-bars-staggered"></i></button>
+        <button id="menu-btn" class="md:hidden text-3xl" style="color:var(--primary)">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
       </div>
 
-      <div id="mobile-menu" class="bg-black/70 md:hidden backdrop-blur-md border-t border-white/5">
+      <div id="mobile-menu" class="bg-white/85 md:hidden backdrop-blur-md border-t border-black/5">
         <div class="flex flex-col p-7 space-y-5 font-extrabold text-center text-xl">
           <a href="#details" class="menu-link hover:opacity-80">Details</a>
           <a href="#gallery" class="menu-link hover:opacity-80">Gallery</a>
@@ -311,27 +295,26 @@
     </div>
   </nav>
 
-  <!-- HERO (Modern Split, Luxe) -->
+  <!-- HERO -->
   <header class="pt-36 md:pt-40 pb-16 px-5 relative z-10">
     <div class="max-w-6xl mx-auto">
-      <div class="relative overflow-hidden rounded-[30px] border border-white/10 shadow-luxe"
+      <div class="relative overflow-hidden rounded-[32px] border border-black/5 shadow-luxe"
            style="background:
-              radial-gradient(900px 380px at 20% 20%, var(--heroGlowA), transparent 60%),
-              radial-gradient(900px 380px at 80% 20%, var(--heroGlowB), transparent 60%),
-              linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));">
-        <div class="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')]"></div>
-
+              radial-gradient(900px 380px at 20% 15%, var(--heroGlowA), transparent 60%),
+              radial-gradient(900px 380px at 80% 15%, var(--heroGlowB), transparent 60%),
+              linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.66));">
         <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 md:p-12">
+
           <!-- Left -->
           <div>
             <div class="flex flex-wrap items-center gap-3 mb-6">
               <span class="chip"><i class="fa-solid fa-link"></i> PRIVATE LINK</span>
-              <span class="chip"><i class="fa-solid fa-circle-check"></i> LIVE RSVP</span>
+              <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> REVEAL MOMENT</span>
               <span class="chip"><i class="fa-solid fa-shield-heart"></i> PREMIUM STYLE</span>
             </div>
 
-            <h1 class="font-head font-black text-5xl md:text-6xl leading-tight" id="hero-title">Baby Reveal Evening</h1>
-            <p class="mt-3 text-lg font-bold muted" id="hero-subtitle">Join us for a luxe reveal moment</p>
+            <h1 class="font-head font-black text-5xl md:text-6xl leading-tight" id="hero-title">Baby Reveal Celebration</h1>
+            <p class="mt-3 text-lg font-bold muted" id="hero-subtitle">A sweet moment, a beautiful surprise</p>
 
             <div class="mt-7 cardStrong p-6">
               <div class="flex flex-wrap gap-4 items-center justify-between">
@@ -353,7 +336,7 @@
 
               <div class="mt-5 flex flex-wrap gap-3">
                 <span class="chip"><i class="fa-solid fa-user"></i> <span id="hero-hosts">Ayla & Kerem</span></span>
-                <span class="chip"><i class="fa-solid fa-shirt"></i> <span id="hero-dress">Black & Ivory (optional)</span></span>
+                <span class="chip"><i class="fa-solid fa-shirt"></i> <span id="hero-dress">Soft Neutrals (optional)</span></span>
               </div>
             </div>
 
@@ -371,7 +354,7 @@
               <div class="flex items-center justify-between gap-4 mb-5">
                 <div>
                   <p class="muted font-extrabold tracking-wide uppercase text-sm">Countdown</p>
-                  <p class="font-head font-black text-2xl md:text-3xl">The moment is near</p>
+                  <p class="font-head font-black text-2xl md:text-3xl">Ready for the surprise?</p>
                 </div>
                 <div class="hidden sm:flex items-center gap-2 font-extrabold">
                   <i class="fa-solid fa-location-dot" style="color:var(--primary)"></i>
@@ -404,9 +387,7 @@
               </div>
             </div>
 
-            <div class="mt-4 text-center muted font-extrabold">
-              Scroll for details & RSVP 👇
-            </div>
+            <div class="mt-4 text-center muted font-extrabold">Scroll for details & RSVP 👇</div>
           </div>
         </div>
       </div>
@@ -424,7 +405,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="card p-8 text-center">
-          <div class="w-16 h-16 rounded-full mx-auto grid place-items-center mb-4" style="border:1px solid var(--border2);">
+          <div class="w-16 h-16 rounded-full mx-auto grid place-items-center mb-4" style="border:1px solid rgba(21,19,26,0.10);">
             <i class="fa-solid fa-map-location-dot text-2xl" style="color:var(--primary)"></i>
           </div>
           <h3 class="font-head font-black text-2xl mb-2">Where</h3>
@@ -436,7 +417,7 @@
         </div>
 
         <div class="card p-8 text-center">
-          <div class="w-16 h-16 rounded-full mx-auto grid place-items-center mb-4" style="border:1px solid var(--border2);">
+          <div class="w-16 h-16 rounded-full mx-auto grid place-items-center mb-4" style="border:1px solid rgba(21,19,26,0.10);">
             <i class="fa-regular fa-clock text-2xl" style="color:var(--primary)"></i>
           </div>
           <h3 class="font-head font-black text-2xl mb-2">When</h3>
@@ -448,7 +429,7 @@
         </div>
 
         <div class="card p-8 text-center" id="registry-card">
-          <div class="w-16 h-16 rounded-full mx-auto grid place-items-center mb-4" style="border:1px solid var(--border2);">
+          <div class="w-16 h-16 rounded-full mx-auto grid place-items-center mb-4" style="border:1px solid rgba(21,19,26,0.10);">
             <i class="fa-solid fa-gift text-2xl" style="color:var(--primary)"></i>
           </div>
           <h3 class="font-head font-black text-2xl mb-2">Registry</h3>
@@ -464,7 +445,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <div>
-          <p class="muted font-extrabold tracking-widest uppercase text-sm">A luxe preview</p>
+          <p class="muted font-extrabold tracking-widest uppercase text-sm">A soft preview</p>
           <h2 class="font-head font-black text-4xl md:text-5xl mt-2">Gallery</h2>
         </div>
         <div class="muted font-bold">Replace these images with your own photos</div>
@@ -478,13 +459,14 @@
     </div>
   </section>
 
-  <!-- REVEAL MOMENT -->
+  <!-- REVEAL -->
   <section id="reveal" class="py-16 px-5 relative z-10">
     <div class="max-w-4xl mx-auto cardStrong p-10 text-center">
       <p class="muted font-extrabold tracking-widest uppercase text-sm">The main moment</p>
       <h2 class="font-head font-black text-4xl md:text-5xl mt-2">Reveal Moment ✨</h2>
       <p class="muted font-bold mt-4 max-w-2xl mx-auto">
-        Tap the button below for the reveal confetti effect (demo-safe by default). For real events, we set the reveal color after the result.
+        Tap the button for a reveal confetti effect. Etsy demo uses a neutral palette (champagne + blush).
+        Client version can be set to pink or blue after the result.
       </p>
 
       <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
@@ -512,15 +494,15 @@
       <div class="space-y-4">
         <div class="card p-6">
           <p class="font-extrabold">Is this a PDF?</p>
-          <p class="muted font-bold mt-2">No. This is a private, shareable web link — mobile-friendly and premium.</p>
+          <p class="muted font-bold mt-2">No. This is a private, shareable web link — premium and mobile-friendly.</p>
         </div>
         <div class="card p-6">
           <p class="font-extrabold">Can I collect RSVPs?</p>
-          <p class="muted font-bold mt-2">Yes. Live RSVP form is included (Formspree or Google Sheets via Apps Script).</p>
+          <p class="muted font-bold mt-2">Yes. Live RSVP is included (Formspree or Google Sheets via Apps Script).</p>
         </div>
         <div class="card p-6">
-          <p class="font-extrabold">Can it be customized?</p>
-          <p class="muted font-bold mt-2">Yes — names, schedule, colors, fonts, sections, and the reveal effect can be customized.</p>
+          <p class="font-extrabold">Can the reveal color be changed?</p>
+          <p class="muted font-bold mt-2">Yes — neutral for demos, pink/blue for client versions.</p>
         </div>
       </div>
     </div>
@@ -532,7 +514,7 @@
       <div class="text-center">
         <p class="muted font-extrabold tracking-widest uppercase text-sm">Confirm attendance</p>
         <h2 class="font-head font-black text-4xl md:text-5xl mt-2">RSVP</h2>
-        <p class="muted font-bold mt-3">We’d love to celebrate this moment with you.</p>
+        <p class="muted font-bold mt-3">We’d love to celebrate with you.</p>
       </div>
 
       <div id="rsvp-success" class="hidden mt-8 text-center card p-8">
@@ -566,31 +548,16 @@
     </div>
   </section>
 
-  <footer class="py-12 text-center relative z-10 border-t border-white/5">
+  <footer class="py-12 text-center relative z-10 border-t border-black/5">
     <p class="font-extrabold" id="footer-text"></p>
   </footer>
 
   <script>
-    // ---------- helpers ----------
-    function getQueryParam(name){
-      const url = new URL(window.location.href);
-      return url.searchParams.get(name);
-    }
-    function setText(id, text){
-      const el = document.getElementById(id);
-      if (el) el.textContent = text;
-    }
+    // helpers
+    function setText(id, text){ const el = document.getElementById(id); if(el) el.textContent = text; }
 
-    // ---------- theme ----------
-    function applyTheme(){
-      const themeParam = (getQueryParam("theme") || CONFIG.product.themeDefault || "blackgold").toLowerCase();
-      document.body.setAttribute("data-theme", ["blackgold","ivory"].includes(themeParam) ? themeParam : "blackgold");
-    }
-
-    // ---------- config ----------
     function applyConfig(){
       document.title = `${CONFIG.event.title} • ${CONFIG.event.year}`;
-
       setText("nav-title", CONFIG.event.title);
       setText("hero-title", CONFIG.event.title);
       setText("hero-subtitle", CONFIG.event.subtitle);
@@ -609,92 +576,84 @@
       setText("detail-loc-addr", CONFIG.location.address);
 
       const mapLink = document.getElementById("map-link");
-      if (mapLink) mapLink.href = CONFIG.location.googleMapsLink;
+      if(mapLink) mapLink.href = CONFIG.location.googleMapsLink;
 
       setText("detail-date", `${CONFIG.event.dateFull}, ${CONFIG.event.year}`);
       setText("detail-time-start", CONFIG.event.time);
       setText("detail-time-end", CONFIG.event.endTime);
 
-      // registry show/hide
+      // registry
       const regCard = document.getElementById("registry-card");
-      if (!CONFIG.registry.show) {
-        if (regCard) regCard.style.display = "none";
+      if(!CONFIG.registry.show){
+        if(regCard) regCard.style.display = "none";
       } else {
         setText("detail-registry-text", CONFIG.registry.registryText);
         const regLink = document.getElementById("registry-link");
-        if (regLink) regLink.href = CONFIG.registry.registryLink;
+        if(regLink) regLink.href = CONFIG.registry.registryLink;
       }
 
       // gallery
       const g1 = document.getElementById("gal-1");
       const g2 = document.getElementById("gal-2");
       const g3 = document.getElementById("gal-3");
-      if (CONFIG.gallery?.length) {
-        if (g1) g1.src = CONFIG.gallery[0] || "";
-        if (g2) g2.src = CONFIG.gallery[1] || CONFIG.gallery[0] || "";
-        if (g3) g3.src = CONFIG.gallery[2] || CONFIG.gallery[0] || "";
+      if(CONFIG.gallery?.length){
+        if(g1) g1.src = CONFIG.gallery[0] || "";
+        if(g2) g2.src = CONFIG.gallery[1] || CONFIG.gallery[0] || "";
+        if(g3) g3.src = CONFIG.gallery[2] || CONFIG.gallery[0] || "";
       }
 
       // demo banner
       const demo = document.getElementById("demo-banner");
-      if (demo) (CONFIG.product.demoBanner ? demo.classList.remove("hidden") : demo.classList.add("hidden"));
+      if(demo) (CONFIG.product.demoBanner ? demo.classList.remove("hidden") : demo.classList.add("hidden"));
 
       // footer
       setText("footer-text", CONFIG.branding.footerText || "");
     }
 
-    // ---------- nav ----------
     function initNav(){
       const btn = document.getElementById("menu-btn");
       const menu = document.getElementById("mobile-menu");
       const links = document.querySelectorAll(".menu-link");
-      if (btn && menu) {
+      if(btn && menu){
         btn.addEventListener("click", () => menu.classList.toggle("open"));
         links.forEach(a => a.addEventListener("click", () => menu.classList.remove("open")));
       }
     }
 
-    // ---------- countdown ----------
     function initCountdown(){
-      const targetDate = new Date(CONFIG.event.dateTimeISO).getTime();
+      const target = new Date(CONFIG.event.dateTimeISO).getTime();
       const countdownEl = document.getElementById("countdown");
-
-      const update = () => {
+      const tick = () => {
         const now = Date.now();
-        const distance = targetDate - now;
-
-        if (!countdownEl) return;
-        if (distance < 0) {
+        const d = target - now;
+        if(!countdownEl) return;
+        if(d < 0){
           countdownEl.innerHTML = "<div class='w-full text-center font-extrabold'>It’s time ✨</div>";
           return;
         }
-        const days = Math.floor(distance / (1000*60*60*24));
-        const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-        const seconds = Math.floor((distance % (1000*60)) / 1000);
+        const days = Math.floor(d/(1000*60*60*24));
+        const hours = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+        const minutes = Math.floor((d%(1000*60*60))/(1000*60));
+        const seconds = Math.floor((d%(1000*60))/1000);
 
         document.getElementById("days").textContent = days < 10 ? "0"+days : String(days);
         document.getElementById("hours").textContent = hours < 10 ? "0"+hours : String(hours);
         document.getElementById("minutes").textContent = minutes < 10 ? "0"+minutes : String(minutes);
         document.getElementById("seconds").textContent = seconds < 10 ? "0"+seconds : String(seconds);
       };
-
-      update();
-      setInterval(update, 1000);
+      tick(); setInterval(tick, 1000);
     }
 
-    // ---------- calendar ----------
     function initCalendar(){
       const btn = document.getElementById("add-to-calendar");
-      if (!btn) return;
-
+      if(!btn) return;
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         const title = encodeURIComponent(CONFIG.event.title);
         const location = encodeURIComponent(CONFIG.location.address);
         const details = encodeURIComponent("You're invited — see you there!");
 
-        // Simplified placeholders (you can compute exact dates later)
+        // placeholders (you can compute precisely later)
         const start = "20260822T190000";
         const end = "20260822T213000";
         const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
@@ -702,37 +661,35 @@
       });
     }
 
-    // ---------- reveal effect ----------
     function fireReveal(){
       const mode = (CONFIG.reveal.mode || "neutral").toLowerCase();
-      const gold = getComputedStyle(document.body).getPropertyValue("--primary").trim() || "#D4AF37";
-      const colorsNeutral = [gold, "#ffffff", "#f3efe6"];
+      const gold = getComputedStyle(document.documentElement).getPropertyValue("--primary").trim() || "#C9A227";
+      const blush = getComputedStyle(document.documentElement).getPropertyValue("--blush").trim() || "#F3C7C5";
+      const mint = getComputedStyle(document.documentElement).getPropertyValue("--mint").trim() || "#BFD8D2";
+
+      const colorsNeutral = [gold, blush, mint, "#ffffff"];
       const colorsPink = ["#ff5fa2", "#ffd1dc", "#ffffff"];
       const colorsBlue = ["#55c7ff", "#bde8ff", "#ffffff"];
-
       const colors = mode === "pink" ? colorsPink : mode === "blue" ? colorsBlue : colorsNeutral;
 
       const duration = 2200;
-      const animationEnd = Date.now() + duration;
-
+      const end = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 70, zIndex: 999, scalar: 1.05 };
-
-      const randomInRange = (min, max) => Math.random() * (max - min) + min;
+      const rand = (min, max) => Math.random() * (max - min) + min;
 
       const interval = setInterval(() => {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) return clearInterval(interval);
-
-        const particleCount = 50 * (timeLeft / duration);
+        const left = end - Date.now();
+        if(left <= 0) return clearInterval(interval);
+        const count = 46 * (left / duration);
 
         confetti(Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          particleCount: count,
+          origin: { x: rand(0.1,0.3), y: Math.random() - 0.2 },
           colors
         }));
         confetti(Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          particleCount: count,
+          origin: { x: rand(0.7,0.9), y: Math.random() - 0.2 },
           colors
         }));
       }, 220);
@@ -742,47 +699,35 @@
       const btn = document.getElementById("reveal-btn");
       const reset = document.getElementById("reveal-reset");
       const status = document.getElementById("reveal-status");
-      if (!btn || !reset) return;
+      if(!btn || !reset) return;
 
       btn.addEventListener("click", () => {
         fireReveal();
-        if (status) {
+        if(status){
           const mode = (CONFIG.reveal.mode || "neutral").toLowerCase();
-          status.textContent = mode === "pink" ? "It’s a girl 💗" : mode === "blue" ? "It’s a boy 💙" : "Reveal confetti (demo-safe) ✨";
+          status.textContent = mode === "pink" ? "It’s a girl 💗" : mode === "blue" ? "It’s a boy 💙" : "Neutral reveal confetti (demo) ✨";
         }
       });
-
-      reset.addEventListener("click", () => {
-        if (status) status.textContent = "";
-      });
+      reset.addEventListener("click", () => { if(status) status.textContent = ""; });
     }
 
-    // ---------- backend adapter ----------
-    async function submitToBackend(type, formEl){
+    async function submitRSVP(form){
       const backend = (CONFIG.product.backend || "formspree").toLowerCase();
-
-      if (backend === "formspree"){
-        const url = type === "rsvp" ? CONFIG.formspree.rsvp : CONFIG.formspree.wishes;
-        const res = await fetch(url, { method: "POST", body: new FormData(formEl), headers: { "Accept":"application/json" } });
-        if (!res.ok) throw new Error("formspree_failed");
-        return { ok:true };
+      if(backend === "formspree"){
+        const res = await fetch(CONFIG.formspree.rsvp, { method:"POST", body:new FormData(form), headers:{ "Accept":"application/json" } });
+        if(!res.ok) throw new Error("formspree_failed");
+        return true;
       }
-
-      if (backend === "apps_script"){
-        const exec = CONFIG.appsScript.execURL;
-        const action = type === "rsvp" ? "rsvp_write" : "wishes_write";
-        const payload = Object.fromEntries(new FormData(formEl).entries());
-        payload._type = type;
-
-        const res = await fetch(`${exec}?action=${action}`, {
-          method: "POST",
-          headers: { "Content-Type":"application/json" },
+      if(backend === "apps_script"){
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const res = await fetch(`${CONFIG.appsScript.execURL}?action=rsvp_write`, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
           body: JSON.stringify(payload)
         });
-        if (!res.ok) throw new Error("apps_script_failed");
-        return { ok:true };
+        if(!res.ok) throw new Error("apps_script_failed");
+        return true;
       }
-
       throw new Error("unknown_backend");
     }
 
@@ -790,34 +735,29 @@
       const form = document.getElementById("rsvpForm");
       const success = document.getElementById("rsvp-success");
       const submitText = document.getElementById("rsvp-submit-text");
-      if (!form) return;
+      if(!form) return;
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-
         const btn = form.querySelector('button[type="submit"]');
         const old = submitText ? submitText.textContent : "";
-        if (submitText) submitText.textContent = "Sending…";
-        if (btn) btn.disabled = true;
+        if(submitText) submitText.textContent = "Sending…";
+        if(btn) btn.disabled = true;
 
         try{
-          await submitToBackend("rsvp", form);
-
+          await submitRSVP(form);
           form.style.display = "none";
           success.classList.remove("hidden");
-          // tasteful gold confetti
           fireReveal();
         } catch(err){
           alert("Oops! There was a problem sending your RSVP.");
-          if (submitText) submitText.textContent = old || "Send RSVP";
-          if (btn) btn.disabled = false;
+          if(submitText) submitText.textContent = old || "Send RSVP";
+          if(btn) btn.disabled = false;
         }
       });
     }
 
-    // ---------- boot ----------
     document.addEventListener("DOMContentLoaded", () => {
-      applyTheme();
       applyConfig();
       initNav();
       initCountdown();
