@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts (base; theme can override via CSS vars) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito:wght@400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Icons + Confetti -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    /**
+     * ============================
+     * 1) EDIT ONLY THIS CONFIG
+     * ============================
+     */
+    const CONFIG = {
+      // Product mode
+      product: {
+        category: "kids",                 // fixed for this template
+        backend: "formspree",             // "formspree" | "apps_script"
+        themeDefault: "candy",            // "candy" | "soft"
+        demoBanner: true,                 // show demo banner on top
+      },
+
+      // Event basics
+      event: {
+        childName: "Olivia Grace",
+        firstName: "Olivia",
+        ageText: "ONE",
+        ageNum: "1st",
+
+        // Countdown target (local time)
+        partyDate: "2026-07-15 14:00:00",
+
+        // Display texts
+        dateFull: "Saturday, July 15th",
+        year: "2026",
+        time: "2:00 PM",
+        endTime: "5:00 PM",
+        cakeTime: "3:30 PM",
+      },
+
+      // Location
+      location: {
+        locationName: "The Garden House",
+        address: "123 Maple Street, San Francisco",
+        googleMapsLink: "https://maps.google.com",
+      },
+
+      // Registry
+      registry: {
+        registryLink: "https://www.amazon.com/registries",
+        registryText: "No gifts needed, your presence is enough! (But we have a registry just in case 😉)",
+      },
+
+      // Optional downloads (for Kids Fun Zone)
+      downloads: {
+        pdfCake: "#",
+        pdfBalloon: "#",
+      },
+
+      // Music
+      music: {
+        enabled: true,
+        musicURL: "assets/audio/olivia-song.mp3", // if same folder: "song.mp3"
+        label: "Olivia's Song",
+      },
+
+      // Form endpoints (Standard path)
+      formspree: {
+        timeCapsule: "https://formspree.io/f/mykzpvzg",
+        rsvp: "https://formspree.io/f/xpqwlbvd",
+      },
+
+      // Apps Script endpoints (Premium path)
+      // Implement API with: /exec?action=rsvp_write (POST) and /exec?action=capsule_write (POST)
+      appsScript: {
+        execURL: "https://script.google.com/macros/s/XXXX/exec",
+      },
+
+      // Gallery images (replace with your own)
+      gallery: [
+        "https://images.unsplash.com/photo-1544126566-475d6cf0a4a8?w=600&q=80",
+        "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80",
+        "https://images.unsplash.com/photo-1505932598379-37397b9f2732?w=600&q=80"
+      ],
+
+      // Footer branding (Standard)
+      branding: {
+        footerText: "© 2026 • Made with magic by VitrinY",
+      }
+    };
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            head: ["var(--font-head)", "Fredoka", "sans-serif"],
+            body: ["var(--font-body)", "Nunito", "sans-serif"],
+            script: ["var(--font-script)", "Dancing Script", "cursive"]
+          },
+          boxShadow: {
+            softXL: "0 18px 30px -12px rgba(0,0,0,0.15)",
+            glow: "0 0 18px rgba(255,255,255,0.35)"
+          },
+          animation: {
+            floatSlow: "float 8s ease-in-out infinite",
+            floatMed: "float 6s ease-in-out infinite",
+            floatFast: "float 4s ease-in-out infinite",
+            pulseSoft: "pulseSoft 2.2s ease-in-out infinite",
+            wiggle: "wiggle 2.8s ease-in-out infinite",
+            spinSlow: "spin 4s linear infinite",
+            noteFloat: "noteFloat 2.4s ease-out infinite"
+          },
+          keyframes: {
+            float: {
+              "0%,100%": { transform: "translateY(0) rotate(0deg)" },
+              "50%": { transform: "translateY(-18px) rotate(5deg)" }
+            },
+            wiggle: {
+              "0%,100%": { transform: "rotate(-3deg)" },
+              "50%": { transform: "rotate(3deg)" }
+            },
+            pulseSoft: {
+              "0%": { transform: "scale(1)", boxShadow: "0 0 0 0 rgba(0,0,0,0.15)" },
+              "70%": { transform: "scale(1.04)", boxShadow: "0 0 0 12px rgba(0,0,0,0)" },
+              "100%": { transform: "scale(1)", boxShadow: "0 0 0 0 rgba(0,0,0,0)" }
+            },
+            noteFloat: {
+              "0%": { transform: "translateY(0) scale(1)", opacity: "1" },
+              "100%": { transform: "translateY(-52px) scale(1.4) rotate(18deg)", opacity: "0" }
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* ============================
+      2) THEME TOKENS (2 themes)
+     ============================ */
+    :root{
+      --bg: #FFF9F5;
+      --text: #2F2F3A;
+      --muted: rgba(47,47,58,0.65);
+
+      --primary: #E07A5F;
+      --secondary: #81B29A;
+      --accent: #F2CC8F;
+      --rose: #EAB8B2;
+
+      --card: rgba(255,255,255,0.92);
+      --border: rgba(242,204,143,0.55);
+
+      --font-head: "Fredoka";
+      --font-body: "Nunito";
+      --font-script: "Dancing Script";
+
+      --texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+      --heroGlowA: rgba(242, 204, 143, 0.28);
+      --heroGlowB: rgba(129, 178, 154, 0.22);
+      --heroGlowC: rgba(234, 184, 178, 0.20);
+    }
+
+    /* Candy Confetti */
+    [data-theme="candy"]{
+      --bg: #FFF6FB;
+      --text: #2B2B36;
+      --muted: rgba(43,43,54,0.65);
+      --primary: #FF5FA2;
+      --secondary: #55C7FF;
+      --accent: #FFD166;
+      --rose: #B8F2E6;
+      --border: rgba(255,209,102,0.55);
+      --heroGlowA: rgba(255, 95, 162, 0.16);
+      --heroGlowB: rgba(85, 199, 255, 0.16);
+      --heroGlowC: rgba(255, 209, 102, 0.14);
+    }
+
+    /* Soft Pastel */
+    [data-theme="soft"]{
+      --bg: #F7FBFF;
+      --text: #283241;
+      --muted: rgba(40,50,65,0.62);
+      --primary: #6C63FF;
+      --secondary: #3BBFA7;
+      --accent: #FFB703;
+      --rose: #FFCAD4;
+      --border: rgba(255,183,3,0.45);
+      --heroGlowA: rgba(108, 99, 255, 0.14);
+      --heroGlowB: rgba(59, 191, 167, 0.14);
+      --heroGlowC: rgba(255, 183, 3, 0.12);
+    }
+
+    body{
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body), sans-serif;
+      overflow-x: hidden;
+    }
+
+    .bg-texture{
+      background-image: var(--texture);
+      background-repeat: repeat;
+      background-size: auto;
+    }
+
+    .card{
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 16px 28px -18px rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    .chip{
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.95);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(8px);
+    }
+
+    .btnPrimary{
+      background: var(--primary);
+      color: white;
+      border-radius: 999px;
+      font-weight: 900;
+      box-shadow: 0 18px 26px -18px rgba(0,0,0,0.5);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .btnPrimary:hover{ transform: translateY(-2px) scale(1.02); filter: brightness(0.98); }
+
+    .btnGhost{
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.95);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      font-weight: 900;
+      transition: transform .2s ease, background .2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .btnGhost:hover{ transform: translateY(-2px); background: rgba(255,255,255,0.20); }
+
+    .countBox{
+      background: rgba(255,255,255,0.92);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: 12px 14px;
+      min-width: 82px;
+      text-align: center;
+      box-shadow: 0 14px 20px -18px rgba(0,0,0,0.4);
+    }
+
+    .input{
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 18px;
+      border: 2px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.85);
+      outline: none;
+      font-weight: 800;
+      color: var(--text);
+      transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .input:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.95);
+    }
+
+    /* Floating decorations */
+    .floating{
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .floater{ position: absolute; opacity: .25; filter: blur(.3px); }
+
+    /* Demo banner */
+    .demoBanner{
+      background: rgba(0,0,0,0.35);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Music widget */
+    #music-container{
+      position: fixed;
+      bottom: 22px; right: 22px;
+      z-index: 9999;
+      display: flex; align-items: center;
+      flex-direction: row-reverse;
+      gap: 12px;
+    }
+    #music-disc{
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--primary), var(--rose));
+      border-radius: 999px;
+      border: 3px solid rgba(255,255,255,0.95);
+      box-shadow: 0 14px 26px rgba(0,0,0,0.18);
+      display: grid;
+      place-items: center;
+      color: white;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+      position: relative;
+    }
+    #music-disc::before{
+      content: "";
+      position: absolute;
+      width: 10px; height: 10px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 999px;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.07);
+      z-index: 2;
+    }
+    #music-disc:hover{ transform: scale(1.08) rotate(8deg); }
+    #music-disc.playing{ animation: spin 4s linear infinite; border-color: var(--accent); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .music-note{ position: absolute; top: -8px; right: 0; opacity: 0; pointer-events: none; }
+    .playing .music-note{ animation: noteFloat 2.4s ease-out infinite; opacity: 1; }
+    .playing .music-note:nth-child(2){ animation-delay: .8s; }
+    .playing .music-note:nth-child(3){ animation-delay: 1.6s; }
+
+    #music-label{
+      background: rgba(255,255,255,0.92);
+      border: 2px solid rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 900;
+      color: var(--text);
+      transform: translateX(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .25s ease, opacity .25s ease;
+      white-space: nowrap;
+    }
+    #music-container:hover #music-label{ transform: translateX(0); opacity: 1; }
+
+    /* Mobile menu */
+    #mobile-menu{ max-height: 0; opacity: 0; transition: all .35s cubic-bezier(0.4,0,0.2,1); }
+    #mobile-menu.open{ max-height: 420px; opacity: 1; }
+
+    /* Wave divider */
+    .wave-divider{ line-height: 0; }
+    .wave-divider svg{ display:block; width: calc(100% + 1.3px); height: 78px; }
+
+    /* Polaroid */
+    .photo-frame{
+      background: rgba(255,255,255,0.95);
+      padding: 10px;
+      border-radius: 18px;
+      box-shadow: 0 18px 28px -18px rgba(0,0,0,0.3);
+      transform: rotate(-2deg);
+      transition: transform .25s ease, box-shadow .25s ease;
+      position: relative;
+      border: 2px solid rgba(255,255,255,0.6);
+    }
+    .photo-frame:hover{ transform: rotate(0deg) translateY(-4px); box-shadow: 0 22px 34px -18px rgba(0,0,0,0.35); }
+
+    /* Utility colors */
+    .tPrimary{ color: var(--primary); }
+    .tSecondary{ color: var(--secondary); }
+    .tAccent{ color: var(--accent); }
+    .bgPrimary{ background: var(--primary); }
+    .bgSecondary{ background: var(--secondary); }
+    .bgAccent{ background: var(--accent); }
+    .muted{ color: var(--muted); }
+  </style>
+</head>
+
+<body class="bg-texture relative" data-theme="candy">
+
+  <!-- Audio -->
+  <audio id="bg-music" loop></audio>
+
+  <!-- Floating decor -->
+  <div class="floating">
+    <i class="fa-solid fa-balloon floater animate-floatSlow" style="top: 8%; left: 4%; font-size: 80px; color: var(--rose);"></i>
+    <i class="fa-solid fa-star floater animate-pulseSoft" style="top: 18%; right: 6%; font-size: 52px; color: var(--accent);"></i>
+    <i class="fa-solid fa-cake-candles floater animate-floatMed" style="bottom: 12%; left: 10%; font-size: 74px; color: var(--primary); opacity:.18;"></i>
+    <i class="fa-solid fa-sparkles floater animate-floatFast" style="bottom: 28%; right: 10%; font-size: 56px; color: var(--secondary);"></i>
+  </div>
+
+  <!-- Music widget -->
+  <div id="music-container" class="hidden">
+    <div id="music-disc">
+      <i class="fa-solid fa-play" id="music-icon" style="position:relative; z-index:3;"></i>
+      <div class="music-note"><i class="fa-solid fa-music" style="color:var(--primary)"></i></div>
+      <div class="music-note"><i class="fa-solid fa-music" style="color:var(--secondary)"></i></div>
+      <div class="music-note"><i class="fa-solid fa-music" style="color:var(--accent)"></i></div>
+    </div>
+    <div id="music-label">🎵 <span id="music-name">Song</span></div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50">
+    <div id="demo-banner" class="demoBanner hidden">
+      <div class="max-w-6xl mx-auto px-5 py-2 text-white text-sm font-extrabold flex flex-wrap items-center justify-center gap-3 text-center">
+        <span>✨ This is a demo preview.</span>
+        <span class="opacity-90">Your event will have a private link like this.</span>
+        <span class="chip" style="background:rgba(255,255,255,0.12)"><i class="fa-solid fa-file-pdf"></i> NOT A PDF</span>
+      </div>
+    </div>
+
+    <div class="bg-white/70 backdrop-blur-md shadow-sm border-b border-white/40">
+      <div class="max-w-6xl mx-auto px-5 py-4 flex justify-between items-center">
+        <a href="#" class="font-head font-black tracking-wide flex items-center gap-2">
+          <span class="text-2xl">🧁</span>
+          <span class="text-2xl tPrimary" id="nav-title">Olivia's 1st</span>
+        </a>
+
+        <div class="hidden md:flex gap-7 font-extrabold items-center" style="color: rgba(0,0,0,0.65);">
+          <a href="#details" class="hover:opacity-80">Details</a>
+          <a href="#gallery" class="hover:opacity-80">Memories</a>
+          <a href="#fun-zone" class="hover:opacity-80"><i class="fa-solid fa-gamepad"></i> Fun</a>
+          <a href="#capsule" class="hover:opacity-80">Capsule</a>
+          <a href="#rsvp" class="px-6 py-3 btnPrimary">RSVP Now</a>
+        </div>
+
+        <button id="menu-btn" class="md:hidden text-3xl tPrimary"><i class="fa-solid fa-bars-staggered"></i></button>
+      </div>
+
+      <div id="mobile-menu" class="bg-white/95 md:hidden shadow-lg backdrop-blur-md border-t border-black/5">
+        <div class="flex flex-col p-7 space-y-5 font-extrabold text-center text-xl">
+          <a href="#details" class="menu-link hover:opacity-80">Details</a>
+          <a href="#gallery" class="menu-link hover:opacity-80">Memories</a>
+          <a href="#fun-zone" class="menu-link hover:opacity-80">Fun Zone</a>
+          <a href="#capsule" class="menu-link hover:opacity-80">Time Capsule</a>
+          <a href="#rsvp" class="menu-link inline-block btnPrimary px-6 py-3">RSVP Now</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO (Modern Split) -->
+  <header class="pt-36 md:pt-40 pb-16 px-5 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="relative overflow-hidden rounded-[34px] border border-white/50 shadow-softXL"
+           style="background: radial-gradient(800px 340px at 15% 15%, var(--heroGlowA), transparent 60%),
+                         radial-gradient(700px 320px at 85% 30%, var(--heroGlowB), transparent 60%),
+                         radial-gradient(700px 320px at 55% 95%, var(--heroGlowC), transparent 60%),
+                         linear-gradient(135deg, var(--primary), var(--secondary));">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 md:p-12">
+          <!-- Left: message -->
+          <div class="text-white">
+            <p class="font-script text-2xl md:text-3xl opacity-95 mb-3" id="hero-subtitle">
+              Our little sunshine is turning...
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span class="chip"><i class="fa-solid fa-file-pdf"></i> NOT A PDF</span>
+              <span class="chip"><i class="fa-solid fa-link"></i> PRIVATE LINK</span>
+              <span class="chip"><i class="fa-solid fa-circle-check"></i> LIVE RSVP</span>
+            </div>
+
+            <h1 class="font-head font-black leading-none text-[76px] md:text-[98px]">
+              <span id="hero-age">ONE</span><span class="align-super text-[26px] md:text-[34px] ml-2">👑</span>
+            </h1>
+            <h2 class="font-head font-black text-4xl md:text-6xl mt-2" id="hero-name">Olivia Grace</h2>
+
+            <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="rounded-[22px] bg-white/15 border border-white/25 p-5 backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                  <i class="fa-regular fa-calendar text-3xl"></i>
+                  <div>
+                    <p class="font-extrabold text-lg" id="hero-date">Saturday, July 15th</p>
+                    <p class="opacity-90 font-bold" id="hero-year">2026</p>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-[22px] bg-white/15 border border-white/25 p-5 backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                  <i class="fa-regular fa-clock text-3xl"></i>
+                  <div>
+                    <p class="font-extrabold text-lg" id="hero-time">2:00 PM</p>
+                    <p class="opacity-90 font-bold">Afternoon</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#details" class="btnGhost px-7 py-4 text-lg"><i class="fa-solid fa-circle-info mr-2"></i> See Details</a>
+              <a href="#rsvp" class="btnPrimary px-8 py-4 text-lg"><i class="fa-solid fa-paper-plane mr-2"></i> RSVP Now</a>
+            </div>
+          </div>
+
+          <!-- Right: countdown + CTA -->
+          <div class="flex flex-col justify-center">
+            <div class="rounded-[28px] bg-white/15 border border-white/25 backdrop-blur-md p-7 md:p-8">
+              <div class="flex items-center justify-between gap-4 mb-5">
+                <div>
+                  <p class="text-white/90 font-extrabold tracking-wide uppercase text-sm">Countdown</p>
+                  <p class="text-white font-head font-black text-2xl md:text-3xl">Party starts soon 🎉</p>
+                </div>
+                <div class="hidden sm:flex items-center gap-2 text-white/85 font-extrabold">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span class="text-sm" id="hero-loc-mini">The Garden House</span>
+                </div>
+              </div>
+
+              <div id="countdown" class="flex flex-wrap justify-center gap-3">
+                <div class="countBox">
+                  <span id="days" class="block text-4xl font-head font-black tPrimary">00</span>
+                  <span class="text-xs font-extrabold tracking-widest muted">DAYS</span>
+                </div>
+                <div class="countBox">
+                  <span id="hours" class="block text-4xl font-head font-black tSecondary">00</span>
+                  <span class="text-xs font-extrabold tracking-widest muted">HRS</span>
+                </div>
+                <div class="countBox">
+                  <span id="minutes" class="block text-4xl font-head font-black tAccent">00</span>
+                  <span class="text-xs font-extrabold tracking-widest muted">MINS</span>
+                </div>
+                <div class="countBox">
+                  <span id="seconds" class="block text-4xl font-head font-black" style="color:var(--rose)">00</span>
+                  <span class="text-xs font-extrabold tracking-widest muted">SECS</span>
+                </div>
+              </div>
+
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="#rsvp" class="btnPrimary text-center py-4 text-lg">
+                  <i class="fa-solid fa-circle-check mr-2"></i> Open RSVP
+                </a>
+                <a href="#gallery" class="btnGhost text-center py-4 text-lg">
+                  <i class="fa-solid fa-images mr-2"></i> See Memories
+                </a>
+              </div>
+
+              <div class="mt-5 text-center text-white/85 font-bold">
+                <span class="opacity-90">Cake time:</span> <span id="cake-time" class="font-extrabold">3:30 PM</span> 🍰
+              </div>
+            </div>
+
+            <div class="mt-4 text-center text-white/80 font-extrabold">
+              <span class="opacity-90">Scroll for</span> <span class="underline">details</span> & <span class="underline">games</span> 👇
+            </div>
+          </div>
+        </div>
+
+        <div class="wave-divider" style="color: rgba(255,255,255,0.35);">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39
+                     C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35
+                     A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DETAILS -->
+  <section id="details" class="py-16 px-5 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="font-script text-2xl tSecondary">All the sweet details…</p>
+        <h2 class="font-head font-black text-4xl md:text-5xl mt-2">Party Details</h2>
+        <div class="h-2 w-28 mx-auto rounded-full mt-4" style="background: linear-gradient(90deg, var(--primary), var(--accent));"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card p-8 text-center">
+          <div class="w-20 h-20 rounded-full mx-auto grid place-items-center mb-4" style="background: rgba(255,255,255,0.75); border:2px solid var(--border);">
+            <i class="fa-solid fa-map-location-dot text-4xl tPrimary"></i>
+          </div>
+          <h3 class="font-head font-black text-2xl mb-2">Where</h3>
+          <p class="font-extrabold text-lg" id="detail-loc-name">The Garden House</p>
+          <p class="muted font-bold" id="detail-loc-addr">123 Maple Street</p>
+          <a id="map-link" href="#" target="_blank" class="inline-flex items-center gap-2 mt-4 font-extrabold underline tPrimary hover:opacity-80">
+            See Map <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+          </a>
+        </div>
+
+        <div class="card p-8 text-center relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-sm font-extrabold text-white"
+               style="background: var(--secondary); box-shadow: 0 12px 24px -16px rgba(0,0,0,0.35);">
+            Don't be late!
+          </div>
+          <div class="w-20 h-20 rounded-full mx-auto grid place-items-center mb-4" style="background: rgba(255,255,255,0.75); border:2px solid var(--border);">
+            <i class="fa-regular fa-clock text-4xl tSecondary"></i>
+          </div>
+          <h3 class="font-head font-black text-2xl mb-2">When</h3>
+          <p class="font-extrabold text-lg" id="detail-date">Saturday, July 15th, 2026</p>
+          <p class="muted font-bold"><span id="detail-time-start">2:00 PM</span> – <span id="detail-time-end">5:00 PM</span></p>
+          <button id="add-to-calendar" class="mt-5 px-5 py-3 rounded-full font-extrabold hover:opacity-90"
+                  style="background: rgba(255,255,255,0.75); border:2px solid var(--border); color: var(--text);">
+            <i class="fa-regular fa-calendar-plus mr-2"></i> Add to Calendar
+          </button>
+        </div>
+
+        <div class="card p-8 text-center">
+          <div class="w-20 h-20 rounded-full mx-auto grid place-items-center mb-4" style="background: rgba(255,255,255,0.75); border:2px solid var(--border);">
+            <i class="fa-solid fa-gift text-4xl tAccent"></i>
+          </div>
+          <h3 class="font-head font-black text-2xl mb-2">Gifts</h3>
+          <p class="muted font-bold leading-relaxed" id="detail-registry-text">Your presence is the best present!</p>
+          <a id="registry-link" href="#" class="inline-block mt-5 px-6 py-3 rounded-full font-extrabold hover:opacity-90"
+             style="background: rgba(255,255,255,0.75); border:2px solid var(--border); color: var(--text);">
+            View Registry
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="py-16 px-5 relative z-10">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="font-head font-black text-4xl md:text-5xl">Growing Up So Fast</h2>
+      <p class="font-script text-2xl tPrimary mt-2">A magical year full of love & giggles.</p>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        <div class="photo-frame">
+          <img id="gal-1" src="" alt="Memory 1" class="rounded-xl w-full h-[260px] object-cover">
+          <div class="absolute -bottom-5 -right-5 bg-white px-3 py-2 rounded-full shadow font-extrabold">🌟</div>
+        </div>
+
+        <div class="photo-frame md:scale-105" style="transform: rotate(2deg) scale(1.05);">
+          <img id="gal-2" src="" alt="Memory 2" class="rounded-xl w-full h-[260px] object-cover">
+          <div class="absolute bottom-3 left-3 bg-white/90 px-4 py-1 rounded-full font-script text-2xl tSecondary">First Smiles</div>
+        </div>
+
+        <div class="photo-frame" style="transform: rotate(-3deg);">
+          <img id="gal-3" src="" alt="Memory 3" class="rounded-xl w-full h-[260px] object-cover">
+          <div class="absolute -top-5 -left-5 bg-white px-3 py-2 rounded-full shadow font-extrabold">🧸</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUN ZONE (Kids only) -->
+  <section id="fun-zone" class="py-16 px-5 bg-white/60 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="font-script text-2xl tPrimary">Let's play!</p>
+        <h2 class="font-head font-black text-4xl md:text-5xl mt-2">Kids' Fun Zone 🎪</h2>
+        <div class="h-2 w-24 mx-auto rounded-full mt-4" style="background: var(--secondary);"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Joke -->
+        <div class="card p-8 text-center relative">
+          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-white px-4 py-3 rounded-full shadow text-3xl">🤣</div>
+          <h3 class="font-head font-black text-2xl mt-6 mb-3">Giggle Box</h3>
+          <div id="joke-display" class="min-h-[80px] flex items-center justify-center font-extrabold italic muted">
+            "Why did the teddy bear say no to dessert?"
+          </div>
+          <button id="joke-btn" class="mt-5 w-full py-4 rounded-2xl font-extrabold text-white"
+                  style="background: var(--secondary);">
+            Tell me a joke!
+          </button>
+        </div>
+
+        <!-- Downloads -->
+        <div class="card p-8 text-center relative">
+          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-white px-4 py-3 rounded-full shadow text-3xl">🎨</div>
+          <h3 class="font-head font-black text-2xl mt-6 mb-3">Little Artists</h3>
+          <p class="muted font-bold">Download fun coloring pages!</p>
+
+          <div class="mt-6 space-y-3">
+            <a id="link-pdf-cake" href="#" target="_blank"
+               class="block w-full py-4 rounded-2xl font-extrabold hover:opacity-90"
+               style="background: rgba(255,255,255,0.75); border:2px solid var(--border);">
+              <i class="fa-solid fa-download mr-2 tPrimary"></i> Birthday Cake
+            </a>
+            <a id="link-pdf-balloon" href="#" target="_blank"
+               class="block w-full py-4 rounded-2xl font-extrabold hover:opacity-90"
+               style="background: rgba(255,255,255,0.75); border:2px solid var(--border);">
+              <i class="fa-solid fa-download mr-2 tSecondary"></i> Party Balloons
+            </a>
+          </div>
+        </div>
+
+        <!-- Games -->
+        <div class="card p-8 text-left relative">
+          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-white px-4 py-3 rounded-full shadow text-3xl">🎮</div>
+          <h3 class="font-head font-black text-2xl mt-6 mb-4 text-center">Party Games</h3>
+
+          <div class="space-y-4">
+            <div class="bg-white/70 p-4 rounded-2xl border-2" style="border-color: var(--border);">
+              <h4 class="font-extrabold">🎵 Musical Statues</h4>
+              <p class="text-sm muted font-bold mt-1">Dance when the music plays, freeze when it stops!</p>
+            </div>
+            <div class="bg-white/70 p-4 rounded-2xl border-2" style="border-color: var(--border);">
+              <h4 class="font-extrabold">🦆 Duck Duck Goose</h4>
+              <p class="text-sm muted font-bold mt-1">A classic circle game for little runners.</p>
+            </div>
+            <div class="bg-white/70 p-4 rounded-2xl border-2" style="border-color: var(--border);">
+              <h4 class="font-extrabold">🎁 Pass the Parcel</h4>
+              <p class="text-sm muted font-bold mt-1">Unwrap layers while the music plays!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIME CAPSULE (Kids only) -->
+  <section id="capsule" class="py-16 px-5 relative z-10">
+    <div class="max-w-4xl mx-auto card p-8 md:p-12 text-center relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-2" style="background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));"></div>
+
+      <div class="flex justify-center items-center gap-3 mb-4">
+        <i class="fa-solid fa-hourglass-half text-5xl tAccent"></i>
+      </div>
+
+      <h2 class="font-head font-black text-3xl md:text-4xl">A Note for the Future 💌</h2>
+      <p class="muted font-bold mt-4">
+        Leave a message for <span class="dynamic-name font-extrabold"></span> to read when they turn 18.
+        We're creating a digital time capsule!
+      </p>
+
+      <form id="capsuleForm" class="mt-8 space-y-5 text-left">
+        <div class="relative">
+          <textarea name="message" rows="5" required class="input resize-none" placeholder="Write your message here..."></textarea>
+          <i class="fa-solid fa-pen-fancy absolute top-4 right-4" style="color: rgba(0,0,0,0.25);"></i>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input type="text" name="from" required class="input" placeholder="From (Your Name)">
+          <input type="email" name="email" class="input" placeholder="Your Email (Optional)">
+        </div>
+
+        <button type="submit" class="w-full py-5 rounded-2xl font-head font-black text-xl text-white hover:opacity-95"
+                style="background: linear-gradient(90deg, var(--secondary), var(--primary));">
+          SEAL IN CAPSULE <i class="fa-solid fa-lock ml-2"></i>
+        </button>
+
+        <p id="capsule-status" class="text-center font-extrabold mt-3"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp" class="py-20 px-5 relative overflow-hidden z-10" style="background: linear-gradient(135deg, var(--primary), var(--secondary));">
+    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+    <div class="max-w-3xl mx-auto relative z-10 text-center text-white">
+      <p class="font-script text-2xl opacity-90">Ready to party?</p>
+      <h2 class="font-head font-black text-5xl md:text-6xl mt-2">Are you coming?</h2>
+      <p class="font-extrabold mt-4 bg-white/15 inline-block px-6 py-3 rounded-full backdrop-blur-md">
+        We need a head count for the cake! 🍰
+      </p>
+
+      <div id="rsvp-success" class="hidden bg-white/95 text-black rounded-[30px] p-10 mt-10 shadow-2xl border-4"
+           style="border-color: var(--border);">
+        <div class="text-6xl mb-5">🥳</div>
+        <h3 class="font-head font-black text-3xl tPrimary mb-3">Yay! Awesome!</h3>
+        <p class="font-extrabold muted text-lg mb-7">Your RSVP has been sent. Can't wait to see you!</p>
+        <button onclick="location.reload()" class="font-extrabold underline tSecondary hover:opacity-80">Add another guest</button>
+      </div>
+
+      <form id="rsvpForm" class="mt-10 text-left bg-white/15 p-7 md:p-10 rounded-[30px] backdrop-blur-md border border-white/25 shadow-2xl space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input type="text" name="name" required placeholder="First Name" class="input">
+          <input type="text" name="surname" required placeholder="Last Name" class="input">
+        </div>
+
+        <input type="email" name="email" required placeholder="Email Address" class="input">
+
+        <div class="flex flex-col md:flex-row gap-4 pt-2">
+          <button type="button" id="btn-yes" class="flex-1 py-4 rounded-2xl font-extrabold text-lg bg-white text-black shadow-lg hover:opacity-95">
+            <i class="fa-solid fa-circle-check mr-2" style="color: var(--primary);"></i> Yes, can't wait! 😍
+          </button>
+          <button type="button" id="btn-no" class="flex-1 py-4 rounded-2xl font-extrabold text-lg bg-black/25 text-white/90 hover:bg-black/30">
+            <i class="fa-solid fa-circle-xmark mr-2"></i> Sad to miss it 😢
+          </button>
+          <input type="hidden" name="attendance" id="attendance-input" value="yes">
+        </div>
+
+        <div id="guest-details" class="space-y-4 transition-all duration-500 overflow-hidden">
+          <p class="text-center font-extrabold divider flex items-center gap-3 before:h-px before:bg-white/30 before:flex-1 after:h-px after:bg-white/30 after:flex-1">
+            Who is joining you?
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <select name="adults" class="input" style="appearance:none;">
+              <option value="1">1 Adult</option><option value="2">2 Adults</option><option value="3">3 Adults</option>
+              <option value="4">4 Adults</option><option value="5">5 Adults</option><option value="6">6 Adults</option>
+              <option value="7">7 Adults</option><option value="8">8 Adults</option><option value="9">9 Adults</option><option value="10">10 Adults</option>
+            </select>
+
+            <select name="children" class="input" style="appearance:none;">
+              <option value="0">No Kids</option><option value="1">1 Kid</option><option value="2">2 Kids</option>
+              <option value="3">3 Kids</option><option value="4">4 Kids</option><option value="5">5 Kids</option>
+              <option value="6">6 Kids</option><option value="7">7 Kids</option><option value="8">8 Kids</option>
+              <option value="9">9 Kids</option><option value="10">10 Kids</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-5 rounded-full font-head font-black text-xl bg-white text-black hover:opacity-95">
+          <span id="rsvp-submit-text" class="flex items-center justify-center gap-3">SEND RSVP <i class="fa-solid fa-paper-plane"></i></span>
+        </button>
+
+        <p class="text-center text-white/80 font-bold text-sm">
+          <span class="opacity-90">Delivered as a private shareable link.</span> Not an app, not a PDF.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="py-12 text-center relative z-10" style="background: rgba(0,0,0,0.82); color: rgba(255,255,255,0.85);">
+    <h3 class="font-head font-black text-3xl mb-3" style="color: white;">Can't wait to celebrate! 💖</h3>
+    <p class="font-extrabold text-sm" id="footer-text">© 2026 • Made with magic by VitrinY</p>
+  </footer>
+
+  <script>
+    // ============================
+    // 3) THEME + CONFIG BOOTSTRAP
+    // ============================
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    function applyTheme() {
+      const themeParam = getQueryParam("theme");
+      const theme = (themeParam || CONFIG.product.themeDefault || "candy").toLowerCase();
+      document.body.setAttribute("data-theme", ["candy","soft"].includes(theme) ? theme : "candy");
+    }
+
+    function setText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    function applyConfig() {
+      document.title = `${CONFIG.event.childName}'s ${CONFIG.event.ageNum} Birthday`;
+
+      setText("nav-title", `${CONFIG.event.childName}'s ${CONFIG.event.ageNum}`);
+      setText("hero-age", CONFIG.event.ageText);
+      setText("hero-name", CONFIG.event.childName);
+      setText("hero-date", CONFIG.event.dateFull);
+      setText("hero-year", CONFIG.event.year);
+      setText("hero-time", CONFIG.event.time);
+      setText("cake-time", CONFIG.event.cakeTime);
+
+      setText("hero-loc-mini", CONFIG.location.locationName);
+
+      setText("detail-loc-name", CONFIG.location.locationName);
+      setText("detail-loc-addr", CONFIG.location.address);
+      const mapLink = document.getElementById("map-link");
+      if (mapLink) mapLink.href = CONFIG.location.googleMapsLink;
+
+      setText("detail-date", `${CONFIG.event.dateFull}, ${CONFIG.event.year}`);
+      setText("detail-time-start", CONFIG.event.time);
+      setText("detail-time-end", CONFIG.event.endTime);
+
+      setText("detail-registry-text", CONFIG.registry.registryText);
+      const regLink = document.getElementById("registry-link");
+      if (regLink) regLink.href = CONFIG.registry.registryLink;
+
+      document.querySelectorAll(".dynamic-name").forEach(el => el.textContent = CONFIG.event.childName);
+
+      const cake = document.getElementById("link-pdf-cake");
+      const balloon = document.getElementById("link-pdf-balloon");
+      if (cake) cake.href = CONFIG.downloads.pdfCake || "#";
+      if (balloon) balloon.href = CONFIG.downloads.pdfBalloon || "#";
+
+      const g1 = document.getElementById("gal-1");
+      const g2 = document.getElementById("gal-2");
+      const g3 = document.getElementById("gal-3");
+      if (CONFIG.gallery?.length) {
+        if (g1) g1.src = CONFIG.gallery[0] || "";
+        if (g2) g2.src = CONFIG.gallery[1] || CONFIG.gallery[0] || "";
+        if (g3) g3.src = CONFIG.gallery[2] || CONFIG.gallery[0] || "";
+      }
+
+      setText("footer-text", CONFIG.branding.footerText || "");
+
+      // Demo banner
+      const demoBanner = document.getElementById("demo-banner");
+      if (demoBanner) {
+        if (CONFIG.product.demoBanner) demoBanner.classList.remove("hidden");
+        else demoBanner.classList.add("hidden");
+      }
+
+      // Music
+      const musicContainer = document.getElementById("music-container");
+      const bgMusic = document.getElementById("bg-music");
+      const disc = document.getElementById("music-disc");
+      const icon = document.getElementById("music-icon");
+      const label = document.getElementById("music-name");
+
+      if (CONFIG.music?.enabled && CONFIG.music?.musicURL) {
+        if (musicContainer) musicContainer.classList.remove("hidden");
+        if (bgMusic) {
+          bgMusic.src = CONFIG.music.musicURL;
+          bgMusic.volume = 0.5;
+        }
+        if (label) label.textContent = CONFIG.music.label || "Song";
+
+        // First user interaction autostart
+        document.body.addEventListener("click", function() {
+          if (!bgMusic || !disc || !icon) return;
+          if (bgMusic.paused) {
+            bgMusic.play().then(() => {
+              icon.classList.remove("fa-play");
+              icon.classList.add("fa-pause");
+              disc.classList.add("playing");
+            }).catch(() => {});
+          }
+        }, { once: true });
+
+        if (disc && bgMusic && icon) {
+          disc.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (bgMusic.paused) {
+              bgMusic.play();
+              icon.classList.remove("fa-play");
+              icon.classList.add("fa-pause");
+              disc.classList.add("playing");
+            } else {
+              bgMusic.pause();
+              icon.classList.remove("fa-pause");
+              icon.classList.add("fa-play");
+              disc.classList.remove("playing");
+            }
+          });
+        }
+      } else {
+        if (musicContainer) musicContainer.classList.add("hidden");
+      }
+    }
+
+    // ============================
+    // 4) COUNTDOWN
+    // ============================
+    function initCountdown() {
+      const targetDate = new Date(CONFIG.event.partyDate).getTime();
+      const countdownContainer = document.getElementById("countdown");
+
+      const update = () => {
+        const now = Date.now();
+        const distance = targetDate - now;
+
+        if (!countdownContainer) return;
+
+        if (distance < 0) {
+          countdownContainer.innerHTML = "<div class='w-full text-center text-white font-extrabold text-xl'>It's Party Time! 🎉</div>";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000*60*60*24));
+        const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+        const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+        const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+        document.getElementById("days").textContent = days < 10 ? "0"+days : String(days);
+        document.getElementById("hours").textContent = hours < 10 ? "0"+hours : String(hours);
+        document.getElementById("minutes").textContent = minutes < 10 ? "0"+minutes : String(minutes);
+        document.getElementById("seconds").textContent = seconds < 10 ? "0"+seconds : String(seconds);
+      };
+
+      update();
+      setInterval(update, 1000);
+    }
+
+    // ============================
+    // 5) NAV / MOBILE MENU
+    // ============================
+    function initNav() {
+      const btn = document.getElementById("menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      const links = document.querySelectorAll(".menu-link");
+      if (btn && menu) {
+        btn.addEventListener("click", () => menu.classList.toggle("open"));
+        links.forEach(a => a.addEventListener("click", () => menu.classList.remove("open")));
+      }
+    }
+
+    // ============================
+    // 6) ADD TO CALENDAR (Google Calendar link)
+    // ============================
+    function initCalendar() {
+      const btn = document.getElementById("add-to-calendar");
+      if (!btn) return;
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const title = encodeURIComponent(`${CONFIG.event.childName}'s Birthday Party`);
+        const location = encodeURIComponent(CONFIG.location.address);
+        const details = encodeURIComponent("Can't wait to see you there!");
+
+        // NOTE: For true accuracy, parse CONFIG.event.partyDate into yyyyMMddTHHmmss.
+        // Here we keep a simple fallback; you can replace with computed values if you want.
+        const start = "20260715T140000";
+        const end = "20260715T170000";
+
+        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
+        window.open(url, "_blank");
+      });
+    }
+
+    // ============================
+    // 7) FUN ZONE (Jokes)
+    // ============================
+    function initJokes() {
+      const jokes = [
+        "Why did the teddy bear say no to dessert? Because she was stuffed!",
+        "What do you call a sleeping dinosaur? A dino-snore!",
+        "Why did the cookie go to the hospital? Because he felt crummy!",
+        "What is a cat's favorite color? Purrr-ple!",
+        "Why do bees have sticky hair? Because they use honeycombs!",
+        "What do you call a bear with no teeth? A gummy bear!"
+      ];
+      const btn = document.getElementById("joke-btn");
+      const display = document.getElementById("joke-display");
+      if (!btn || !display) return;
+
+      btn.addEventListener("click", () => {
+        const random = jokes[Math.floor(Math.random() * jokes.length)];
+        display.style.opacity = 0;
+        setTimeout(() => { display.textContent = random; display.style.opacity = 1; }, 160);
+      });
+    }
+
+    // ============================
+    // 8) SUBMIT ADAPTER (Formspree vs Apps Script)
+    // ============================
+    async function submitToBackend(type, formEl) {
+      const backend = (CONFIG.product.backend || "formspree").toLowerCase();
+
+      if (backend === "formspree") {
+        const url = type === "rsvp" ? CONFIG.formspree.rsvp : CONFIG.formspree.timeCapsule;
+        const res = await fetch(url, { method: "POST", body: new FormData(formEl), headers: { "Accept":"application/json" }});
+        if (!res.ok) throw new Error("formspree_failed");
+        return { ok: true };
+      }
+
+      if (backend === "apps_script") {
+        const exec = CONFIG.appsScript.execURL;
+        const action = type === "rsvp" ? "rsvp_write" : "capsule_write";
+        const payload = Object.fromEntries(new FormData(formEl).entries());
+        payload._type = type;
+
+        const res = await fetch(`${exec}?action=${action}`, {
+          method: "POST",
+          headers: { "Content-Type":"application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("apps_script_failed");
+        return { ok: true };
+      }
+
+      throw new Error("unknown_backend");
+    }
+
+    // RSVP UI logic + submit
+    function initRSVP() {
+      const btnYes = document.getElementById("btn-yes");
+      const btnNo = document.getElementById("btn-no");
+      const inputAttend = document.getElementById("attendance-input");
+      const guestDetails = document.getElementById("guest-details");
+
+      const setGuestVisibility = (visible) => {
+        if (!guestDetails) return;
+        if (visible) {
+          guestDetails.style.maxHeight = "520px";
+          guestDetails.style.opacity = "1";
+          guestDetails.style.pointerEvents = "auto";
+        } else {
+          guestDetails.style.maxHeight = "0";
+          guestDetails.style.opacity = "0";
+          guestDetails.style.pointerEvents = "none";
+        }
+      };
+
+      setGuestVisibility(true);
+
+      if (btnYes && btnNo && inputAttend) {
+        btnYes.addEventListener("click", () => {
+          inputAttend.value = "yes";
+          btnYes.classList.add("bg-white");
+          btnNo.classList.add("bg-black/25");
+          setGuestVisibility(true);
+        });
+
+        btnNo.addEventListener("click", () => {
+          inputAttend.value = "no";
+          btnNo.classList.add("bg-white");
+          btnYes.classList.add("bg-black/25");
+          setGuestVisibility(false);
+        });
+      }
+
+      const form = document.getElementById("rsvpForm");
+      const success = document.getElementById("rsvp-success");
+      const submitText = document.getElementById("rsvp-submit-text");
+
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const old = submitText.innerHTML;
+        submitText.innerHTML = `Sending... <i class="fa-solid fa-spinner fa-spin"></i>`;
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) btn.disabled = true;
+
+        try {
+          await submitToBackend("rsvp", form);
+          form.style.display = "none";
+          success.classList.remove("hidden");
+
+          // confetti
+          const duration = 2500;
+          const animationEnd = Date.now() + duration;
+          const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+
+          const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+          const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+            if (timeLeft <= 0) return clearInterval(interval);
+
+            const particleCount = 46 * (timeLeft / duration);
+            confetti(Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+              colors: [getComputedStyle(document.body).getPropertyValue("--primary").trim(),
+                       getComputedStyle(document.body).getPropertyValue("--secondary").trim(),
+                       getComputedStyle(document.body).getPropertyValue("--accent").trim()]
+            }));
+            confetti(Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+              colors: [getComputedStyle(document.body).getPropertyValue("--primary").trim(),
+                       getComputedStyle(document.body).getPropertyValue("--secondary").trim(),
+                       getComputedStyle(document.body).getPropertyValue("--accent").trim()]
+            }));
+          }, 240);
+        } catch (err) {
+          alert("Oops! There was a problem sending your RSVP.");
+          submitText.innerHTML = old;
+          if (btn) btn.disabled = false;
+        }
+      });
+    }
+
+    // Capsule submit
+    function initCapsule() {
+      const form = document.getElementById("capsuleForm");
+      const status = document.getElementById("capsule-status");
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const btn = form.querySelector('button[type="submit"]');
+        const oldText = btn ? btn.innerHTML : "";
+        if (btn) { btn.innerHTML = `Sealing... <i class="fa-solid fa-spinner fa-spin ml-2"></i>`; btn.disabled = true; }
+
+        try {
+          await submitToBackend("capsule", form);
+          form.reset();
+          if (btn) { btn.innerHTML = oldText; btn.disabled = false; }
+
+          status.textContent = "Message sealed securely! Thank you. 💖";
+          status.style.color = "#16a34a";
+        } catch (err) {
+          status.textContent = "Error sealing message. Please try again.";
+          status.style.color = "#ef4444";
+          if (btn) { btn.innerHTML = oldText; btn.disabled = false; }
+        }
+      });
+    }
+
+    // ============================
+    // BOOT
+    // ============================
+    document.addEventListener("DOMContentLoaded", () => {
+      applyTheme();
+      applyConfig();
+      initNav();
+      initCountdown();
+      initCalendar();
+      initJokes();
+      initRSVP();
+      initCapsule();
+    });
+  </script>
+</body>
+</html>
