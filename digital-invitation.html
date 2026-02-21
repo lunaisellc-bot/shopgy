@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>VitrinY Atelier | Premium Digital Events</title>
-  <meta name="description" content="Next-generation event websites for Weddings, Birthdays, and VIP Parties. Seamless RSVP, Maps, and Gifting." />
-  
+
+  <title>VitrinY | Interactive Wedding Invitation Website (Not a PDF)</title>
+  <meta name="description" content="Interactive wedding invitation website (not a PDF). Live RSVP, Music, Google Maps, Add-to-Calendar, Envelope reveal. Buy on Etsy. Fill 2-minute form. Delivered fast." />
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
@@ -23,7 +23,7 @@
           colors: {
             bgdark: '#0B0B15',
             surface: '#12121A',
-            panel: '#1A1016', /* Hafif sıcak/mürdüm tonlu koyu zemin */
+            panel: '#1A1016',
             gold: '#D4AF37',
             rose: '#E0B0FF',
             neon: '#00DC82'
@@ -45,356 +45,846 @@
 
   <style>
     body { background-color: #0B0B15; color: #F0EFEB; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    
-    /* VitrinY Standart Işıklandırma (Ambient Lights) */
+
     .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
     .light-orb-1 { position: absolute; top: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 8s infinite alternate; }
     .light-orb-2 { position: absolute; bottom: 0%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(224,176,255,0.05) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 12s infinite alternate-reverse; }
 
-    /* Film Grain (Doku) */
     .noise-bg {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 0;
     }
 
-    .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.4s ease; }
-    .glass-card:hover { border-color: rgba(212, 175, 55, 0.3); background: rgba(255, 255, 255, 0.06); transform: translateY(-5px); }
+    .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.35s ease; }
+    .glass-card:hover { border-color: rgba(212, 175, 55, 0.35); background: rgba(255, 255, 255, 0.06); transform: translateY(-5px); }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .chip { border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.02); }
+    .btn-primary { box-shadow: 0 0 26px rgba(212,175,55,0.14); }
+    .kbd { font-size: 10px; padding: 2px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); }
   </style>
 </head>
 
 <body>
-
   <div class="ambient-light">
-      <div class="light-orb-1"></div>
-      <div class="light-orb-2"></div>
+    <div class="light-orb-1"></div>
+    <div class="light-orb-2"></div>
   </div>
   <div class="noise-bg"></div>
 
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-lg border-b border-white/5 py-5 px-8 flex justify-between items-center transition-all duration-300">
-    <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-gold to-rose p-[1px]">
-            <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
-                <span class="font-bold text-lg text-white">V</span>
-            </div>
+  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-lg border-b border-white/5 py-5 px-6 md:px-8 flex justify-between items-center transition-all duration-300">
+    <a href="digital-invitation.html" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-gold to-rose p-[1px]">
+        <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
+          <span class="font-bold text-lg text-white">V</span>
         </div>
-        <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] text-gold align-top ml-1">ATELIER</span></span>
+      </div>
+      <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] text-gold align-top ml-1">ATELIER</span></span>
     </a>
-    
-    <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+
+    <div class="hidden lg:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+      <a href="#themes" class="hover:text-gold transition" data-i18n="nav_themes">Themes</a>
       <a href="#process" class="hover:text-gold transition" data-i18n="nav_proc">Process</a>
       <a href="#features" class="hover:text-gold transition" data-i18n="nav_feat">Features</a>
-      <a href="#delivery" class="hover:text-gold transition" data-i18n="nav_terms">Timeline</a>
+      <a href="#pricing" class="hover:text-gold transition" data-i18n="nav_price">Pricing</a>
+      <a href="#faq" class="hover:text-gold transition" data-i18n="nav_faq">FAQ</a>
     </div>
 
-    <div class="flex items-center gap-6">
-      <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded-full hover:text-white hover:border-gold transition">EN</button>
-      <a href="https://wa.me/905419787726" class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition shadow-lg hover:shadow-gold/20">
-        <span data-i18n="btn_start">Start Project</span>
+    <div class="flex items-center gap-3 md:gap-4">
+      <button onclick="toggleLang()" id="lang-btn"
+        class="text-xs font-bold text-gray-300 border border-white/10 px-3 py-1.5 rounded-full hover:text-white hover:border-gold transition">EN</button>
+
+      <a id="buy-etsy-top" href="#" target="_blank" rel="noopener"
+        class="bg-white text-black px-5 md:px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition shadow-lg hover:shadow-gold/20 btn-primary">
+        <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
+      </a>
+
+      <a id="help-wa" href="#" target="_blank" rel="noopener"
+        class="hidden md:inline text-xs font-bold text-gray-400 hover:text-white transition">
+        <span data-i18n="btn_help">Need help?</span>
       </a>
     </div>
   </nav>
 
-  <header class="relative pt-40 pb-20 px-6 min-h-screen flex items-center overflow-hidden">
+  <!-- HERO -->
+  <header class="relative pt-36 pb-14 px-6 min-h-[92vh] flex items-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-         <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000" class="w-full h-full object-cover opacity-20">
-         <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/60 to-transparent"></div>
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000" class="w-full h-full object-cover opacity-20" alt="Wedding background">
+      <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/65 to-transparent"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center relative z-10">
       <div class="reveal active">
+        <div class="flex flex-wrap items-center gap-2 mb-5">
+          <span class="chip px-4 py-2 rounded-full text-[11px] text-gray-300 uppercase tracking-widest">
+            <i class="fa-solid fa-bolt text-gold mr-2"></i><span data-i18n="hero_badge">Not a PDF • Live Wedding Link</span>
+          </span>
+          <span class="kbd" data-i18n="hero_kbd">Works on all phones</span>
+          <span class="kbd" data-i18n="hero_kbd2">No app needed</span>
+        </div>
+
         <span class="font-hand text-4xl text-gold mb-2 block" data-i18n="hero_script">Beyond Paper...</span>
-        <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">
-            <span data-i18n="hero_t1">Your Event,</span> <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose to-gold" data-i18n="hero_t2">Digitally Curated.</span>
+
+        <h1 class="text-5xl md:text-6xl xl:text-7xl font-serif text-white mb-6 leading-tight">
+          <span data-i18n="hero_t1">Your Wedding,</span><br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose to-gold" data-i18n="hero_t2">One Beautiful Link.</span>
         </h1>
-        <p class="text-gray-300 text-lg mb-10 leading-relaxed max-w-lg font-light border-l-2 border-gold/30 pl-6" data-i18n="hero_desc">
-            We craft fully functional, mobile-responsive websites for your special occasions. Not a static PDF, but a living hub for your RSVPs, maps, and memories.
+
+        <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-xl font-light border-l-2 border-gold/30 pl-6" data-i18n="hero_desc">
+          Live RSVP + Music + Google Maps + Add to Calendar + Envelope reveal. Buy on Etsy, fill a 2-minute form, we deliver fast.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4">
-            <a href="#process" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                <span data-i18n="btn_how">How it Works</span> <i class="fa-solid fa-arrow-right"></i>
-            </a>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a id="buy-etsy-hero" href="#" target="_blank" rel="noopener"
+             class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition flex items-center justify-center gap-2 btn-primary">
+            <i class="fa-solid fa-bag-shopping"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
+          </a>
+
+          <a href="#themes"
+             class="px-8 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-play text-gold"></i><span data-i18n="btn_demo">Watch Demos</span>
+          </a>
+        </div>
+
+        <div class="mt-7 flex flex-wrap gap-2 text-xs text-gray-400">
+          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-regular fa-envelope-open text-gold mr-2"></i><span data-i18n="chip_rsvp">Live RSVP</span></span>
+          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-solid fa-music text-gold mr-2"></i><span data-i18n="chip_music">Song</span></span>
+          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-solid fa-map-location-dot text-gold mr-2"></i><span data-i18n="chip_maps">Maps</span></span>
+          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-regular fa-calendar text-gold mr-2"></i><span data-i18n="chip_cal">Calendar</span></span>
+          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-solid fa-lock text-gold mr-2"></i><span data-i18n="chip_priv">Optional Password</span></span>
         </div>
       </div>
 
+      <!-- Right mock phone -->
       <div class="relative reveal delay-200 flex justify-center lg:justify-end">
-          <div class="relative w-[280px] h-[580px] border-4 border-[#222] rounded-[40px] bg-black shadow-2xl animate-float overflow-hidden z-10">
-              <img src="https://images.unsplash.com/photo-1605218427306-633ba8b93759?q=80&w=600" class="w-full h-full object-cover opacity-90">
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-              <div class="absolute bottom-10 left-0 right-0 text-center px-4">
-                  <div class="font-serif text-2xl text-white mb-1">Sarah & Tom</div>
-                  <div class="text-[10px] uppercase tracking-widest text-gray-400 mb-4">Are getting married</div>
-                  <div class="bg-white/10 backdrop-blur border border-white/20 py-2 rounded-full text-xs text-white uppercase">Tap to RSVP</div>
+        <div class="relative w-[290px] h-[590px] border-4 border-[#222] rounded-[42px] bg-black shadow-2xl animate-float overflow-hidden z-10">
+          <img src="https://images.unsplash.com/photo-1605218427306-633ba8b93759?q=80&w=900" class="w-full h-full object-cover opacity-90" alt="Demo phone">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+
+          <div class="absolute top-6 left-6 right-6">
+            <div class="glass-card rounded-2xl p-4">
+              <div class="flex items-center justify-between">
+                <div class="text-white font-bold text-sm">Sarah & Tom</div>
+                <span class="text-[10px] text-gray-400 uppercase tracking-widest" data-i18n="mock_label">Wedding</span>
               </div>
+              <div class="mt-2 text-xs text-gray-400" data-i18n="mock_desc">Tap RSVP • Maps • Music • Calendar</div>
+              <div class="mt-4 grid grid-cols-2 gap-2 text-[11px]">
+                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white">RSVP</div>
+                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white" data-i18n="mock_maps">Maps</div>
+                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white" data-i18n="mock_music">Music</div>
+                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white" data-i18n="mock_cal">Calendar</div>
+              </div>
+            </div>
           </div>
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-rose/20 rounded-full blur-[80px] -z-10"></div>
+
+          <div class="absolute bottom-8 left-0 right-0 text-center px-5">
+            <div class="glass-card rounded-full px-5 py-3 text-xs text-white uppercase tracking-widest inline-flex items-center gap-2">
+              <i class="fa-solid fa-clock text-gold"></i><span data-i18n="hero_fast">Delivered in ~4 hours*</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[370px] h-[370px] bg-rose/20 rounded-full blur-[85px] -z-10"></div>
       </div>
     </div>
   </header>
 
-  <section id="process" class="py-24 bg-surface/50 border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <span class="font-hand text-3xl text-gray-500 block mb-2" data-i18n="proc_script">Simple & Transparent</span>
-            <h2 class="text-3xl md:text-5xl font-serif text-white" data-i18n="proc_title">The Process</h2>
+  <!-- THEMES / DEMOS -->
+  <section id="themes" class="py-20 px-6 bg-bgdark border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 reveal">
+        <div>
+          <span class="text-gold text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="themes_badge">Live Demos</span>
+          <h2 class="text-3xl md:text-4xl font-serif text-white" data-i18n="themes_title">Pick a Theme. See it Live.</h2>
+          <p class="text-gray-400 text-sm mt-3 max-w-2xl" data-i18n="themes_desc">
+            Choose a style, open the demo, then buy on Etsy. After purchase, fill a 2-minute form. We deliver fast.
+          </p>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-12 relative">
-            <div class="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-white/10 -z-10"></div>
-
-            <div class="text-center group reveal">
-                <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-gold mb-6 relative z-10 group-hover:border-gold transition duration-500">01</div>
-                <h3 class="text-xl font-bold text-white mb-3" data-i18n="s1_t">Brief & Content</h3>
-                <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s1_d">
-                    Share your event details, photos, and preferences via WhatsApp. We gather everything needed to begin.
-                </p>
-            </div>
-             <div class="text-center group reveal delay-100">
-                <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-rose mb-6 relative z-10 group-hover:border-rose transition duration-500">02</div>
-                <h3 class="text-xl font-bold text-white mb-3" data-i18n="s2_t">Curating & Design</h3>
-                <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s2_d">
-                    Our studio builds your site. We arrange your story and logistics into a cohesive, elegant digital experience.
-                </p>
-            </div>
-             <div class="text-center group reveal delay-200">
-                <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-neon mb-6 relative z-10 group-hover:border-neon transition duration-500">03</div>
-                <h3 class="text-xl font-bold text-white mb-3" data-i18n="s3_t">Review & Launch</h3>
-                <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s3_d">
-                    We present the draft. After your approval, we activate your link, ready to be shared with your guest list.
-                </p>
-            </div>
+        <div class="flex gap-3">
+          <a id="buy-etsy-themes" href="#" target="_blank" rel="noopener"
+            class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition">
+            <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
+          </a>
+          <a id="open-form" href="#" target="_blank" rel="noopener"
+            class="px-6 py-3 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition">
+            <i class="fa-regular fa-clipboard mr-2"></i><span data-i18n="btn_form">Open 2-Minute Form</span>
+          </a>
         </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="#" class="glass-card p-7 rounded-2xl reveal" onclick="openDemo('ivory'); return false;">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-white font-bold" data-i18n="t1">Ivory Classic</div>
+              <div class="text-xs text-gray-400 mt-1" data-i18n="t1s">Soft serif + gold accents</div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-gray-400"></i>
+          </div>
+          <div class="mt-5 flex gap-2 flex-wrap text-xs text-gray-400">
+            <span class="px-3 py-1 rounded-full chip">RSVP</span>
+            <span class="px-3 py-1 rounded-full chip">Music</span>
+            <span class="px-3 py-1 rounded-full chip">Maps</span>
+            <span class="px-3 py-1 rounded-full chip">Calendar</span>
+            <span class="px-3 py-1 rounded-full chip">Envelope</span>
+          </div>
+        </a>
+
+        <a href="#" class="glass-card p-7 rounded-2xl reveal delay-100" onclick="openDemo('sage'); return false;">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-white font-bold" data-i18n="t2">Sage Minimal</div>
+              <div class="text-xs text-gray-400 mt-1" data-i18n="t2s">Clean, airy, modern</div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-gray-400"></i>
+          </div>
+          <div class="mt-5 flex gap-2 flex-wrap text-xs text-gray-400">
+            <span class="px-3 py-1 rounded-full chip">RSVP</span>
+            <span class="px-3 py-1 rounded-full chip">Maps</span>
+            <span class="px-3 py-1 rounded-full chip">Calendar</span>
+            <span class="px-3 py-1 rounded-full chip">Envelope</span>
+          </div>
+        </a>
+
+        <a href="#" class="glass-card p-7 rounded-2xl reveal delay-200" onclick="openDemo('blacktie'); return false;">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-white font-bold" data-i18n="t3">Black Tie</div>
+              <div class="text-xs text-gray-400 mt-1" data-i18n="t3s">Formal, high-contrast</div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-gray-400"></i>
+          </div>
+          <div class="mt-5 flex gap-2 flex-wrap text-xs text-gray-400">
+            <span class="px-3 py-1 rounded-full chip">RSVP</span>
+            <span class="px-3 py-1 rounded-full chip">Music</span>
+            <span class="px-3 py-1 rounded-full chip">Maps</span>
+          </div>
+        </a>
+
+        <a href="#" class="glass-card p-7 rounded-2xl reveal" onclick="openDemo('floral'); return false;">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-white font-bold" data-i18n="t4">Floral Romantic</div>
+              <div class="text-xs text-gray-400 mt-1" data-i18n="t4s">Soft florals + elegant script</div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-gray-400"></i>
+          </div>
+          <div class="mt-5 flex gap-2 flex-wrap text-xs text-gray-400">
+            <span class="px-3 py-1 rounded-full chip">Envelope</span>
+            <span class="px-3 py-1 rounded-full chip">RSVP</span>
+            <span class="px-3 py-1 rounded-full chip">Gallery</span>
+            <span class="px-3 py-1 rounded-full chip">Music</span>
+          </div>
+        </a>
+
+        <a href="#" class="glass-card p-7 rounded-2xl reveal delay-100" onclick="openDemo('modern'); return false;">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-white font-bold" data-i18n="t5">Modern Serif</div>
+              <div class="text-xs text-gray-400 mt-1" data-i18n="t5s">Editorial spacing, premium feel</div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-gray-400"></i>
+          </div>
+          <div class="mt-5 flex gap-2 flex-wrap text-xs text-gray-400">
+            <span class="px-3 py-1 rounded-full chip">RSVP</span>
+            <span class="px-3 py-1 rounded-full chip">Maps</span>
+            <span class="px-3 py-1 rounded-full chip">Calendar</span>
+            <span class="px-3 py-1 rounded-full chip">Envelope</span>
+          </div>
+        </a>
+
+        <a href="#" class="glass-card p-7 rounded-2xl reveal delay-200" onclick="openDemo('ottoman'); return false;">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-white font-bold" data-i18n="t6">Ottoman Chic</div>
+              <div class="text-xs text-gray-400 mt-1" data-i18n="t6s">Warm tones, luxe details</div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-gray-400"></i>
+          </div>
+          <div class="mt-5 flex gap-2 flex-wrap text-xs text-gray-400">
+            <span class="px-3 py-1 rounded-full chip">Envelope</span>
+            <span class="px-3 py-1 rounded-full chip">Music</span>
+            <span class="px-3 py-1 rounded-full chip">RSVP</span>
+            <span class="px-3 py-1 rounded-full chip">Maps</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="mt-10 reveal text-xs text-gray-500">
+        <span data-i18n="demo_note">* Demo links can be updated anytime. This landing is built to convert Etsy visitors.</span>
+      </div>
     </div>
   </section>
 
+  <!-- PROCESS -->
+  <section id="process" class="py-24 bg-surface/50 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="font-hand text-3xl text-gray-500 block mb-2" data-i18n="proc_script">Simple & Scalable</span>
+        <h2 class="text-3xl md:text-5xl font-serif text-white" data-i18n="proc_title">3-Step Delivery</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12 relative">
+        <div class="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-white/10 -z-10"></div>
+
+        <div class="text-center group reveal">
+          <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-gold mb-6 relative z-10 group-hover:border-gold transition duration-500">01</div>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="s1_t">Buy on Etsy</h3>
+          <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s1_d">
+            Purchase your package on Etsy in minutes. Instant digital checkout.
+          </p>
+        </div>
+
+        <div class="text-center group reveal delay-100">
+          <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-rose mb-6 relative z-10 group-hover:border-rose transition duration-500">02</div>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="s2_t">Fill the 2-Minute Form</h3>
+          <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s2_d">
+            Names, date, location link, song, photos. No back-and-forth messages.
+          </p>
+        </div>
+
+        <div class="text-center group reveal delay-200">
+          <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-neon mb-6 relative z-10 group-hover:border-neon transition duration-500">03</div>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="s3_t">Get Your Private Link</h3>
+          <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s3_d">
+            We publish your invitation link fast. Share on WhatsApp, SMS, or Email.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-14 flex flex-col sm:flex-row gap-3 justify-center reveal">
+        <a id="buy-etsy-process" href="#" target="_blank" rel="noopener"
+          class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition text-center btn-primary">
+          <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
+        </a>
+        <a id="form-process" href="#" target="_blank" rel="noopener"
+          class="px-8 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition text-center">
+          <i class="fa-regular fa-clipboard mr-2"></i><span data-i18n="btn_form">Open 2-Minute Form</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
   <section id="features" class="py-24 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-6">
-          <div class="mb-16 reveal">
-              <span class="text-rose text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="feat_badge">Curated Features</span>
-              <h2 class="text-4xl md:text-5xl font-serif text-white" data-i18n="feat_title">Designed for Modern Hosting</h2>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-6">
-              <div class="glass-card p-8 rounded-2xl reveal">
-                  <i class="fa-regular fa-envelope-open text-gold text-3xl mb-6"></i>
-                  <h3 class="text-xl font-bold text-white mb-3" data-i18n="f1_t">Smart RSVP</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f1_d">
-                      Collect attendances, meal preferences, and dietary restrictions seamlessly without phone calls.
-                  </p>
-              </div>
-              <div class="glass-card p-8 rounded-2xl reveal delay-100">
-                  <i class="fa-solid fa-map-location-dot text-gold text-3xl mb-6"></i>
-                  <h3 class="text-xl font-bold text-white mb-3" data-i18n="f2_t">Location Integration</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f2_d">
-                      Direct Google/Apple Maps links. Ensure your guests arrive at the right venue effortlessly.
-                  </p>
-              </div>
-              <div class="glass-card p-8 rounded-2xl reveal delay-200 border-l-4 border-l-rose/50">
-                  <i class="fa-solid fa-gift text-rose text-3xl mb-6"></i>
-                  <h3 class="text-xl font-bold text-white mb-3" data-i18n="f3_t">The Art of Gifting</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f3_d">
-                      Elegant presentation of your Registry, Charity choices, or IBAN details. Discrete and professional.
-                  </p>
-              </div>
-              <div class="glass-card p-8 rounded-2xl reveal">
-                  <i class="fa-solid fa-shield-halved text-gray-400 text-3xl mb-6"></i>
-                  <h3 class="text-xl font-bold text-white mb-3" data-i18n="f4_t">Privacy & Ease</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f4_d">
-                      No apps to download. No accounts to create. Optional password protection for exclusive events.
-                  </p>
-              </div>
-              <div class="glass-card p-8 rounded-2xl reveal delay-100">
-                  <i class="fa-regular fa-images text-gray-400 text-3xl mb-6"></i>
-                  <h3 class="text-xl font-bold text-white mb-3" data-i18n="f5_t">Visual Storytelling</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f5_d">
-                      A dedicated section for your pre-event photos or timeline story.
-                  </p>
-              </div>
-              <div class="glass-card p-8 rounded-2xl reveal delay-200">
-                  <i class="fa-solid fa-mobile-screen text-gray-400 text-3xl mb-6"></i>
-                  <h3 class="text-xl font-bold text-white mb-3" data-i18n="f6_t">Device Agnostic</h3>
-                  <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f6_d">
-                      Flawless experience on Mobile, Tablet, and Desktop screens.
-                  </p>
-              </div>
-          </div>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-16 reveal">
+        <span class="text-rose text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="feat_badge">Core Features</span>
+        <h2 class="text-4xl md:text-5xl font-serif text-white" data-i18n="feat_title">Everything Guests Need</h2>
+        <p class="text-gray-400 text-sm mt-4 max-w-2xl" data-i18n="feat_desc">
+          Built to feel like a premium invitation, but works like a modern event hub.
+        </p>
       </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-card p-8 rounded-2xl reveal">
+          <i class="fa-regular fa-envelope-open text-gold text-3xl mb-6"></i>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f1_t">Live RSVP</h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f1_d">Collect attendance instantly. Export results anytime.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl reveal delay-100">
+          <i class="fa-solid fa-music text-gold text-3xl mb-6"></i>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f2_t">Song / Music</h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f2_d">Set the mood with a chosen song (Spotify/MP3 link).</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl reveal delay-200">
+          <i class="fa-solid fa-map-location-dot text-gold text-3xl mb-6"></i>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f3_t">Google Maps</h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f3_d">One-tap navigation. Guests arrive easily.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl reveal">
+          <i class="fa-regular fa-calendar text-gray-300 text-3xl mb-6"></i>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f4_t">Add to Calendar</h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f4_d">Guests save the date with one tap (ICS).</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl reveal delay-100 border-l-4 border-l-rose/45">
+          <i class="fa-solid fa-envelope text-rose text-3xl mb-6"></i>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f5_t">Envelope Reveal</h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f5_d">A premium opening moment that feels like a real invite.</p>
+        </div>
+
+        <div class="glass-card p-8 rounded-2xl reveal delay-200">
+          <i class="fa-solid fa-mobile-screen text-gray-300 text-3xl mb-6"></i>
+          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f6_t">No App Needed</h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f6_d">Works on all phones. Simple even for older guests.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- PRICING -->
+  <section id="pricing" class="py-24 bg-surface/40 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <span class="text-gold text-xs font-bold tracking-widest uppercase mb-3 block" data-i18n="p_badge">Simple Pricing</span>
+        <h2 class="text-4xl md:text-5xl font-serif text-white" data-i18n="p_title">Pick Your Package</h2>
+        <p class="text-gray-400 text-sm mt-4 max-w-2xl mx-auto" data-i18n="p_desc">Premium is the best value. Buy on Etsy, fill the form, delivered fast.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="glass-card p-10 rounded-3xl reveal">
+          <div class="text-white font-bold text-xl" data-i18n="pb_t">Basic</div>
+          <div class="text-gray-400 text-sm mt-1" data-i18n="pb_s">Essentials only</div>
+          <div class="mt-6 flex items-baseline gap-2">
+            <span class="text-4xl font-serif text-white">$17</span>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-gray-300">
+            <li>• RSVP</li>
+            <li>• Google Maps</li>
+            <li>• Add to Calendar</li>
+          </ul>
+          <a id="buy-etsy-basic" href="#" target="_blank" rel="noopener"
+             class="mt-8 block text-center px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
+            <span data-i18n="btn_buy_basic">Buy on Etsy</span>
+          </a>
+        </div>
+
+        <div class="glass-card p-10 rounded-3xl reveal border border-gold/30 bg-white/5">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-white font-bold text-xl" data-i18n="pp_t">Premium</div>
+              <div class="text-gray-200 text-sm mt-1" data-i18n="pp_s">Best Seller</div>
+            </div>
+            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-gold text-black" data-i18n="pp_badge">Best</span>
+          </div>
+          <div class="mt-6 flex items-baseline gap-2">
+            <span class="text-4xl font-serif text-white">$19</span>
+            <span class="text-xs text-gray-400 line-through">$39</span>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-gray-200">
+            <li>• Everything in Basic</li>
+            <li>• Envelope reveal</li>
+            <li>• Music</li>
+            <li>• Photo gallery</li>
+            <li>• RSVP export</li>
+          </ul>
+          <a id="buy-etsy-premium" href="#" target="_blank" rel="noopener"
+             class="mt-8 block text-center px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
+            <span data-i18n="btn_buy_premium">Buy on Etsy — $19</span>
+          </a>
+          <div class="mt-4 text-[11px] text-gray-500" data-i18n="p_note">
+            Delivered fast after form submission.
+          </div>
+        </div>
+
+        <div class="glass-card p-10 rounded-3xl reveal">
+          <div class="text-white font-bold text-xl" data-i18n="pl_t">Luxe</div>
+          <div class="text-gray-400 text-sm mt-1" data-i18n="pl_s">Upgrades included</div>
+          <div class="mt-6 flex items-baseline gap-2">
+            <span class="text-4xl font-serif text-white">$29</span>
+          </div>
+          <ul class="mt-6 space-y-3 text-sm text-gray-300">
+            <li>• Everything in Premium</li>
+            <li>• Custom domain support</li>
+            <li>• Priority tweaks</li>
+          </ul>
+          <a id="buy-etsy-luxe" href="#" target="_blank" rel="noopener"
+             class="mt-8 block text-center px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
+            <span data-i18n="btn_buy_luxe">Buy on Etsy</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
   <section id="delivery" class="py-24 bg-panel border-t border-white/5">
-      <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center reveal">
-          <div>
-              <span class="text-gold text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="del_badge">Timeline & Promise</span>
-              <h2 class="text-3xl font-serif text-white mb-8" data-i18n="del_title">Delivery Standards</h2>
-              
-              <div class="space-y-8 border-l border-white/10 pl-8">
-                  <div class="relative">
-                      <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-gold"></div>
-                      <h4 class="text-white font-bold text-lg mb-1" data-i18n="d1_t">48-Hour Turnaround</h4>
-                      <p class="text-sm text-gray-400" data-i18n="d1_d">Timing begins once we receive your complete content and assets.</p>
-                  </div>
-                  <div class="relative">
-                       <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-white/20"></div>
-                      <h4 class="text-white font-bold text-lg mb-1" data-i18n="d2_t">Refinement Round</h4>
-                      <p class="text-sm text-gray-400" data-i18n="d2_d">One comprehensive revision session is included to ensure accuracy.</p>
-                  </div>
-              </div>
-          </div>
+    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center reveal">
+      <div>
+        <span class="text-gold text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="del_badge">Timeline & Promise</span>
+        <h2 class="text-3xl font-serif text-white mb-8" data-i18n="del_title">Delivery Standards</h2>
 
-          <div class="glass-card p-10 rounded-3xl">
-              <h3 class="text-xl font-bold text-white mb-6" data-i18n="link_title">Link & Hosting</h3>
-              <ul class="space-y-4 text-sm text-gray-400">
-                  <li class="flex items-start gap-3">
-                      <i class="fa-solid fa-link text-gold mt-1"></i>
-                      <span data-i18n="link_1">Standard secure link included (e.g., vitriny.com/names).</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                      <i class="fa-solid fa-globe text-gold mt-1"></i>
-                      <span data-i18n="link_2">Custom domains (e.g., yourname.com) are optional upgrades.</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                      <i class="fa-solid fa-server text-gold mt-1"></i>
-                      <span data-i18n="link_3">Hosting and maintenance are handled by us.</span>
-                  </li>
-              </ul>
+        <div class="space-y-8 border-l border-white/10 pl-8">
+          <div class="relative">
+            <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-gold"></div>
+            <h4 class="text-white font-bold text-lg mb-1" data-i18n="d1_t">Fast Delivery (≈4 Hours*)</h4>
+            <p class="text-sm text-gray-400" data-i18n="d1_d">Timing starts after we receive your completed form and assets.</p>
           </div>
+          <div class="relative">
+            <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-white/20"></div>
+            <h4 class="text-white font-bold text-lg mb-1" data-i18n="d2_t">Accuracy Check</h4>
+            <p class="text-sm text-gray-400" data-i18n="d2_d">We verify names, date, maps, RSVP flow, and mobile layout.</p>
+          </div>
+        </div>
       </div>
+
+      <div class="glass-card p-10 rounded-3xl">
+        <h3 class="text-xl font-bold text-white mb-6" data-i18n="link_title">Link & Hosting</h3>
+        <ul class="space-y-4 text-sm text-gray-400">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-link text-gold mt-1"></i>
+            <span data-i18n="link_1">Secure shareable link included (e.g., vitriny.com/names).</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-globe text-gold mt-1"></i>
+            <span data-i18n="link_2">Custom domains are optional upgrades.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-shield-halved text-gold mt-1"></i>
+            <span data-i18n="link_3">No app. No account. Optional password.</span>
+          </li>
+        </ul>
+
+        <div class="mt-8 flex gap-3">
+          <a id="buy-etsy-delivery" href="#" target="_blank" rel="noopener"
+             class="flex-1 text-center px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
+            <span data-i18n="btn_buy">Buy on Etsy — $19</span>
+          </a>
+          <a id="form-delivery" href="#" target="_blank" rel="noopener"
+             class="flex-1 text-center px-6 py-3 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition">
+            <span data-i18n="btn_form">Open Form</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- FAQ -->
   <section id="faq" class="py-24 bg-bgdark">
-      <div class="max-w-4xl mx-auto px-6">
-          <div class="text-center mb-12 reveal">
-              <h2 class="text-3xl font-bold text-white" data-i18n="faq_title">Common Questions</h2>
-          </div>
-          <div class="grid md:grid-cols-2 gap-8 reveal">
-              <div class="glass-card p-6 rounded-2xl">
-                  <h4 class="text-white font-bold mb-2" data-i18n="q1_t">Can older guests use this?</h4>
-                  <p class="text-gray-400 text-sm" data-i18n="q1_a">Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.</p>
-              </div>
-              <div class="glass-card p-6 rounded-2xl">
-                  <h4 class="text-white font-bold mb-2" data-i18n="q2_t">Is it easy to share?</h4>
-                  <p class="text-gray-400 text-sm" data-i18n="q2_a">Just copy your unique link and send it via WhatsApp, SMS, or Email. No app required.</p>
-              </div>
-          </div>
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-3xl font-bold text-white" data-i18n="faq_title">Common Questions</h2>
+        <p class="text-gray-500 text-sm mt-3" data-i18n="faq_sub">Short answers. No ambiguity.</p>
       </div>
+
+      <div class="grid md:grid-cols-2 gap-8 reveal">
+        <div class="glass-card p-6 rounded-2xl">
+          <h4 class="text-white font-bold mb-2" data-i18n="q1_t">Can older guests use this?</h4>
+          <p class="text-gray-400 text-sm" data-i18n="q1_a">Yes. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl">
+          <h4 class="text-white font-bold mb-2" data-i18n="q2_t">Is it easy to share?</h4>
+          <p class="text-gray-400 text-sm" data-i18n="q2_a">Copy your unique link and share via WhatsApp, SMS, or Email. No app required.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl">
+          <h4 class="text-white font-bold mb-2" data-i18n="q3_t">How fast is delivery?</h4>
+          <p class="text-gray-400 text-sm" data-i18n="q3_a">Typically within ~4 hours after form submission (during business hours). If submitted late, we deliver within 24 hours.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl">
+          <h4 class="text-white font-bold mb-2" data-i18n="q4_t">Where do I send my details?</h4>
+          <p class="text-gray-400 text-sm" data-i18n="q4_a">After purchase, fill our 2-minute form. We do the setup. No message chains.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col sm:flex-row gap-3 justify-center reveal">
+        <a id="buy-etsy-faq" href="#" target="_blank" rel="noopener"
+          class="px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-[1.02] transition btn-primary text-center">
+          <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
+        </a>
+        <a id="form-faq" href="#" target="_blank" rel="noopener"
+          class="px-10 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition text-center">
+          <i class="fa-regular fa-clipboard mr-2"></i><span data-i18n="btn_form">Open 2-Minute Form</span>
+        </a>
+      </div>
+    </div>
   </section>
 
-  <footer class="py-24 bg-surface text-center border-t border-white/5 relative z-10">
-      <div class="max-w-2xl mx-auto px-6 reveal">
-          <span class="font-hand text-4xl text-gold mb-2 block" data-i18n="cta_script">Let's Celebrate</span>
-          <h2 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight">
-              <span data-i18n="cta_t1">Ready to Design Your</span> <br>
-              <span class="text-white" data-i18n="cta_t2">Digital Masterpiece?</span>
-          </h2>
-          <div class="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://wa.me/905419787726?text=I%20want%20to%20start%20my%20event%20website." class="px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                  <i class="fa-brands fa-whatsapp mr-2"></i> <span data-i18n="btn_start">Start via WhatsApp</span>
-              </a>
-              <a href="index.html" class="px-10 py-4 border border-white/20 text-gray-300 font-bold rounded-full hover:bg-white/5 transition">
-                  <span data-i18n="btn_home">Back to Home</span>
-              </a>
-          </div>
+  <!-- FOOTER CTA -->
+  <footer class="py-20 bg-surface text-center border-t border-white/5 relative z-10">
+    <div class="max-w-2xl mx-auto px-6 reveal">
+      <span class="font-hand text-4xl text-gold mb-2 block" data-i18n="cta_script">Let's Celebrate</span>
+      <h2 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight">
+        <span data-i18n="cta_t1">Ready to Share Your</span><br>
+        <span class="text-white" data-i18n="cta_t2">Wedding Link?</span>
+      </h2>
+
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <a id="buy-etsy-footer" href="#" target="_blank" rel="noopener"
+          class="px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.2)] btn-primary">
+          <i class="fa-solid fa-bag-shopping mr-2"></i> <span data-i18n="btn_buy">Buy on Etsy — $19</span>
+        </a>
+        <a id="help-wa-footer" href="#" target="_blank" rel="noopener"
+          class="px-10 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition">
+          <i class="fa-brands fa-whatsapp mr-2"></i> <span data-i18n="btn_help">Need help?</span>
+        </a>
       </div>
-      <div class="mt-20 text-xs text-gray-600">
-          © 2026 VitrinY Atelier by Lunaise LLC.
+
+      <div class="mt-10 text-xs text-gray-600" data-i18n="foot_note">
+        * “~4 hours” applies during business hours. Otherwise within 24 hours. No app needed. Works on all phones.
       </div>
+    </div>
+
+    <div class="mt-14 text-xs text-gray-600">
+      © 2026 VitrinY Atelier by Lunaise LLC.
+    </div>
   </footer>
 
   <script>
-    // Scroll Reveal
+    // ====== LINKS (EDIT HERE) ======
+    // Shop URL provided by you:
+    const ETSY_URL = "https://www.etsy.com/shop/Vitrinybridge?ref=lp_mys_mfts";
+    // Put your real form URL here (Typeform / Google Form / your own):
+    const FORM_URL = "https://vitriny.com.tr/invite-form";
+    // WhatsApp help (kept secondary):
+    const WHATSAPP_URL = "https://wa.me/905419787726";
+
+    // Optional: demo URLs (replace with your real live demo links)
+    const DEMO_URLS = {
+      ivory:   "https://lunaisellc-bot.github.io/digital-invite/",
+      sage:    "https://lunaisellc-bot.github.io/digital-invite/",
+      blacktie:"https://lunaisellc-bot.github.io/digital-invite/",
+      floral:  "https://lunaisellc-bot.github.io/digital-invite/",
+      modern:  "https://lunaisellc-bot.github.io/digital-invite/",
+      ottoman: "https://lunaisellc-bot.github.io/digital-invite/",
+    };
+
+    // ====== Bind CTA links ======
+    const bind = (id, url) => { const el = document.getElementById(id); if (el) el.href = url; };
+    [
+      "buy-etsy-top","buy-etsy-hero","buy-etsy-themes","buy-etsy-process","buy-etsy-basic","buy-etsy-premium",
+      "buy-etsy-luxe","buy-etsy-delivery","buy-etsy-faq","buy-etsy-footer"
+    ].forEach(id => bind(id, ETSY_URL));
+
+    ["open-form","form-process","form-delivery","form-faq"].forEach(id => bind(id, FORM_URL));
+    ["help-wa","help-wa-footer"].forEach(id => bind(id, WHATSAPP_URL));
+
+    // ====== Scroll Reveal ======
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
-        });
-    }, { threshold: 0.1 });
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Translation Data
+    // ====== Demos ======
+    function openDemo(key){
+      const url = DEMO_URLS[key] || ETSY_URL;
+      window.open(url, "_blank", "noopener");
+    }
+
+    // ====== i18n ======
     const translations = {
       en: {
-        nav_proc: "Process", nav_feat: "Features", nav_terms: "Timeline", btn_start: "Start Project",
+        nav_themes: "Themes", nav_proc: "Process", nav_feat: "Features", nav_price: "Pricing", nav_faq: "FAQ",
+        btn_buy: "Buy on Etsy — $19", btn_help: "Need help?", btn_demo: "Watch Demos", btn_form: "Open 2-Minute Form",
+
+        hero_badge: "Not a PDF • Live Wedding Link",
+        hero_kbd: "Works on all phones",
+        hero_kbd2: "No app needed",
         hero_script: "Beyond Paper...",
-        hero_t1: "Your Event,", hero_t2: "Digitally Curated.",
-        hero_desc: "We craft fully functional, mobile-responsive websites for your special occasions. Not a static PDF, but a living hub for your RSVPs, maps, and memories.",
-        btn_how: "How it Works",
-        proc_script: "Simple & Transparent", proc_title: "The Process",
-        s1_t: "Brief & Content", s1_d: "Share your event details, photos, and preferences via WhatsApp. We gather everything needed to begin.",
-        s2_t: "Curating & Design", s2_d: "Our studio builds your site. We arrange your story and logistics into a cohesive, elegant digital experience.",
-        s3_t: "Review & Launch", s3_d: "We present the draft. After your approval, we activate your link, ready to be shared with your guest list.",
-        feat_badge: "Curated Features", feat_title: "Designed for Modern Hosting",
-        f1_t: "Smart RSVP", f1_d: "Collect attendances, meal preferences, and dietary restrictions seamlessly without phone calls.",
-        f2_t: "Location Integration", f2_d: "Direct Google/Apple Maps links. Ensure your guests arrive at the right venue effortlessly.",
-        f3_t: "The Art of Gifting", f3_d: "Elegant presentation of your Registry, Charity choices, or IBAN details. Discrete and professional.",
-        f4_t: "Privacy & Ease", f4_d: "No apps to download. No accounts to create. Optional password protection for exclusive events.",
-        f5_t: "Visual Storytelling", f5_d: "A dedicated section for your pre-event photos or timeline story.",
-        f6_t: "Device Agnostic", f6_d: "Flawless experience on Mobile, Tablet, and Desktop screens.",
-        del_badge: "Timeline & Promise", del_title: "Delivery Standards",
-        d1_t: "48-Hour Turnaround", d1_d: "Timing begins once we receive your complete content and assets.",
-        d2_t: "Refinement Round", d2_d: "One comprehensive revision session is included to ensure accuracy.",
+        hero_t1: "Your Wedding,",
+        hero_t2: "One Beautiful Link.",
+        hero_desc: "Live RSVP + Music + Google Maps + Add to Calendar + Envelope reveal. Buy on Etsy, fill a 2-minute form, we deliver fast.",
+        hero_fast: "Delivered in ~4 hours*",
+
+        chip_rsvp: "Live RSVP",
+        chip_music: "Song",
+        chip_maps: "Maps",
+        chip_cal: "Calendar",
+        chip_priv: "Optional Password",
+
+        mock_label: "Wedding",
+        mock_desc: "Tap RSVP • Maps • Music • Calendar",
+        mock_maps: "Maps",
+        mock_music: "Music",
+        mock_cal: "Calendar",
+
+        themes_badge: "Live Demos",
+        themes_title: "Pick a Theme. See it Live.",
+        themes_desc: "Choose a style, open the demo, then buy on Etsy. After purchase, fill a 2-minute form. We deliver fast.",
+        t1: "Ivory Classic", t1s: "Soft serif + gold accents",
+        t2: "Sage Minimal", t2s: "Clean, airy, modern",
+        t3: "Black Tie", t3s: "Formal, high-contrast",
+        t4: "Floral Romantic", t4s: "Soft florals + elegant script",
+        t5: "Modern Serif", t5s: "Editorial spacing, premium feel",
+        t6: "Ottoman Chic", t6s: "Warm tones, luxe details",
+        demo_note: "* Demo links can be updated anytime. This landing is built to convert Etsy visitors.",
+
+        proc_script: "Simple & Scalable",
+        proc_title: "3-Step Delivery",
+        s1_t: "Buy on Etsy",
+        s1_d: "Purchase your package on Etsy in minutes. Instant digital checkout.",
+        s2_t: "Fill the 2-Minute Form",
+        s2_d: "Names, date, location link, song, photos. No back-and-forth messages.",
+        s3_t: "Get Your Private Link",
+        s3_d: "We publish your invitation link fast. Share on WhatsApp, SMS, or Email.",
+
+        feat_badge: "Core Features",
+        feat_title: "Everything Guests Need",
+        feat_desc: "Built to feel like a premium invitation, but works like a modern event hub.",
+        f1_t: "Live RSVP",
+        f1_d: "Collect attendance instantly. Export results anytime.",
+        f2_t: "Song / Music",
+        f2_d: "Set the mood with a chosen song (Spotify/MP3 link).",
+        f3_t: "Google Maps",
+        f3_d: "One-tap navigation. Guests arrive easily.",
+        f4_t: "Add to Calendar",
+        f4_d: "Guests save the date with one tap (ICS).",
+        f5_t: "Envelope Reveal",
+        f5_d: "A premium opening moment that feels like a real invite.",
+        f6_t: "No App Needed",
+        f6_d: "Works on all phones. Simple even for older guests.",
+
+        p_badge: "Simple Pricing",
+        p_title: "Pick Your Package",
+        p_desc: "Premium is the best value. Buy on Etsy, fill the form, delivered fast.",
+        pb_t: "Basic", pb_s: "Essentials only",
+        pp_t: "Premium", pp_s: "Best Seller", pp_badge: "Best",
+        pl_t: "Luxe", pl_s: "Upgrades included",
+        btn_buy_basic: "Buy on Etsy",
+        btn_buy_premium: "Buy on Etsy — $19",
+        btn_buy_luxe: "Buy on Etsy",
+        p_note: "Delivered fast after form submission.",
+
+        del_badge: "Timeline & Promise",
+        del_title: "Delivery Standards",
+        d1_t: "Fast Delivery (≈4 Hours*)",
+        d1_d: "Timing starts after we receive your completed form and assets.",
+        d2_t: "Accuracy Check",
+        d2_d: "We verify names, date, maps, RSVP flow, and mobile layout.",
+
         link_title: "Link & Hosting",
-        link_1: "Standard secure link included (e.g., vitriny.com/names).",
-        link_2: "Custom domains (e.g., yourname.com) are optional upgrades.",
-        link_3: "Hosting and maintenance are handled by us.",
+        link_1: "Secure shareable link included (e.g., vitriny.com/names).",
+        link_2: "Custom domains are optional upgrades.",
+        link_3: "No app. No account. Optional password.",
+
         faq_title: "Common Questions",
-        q1_t: "Can older guests use this?", q1_a: "Yes. We design for simplicity. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.",
-        q2_t: "Is it easy to share?", q2_a: "Just copy your unique link and send it via WhatsApp, SMS, or Email. No app required.",
-        cta_script: "Let's Celebrate", cta_t1: "Ready to Design Your", cta_t2: "Digital Masterpiece?",
-        btn_home: "Back to Home"
+        faq_sub: "Short answers. No ambiguity.",
+        q1_t: "Can older guests use this?",
+        q1_a: "Yes. Big buttons, clear text. If they can use WhatsApp, they can use your invitation.",
+        q2_t: "Is it easy to share?",
+        q2_a: "Copy your unique link and share via WhatsApp, SMS, or Email. No app required.",
+        q3_t: "How fast is delivery?",
+        q3_a: "Typically within ~4 hours after form submission (during business hours). If submitted late, we deliver within 24 hours.",
+        q4_t: "Where do I send my details?",
+        q4_a: "After purchase, fill our 2-minute form. We do the setup. No message chains.",
+
+        cta_script: "Let's Celebrate",
+        cta_t1: "Ready to Share Your",
+        cta_t2: "Wedding Link?",
+        foot_note: "* “~4 hours” applies during business hours. Otherwise within 24 hours. No app needed. Works on all phones."
       },
+
       tr: {
-        nav_proc: "Süreç", nav_feat: "Özellikler", nav_terms: "Teslimat", btn_start: "Projeye Başla",
-        hero_script: "Kağıdın Ötesinde...",
-        hero_t1: "Davetiyeniz,", hero_t2: "Teknolojiyle Buluştu.",
-        hero_desc: "Özel günleriniz için tam donanımlı, mobil uyumlu web siteleri tasarlıyoruz. Sıradan bir PDF değil; LCV takibi, haritalar ve anılarınız için canlı bir platform.",
-        btn_how: "Nasıl Çalışır?",
-        proc_script: "Sade & Şeffaf", proc_title: "Çalışma Süreci",
-        s1_t: "İçerik Paylaşımı", s1_d: "Etkinlik detaylarınızı ve fotoğraflarınızı WhatsApp üzerinden iletin. Başlamak için gereken her şeyi toparlıyoruz.",
-        s2_t: "Tasarım & Kurgu", s2_d: "Stüdyomuz sitenizi inşa eder. Hikayenizi ve organizasyon detaylarını zarif bir dijital deneyime dönüştürürüz.",
-        s3_t: "Onay & Yayın", s3_d: "Taslağı sunarız. Onayınızın ardından linkinizi aktif hale getirir, misafirlerinizle paylaşmaya hazır hale getiririz.",
-        feat_badge: "Seçkin Özellikler", feat_title: "Modern Ev Sahipliği",
-        f1_t: "Akıllı LCV Sistemi", f1_d: "Telefon trafiği olmadan katılım durumunu, yemek tercihlerini ve alerji notlarını kolayca toplayın.",
-        f2_t: "Konum Entegrasyonu", f2_d: "Direkt Google/Apple Harita bağlantıları. Misafirleriniz mekanı ararken kaybolmasın.",
-        f3_t: "Hediyeleşme Zarafeti", f3_d: "Hediye listeniz, bağış tercihiniz veya IBAN bilgileriniz için nazik ve profesyonel sunum alanı.",
-        f4_t: "Gizlilik & Kolaylık", f4_d: "Uygulama indirmek yok. Hesap açmak yok. Arzu edilirse şifre koruması eklenebilir.",
-        f5_t: "Görsel Hikaye", f5_d: "Fotoğraflarınız veya tanışma hikayeniz için ayrılmış özel galeri alanı.",
-        f6_t: "Tam Uyumluluk", f6_d: "Telefon, Tablet ve Bilgisayar ekranlarında kusursuz görünüm.",
-        del_badge: "Süre & Kalite", del_title: "Teslimat Standartları",
-        d1_t: "48 Saatte Teslim", d1_d: "Süre, siz tüm içerikleri bize ilettikten sonra başlar.",
-        d2_t: "Revizyon Hakkı", d2_d: "Tüm detayların doğruluğunu sağlamak için 1 kapsamlı düzenleme turu dahildir.",
-        link_title: "Link & Barındırma",
-        link_1: "Standart güvenli link dahildir (örn: vitriny.com/isimler).",
-        link_2: "Özel alan adı (domain) opsiyoneldir.",
-        link_3: "Sunucu ve teknik bakım tarafımızca yönetilir.",
-        faq_title: "Sıkça Sorulanlar",
-        q1_t: "Yaşlılar kullanabilir mi?", q1_a: "Evet. Tasarımı sade tutuyoruz. Büyük butonlar, net yazılar. WhatsApp kullanabilen herkes davetiyenizi kullanabilir.",
-        q2_t: "Paylaşması kolay mı?", q2_a: "Size özel linki kopyalayıp WhatsApp, SMS veya Mail ile göndermeniz yeterli. Uygulama gerekmez.",
-        cta_script: "Kutlama Başlasın", cta_t1: "Dijital Şaheserinizi", cta_t2: "Tasarlamaya Hazır Mısınız?",
-        btn_home: "Ana Sayfaya Dön"
+        nav_themes: "Temalar", nav_proc: "Süreç", nav_feat: "Özellikler", nav_price: "Fiyat", nav_faq: "SSS",
+        btn_buy: "Etsy’den Satın Al — $19", btn_help: "Yardım?", btn_demo: "Demoları Gör", btn_form: "2 Dakikalık Form",
+
+        hero_badge: "PDF Değil • Canlı Davetiye Linki",
+        hero_kbd: "Tüm telefonlarda çalışır",
+        hero_kbd2: "Uygulama gerekmez",
+        hero_script: "Kâğıdın Ötesinde...",
+        hero_t1: "Düğünün,",
+        hero_t2: "Tek Bir Güzel Link.",
+        hero_desc: "Canlı RSVP + Şarkı + Google Maps + Takvime Ekle + Zarf açılışı. Etsy’den satın al, 2 dakikalık formu doldur, hızlı teslim edelim.",
+        hero_fast: "~4 saatte teslim*",
+
+        chip_rsvp: "Canlı RSVP",
+        chip_music: "Şarkı",
+        chip_maps: "Harita",
+        chip_cal: "Takvim",
+        chip_priv: "Şifre opsiyonu",
+
+        mock_label: "Düğün",
+        mock_desc: "RSVP • Harita • Şarkı • Takvim",
+        mock_maps: "Harita",
+        mock_music: "Şarkı",
+        mock_cal: "Takvim",
+
+        themes_badge: "Canlı Demo",
+        themes_title: "Tema Seç. Canlı Gör.",
+        themes_desc: "Stilini seç, demoyu aç, Etsy’den satın al. Satın alma sonrası 2 dakikalık form. Hızlı teslim.",
+        t1: "Ivory Classic", t1s: "Zarif serif + altın dokunuş",
+        t2: "Sage Minimal", t2s: "Temiz, ferah, modern",
+        t3: "Black Tie", t3s: "Resmi, güçlü kontrast",
+        t4: "Floral Romantic", t4s: "Romantik çiçek + zarif el yazısı",
+        t5: "Modern Serif", t5s: "Editoryal boşluk, premium his",
+        t6: "Ottoman Chic", t6s: "Sıcak tonlar, lüks detay",
+        demo_note: "* Demo linkleri sonradan güncellenebilir. Bu sayfa Etsy trafiğini dönüştürmek için kuruldu.",
+
+        proc_script: "Basit & Ölçeklenebilir",
+        proc_title: "3 Adımda Teslim",
+        s1_t: "Etsy’den Satın Al",
+        s1_d: "Dakikalar içinde satın al. Dijital teslimat.",
+        s2_t: "2 Dakikalık Formu Doldur",
+        s2_d: "İsimler, tarih, mekân linki, şarkı, fotoğraflar. Yazışma zinciri yok.",
+        s3_t: "Özel Linkini Al",
+        s3_d: "Davetiye linkini hızlıca yayına alırız. WhatsApp/SMS/E-posta ile paylaş.",
+
+        feat_badge: "Temel Özellikler",
+        feat_title: "Misafirin İhtiyacı Olan Her Şey",
+        feat_desc: "Premium davetiye gibi hissettirir; modern bir etkinlik merkezi gibi çalışır.",
+        f1_t: "Canlı RSVP",
+        f1_d: "Katılımı anında topla. Sonuçları dışa aktar.",
+        f2_t: "Şarkı / Müzik",
+        f2_d: "Spotify/MP3 linki ile atmosferi kur.",
+        f3_t: "Google Maps",
+        f3_d: "Tek dokunuşla navigasyon. Kolay ulaşım.",
+        f4_t: "Takvime Ekle",
+        f4_d: "Tek dokunuşla kaydet (ICS).",
+        f5_t: "Zarf Açılışı",
+        f5_d: "Gerçek davetiye hissi veren premium açılış.",
+        f6_t: "Uygulama Yok",
+        f6_d: "Tüm telefonlarda çalışır. Yaşlı misafir için bile kolay.",
+
+        p_badge: "Net Fiyat",
+        p_title: "Paket Seç",
+        p_desc: "En iyi değer Premium. Etsy’den satın al, formu doldur, hızlı teslim.",
+        pb_t: "Basic", pb_s: "Sadece temel",
+        pp_t: "Premium", pp_s: "En Çok Satan", pp_badge: "Önerilen",
+        pl_t: "Luxe", pl_s: "Ek yükseltmeler",
+        btn_buy_basic: "Etsy’den Al",
+        btn_buy_premium: "Etsy’den Al — $19",
+        btn_buy_luxe: "Etsy’den Al",
+        p_note: "Formdan sonra hızlı teslim.",
+
+        del_badge: "Zaman & Taahhüt",
+        del_title: "Teslim Standartları",
+        d1_t: "Hızlı Teslim (≈4 Saat*)",
+        d1_d: "Süre, form ve içerikler geldikten sonra başlar.",
+        d2_t: "Kontrol",
+        d2_d: "İsim, tarih, harita, RSVP akışı ve mobil görünümü test ederiz.",
+
+        link_title: "Link & Hosting",
+        link_1: "Güvenli paylaşılabilir link dahil (örn. vitriny.com/isimler).",
+        link_2: "Özel domain opsiyonel yükseltmedir.",
+        link_3: "Uygulama yok. Hesap yok. Şifre opsiyonu.",
+
+        faq_title: "Sık Sorulanlar",
+        faq_sub: "Kısa cevap. Netlik.",
+        q1_t: "Yaşlı misafirler kullanabilir mi?",
+        q1_a: "Evet. Büyük butonlar, net yazı. WhatsApp kullanabiliyorsa bunu da kullanır.",
+        q2_t: "Paylaşması kolay mı?",
+        q2_a: "Linki kopyalayıp WhatsApp/SMS/E-posta ile gönder. Uygulama gerekmez.",
+        q3_t: "Teslim ne kadar hızlı?",
+        q3_a: "Genelde formdan sonra ~4 saat içinde (mesai saatlerinde). Geç saatlerde gelirse 24 saat içinde teslim.",
+        q4_t: "Bilgileri nereye gönderiyorum?",
+        q4_a: "Satın alma sonrası 2 dakikalık formu doldur. Kurulumu biz yaparız. Yazışma yok.",
+
+        cta_script: "Kutlayalım",
+        cta_t1: "Düğün Linkini",
+        cta_t2: "Paylaşmaya Hazır mısın?",
+        foot_note: "* “~4 saat” mesai saatlerinde geçerlidir. Aksi halde 24 saat içinde. Uygulama gerekmez. Tüm telefonlarda çalışır."
       }
     };
 
-    let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
-    
-    function applyLang() {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-        });
-        document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
+    let currentLang = "en";
+
+    function applyLang(lang){
+      currentLang = lang;
+      const btn = document.getElementById("lang-btn");
+      if (btn) btn.innerText = lang.toUpperCase();
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const val = translations[lang] && translations[lang][key];
+        if (val) el.textContent = val;
+      });
     }
 
-    function toggleLang() {
-        currentLang = currentLang === 'en' ? 'tr' : 'en';
-        localStorage.setItem('lang', currentLang);
-        applyLang();
+    function toggleLang(){
+      applyLang(currentLang === "en" ? "tr" : "en");
     }
-    applyLang();
+
+    const browserLang = (navigator.language || "en").toLowerCase().startsWith("tr") ? "tr" : "en";
+    applyLang(browserLang);
   </script>
-
 </body>
 </html>
