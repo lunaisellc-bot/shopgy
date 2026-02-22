@@ -1,999 +1,1280 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>VitrinY | Interactive Invitation Websites (Not a PDF)</title>
-  <meta name="description" content="Not a PDF. Live invitation websites for weddings, birthdays, gender reveal & more. RSVP, Music, Google Maps, Add to Calendar, Envelope reveal. Buy on Etsy." />
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Outfit', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
-            hand: ['Great Vibes', 'cursive']
-          },
-          colors: {
-            bgdark: '#0B0B15',
-            surface: '#12121A',
-            panel: '#1A1016',
-            gold: '#D4AF37',
-            rose: '#E0B0FF',
-            neon: '#00DC82'
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-18px)' } }
-          }
-        }
-      }
-    }
-  </script>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Luxury Black & Gold — Live Invitation Demo</title>
+  <meta name="description" content="Not a PDF. Live invitation website with RSVP, map, calendar." />
   <style>
-    body { background-color: #0B0B15; color: #F0EFEB; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
-    .light-orb-1 { position: absolute; top: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(212,175,55,0.09) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 8s infinite alternate; }
-    .light-orb-2 { position: absolute; bottom: 0%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(224,176,255,0.055) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; animation: pulse-slow 12s infinite alternate-reverse; }
-    .noise-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0;
+    :root{
+      --bg:#07080b;
+      --panel:#0c0e13;
+      --panel2:#0a0b10;
+      --text:#e9e9ee;
+      --muted:#a7a8b3;
+      --line:rgba(255,255,255,.08);
+
+      --gold1:#f2d17c;
+      --gold2:#caa24a;
+      --gold3:#7a5a14;
+
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+
+      --max: 1100px;
     }
-    .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(10px); transition: all 0.35s ease; }
-    .glass-card:hover { border-color: rgba(212,175,55,0.33); background: rgba(255,255,255,0.06); transform: translateY(-4px); }
-    .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .chip { border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.02); }
-    .gold-rose { background: linear-gradient(90deg, rgba(224,176,255,1) 0%, rgba(212,175,55,1) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .btn-primary { box-shadow: 0 0 26px rgba(212,175,55,0.14); }
-    .seg { border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.02); }
-    .seg button { transition: all .25s ease; }
-    .seg button.active { background: rgba(255,255,255,0.10); border-color: rgba(212,175,55,0.35); color: #fff; }
-    .mobile-cta {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-      background: rgba(11,11,21,0.84);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 12px 14px;
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 0%, rgba(242,209,124,.14), transparent 60%),
+        radial-gradient(1000px 600px at 85% 10%, rgba(202,162,74,.10), transparent 55%),
+        radial-gradient(900px 600px at 50% 100%, rgba(255,255,255,.05), transparent 55%),
+        linear-gradient(180deg, #05060a, #07080b 40%, #05060a);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    button{ font-family:inherit; }
+
+    /* Subtle film grain */
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:0;
+      opacity:.08;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+    }
+
+    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,8,11,.78), rgba(7,8,11,.35));
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--muted);
+      user-select:none;
+    }
+    .spark{
+      width:12px; height:12px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--gold1) 35%, var(--gold3) 75%);
+      box-shadow: 0 0 18px rgba(242,209,124,.35);
+    }
+    .nav{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:12px;
+      transition:.2s ease;
+    }
+    .chip:hover{ border-color:rgba(242,209,124,.35); color:var(--text); }
+    .lang{
+      display:flex; align-items:center; gap:8px;
+      padding:6px 8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+    }
+    .lang button{
+      border:0; background:transparent; color:var(--muted);
+      padding:6px 8px; border-radius:999px;
+      cursor:pointer;
+      transition:.2s ease;
+      font-size:12px;
+    }
+    .lang button.active{
+      color:var(--bg);
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      box-shadow: 0 8px 20px rgba(202,162,74,.18);
+    }
+
+    /* Hero */
+    header.hero{
+      padding:46px 0 22px;
+      position:relative;
+    }
+    .heroCard{
+      position:relative;
+      border:1px solid rgba(242,209,124,.18);
+      border-radius: calc(var(--radius) + 8px);
+      background:
+        radial-gradient(900px 380px at 10% 10%, rgba(242,209,124,.14), transparent 60%),
+        radial-gradient(700px 340px at 90% 20%, rgba(202,162,74,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      padding:34px 28px;
+    }
+    .glow{
+      position:absolute; inset:-120px;
+      background: radial-gradient(circle at 50% 40%, rgba(242,209,124,.12), transparent 55%);
+      filter: blur(2px);
+      animation: breathe 6.5s ease-in-out infinite;
+    }
+    @keyframes breathe{
+      0%,100%{ transform: scale(1) translateY(0); opacity:.9; }
+      50%{ transform: scale(1.05) translateY(-8px); opacity:1; }
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
+    @media (max-width: 860px){
+      .heroGrid{ grid-template-columns:1fr; }
+    }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid rgba(242,209,124,.22);
+      color:rgba(242,209,124,.9);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      background: rgba(7,8,11,.35);
+    }
+    .title{
+      margin:14px 0 0;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:.01em;
+    }
+    .subtitle{
+      margin:10px 0 0;
+      font-size:16px;
+      color:var(--muted);
+      line-height:1.5;
+      max-width: 62ch;
+    }
+
+    .nameLine{
+      margin:18px 0 0;
+      font-size:22px;
+      letter-spacing:.03em;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+    }
+
+    .metaRow{
+      margin:16px 0 0;
+      display:flex; gap:12px; flex-wrap:wrap;
+      color:rgba(233,233,238,.92);
+      font-size:13px;
+    }
+    .metaRow .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(7,8,11,.35);
+    }
+    .dot{
+      width:6px; height:6px; border-radius:50%;
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      box-shadow: 0 0 10px rgba(242,209,124,.35);
+    }
+
+    .ctaRow{
+      margin-top:18px;
+      display:flex; gap:12px; flex-wrap:wrap;
+    }
+    .btn{
+      cursor:pointer;
+      border:1px solid var(--line);
+      background: rgba(7,8,11,.35);
+      color:var(--text);
+      padding:12px 14px;
+      border-radius:14px;
+      font-size:13px;
+      letter-spacing:.02em;
+      transition:.2s ease;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color:rgba(242,209,124,.30); }
+    .btn.primary{
+      border:0;
+      color:#0b0c10;
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      box-shadow: 0 14px 34px rgba(202,162,74,.22);
+    }
+    .btn.primary:hover{ box-shadow: 0 18px 46px rgba(202,162,74,.28); }
+    .btn .ico{ width:16px; height:16px; opacity:.92; }
+
+    /* Right panel */
+    .heroSide{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      padding:18px;
+    }
+    .sideTitle{
+      font-size:12px;
+      color:rgba(242,209,124,.9);
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      margin:0 0 8px;
+    }
+    .features{
+      display:grid;
+      gap:10px;
+      margin-top:8px;
+    }
+    .feat{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(7,8,11,.25);
+    }
+    .feat .badge{
+      flex:0 0 auto;
+      width:28px; height:28px; border-radius:12px;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--gold1) 35%, var(--gold3) 75%);
+      box-shadow: 0 0 16px rgba(242,209,124,.22);
+    }
+    .feat h4{
+      margin:0;
+      font-size:13px;
+      letter-spacing:.01em;
+    }
+    .feat p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    /* Sections */
+    section{
+      padding:22px 0;
+    }
+    .sectionCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+      overflow:hidden;
+    }
+    .sectionHead{
+      padding:18px 18px 0;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    .h2{
+      margin:0;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      font-size:22px;
+      letter-spacing:.01em;
+    }
+    .sub{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+      max-width: 70ch;
+    }
+    .sectionBody{ padding:18px; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns:1fr; }
+    }
+
+    .kv{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:14px;
+      background: rgba(7,8,11,.22);
+    }
+    .kv .k{
+      font-size:12px;
+      color:rgba(242,209,124,.9);
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      margin:0 0 6px;
+    }
+    .kv .v{
+      margin:0;
+      color:rgba(233,233,238,.95);
+      line-height:1.45;
+    }
+    .kv .mut{ color:var(--muted); font-size:12px; margin-top:6px; }
+
+    /* Countdown */
+    .countRow{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 700px){
+      .countRow{ grid-template-columns: repeat(2, 1fr); }
+    }
+    .countBox{
+      border:1px solid rgba(242,209,124,.20);
+      background: radial-gradient(220px 120px at 30% 30%, rgba(242,209,124,.12), transparent 60%),
+                  rgba(7,8,11,.25);
+      border-radius:16px;
+      padding:14px;
+      text-align:center;
+    }
+    .countNum{
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+    .countLab{
+      margin-top:6px;
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    /* Form */
+    form{ display:grid; gap:10px; }
+    .row2{
+      display:grid; gap:10px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 760px){
+      .row2{ grid-template-columns:1fr; }
+    }
+    label{
+      display:block;
+      font-size:12px;
+      color:rgba(242,209,124,.9);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin:0 0 6px;
+    }
+    input, select, textarea{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 12px;
+      background: rgba(7,8,11,.28);
+      color:var(--text);
+      outline:none;
+      transition:.18s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(242,209,124,.38);
+      box-shadow: 0 0 0 4px rgba(242,209,124,.08);
+    }
+    textarea{ min-height: 92px; resize: vertical; }
+
+    .formActions{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top:4px;
+    }
+
+    .toast{
+      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      background: rgba(12,14,19,.92);
+      border:1px solid rgba(242,209,124,.22);
+      border-radius:999px;
+      padding:10px 14px;
+      color:var(--text);
+      box-shadow: var(--shadow);
+      display:none;
+      z-index:90;
+      font-size:13px;
+    }
+    .toast.show{ display:block; animation: pop .22s ease; }
+    @keyframes pop{
+      from{ transform:translateX(-50%) translateY(10px); opacity:0; }
+      to{ transform:translateX(-50%) translateY(0); opacity:1; }
+    }
+
+    /* Map */
+    .mapWrap{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      overflow:hidden;
+      background: rgba(7,8,11,.22);
+    }
+    iframe{ width:100%; height:330px; border:0; }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 900px){
+      .gallery{ grid-template-columns:1fr; }
+    }
+    .imgCard{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background:
+        radial-gradient(380px 220px at 30% 30%, rgba(242,209,124,.10), transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      padding:14px;
+      min-height: 132px;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .imgCard h4{ margin:0; font-size:14px; letter-spacing:.01em; }
+    .imgCard p{ margin:8px 0 0; color:var(--muted); font-size:12px; line-height:1.5; }
+    .goldLine{
+      height:1px;
+      width:100%;
+      background: linear-gradient(90deg, transparent, rgba(242,209,124,.55), transparent);
+      margin-top:12px;
+    }
+
+    /* FAQ */
+    details{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:12px 12px;
+      background: rgba(7,8,11,.22);
+    }
+    details summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      font-size:13px;
+    }
+    details summary::-webkit-details-marker{ display:none; }
+    details p{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    /* Footer */
+    footer{
+      padding:26px 0 40px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .footRow{
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      padding-top:16px;
+    }
+
+    /* Simple reveal */
+    .reveal{ opacity:0; transform: translateY(10px); transition: .6s ease; }
+    .reveal.show{ opacity:1; transform:none; }
+
+    /* Small icons */
+    .ico{
+      display:inline-block;
+      width:16px; height:16px;
+      vertical-align:-3px;
+      fill: currentColor;
     }
   </style>
 </head>
 
 <body>
-  <div class="ambient-light">
-    <div class="light-orb-1"></div>
-    <div class="light-orb-2"></div>
+  <div class="grain"></div>
+
+  <div class="topbar">
+    <div class="wrap inner">
+      <div class="brand">
+        <span class="spark" aria-hidden="true"></span>
+        <span data-i18n="brand">Live Invitation Demo</span>
+      </div>
+
+      <div class="nav">
+        <a class="chip" href="#details" data-i18n="navDetails">Details</a>
+        <a class="chip" href="#countdown" data-i18n="navCountdown">Countdown</a>
+        <a class="chip" href="#rsvp" data-i18n="navRsvp">RSVP</a>
+        <a class="chip" href="#location" data-i18n="navLocation">Location</a>
+
+        <div class="lang" aria-label="Language switcher">
+          <button id="btnEN" type="button">EN</button>
+          <button id="btnTR" type="button">TR</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="noise-bg"></div>
 
-  <!-- NAV -->
-  <nav class="fixed w-full z-50 top-0 bg-bgdark/80 backdrop-blur-lg border-b border-white/5 py-5 px-6 md:px-8 flex justify-between items-center">
-    <a href="#top" class="flex items-center gap-3 group">
-      <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-gold to-rose p-[1px]">
-        <div class="w-full h-full bg-bgdark rounded-lg flex items-center justify-center group-hover:bg-transparent transition duration-500">
-          <span class="font-bold text-lg text-white">V</span>
-        </div>
-      </div>
-      <span class="font-bold tracking-widest text-sm uppercase">VITRINY <span class="text-[9px] text-gold align-top ml-1">INVITES</span></span>
-    </a>
+  <header class="hero wrap">
+    <div class="heroCard reveal" id="top">
+      <div class="glow"></div>
 
-    <div class="hidden lg:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
-      <a href="#events" class="hover:text-gold transition" data-i18n="nav_events">Events</a>
-      <a href="#features" class="hover:text-gold transition" data-i18n="nav_feat">Features</a>
-      <a href="#process" class="hover:text-gold transition" data-i18n="nav_proc">Process</a>
-      <a href="#pricing" class="hover:text-gold transition" data-i18n="nav_price">Pricing</a>
-      <a href="#faq" class="hover:text-gold transition" data-i18n="nav_faq">FAQ</a>
-    </div>
+      <div class="heroGrid">
+        <div>
+          <div class="kicker">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-i18n="kicker">Not a PDF • Live Invitation Website</span>
+          </div>
 
-    <div class="flex items-center gap-3 md:gap-4">
-      <button onclick="toggleLang()" id="lang-btn"
-        class="text-xs font-bold text-gray-300 border border-white/10 px-3 py-1.5 rounded-full hover:text-white hover:border-gold transition">EN</button>
+          <h1 class="title" data-i18n="heroTitle">Birthday Dinner</h1>
+          <p class="subtitle" data-i18n="heroSubtitle">Join us for an elegant evening to celebrate.</p>
 
-      <a id="buy-etsy-top" href="#" target="_blank" rel="noopener"
-        class="bg-white text-black px-5 md:px-6 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition shadow-lg hover:shadow-gold/20 btn-primary">
-        <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
-      </a>
-    </div>
-  </nav>
+          <div class="nameLine" data-i18n="heroName">Olivia Carter</div>
 
-  <!-- HERO -->
-  <header id="top" class="relative pt-36 pb-14 px-6 min-h-[92vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img id="hero-bg" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000" class="w-full h-full object-cover opacity-20" alt="">
-      <div class="absolute inset-0 bg-gradient-to-t from-bgdark via-bgdark/65 to-transparent"></div>
-    </div>
+          <div class="metaRow">
+            <div class="pill">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1.5A2.5 2.5 0 0 1 22 6.5v14A2.5 2.5 0 0 1 19.5 23h-15A2.5 2.5 0 0 1 2 20.5v-14A2.5 2.5 0 0 1 4.5 4H6V3a1 1 0 0 1 1-1Zm12.5 6h-15a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5ZM7 11a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Zm0 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Zm6-5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1Zm0 5a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1Z"/></svg>
+              <span id="metaDate">Saturday, December 27</span>
+            </div>
+            <div class="pill">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a11 11 0 1 0 11 11A11.012 11.012 0 0 0 12 1Zm0 20a9 9 0 1 1 9-9a9.01 9.01 0 0 1-9 9Zm.5-14a1 1 0 0 0-2 0v6a1 1 0 0 0 .553.894l4 2a1 1 0 1 0 .894-1.788L12.5 12.382Z"/></svg>
+              <span id="metaTime">7:00 PM</span>
+            </div>
+            <div class="pill">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a8 8 0 0 0-8 8c0 6 8 14 8 14s8-8 8-14a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 3-3a3 3 0 0 1-3 3Z"/></svg>
+              <span id="metaVenue">Sky Garden • Nashville</span>
+            </div>
+          </div>
 
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center relative z-10">
-      <div class="reveal active">
-        <div class="flex flex-wrap items-center gap-2 mb-5">
-          <span class="chip px-4 py-2 rounded-full text-[11px] text-gray-300 uppercase tracking-widest">
-            <i class="fa-solid fa-bolt text-gold mr-2"></i><span id="hero-badge" data-i18n="hero_badge">Not a PDF • Live Invitation Website</span>
-          </span>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] text-gray-400"><span data-i18n="pill_noapp">No app</span></span>
-          <span class="chip px-3 py-1.5 rounded-full text-[11px] text-gray-400"><span data-i18n="pill_fast">Same-day ~4h</span></span>
-        </div>
+          <div class="ctaRow">
+            <button class="btn primary" type="button" id="ctaRsvp">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-9 5L3 8V6l9 5 9-5Z"/></svg>
+              <span data-i18n="ctaRsvp">RSVP</span>
+            </button>
 
-        <span class="font-hand text-4xl text-gold mb-2 block" id="hero-script" data-i18n="hero_script">Beyond Paper...</span>
+            <a class="btn" id="ctaDirections" href="#" target="_blank" rel="noopener">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11 13 3a1 1 0 0 0-1.414 0L3 11a1 1 0 0 0 1.414 1.414L11 5.828V21a1 1 0 1 0 2 0V5.828l6.586 6.586A1 1 0 0 0 21 11Z"/></svg>
+              <span data-i18n="ctaDirections">Get Directions</span>
+            </a>
 
-        <h1 class="text-5xl md:text-6xl xl:text-7xl font-serif text-white mb-6 leading-tight">
-          <span id="hero-h1a" data-i18n="hero_h1a">Your Event,</span><br>
-          <span class="gold-rose" id="hero-h1b" data-i18n="hero_h1b">One Beautiful Link.</span>
-        </h1>
-
-        <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-xl font-light border-l-2 border-gold/30 pl-6" id="hero-desc" data-i18n="hero_desc">
-          RSVP + Music + Google Maps + Add to Calendar + Envelope reveal. Buy on Etsy, fill a 2-minute form, delivered same-day (typically ~4 hours).
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-3">
-          <a id="buy-etsy-hero" href="#" target="_blank" rel="noopener"
-             class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition flex items-center justify-center gap-2 btn-primary">
-            <i class="fa-solid fa-bag-shopping"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
-          </a>
-
-          <a id="demo-hero" href="#events"
-             class="px-8 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition flex items-center justify-center gap-2">
-            <i class="fa-solid fa-play text-gold"></i><span data-i18n="btn_demo">Choose event & watch demo</span>
-          </a>
+            <button class="btn" type="button" id="ctaCalendar">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1.5A2.5 2.5 0 0 1 22 6.5v14A2.5 2.5 0 0 1 19.5 23h-15A2.5 2.5 0 0 1 2 20.5v-14A2.5 2.5 0 0 1 4.5 4H6V3a1 1 0 0 1 1-1Zm12.5 6h-15a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5Z"/></svg>
+              <span data-i18n="ctaCalendar">Add to Calendar</span>
+            </button>
+          </div>
         </div>
 
-        <div class="mt-7 grid grid-cols-2 sm:flex sm:flex-wrap gap-2 text-xs text-gray-400">
-          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-regular fa-envelope-open text-gold mr-2"></i><span data-i18n="chip_rsvp">Live RSVP</span></span>
-          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-solid fa-music text-gold mr-2"></i><span data-i18n="chip_music">Music</span></span>
-          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-solid fa-map-location-dot text-gold mr-2"></i><span data-i18n="chip_maps">Maps</span></span>
-          <span class="chip px-3 py-1.5 rounded-full"><i class="fa-regular fa-calendar-check text-gold mr-2"></i><span data-i18n="chip_cal">Calendar</span></span>
-        </div>
-
-        <div class="mt-5 text-[11px] text-gray-500" id="hero-footnote" data-i18n="hero_note">
-          Business hours: typically ~4 hours after form submission. Otherwise within 24 hours.
-        </div>
-      </div>
-
-      <!-- Mock phone -->
-      <div class="relative reveal delay-200 flex justify-center lg:justify-end">
-        <div class="relative w-[295px] h-[600px] border-4 border-[#222] rounded-[44px] bg-black shadow-2xl animate-float overflow-hidden z-10">
-          <img id="phone-img" src="https://images.unsplash.com/photo-1605218427306-633ba8b93759?q=80&w=900" class="w-full h-full object-cover opacity-90" alt="">
-          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-          <div class="absolute top-6 left-6 right-6">
-            <div class="glass-card rounded-2xl p-4">
-              <div class="flex items-center justify-between">
-                <div class="text-white font-bold text-sm" id="phone-title">Sarah & Tom</div>
-                <span class="text-[10px] text-gray-400 uppercase tracking-widest" id="phone-label" data-i18n="phone_label">Wedding</span>
+        <aside class="heroSide">
+          <p class="sideTitle" data-i18n="sideTitle">Included</p>
+          <div class="features">
+            <div class="feat">
+              <div class="badge" aria-hidden="true"></div>
+              <div>
+                <h4 data-i18n="f1t">Live invitation website</h4>
+                <p data-i18n="f1d">Mobile-first, premium look, instant shareable link.</p>
               </div>
-              <div class="mt-2 text-xs text-gray-400" id="phone-desc" data-i18n="phone_desc">Tap RSVP • Maps • Music • Calendar</div>
-              <div class="mt-4 grid grid-cols-2 gap-2 text-[11px]">
-                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white">RSVP</div>
-                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white" data-i18n="phone_maps">Maps</div>
-                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white" data-i18n="phone_music">Music</div>
-                <div class="bg-white/10 border border-white/15 rounded-xl py-2 text-center text-white" data-i18n="phone_cal">Calendar</div>
+            </div>
+            <div class="feat">
+              <div class="badge" aria-hidden="true"></div>
+              <div>
+                <h4 data-i18n="f2t">RSVP system</h4>
+                <p data-i18n="f2d">Spreadsheet-ready guest list with optional dietary notes.</p>
+              </div>
+            </div>
+            <div class="feat">
+              <div class="badge" aria-hidden="true"></div>
+              <div>
+                <h4 data-i18n="f3t">Map & Calendar</h4>
+                <p data-i18n="f3d">Directions + one-click calendar file download (ICS).</p>
               </div>
             </div>
           </div>
-          <div class="absolute bottom-8 left-0 right-0 text-center px-5">
-            <div class="glass-card rounded-full px-5 py-3 text-xs text-white uppercase tracking-widest inline-flex items-center gap-2">
-              <i class="fa-solid fa-clock text-gold"></i><span data-i18n="phone_fast">Same-day delivery</span>
-            </div>
-          </div>
-        </div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] bg-rose/20 rounded-full blur-[85px] -z-10"></div>
+        </aside>
       </div>
     </div>
   </header>
 
-  <!-- EVENTS SELECTOR -->
-  <section id="events" class="py-20 px-6 bg-bgdark border-t border-white/5">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 reveal">
+  <!-- DETAILS -->
+  <section id="details" class="wrap">
+    <div class="sectionCard reveal">
+      <div class="sectionHead">
         <div>
-          <span class="text-gold text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="events_badge">Choose Your Event</span>
-          <h2 class="text-3xl md:text-4xl font-serif text-white" data-i18n="events_title">A single system. Different psychology.</h2>
-          <p class="text-gray-400 text-sm mt-3 max-w-2xl" id="events-sub" data-i18n="events_desc">
-            Pick the event type to see the best demo messaging for that audience. Then buy on Etsy.
-          </p>
-        </div>
-
-        <div class="flex gap-3">
-          <a id="open-form" href="#" target="_blank" rel="noopener"
-             class="px-6 py-3 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition">
-            <i class="fa-regular fa-clipboard mr-2"></i><span data-i18n="btn_form">Open 2-Minute Form</span>
-          </a>
-          <a id="buy-etsy-events" href="#" target="_blank" rel="noopener"
-             class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
-            <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
-          </a>
+          <h2 class="h2" data-i18n="detailsTitle">Event Details</h2>
+          <p class="sub" data-i18n="detailsSub">Everything you need — time, venue, dress code, and schedule.</p>
         </div>
       </div>
-
-      <!-- Segmented control -->
-      <div class="seg p-2 rounded-2xl flex flex-wrap gap-2 reveal">
-        <button class="px-4 py-2 rounded-xl text-sm text-gray-300 border border-white/10 active" data-event="wedding">
-          <i class="fa-solid fa-ring mr-2 text-gold"></i><span data-i18n="ev_wedding">Wedding</span>
-        </button>
-        <button class="px-4 py-2 rounded-xl text-sm text-gray-300 border border-white/10" data-event="birthday">
-          <i class="fa-solid fa-cake-candles mr-2 text-gold"></i><span data-i18n="ev_birthday">Birthday</span>
-        </button>
-        <button class="px-4 py-2 rounded-xl text-sm text-gray-300 border border-white/10" data-event="gender">
-          <i class="fa-solid fa-baby mr-2 text-gold"></i><span data-i18n="ev_gender">Gender Reveal / Baby Shower</span>
-        </button>
-        <button class="px-4 py-2 rounded-xl text-sm text-gray-300 border border-white/10" data-event="engagement">
-          <i class="fa-solid fa-heart mr-2 text-gold"></i><span data-i18n="ev_engagement">Engagement</span>
-        </button>
-        <button class="px-4 py-2 rounded-xl text-sm text-gray-300 border border-white/10" data-event="vip">
-          <i class="fa-solid fa-champagne-glasses mr-2 text-gold"></i><span data-i18n="ev_vip">VIP / Corporate</span>
-        </button>
-      </div>
-
-      <!-- Event copy cards -->
-      <div class="grid lg:grid-cols-3 gap-6 mt-8">
-        <div class="glass-card p-8 rounded-2xl reveal">
-          <div class="text-xs uppercase tracking-widest text-gray-400 mb-2" data-i18n="why_badge">Why it converts</div>
-          <h3 class="text-xl font-bold text-white mb-3" id="why-title">Clarity for guests. Zero friction.</h3>
-          <p class="text-sm text-gray-400 leading-relaxed" id="why-desc">
-            One link replaces dozens of messages. Guests instantly know where to go, what to do, and how to RSVP.
-          </p>
-        </div>
-
-        <div class="glass-card p-8 rounded-2xl reveal delay-100">
-          <div class="text-xs uppercase tracking-widest text-gray-400 mb-2" data-i18n="what_badge">What you get</div>
-          <h3 class="text-xl font-bold text-white mb-3" id="get-title">A premium invitation experience</h3>
-          <ul class="text-sm text-gray-400 space-y-2" id="get-list">
-            <li>• Live RSVP</li>
-            <li>• Music</li>
-            <li>• Google Maps</li>
-            <li>• Add to Calendar</li>
-            <li>• Envelope reveal</li>
-          </ul>
-        </div>
-
-        <div class="glass-card p-8 rounded-2xl reveal delay-200 border-l-4 border-l-rose/45">
-          <div class="text-xs uppercase tracking-widest text-rose mb-2" data-i18n="next_badge">Next step</div>
-          <h3 class="text-xl font-bold text-white mb-3" id="next-title">Buy → Form → Delivered</h3>
-          <p class="text-sm text-gray-300 leading-relaxed" id="next-desc">
-            Buy on Etsy, fill a 2-minute form, we publish your private link same-day (typically ~4 hours).
-          </p>
-
-          <div class="mt-6 flex gap-3">
-            <a id="demo-open" href="#" target="_blank" rel="noopener"
-               class="flex-1 text-center px-5 py-3 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition">
-              <i class="fa-solid fa-play mr-2 text-gold"></i><span data-i18n="btn_open_demo">Open Demo</span>
-            </a>
-            <a id="buy-etsy-card" href="#" target="_blank" rel="noopener"
-               class="flex-1 text-center px-5 py-3 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
-              <span data-i18n="btn_buy_short">Buy — $19</span>
-            </a>
+      <div class="sectionBody">
+        <div class="grid2">
+          <div class="kv">
+            <div class="k" data-i18n="kDate">Date</div>
+            <p class="v" id="detailsDate">Saturday, December 27</p>
+            <div class="mut" data-i18n="dateHint">Please arrive 10 minutes early.</div>
+          </div>
+          <div class="kv">
+            <div class="k" data-i18n="kTime">Time</div>
+            <p class="v" id="detailsTime">7:00 PM</p>
+            <div class="mut" data-i18n="timeHint">Dinner served at 7:45 PM.</div>
           </div>
 
-          <div class="mt-4 text-[11px] text-gray-500" id="event-footnote" data-i18n="event_note">
-            Delivery timing starts after form submission and assets are complete.
+          <div class="kv">
+            <div class="k" data-i18n="kVenue">Venue</div>
+            <p class="v" id="detailsVenue">Sky Garden</p>
+            <div class="mut" id="detailsAddress">1040 Cornelia St, Nashville, TN</div>
+          </div>
+
+          <div class="kv">
+            <div class="k" data-i18n="kDress">Dress Code</div>
+            <p class="v" id="detailsDress">Black & Gold Elegant</p>
+            <div class="mut" data-i18n="dressHint">Think black tie vibes with a gold accent.</div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- FEATURES -->
-  <section id="features" class="py-24 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="mb-16 reveal">
-        <span class="text-rose text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="feat_badge">Core Features</span>
-        <h2 class="text-4xl md:text-5xl font-serif text-white" data-i18n="feat_title">A living event hub — not a static file</h2>
-        <p class="text-gray-400 text-sm mt-4 max-w-2xl" data-i18n="feat_desc">Optimized for conversion: fewer questions, fewer mistakes, higher attendance.</p>
-      </div>
+        <div style="height:14px"></div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="glass-card p-8 rounded-2xl reveal">
-          <i class="fa-solid fa-check-to-slot text-gold text-3xl mb-6"></i>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f1_t">Live RSVP</h3>
-          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f1_d">Attendance + notes (meal/diet optional). Export anytime.</p>
-        </div>
-        <div class="glass-card p-8 rounded-2xl reveal delay-100">
-          <i class="fa-solid fa-music text-gold text-3xl mb-6"></i>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f2_t">Music</h3>
-          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f2_d">Set the vibe instantly with a song link.</p>
-        </div>
-        <div class="glass-card p-8 rounded-2xl reveal delay-200">
-          <i class="fa-solid fa-map-location-dot text-gold text-3xl mb-6"></i>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f3_t">Google Maps</h3>
-          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f3_d">One tap to directions. Fewer late guests.</p>
-        </div>
-        <div class="glass-card p-8 rounded-2xl reveal">
-          <i class="fa-solid fa-calendar-check text-gray-300 text-3xl mb-6"></i>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f4_t">Add to Calendar</h3>
-          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f4_d">One tap ICS: less forgetting, more attendance.</p>
-        </div>
-        <div class="glass-card p-8 rounded-2xl reveal delay-100 border-l-4 border-l-rose/45">
-          <i class="fa-regular fa-envelope-open text-rose text-3xl mb-6"></i>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f5_t">Envelope Reveal</h3>
-          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f5_d">A premium opening moment that feels “real”.</p>
-        </div>
-        <div class="glass-card p-8 rounded-2xl reveal delay-200">
-          <i class="fa-solid fa-shield-halved text-gray-300 text-3xl mb-6"></i>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="f6_t">Privacy</h3>
-          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="f6_d">Optional password protection for exclusive events.</p>
+        <div class="kv">
+          <div class="k" data-i18n="kSchedule">Schedule</div>
+          <p class="v" id="scheduleLine1">7:00 PM — Welcome drinks</p>
+          <p class="v" id="scheduleLine2">7:45 PM — Dinner</p>
+          <p class="v" id="scheduleLine3">9:15 PM — Toast & celebration</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section id="process" class="py-24 bg-surface/50 border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <span class="font-hand text-3xl text-gray-500 block mb-2" data-i18n="proc_script">Simple & Scalable</span>
-        <h2 class="text-3xl md:text-5xl font-serif text-white" data-i18n="proc_title">Buy → Form → Delivered</h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-12 relative">
-        <div class="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-white/10 -z-10"></div>
-
-        <div class="text-center group reveal">
-          <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-gold mb-6 group-hover:border-gold transition duration-500">01</div>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="s1_t">Buy on Etsy</h3>
-          <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s1_d">Fast checkout. Digital product. Instant receipt.</p>
-        </div>
-
-        <div class="text-center group reveal delay-100">
-          <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-rose mb-6 group-hover:border-rose transition duration-500">02</div>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="s2_t">2-Minute Form</h3>
-          <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s2_d">Names, date/time, location, music, photos. One submission.</p>
-        </div>
-
-        <div class="text-center group reveal delay-200">
-          <div class="w-24 h-24 mx-auto bg-bgdark border border-white/10 rounded-full flex items-center justify-center text-2xl font-serif text-neon mb-6 group-hover:border-neon transition duration-500">03</div>
-          <h3 class="text-xl font-bold text-white mb-3" data-i18n="s3_t">Same-day Delivery</h3>
-          <p class="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto" data-i18n="s3_d">Typically ~4 hours in business hours, otherwise within 24 hours.</p>
+  <!-- COUNTDOWN -->
+  <section id="countdown" class="wrap">
+    <div class="sectionCard reveal">
+      <div class="sectionHead">
+        <div>
+          <h2 class="h2" data-i18n="countTitle">Countdown</h2>
+          <p class="sub" data-i18n="countSub">We’ll be celebrating soon. Save the date.</p>
         </div>
       </div>
-
-      <div class="mt-14 flex flex-col sm:flex-row gap-3 justify-center reveal">
-        <a id="buy-etsy-process" href="#" target="_blank" rel="noopener"
-          class="px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary text-center">
-          <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
-        </a>
-        <a id="open-form-process" href="#" target="_blank" rel="noopener"
-          class="px-10 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition text-center">
-          <i class="fa-regular fa-clipboard mr-2"></i><span data-i18n="btn_form">Open 2-Minute Form</span>
-        </a>
+      <div class="sectionBody">
+        <div class="countRow" aria-live="polite">
+          <div class="countBox"><div class="countNum" id="cdDays">—</div><div class="countLab" data-i18n="cdDays">Days</div></div>
+          <div class="countBox"><div class="countNum" id="cdHours">—</div><div class="countLab" data-i18n="cdHours">Hours</div></div>
+          <div class="countBox"><div class="countNum" id="cdMins">—</div><div class="countLab" data-i18n="cdMins">Minutes</div></div>
+          <div class="countBox"><div class="countNum" id="cdSecs">—</div><div class="countLab" data-i18n="cdSecs">Seconds</div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing" class="py-24 bg-panel border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-14 reveal">
-        <span class="text-gold text-xs font-bold tracking-widest uppercase mb-3 block" data-i18n="p_badge">Simple Pricing</span>
-        <h2 class="text-4xl md:text-5xl font-serif text-white" data-i18n="p_title">Start at $19</h2>
-        <p class="text-gray-400 text-sm mt-4 max-w-2xl mx-auto" data-i18n="p_desc">Premium is the anchor. Add-ons handle customization without slowing delivery.</p>
+  <!-- RSVP -->
+  <section id="rsvp" class="wrap">
+    <div class="sectionCard reveal">
+      <div class="sectionHead">
+        <div>
+          <h2 class="h2" data-i18n="rsvpTitle">RSVP</h2>
+          <p class="sub"><span data-i18n="rsvpSub1">Please respond by</span> <strong id="rsvpDeadlineText">December 10</strong>. <span data-i18n="rsvpSub2">Takes 20 seconds.</span></p>
+        </div>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-6">
-        <div class="glass-card p-10 rounded-3xl reveal">
-          <div class="text-white font-bold text-xl" data-i18n="pb_t">Basic</div>
-          <div class="text-gray-400 text-sm mt-1" data-i18n="pb_s">Essentials</div>
-          <div class="mt-6"><span class="text-4xl font-serif text-white">$17</span></div>
-          <ul class="mt-6 space-y-3 text-sm text-gray-300">
-            <li>• RSVP</li><li>• Maps</li><li>• Calendar</li>
-          </ul>
-          <a id="buy-etsy-basic" href="#" target="_blank" rel="noopener"
-             class="mt-8 block text-center px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
-            <span data-i18n="btn_buy_basic">Buy on Etsy</span>
-          </a>
-        </div>
-
-        <div class="glass-card p-10 rounded-3xl reveal border border-gold/30 bg-white/5">
-          <div class="flex items-center justify-between">
+      <div class="sectionBody">
+        <form id="rsvpForm">
+          <div class="row2">
             <div>
-              <div class="text-white font-bold text-xl" data-i18n="pp_t">Premium</div>
-              <div class="text-gray-200 text-sm mt-1" data-i18n="pp_s">Best Seller</div>
+              <label for="fullName" data-i18n="fName">Full Name</label>
+              <input id="fullName" name="fullName" required placeholder="Olivia Carter" />
             </div>
-            <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-gold text-black" data-i18n="pp_badge">Best</span>
+            <div>
+              <label for="email" data-i18n="fEmail">Email</label>
+              <input id="email" name="email" type="email" required placeholder="name@email.com" />
+            </div>
           </div>
-          <div class="mt-6 flex items-baseline gap-2">
-            <span class="text-4xl font-serif text-white">$19</span>
-            <span class="text-xs text-gray-400 line-through">$39</span>
-          </div>
-          <ul class="mt-6 space-y-3 text-sm text-gray-200">
-            <li>• Everything in Basic</li>
-            <li>• Envelope reveal</li>
-            <li>• Music</li>
-            <li>• Gallery</li>
-            <li>• RSVP export</li>
-          </ul>
-          <a id="buy-etsy-premium" href="#" target="_blank" rel="noopener"
-             class="mt-8 block text-center px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary">
-            <span data-i18n="btn_buy">Buy on Etsy — $19</span>
-          </a>
-        </div>
 
-        <div class="glass-card p-10 rounded-3xl reveal">
-          <div class="text-white font-bold text-xl" data-i18n="pl_t">Add-Ons</div>
-          <div class="text-gray-400 text-sm mt-1" data-i18n="pl_s">Customization without chaos</div>
-          <ul class="mt-6 space-y-3 text-sm text-gray-300">
-            <li>• Extra language (+$6)</li>
-            <li>• Password (+$5)</li>
-            <li>• Extra page (+$8)</li>
-            <li>• Custom domain support (+$15)</li>
-          </ul>
-          <div class="mt-8 text-xs text-gray-500" data-i18n="pl_note">Keeps base price accessible, protects delivery speed.</div>
+          <div class="row2">
+            <div>
+              <label for="attendance" data-i18n="fAttend">Attendance</label>
+              <select id="attendance" name="attendance" required>
+                <option value="Yes" data-i18n="optYes">Yes, I’ll be there</option>
+                <option value="No" data-i18n="optNo">No, I can’t make it</option>
+                <option value="Maybe" data-i18n="optMaybe">Maybe</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="guests" data-i18n="fGuests">Guests</label>
+              <select id="guests" name="guests">
+                <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="dietary" data-i18n="fDiet">Dietary</label>
+              <select id="dietary" name="dietary">
+                <option value="None" data-i18n="dietNone">None</option>
+                <option value="Vegetarian" data-i18n="dietVeg">Vegetarian</option>
+                <option value="Vegan" data-i18n="dietVegan">Vegan</option>
+                <option value="Allergies" data-i18n="dietAll">Allergies (write below)</option>
+              </select>
+            </div>
+            <div>
+              <label for="phone" data-i18n="fPhone">Phone (optional)</label>
+              <input id="phone" name="phone" placeholder="+1 555 000 0000" />
+            </div>
+          </div>
+
+          <div>
+            <label for="note" data-i18n="fNote">Note</label>
+            <textarea id="note" name="note" placeholder="A short message or allergy details..."></textarea>
+          </div>
+
+          <div class="formActions">
+            <button class="btn primary" type="submit" id="submitBtn">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.285 2.998 2.71 10.51a1 1 0 0 0 .08 1.872l7.01 2.337 2.337 7.01a1 1 0 0 0 1.872.08l7.512-17.574a1 1 0 0 0-1.237-1.237ZM10.69 13.31l7.4-7.4-5.88 8.82a1 1 0 0 1-.53.4l-4.59-1.53 3.6-.29Z"/></svg>
+              <span data-i18n="submit">Submit RSVP</span>
+            </button>
+
+            <span style="color:var(--muted); font-size:12px" id="rsvpStatus" data-i18n="rsvpHint">
+              Your RSVP will be saved to the guest list.
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="location" class="wrap">
+    <div class="sectionCard reveal">
+      <div class="sectionHead">
+        <div>
+          <h2 class="h2" data-i18n="locTitle">Location</h2>
+          <p class="sub" data-i18n="locSub">Tap directions for the fastest route.</p>
+        </div>
+      </div>
+      <div class="sectionBody">
+        <div class="mapWrap">
+          <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src=""></iframe>
+        </div>
+        <div style="height:10px"></div>
+        <div class="ctaRow">
+          <a class="btn" id="btnDirections2" href="#" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11 13 3a1 1 0 0 0-1.414 0L3 11a1 1 0 0 0 1.414 1.414L11 5.828V21a1 1 0 1 0 2 0V5.828l6.586 6.586A1 1 0 0 0 21 11Z"/></svg>
+            <span data-i18n="ctaDirections">Get Directions</span>
+          </a>
+          <button class="btn" type="button" id="btnCopyAddress">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2Zm-3 9V6a2 2 0 0 1 2-2h10a1 1 0 1 1 0 2H7v10a1 1 0 1 1-2 0Z"/></svg>
+            <span data-i18n="copyAddr">Copy address</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="wrap">
+    <div class="sectionCard reveal">
+      <div class="sectionHead">
+        <div>
+          <h2 class="h2" data-i18n="galTitle">The Vibe</h2>
+          <p class="sub" data-i18n="galSub">A black & gold evening — elegant, warm, unforgettable.</p>
+        </div>
+      </div>
+      <div class="sectionBody">
+        <div class="gallery">
+          <div class="imgCard">
+            <div>
+              <h4 data-i18n="g1t">Golden glow</h4>
+              <p data-i18n="g1d">Soft light, premium details, a night worth remembering.</p>
+            </div>
+            <div class="goldLine"></div>
+          </div>
+          <div class="imgCard">
+            <div>
+              <h4 data-i18n="g2t">Dinner experience</h4>
+              <p data-i18n="g2d">Seating planned from RSVP — smooth, organized, elegant.</p>
+            </div>
+            <div class="goldLine"></div>
+          </div>
+          <div class="imgCard">
+            <div>
+              <h4 data-i18n="g3t">Toast & celebration</h4>
+              <p data-i18n="g3d">A refined moment — speeches, laughter, memories.</p>
+            </div>
+            <div class="goldLine"></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="py-24 bg-bgdark">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-12 reveal">
-        <h2 class="text-3xl md:text-4xl font-serif text-white" data-i18n="faq_title">Common Questions</h2>
-        <p class="text-gray-400 text-sm mt-4 max-w-2xl mx-auto" data-i18n="faq_desc">Built for real guests — including older family members.</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 reveal">
-        <div class="glass-card p-6 rounded-2xl">
-          <h4 class="text-white font-bold mb-2" data-i18n="q1_t">Is this a PDF?</h4>
-          <p class="text-gray-400 text-sm" data-i18n="q1_a">No. It’s a live invitation website with buttons, maps, music, RSVP, and calendar.</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl">
-          <h4 class="text-white font-bold mb-2" data-i18n="q2_t">How fast is delivery?</h4>
-          <p class="text-gray-400 text-sm" data-i18n="q2_a">Same-day is typical (~4 hours during business hours). Otherwise within 24 hours.</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl">
-          <h4 class="text-white font-bold mb-2" data-i18n="q3_t">How do you get my details?</h4>
-          <p class="text-gray-400 text-sm" data-i18n="q3_a">After purchase, you submit one 2-minute form. No endless messages.</p>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl">
-          <h4 class="text-white font-bold mb-2" data-i18n="q4_t">Can I use it for birthdays or gender reveal?</h4>
-          <p class="text-gray-400 text-sm" data-i18n="q4_a">Yes. Same system, event-specific messaging and vibe.</p>
+  <section id="faq" class="wrap">
+    <div class="sectionCard reveal">
+      <div class="sectionHead">
+        <div>
+          <h2 class="h2" data-i18n="faqTitle">FAQ</h2>
+          <p class="sub" data-i18n="faqSub">Quick answers to common questions.</p>
         </div>
       </div>
-
-      <div class="mt-14 flex flex-col sm:flex-row gap-3 justify-center reveal">
-        <a id="buy-etsy-faq" href="#" target="_blank" rel="noopener"
-          class="px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gold hover:text-white transition btn-primary text-center">
-          <i class="fa-solid fa-bag-shopping mr-2"></i><span data-i18n="btn_buy">Buy on Etsy — $19</span>
-        </a>
-        <a id="open-form-faq" href="#" target="_blank" rel="noopener"
-          class="px-10 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition text-center">
-          <i class="fa-regular fa-clipboard mr-2"></i><span data-i18n="btn_form">Open 2-Minute Form</span>
-        </a>
+      <div class="sectionBody" style="display:grid; gap:10px;">
+        <details>
+          <summary><span data-i18n="q1">Parking?</span> <span style="color:var(--muted)">+</span></summary>
+          <p data-i18n="a1">On-site valet available.</p>
+        </details>
+        <details>
+          <summary><span data-i18n="q2">Can I bring a guest?</span> <span style="color:var(--muted)">+</span></summary>
+          <p data-i18n="a2">Yes — please indicate guest count in the RSVP.</p>
+        </details>
+        <details>
+          <summary><span data-i18n="q3">Gifts?</span> <span style="color:var(--muted)">+</span></summary>
+          <p data-i18n="a3">Your presence is the best gift. Optional: a handwritten note.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="py-20 bg-surface text-center border-t border-white/5 relative z-10">
-    <div class="max-w-2xl mx-auto px-6 reveal">
-      <span class="font-hand text-4xl text-gold mb-2 block" data-i18n="cta_script">Let’s Celebrate</span>
-      <h2 class="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight">
-        <span data-i18n="cta_t1">Ready to share your</span><br>
-        <span data-i18n="cta_t2">event link?</span>
-      </h2>
-      <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <a id="buy-etsy-footer" href="#" target="_blank" rel="noopener"
-          class="px-10 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition btn-primary">
-          <i class="fa-solid fa-bag-shopping mr-2"></i> <span data-i18n="btn_buy">Buy on Etsy — $19</span>
-        </a>
-        <a id="open-form-footer" href="#" target="_blank" rel="noopener"
-          class="px-10 py-4 border border-white/20 text-gray-200 font-bold rounded-full hover:bg-white/5 transition">
-          <i class="fa-regular fa-clipboard mr-2"></i> <span data-i18n="btn_form">Open 2-Minute Form</span>
-        </a>
+  <footer class="wrap">
+    <div class="footRow">
+      <div>
+        <div style="color:rgba(242,209,124,.9); letter-spacing:.10em; text-transform:uppercase; font-size:11px;" data-i18n="footTag">
+          Hosted with love
+        </div>
+        <div style="margin-top:6px" data-i18n="footLine">
+          For questions: hello@yourdomain.com
+        </div>
       </div>
-      <div class="mt-10 text-xs text-gray-600" data-i18n="foot_note">
-        Business hours: typically ~4 hours after form submission. Otherwise within 24 hours.
+      <div style="opacity:.85">
+        <div data-i18n="footNote">Demo template — replace names, date, and venue for each order.</div>
       </div>
     </div>
-    <div class="mt-14 text-xs text-gray-600">© 2026 VitrinY by Lunaise LLC.</div>
   </footer>
 
-  <!-- Mobile sticky CTA -->
-  <div class="mobile-cta lg:hidden">
-    <div class="max-w-7xl mx-auto flex items-center gap-3">
-      <a id="buy-etsy-mobile" href="#" target="_blank" rel="noopener"
-         class="flex-1 px-5 py-3 bg-white text-black font-bold rounded-full text-center">
-        <span data-i18n="btn_buy_short">Buy — $19</span>
-      </a>
-      <a id="demo-mobile" href="#events"
-         class="px-4 py-3 border border-white/20 text-gray-200 font-bold rounded-full">
-        <i class="fa-solid fa-play text-gold"></i>
-      </a>
-    </div>
-  </div>
+  <div class="toast" id="toast"></div>
 
   <script>
     // =========================
-    // CONFIG (EDIT THESE)
+    // CONFIG — edit here only
     // =========================
-    const ETSY_SHOP_URL = "https://www.etsy.com/shop/Vitrinybridge?ref=lp_mys_mfts"; // primary CTA
-    const FORM_URL      = "https://vitriny.com.tr/invite-form"; // your 2-minute form
+    const CONFIG = {
+      // Event basics
+      title: "Birthday Dinner",
+      hostName: "Olivia Carter",
 
-    // Optional: per-event demo URLs (if empty, demo button goes to your general demo or events section)
-    const DEMO_URLS = {
-      wedding:   "https://lunaisellc-bot.github.io/digital-invite/",
-      birthday:  "https://lunaisellc-bot.github.io/digital-invite/",
-      gender:    "https://lunaisellc-bot.github.io/digital-invite/",
-      engagement:"https://lunaisellc-bot.github.io/digital-invite/",
-      vip:       "https://lunaisellc-bot.github.io/digital-invite/"
+      // Use local datetime (viewer time zone). For real customers, store event timezone explicitly.
+      // Format: YYYY-MM-DDTHH:mm:ss (local)
+      eventStartLocal: "2026-12-27T19:00:00",
+      eventEndLocal:   "2026-12-27T22:00:00",
+
+      // Display strings (can be auto-formatted but we keep it simple)
+      displayDateEN: "Saturday, December 27",
+      displayDateTR: "27 Aralık Cumartesi",
+      displayTimeEN: "7:00 PM",
+      displayTimeTR: "19:00",
+
+      rsvpDeadlineEN: "December 10",
+      rsvpDeadlineTR: "10 Aralık",
+
+      venueName: "Sky Garden",
+      addressLine: "1040 Cornelia St, Nashville, TN",
+      cityShort: "Nashville",
+
+      dressCodeEN: "Black & Gold Elegant",
+      dressCodeTR: "Siyah & Altın Şık",
+
+      scheduleEN: [
+        "7:00 PM — Welcome drinks",
+        "7:45 PM — Dinner",
+        "9:15 PM — Toast & celebration"
+      ],
+      scheduleTR: [
+        "19:00 — Karşılama içeceği",
+        "19:45 — Yemek",
+        "21:15 — Kutlama & konuşmalar"
+      ],
+
+      // Map
+      mapsQuery: "Sky Garden, 1040 Cornelia St, Nashville, TN",
+      // RSVP endpoint (Google Apps Script Web App URL). Leave empty to run demo mode (localStorage).
+      rsvpEndpoint: "" // e.g. "https://script.google.com/macros/s/XXXX/exec"
     };
 
     // =========================
-    // Scroll reveal
+    // i18n dictionary
     // =========================
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // =========================
-    // Wire links
-    // =========================
-    function bind(id, url){ const el = document.getElementById(id); if (el) el.href = url; }
-    [
-      "buy-etsy-top","buy-etsy-hero","buy-etsy-events","buy-etsy-card",
-      "buy-etsy-process","buy-etsy-basic","buy-etsy-premium","buy-etsy-faq","buy-etsy-footer","buy-etsy-mobile"
-    ].forEach(id => bind(id, ETSY_SHOP_URL));
-    ["open-form","open-form-process","open-form-faq","open-form-footer"].forEach(id => bind(id, FORM_URL));
-
-    // =========================
-    // Event profiles (EN/TR)
-    // =========================
-    const eventProfiles = {
-      wedding: {
-        bg: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000",
-        phoneImg: "https://images.unsplash.com/photo-1605218427306-633ba8b93759?q=80&w=900",
-        phoneTitle: "Sarah & Tom",
-        labelKey: "lbl_wedding",
-        whyTitleKey: "why_wed_t",
-        whyDescKey: "why_wed_d",
-        getTitleKey: "get_wed_t",
-        getListKey: "get_wed_list",
-        nextTitleKey: "next_wed_t",
-        nextDescKey: "next_wed_d",
-        heroBadgeKey: "hero_badge_wed",
-        heroH1aKey: "hero_h1a_wed",
-        heroH1bKey: "hero_h1b_wed",
-        heroDescKey: "hero_desc_wed"
-      },
-      birthday: {
-        bg: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=2000",
-        phoneImg: "https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?q=80&w=900",
-        phoneTitle: "Ayla’s 30th",
-        labelKey: "lbl_bday",
-        whyTitleKey: "why_bday_t",
-        whyDescKey: "why_bday_d",
-        getTitleKey: "get_bday_t",
-        getListKey: "get_bday_list",
-        nextTitleKey: "next_bday_t",
-        nextDescKey: "next_bday_d",
-        heroBadgeKey: "hero_badge_bday",
-        heroH1aKey: "hero_h1a_bday",
-        heroH1bKey: "hero_h1b_bday",
-        heroDescKey: "hero_desc_bday"
-      },
-      gender: {
-        bg: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000",
-        phoneImg: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=900",
-        phoneTitle: "Baby Reveal",
-        labelKey: "lbl_gender",
-        whyTitleKey: "why_gen_t",
-        whyDescKey: "why_gen_d",
-        getTitleKey: "get_gen_t",
-        getListKey: "get_gen_list",
-        nextTitleKey: "next_gen_t",
-        nextDescKey: "next_gen_d",
-        heroBadgeKey: "hero_badge_gen",
-        heroH1aKey: "hero_h1a_gen",
-        heroH1bKey: "hero_h1b_gen",
-        heroDescKey: "hero_desc_gen"
-      },
-      engagement: {
-        bg: "https://images.unsplash.com/photo-1523438097201-512ae7d59c7d?q=80&w=2000",
-        phoneImg: "https://images.unsplash.com/photo-1523438097201-512ae7d59c7d?q=80&w=900",
-        phoneTitle: "Engagement Night",
-        labelKey: "lbl_eng",
-        whyTitleKey: "why_eng_t",
-        whyDescKey: "why_eng_d",
-        getTitleKey: "get_eng_t",
-        getListKey: "get_eng_list",
-        nextTitleKey: "next_eng_t",
-        nextDescKey: "next_eng_d",
-        heroBadgeKey: "hero_badge_eng",
-        heroH1aKey: "hero_h1a_eng",
-        heroH1bKey: "hero_h1b_eng",
-        heroDescKey: "hero_desc_eng"
-      },
-      vip: {
-        bg: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2000",
-        phoneImg: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900",
-        phoneTitle: "Private Event",
-        labelKey: "lbl_vip",
-        whyTitleKey: "why_vip_t",
-        whyDescKey: "why_vip_d",
-        getTitleKey: "get_vip_t",
-        getListKey: "get_vip_list",
-        nextTitleKey: "next_vip_t",
-        nextDescKey: "next_vip_d",
-        heroBadgeKey: "hero_badge_vip",
-        heroH1aKey: "hero_h1a_vip",
-        heroH1bKey: "hero_h1b_vip",
-        heroDescKey: "hero_desc_vip"
-      }
-    };
-
-    // =========================
-    // i18n
-    // =========================
-    const translations = {
+    const I18N = {
       en: {
-        nav_events: "Events", nav_feat: "Features", nav_proc: "Process", nav_price: "Pricing", nav_faq: "FAQ",
-        btn_buy: "Buy on Etsy — $19", btn_buy_short: "Buy — $19",
-        btn_demo: "Choose event & watch demo",
-        btn_open_demo: "Open Demo",
-        btn_form: "Open 2-Minute Form",
-        pill_noapp: "No app",
-        pill_fast: "Same-day ~4h",
-        hero_script: "Beyond Paper...",
-        hero_h1a: "Your Event,", hero_h1b: "One Beautiful Link.",
-        hero_desc: "RSVP + Music + Google Maps + Add to Calendar + Envelope reveal. Buy on Etsy, fill a 2-minute form, delivered same-day (typically ~4 hours).",
-        hero_note: "Business hours: typically ~4 hours after form submission. Otherwise within 24 hours.",
-        chip_rsvp: "Live RSVP", chip_music: "Music", chip_maps: "Maps", chip_cal: "Calendar",
+        brand: "Live Invitation Demo",
+        navDetails:"Details", navCountdown:"Countdown", navRsvp:"RSVP", navLocation:"Location",
+        kicker:"Not a PDF • Live Invitation Website",
+        heroTitle:"Birthday Dinner",
+        heroSubtitle:"Join us for an elegant evening to celebrate.",
+        heroName:"Olivia Carter",
+        ctaRsvp:"RSVP",
+        ctaDirections:"Get Directions",
+        ctaCalendar:"Add to Calendar",
+        sideTitle:"Included",
+        f1t:"Live invitation website", f1d:"Mobile-first, premium look, instant shareable link.",
+        f2t:"RSVP system", f2d:"Spreadsheet-ready guest list with optional dietary notes.",
+        f3t:"Map & Calendar", f3d:"Directions + one-click calendar file download (ICS).",
 
-        events_badge: "Choose Your Event",
-        events_title: "A single system. Different psychology.",
-        events_desc: "Pick the event type to see the best demo messaging for that audience. Then buy on Etsy.",
-        ev_wedding: "Wedding",
-        ev_birthday: "Birthday",
-        ev_gender: "Gender Reveal / Baby Shower",
-        ev_engagement: "Engagement",
-        ev_vip: "VIP / Corporate",
+        detailsTitle:"Event Details", detailsSub:"Everything you need — time, venue, dress code, and schedule.",
+        kDate:"Date", dateHint:"Please arrive 10 minutes early.",
+        kTime:"Time", timeHint:"Dinner served at 7:45 PM.",
+        kVenue:"Venue", kDress:"Dress Code", dressHint:"Think black tie vibes with a gold accent.",
+        kSchedule:"Schedule",
 
-        why_badge: "Why it converts",
-        what_badge: "What you get",
-        next_badge: "Next step",
-        event_note: "Delivery timing starts after form submission and assets are complete.",
+        countTitle:"Countdown", countSub:"We’ll be celebrating soon. Save the date.",
+        cdDays:"Days", cdHours:"Hours", cdMins:"Minutes", cdSecs:"Seconds",
 
-        feat_badge: "Core Features",
-        feat_title: "A living event hub — not a static file",
-        feat_desc: "Optimized for conversion: fewer questions, fewer mistakes, higher attendance.",
-        f1_t: "Live RSVP", f1_d: "Attendance + notes (meal/diet optional). Export anytime.",
-        f2_t: "Music", f2_d: "Set the vibe instantly with a song link.",
-        f3_t: "Google Maps", f3_d: "One tap to directions. Fewer late guests.",
-        f4_t: "Add to Calendar", f4_d: "One tap ICS: less forgetting, more attendance.",
-        f5_t: "Envelope Reveal", f5_d: "A premium opening moment that feels “real”.",
-        f6_t: "Privacy", f6_d: "Optional password protection for exclusive events.",
+        rsvpTitle:"RSVP",
+        rsvpSub1:"Please respond by",
+        rsvpSub2:"Takes 20 seconds.",
+        fName:"Full Name", fEmail:"Email", fAttend:"Attendance", fGuests:"Guests",
+        optYes:"Yes, I’ll be there", optNo:"No, I can’t make it", optMaybe:"Maybe",
+        fDiet:"Dietary", dietNone:"None", dietVeg:"Vegetarian", dietVegan:"Vegan", dietAll:"Allergies (write below)",
+        fPhone:"Phone (optional)", fNote:"Note",
+        submit:"Submit RSVP",
+        rsvpHint:"Your RSVP will be saved to the guest list.",
 
-        proc_script: "Simple & Scalable",
-        proc_title: "Buy → Form → Delivered",
-        s1_t: "Buy on Etsy", s1_d: "Fast checkout. Digital product. Instant receipt.",
-        s2_t: "2-Minute Form", s2_d: "Names, date/time, location, music, photos. One submission.",
-        s3_t: "Same-day Delivery", s3_d: "Typically ~4 hours in business hours, otherwise within 24 hours.",
+        locTitle:"Location", locSub:"Tap directions for the fastest route.",
+        copyAddr:"Copy address",
 
-        p_badge: "Simple Pricing",
-        p_title: "Start at $19",
-        p_desc: "Premium is the anchor. Add-ons handle customization without slowing delivery.",
-        pb_t: "Basic", pb_s: "Essentials", btn_buy_basic: "Buy on Etsy",
-        pp_t: "Premium", pp_s: "Best Seller", pp_badge: "Best",
-        pl_t: "Add-Ons", pl_s: "Customization without chaos", pl_note: "Keeps base price accessible, protects delivery speed.",
+        galTitle:"The Vibe", galSub:"A black & gold evening — elegant, warm, unforgettable.",
+        g1t:"Golden glow", g1d:"Soft light, premium details, a night worth remembering.",
+        g2t:"Dinner experience", g2d:"Seating planned from RSVP — smooth, organized, elegant.",
+        g3t:"Toast & celebration", g3d:"A refined moment — speeches, laughter, memories.",
 
-        faq_title: "Common Questions",
-        faq_desc: "Built for real guests — including older family members.",
-        q1_t: "Is this a PDF?", q1_a: "No. It’s a live invitation website with buttons, maps, music, RSVP, and calendar.",
-        q2_t: "How fast is delivery?", q2_a: "Same-day is typical (~4 hours during business hours). Otherwise within 24 hours.",
-        q3_t: "How do you get my details?", q3_a: "After purchase, you submit one 2-minute form. No endless messages.",
-        q4_t: "Can I use it for birthdays or gender reveal?", q4_a: "Yes. Same system, event-specific messaging and vibe.",
+        faqTitle:"FAQ", faqSub:"Quick answers to common questions.",
+        q1:"Parking?", a1:"On-site valet available.",
+        q2:"Can I bring a guest?", a2:"Yes — please indicate guest count in the RSVP.",
+        q3:"Gifts?", a3:"Your presence is the best gift. Optional: a handwritten note.",
 
-        cta_script: "Let’s Celebrate",
-        cta_t1: "Ready to share your",
-        cta_t2: "event link?",
-        foot_note: "Business hours: typically ~4 hours after form submission. Otherwise within 24 hours.",
-
-        phone_label: "Wedding",
-        phone_desc: "Tap RSVP • Maps • Music • Calendar",
-        phone_maps: "Maps", phone_music: "Music", phone_cal: "Calendar",
-        phone_fast: "Same-day delivery",
-
-        // Event-specific hero + cards
-        lbl_wedding: "Wedding",
-        hero_badge_wed: "Not a PDF • Wedding Invitation Website",
-        hero_h1a_wed: "Your Wedding,",
-        hero_h1b_wed: "Curated as a Premium Link.",
-        hero_desc_wed: "Elegant + family-friendly. Live RSVP, maps, music, calendar, envelope reveal. Buy on Etsy, submit the form, delivered same-day.",
-        why_wed_t: "Less confusion. More attendance.",
-        why_wed_d: "One link replaces dozens of messages. Guests instantly know the venue, time, dress code, and RSVP.",
-        get_wed_t: "A premium wedding experience",
-        get_wed_list: ["Live RSVP (with notes)", "Google Maps directions", "Add-to-Calendar (ICS)", "Music + vibe", "Envelope reveal + gallery"],
-        next_wed_t: "Buy → Form → Same-day link",
-        next_wed_d: "After purchase, fill a 2-minute form. We publish your private wedding link typically in ~4 hours (business hours).",
-
-        lbl_bday: "Birthday",
-        hero_badge_bday: "Not a PDF • Birthday Party Link",
-        hero_h1a_bday: "Your Birthday,",
-        hero_h1b_bday: "Built for Party Energy.",
-        hero_desc_bday: "Adult or kids — one link with RSVP, maps, music, and calendar. Less planning stress, more hype.",
-        why_bday_t: "Hype + clarity in one place.",
-        why_bday_d: "People RSVP faster when the link feels like a real event page — not a boring image.",
-        get_bday_t: "Party-ready essentials",
-        get_bday_list: ["RSVP (plus +1)", "Maps + parking notes", "Music link", "Add to Calendar", "Theme visuals & gallery"],
-        next_bday_t: "Fast setup, fast sharing",
-        next_bday_d: "Buy on Etsy, submit the form, we publish the link fast — ready to share on WhatsApp.",
-
-        lbl_gender: "Gender Reveal",
-        hero_badge_gen: "Not a PDF • Baby Shower / Reveal Link",
-        hero_h1a_gen: "Your Reveal,",
-        hero_h1b_gen: "Designed for Excitement.",
-        hero_desc_gen: "A clean link for RSVP + maps + calendar + music — and a premium envelope reveal moment.",
-        why_gen_t: "Less back-and-forth. More excitement.",
-        why_gen_d: "Guests stop asking the same questions when everything is one tap away.",
-        get_gen_t: "A calm, premium reveal page",
-        get_gen_list: ["RSVP", "Maps", "Calendar", "Music", "Envelope reveal"],
-        next_gen_t: "Buy → Form → Delivered",
-        next_gen_d: "Same-day delivery typical during business hours. Otherwise within 24 hours.",
-
-        lbl_eng: "Engagement",
-        hero_badge_eng: "Not a PDF • Engagement Event Link",
-        hero_h1a_eng: "Your Engagement,",
-        hero_h1b_eng: "Elegant, Modern, Simple.",
-        hero_desc_eng: "One link for RSVP, maps, music, calendar, and details — polished and effortless.",
-        why_eng_t: "A clean, confident first impression.",
-        why_eng_d: "People judge the event vibe instantly. This looks premium, so they take it seriously.",
-        get_eng_t: "Modern event essentials",
-        get_eng_list: ["RSVP", "Maps", "Calendar", "Music", "Gallery"],
-        next_eng_t: "Buy → Form → Publish",
-        next_eng_d: "We apply your details into the theme and publish your link fast.",
-
-        lbl_vip: "VIP / Corporate",
-        hero_badge_vip: "Not a PDF • VIP Event Link",
-        hero_h1a_vip: "Your VIP Event,",
-        hero_h1b_vip: "Controlled & Professional.",
-        hero_desc_vip: "A clean, controlled invitation link with optional password and clear logistics. Designed for executive guests.",
-        why_vip_t: "Control, privacy, and clarity.",
-        why_vip_d: "VIP audiences expect frictionless logistics and a professional look. This delivers both.",
-        get_vip_t: "Professional event stack",
-        get_vip_list: ["RSVP", "Maps", "Calendar", "Optional password", "Clean premium layout"],
-        next_vip_t: "Buy → Form → Secure link",
-        next_vip_d: "We publish a private link fast and keep messaging minimal and professional."
+        footTag:"Hosted with love",
+        footLine:"For questions: hello@yourdomain.com",
+        footNote:"Demo template — replace names, date, and venue for each order."
       },
-
       tr: {
-        nav_events: "Etkinlikler", nav_feat: "Özellikler", nav_proc: "Süreç", nav_price: "Fiyat", nav_faq: "SSS",
-        btn_buy: "Etsy’den Satın Al — $19", btn_buy_short: "Satın Al — $19",
-        btn_demo: "Etkinliği seç & demo gör",
-        btn_open_demo: "Demoyu Aç",
-        btn_form: "2 Dakikalık Form",
-        pill_noapp: "Uygulama yok",
-        pill_fast: "Aynı gün ~4s",
-        hero_script: "Kâğıdın Ötesinde...",
-        hero_h1a: "Etkinliğin,", hero_h1b: "Tek Bir Güzel Link.",
-        hero_desc: "RSVP + Şarkı + Google Maps + Takvime Ekle + Zarf açılışı. Etsy’den satın al, 2 dakikalık form, aynı gün teslim (genelde ~4 saat).",
-        hero_note: "Mesai saatlerinde genelde ~4 saat. Aksi halde 24 saat içinde.",
-        chip_rsvp: "Canlı RSVP", chip_music: "Şarkı", chip_maps: "Harita", chip_cal: "Takvim",
+        brand: "Canlı Davetiye Demo",
+        navDetails:"Detaylar", navCountdown:"Geri Sayım", navRsvp:"RSVP", navLocation:"Konum",
+        kicker:"PDF değil • Canlı Davetiye Sitesi",
+        heroTitle:"Doğum Günü Yemeği",
+        heroSubtitle:"Şık bir akşamda birlikte kutlayalım.",
+        heroName:"Olivia Carter",
+        ctaRsvp:"RSVP",
+        ctaDirections:"Yol Tarifi",
+        ctaCalendar:"Takvime Ekle",
+        sideTitle:"Dahil",
+        f1t:"Canlı davetiye sitesi", f1d:"Mobil odaklı, premium görünüm, link ile anında paylaşım.",
+        f2t:"RSVP sistemi", f2d:"Google Sheet uyumlu misafir listesi + diyet notları.",
+        f3t:"Harita & Takvim", f3d:"Yol tarifi + tek tık ICS takvim dosyası.",
 
-        events_badge: "Etkinliğini Seç",
-        events_title: "Tek sistem. Farklı psikoloji.",
-        events_desc: "Etkinlik tipini seç; o kitleye uygun demo mesajlarını gösterelim. Sonra Etsy’den satın al.",
-        ev_wedding: "Düğün",
-        ev_birthday: "Doğum Günü",
-        ev_gender: "Cinsiyet / Baby Shower",
-        ev_engagement: "Nişan",
-        ev_vip: "VIP / Kurumsal",
+        detailsTitle:"Etkinlik Detayları", detailsSub:"Saat, mekân, kıyafet ve akış tek sayfada.",
+        kDate:"Tarih", dateHint:"Lütfen 10 dakika erken gelin.",
+        kTime:"Saat", timeHint:"Yemek 19:45’te servis edilir.",
+        kVenue:"Mekân", kDress:"Kıyafet", dressHint:"Siyah şıklık + altın detay önerilir.",
+        kSchedule:"Akış",
 
-        why_badge: "Neden satıyor",
-        what_badge: "Ne alıyorsun",
-        next_badge: "Sıradaki adım",
-        event_note: "Teslim süresi, form ve içerikler tam geldikten sonra başlar.",
+        countTitle:"Geri Sayım", countSub:"Yakında kutluyoruz. Tarihi kaydet.",
+        cdDays:"Gün", cdHours:"Saat", cdMins:"Dakika", cdSecs:"Saniye",
 
-        feat_badge: "Temel Özellikler",
-        feat_title: "Statik dosya değil — canlı etkinlik merkezi",
-        feat_desc: "Daha az soru, daha az hata, daha yüksek katılım için optimize.",
-        f1_t: "Canlı RSVP", f1_d: "Katılım + notlar (opsiyonel). İstediğin an dışa aktar.",
-        f2_t: "Şarkı", f2_d: "Link ile atmosferi anında kur.",
-        f3_t: "Google Maps", f3_d: "Tek dokunuşla yol tarifi. Daha az geç kalan misafir.",
-        f4_t: "Takvime Ekle", f4_d: "ICS ile tek dokunuş: unutma azalır.",
-        f5_t: "Zarf Açılışı", f5_d: "“Gerçek davetiye” hissi veren premium başlangıç.",
-        f6_t: "Gizlilik", f6_d: "Özel etkinlikler için şifre opsiyonu.",
+        rsvpTitle:"Katılım Bildirimi (RSVP)",
+        rsvpSub1:"Lütfen",
+        rsvpSub2:"içinde yanıtlayın. 20 saniye sürer.",
+        fName:"Ad Soyad", fEmail:"E-posta", fAttend:"Katılım", fGuests:"Kişi sayısı",
+        optYes:"Evet, geliyorum", optNo:"Hayır, gelemiyorum", optMaybe:"Belki",
+        fDiet:"Diyet", dietNone:"Yok", dietVeg:"Vejetaryen", dietVegan:"Vegan", dietAll:"Alerji (aşağıya yazın)",
+        fPhone:"Telefon (opsiyonel)", fNote:"Not",
+        submit:"RSVP Gönder",
+        rsvpHint:"Yanıtınız misafir listesine kaydedilir.",
 
-        proc_script: "Basit & Ölçeklenebilir",
-        proc_title: "Satın Al → Form → Teslim",
-        s1_t: "Etsy’den Satın Al", s1_d: "Hızlı ödeme. Dijital ürün. Anında kayıt.",
-        s2_t: "2 Dakikalık Form", s2_d: "İsimler, tarih/saat, mekân, şarkı, fotoğraflar. Tek sefer.",
-        s3_t: "Aynı gün teslim", s3_d: "Mesai saatlerinde genelde ~4 saat, aksi halde 24 saat içinde.",
+        locTitle:"Konum", locSub:"En hızlı rota için yol tarifine dokunun.",
+        copyAddr:"Adresi kopyala",
 
-        p_badge: "Net Fiyat",
-        p_title: "$19’dan başla",
-        p_desc: "Anchor Premium. Add-on’lar teslim hızını bozmadan kişiselleştirme sağlar.",
-        pb_t: "Basic", pb_s: "Temel", btn_buy_basic: "Etsy’den Al",
-        pp_t: "Premium", pp_s: "En Çok Satan", pp_badge: "Önerilen",
-        pl_t: "Add-On", pl_s: "Kaos yok, hız var", pl_note: "Giriş fiyatını erişilebilir tutar, teslim hızını korur.",
+        galTitle:"Atmosfer", galSub:"Siyah & altın — şık, sıcak, unutulmaz.",
+        g1t:"Altın ışıltı", g1d:"Yumuşak ışık, premium detaylar, hafızalık bir gece.",
+        g2t:"Yemek deneyimi", g2d:"RSVP ile oturma düzeni — pürüzsüz ve organize.",
+        g3t:"Kutlama anı", g3d:"Konuşmalar, kahkahalar, anılar.",
 
-        faq_title: "Sık Sorulanlar",
-        faq_desc: "Gerçek misafirler için — yaşlı aile bireyleri dahil.",
-        q1_t: "Bu PDF mi?", q1_a: "Hayır. Butonlu, haritalı, müzikli, RSVP ve takvimli canlı web davetiyesi.",
-        q2_t: "Teslim ne kadar hızlı?", q2_a: "Mesai saatlerinde genelde ~4 saat. Aksi halde 24 saat içinde.",
-        q3_t: "Bilgileri nasıl alıyorsunuz?", q3_a: "Satın alma sonrası tek bir 2 dakikalık form. Yazışma zinciri yok.",
-        q4_t: "Doğum günü / cinsiyet davetiye olur mu?", q4_a: "Evet. Aynı sistem, etkinliğe göre doğru dil ve vibe.",
+        faqTitle:"SSS", faqSub:"Sık sorulanlara kısa yanıtlar.",
+        q1:"Otopark?", a1:"Vale hizmeti mevcut.",
+        q2:"Yanımda birini getirebilir miyim?", a2:"Evet — RSVP’de kişi sayısını belirtin.",
+        q3:"Hediye?", a3:"En güzel hediye katılımınız. İsterseniz küçük bir not yeterli.",
 
-        cta_script: "Kutlayalım",
-        cta_t1: "Etkinlik linkini",
-        cta_t2: "paylaşmaya hazır mısın?",
-        foot_note: "Mesai saatlerinde genelde ~4 saat. Aksi halde 24 saat içinde.",
-
-        phone_label: "Düğün",
-        phone_desc: "RSVP • Harita • Şarkı • Takvim",
-        phone_maps: "Harita", phone_music: "Şarkı", phone_cal: "Takvim",
-        phone_fast: "Aynı gün teslim",
-
-        // Event-specific
-        lbl_wedding: "Düğün",
-        hero_badge_wed: "PDF değil • Düğün Davetiye Web Sitesi",
-        hero_h1a_wed: "Düğünün,",
-        hero_h1b_wed: "Premium bir link gibi kurgulandı.",
-        hero_desc_wed: "Zarif + aile dostu. Canlı RSVP, harita, şarkı, takvim, zarf açılışı. Etsy’den al, formu gönder, aynı gün teslim.",
-        why_wed_t: "Daha az karmaşa. Daha yüksek katılım.",
-        why_wed_d: "Tek link onlarca mesajı bitirir. Misafir nerede/ne zaman/RSVP’yi anında görür.",
-        get_wed_t: "Premium düğün deneyimi",
-        get_wed_list: ["Canlı RSVP (notlu)", "Google Maps yön", "Takvime ekle (ICS)", "Şarkı + vibe", "Zarf açılışı + galeri"],
-        next_wed_t: "Satın Al → Form → Aynı gün link",
-        next_wed_d: "Satın alma sonrası 2 dakikalık form. Mesai saatinde genelde ~4 saatte yayınlarız.",
-
-        lbl_bday: "Doğum Günü",
-        hero_badge_bday: "PDF değil • Doğum Günü Parti Linki",
-        hero_h1a_bday: "Doğum günün,",
-        hero_h1b_bday: "Parti enerjisiyle tasarlandı.",
-        hero_desc_bday: "Yetişkin/kids fark etmez — RSVP, harita, şarkı, takvim tek linkte. Stres azalır, hype artar.",
-        why_bday_t: "Hype + netlik tek yerde.",
-        why_bday_d: "Sayfa “event page” gibi durunca RSVP hızlanır. Görsel değil, deneyim satarsın.",
-        get_bday_t: "Parti için gerekenler",
-        get_bday_list: ["RSVP (+1 opsiyonu)", "Harita + park notu", "Şarkı linki", "Takvime ekle", "Tema görselleri + galeri"],
-        next_bday_t: "Hızlı kurulum, hızlı paylaşım",
-        next_bday_d: "Etsy’den al, formu gönder, linki hızlıca yayına alıp WhatsApp’tan paylaşırsın.",
-
-        lbl_gender: "Cinsiyet / Baby Shower",
-        hero_badge_gen: "PDF değil • Baby Shower / Reveal Linki",
-        hero_h1a_gen: "Reveal’ün,",
-        hero_h1b_gen: "Heyecanı büyütmek için.",
-        hero_desc_gen: "RSVP + harita + takvim + şarkı — üstüne premium zarf açılışı. Tek link, tek akış.",
-        why_gen_t: "Daha az mesaj. Daha çok heyecan.",
-        why_gen_d: "Herkes aynı soruları sormayı bırakır; link her şeyi bir dokunuşla çözer.",
-        get_gen_t: "Sade, premium sayfa",
-        get_gen_list: ["RSVP", "Harita", "Takvim", "Şarkı", "Zarf açılışı"],
-        next_gen_t: "Satın Al → Form → Teslim",
-        next_gen_d: "Mesai saatinde aynı gün teslim tipik. Aksi halde 24 saat içinde.",
-
-        lbl_eng: "Nişan",
-        hero_badge_eng: "PDF değil • Nişan Etkinlik Linki",
-        hero_h1a_eng: "Nişanın,",
-        hero_h1b_eng: "Modern, sade, zarif.",
-        hero_desc_eng: "RSVP, harita, şarkı, takvim ve detaylar — tek linkte premium duruş.",
-        why_eng_t: "İlk izlenim: güçlü ve temiz.",
-        why_eng_d: "Etkinlik vibe’ı linkten anlaşılır. Premium görünüm ciddiyet yaratır.",
-        get_eng_t: "Modern etkinlik seti",
-        get_eng_list: ["RSVP", "Harita", "Takvim", "Şarkı", "Galeri"],
-        next_eng_t: "Satın Al → Form → Yayın",
-        next_eng_d: "Bilgileri temaya yerleştirir, hızlıca yayına alırız.",
-
-        lbl_vip: "VIP / Kurumsal",
-        hero_badge_vip: "PDF değil • VIP Etkinlik Linki",
-        hero_h1a_vip: "VIP etkinliğin,",
-        hero_h1b_vip: "Kontrollü ve profesyonel.",
-        hero_desc_vip: "Şifre opsiyonu + net lojistik. Yönetici misafirler için kurumsal duruş.",
-        why_vip_t: "Kontrol, gizlilik, netlik.",
-        why_vip_d: "VIP kitle sürtünmesiz lojistik ve profesyonel görünüm bekler. Burada ikisi de var.",
-        get_vip_t: "Kurumsal etkinlik seti",
-        get_vip_list: ["RSVP", "Harita", "Takvim", "Şifre opsiyonu", "Temiz premium layout"],
-        next_vip_t: "Satın Al → Form → Güvenli link",
-        next_vip_d: "Özel linki hızlıca yayınlarız; iletişimi minimumda tutarız."
+        footTag:"Sevgiyle hazırlandı",
+        footLine:"Sorular için: hello@yourdomain.com",
+        footNote:"Demo şablon — her siparişte isim/tarih/mekân değiştir."
       }
     };
 
-    let currentLang = "en";
+    // =========================
+    // Helpers
+    // =========================
+    const $ = (sel, el=document) => el.querySelector(sel);
+    const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
 
-    function t(key){
-      const val = translations[currentLang]?.[key];
-      return val || translations.en[key] || "";
+    function toast(msg){
+      const t = $("#toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"), 2600);
     }
+
+    function smoothScrollTo(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+
+    function pad(n){ return String(n).padStart(2,"0"); }
+
+    function formatICSDateLocal(localISO){
+      // Convert local time to UTC for ICS (basic approach).
+      const d = new Date(localISO);
+      const y = d.getUTCFullYear();
+      const m = pad(d.getUTCMonth()+1);
+      const day = pad(d.getUTCDate());
+      const hh = pad(d.getUTCHours());
+      const mm = pad(d.getUTCMinutes());
+      const ss = pad(d.getUTCSeconds());
+      return `${y}${m}${day}T${hh}${mm}${ss}Z`;
+    }
+
+    function downloadICS(){
+      const dtStart = formatICSDateLocal(CONFIG.eventStartLocal);
+      const dtEnd   = formatICSDateLocal(CONFIG.eventEndLocal);
+
+      const uid = `inv-${Date.now()}@lunaisellc`;
+      const lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Lunaise//Live Invite//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        `UID:${uid}`,
+        `DTSTAMP:${formatICSDateLocal(new Date().toISOString())}`,
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        `SUMMARY:${CONFIG.title} — ${CONFIG.hostName}`,
+        `LOCATION:${CONFIG.venueName}, ${CONFIG.addressLine}`,
+        "DESCRIPTION:Live invitation website RSVP.",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([lines], { type:"text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${CONFIG.title.replace(/\s+/g,"_")}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    // =========================
+    // Language
+    // =========================
+    let LANG = "en";
 
     function applyLang(lang){
-      currentLang = lang;
-      const btn = document.getElementById("lang-btn");
-      if (btn) btn.innerText = lang.toUpperCase();
+      LANG = lang;
+      // Toggle buttons
+      $("#btnEN").classList.toggle("active", lang==="en");
+      $("#btnTR").classList.toggle("active", lang==="tr");
 
-      document.querySelectorAll("[data-i18n]").forEach(el => {
+      // Update i18n nodes
+      $$("[data-i18n]").forEach(el=>{
         const key = el.getAttribute("data-i18n");
-        const val = translations[lang]?.[key];
-        if (val) el.textContent = val;
+        const val = I18N[lang][key];
+        if(typeof val === "string") el.textContent = val;
       });
 
-      // re-apply current event with new language
-      applyEvent(activeEvent);
+      // Update dynamic display strings
+      $("#metaDate").textContent = (lang==="tr") ? CONFIG.displayDateTR : CONFIG.displayDateEN;
+      $("#metaTime").textContent = (lang==="tr") ? CONFIG.displayTimeTR : CONFIG.displayTimeEN;
+      $("#metaVenue").textContent = `${CONFIG.venueName} • ${CONFIG.cityShort}`;
+
+      $("#detailsDate").textContent = (lang==="tr") ? CONFIG.displayDateTR : CONFIG.displayDateEN;
+      $("#detailsTime").textContent = (lang==="tr") ? CONFIG.displayTimeTR : CONFIG.displayTimeEN;
+      $("#detailsVenue").textContent = CONFIG.venueName;
+      $("#detailsAddress").textContent = CONFIG.addressLine;
+      $("#detailsDress").textContent = (lang==="tr") ? CONFIG.dressCodeTR : CONFIG.dressCodeEN;
+
+      const s = (lang==="tr") ? CONFIG.scheduleTR : CONFIG.scheduleEN;
+      $("#scheduleLine1").textContent = s[0];
+      $("#scheduleLine2").textContent = s[1];
+      $("#scheduleLine3").textContent = s[2];
+
+      $("#rsvpDeadlineText").textContent = (lang==="tr") ? CONFIG.rsvpDeadlineTR : CONFIG.rsvpDeadlineEN;
+
+      // Title/name
+      document.title = `${(lang==="tr") ? "Lüks Siyah & Altın" : "Luxury Black & Gold"} — ${CONFIG.title}`;
+      // Hero dynamic
+      $("[data-i18n='heroName']").textContent = CONFIG.hostName;
+      $("[data-i18n='heroTitle']").textContent = (lang==="tr") ? I18N.tr.heroTitle : I18N.en.heroTitle;
+
+      // Status hint
+      $("#rsvpStatus").textContent = I18N[lang].rsvpHint;
     }
 
-    function toggleLang(){ applyLang(currentLang === "en" ? "tr" : "en"); }
-
-    // Auto language detection
-    const browserLang = (navigator.language || "en").toLowerCase().startsWith("tr") ? "tr" : "en";
-    // default language
-    applyLang(browserLang);
-
     // =========================
-    // Event switching
+    // Countdown
     // =========================
-    let activeEvent = "wedding";
+    function startCountdown(){
+      const target = new Date(CONFIG.eventStartLocal).getTime();
+      function tick(){
+        const now = Date.now();
+        let diff = Math.max(0, target - now);
+        const days = Math.floor(diff / (1000*60*60*24));
+        diff -= days*(1000*60*60*24);
+        const hours = Math.floor(diff / (1000*60*60));
+        diff -= hours*(1000*60*60);
+        const mins = Math.floor(diff / (1000*60));
+        diff -= mins*(1000*60);
+        const secs = Math.floor(diff / 1000);
 
-    function setText(id, text){ const el = document.getElementById(id); if (el) el.textContent = text; }
-    function setImg(id, url){ const el = document.getElementById(id); if (el) el.src = url; }
-
-    function setList(id, items){
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.innerHTML = "";
-      items.forEach(it => {
-        const li = document.createElement("li");
-        li.className = "text-sm text-gray-400";
-        li.textContent = "• " + it;
-        el.appendChild(li);
-      });
+        $("#cdDays").textContent = days;
+        $("#cdHours").textContent = pad(hours);
+        $("#cdMins").textContent = pad(mins);
+        $("#cdSecs").textContent = pad(secs);
+      }
+      tick();
+      setInterval(tick, 1000);
     }
 
-    function applyEvent(ev){
-      activeEvent = ev;
-      const p = eventProfiles[ev];
-
-      // Visuals
-      setImg("hero-bg", p.bg);
-      setImg("phone-img", p.phoneImg);
-      setText("phone-title", p.phoneTitle);
-
-      // Phone label (localized)
-      setText("phone-label", t(p.labelKey));
-
-      // Hero
-      setText("hero-badge", t(p.heroBadgeKey));
-      setText("hero-h1a", t(p.heroH1aKey));
-      setText("hero-h1b", t(p.heroH1bKey));
-      setText("hero-desc", t(p.heroDescKey));
-
-      // Cards
-      setText("why-title", t(p.whyTitleKey));
-      setText("why-desc", t(p.whyDescKey));
-      setText("get-title", t(p.getTitleKey));
-      const list = translations[currentLang]?.[p.getListKey] || translations.en[p.getListKey] || [];
-      setList("get-list", list);
-      setText("next-title", t(p.nextTitleKey));
-      setText("next-desc", t(p.nextDescKey));
-
-      // Demo link
-      const demoUrl = DEMO_URLS[ev] || "#events";
-      const demoBtn = document.getElementById("demo-open");
-      if (demoBtn) {
-        demoBtn.href = demoUrl;
-        demoBtn.target = demoUrl.startsWith("http") ? "_blank" : "_self";
-        demoBtn.rel = demoUrl.startsWith("http") ? "noopener" : "";
+    // =========================
+    // RSVP submit
+    // =========================
+    async function submitRSVP(payload){
+      // If endpoint exists -> POST
+      if(CONFIG.rsvpEndpoint && CONFIG.rsvpEndpoint.trim().length > 0){
+        const res = await fetch(CONFIG.rsvpEndpoint, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
+          body: JSON.stringify(payload)
+        });
+        if(!res.ok) throw new Error("Endpoint error");
+        return { mode:"endpoint" };
       }
 
-      // Update segmented active state
-      document.querySelectorAll(".seg button").forEach(b => {
-        b.classList.toggle("active", b.dataset.event === ev);
+      // Demo mode: save locally
+      const key = "lux_rsvp_demo_list";
+      const list = JSON.parse(localStorage.getItem(key) || "[]");
+      list.push(payload);
+      localStorage.setItem(key, JSON.stringify(list));
+      return { mode:"demo" };
+    }
+
+    // =========================
+    // Init
+    // =========================
+    function initMap(){
+      const q = encodeURIComponent(CONFIG.mapsQuery);
+      const embed = `https://www.google.com/maps?q=${q}&output=embed`;
+      $("#mapFrame").src = embed;
+
+      const directions = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
+      $("#ctaDirections").href = directions;
+      $("#btnDirections2").href = directions;
+    }
+
+    function initReveal(){
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) e.target.classList.add("show");
+        });
+      }, { threshold: 0.12 });
+      $$(".reveal").forEach(el=>obs.observe(el));
+    }
+
+    function initActions(){
+      $("#ctaRsvp").addEventListener("click", ()=> smoothScrollTo("rsvp"));
+      $("#ctaCalendar").addEventListener("click", ()=> downloadICS());
+
+      $("#btnCopyAddress").addEventListener("click", async ()=>{
+        const txt = `${CONFIG.venueName}, ${CONFIG.addressLine}`;
+        try{
+          await navigator.clipboard.writeText(txt);
+          toast(LANG==="tr" ? "Adres kopyalandı." : "Address copied.");
+        }catch{
+          toast(LANG==="tr" ? "Kopyalama başarısız." : "Copy failed.");
+        }
+      });
+
+      $("#rsvpForm").addEventListener("submit", async (e)=>{
+        e.preventDefault();
+        const btn = $("#submitBtn");
+        btn.disabled = true;
+        btn.style.opacity = .7;
+
+        const payload = {
+          ts: new Date().toISOString(),
+          eventTitle: CONFIG.title,
+          hostName: CONFIG.hostName,
+          fullName: $("#fullName").value.trim(),
+          email: $("#email").value.trim(),
+          attendance: $("#attendance").value,
+          guests: $("#guests").value,
+          dietary: $("#dietary").value,
+          phone: $("#phone").value.trim(),
+          note: $("#note").value.trim(),
+          lang: LANG
+        };
+
+        try{
+          const r = await submitRSVP(payload);
+          toast(LANG==="tr"
+            ? (r.mode==="demo" ? "RSVP kaydedildi (demo modu)." : "RSVP kaydedildi.")
+            : (r.mode==="demo" ? "RSVP saved (demo mode)." : "RSVP saved.")
+          );
+          $("#rsvpStatus").textContent = LANG==="tr"
+            ? "Teşekkürler. Yanıtınız kaydedildi."
+            : "Thank you. Your response has been recorded.";
+          e.target.reset();
+        }catch(err){
+          toast(LANG==="tr" ? "Hata: RSVP kaydedilemedi." : "Error: RSVP could not be saved.");
+          $("#rsvpStatus").textContent = LANG==="tr"
+            ? "Sorun devam ederse ev sahibine ulaşın."
+            : "If the issue persists, contact the host.";
+        }finally{
+          btn.disabled = false;
+          btn.style.opacity = 1;
+        }
       });
     }
 
-    document.querySelectorAll(".seg button").forEach(btn => {
-      btn.addEventListener("click", () => applyEvent(btn.dataset.event));
-    });
+    function initContent(){
+      // Ensure config populates hero text
+      $("[data-i18n='heroName']").textContent = CONFIG.hostName;
+      // Date/time blocks already updated in applyLang
+    }
 
-    // Initial
-    applyEvent("wedding");
+    function autoLang(){
+      const saved = localStorage.getItem("lux_lang");
+      if(saved === "en" || saved === "tr") return saved;
+      const nav = (navigator.language || "").toLowerCase();
+      return nav.startsWith("tr") ? "tr" : "en";
+    }
+
+    // Boot
+    initReveal();
+    initMap();
+    initContent();
+    startCountdown();
+    initActions();
+
+    const initial = autoLang();
+    applyLang(initial);
+
+    $("#btnEN").addEventListener("click", ()=>{ applyLang("en"); localStorage.setItem("lux_lang","en"); });
+    $("#btnTR").addEventListener("click", ()=>{ applyLang("tr"); localStorage.setItem("lux_lang","tr"); });
   </script>
 </body>
 </html>
