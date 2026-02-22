@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinY | 2-Minute Invitation Form</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Uploadcare (for file uploads) -->
+  <!-- Docs: https://uploadcare.com/docs/file-uploader/html-forms/ -->
+  <script src="https://ucarecdn.com/libs/file-uploader/0.x/uc-file-uploader.min.js"></script>
+  <script src="https://ucarecdn.com/libs/file-uploader/0.x/uc-file-uploader.min.css"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            bg: '#0B0B15',
+            panel: '#12121A',
+            gold: '#D4AF37',
+            rose: '#E0B0FF'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background:#0B0B15; color:#F0EFEB; -webkit-font-smoothing:antialiased; }
+    .glass { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); backdrop-filter: blur(10px); }
+    .help { color: rgba(240,239,235,0.65); font-size: 12px; }
+    .req:after { content:" *"; color:#D4AF37; }
+    .chip { border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.02); }
+  </style>
+</head>
+
+<body>
+  <!-- CONFIG -->
+  <script>
+    // 1) Change this to your form endpoint (Formspark / Formspree / your API)
+    // Example Formspark: https://submit-form.com/xxxxxx
+    const FORM_ACTION_URL = "https://submit-form.com/YOUR-FORM-ID";
+
+    // 2) Uploadcare public key (required for uploads)
+    // Get from Uploadcare dashboard
+    const UPLOADCARE_PUBLIC_KEY = "demopublickey";
+
+    // 3) Allowed audio types
+    const AUDIO_ACCEPT = ".mp3,.m4a,.wav";
+  </script>
+
+  <div class="max-w-4xl mx-auto px-5 py-10">
+    <div class="mb-6 flex items-center justify-between gap-3">
+      <div>
+        <div class="inline-flex items-center gap-2 chip px-3 py-1.5 rounded-full text-[11px] uppercase tracking-widest text-gray-300">
+          <span style="color:#D4AF37;">●</span> VitrinY • Setup Form
+        </div>
+        <h1 class="mt-4 text-3xl md:text-4xl font-serif text-white">2-Minute Invitation Setup</h1>
+        <p class="mt-3 text-gray-300">Buy on Etsy → submit this form → we publish your live invitation link (typically ~4 hours in business hours; otherwise within 24 hours).</p>
+      </div>
+
+      <button id="langBtn" class="chip px-4 py-2 rounded-full text-xs font-bold text-gray-200 hover:text-white">
+        EN
+      </button>
+    </div>
+
+    <div class="glass rounded-3xl p-6 md:p-8">
+      <form id="inviteForm" method="POST">
+        <!-- hidden fields -->
+        <input type="hidden" name="form_version" value="v1" />
+        <input type="hidden" name="submitted_at" id="submittedAt" />
+
+        <!-- SECTION: Order -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Order & Contact</h2>
+          <div class="mt-1 help">We use this to match your Etsy order and send your draft link.</div>
+
+          <div class="mt-5 grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Etsy Order Number</label>
+              <input name="etsy_order_number" required
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="e.g., 1234567890" />
+              <div class="help mt-1">Find it in your Etsy receipt.</div>
+            </div>
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Email</label>
+              <input name="email" type="email" required
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="you@example.com" />
+              <div class="help mt-1">We send the draft + final link here.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Event -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Event Details</h2>
+          <div class="mt-1 help">Choose event type so we match the right psychology + copy.</div>
+
+          <div class="mt-5 grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Event Type</label>
+              <select name="event_type" required class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white">
+                <option value="">Select…</option>
+                <option value="wedding">Wedding</option>
+                <option value="birthday">Birthday</option>
+                <option value="gender_reveal">Gender Reveal / Baby Shower</option>
+                <option value="engagement">Engagement</option>
+                <option value="vip">VIP / Corporate</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold mb-2">Language</label>
+              <select name="site_language" class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white">
+                <option value="en" selected>English</option>
+                <option value="tr">Türkçe</option>
+                <option value="both">Both (TR+EN toggle)</option>
+              </select>
+              <div class="help mt-1">Default language for your guests.</div>
+            </div>
+          </div>
+
+          <div class="mt-4 grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Host Names / Title</label>
+              <input name="host_names" required
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="e.g., Sarah & Tom / Ayla’s 30th" />
+            </div>
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Event Date & Time</label>
+              <input name="event_datetime" required
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="e.g., 12 May 2026 • 19:30" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Location -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Location (Maps)</h2>
+          <div class="mt-1 help">Provide address + Google Maps link for one-tap navigation.</div>
+
+          <div class="mt-5 grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Venue Name</label>
+              <input name="venue_name" required
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="e.g., The Grand Hall" />
+            </div>
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Google Maps Link</label>
+              <input name="maps_link" required
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="https://maps.google.com/..." />
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <label class="req block text-sm font-semibold mb-2">Full Address (for display)</label>
+            <textarea name="full_address" required rows="3"
+                      class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                      placeholder="Street, City, Country"></textarea>
+            <div class="help mt-1">Add parking notes if needed.</div>
+          </div>
+        </div>
+
+        <!-- SECTION: RSVP -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">RSVP</h2>
+          <div class="mt-1 help">We’ll build a simple RSVP form inside the invitation.</div>
+
+          <div class="mt-5 grid md:grid-cols-2 gap-4">
+            <div class="glass rounded-2xl p-4">
+              <label class="block text-sm font-semibold mb-2">Collect meal choice?</label>
+              <select name="rsvp_meal_choice" class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white">
+                <option value="no" selected>No</option>
+                <option value="yes">Yes</option>
+              </select>
+              <div class="help mt-2">If yes, we’ll add options you provide.</div>
+            </div>
+
+            <div class="glass rounded-2xl p-4">
+              <label class="block text-sm font-semibold mb-2">Collect +1 guest?</label>
+              <select name="rsvp_plus_one" class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white">
+                <option value="no" selected>No</option>
+                <option value="yes">Yes</option>
+              </select>
+              <div class="help mt-2">Useful for parties and birthdays.</div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <label class="block text-sm font-semibold mb-2">Custom RSVP question (optional)</label>
+            <input name="rsvp_custom_question"
+                   class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                   placeholder="e.g., Any dietary restrictions?" />
+          </div>
+        </div>
+
+        <!-- SECTION: Calendar -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Add to Calendar</h2>
+          <div class="mt-1 help">We generate an ICS add-to-calendar button.</div>
+
+          <div class="mt-5 grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="req block text-sm font-semibold mb-2">Calendar Title</label>
+              <input name="cal_title" required
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="e.g., Sarah & Tom Wedding" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Calendar Notes (optional)</label>
+              <input name="cal_notes"
+                     class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                     placeholder="Dress code, schedule, etc." />
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Photos (Uploadcare) -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Photos / Assets</h2>
+          <div class="mt-1 help">Upload 1–6 images (cover + gallery). We recommend mobile-friendly, high quality.</div>
+
+          <div class="mt-5 glass rounded-2xl p-4">
+            <!-- Uploadcare form input -->
+            <uc-config ctx-name="photosUploader"
+                       public-key=""
+                       multiple="true"
+                       multiple-max="6"></uc-config>
+
+            <uc-file-uploader-regular ctx-name="photosUploader"></uc-file-uploader-regular>
+            <uc-form-input ctx-name="photosUploader" name="photos_uploadcare"></uc-form-input>
+
+            <div class="help mt-3">If you prefer, you can also paste a Google Drive/Dropbox link below.</div>
+            <input name="photos_link"
+                   class="mt-2 w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                   placeholder="Optional link to photos folder" />
+          </div>
+        </div>
+
+        <!-- SECTION: Music (Embedded audio) -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Music (Inside Invitation)</h2>
+          <div class="mt-1 help">
+            Important: guests will tap “Play”. Autoplay is usually blocked on mobile browsers. 3
+          </div>
+
+          <div class="mt-5 glass rounded-2xl p-4">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Upload audio file (mp3/m4a)</label>
+
+                <uc-config ctx-name="audioUploader"
+                           public-key=""
+                           multiple="false"></uc-config>
+
+                <uc-file-uploader-regular ctx-name="audioUploader"></uc-file-uploader-regular>
+                <uc-form-input ctx-name="audioUploader" name="audio_uploadcare"></uc-form-input>
+
+                <div class="help mt-2">If you can’t upload, paste a direct URL to the audio file below.</div>
+                <input name="audio_direct_url"
+                       class="mt-2 w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                       placeholder="https://.../song.mp3 (optional)" />
+              </div>
+
+              <div>
+                <label class="req block text-sm font-semibold mb-2">Rights confirmation</label>
+                <div class="glass rounded-2xl p-4">
+                  <label class="flex items-start gap-3 text-sm text-gray-200">
+                    <input type="checkbox" name="music_rights_confirmed" required class="mt-1">
+                    <span>
+                      I confirm I own the rights to this audio OR I have permission/license to use it in my invitation website.
+                      <span class="block help mt-2">
+                        Unlicensed copyrighted music can trigger takedowns and platform risk. 4
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-sm font-semibold mb-2">Playback preference</label>
+              <select name="music_playback" class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white">
+                <option value="button_only" selected>Play button only (recommended)</option>
+                <option value="start_muted_then_unmute">Start muted then user unmute</option>
+              </select>
+              <div class="help mt-2">We design it so it feels premium without annoying guests.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Custom Lyrics (AI-assisted) -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Custom Lyric Text (AI-assisted)</h2>
+          <div class="mt-1 help">We create original lyric-style text based on your details. We do NOT copy existing song lyrics.</div>
+
+          <div class="mt-5 grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Tone</label>
+              <select name="lyric_tone" class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white">
+                <option value="romantic" selected>Romantic</option>
+                <option value="funny">Funny</option>
+                <option value="emotional">Emotional</option>
+                <option value="elegant">Elegant</option>
+                <option value="energetic">Energetic</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Length</label>
+              <select name="lyric_length" class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white">
+                <option value="short" selected>Short (4–6 lines)</option>
+                <option value="medium">Medium (8–12 lines)</option>
+                <option value="long">Long (16–24 lines)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <label class="block text-sm font-semibold mb-2">Key details for the lyrics</label>
+            <textarea name="lyric_brief" rows="4"
+                      class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                      placeholder="Examples: how you met, favorite place, inside joke, vibe, what you want guests to feel..."></textarea>
+          </div>
+        </div>
+
+        <!-- SECTION: Add-ons -->
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-white">Add-ons</h2>
+          <div class="mt-1 help">Optional upgrades. Choose only if needed.</div>
+
+          <div class="mt-5 grid md:grid-cols-3 gap-4">
+            <label class="glass rounded-2xl p-4 flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" name="addon_qr" class="mt-1">
+              <div>
+                <div class="font-semibold">QR Code</div>
+                <div class="help">Share/print-ready QR image.</div>
+              </div>
+            </label>
+            <label class="glass rounded-2xl p-4 flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" name="addon_passcode" class="mt-1">
+              <div>
+                <div class="font-semibold">Passcode Protection</div>
+                <div class="help">VIP/private access code.</div>
+              </div>
+            </label>
+            <label class="glass rounded-2xl p-4 flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" name="addon_extra_language" class="mt-1">
+              <div>
+                <div class="font-semibold">Extra Language</div>
+                <div class="help">Add another language beyond TR/EN.</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="mt-4">
+            <label class="block text-sm font-semibold mb-2">Notes (optional)</label>
+            <textarea name="extra_notes" rows="3"
+                      class="w-full rounded-xl bg-black/40 border border-white/10 px-4 py-3 text-white"
+                      placeholder="Anything else we should know?"></textarea>
+          </div>
+        </div>
+
+        <!-- CONSENT -->
+        <div class="mb-8">
+          <label class="flex items-start gap-3 text-sm text-gray-200">
+            <input type="checkbox" name="consent" required class="mt-1">
+            <span>
+              I confirm the information is accurate and I have the rights/permission for any uploaded content (photos/music).
+              <span class="block help mt-2">This prevents delays and protects both sides.</span>
+            </span>
+          </label>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+          <div class="help">
+            After submission, we’ll email your draft link for review. One full revision is included.
+          </div>
+          <button type="submit"
+                  class="px-7 py-3 rounded-full bg-white text-black font-bold hover:bg-[color:var(--gold)] transition"
+                  style="--gold:#D4AF37;">
+            Submit Form
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="mt-6 text-center help">
+      If uploads don’t work, paste direct links (Google Drive/Dropbox) and we’ll handle it.
+    </div>
+  </div>
+
+  <script>
+    // Apply config
+    document.getElementById("inviteForm").action = FORM_ACTION_URL;
+    document.getElementById("submittedAt").value = new Date().toISOString();
+
+    // Uploadcare config
+    document.querySelectorAll("uc-config").forEach(cfg => {
+      cfg.setAttribute("public-key", UPLOADCARE_PUBLIC_KEY);
+    });
+
+    // Simple EN/TR toggle (UI text only)
+    const langBtn = document.getElementById("langBtn");
+    let uiLang = "en";
+
+    const UI = {
+      en: {
+        lang:"EN",
+        title:"2-Minute Invitation Setup",
+        submit:"Submit Form",
+      },
+      tr: {
+        lang:"TR",
+        title:"2 Dakikalık Davetiye Formu",
+        submit:"Formu Gönder",
+      }
+    };
+
+    function setUIText() {
+      langBtn.textContent = uiLang.toUpperCase();
+      document.title = (uiLang === "tr") ? "VitrinY | 2 Dakikalık Davetiye Formu" : "VitrinY | 2-Minute Invitation Form";
+      // Keep this minimal to avoid missing labels; you can expand later if you want full i18n.
+    }
+
+    langBtn.addEventListener("click", () => {
+      uiLang = (uiLang === "en") ? "tr" : "en";
+      setUIText();
+    });
+    setUIText();
+  </script>
+</body>
+    </html>
