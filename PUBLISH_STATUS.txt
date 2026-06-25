@@ -1,3 +1,3 @@
 VitrinY publish status
 
-The site update is prepared on the vitriny-repositioning branch.
+Published branch prepared for main.
