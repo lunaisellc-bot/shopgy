@@ -1,391 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VitrinY | Etsy Integration Showcase</title>
-    <meta name="description" content="We build your branded website and integrate your Etsy shop—so your listings stay updated on your site, while purchases are completed on Etsy.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        hand: ['Great Vibes', 'cursive']
-                    },
-                    colors: {
-                        bgdark: '#0B0B15',
-                        surface: '#12121A',
-                        neon: '#00DC82',
-                        purple: '#7B61FF',
-                        gold: '#D4AF37'
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { background-color: #0B0B15; color: #F0EFEB; -webkit-font-smoothing: antialiased; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: rgba(212, 175, 55, 0.3); background: rgba(255, 255, 255, 0.05); }
-        .handwritten-accent { font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #D4AF37; opacity: 0.9; margin-top: 0.5rem; display: block; }
-        
-        /* Smooth Fade In */
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinY Commerce | Etsy Brand Website & Safe Checkout Flow</title>
+  <meta name="description" content="VitrinY Commerce builds professional brand websites and product catalog landing pages for Etsy sellers while purchase buttons direct buyers to official Etsy listings." />
+  <meta name="keywords" content="Etsy brand website, Etsy shop website, Etsy checkout flow, Etsy product catalog, Etsy external traffic landing page, VitrinY Commerce" />
+  <meta name="author" content="Lunaise LLC" />
+  <link rel="canonical" href="https://vitriny.com/etsy.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vitriny.com/etsy.html" />
+  <meta property="og:title" content="VitrinY Commerce | Etsy Brand Websites" />
+  <meta property="og:description" content="Build a professional .com brand layer for your Etsy shop while checkout remains on Etsy." />
+  <meta property="og:image" content="https://vitriny.com/assets/og-commerce.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans:['Outfit','sans-serif'], serif:['Playfair Display','serif'] }, colors:{ bgdark:'#0B0B15', surface:'#12121A', muted:'#A7A7B3', neon:'#00DC82', purple:'#7B61FF', gold:'#D4AF37' } } } }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "VitrinY Commerce",
+    "serviceType": "Etsy brand website and product catalog landing page service",
+    "provider": { "@type": "Organization", "name": "Lunaise LLC", "url": "https://vitriny.com" },
+    "areaServed": "Worldwide",
+    "description": "Professional brand websites for Etsy sellers. The website works as a catalog and traffic hub while purchase buttons lead to official Etsy listings."
+  }
+  </script>
+  <style>body{background:#0B0B15;color:#F4F3EF;-webkit-font-smoothing:antialiased;overflow-x:hidden}.glass{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px)}.soft{border:1px solid rgba(255,255,255,.08)}.muted{color:#A7A7B3}.grad{background:linear-gradient(90deg,#00DC82,#fff,#7B61FF);-webkit-background-clip:text;background-clip:text;color:transparent}.section{padding:6rem 1.25rem}.glow{position:fixed;inset:auto -15rem -15rem auto;width:42rem;height:42rem;background:radial-gradient(circle,rgba(0,220,130,.13),transparent 68%);z-index:-1}@media(max-width:768px){.section{padding:4rem 1.25rem}}</style>
 </head>
-<body class="font-sans selection:bg-purple selection:text-white">
+<body class="font-sans selection:bg-neon selection:text-black"><div class="glow"></div>
+  <nav class="fixed top-0 left-0 w-full z-50 bg-bgdark/85 backdrop-blur-xl border-b border-white/10"><div class="max-w-7xl mx-auto h-20 px-5 md:px-8 flex items-center justify-between"><a href="index.html" class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple to-neon p-[1px]"><div class="w-full h-full bg-bgdark rounded-xl flex items-center justify-center font-extrabold">V</div></div><div><div class="text-sm font-extrabold tracking-[.25em] uppercase">VitrinY Commerce</div><div class="text-[10px] muted uppercase tracking-[.2em]">Etsy-safe brand websites</div></div></a><div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[.18em] muted"><a href="#flow" class="hover:text-white">Flow</a><a href="#packages" class="hover:text-white">Packages</a><a href="#faq" class="hover:text-white">FAQ</a><a href="studio.html" class="hover:text-white">Studio</a></div><a href="https://wa.me/905419787726" class="px-5 py-3 rounded-full bg-white text-black text-xs font-extrabold uppercase tracking-widest hover:bg-neon transition">Free Audit</a></div></nav>
 
-    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <div class="absolute top-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-purple/10 rounded-full blur-[100px] animate-pulse-slow"></div>
-        <div class="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-neon/5 rounded-full blur-[100px]"></div>
-    </div>
+  <header class="min-h-screen pt-28 px-5 flex items-center"><div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center"><div><div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-[10px] font-extrabold uppercase tracking-[.25em] text-neon mb-7"><span class="w-2 h-2 rounded-full bg-neon"></span>External traffic lands on your brand. Checkout stays on Etsy.</div><h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight mb-7">A professional website for your Etsy shop — <span class="grad">without leaving Etsy checkout trust.</span></h1><p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mb-6">VitrinY Commerce turns your Etsy shop into a branded .com destination with product presentation, collection sections, trust messaging, and purchase buttons that lead to your official Etsy listings.</p><p class="muted max-w-2xl mb-10">It is not a Shopify replacement. It is the brand layer Etsy sellers need before sending Instagram, Pinterest, ads, or SEO traffic to a more professional destination.</p><div class="flex flex-col sm:flex-row gap-4"><a href="https://wa.me/905419787726" class="px-8 py-4 rounded-full bg-white text-black font-extrabold hover:bg-neon transition text-center">Request Free Shop Audit</a><a href="#flow" class="px-8 py-4 rounded-full soft text-white font-extrabold hover:bg-white/5 transition text-center">See Safe Flow</a></div></div><div class="glass rounded-[2rem] p-6"><div class="space-y-4"><div class="rounded-2xl bg-white/5 soft p-5"><div class="text-xs text-neon uppercase font-bold tracking-widest mb-2">1. Visitor arrives</div><p class="muted text-sm">From Instagram, Pinterest, Google, ads, QR codes, or your bio link.</p></div><div class="rounded-2xl bg-white/5 soft p-5"><div class="text-xs text-neon uppercase font-bold tracking-widest mb-2">2. Brand website builds trust</div><p class="muted text-sm">Story, collections, best products, visuals, policies, and buying confidence.</p></div><div class="rounded-2xl bg-white/5 soft p-5"><div class="text-xs text-neon uppercase font-bold tracking-widest mb-2">3. Buyer clicks Etsy listing</div><p class="muted text-sm">Purchase buttons go to official Etsy listings. Payment is completed on Etsy.</p></div></div><div class="mt-6 rounded-2xl bg-neon/10 border border-neon/20 p-4 text-sm text-neon">Policy-safe positioning: catalog and brand layer, not off-site checkout.</div></div></div></header>
 
-    <nav class="fixed w-full z-50 top-0 bg-bgdark/90 backdrop-blur-lg border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="flex items-center gap-2 group">
-            <span class="font-bold text-xl tracking-widest text-white">VITRINY <span class="text-[10px] align-top text-neon">COMMERCE</span></span>
-        </a>
-        <div class="flex items-center gap-4">
-            <button onclick="toggleLang()" id="lang-btn" class="text-xs font-bold text-gray-400 border border-white/10 px-3 py-1.5 rounded hover:text-white hover:border-gold transition">EN</button>
-            <a href="https://wa.me/905419787726" class="bg-white text-black px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-neon hover:text-black transition">
-                <span data-i18n="nav_cta">Get Consult</span>
-            </a>
-        </div>
-    </nav>
+  <section id="flow" class="section bg-surface/40 border-y border-white/10"><div class="max-w-7xl mx-auto"><div class="max-w-3xl mb-12"><div class="text-gold text-xs font-extrabold uppercase tracking-[.25em] mb-4">Why VitrinY Commerce</div><h2 class="text-3xl md:text-5xl font-extrabold mb-5">Etsy Plus helps inside Etsy. VitrinY helps your brand outside Etsy.</h2><p class="text-gray-300 text-lg">Many Etsy sellers send external traffic directly to a crowded marketplace page. VitrinY gives that traffic a stronger branded first impression before the buyer continues to Etsy checkout.</p></div><div class="grid md:grid-cols-3 gap-6"><div class="glass rounded-3xl p-7"><h3 class="text-xl font-bold mb-3">Brand authority</h3><p class="muted">A .com site creates a stronger independent brand signal than a marketplace profile alone.</p></div><div class="glass rounded-3xl p-7"><h3 class="text-xl font-bold mb-3">Traffic landing page</h3><p class="muted">A better destination for bio links, ads, Pinterest, QR codes, press, and repeat visitors.</p></div><div class="glass rounded-3xl p-7"><h3 class="text-xl font-bold mb-3">Etsy checkout</h3><p class="muted">Purchase intent is directed to official Etsy listings. The website does not process payments.</p></div></div></div></section>
 
-    <header class="relative pt-32 pb-20 px-6 min-h-screen flex items-center justify-center text-center z-10">
-        <div class="max-w-4xl mx-auto reveal active">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-6">
-                <i class="fa-brands fa-etsy text-[#F1641E]"></i> <span data-i18n="hero_badge">Etsy Website Integration</span>
-            </div>
-            
-            <h1 class="text-4xl md:text-7xl font-serif text-white mb-2 leading-tight">
-                <span data-i18n="hero_t1">From Just a Seller,</span> <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-white to-purple" data-i18n="hero_t2">To a Global Brand.</span>
-            </h1>
-            <span class="handwritten-accent" data-i18n="hero_sub">We build your website — and connect your Etsy shop.</span>
+  <section id="packages" class="section"><div class="max-w-7xl mx-auto"><div class="text-center max-w-3xl mx-auto mb-14"><div class="text-neon text-xs font-extrabold uppercase tracking-[.25em] mb-4">Commerce packages</div><h2 class="text-3xl md:text-5xl font-extrabold mb-5">From one-page brand presence to full catalog system.</h2><p class="text-gray-300">Start simple, then add catalog, collections, analytics, and visual upgrades as the shop grows.</p></div><div class="grid lg:grid-cols-3 gap-6"><div class="glass rounded-3xl p-7 flex flex-col"><div class="text-sm text-neon font-bold uppercase tracking-widest mb-3">Starter</div><h3 class="text-2xl font-extrabold mb-3">Brand Page</h3><p class="muted mb-6">A focused .com landing page for your Etsy shop.</p><div class="text-3xl font-extrabold mb-6">$299–$499</div><ul class="space-y-3 text-sm text-gray-300 mb-8"><li>Brand story</li><li>Featured products</li><li>Etsy CTAs</li><li>Mobile responsive build</li><li>Basic SEO metadata</li></ul><a href="https://wa.me/905419787726" class="mt-auto text-center px-6 py-3 rounded-full bg-white text-black font-bold hover:bg-neon transition">Start Brand Page</a></div><div class="glass rounded-3xl p-7 flex flex-col border-neon/30"><div class="text-sm text-neon font-bold uppercase tracking-widest mb-3">Growth</div><h3 class="text-2xl font-extrabold mb-3">Catalog System</h3><p class="muted mb-6">A curated product and collection website for stronger external traffic.</p><div class="text-3xl font-extrabold mb-6">$699–$1,200+</div><ul class="space-y-3 text-sm text-gray-300 mb-8"><li>Homepage</li><li>Product/category sections</li><li>Collection storytelling</li><li>Etsy listing links</li><li>Analytics/pixel readiness</li></ul><a href="https://wa.me/905419787726" class="mt-auto text-center px-6 py-3 rounded-full bg-neon text-black font-bold hover:bg-white transition">Build Catalog</a></div><div class="glass rounded-3xl p-7 flex flex-col"><div class="text-sm text-purple font-bold uppercase tracking-widest mb-3">Ongoing</div><h3 class="text-2xl font-extrabold mb-3">Monthly Support</h3><p class="muted mb-6">For shops adding products and needing regular updates.</p><div class="text-3xl font-extrabold mb-6">$49–$199/mo</div><ul class="space-y-3 text-sm text-gray-300 mb-8"><li>Product updates</li><li>Small landing changes</li><li>Visual refresh guidance</li><li>Monthly review</li></ul><a href="https://wa.me/905419787726" class="mt-auto text-center px-6 py-3 rounded-full bg-white text-black font-bold hover:bg-neon transition">Discuss Support</a></div></div></div></section>
 
-            <p class="text-gray-400 text-lg mt-8 mb-6 leading-relaxed max-w-2xl mx-auto border-l-2 border-white/10 pl-6 text-left md:text-center md:border-none md:pl-0" data-i18n="hero_desc">
-                Establish a professional .com presence to drive external traffic (Ads, Social, SEO). 
-                We integrate your Etsy shop so your listings stay updated on your site—while purchases remain on Etsy.
-            </p>
+  <section id="faq" class="section bg-surface/40 border-y border-white/10"><div class="max-w-5xl mx-auto"><div class="text-center mb-12"><div class="text-gold text-xs font-extrabold uppercase tracking-[.25em] mb-4">FAQ</div><h2 class="text-3xl md:text-5xl font-extrabold">Clear positioning, safe flow.</h2></div><div class="space-y-4"><div class="glass rounded-2xl p-6"><h3 class="font-bold mb-2">Does VitrinY replace Etsy?</h3><p class="muted">No. It strengthens your brand presence outside Etsy while purchase buttons direct buyers to your official Etsy listings.</p></div><div class="glass rounded-2xl p-6"><h3 class="font-bold mb-2">Is this Shopify?</h3><p class="muted">No. Shopify is for full independent ecommerce. VitrinY is lighter and built for sellers who still rely on Etsy checkout.</p></div><div class="glass rounded-2xl p-6"><h3 class="font-bold mb-2">Can this help Instagram or Pinterest traffic?</h3><p class="muted">Yes. A branded landing page gives external traffic a more focused and premium first stop before Etsy purchase intent.</p></div></div></div></section>
 
-            <p class="text-gray-500 text-sm mb-10" data-i18n="trust_line">
-                Purchases are completed on Etsy. This website does not process payments.
-            </p>
+  <section class="px-5 py-24"><div class="max-w-5xl mx-auto glass rounded-[2rem] p-8 md:p-12 text-center"><div class="text-neon text-xs font-extrabold uppercase tracking-[.25em] mb-4">Free Etsy brand audit</div><h2 class="text-3xl md:text-5xl font-extrabold mb-5">Want to know whether your shop needs a brand page or catalog system?</h2><p class="text-gray-300 text-lg mb-8">Send your Etsy shop link. We will review brand presentation, traffic readiness, visual trust, and the best VitrinY entry point.</p><a href="https://wa.me/905419787726" class="inline-flex px-8 py-4 rounded-full bg-white text-black font-extrabold hover:bg-neon transition">Send Your Etsy Shop</a></div></section>
 
-            <ul class="flex flex-col md:flex-row justify-center gap-4 md:gap-8 text-sm text-gray-300 mb-10">
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="h_li1">Brand Authority</span></li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-neon"></i> <span data-i18n="h_li2">External Traffic Engine</span></li>
-                <li class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-gold"></i> <span data-i18n="h_li3">Etsy Checkout</span></li>
-            </ul>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/905419787726" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-neon hover:scale-105 transition shadow-lg shadow-white/10">
-                    <span data-i18n="btn_hero">Free Consultation</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <section class="py-12 px-6 z-10 relative">
-        <div class="max-w-4xl mx-auto glass-card p-8 md:p-12 rounded-3xl border-t-4 border-t-gold reveal">
-            <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold text-3xl shrink-0">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-serif text-white mb-2" data-i18n="safe_title">Policy-Safe Purchase Flow</h3>
-                    <p class="text-gray-400 text-sm mb-6" data-i18n="safe_desc">
-                        This website acts as a high-end catalog. We do not process payments here. 
-                        All purchase intent is directed to your official Etsy listings.
-                    </p>
-                    <div class="grid md:grid-cols-3 gap-4 text-xs font-bold uppercase tracking-widest text-gray-500">
-                        <div class="flex items-center gap-2"><i class="fa-brands fa-etsy text-[#F1641E]"></i> <span data-i18n="safe_1">Purchases on Etsy</span></div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-ban text-red-400"></i> <span data-i18n="safe_2">No Off-Site Checkout</span></div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-arrow-up-right-from-square text-neon"></i> <span data-i18n="safe_3">Direct Listing Links</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 z-10 relative">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div class="reveal">
-                <span class="text-purple text-xs font-bold tracking-widest uppercase mb-2 block" data-i18n="auth_badge">The Perception</span>
-                <h2 class="text-3xl md:text-5xl font-serif text-white mb-2" data-i18n="auth_title">Your Own Dot Com.</h2>
-                <span class="handwritten-accent" data-i18n="auth_sub">Elevate your perceived value.</span>
-                
-                <p class="text-gray-400 mt-6 leading-relaxed" data-i18n="auth_desc">
-                    Buyers trust brands with a dedicated website. It signals permanence and professionalism. 
-                    Use this platform to tell your story, showcase your process, and validate your prices 
-                    before they click "Buy on Etsy".
-                </p>
-            </div>
-            <div class="relative reveal delay-200">
-                <div class="absolute inset-0 bg-gradient-to-tr from-purple/20 to-neon/20 rounded-full blur-[80px]"></div>
-                <div class="glass-card p-2 rounded-2xl relative">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800" class="rounded-xl opacity-80 w-full" alt="Brand showcase">
-                    <div class="absolute bottom-6 left-6 bg-black/80 backdrop-blur px-4 py-2 rounded-lg border border-white/10 flex items-center gap-3">
-                        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                        <span class="text-xs font-bold text-white uppercase" data-i18n="brand_established">Brand Established</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 bg-surface/50 border-y border-white/5 z-10 relative">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-serif text-white mb-2" data-i18n="traf_title">The Traffic Engine</h2>
-                <span class="handwritten-accent text-center mx-auto" data-i18n="traf_sub">Retarget. Analyze. Convert.</span>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl reveal">
-                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-neon mb-6"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="t1_t">Pixel Freedom</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="t1_d">
-                        Etsy limits your data. On your site, we install Meta Pixel & Google Analytics. Retarget visitors who viewed your products but didn't buy.
-                    </p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl reveal delay-100">
-                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-purple mb-6"><i class="fa-brands fa-instagram"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="t2_t">Social Landing</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="t2_d">
-                        Don't send Instagram traffic to a generic marketplace where they see competitors. Send them to YOUR curated gallery first.
-                    </p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl reveal delay-200">
-                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-gold mb-6"><i class="fa-regular fa-envelope"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="t3_t">List Building</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="t3_d">
-                        Collect emails ethically with consent forms (Newsletter/Lead Magnet), an asset you actually own, unlike Etsy followers.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 z-10 relative">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 reveal">
-            <div class="w-full md:w-1/2">
-                <div class="relative border border-white/10 rounded-2xl p-6 bg-[#050505]">
-                    <div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-4">
-                        <i class="fa-solid fa-rotate text-neon animate-spin" style="animation-duration: 3s;"></i>
-                        <span class="text-xs font-mono text-neon" data-i18n="api_code_line">Refreshing listings via Etsy API...</span>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="h-2 w-3/4 bg-white/10 rounded"></div>
-                        <div class="h-2 w-1/2 bg-white/10 rounded"></div>
-                        <div class="flex gap-2 mt-4">
-                            <div class="w-16 h-16 bg-white/5 rounded"></div>
-                            <div class="w-16 h-16 bg-white/5 rounded"></div>
-                            <div class="w-16 h-16 bg-white/5 rounded"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-serif text-white mb-2" data-i18n="api_title">Etsy Open API Integration</h2>
-                <span class="handwritten-accent" data-i18n="api_sub">You don’t need to know the API — we do.</span>
-                <p class="text-gray-400 mt-6 mb-6" data-i18n="api_desc">
-                    We build your website and connect your Etsy shop using the Open API. Your listings, photos, and descriptions are periodically refreshed and displayed as a premium catalog.
-                </p>
-                <div class="text-xs text-gray-500 italic border-l border-white/20 pl-4" data-i18n="api_note">
-                    *Catalog data is refreshed from Etsy for display purposes. Purchases are completed on Etsy. No payment processing happens on this website.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 bg-surface z-10 relative">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl font-serif text-white mb-10 text-center" data-i18n="faq_title">Common Questions</h2>
-            <div class="space-y-4 reveal">
-                <div class="glass-card p-6 rounded-2xl">
-                    <h4 class="text-white font-bold mb-2 text-sm uppercase" data-i18n="q1_t">Is this allowed by Etsy?</h4>
-                    <p class="text-gray-400 text-sm" data-i18n="q1_a">
-                        Yes. Etsy allows sellers to link to their shop and listings from external websites. This site works as a showcase and directs buyers to Etsy to complete purchases.
-                    </p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl">
-                    <h4 class="text-white font-bold mb-2 text-sm uppercase" data-i18n="q2_t">Where does the sale happen?</h4>
-                    <p class="text-gray-400 text-sm" data-i18n="q2_a">100% on Etsy. The "Buy" buttons are direct links to your Etsy listing. We do not process payments.</p>
-                </div>
-                <div class="glass-card p-6 rounded-2xl">
-                    <h4 class="text-white font-bold mb-2 text-sm uppercase" data-i18n="q3_t">Delivery & Revisions</h4>
-                    <p class="text-gray-400 text-sm" data-i18n="q3_a">Timeline starts once content is received. Standard delivery: 48-72 hours. Includes 1 round of revisions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 z-10 relative">
-        <div class="max-w-md mx-auto reveal">
-            <div class="glass-card p-10 rounded-3xl text-center border-t border-t-purple shadow-2xl shadow-purple/10">
-                <span class="text-neon text-xs font-bold tracking-widest uppercase mb-4 block" data-i18n="price_badge">Brand Authority Package</span>
-                <h3 class="text-4xl font-serif text-white mb-2" data-i18n="price_name">The Showcase</h3>
-                <div class="text-5xl font-bold text-white mb-6 mt-4">$499</div>
-                <p class="text-gray-400 text-sm mb-8" data-i18n="price_desc">One-time design fee. Own your digital presence.</p>
-                
-                <ul class="text-left space-y-4 text-sm text-gray-300 mb-10 mx-auto max-w-xs">
-                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold"></i> <span data-i18n="p_1">Premium Custom Design</span></li>
-                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold"></i> <span data-i18n="p_2">Etsy Open API Integration</span></li>
-                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold"></i> <span data-i18n="p_3">Mobile Responsive</span></li>
-                    <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold"></i> <span data-i18n="p_4">Domain Connection Support</span></li>
-                </ul>
-
-                <a href="https://www.etsy.com/listing/4432128126/etsy-website-integration-service"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="block w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-neon transition">
-                    <span data-i18n="btn_price">Start Now</span>
-                </a>
-
-                <div class="text-[11px] text-gray-400 mt-3" data-i18n="redirect_note">
-                    You will be redirected to Etsy to complete your purchase.
-                </div>
-
-                <div class="text-[10px] text-gray-500 mt-3" data-i18n="price_note">*Hosting & Domain costs separate.</div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 bg-bgdark text-center text-xs text-gray-600 border-t border-white/5 z-10 relative">
-        <p>&copy; 2026 VitrinY Commerce. Operated by Lunaise LLC.</p>
-        <p class="mt-2 text-[10px] text-gray-600" data-i18n="disclaimer">
-            Etsy is a trademark of Etsy, Inc. This website is not affiliated with, endorsed by, or sponsored by Etsy.
-        </p>
-    </footer>
-
-    <script>
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Translations
-        const translations = {
-            en: {
-                nav_cta: "Get Consult",
-                hero_badge: "Etsy Website Integration",
-                hero_t1: "From Just a Seller,", hero_t2: "To a Global Brand.",
-                hero_sub: "We build your website — and connect your Etsy shop.",
-                hero_desc: "Establish a professional .com presence to drive external traffic (Ads, Social, SEO). We integrate your Etsy shop so your listings stay updated on your site—while purchases remain on Etsy.",
-                trust_line: "Purchases are completed on Etsy. This website does not process payments.",
-                h_li1: "Brand Authority", h_li2: "External Traffic Engine", h_li3: "Etsy Checkout",
-                btn_hero: "Free Consultation",
-                
-                safe_title: "Policy-Safe Purchase Flow",
-                safe_desc: "This website acts as a high-end catalog. We do not process payments here. All purchase intent is directed to your official Etsy listings.",
-                safe_1: "Purchases on Etsy", safe_2: "No Off-Site Checkout", safe_3: "Direct Listing Links",
-
-                auth_badge: "The Perception", auth_title: "Your Own Dot Com.", auth_sub: "Elevate your perceived value.",
-                auth_desc: "Buyers trust brands with a dedicated website. It signals permanence and professionalism. Use this platform to tell your story, showcase your process, and validate your prices before they click 'Buy on Etsy'.",
-                brand_established: "Brand Established",
-
-                traf_title: "The Traffic Engine", traf_sub: "Retarget. Analyze. Convert.",
-                t1_t: "Pixel Freedom", t1_d: "Etsy limits your data. On your site, we install Meta Pixel & Google Analytics. Retarget visitors who viewed your products but didn't buy.",
-                t2_t: "Social Landing", t2_d: "Don't send Instagram traffic to a generic marketplace where they see competitors. Send them to YOUR curated gallery first.",
-                t3_t: "List Building", t3_d: "Collect emails ethically with consent forms (Newsletter/Lead Magnet), an asset you actually own, unlike Etsy followers.",
-
-                api_code_line: "Refreshing listings via Etsy API...",
-                api_title: "Etsy Open API Integration", api_sub: "You don’t need to know the API — we do.",
-                api_desc: "We build your website and connect your Etsy shop using the Open API. Your listings, photos, and descriptions are periodically refreshed and displayed as a premium catalog.",
-                api_note: "*Catalog data is refreshed from Etsy for display purposes. Purchases are completed on Etsy. No payment processing happens on this website.",
-
-                faq_title: "Common Questions",
-                q1_t: "Is this allowed by Etsy?",
-                q1_a: "Yes. Etsy allows sellers to link to their shop and listings from external websites. This site works as a showcase and directs buyers to Etsy to complete purchases.",
-                q2_t: "Where does the sale happen?",
-                q2_a: "100% on Etsy. The 'Buy' buttons are direct links to your Etsy listing. We do not process payments.",
-                q3_t: "Delivery & Revisions",
-                q3_a: "Timeline starts once content is received. Standard delivery: 48-72 hours. Includes 1 round of revisions.",
-
-                price_badge: "Brand Authority Package", price_name: "The Showcase", price_desc: "One-time design fee. Own your digital presence.",
-                p_1: "Premium Custom Design", p_2: "Etsy Open API Integration", p_3: "Mobile Responsive", p_4: "Domain Connection Support",
-                btn_price: "Start Now",
-                redirect_note: "You will be redirected to Etsy to complete your purchase.",
-                price_note: "*Hosting & Domain costs separate.",
-                disclaimer: "Etsy is a trademark of Etsy, Inc. This website is not affiliated with, endorsed by, or sponsored by Etsy."
-            },
-            tr: {
-                nav_cta: "Danışmanlık Al",
-                hero_badge: "Etsy Web Site Entegrasyonu",
-                hero_t1: "Sadece Satıcı Değil,", hero_t2: "Global Bir Marka Olun.",
-                hero_sub: "Web sitenizi kurarız — Etsy mağazanızı bağlarız.",
-                hero_desc: "Dış trafik (Reklam, Sosyal Medya, SEO) çekmek için profesyonel bir .com adresi kurun. Etsy mağazanızı entegre ederiz; ilanlarınız sitenizde güncel kalır—satın alma ise Etsy’de tamamlanır.",
-                trust_line: "Satın almalar Etsy’de tamamlanır. Bu web sitesi ödeme işlemez.",
-                h_li1: "Marka Otoritesi", h_li2: "Dış Trafik Motoru", h_li3: "Etsy Checkout",
-                btn_hero: "Ücretsiz Danışmanlık",
-                
-                safe_title: "Politika Uyumlu Satın Alma Akışı",
-                safe_desc: "Bu web sitesi üst düzey bir katalog görevi görür. Burada ödeme almayız. Tüm satın alma niyeti resmi Etsy ilanlarınıza yönlendirilir.",
-                safe_1: "Satın alma Etsy’de", safe_2: "Site Dışı Checkout Yok", safe_3: "Direkt İlan Linkleri",
-
-                auth_badge: "Algı Yönetimi", auth_title: "Kendi Dot Com Adresiniz.", auth_sub: "Algılanan değerinizi yükseltin.",
-                auth_desc: "Alıcılar, özel web sitesi olan markalara güvenir. Bu, kalıcılık ve profesyonellik sinyali verir. 'Etsy’de Satın Al'a tıklamadan önce hikayenizi anlatmak ve fiyatlarınızı doğrulamak için bu platformu kullanın.",
-                brand_established: "Marka Kuruldu",
-
-                traf_title: "Trafik Motoru", traf_sub: "Hedefle. Analiz Et. Dönüştür.",
-                t1_t: "Pixel Özgürlüğü", t1_d: "Etsy verilerinizi kısıtlar. Sitenizde Meta Pixel ve Google Analytics kuruyoruz. Ürünlerinize bakan ama almayanları yeniden hedefleyin.",
-                t2_t: "Sosyal Karşılama", t2_d: "Instagram trafiğini rakiplerin olduğu bir pazar yerine göndermeyin. Onları önce SİZİN küratörlüğünü yaptığınız galeriye gönderin.",
-                t3_t: "Liste Oluşturma", t3_d: "Etsy takipçilerinin aksine, gerçekten sahip olduğunuz bir varlık olan e-postaları izinli formlarla (Bülten) etik şekilde toplayın.",
-
-                api_code_line: "Etsy API ile ilanlar yenileniyor...",
-                api_title: "Etsy Open API Entegrasyonu", api_sub: "API’yı bilmenize gerek yok — biz biliyoruz.",
-                api_desc: "Web sitenizi kurar ve Etsy mağazanızı Open API ile bağlarız. İlanlarınız, görselleriniz ve açıklamalarınız belirli aralıklarla güncellenir ve premium bir vitrin/katalog olarak gösterilir.",
-                api_note: "*Katalog verileri vitrinleme amacıyla Etsy’den güncellenir. Satın alma Etsy’de tamamlanır. Bu web sitesinde ödeme/checkout yoktur.",
-
-                faq_title: "Sıkça Sorulanlar",
-                q1_t: "Etsy buna izin veriyor mu?",
-                q1_a: "Evet. Etsy, dış web sitelerinden mağaza ve ilanlarınıza link vermenize izin verir. Bu site bir vitrin olarak çalışır ve satın alma için kullanıcıyı Etsy’ye yönlendirir.",
-                q2_t: "Satış nerede gerçekleşiyor?",
-                q2_a: "%100 Etsy üzerinde. Sitedeki 'Satın Al' butonları, Etsy ilanınıza giden direkt linklerdir. Biz ödeme işlemi yapmayız.",
-                q3_t: "Teslimat & Revizyon",
-                q3_a: "Süreç, içerik teslim alındıktan sonra başlar. Standart teslimat: 48-72 saat. 1 tur revizyon dahildir.",
-
-                price_badge: "Marka Otorite Paketi", price_name: "Vitrin", price_desc: "Tek seferlik tasarım ücreti. Dijital varlığınıza sahip olun.",
-                p_1: "Premium Özel Tasarım", p_2: "Etsy Open API Entegrasyonu", p_3: "Mobil Uyumlu", p_4: "Domain Bağlantı Desteği",
-                btn_price: "Şimdi Başla",
-                redirect_note: "Satın alma işlemi için Etsy’ye yönlendirileceksiniz.",
-                price_note: "*Hosting & Domain maliyetleri ayrıdır.",
-                disclaimer: "Etsy, Etsy, Inc.’in ticari markasıdır. Bu web sitesi Etsy ile bağlantılı değildir; Etsy tarafından onaylanmaz veya desteklenmez."
-            }
-        };
-
-        let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('tr') ? 'tr' : 'en');
-        
-        function applyLang() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-            });
-            document.getElementById('lang-btn').innerText = currentLang.toUpperCase();
-        }
-
-        function toggleLang() {
-            currentLang = currentLang === 'en' ? 'tr' : 'en';
-            localStorage.setItem('lang', currentLang);
-            applyLang();
-        }
-        applyLang();
-    </script>
+  <footer class="border-t border-white/10 py-10 px-5"><div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 md:items-center md:justify-between"><div><div class="font-extrabold tracking-[.25em] uppercase">VitrinY Commerce</div><div class="text-sm muted mt-2">Etsy-safe brand websites and product catalog systems.</div></div><div class="flex flex-wrap gap-5 text-sm muted"><a href="index.html" class="hover:text-white">Home</a><a href="studio.html" class="hover:text-white">Studio</a><a href="portfolio.html" class="hover:text-white">Showcase</a></div></div></footer>
 </body>
 </html>
