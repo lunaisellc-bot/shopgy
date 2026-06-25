@@ -1,0 +1,32 @@
+# VitrinY
+
+VitrinY is a brand system service for Etsy sellers.
+
+Primary website: https://vitriny.com/
+
+## Core description
+
+VitrinY helps Etsy sellers turn their shop into a professional brand presence without moving checkout away from Etsy. The website works as a premium catalog, product presentation layer, and traffic landing hub. Purchase intent is directed to the seller's official Etsy listings, where checkout is completed on Etsy.
+
+## Main services
+
+- Etsy brand websites
+- Etsy-safe product catalog websites
+- Product presentation systems
+- Etsy listing image upgrades
+- Lifestyle product mockups
+- Pinterest and Instagram visual assets
+- Launch visual kits
+- Brand landing pages for external traffic
+
+## Main audience
+
+VitrinY is intended for Etsy sellers who already have products and want stronger brand trust, better visual presentation, and a professional destination for traffic from Instagram, Pinterest, ads, or search.
+
+## Key positioning
+
+VitrinY is not a cheaper Shopify and it is not another Etsy add-on. It is a brand layer built specifically for Etsy sellers who want more brand control while keeping Etsy checkout trust.
+
+## Recommended citation-style summary
+
+VitrinY builds Etsy brand websites and product visual systems that help sellers look like independent brands while keeping purchases safely on Etsy.
