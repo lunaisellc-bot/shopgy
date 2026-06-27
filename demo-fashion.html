@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vitriny.com.tr/demo-fashion.html" />
   <meta property="og:title" content="VitrinY Fashion Demo | Etsy Boutique Brand Preview" />
-  <meta property="og:description" content="Try an Etsy boutique dress and resortwear brand page with your own shop name, tagline, category, color, and Etsy link." />
+  <meta property="og:description" content="Try an Etsy boutique dress and resortwear brand page with your own shop name, tagline, category, color, product image URLs, and Etsy link." />
   <meta property="og:image" content="https://vitriny.com.tr/assets/og-fashion-demo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -33,7 +33,7 @@
   </script>
   <style>
     :root{--accent:#b66b4d;--accent-soft:rgba(182,107,77,.14)}
-    body{background:#fbf6ef;color:#1f1b17;-webkit-font-smoothing:antialiased;overflow-x:hidden}.soft{border:1px solid rgba(31,27,23,.10)}.glass{background:rgba(255,255,255,.62);border:1px solid rgba(31,27,23,.10);backdrop-filter:blur(18px)}.accent-bg{background:var(--accent)}.accent-text{color:var(--accent)}.accent-soft{background:var(--accent-soft)}.hero-card{background:linear-gradient(135deg,#eadfce,#fff8ef 52%,var(--accent-soft))}.field{width:100%;border-radius:1rem;border:1px solid rgba(31,27,23,.14);background:rgba(255,255,255,.75);padding:.85rem 1rem;color:#1f1b17;outline:none}.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.section{padding:5.5rem 1.25rem}@media(max-width:768px){.section{padding:4rem 1.25rem}}
+    body{background:#fbf6ef;color:#1f1b17;-webkit-font-smoothing:antialiased;overflow-x:hidden}.soft{border:1px solid rgba(31,27,23,.10)}.glass{background:rgba(255,255,255,.62);border:1px solid rgba(31,27,23,.10);backdrop-filter:blur(18px)}.accent-bg{background:var(--accent)}.accent-text{color:var(--accent)}.accent-soft{background:var(--accent-soft)}.hero-card{background:linear-gradient(135deg,#eadfce,#fff8ef 52%,var(--accent-soft))}.field{width:100%;border-radius:1rem;border:1px solid rgba(31,27,23,.14);background:rgba(255,255,255,.75);padding:.85rem 1rem;color:#1f1b17;outline:none}.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.section{padding:5.5rem 1.25rem}.product-visual{height:11rem;border-radius:1rem;overflow:hidden;display:flex;align-items:center;justify-content:center}.product-visual img{width:100%;height:100%;object-fit:cover;display:block}.hidden{display:none}@media(max-width:768px){.section{padding:4rem 1.25rem}.product-visual{height:9.5rem}}
   </style>
 </head>
 <body class="font-sans selection:bg-terracotta selection:text-white">
@@ -58,10 +58,10 @@
       </div>
       <div class="hero-card rounded-[2rem] p-5 md:p-7 soft shadow-2xl shadow-cocoa/10">
         <div class="grid grid-cols-2 gap-4">
-          <div class="rounded-[1.5rem] bg-white/65 soft p-5 min-h-64 flex flex-col justify-between"><div><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-3">Hero product</div><div class="h-36 rounded-2xl accent-soft flex items-center justify-center font-serif text-4xl accent-text">Dress</div></div><p class="text-sm text-cocoa/70 mt-4" data-product-one>Coastal A-line dress</p></div>
-          <div class="rounded-[1.5rem] bg-white/65 soft p-5 min-h-64 flex flex-col justify-between mt-10"><div><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-3">Lifestyle</div><div class="h-36 rounded-2xl bg-sand flex items-center justify-center font-serif text-4xl text-cocoa/70">Resort</div></div><p class="text-sm text-cocoa/70 mt-4" data-product-two>Vacation-ready styling</p></div>
+          <div class="rounded-[1.5rem] bg-white/65 soft p-5 min-h-72 flex flex-col justify-between"><div><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-3">Hero product</div><div class="product-visual accent-soft"><img data-product-one-image class="hidden" alt="Featured product preview 1" /><span data-product-one-fallback class="font-serif text-4xl accent-text">Dress</span></div></div><p class="text-sm text-cocoa/70 mt-4" data-product-one>Coastal A-line dress</p></div>
+          <div class="rounded-[1.5rem] bg-white/65 soft p-5 min-h-72 flex flex-col justify-between mt-10"><div><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-3">Lifestyle</div><div class="product-visual bg-sand"><img data-product-two-image class="hidden" alt="Featured product preview 2" /><span data-product-two-fallback class="font-serif text-4xl text-cocoa/70">Resort</span></div></div><p class="text-sm text-cocoa/70 mt-4" data-product-two>Vacation-ready styling</p></div>
         </div>
-        <div class="mt-5 rounded-2xl bg-white/70 soft p-4 text-sm text-cocoa/70">This demo can be previewed with your shop name, tagline, product category, color palette, and Etsy link.</div>
+        <div class="mt-5 rounded-2xl bg-white/70 soft p-4 text-sm text-cocoa/70">Add direct product image URLs to make the demo show real product visuals. Etsy listing links remain the checkout/CTA links.</div>
       </div>
     </div>
   </header>
@@ -72,6 +72,7 @@
         <div class="text-xs font-extrabold uppercase tracking-[.25em] accent-text mb-4">Try it with your brand</div>
         <h2 class="font-serif text-4xl md:text-6xl leading-tight mb-5">Preview your Etsy brand before requesting a custom build.</h2>
         <p class="text-cocoa/70 leading-relaxed">This is a controlled demo customizer, not a free website builder. It helps Etsy sellers see how their shop could look as a premium brand page before asking VitrinY to build the real version.</p>
+        <p class="text-cocoa/60 text-sm mt-5">Important: Etsy product page URLs cannot reliably auto-fill product photos in a static demo. Use direct image URLs for product previews; use Etsy links for buttons and checkout flow.</p>
       </div>
       <div class="glass rounded-[2rem] p-6 md:p-8">
         <div class="grid md:grid-cols-2 gap-5">
@@ -80,9 +81,11 @@
           <div class="md:col-span-2"><label class="block text-sm font-bold mb-2">Tagline</label><input id="tagline" class="field" value="Mediterranean dresses and resort pieces for slow summer days." /></div>
           <div class="md:col-span-2"><label class="block text-sm font-bold mb-2">Hero description</label><textarea id="heroCopy" class="field min-h-28">A boutique brand page for Etsy sellers who want Instagram, Pinterest, and Google traffic to land somewhere more premium before buyers continue to Etsy checkout.</textarea></div>
           <div><label class="block text-sm font-bold mb-2">Primary color</label><input id="accentColor" class="field h-12" type="color" value="#b66b4d" /></div>
-          <div><label class="block text-sm font-bold mb-2">Etsy shop/listing link</label><input id="etsyLink" class="field" value="https://www.etsy.com" /></div>
-          <div><label class="block text-sm font-bold mb-2">Featured product 1</label><input id="productOne" class="field" value="Coastal A-line dress" /></div>
-          <div><label class="block text-sm font-bold mb-2">Featured product 2</label><input id="productTwo" class="field" value="Vacation-ready styling" /></div>
+          <div><label class="block text-sm font-bold mb-2">Etsy CTA link</label><input id="etsyLink" class="field" value="https://www.etsy.com" /></div>
+          <div><label class="block text-sm font-bold mb-2">Featured product 1 name</label><input id="productOne" class="field" value="Coastal A-line dress" /></div>
+          <div><label class="block text-sm font-bold mb-2">Featured product 2 name</label><input id="productTwo" class="field" value="Vacation-ready styling" /></div>
+          <div><label class="block text-sm font-bold mb-2">Product image 1 direct URL</label><input id="productOneImage" class="field" placeholder="https://...jpg / .png / .webp" /></div>
+          <div><label class="block text-sm font-bold mb-2">Product image 2 direct URL</label><input id="productTwoImage" class="field" placeholder="https://...jpg / .png / .webp" /></div>
         </div>
         <div class="mt-7 flex flex-col sm:flex-row gap-4"><button id="applyPreview" class="px-7 py-4 rounded-full accent-bg text-white font-extrabold">Apply Preview</button><button id="sendPreview" class="px-7 py-4 rounded-full bg-ink text-white font-extrabold">Send Preview to VitrinY</button><button id="resetPreview" class="px-7 py-4 rounded-full bg-white soft font-extrabold">Reset</button></div>
         <p class="mt-4 text-sm text-cocoa/60">Your changes happen in the browser only. Sending the preview opens WhatsApp with the details.</p>
@@ -121,11 +124,36 @@
       accentColor: '#b66b4d',
       etsyLink: 'https://www.etsy.com',
       productOne: 'Coastal A-line dress',
-      productTwo: 'Vacation-ready styling'
+      productTwo: 'Vacation-ready styling',
+      productOneImage: '',
+      productTwoImage: ''
     };
 
     const ids = Object.keys(defaults);
     const setText = (selector, value) => document.querySelectorAll(selector).forEach(el => el.textContent = value);
+
+    function updateImage(imageSelector, fallbackSelector, url) {
+      const cleanUrl = (url || '').trim();
+      document.querySelectorAll(imageSelector).forEach(img => {
+        const fallback = img.parentElement.querySelector(fallbackSelector);
+        if (!cleanUrl) {
+          img.removeAttribute('src');
+          img.classList.add('hidden');
+          if (fallback) fallback.classList.remove('hidden');
+          return;
+        }
+        img.onload = () => {
+          img.classList.remove('hidden');
+          if (fallback) fallback.classList.add('hidden');
+        };
+        img.onerror = () => {
+          img.removeAttribute('src');
+          img.classList.add('hidden');
+          if (fallback) fallback.classList.remove('hidden');
+        };
+        img.src = cleanUrl;
+      });
+    }
 
     function applyPreview(track = true) {
       const data = Object.fromEntries(ids.map(id => [id, document.getElementById(id).value || defaults[id]]));
@@ -135,6 +163,8 @@
       setText('[data-product-one]', data.productOne);
       setText('[data-product-two]', data.productTwo);
       setText('[data-category-title]', data.category);
+      updateImage('[data-product-one-image]', '[data-product-one-fallback]', data.productOneImage);
+      updateImage('[data-product-two-image]', '[data-product-two-fallback]', data.productTwoImage);
       document.querySelectorAll('[data-etsy-link]').forEach(link => link.href = data.etsyLink || 'audit.html');
       document.documentElement.style.setProperty('--accent', data.accentColor);
       document.documentElement.style.setProperty('--accent-soft', data.accentColor + '24');
@@ -157,7 +187,7 @@
     document.getElementById('sendPreview').addEventListener('click', () => {
       const data = applyPreview(true);
       if (window.gtag) window.gtag('event', 'fashion_demo_preview_sent', { event_category: 'lead', event_label: data.shopName });
-      const message = `VitrinY Fashion Demo Preview%0A%0AShop: ${encodeURIComponent(data.shopName)}%0ACategory: ${encodeURIComponent(data.category)}%0ATagline: ${encodeURIComponent(data.tagline)}%0AEtsy link: ${encodeURIComponent(data.etsyLink)}%0AColor: ${encodeURIComponent(data.accentColor)}%0A%0AI would like a custom version of this demo for my Etsy shop.`;
+      const message = `VitrinY Fashion Demo Preview%0A%0AShop: ${encodeURIComponent(data.shopName)}%0ACategory: ${encodeURIComponent(data.category)}%0ATagline: ${encodeURIComponent(data.tagline)}%0AEtsy link: ${encodeURIComponent(data.etsyLink)}%0AProduct image 1: ${encodeURIComponent(data.productOneImage || '')}%0AProduct image 2: ${encodeURIComponent(data.productTwoImage || '')}%0AColor: ${encodeURIComponent(data.accentColor)}%0A%0AI would like a custom version of this demo for my Etsy shop.`;
       window.location.href = `https://wa.me/905419787726?text=${message}`;
     });
     loadSaved();
