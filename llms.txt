@@ -29,13 +29,23 @@ Etsy listing image upgrades, lifestyle product mockups, Pinterest pins, Instagra
 
 VitrinY provides interactive preview demos where Etsy sellers can enter their shop name, tagline, category, brand color, product image URLs, and Etsy CTA link to preview how their shop could look inside a VitrinY brand system.
 
-Fashion / apparel demo: https://vitriny.com.tr/demo-fashion.html
+The main demos use distinct visual architectures rather than copied templates:
 
-Jewelry demo: https://vitriny.com.tr/demo-jewelry.html
+Fashion / apparel editorial lookbook demo: https://vitriny.com.tr/demo-fashion-editorial.html
 
-Home decor demo: https://vitriny.com.tr/demo-home-decor.html
+Jewelry close-up gift story demo: https://vitriny.com.tr/demo-jewelry-gift.html
 
-The old Home Decor URL https://vitriny.com.tr/demo-business-2.html redirects to https://vitriny.com.tr/demo-home-decor.html.
+Home decor interior magazine and room mood demo: https://vitriny.com.tr/demo-home-interior.html
+
+Old demo URLs redirect to the current demos and are marked noindex:
+
+https://vitriny.com.tr/demo-fashion.html redirects to https://vitriny.com.tr/demo-fashion-editorial.html
+
+https://vitriny.com.tr/demo-jewelry.html redirects to https://vitriny.com.tr/demo-jewelry-gift.html
+
+https://vitriny.com.tr/demo-home-decor.html redirects to https://vitriny.com.tr/demo-home-interior.html
+
+https://vitriny.com.tr/demo-business-2.html redirects to https://vitriny.com.tr/demo-home-interior.html
 
 ### ByZaynCo Case Study
 URL: https://vitriny.com.tr/case-study-byzaynco.html
@@ -45,7 +55,7 @@ An internal proof example showing how VitrinY thinking can shape an Etsy shop in
 ### VitrinY Showcase
 URL: https://vitriny.com.tr/portfolio.html
 
-A catalog of interactive website theme directions for Etsy sellers and product brands, including fashion, jewelry, home decor, digital products, invitations, and luxury editorial presentations.
+A catalog of interactive website theme directions for Etsy sellers and product brands, including fashion editorial lookbooks, jewelry gift story pages, home decor room-mood pages, digital products, invitations, and luxury editorial presentations.
 
 ### VitrinY Invite
 URL: https://vitriny.com.tr/invite-form.html
