@@ -1,16 +1,16 @@
 /*
   VitrinY tracking configuration
 
-  Fill these IDs when ready:
-  - GA4_MEASUREMENT_ID: Google Analytics 4 measurement ID, e.g. G-XXXXXXXXXX
+  Active IDs:
+  - GA4_MEASUREMENT_ID: Google Analytics 4 measurement ID
+
+  Pending IDs:
   - META_PIXEL_ID: Meta Pixel ID
   - PINTEREST_TAG_ID: Pinterest Tag ID
-
-  The file is intentionally passive until IDs are added to the page templates.
 */
 
 window.VITRINY_TRACKING = {
-  GA4_MEASUREMENT_ID: '',
+  GA4_MEASUREMENT_ID: 'G-HFWR7GE7LH',
   META_PIXEL_ID: '',
   PINTEREST_TAG_ID: '',
   EVENTS: {
