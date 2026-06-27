@@ -2,7 +2,7 @@
 
 VitrinY is a brand system service for Etsy sellers.
 
-Primary website: https://vitriny.com/
+Primary website: https://vitriny.com.tr/
 
 ## Core description
 
@@ -11,27 +11,27 @@ VitrinY helps Etsy sellers turn their shop into a professional brand presence wi
 ## Main service layers
 
 ### Free Etsy Brand Audit
-URL: https://vitriny.com/audit.html
+URL: https://vitriny.com.tr/audit.html
 
 A lead form for Etsy sellers to request a free review of brand presentation, listing visuals, and external traffic landing opportunities. This is the recommended entry point for new inquiries.
 
 ### VitrinY Commerce
-URL: https://vitriny.com/etsy.html
+URL: https://vitriny.com.tr/etsy.html
 
-Professional .com brand websites and product catalog landing pages for Etsy sellers. The site supports external traffic from Instagram, Pinterest, ads, QR codes, and search while purchase buttons direct buyers to official Etsy listings.
+Professional .com.tr brand websites and product catalog landing pages for Etsy sellers. The site supports external traffic from Instagram, Pinterest, ads, QR codes, and search while purchase buttons direct buyers to official Etsy listings.
 
 ### VitrinY Studio
-URL: https://vitriny.com/studio.html
+URL: https://vitriny.com.tr/studio.html
 
 Etsy listing image upgrades, lifestyle product mockups, Pinterest pins, Instagram assets, and launch-ready visual systems for Etsy sellers.
 
 ### VitrinY Showcase
-URL: https://vitriny.com/portfolio.html
+URL: https://vitriny.com.tr/portfolio.html
 
 A catalog of website theme directions for Etsy sellers and product brands, including fashion, jewelry, home decor, digital products, invitations, and luxury editorial presentations.
 
 ### VitrinY Invite
-URL: https://vitriny.com/invite-form.html
+URL: https://vitriny.com.tr/invite-form.html
 
 A future digital invitation and RSVP website system. This page is currently marked noindex until the real form endpoint and delivery workflow are connected.
 
