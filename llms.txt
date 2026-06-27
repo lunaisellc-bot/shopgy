@@ -10,6 +10,11 @@ VitrinY helps Etsy sellers turn their shop into a professional brand presence wi
 
 ## Main service layers
 
+### Free Etsy Brand Audit
+URL: https://vitriny.com/audit.html
+
+A lead form for Etsy sellers to request a free review of brand presentation, listing visuals, and external traffic landing opportunities. This is the recommended entry point for new inquiries.
+
 ### VitrinY Commerce
 URL: https://vitriny.com/etsy.html
 
