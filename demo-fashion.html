@@ -1,535 +1,166 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URBAN ARMOR | Technical Streetwear</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=JetBrains+Mono:wght@100;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { 
-                        'head': ['Oswald', 'sans-serif'],
-                        'mono': ['JetBrains Mono', 'monospace']
-                    },
-                    colors: {
-                        'void': '#050505',
-                        'concrete': '#1a1a1a',
-                        'acid': '#CCFF00', /* Neon Lime - Hype Rengi */
-                        'steel': '#888888'
-                    },
-                    animation: {
-                        'marquee': 'marquee 15s linear infinite',
-                        'marquee-reverse': 'marqueeReverse 15s linear infinite',
-                        'glitch': 'glitch 1s linear infinite',
-                        'spin-slow': 'spin 10s linear infinite'
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        },
-                        marqueeReverse: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(0%)' },
-                        },
-                        glitch: {
-                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                            '62%': { transform: 'translate(0,0) skew(5deg)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* GRID BACKGROUND TEXTURE */
-        .grid-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* CUSTOM CURSOR */
-        body { cursor: crosshair; }
-        
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #CCFF00; border-radius: 0; }
-
-        /* IMAGE HOVER EFFECTS */
-        .glitch-img-container {
-            position: relative;
-            overflow: hidden;
-        }
-        .glitch-img-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(204, 255, 0, 0.2);
-            mix-blend-mode: multiply;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        .glitch-img-container:hover::after {
-            opacity: 1;
-        }
-        .glitch-img-container img {
-            transition: transform 0.1s steps(5); /* Frame-by-frame effect */
-        }
-        .glitch-img-container:hover img {
-            transform: scale(1.05);
-            filter: contrast(120%) grayscale(100%);
-        }
-
-        /* REVEAL ANIMATION */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* BRUTALIST BUTTON */
-        .btn-brutal {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        .btn-brutal::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: #CCFF00;
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-        .btn-brutal:hover::before {
-            left: 0;
-        }
-        .btn-brutal:hover {
-            color: black;
-            border-color: #CCFF00;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitrinY Fashion Demo | Etsy Boutique Dress & Resortwear Brand Page</title>
+  <meta name="description" content="Interactive VitrinY fashion demo for Etsy dress, boutique apparel, resortwear, and handmade clothing sellers. Preview your Etsy brand direction before requesting a custom build." />
+  <meta name="keywords" content="Etsy fashion website demo, Etsy boutique dress website, resortwear brand page, Etsy apparel seller website, VitrinY fashion demo" />
+  <meta name="author" content="Lunaise LLC" />
+  <link rel="canonical" href="https://vitriny.com.tr/demo-fashion.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vitriny.com.tr/demo-fashion.html" />
+  <meta property="og:title" content="VitrinY Fashion Demo | Etsy Boutique Brand Preview" />
+  <meta property="og:description" content="Try an Etsy boutique dress and resortwear brand page with your own shop name, tagline, category, color, and Etsy link." />
+  <meta property="og:image" content="https://vitriny.com.tr/assets/og-fashion-demo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <script src="assets/js/tracking-config.js"></script>
+  <script src="assets/js/ga4.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans:['Outfit','sans-serif'], serif:['Playfair Display','serif'] }, colors: { ink:'#1f1b17', cream:'#fbf6ef', sand:'#eadfce', sage:'#77846c', terracotta:'#b66b4d', cocoa:'#5c4335', gold:'#c7a15a' } } } }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "VitrinY Fashion Demo",
+    "url": "https://vitriny.com.tr/demo-fashion.html",
+    "description": "Interactive fashion website demo for Etsy boutique dress, resortwear, and handmade apparel sellers.",
+    "creator": { "@type": "Organization", "name": "Lunaise LLC", "url": "https://vitriny.com.tr" }
+  }
+  </script>
+  <style>
+    :root{--accent:#b66b4d;--accent-soft:rgba(182,107,77,.14)}
+    body{background:#fbf6ef;color:#1f1b17;-webkit-font-smoothing:antialiased;overflow-x:hidden}.soft{border:1px solid rgba(31,27,23,.10)}.glass{background:rgba(255,255,255,.62);border:1px solid rgba(31,27,23,.10);backdrop-filter:blur(18px)}.accent-bg{background:var(--accent)}.accent-text{color:var(--accent)}.accent-soft{background:var(--accent-soft)}.hero-card{background:linear-gradient(135deg,#eadfce,#fff8ef 52%,var(--accent-soft))}.field{width:100%;border-radius:1rem;border:1px solid rgba(31,27,23,.14);background:rgba(255,255,255,.75);padding:.85rem 1rem;color:#1f1b17;outline:none}.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.section{padding:5.5rem 1.25rem}@media(max-width:768px){.section{padding:4rem 1.25rem}}
+  </style>
 </head>
-<body class="bg-void text-white font-head selection:bg-acid selection:text-black overflow-x-hidden">
+<body class="font-sans selection:bg-terracotta selection:text-white">
+  <div class="fixed inset-0 pointer-events-none opacity-50" style="background:radial-gradient(circle at top left,rgba(199,161,90,.22),transparent 35%),radial-gradient(circle at bottom right,rgba(119,132,108,.18),transparent 38%)"></div>
 
-    <div class="grid-overlay"></div>
-
-    <div class="bg-acid text-black overflow-hidden py-1 border-b border-black">
-        <div class="animate-marquee whitespace-nowrap font-mono text-xs font-bold tracking-widest">
-            WARNING: HIGH DEMAND • WORLDWIDE SHIPPING • SECURE CHECKOUT VIA ETSY • LIMITED STOCK • NO RESTOCKS • WARNING: HIGH DEMAND • WORLDWIDE SHIPPING • SECURE CHECKOUT VIA ETSY
-        </div>
+  <nav class="fixed top-0 left-0 z-50 w-full bg-cream/85 backdrop-blur-xl border-b border-ink/10">
+    <div class="max-w-7xl mx-auto h-20 px-5 md:px-8 flex items-center justify-between">
+      <a href="portfolio.html" class="flex items-center gap-3"><div class="w-10 h-10 rounded-full accent-bg text-white flex items-center justify-center font-serif text-xl">V</div><div><div class="text-sm font-extrabold tracking-[.2em] uppercase">VitrinY Fashion Demo</div><div class="text-[10px] uppercase tracking-[.2em] text-cocoa/60">Etsy boutique preview</div></div></a>
+      <div class="hidden md:flex gap-7 text-xs font-bold uppercase tracking-[.16em] text-cocoa/70"><a href="#customizer" class="hover:text-ink">Try your brand</a><a href="#collections" class="hover:text-ink">Collections</a><a href="#why" class="hover:text-ink">Why it works</a><a href="audit.html" class="hover:text-ink">Audit</a></div>
+      <a href="#customizer" class="px-5 py-3 rounded-full accent-bg text-white text-xs font-extrabold uppercase tracking-widest hover:opacity-90 transition">Customize Demo</a>
     </div>
+  </nav>
 
-    <nav class="fixed w-full z-50 top-6 px-6 md:px-10 flex justify-between items-start mix-blend-difference text-white pointer-events-none">
-        <div class="pointer-events-auto">
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tighter leading-none hover:text-acid transition cursor-pointer">
-                URBAN<br>ARMOR<span class="text-acid">.</span>
-            </h1>
-            <p class="font-mono text-[10px] text-gray-400 mt-2 tracking-widest">EST. 2025 // SECTOR 7</p>
+  <header class="relative min-h-screen pt-28 px-5 flex items-center">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+      <div>
+        <div class="inline-flex px-4 py-2 rounded-full glass text-[10px] font-extrabold uppercase tracking-[.25em] accent-text mb-7">Interactive preview for Etsy fashion sellers</div>
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[.96] mb-7"><span data-brand-name>Olive Coast Studio</span></h1>
+        <p class="text-xl md:text-2xl text-cocoa/80 max-w-2xl leading-relaxed mb-6" data-tagline>Mediterranean dresses and resort pieces for slow summer days.</p>
+        <p class="text-base text-cocoa/65 max-w-2xl mb-9" data-hero-copy>A boutique brand page for Etsy sellers who want Instagram, Pinterest, and Google traffic to land somewhere more premium before buyers continue to Etsy checkout.</p>
+        <div class="flex flex-col sm:flex-row gap-4"><a data-etsy-link href="audit.html" class="px-8 py-4 rounded-full accent-bg text-white font-extrabold hover:opacity-90 transition text-center">Shop on Etsy</a><a href="#customizer" class="px-8 py-4 rounded-full bg-white soft font-extrabold hover:bg-cream transition text-center">Try with your brand</a></div>
+      </div>
+      <div class="hero-card rounded-[2rem] p-5 md:p-7 soft shadow-2xl shadow-cocoa/10">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-[1.5rem] bg-white/65 soft p-5 min-h-64 flex flex-col justify-between"><div><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-3">Hero product</div><div class="h-36 rounded-2xl accent-soft flex items-center justify-center font-serif text-4xl accent-text">Dress</div></div><p class="text-sm text-cocoa/70 mt-4" data-product-one>Coastal A-line dress</p></div>
+          <div class="rounded-[1.5rem] bg-white/65 soft p-5 min-h-64 flex flex-col justify-between mt-10"><div><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-3">Lifestyle</div><div class="h-36 rounded-2xl bg-sand flex items-center justify-center font-serif text-4xl text-cocoa/70">Resort</div></div><p class="text-sm text-cocoa/70 mt-4" data-product-two>Vacation-ready styling</p></div>
         </div>
-
-        <div class="hidden md:flex flex-col items-end gap-1 pointer-events-auto">
-            <a href="#drop" class="text-xl font-bold uppercase hover:line-through decoration-acid decoration-4">The Drop</a>
-            <a href="#" class="text-xl font-bold uppercase hover:line-through decoration-acid decoration-4">Archives</a>
-            <a href="#" class="text-xl font-bold uppercase hover:line-through decoration-acid decoration-4">About</a>
-            <div class="mt-4 border border-white px-4 py-1 rounded-full font-mono text-xs hover:bg-white hover:text-black transition cursor-pointer">
-                CART [0]
-            </div>
-        </div>
-        
-        <div class="md:hidden pointer-events-auto text-2xl">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-    </nav>
-
-    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1541336528065-8f1fdc435835?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-40 grayscale" alt="Streetwear Hero">
-            <div class="absolute inset-0 bg-gradient-to-t from-void via-transparent to-void"></div>
-        </div>
-
-        <div class="relative z-10 text-center w-full px-4">
-            <div class="font-mono text-acid text-xs md:text-sm tracking-[0.5em] mb-4 animate-pulse">SYSTEM ONLINE</div>
-            
-            <h2 class="text-[12vw] leading-[0.8] font-bold tracking-tighter mix-blend-overlay text-white opacity-80 select-none">
-                FUTURE<br>RESIST
-            </h2>
-            
-            <div class="mt-12 flex flex-col items-center gap-6">
-                <p class="font-mono text-xs md:text-sm max-w-md text-gray-400">
-                    // TECHNICAL APPAREL FOR THE MODERN DYSTOPIA. <br>
-                    ENGINEERED IN MALATYA. WORN WORLDWIDE.
-                </p>
-                <a href="#drop" class="btn-brutal border border-white px-10 py-4 text-sm font-mono tracking-widest uppercase inline-block">
-                    Enter Shop
-                </a>
-            </div>
-        </div>
-
-        <div class="absolute bottom-10 left-10 font-mono text-[10px] text-gray-600 hidden md:block">
-            LAT: 38.3552 N <br> LNG: 38.3095 E
-        </div>
-        <div class="absolute bottom-10 right-10 font-mono text-[10px] text-acid animate-spin-slow">
-            <i class="fa-solid fa-gear text-2xl"></i>
-        </div>
-    </header>
-
-    <div class="bg-void border-y border-white/10 py-8 overflow-hidden">
-        <div class="animate-marquee-reverse whitespace-nowrap font-head text-6xl md:text-8xl font-bold text-white/5 uppercase tracking-tighter select-none">
-            Don't Conform • Break The Simulation • Urban Armor • Heavy Cotton • Limited Edition •
-        </div>
+        <div class="mt-5 rounded-2xl bg-white/70 soft p-4 text-sm text-cocoa/70">This demo can be previewed with your shop name, tagline, product category, color palette, and Etsy link.</div>
+      </div>
     </div>
+  </header>
 
-    <section id="drop" class="px-4 md:px-8 py-24 bg-void relative">
-        <div class="flex justify-between items-end mb-16 border-b border-white/20 pb-4 reveal">
-            <div>
-                <span class="font-mono text-acid text-xs">COLLECTION 001</span>
-                <h3 class="text-4xl md:text-6xl font-bold uppercase">Mainline</h3>
-            </div>
-            <div class="font-mono text-xs text-right hidden md:block">
-                <span class="block">ITEMS: 15</span>
-                <span class="block text-acid">STATUS: LIVE</span>
-            </div>
+  <section id="customizer" class="section bg-white/55 border-y border-ink/10 relative">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-start">
+      <div class="sticky top-28">
+        <div class="text-xs font-extrabold uppercase tracking-[.25em] accent-text mb-4">Try it with your brand</div>
+        <h2 class="font-serif text-4xl md:text-6xl leading-tight mb-5">Preview your Etsy brand before requesting a custom build.</h2>
+        <p class="text-cocoa/70 leading-relaxed">This is a controlled demo customizer, not a free website builder. It helps Etsy sellers see how their shop could look as a premium brand page before asking VitrinY to build the real version.</p>
+      </div>
+      <div class="glass rounded-[2rem] p-6 md:p-8">
+        <div class="grid md:grid-cols-2 gap-5">
+          <div><label class="block text-sm font-bold mb-2">Shop name</label><input id="shopName" class="field" value="Olive Coast Studio" /></div>
+          <div><label class="block text-sm font-bold mb-2">Product category</label><input id="category" class="field" value="Resort dresses" /></div>
+          <div class="md:col-span-2"><label class="block text-sm font-bold mb-2">Tagline</label><input id="tagline" class="field" value="Mediterranean dresses and resort pieces for slow summer days." /></div>
+          <div class="md:col-span-2"><label class="block text-sm font-bold mb-2">Hero description</label><textarea id="heroCopy" class="field min-h-28">A boutique brand page for Etsy sellers who want Instagram, Pinterest, and Google traffic to land somewhere more premium before buyers continue to Etsy checkout.</textarea></div>
+          <div><label class="block text-sm font-bold mb-2">Primary color</label><input id="accentColor" class="field h-12" type="color" value="#b66b4d" /></div>
+          <div><label class="block text-sm font-bold mb-2">Etsy shop/listing link</label><input id="etsyLink" class="field" value="https://www.etsy.com" /></div>
+          <div><label class="block text-sm font-bold mb-2">Featured product 1</label><input id="productOne" class="field" value="Coastal A-line dress" /></div>
+          <div><label class="block text-sm font-bold mb-2">Featured product 2</label><input id="productTwo" class="field" value="Vacation-ready styling" /></div>
         </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-16">
-
-            <div class="group cursor-pointer reveal">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <span class="absolute top-2 left-2 bg-acid text-black font-mono text-[9px] px-2 py-1 font-bold z-10">BESTSELLER</span>
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&q=80" class="w-full h-full object-cover" alt="Hoodie">
-                    <div class="absolute bottom-2 right-2 font-mono text-[9px] text-acid bg-black/80 px-2 py-1 opacity-0 group-hover:opacity-100 transition">
-                        450GSM COTTON
-                    </div>
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Oversized Hoodie</h4>
-                        <p class="text-gray-500">Heavyweight / Black</p>
-                    </div>
-                    <span class="text-white">$85</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-75">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80" class="w-full h-full object-cover" alt="Tee">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Graphic Tee V1</h4>
-                        <p class="text-gray-500">Boxy Fit / White</p>
-                    </div>
-                    <span class="text-white">$45</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-100">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80" class="w-full h-full object-cover" alt="Jacket">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Tactical Vest</h4>
-                        <p class="text-gray-500">Utility / Multi-pocket</p>
-                    </div>
-                    <span class="text-white">$120</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-150">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <span class="absolute top-2 left-2 border border-white text-white font-mono text-[9px] px-2 py-1 font-bold z-10">LOW STOCK</span>
-                    <img src="https://images.unsplash.com/photo-1551488852-0847ec3663a6?w=800&q=80" class="w-full h-full object-cover" alt="Beanie">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Docker Beanie</h4>
-                        <p class="text-gray-500">Wool Blend / Orange</p>
-                    </div>
-                    <span class="text-white">$30</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=80" class="w-full h-full object-cover" alt="Cargo">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Tech Cargo Pants</h4>
-                        <p class="text-gray-500">Ripstop / Olive</p>
-                    </div>
-                    <span class="text-white">$95</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-75">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=800&q=80" class="w-full h-full object-cover" alt="Print Tee">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Acid Wash Tee</h4>
-                        <p class="text-gray-500">Vintage Wash / Grey</p>
-                    </div>
-                    <span class="text-white">$50</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-100">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" class="w-full h-full object-cover" alt="Sneaker">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Proto-Runner</h4>
-                        <p class="text-gray-500">Mesh / Red Accent</p>
-                    </div>
-                    <span class="text-white">$180</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-150">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1520975661595-6453be3f7070?w=800&q=80" class="w-full h-full object-cover" alt="Denim">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Distressed Denim</h4>
-                        <p class="text-gray-500">Japanese Denim / Blue</p>
-                    </div>
-                    <span class="text-white">$140</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-            
-             <div class="group cursor-pointer reveal">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80" class="w-full h-full object-cover" alt="Black Shirt">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Core Black Tee</h4>
-                        <p class="text-gray-500">Essential / Jet Black</p>
-                    </div>
-                    <span class="text-white">$40</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-75">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1578681994506-b8f463449011?w=800&q=80" class="w-full h-full object-cover" alt="Puffer">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Cropped Puffer</h4>
-                        <p class="text-gray-500">Nylon / Reflective</p>
-                    </div>
-                    <span class="text-white">$210</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-100">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80" class="w-full h-full object-cover" alt="High Tops">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">High Top Trainers</h4>
-                        <p class="text-gray-500">Leather / Monochrome</p>
-                    </div>
-                    <span class="text-white">$160</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-            <div class="group cursor-pointer reveal delay-150">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1525450824786-227cbef707f3?w=800&q=80" class="w-full h-full object-cover" alt="Tote">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Industrial Tote</h4>
-                        <p class="text-gray-500">Heavy Canvas / Print</p>
-                    </div>
-                    <span class="text-white">$55</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-             <div class="group cursor-pointer reveal">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&q=80" class="w-full h-full object-cover" alt="Cap">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Distressed Cap</h4>
-                        <p class="text-gray-500">Cotton / Frayed</p>
-                    </div>
-                    <span class="text-white">$35</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-             <div class="group cursor-pointer reveal delay-75">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=800&q=80" class="w-full h-full object-cover" alt="Long Sleeve">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Layering Tee</h4>
-                        <p class="text-gray-500">Long Sleeve / Mesh</p>
-                    </div>
-                    <span class="text-white">$60</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-             <div class="group cursor-pointer reveal delay-100">
-                <div class="glitch-img-container aspect-[3/4] bg-concrete mb-4 relative">
-                    <span class="absolute top-2 left-2 bg-white text-black font-mono text-[9px] px-2 py-1 font-bold z-10">COLLAB</span>
-                    <img src="https://images.unsplash.com/photo-1605518216938-7f31b7b64071?w=800&q=80" class="w-full h-full object-cover" alt="Shorts">
-                </div>
-                <div class="flex justify-between items-start font-mono text-xs border-t border-white/20 pt-2">
-                    <div>
-                        <h4 class="font-bold text-white uppercase group-hover:text-acid transition">Basketball Shorts</h4>
-                        <p class="text-gray-500">Mesh / Oversized</p>
-                    </div>
-                    <span class="text-white">$70</span>
-                </div>
-                <button class="w-full mt-3 border border-white/20 text-white/50 py-2 font-mono text-[10px] uppercase hover:bg-white hover:text-black hover:border-white transition">Buy on Etsy</button>
-            </div>
-
-        </div>
-
-        <div class="mt-24 text-center reveal">
-            <button class="btn-brutal border border-white text-white px-12 py-4 font-mono text-xs tracking-widest uppercase inline-block hover:text-black">
-                View All Archive
-            </button>
-        </div>
-    </section>
-
-    <section class="relative h-[60vh] flex items-center justify-center border-t border-white/10 bg-acid">
-        <div class="absolute inset-0 z-0">
-             <img src="https://images.unsplash.com/photo-1549497557-d54b4f5325b5?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-20 mix-blend-multiply grayscale" alt="Crowd">
-        </div>
-        
-        <div class="relative z-10 text-center px-6">
-            <h3 class="text-black text-6xl md:text-9xl font-bold tracking-tighter uppercase mb-4 leading-none">
-                Don't <br>Sleep.
-            </h3>
-            <p class="font-mono text-black text-sm md:text-base mb-8 max-w-lg mx-auto">
-                LIMITED QUANTITIES. ONCE THEY'RE GONE, THEY'RE GONE. SIGN UP FOR EARLY ACCESS TO DROP 002.
-            </p>
-            
-            <div class="flex flex-col md:flex-row gap-0 max-w-md mx-auto border border-black">
-                <input type="email" placeholder="EMAIL ADDRESS" class="bg-transparent text-black placeholder-black/50 p-4 w-full focus:outline-none font-mono text-xs uppercase">
-                <button class="bg-black text-acid px-8 py-4 font-bold uppercase hover:bg-white hover:text-black transition">
-                    Submit
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-void text-white pt-20 pb-10 px-6 border-t border-white/10 font-mono text-xs">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div>
-                <h4 class="font-bold text-lg mb-4 text-acid">URBAN ARMOR</h4>
-                <p class="text-gray-500 leading-relaxed max-w-xs">
-                    Redefining the silhouette of the modern city. Technical fabrics meets brutalist aesthetics.
-                </p>
-            </div>
-            
-            <div>
-                <h4 class="font-bold text-white mb-4 uppercase">Support</h4>
-                <ul class="space-y-2 text-gray-500">
-                    <li><a href="#" class="hover:text-acid transition">Shipping & Returns</a></li>
-                    <li><a href="#" class="hover:text-acid transition">Size Guide</a></li>
-                    <li><a href="#" class="hover:text-acid transition">FAQ</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-bold text-white mb-4 uppercase">Legal</h4>
-                <ul class="space-y-2 text-gray-500">
-                    <li><a href="#" class="hover:text-acid transition">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-acid transition">Terms of Service</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="font-bold text-white mb-4 uppercase">Socials</h4>
-                <div class="flex gap-4 text-xl text-gray-500">
-                    <a href="#" class="hover:text-acid transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="hover:text-acid transition"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" class="hover:text-acid transition"><i class="fa-brands fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-gray-600">
-            <p>&copy; 2025 URBAN ARMOR. POWERED BY VITRINX.</p>
-            <p>DESIGNED IN THE VOID.</p>
-        </div>
-    </footer>
-
-    <div class="fixed bottom-6 right-6 z-50">
-        <a href="#" class="relative group">
-            <div class="absolute inset-0 bg-acid blur-md opacity-50 group-hover:opacity-100 transition duration-500"></div>
-            <div class="relative bg-black border border-acid text-acid h-20 w-20 rounded-full flex items-center justify-center animate-spin-slow">
-                 <svg viewBox="0 0 100 100" width="100" height="100">
-                  <path id="curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent"/>
-                  <text font-size="12" font-family="JetBrains Mono" font-weight="bold" fill="currentColor">
-                    <textPath xlink:href="#curve">
-                      • VERIFIED • AUTHENTIC 
-                    </textPath>
-                  </text>
-                </svg>
-            </div>
-            <i class="fa-solid fa-check absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-acid text-xl"></i>
-        </a>
+        <div class="mt-7 flex flex-col sm:flex-row gap-4"><button id="applyPreview" class="px-7 py-4 rounded-full accent-bg text-white font-extrabold">Apply Preview</button><button id="sendPreview" class="px-7 py-4 rounded-full bg-ink text-white font-extrabold">Send Preview to VitrinY</button><button id="resetPreview" class="px-7 py-4 rounded-full bg-white soft font-extrabold">Reset</button></div>
+        <p class="mt-4 text-sm text-cocoa/60">Your changes happen in the browser only. Sending the preview opens WhatsApp with the details.</p>
+      </div>
     </div>
+  </section>
 
-    <script>
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
+  <section id="collections" class="section relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-12"><div class="text-xs font-extrabold uppercase tracking-[.25em] accent-text mb-4">Demo structure</div><h2 class="font-serif text-4xl md:text-6xl leading-tight mb-5">Built for fashion buyers, not just page views.</h2><p class="text-cocoa/70 text-lg">A VitrinY fashion page gives external traffic a clear branded first stop: product mood, collection logic, trust signals, and a safe Etsy purchase path.</p></div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-[2rem] bg-white/70 soft p-7"><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-4">Collection</div><h3 class="font-serif text-3xl mb-3" data-category-title>Resort dresses</h3><p class="text-cocoa/70">A clear category story for seasonal and lifestyle-driven shoppers.</p></div>
+        <div class="rounded-[2rem] bg-white/70 soft p-7"><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-4">Trust</div><h3 class="font-serif text-3xl mb-3">Fit & detail notes</h3><p class="text-cocoa/70">Explain fit, fabric, pockets, styling, and shipping expectations before Etsy checkout.</p></div>
+        <div class="rounded-[2rem] bg-white/70 soft p-7"><div class="text-xs uppercase tracking-[.2em] accent-text font-extrabold mb-4">Traffic</div><h3 class="font-serif text-3xl mb-3">Pinterest-ready landing</h3><p class="text-cocoa/70">A stronger destination for social and search traffic than a marketplace listing alone.</p></div>
+      </div>
+    </div>
+  </section>
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+  <section id="why" class="section bg-ink text-cream relative">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+      <div><div class="text-xs font-extrabold uppercase tracking-[.25em] text-gold mb-4">Why this demo sells</div><h2 class="font-serif text-4xl md:text-6xl leading-tight mb-6">The buyer sees a brand before they see another listing.</h2><p class="text-cream/70 text-lg">For Etsy sellers, this page does not replace Etsy. It makes external traffic feel more confident before moving to official Etsy listings for purchase.</p></div>
+      <div class="space-y-4"><div class="rounded-2xl bg-white/5 soft p-5"><h3 class="font-bold mb-2">Best for</h3><p class="text-cream/65 text-sm">Dress sellers, resortwear shops, handmade apparel brands, matching sets, boutique accessories, and seasonal collections.</p></div><div class="rounded-2xl bg-white/5 soft p-5"><h3 class="font-bold mb-2">Suggested package</h3><p class="text-cream/65 text-sm">Start with Studio Listing Refresh, then upgrade to Commerce Brand Page or Catalog System.</p></div><div class="rounded-2xl bg-white/5 soft p-5"><h3 class="font-bold mb-2">Checkout flow</h3><p class="text-cream/65 text-sm">The site works as brand presentation. Purchase buttons send buyers to official Etsy listings.</p></div></div>
+    </div>
+  </section>
+
+  <section class="px-5 py-24 relative"><div class="max-w-5xl mx-auto glass rounded-[2rem] p-8 md:p-12 text-center"><div class="text-xs font-extrabold uppercase tracking-[.25em] accent-text mb-4">Ready for your shop?</div><h2 class="font-serif text-4xl md:text-6xl leading-tight mb-5">Want this direction adapted to your Etsy brand?</h2><p class="text-cocoa/70 text-lg mb-8">Send your Etsy shop link. VitrinY will review your visuals, brand presentation, and the best fashion page direction for your products.</p><a href="audit.html" class="inline-flex px-8 py-4 rounded-full accent-bg text-white font-extrabold hover:opacity-90 transition">Request Free Fashion Audit</a></div></section>
+
+  <footer class="border-t border-ink/10 py-10 px-5 relative"><div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 md:items-center md:justify-between"><div><div class="font-extrabold tracking-[.25em] uppercase">VitrinY Fashion Demo</div><div class="text-sm text-cocoa/60 mt-2">Interactive Etsy boutique preview system.</div></div><div class="flex flex-wrap gap-5 text-sm text-cocoa/70"><a href="portfolio.html" class="hover:text-ink">Showcase</a><a href="studio.html" class="hover:text-ink">Studio</a><a href="etsy.html" class="hover:text-ink">Commerce</a><a href="audit.html" class="hover:text-ink">Audit</a></div></div></footer>
+
+  <script>
+    const defaults = {
+      shopName: 'Olive Coast Studio',
+      category: 'Resort dresses',
+      tagline: 'Mediterranean dresses and resort pieces for slow summer days.',
+      heroCopy: 'A boutique brand page for Etsy sellers who want Instagram, Pinterest, and Google traffic to land somewhere more premium before buyers continue to Etsy checkout.',
+      accentColor: '#b66b4d',
+      etsyLink: 'https://www.etsy.com',
+      productOne: 'Coastal A-line dress',
+      productTwo: 'Vacation-ready styling'
+    };
+
+    const ids = Object.keys(defaults);
+    const setText = (selector, value) => document.querySelectorAll(selector).forEach(el => el.textContent = value);
+
+    function applyPreview(track = true) {
+      const data = Object.fromEntries(ids.map(id => [id, document.getElementById(id).value || defaults[id]]));
+      setText('[data-brand-name]', data.shopName);
+      setText('[data-tagline]', data.tagline);
+      setText('[data-hero-copy]', data.heroCopy);
+      setText('[data-product-one]', data.productOne);
+      setText('[data-product-two]', data.productTwo);
+      setText('[data-category-title]', data.category);
+      document.querySelectorAll('[data-etsy-link]').forEach(link => link.href = data.etsyLink || 'audit.html');
+      document.documentElement.style.setProperty('--accent', data.accentColor);
+      document.documentElement.style.setProperty('--accent-soft', data.accentColor + '24');
+      localStorage.setItem('vitrinyFashionPreview', JSON.stringify(data));
+      if (track && window.gtag) window.gtag('event', 'fashion_demo_customized', { event_category: 'demo', event_label: data.category });
+      return data;
+    }
+
+    function loadSaved() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('vitrinyFashionPreview') || '{}');
+        ids.forEach(id => { document.getElementById(id).value = saved[id] || defaults[id]; });
+      } catch (e) { ids.forEach(id => { document.getElementById(id).value = defaults[id]; }); }
+      applyPreview(false);
+    }
+
+    document.getElementById('applyPreview').addEventListener('click', () => applyPreview(true));
+    ids.forEach(id => document.getElementById(id).addEventListener('input', () => applyPreview(false)));
+    document.getElementById('resetPreview').addEventListener('click', () => { localStorage.removeItem('vitrinyFashionPreview'); ids.forEach(id => document.getElementById(id).value = defaults[id]); applyPreview(true); });
+    document.getElementById('sendPreview').addEventListener('click', () => {
+      const data = applyPreview(true);
+      if (window.gtag) window.gtag('event', 'fashion_demo_preview_sent', { event_category: 'lead', event_label: data.shopName });
+      const message = `VitrinY Fashion Demo Preview%0A%0AShop: ${encodeURIComponent(data.shopName)}%0ACategory: ${encodeURIComponent(data.category)}%0ATagline: ${encodeURIComponent(data.tagline)}%0AEtsy link: ${encodeURIComponent(data.etsyLink)}%0AColor: ${encodeURIComponent(data.accentColor)}%0A%0AI would like a custom version of this demo for my Etsy shop.`;
+      window.location.href = `https://wa.me/905419787726?text=${message}`;
+    });
+    loadSaved();
+  </script>
 </body>
 </html>
