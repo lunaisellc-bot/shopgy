@@ -18,12 +18,17 @@ A lead form for Etsy sellers to request a free review of brand presentation, lis
 ### VitrinY Commerce
 URL: https://vitriny.com.tr/etsy.html
 
-Professional .com.tr brand websites and product catalog landing pages for Etsy sellers. The site supports external traffic from Instagram, Pinterest, ads, QR codes, and search while purchase buttons direct buyers to official Etsy listings.
+Professional brand websites and product catalog landing pages for Etsy sellers. The site supports external traffic from Instagram, Pinterest, ads, QR codes, and search while purchase buttons direct buyers to official Etsy listings.
 
 ### VitrinY Studio
 URL: https://vitriny.com.tr/studio.html
 
 Etsy listing image upgrades, lifestyle product mockups, Pinterest pins, Instagram assets, and launch-ready visual systems for Etsy sellers.
+
+### ByZaynCo Case Study
+URL: https://vitriny.com.tr/case-study-byzaynco.html
+
+An internal proof example showing how VitrinY thinking can shape an Etsy shop into a clearer brand system through positioning, product visuals, listing storytelling, and external traffic readiness.
 
 ### VitrinY Showcase
 URL: https://vitriny.com.tr/portfolio.html
